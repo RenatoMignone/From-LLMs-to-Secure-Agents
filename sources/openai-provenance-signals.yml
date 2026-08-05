@@ -1,0 +1,24 @@
+id: openai-provenance-signals
+title: Provenance signals in OpenAI-generated content
+authors_or_organization: OpenAI
+date:
+source_type: official product guidance
+canonical_url: https://help.openai.com/en/articles/8912793
+doi:
+version:
+accessed: 2026-08-05
+last_verified: 2026-08-05
+status: checked
+claims_supported:
+  - Supported OpenAI-generated images can include C2PA metadata and SynthID watermarks.
+  - Provenance signals do not guarantee accuracy, ownership, or correct context.
+limitations:
+  - Coverage varies by product, model, export path, file type, and creation date.
+related_topics:
+  - generated assets
+  - media provenance
+unit_ids: []
+used_in:
+  - docs/visuals-policy.md
+local_copy:
+sha256:
