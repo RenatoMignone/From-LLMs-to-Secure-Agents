@@ -1,37 +1,35 @@
-# From LLMs to Secure Agents
+![From LLMs to Secure Agents: a three-stage path from a basic language model to an agentic system and then a secured agentic system](assets/images/repo-images/banner.png)
 
-A sequential, visual, source-grounded knowledge base about how agentic AI systems work, how they are built, how they fail, and how to secure them.
+<div align="center">
 
-## Reader assumptions
+<h1>From LLMs to Secure Agents</h1>
 
-The reader already understands:
+<p><strong>A deep, visual, source-grounded guide to understanding complete agentic AI systems and learning how to secure them.</strong></p>
 
-- large language models;
-- prompts and context windows;
-- basic API use;
-- basic Python.
+<p><a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="ROADMAP.md"><img alt="180 ordered guide units" src="https://img.shields.io/badge/guide_units-180-14a38b?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
 
-## Learning path
+<p>Architecture first · Security second · Sources and visuals traced</p>
 
-### Pass 1: Understand the complete agentic system
+</div>
 
-1. From LLM calls to agents
-2. Agent architectures
-3. Core building blocks
-4. Frameworks and protocols
-5. One complete end-to-end workflow
+## The idea
 
-### Pass 2: Secure the system
+Agent security is difficult to learn from isolated vulnerability lists. This project first builds a **complete mental model of an agentic system**, including architecture, context, memory, retrieval, tools, identity, execution, human control, observability, protocols, and end-to-end workflows. It then revisits the same system through a **threat model, controls, tests, and secure reference architectures**.
 
-6. Threat model
-7. Security by component and workflow stage
-8. Preventive, detective, and recovery controls
-9. Security tests and secure reference architectures
-10. Evaluation, assurance, and open research questions
+The reader is expected to understand large language models, prompts, context windows, basic API use, and basic Python.
 
-Detailed security begins only after the complete architecture and end-to-end workflows are understood.
+The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. The illustrations make complex systems easier to enter. They do not replace technical detail or evidence.
 
-## Curriculum structure
+## Two learning passes
+
+| Pass | Goal | Main sections |
+| --- | --- | --- |
+| **1. Understand** | Explain how the complete system works | foundations, architectures, building blocks, frameworks, protocols, end-to-end workflows |
+| **2. Secure** | Revisit that system through concrete threats and controls | threat model, component risks, attack paths, secure architectures, testing and assurance |
+
+**Detailed security starts only after Pass 1 is complete.** Architecture chapters contain a short security preview that links forward.
+
+## Guide structure
 
 ```text
 knowledge/
@@ -48,47 +46,46 @@ knowledge/
   10-open-research-questions/
 ```
 
-Every curriculum directory contains a local `AGENTS.md` and `chapter-plan.md`. These define scope, prerequisites, sources, visuals, examples, security boundaries, and completion criteria without containing final chapter prose.
+Every guide directory has a local `AGENTS.md` and `chapter-plan.md`. Together they define scope, prerequisites, teaching order, sources, visuals, examples, and the boundary between the two passes.
 
-## Autonomous workflow
+## Reproducible autonomous workflow
 
-Future agents read `PROJECT_STATUS.md`, resume the current unit or select the next unblocked unit in `ROADMAP.md`, complete only that unit, update project state, and stop. Each run fetches and verifies the unit's sources, creates its source records, adds its required local visuals and examples, validates the repository, and records the next checkpoint. See `docs/autonomous-workflow.md`.
-
-Use this resume prompt:
+A future agent can resume from the repository state, select the first unblocked unit, research and write **only that unit**, fetch or create its visuals, validate it, record progress, and stop.
 
 ```text
-Read AGENTS.md and continue the work from the last checkpoint.
+Read AGENTS.md and continue the guide from the last checkpoint.
 ```
 
-Run the deterministic repository checks with:
+Each completed unit includes:
+
+- checked source records with exact claims and canonical links;
+- local, attributed visuals, with reproducible diagrams and plots where possible;
+- small runnable examples when the plan requires them;
+- deterministic repository validation;
+- updated project state and a concise changelog entry.
+
+Run the validator with:
 
 ```bash
 python3 scripts/validate_repo.py
 ```
 
-Visuals are stored by unit under `assets/<unit-id-lowercase>/`. The project prefers code-native diagrams and plots, permits license-checked downloads, and uses the installed image generation skill for suitable illustrations. Every final visual is local and registered in `assets/attribution.yml`.
+## Authoring and publishing
 
-## Repository
+**Markdown is the canonical knowledge format.** It stays readable in GitHub, keeps reviews and citations clear, and costs less context than repeated page markup. The future static site will generate semantic HTML and add CSS, JavaScript, navigation, search, themes, and interactive features from that source. See the [site policy](docs/site-policy.md).
 
-```text
-AGENTS.md
-README.md
-PROJECT_STATUS.md  Current operational state
-ROADMAP.md         Stable ordered unit queue
-CHANGELOG.md       Concise completed-change history
-docs/       Project rules
-knowledge/  Canonical chapters
-examples/   Runnable examples and labs
-sources/    Source records
-assets/     Visuals and attribution
-scripts/    Repository validation
-site/       Static site files
-```
+## Repository map
 
-## Status
-
-- Project rules and autonomous source and visual workflow: ready
-- Curriculum plans: ready
-- Knowledge chapters: not started
-- Examples: not started
-- Website: not started
+| Path | Purpose |
+| --- | --- |
+| `AGENTS.md` | Compact entry point for every agent run |
+| `PROJECT_STATUS.md` | Operational progress and resume state |
+| `ROADMAP.md` | Stable dependency-ordered guide |
+| `docs/` | Focused project policies |
+| `knowledge/` | Canonical chapters and local plans |
+| `sources/` | Verified source records |
+| `assets/images/` | One local image folder per chapter, plus repository images |
+| `assets/attribution.yml` | Visual provenance, licenses, checksums, and usage |
+| `examples/` | Runnable examples and security labs |
+| `scripts/` | Deterministic validation and generation tools |
+| `site/` | Future static site implementation |

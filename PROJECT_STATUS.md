@@ -5,7 +5,7 @@
 - Current unit path: None
 - Current unit state: idle
 - Completed units: Curriculum research and structure design
-- Completed infrastructure: Source acquisition, visual acquisition and generation, artifact provenance, resume workflow, and repository validation
+- Completed infrastructure: Source and visual acquisition, generation and provenance, one image folder per chapter, resume workflow, repository validation, canonical authoring format, and repository presentation
 - Units in review: None
 - Next recommended unit: `P1-00-01`, Reader contract and system map
 - Blockers: None

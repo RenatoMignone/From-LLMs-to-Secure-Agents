@@ -22,18 +22,33 @@ Use visuals to explain:
 4. Official or external visual with verified reuse permission
 5. Generated illustration when factual precision is not carried by the pixels
 
+## Visual identity
+
+- Give generated illustrations an approachable technical cartoon style.
+- Use simple shapes, clear hierarchy, restrained labels, and calm blue, teal, green, cream, and warm neutral colors.
+- Keep the subject technically recognizable. Friendly presentation must not hide system structure or trust boundaries.
+- Keep generated illustrations visually consistent across chapters without repeating one composition.
+- Do not force downloaded figures, official diagrams, plots, or evidence visuals into the cartoon style.
+- Keep chapter prose and page layout technical and restrained. Illustrations provide warmth, not decoration.
+
 ## Storage
 
-Store each final visual under `assets/<unit-id-lowercase>/`.
+Give each chapter one image folder. Derive `chapter-id` from the chapter's lowercase `unit_id`. Repository-level presentation images use `repo-images`.
 
 ```text
-assets/<unit-id-lowercase>/
-  <nn>-<descriptive-name>.svg
-  <nn>-<descriptive-name>.png
-  source/       Editable diagram, plot script, prompt, or input data
+assets/images/
+  repo-images/
+    <descriptive-name>.png
+    source/                 Optional editable inputs
+  <chapter-id>/
+    <nn>-<descriptive-name>.svg
+    <nn>-<descriptive-name>.png
+    source/                 Editable diagram, plot script, prompt, or input data
 ```
 
-Chapter Markdown must reference the local file. Never hotlink a remote visual. Do not create a unit asset directory until the unit needs a visual.
+Keep all visuals for one chapter in its folder. Chapter Markdown must reference the local file. Never hotlink a remote content visual. Do not create a chapter image folder until that chapter needs a visual.
+
+The root README may embed compact repository badges from a reputable badge service. Badges must report useful, verifiable project facts and link to the related GitHub page or local project file. They are interface metadata, not attributed content visuals.
 
 ## Rules
 
@@ -64,7 +79,7 @@ Chapter Markdown must reference the local file. Never hotlink a remote visual. D
 ## Generated visuals
 
 - Use the installed `imagegen` skill for illustrative raster assets. Use its built-in mode unless its rules require explicit approval for a fallback.
-- Save the selected project-bound output in the unit asset directory. Do not leave it only in the generator's default output directory.
+- Save the selected project-bound output in its chapter image folder. Do not leave it only in the generator's default output directory.
 - Keep the final prompt under `source/` and record the tool, mode, creation date, and model when known.
 - Preserve Content Credentials or other provenance signals when present. Treat them as provenance indicators, not proof of accuracy or ownership.
 - Record that generated raster output may not be pixel reproducible even with the same prompt.

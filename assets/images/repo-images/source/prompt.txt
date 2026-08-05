@@ -1,0 +1,35 @@
+Create a wide GitHub repository banner for a project titled “From LLMs to Secure Agents”.
+
+Use a clean, polished cartoon illustration style with simple shapes, soft outlines, and a professional educational tone. The design must not look futuristic, cyberpunk, dark, or hacker-themed.
+
+Show a clear left-to-right transformation:
+
+On the left, represent a basic Large Language Model as a friendly assistant receiving a message and returning an answer.
+
+In the center, show the LLM becoming an agentic system by connecting it to a small set of clearly recognizable components:
+- context
+- retrieval
+- memory
+- tools
+- planning
+- state
+
+On the right, show the completed system protected and controlled through:
+- authorization
+- validation
+- monitoring
+- testing
+- secure execution
+
+Use a light background and a calm palette with soft blue, teal, green, cream, and warm neutral tones.
+
+Keep the number of elements limited. Use clear spacing and strong visual hierarchy. Avoid excessive labels and tiny text.
+
+Place the title “From LLMs to Secure Agents” prominently in the center or upper-left area.
+
+Optional subtitle:
+“Understanding, building, and securing agentic AI systems”
+
+The result should look like the cover of a modern technical learning guide. It should be readable, friendly, trustworthy, and suitable as a GitHub repository header.
+
+Wide horizontal composition, approximately 3:1 aspect ratio.

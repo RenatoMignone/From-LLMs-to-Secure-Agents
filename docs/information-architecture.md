@@ -68,13 +68,15 @@ Every directory shown above contains `AGENTS.md` and `chapter-plan.md`. Create c
 ```text
 sources/<source-id>.yml
 assets/attribution.yml
-assets/<unit-id-lowercase>/
-  <final-visual>
-  source/<editable-input>
+assets/images/
+  repo-images/<repository-image>
+  <chapter-id>/
+    <final-visual>
+    source/<editable-input>
 examples/<unit-id-lowercase>/
 ```
 
-Do not create unit artifact directories until the selected unit requires them.
+Use the chapter's lowercase `unit_id` as `chapter-id`. Give each chapter one image folder, and do not create it until the selected chapter requires a visual.
 
 ## File rules
 

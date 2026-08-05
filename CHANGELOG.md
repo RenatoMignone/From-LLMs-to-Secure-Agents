@@ -13,3 +13,27 @@
 - Files or sections: source policy, visual policy, workflow, templates, metadata, validator, state, and README
 - Summary: Added resumable per-unit source acquisition, visual download and generation, provenance, and deterministic validation.
 - Validation: Ran repository, link, curriculum boundary, source-record, visual-ownership, style, and Git checks.
+
+### Repository presentation checkpoint
+
+- Files or sections: root instructions, site policy, README, project banner, visual attribution, and project status
+- Summary: Kept Markdown canonical, compacted the recurring run contract, and added a generated project identity and clearer repository overview.
+- Validation: Checked the banner, attribution, links, policy consistency, instruction size, repository validation, and GitHub metadata.
+
+### Image layout checkpoint
+
+- Files or sections: visual storage policies, workflow, attribution, status, and README
+- Summary: Adopted one `assets/images/<chapter-id>/` folder per chapter and registered the new repository banner.
+- Validation: Checked image paths, banner metadata and checksum, internal links, style, and repository validation.
+
+### Visual identity checkpoint
+
+- Files or sections: README, visual policy, asset rules, and site policy
+- Summary: Defined the approachable technical illustration style and added focused repository badges to a restrained README header.
+- Validation: Checked badge targets, README rendering structure, policy consistency, internal links, style, and repository validation.
+
+### README presentation refinement
+
+- Files or sections: README
+- Summary: Positioned the project as a deep technical guide, added compact structural badges, and removed operational checkpoint details from the project overview.
+- Validation: Checked badge targets, layout structure, internal links, style, and repository validation.

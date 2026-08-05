@@ -81,6 +81,7 @@ Security chapters link back to every architecture component and workflow step th
 - terms defined;
 - acronyms expanded;
 - every visual required by the plan is included, or the plan explicitly says none is needed;
+- every `visual_assets` entry points into that chapter's `assets/images/<chapter-id>/` folder;
 - important claims cited;
 - checked sources recorded under `sources/`;
 - front matter links every used source record, visual asset, and example;

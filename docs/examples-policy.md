@@ -28,7 +28,7 @@ Each example must answer one clear learning question.
 - Do not include destructive payloads.
 - Add tests for the main security property.
 - State limitations.
-- Store plot generators with their visual under `assets/<unit-id-lowercase>/source/`, not as chapter examples.
+- Store plot generators with their visual under `assets/images/<chapter-id>/source/`, not as chapter examples.
 
 ## Security lab structure
 

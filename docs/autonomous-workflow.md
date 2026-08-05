@@ -17,7 +17,7 @@ This workflow makes the prompt "Read `AGENTS.md` and continue from the last chec
 3. Read the nearest local `AGENTS.md`, its `chapter-plan.md`, and only the global policies they require.
 4. Research only that unit. Turn its required concepts into research questions, search current authoritative sources, open every cited source, and create or update source records.
 5. Write or revise only that unit using `docs/chapter-template.md`.
-6. Add only the visuals and examples required by its plan. Choose an original diagram, reproducible plot, licensed download, or generated image by following `docs/visuals-policy.md`. Store final artifacts under the unit folder in `assets/` and update `assets/attribution.yml`.
+6. Add only the visuals and examples required by its plan. Choose an original diagram, reproducible plot, licensed download, or generated image by following `docs/visuals-policy.md`. Store every chapter visual under `assets/images/<chapter-id>/` and update `assets/attribution.yml`.
 7. Validate content, links, source records, citations, local visual files, visual metadata, accessibility text, examples, terminology, pass boundaries, and em dashes. Run `python3 scripts/validate_repo.py`.
 8. Update `README.md`, mark the unit complete in `PROJECT_STATUS.md`, set the next unblocked unit, and append one concise `CHANGELOG.md` entry.
 9. Stop. Do not begin another unit unless the user explicitly requests it.
@@ -28,7 +28,7 @@ This workflow makes the prompt "Read `AGENTS.md` and continue from the last chec
 - Search results, snippets, and model memory are not citable sources.
 - Do not hotlink images. Download an allowed copy or create a project-owned visual.
 - If reuse rights are unclear, do not download the visual. Prefer an original diagram or generated illustration.
-- Generated images follow the installed `imagegen` skill. Project-bound outputs must be copied into `assets/<unit-id-lowercase>/` and recorded.
+- Generated images follow the installed `imagegen` skill. Project-bound outputs must be copied into `assets/images/<chapter-id>/` and recorded.
 - Technical diagrams and plots must be code-native and reproducible. Do not use image generation for precise topology, labels, or quantitative claims.
 
 ## Interrupted work
