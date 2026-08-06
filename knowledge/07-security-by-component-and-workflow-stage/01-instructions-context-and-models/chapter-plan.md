@@ -18,11 +18,12 @@ Model direct and indirect prompt injection, goal hijacking, instruction conflict
 2. `02-indirect-injection-and-untrusted-context.md`
 3. `03-goal-plan-routing-and-output-manipulation.md`
 4. `04-model-abuse-leakage-and-resource-consumption.md`
-5. `05-controls-tests-and-residual-risk.md`
+5. `05-misalignment-specification-gaming-and-rogue-behavior.md`
+6. `06-controls-tests-and-residual-risk.md`
 
 ## Required concepts
 
-Direct prompt injection, indirect prompt injection, goal hijacking, instruction provenance, confused context, output validation, model denial of service, and residual risk.
+Direct prompt injection, indirect prompt injection, goal hijacking, instruction provenance, confused context, output validation, model denial of service, misalignment, specification gaming, rogue behavior, safe failure, and residual risk.
 
 ## Concepts explicitly out of scope
 
@@ -49,7 +50,8 @@ Candidate primary sources:
 - [Indirect prompt injection research](https://arxiv.org/abs/2302.12173)
 - [InjecAgent](https://aclanthology.org/2024.findings-acl.624/)
 - [AgentDojo](https://proceedings.neurips.cc/paper_files/paper/2024/hash/97091a5177d8dc64b1da8bf3e1f6fb54-Abstract-Datasets_and_Benchmarks_Track.html)
-- [OWASP Top 10 for LLM Applications](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/)
+- [OWASP Top 10 for LLM Applications 2026](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/)
+- [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
 - [OpenAI Agents SDK guardrails](https://openai.github.io/openai-agents-python/guardrails/)
 
 ## Connections to later security chapters

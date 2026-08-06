@@ -18,6 +18,8 @@ The site should support:
 
 - nested navigation;
 - sequential learning paths;
+- a clearly marked main path;
+- collapsed, optional deep-dive branches;
 - search;
 - syntax highlighting;
 - diagrams;
@@ -40,4 +42,5 @@ Astro Starlight is the preferred initial option unless a later decision changes 
 - Preserve technical meaning.
 - Keep core explanations available as text.
 - Keep chapters useful without JavaScript.
+- Keep the main path readable without opening deep dives. Show a deep dive's purpose, prerequisites, and return point before the reader enters it.
 - Check links, images, headings, mobile layout, alt text, and code overflow.

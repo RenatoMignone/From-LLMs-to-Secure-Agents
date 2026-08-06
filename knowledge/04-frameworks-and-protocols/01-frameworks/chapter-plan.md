@@ -14,13 +14,21 @@ Identify runtime ownership, graph and loop abstractions, tools, state, memory, h
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-comparison-method-and-versioning.md`
+
+Deep dives:
+
 2. `02-openai-agents-sdk.md`
-3. `03-langgraph.md`
+3. `03-langchain-and-langgraph.md`
 4. `04-autogen.md`
 5. `05-semantic-kernel.md`
 6. `06-google-agent-development-kit.md`
 7. `07-crewai-and-llamaindex.md`
+
+Main path resumes:
+
 8. `08-cross-framework-translation.md`
 
 ## Required concepts
@@ -51,6 +59,7 @@ Candidate primary sources:
 
 - [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)
 - [LangGraph reference](https://langchain-ai.github.io/langgraph/reference/)
+- [LangChain reference](https://reference.langchain.com/)
 - [AutoGen](https://microsoft.github.io/autogen/)
 - [Semantic Kernel Agent Framework](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/)
 - [Google Agent Development Kit](https://adk.dev/agents/)

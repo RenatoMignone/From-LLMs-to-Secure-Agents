@@ -26,9 +26,15 @@ Follow the [threat model](06-threat-model/chapter-plan.md), [component and workf
 
 Pass 2 revisits every Pass 1 component. It separates preventive, detective, and recovery controls and requires tests and residual-risk statements.
 
+## Learning paths
+
+The main path follows every top-level section and the chapters labeled "Main path" in nested plans. It teaches the minimum complete system, threat model, controls, reference designs, and assurance process.
+
+Deep dives are optional branches for advanced retrieval variants, continual learning, framework-specific implementations, advanced multimodality, protocol details, generative interfaces, optimization, regulation, sector profiles, and open research. Their local plans identify exact chapters. They link back to a main-path entry point and may be skipped without breaking later core chapters. The generated site keeps these branches collapsed by default.
+
 ## Required concepts
 
-Agent loops, architectures, all runtime building blocks, frameworks, protocols, workflows, threats, controls, reference architectures, evaluation, assurance, open questions, and current field vocabulary mapped to these stable concepts.
+Agent loops, architectures, all runtime building blocks, policy enforcement, engineering lifecycle, user interfaces, frameworks, protocols, workflows, threats, controls, governance, secure lifecycle, reference architectures, evaluation, assurance, open questions, and current field vocabulary mapped to these stable concepts.
 
 ## Concepts explicitly out of scope
 
@@ -44,7 +50,7 @@ Maintain one system map through Pass 1 and reuse its component and workflow iden
 
 ## Recommended code and framework examples
 
-Use small framework-neutral examples first. Translate selected units to current frameworks only where local plans require it.
+Use the smallest useful form: prose walkthrough, table, visual, inline code, or pseudocode. Create a separate runnable artifact only when execution materially teaches or verifies behavior. Framework chapters such as LangGraph or Langfuse integrations are likely candidates; conceptual chapters often are not.
 
 ## Sources
 
@@ -54,7 +60,8 @@ Candidate primary sources:
 
 - [NIST AI Risk Management Framework 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10)
 - [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/)
-- [Model Context Protocol specification](https://modelcontextprotocol.io/specification/2025-11-25)
+- [Model Context Protocol specification](https://modelcontextprotocol.io/specification/2026-07-28)
+- [NIST AI Agent Standards Initiative](https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative)
 
 ## Connections to later security chapters
 
@@ -62,7 +69,7 @@ Every Pass 1 section links forward to the matching Pass 2 security section. Ever
 
 ## Open questions
 
-The reference workflow domain, a possible standalone policy-engine component, protocol version churn, and cross-framework artifact metadata need later decisions.
+The reference workflow domain, protocol version churn, and cross-framework artifact metadata need later decisions.
 
 ## Completion criteria
 

@@ -14,10 +14,16 @@ Design structured events, logs, metrics, traces, spans, correlation, lineage, sa
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-observability-model-and-events.md`
 2. `02-traces-spans-and-correlation.md`
 3. `03-metrics-cost-quality-and-latency.md`
 4. `04-lineage-replay-redaction-and-retention.md`
+
+Deep dive:
+
+5. `05-opentelemetry-langfuse-langsmith-and-phoenix-integrations.md`
 
 ## Required concepts
 
@@ -25,7 +31,7 @@ Telemetry, event, log, metric, trace, span, attribute, correlation identifier, l
 
 ## Concepts explicitly out of scope
 
-Detection rules, security operations, and vendor product surveys.
+Detection rules, security operations, and exhaustive vendor product surveys.
 
 ## Recommended teaching order
 
@@ -48,6 +54,9 @@ Candidate primary sources:
 - [OpenTelemetry agent spans](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)
 - [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/)
 - [OpenAI Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/)
+- [Langfuse documentation](https://langfuse.com/docs)
+- [LangSmith observability documentation](https://docs.langchain.com/langsmith/observability)
+- [Arize Phoenix documentation](https://arize.com/docs/phoenix/)
 
 ## Connections to later security chapters
 

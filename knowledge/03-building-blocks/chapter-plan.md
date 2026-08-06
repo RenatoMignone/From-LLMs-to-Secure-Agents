@@ -30,10 +30,12 @@ The reader can locate every model call, context item, plan, state transition, me
 14. [Learning and self-improvement](14-learning-and-self-improvement/chapter-plan.md)
 15. [Reliability and operations](15-reliability-and-operations/chapter-plan.md)
 16. [Artifacts and multimodal input/output](16-artifacts-and-multimodal-io/chapter-plan.md)
+17. [Policy, guardrails, and validation](17-policy-guardrails-and-validation/chapter-plan.md)
+18. [Engineering lifecycle and deployment](18-engineering-lifecycle-and-deployment/chapter-plan.md)
 
 ## Required concepts
 
-Follow the numbered child sections. Preserve distinctions among context, state, memory, and artifacts. Treat identity and execution as functional architecture before their security implications.
+Follow the numbered child sections. Preserve distinctions among context, state, memory, and artifacts. Treat identity, execution, policy enforcement, and the engineering lifecycle as functional architecture before their security implications.
 
 ## Recommended teaching order
 
@@ -69,7 +71,7 @@ Every child section must link to its matching area under [component security](..
 
 ## Open questions
 
-Whether policy engines deserve a separate building-block branch should be reassessed after the authorization and tool sections are drafted.
+Keep policy enforcement independent of model judgment, and track which lifecycle metadata can remain portable across frameworks.
 
 ## Completion criteria
 

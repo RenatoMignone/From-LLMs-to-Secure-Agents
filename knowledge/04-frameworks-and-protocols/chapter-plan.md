@@ -17,10 +17,11 @@ The reader can compare orchestration frameworks without confusing their names wi
 1. [Framework translations](01-frameworks/chapter-plan.md)
 2. [Model Context Protocol](02-model-context-protocol/chapter-plan.md)
 3. [Agent-to-agent protocols](03-agent-to-agent-protocols/chapter-plan.md)
+4. [Agent-user interaction](04-agent-user-interaction/chapter-plan.md)
 
 ## Required concepts
 
-Compare abstraction levels and runtime ownership first. Then teach Model Context Protocol host-client-server architecture. Finish with peer-agent discovery, tasks, messages, artifacts, streaming, and long-running work.
+Compare abstraction levels and runtime ownership first. Then teach Model Context Protocol host-client-server architecture, peer-agent communication, and the agent-to-user application boundary.
 
 ## Recommended teaching order
 
@@ -53,6 +54,9 @@ Candidate primary sources:
 - [Google Agent Development Kit](https://adk.dev/agents/)
 - [CrewAI agents](https://docs.crewai.com/en/concepts/agents)
 - [LlamaIndex agents](https://developers.llamaindex.ai/python/framework/module_guides/deploying/agents/)
+- [MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)
+- [A2A specification](https://a2a-protocol.org/latest/specification)
+- [AG-UI specification](https://docs.ag-ui.com/)
 
 ## Connections to later security chapters
 

@@ -46,7 +46,7 @@ Authoritative source categories: OWASP guidance, NIST privacy and adversarial ma
 
 Candidate primary sources:
 
-- [OWASP Top 10 for LLM Applications](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/)
+- [OWASP Top 10 for LLM Applications 2026](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/)
 - [NIST AI 100-2e2025](https://csrc.nist.gov/pubs/ai/100/2/e2025/final)
 - [Indirect prompt injection research](https://arxiv.org/abs/2302.12173)
 - [Agent Security Bench](https://openreview.net/pdf?id=V4y0CpX4hK)

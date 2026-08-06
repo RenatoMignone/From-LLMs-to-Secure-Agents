@@ -6,6 +6,8 @@ This is the stable guide queue. Operational state belongs in `PROJECT_STATUS.md`
 
 Units form one dependency chain in the order below. Every unit depends on the immediately preceding unit and on any additional prerequisites in its local `chapter-plan.md`. `P1-00-01` has no guide dependency. Pass 2 cannot start until every Pass 1 unit is complete.
 
+The queue builds both the main path and deep dives so all published material receives research and review. Reader-facing plans label optional deep dives, which may be skipped without losing a prerequisite needed later on the main path.
+
 ## Unit completion criteria
 
 A unit is complete when it meets its roadmap scope and local plan, follows its chapter template, maps useful current terminology to stable concepts, records checked sources, includes required local visuals and examples, passes validation, receives a separate review, and updates project state and history. Update README only when public structure or navigation changes.
@@ -114,10 +116,16 @@ A unit is complete when it meets its roadmap scope and local plan, follows its c
 
 ## Pass 1D11: Observability and tracing
 
+Main path:
+
 1. `P1-03-11-01` Observability model and events
 2. `P1-03-11-02` Traces, spans, and correlation
 3. `P1-03-11-03` Metrics, cost, quality, and latency
 4. `P1-03-11-04` Lineage, replay, redaction, and retention
+
+Deep dive:
+
+5. `P1-03-11-05` OpenTelemetry, Langfuse, LangSmith, and Phoenix integrations
 
 ## Pass 1D12: Evaluation and benchmarks
 
@@ -160,11 +168,39 @@ A unit is complete when it meets its roadmap scope and local plan, follows its c
 4. `P1-03-16-04` Artifact storage, provenance, and lifecycle
 5. `P1-03-16-05` Multimodal workflow evaluation
 
+## Pass 1D17: Policy, guardrails, and validation
+
+Main path:
+
+1. `P1-03-17-01` Policy, constraints, and the control plane
+2. `P1-03-17-02` Input and context validation
+3. `P1-03-17-03` Intent, action, and tool-call validation
+4. `P1-03-17-04` Output schemas, validation, and safe rendering
+5. `P1-03-17-05` Guardrails, moderation, and failure behavior
+
+Deep dive:
+
+6. `P1-03-17-06` Agent registry, configuration, and versioning
+
+## Pass 1D18: Engineering lifecycle and deployment
+
+Main path:
+
+1. `P1-03-18-01` Requirements and use-case suitability
+2. `P1-03-18-02` Agent definitions, inventory, and ownership
+3. `P1-03-18-03` Development, test, and staging environments
+4. `P1-03-18-04` Deployment topologies and multi-tenancy
+5. `P1-03-18-05` Release, change, rollback, and decommissioning
+
+Deep dive:
+
+6. `P1-03-18-06` Economics, sustainability, and capacity planning
+
 ## Pass 1E1: Frameworks
 
 1. `P1-04-01-01` Comparison method and versioning
 2. `P1-04-01-02` OpenAI Agents SDK
-3. `P1-04-01-03` LangGraph
+3. `P1-04-01-03` LangChain and LangGraph
 4. `P1-04-01-04` AutoGen
 5. `P1-04-01-05` Semantic Kernel
 6. `P1-04-01-06` Google Agent Development Kit
@@ -189,6 +225,19 @@ A unit is complete when it meets its roadmap scope and local plan, follows its c
 5. `P1-04-03-05` Bindings, identity, and interoperability
 6. `P1-04-03-06` Protocol landscape and selection
 
+## Pass 1E4: Agent-user interaction
+
+Main path:
+
+1. `P1-04-04-01` Agent-user interface architecture
+2. `P1-04-04-02` Events, streaming, and shared state
+3. `P1-04-04-03` Interrupts, approvals, and user steering
+
+Deep dives:
+
+4. `P1-04-04-04` Generative interfaces and safe rendering
+5. `P1-04-04-05` AG-UI and the interface protocol landscape
+
 ## Pass 1F: End-to-end workflows
 
 1. `P1-05-01` Workflow requirements and system boundary
@@ -204,9 +253,11 @@ Pass 1 completes when the final workflow traces every functional component, data
 1. `P2-06-01` System scope, assets, and security properties
 2. `P2-06-02` Actors, identities, and trust boundaries
 3. `P2-06-03` Attacker goals, capabilities, and access
-4. `P2-06-04` Threat-modeling method
-5. `P2-06-05` Agentic threat taxonomies and crosswalks
-6. `P2-06-06` Reference workflow threat model
+4. `P2-06-04` Traditional software, cloud, and API threat baseline
+5. `P2-06-05` Threat-modeling method
+6. `P2-06-06` Security, privacy, and safety modeling methods
+7. `P2-06-07` Agentic threat taxonomies and crosswalks
+8. `P2-06-08` Reference workflow threat model
 
 ## Pass 2B1: Instructions, context, and models
 
@@ -214,7 +265,8 @@ Pass 1 completes when the final workflow traces every functional component, data
 2. `P2-07-01-02` Indirect injection and untrusted context
 3. `P2-07-01-03` Goal, plan, routing, and output manipulation
 4. `P2-07-01-04` Model abuse, leakage, and resource consumption
-5. `P2-07-01-05` Controls, tests, and residual risk
+5. `P2-07-01-05` Misalignment, specification gaming, and rogue behavior
+6. `P2-07-01-06` Controls, tests, and residual risk
 
 ## Pass 2B2: Retrieval, memory, and data
 
@@ -264,6 +316,22 @@ Pass 1 completes when the final workflow traces every functional component, data
 4. `P2-07-07-04` Compromised tool or server to host impact
 5. `P2-07-07-05` Cross-agent delegation and credential cascade
 6. `P2-07-07-06` Containment, eradication, recovery, and lessons
+
+## Pass 2B8: Governance and secure lifecycle
+
+Main path:
+
+1. `P2-07-08-01` Risk governance, inventory, and accountability
+2. `P2-07-08-02` Secure design and development lifecycle
+3. `P2-07-08-03` Secure deployment, multi-tenancy, and change
+4. `P2-07-08-04` Privacy, data governance, transparency, and recourse
+5. `P2-07-08-05` Operations, vulnerability management, and monitoring
+6. `P2-07-08-06` Incident response, evidence, and disclosure
+7. `P2-07-08-07` Retirement, decommissioning, and post-incident learning
+
+Deep dive:
+
+8. `P2-07-08-08` Standards, regulation, and sector profiles
 
 ## Pass 2C: Secure reference architectures
 

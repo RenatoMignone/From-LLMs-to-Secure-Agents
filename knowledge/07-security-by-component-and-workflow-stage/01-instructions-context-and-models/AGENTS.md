@@ -4,7 +4,7 @@
 - Reader prerequisite: the parent section and all earlier sibling plans.
 - May assume: Pass 1 context, routing, planning, and the threat model.
 - Do not cover yet: retrieval, memory, tool, and execution risks except where they cross this boundary.
-- Terminology: Use direct prompt injection, indirect prompt injection, goal hijacking, and model denial of service precisely.
+- Terminology: Distinguish prompt injection, goal hijacking, misalignment, specification gaming, and rogue behavior, including harmful behavior without an active attacker.
 - Required links: [parent security plan](../chapter-plan.md) and [retrieval and memory security](../02-retrieval-memory-and-data/chapter-plan.md).
 - Security scope: Detailed security is required.
 - Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

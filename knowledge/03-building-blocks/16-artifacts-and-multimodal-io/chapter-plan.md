@@ -14,10 +14,21 @@ Distinguish messages, events, state, and artifacts; handle files, structured dat
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-messages-events-and-artifacts.md`
 2. `02-structured-and-file-artifacts.md`
+
+Deep dive:
+
 3. `03-images-audio-video-and-streaming.md`
+
+Main path resumes:
+
 4. `04-artifact-storage-provenance-and-lifecycle.md`
+
+Deep dive:
+
 5. `05-multimodal-workflow-evaluation.md`
 
 ## Required concepts

@@ -14,11 +14,22 @@ Explain host, client, and server roles; JSON-RPC lifecycle; capability negotiati
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-purpose-architecture-and-lifecycle.md`
 2. `02-capabilities-tools-resources-and-prompts.md`
 3. `03-transports-sessions-and-versioning.md`
+
+Deep dive:
+
 4. `04-sampling-elicitation-and-roots.md`
+
+Main path resumes:
+
 5. `05-authorization-and-deployment-models.md`
+
+Deep dive:
+
 6. `06-framework-integration.md`
 
 ## Required concepts
@@ -47,8 +58,8 @@ Authoritative source categories: Versioned official specification, official SDK 
 
 Candidate primary sources:
 
-- [MCP architecture](https://modelcontextprotocol.io/specification/2025-11-25/architecture)
-- [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP architecture](https://modelcontextprotocol.io/specification/2026-07-28/architecture)
+- [MCP authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP security policy and trust model](https://github.com/modelcontextprotocol/modelcontextprotocol/security)
 - [OAuth 2.0 Security Best Current Practice](https://www.ietf.org/rfc/rfc9700.pdf)
 

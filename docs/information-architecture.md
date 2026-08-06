@@ -19,6 +19,14 @@ knowledge/
   10-open-research-questions/
 ```
 
+## Main path and deep dives
+
+Top-level numbered sections define the teaching sequence. A topic branch may contain both a short required foundation and optional deep dives. A plan containing optional material must identify its main-path and deep-dive children; unlabeled children are main-path material.
+
+Deep-dive folders use the same source, visual, example, and review rules as the main path. They remain visible in search and cross-links, but site navigation keeps them collapsed until a reader opens the branch. A deep dive must link back to its main-path entry point and may not introduce a prerequisite required by a later main-path chapter.
+
+The stable authoring queue still includes both kinds. This ensures optional material is researched and maintained even though readers may skip it.
+
 ## Substantial branches
 
 ```text
@@ -39,6 +47,8 @@ knowledge/
   14-learning-and-self-improvement/
   15-reliability-and-operations/
   16-artifacts-and-multimodal-io/
+  17-policy-guardrails-and-validation/
+  18-engineering-lifecycle-and-deployment/
 ```
 
 ```text
@@ -46,6 +56,7 @@ knowledge/
   01-frameworks/
   02-model-context-protocol/
   03-agent-to-agent-protocols/
+  04-agent-user-interaction/
 ```
 
 ```text
@@ -57,6 +68,7 @@ knowledge/
   05-human-interfaces-and-observability/
   06-multi-agent-and-protocols/
   07-end-to-end-attack-paths/
+  08-governance-and-secure-lifecycle/
 ```
 
 ## Planning files
@@ -66,7 +78,9 @@ Every directory shown above contains `AGENTS.md` and `chapter-plan.md`. Create c
 ## Unit artifacts
 
 ```text
-sources/<source-id>.yml
+sources/
+  project/<source-id>.yml
+  <unit-id-lowercase>/<source-id>.yml
 assets/attribution.yml
 assets/images/
   repo-images/<repository-image>
@@ -77,7 +91,7 @@ assets/images/
 examples/<unit-id-lowercase>/
 ```
 
-Use the chapter's lowercase `unit_id` as `chapter-id`. Give each chapter one image folder, and do not create it until the selected chapter requires a visual.
+Use the chapter's lowercase `unit_id` as `chapter-id`. Give each chapter one image folder and one source-record folder, and do not create either until the selected chapter requires them. Repository-wide source records belong in `sources/project/`.
 
 Each image folder owns its visual metadata. `assets/attribution.yml` indexes those local manifests.
 

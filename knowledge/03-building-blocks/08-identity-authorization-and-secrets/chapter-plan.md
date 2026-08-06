@@ -49,7 +49,8 @@ Candidate primary sources:
 - [OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [OAuth 2.0 Security Best Current Practice](https://www.ietf.org/rfc/rfc9700.pdf)
 - [SPIFFE concepts](https://spiffe.io/docs/latest/spiffe/concepts/)
-- [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
+- [NIST software and AI agent identity and authorization concept paper](https://www.nccoe.nist.gov/sites/default/files/2026-02/accelerating-the-adoption-of-software-and-ai-agent-identity-and-authorization-concept-paper.pdf)
 
 ## Connections to later security chapters
 

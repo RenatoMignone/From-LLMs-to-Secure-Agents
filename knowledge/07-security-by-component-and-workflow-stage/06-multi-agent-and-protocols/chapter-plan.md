@@ -46,8 +46,8 @@ Authoritative source categories: Official MCP and A2A specifications and trust m
 
 Candidate primary sources:
 
-- [MCP architecture](https://modelcontextprotocol.io/specification/2025-11-25/architecture)
-- [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP architecture](https://modelcontextprotocol.io/specification/2026-07-28/architecture)
+- [MCP authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [MCP trust model](https://github.com/modelcontextprotocol/modelcontextprotocol/security)
 - [A2A specification](https://github.com/a2aproject/A2A/blob/main/docs/specification.md)
 - [OWASP multi-agent threat modeling guide](https://genai.owasp.org/resource/multi-agentic-system-threat-modeling-guide-v1-0/)

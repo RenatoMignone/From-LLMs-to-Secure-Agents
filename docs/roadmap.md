@@ -5,6 +5,8 @@ The stable ordered unit queue is root `ROADMAP.md`. Operational state belongs in
 ## Rules
 
 - Keep units in strict prerequisite order.
+- Maintain a concise main path and label optional deep-dive branches in their plans. A deep dive cannot become an undeclared prerequisite of the main path.
+- The authoring queue includes deep dives for completeness; reader navigation collapses them by default.
 - Give every unit a stable identifier, dependencies, and completion criteria.
 - Complete all architecture units before detailed security units.
 - Change the queue only when guide structure changes. Do not use it as a changelog.

@@ -49,7 +49,7 @@ Candidate primary sources:
 - [OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [OAuth 2.0 Security Best Current Practice](https://www.ietf.org/rfc/rfc9700.pdf)
 - [SPIFFE standard](https://spiffe.io/docs/latest/spiffe-specs/)
-- [MCP authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+- [MCP authorization](https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization)
 - [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/)
 
 ## Connections to later security chapters

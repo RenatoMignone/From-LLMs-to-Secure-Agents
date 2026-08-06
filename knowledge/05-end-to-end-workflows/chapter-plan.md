@@ -6,7 +6,7 @@ Complete Pass 1 by assembling all architecture components into traceable workflo
 
 ## Learning outcomes
 
-The reader can trace input, context, planning, retrieval, state, authority, tool calls, execution, human approval, artifacts, telemetry, evaluation, retries, and termination through a full run.
+The reader can trace input, context, planning, retrieval, state, authority, policy decisions, validation, tool calls, execution, user interaction, human approval, artifacts, telemetry, evaluation, retries, and termination through a full run and its deployment boundary.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ The reader can trace input, context, planning, retrieval, state, authority, tool
 
 ## Required concepts
 
-Define one bounded service task and its agent harness: instructions, context, tools, state, constraints, permissions, tracing, verification, and recovery. Draw the system and authority map. Walk success, failure, retry, approval, resume, and termination. Then distinguish a single harnessed run from an external reusable operating loop, often called loop engineering, and evaluate complete trajectories.
+Define one bounded service task and its agent harness: instructions, context, tools, state, constraints, policies, validators, permissions, user interface, tracing, verification, and recovery. Draw system, authority, enforcement, deployment, and user-interaction maps. Walk success, failure, retry, approval, steering, resume, cancellation, and termination. Then distinguish a single harnessed run from an external reusable operating loop, often called loop engineering, and evaluate complete trajectories.
 
 ## Recommended teaching order
 
@@ -34,7 +34,7 @@ New component theory, exploit walkthroughs, defensive control detail, and securi
 
 ## Required diagrams or visuals
 
-- Visual: sequence diagram, data-flow diagram, state machine, authority map, and trace tree for the same workflow.
+- Visual: sequence diagram, data-flow diagram, state machine, authority and enforcement map, deployment map, user-event flow, and trace tree for the same workflow.
 - Example: a small mocked reference workflow specification, not a full implementation.
 - Framework examples: one framework-neutral design plus concise LangGraph and OpenAI Agents SDK translations.
 

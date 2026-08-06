@@ -21,10 +21,11 @@ The reader can locate each risk, explain its preconditions and impact, and selec
 5. [Human interfaces and observability](05-human-interfaces-and-observability/chapter-plan.md)
 6. [Multi-agent systems and protocols](06-multi-agent-and-protocols/chapter-plan.md)
 7. [End-to-end attack paths](07-end-to-end-attack-paths/chapter-plan.md)
+8. [Governance and secure lifecycle](08-governance-and-secure-lifecycle/chapter-plan.md)
 
 ## Required concepts
 
-Follow runtime data flow. For each boundary: normal function, failure, attack preconditions, impact, prevention, detection, recovery, residual risk, and test hook. Finish with compound attack paths.
+Follow runtime data flow. For each boundary: normal function, failure, attack preconditions, impact, prevention, detection, recovery, residual risk, and test hook. Finish with compound attack paths and lifecycle governance.
 
 ## Recommended teaching order
 
@@ -50,7 +51,8 @@ Categories: OWASP, NIST, MITRE ATLAS, official protocol security guidance, offic
 
 Candidate primary sources:
 
-- [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/)
+- [OWASP Top 10 for LLM Applications 2026](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/)
+- [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
 - [NIST Adversarial Machine Learning taxonomy](https://csrc.nist.gov/pubs/ai/100/2/e2025/final)
 - [MITRE ATLAS](https://atlas.mitre.org/)
 

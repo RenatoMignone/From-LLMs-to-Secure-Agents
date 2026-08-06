@@ -14,10 +14,18 @@ Explain discovery, capability cards, tasks, messages, parts, artifacts, streamin
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-agent-to-tool-versus-agent-to-agent.md`
 2. `02-a2a-data-model-and-discovery.md`
 3. `03-task-lifecycle-messages-and-artifacts.md`
+
+Deep dive:
+
 4. `04-streaming-push-and-long-running-work.md`
+
+Main path resumes:
+
 5. `05-bindings-identity-and-interoperability.md`
 6. `06-protocol-landscape-and-selection.md`
 
@@ -47,8 +55,9 @@ Authoritative source categories: Official protocol specifications and project go
 
 Candidate primary sources:
 
-- [A2A specification](https://github.com/a2aproject/A2A/blob/main/docs/specification.md)
+- [A2A specification](https://a2a-protocol.org/latest/specification)
 - [Linux Foundation A2A announcement](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents)
+- [IBM ACP project and A2A merger notice](https://research.ibm.com/projects/agent-communication-protocol)
 - [Google Agent Development Kit A2A integration](https://adk.dev/agents/)
 
 ## Connections to later security chapters

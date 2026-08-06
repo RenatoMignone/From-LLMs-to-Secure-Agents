@@ -10,6 +10,8 @@ The reader already knows what a large language model is and has basic experience
 
 Keep the focus on agents. Do not add standalone deep coverage of model training, transformer internals, model history, prompt engineering, or large language model mathematics.
 
+The guide is complete for large-language-model-based software agents. Physical robots, autonomous vehicles, and control of safety-critical machinery are separate fields. Mention their boundary where useful, but do not imply that software-agent guidance is sufficient for them.
+
 The project explains:
 
 - what an agent is;
@@ -25,6 +27,8 @@ The project explains:
 The guide also explains useful current practitioner vocabulary. It maps each emerging term to stable architecture, records where the label came from, and distinguishes durable practice from vendor language or short-lived trends.
 
 ## Learning passes
+
+Each pass has a main path and optional deep dives. The main path contains the concepts required to understand every later core chapter. Deep dives expand a specialized mechanism, implementation, protocol, domain, or research area and must state which main-path chapter they extend. A reader may skip a deep dive without encountering unexplained prerequisites later.
 
 ### Pass 1: Understand the complete agentic system
 
