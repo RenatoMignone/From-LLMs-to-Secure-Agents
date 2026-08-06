@@ -56,7 +56,7 @@ Candidate primary sources:
 
 ## Connections to later security chapters
 
-This section closes the curriculum and points maintainers back to the [project curriculum](../chapter-plan.md) when evidence changes require structural revisions.
+This section closes the guide and points maintainers back to the [project plan](../chapter-plan.md) when evidence changes require structural revisions.
 
 ## Open questions
 

@@ -13,4 +13,4 @@ Rules:
 - Add tests.
 - Link the related chapter.
 - State limitations.
-- Update `README.md`.
+- Update `README.md` only when public setup or navigation changes.

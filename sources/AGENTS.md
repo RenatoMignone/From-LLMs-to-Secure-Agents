@@ -14,3 +14,4 @@ Rules:
 - Add a checksum when a licensed local copy is required.
 - Mark conflicting evidence.
 - Review time-sensitive sources before reuse.
+- Use `scripts/register_source.py` instead of formatting records by hand.

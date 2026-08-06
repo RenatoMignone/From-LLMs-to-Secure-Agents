@@ -1,14 +1,14 @@
 # Roadmap
 
-This is the stable curriculum queue. Operational state belongs in `PROJECT_STATUS.md`; completed changes belong in `CHANGELOG.md`.
+This is the stable guide queue. Operational state belongs in `PROJECT_STATUS.md`; completed changes belong in `CHANGELOG.md`.
 
 ## Dependency rule
 
-Units form one dependency chain in the order below. Every unit depends on the immediately preceding unit and on any additional prerequisites in its local `chapter-plan.md`. `P1-00-01` has no curriculum dependency. Pass 2 cannot start until every Pass 1 unit is complete.
+Units form one dependency chain in the order below. Every unit depends on the immediately preceding unit and on any additional prerequisites in its local `chapter-plan.md`. `P1-00-01` has no guide dependency. Pass 2 cannot start until every Pass 1 unit is complete.
 
 ## Unit completion criteria
 
-A unit is complete when it meets its local plan, follows the correct chapter template, records checked sources, includes every required local visual and example, passes validation, updates README and project state, and receives no unresolved blocking review finding.
+A unit is complete when it meets its roadmap scope and local plan, follows the correct chapter template, records checked sources, includes required local visuals and examples, passes validation, receives a separate review, and updates project state and history. Update README only when public structure or navigation changes.
 
 ## Pass 1A: Prerequisites
 
@@ -100,7 +100,7 @@ A unit is complete when it meets its local plan, follows the correct chapter tem
 
 ## Pass 1D9: Execution environments
 
-1. `P1-03-09-01` Execution boundaries and requirements
+1. `P1-03-09-01` Execution boundaries and threat-independent requirements
 2. `P1-03-09-02` Process, container, and sandbox models
 3. `P1-03-09-03` Virtual machines, browsers, and remote workers
 4. `P1-03-09-04` Files, network, resources, and cleanup

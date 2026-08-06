@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "unit_id", "visuals"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "unit_id": {"type": "string", "minLength": 1},
+    "visuals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "kind", "file", "creator", "license", "modified", "sha256", "alt", "caption", "source_records", "used_in"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+          "title": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["diagram", "plot", "downloaded", "generated"]},
+          "file": {"type": "string", "pattern": "^images/"},
+          "editable_source": {"type": ["string", "null"]},
+          "creator": {"type": "string", "minLength": 1},
+          "source_url": {"type": ["string", "null"]},
+          "direct_asset_url": {"type": ["string", "null"]},
+          "license": {"type": "string", "minLength": 1},
+          "license_url": {"type": ["string", "null"]},
+          "accessed": {"type": ["string", "null"]},
+          "generated_with": {"type": ["string", "null"]},
+          "prompt_file": {"type": ["string", "null"]},
+          "modified": {"type": "boolean"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "alt": {"type": "string", "minLength": 1},
+          "caption": {"type": "string", "minLength": 1},
+          "source_records": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "used_in": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

@@ -1,22 +1,3 @@
-visuals:
-  - id: readme-banner
-    unit_id: project
-    title: From LLMs to Secure Agents banner
-    kind: generated
-    file: images/repo-images/banner.png
-    editable_source:
-    creator: Project author
-    source_url:
-    direct_asset_url:
-    license: Project-owned generated asset
-    license_url:
-    accessed: 2026-08-05
-    generated_with: Not recorded by contributor
-    prompt_file: images/repo-images/source/prompt.txt
-    modified: false
-    sha256: 4327b1a32296ecdbcc1886fded728c55d267492cb69050e56b940b2c28d7afe6
-    alt: A three-stage illustrated path from a basic language model through agent components to a secured agentic system.
-    caption: From a basic language model to a complete agentic system, then to a secured agentic system.
-    source_records: []
-    used_in:
-      - README.md
+schema_version: 1
+manifests:
+  - images/repo-images/manifest.yml

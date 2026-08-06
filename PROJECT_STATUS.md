@@ -1,13 +1,22 @@
+---
+schema_version: 1
+current_phase: guide-production-ready
+current_unit: null
+current_unit_path: null
+current_unit_state: idle
+blocked_from: null
+completed_through: null
+units_in_review: []
+next_recommended_unit: P1-00-01
+blockers: []
+unresolved_research_questions:
+  - Reference workflow domain
+  - Policy engine as a separate component
+  - Protocol version churn
+  - Cross-framework artifact metadata
+last_validation_date: "2026-08-06"
+---
+
 # Project Status
 
-- Current phase: Curriculum and autonomous production workflow ready; chapter writing not started
-- Current unit: None
-- Current unit path: None
-- Current unit state: idle
-- Completed units: Curriculum research and structure design
-- Completed infrastructure: Source and visual acquisition, generation and provenance, one image folder per chapter, resume workflow, repository validation, canonical authoring format, and repository presentation
-- Units in review: None
-- Next recommended unit: `P1-00-01`, Reader contract and system map
-- Blockers: None
-- Unresolved research questions: Reference workflow domain; policy engine as a separate component; protocol version churn; cross-framework artifact metadata
-- Last validation date: 2026-08-05
+This front matter is the operational source of truth. `completed_through` names the last completed roadmap unit because the guide follows one strict dependency chain. Use `scripts/project_state.py` to change operational fields.

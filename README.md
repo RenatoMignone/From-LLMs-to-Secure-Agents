@@ -16,7 +16,7 @@
 
 Agent security is difficult to learn from isolated vulnerability lists. This project first builds a **complete mental model of an agentic system**, including architecture, context, memory, retrieval, tools, identity, execution, human control, observability, protocols, and end-to-end workflows. It then revisits the same system through a **threat model, controls, tests, and secure reference architectures**.
 
-The reader is expected to understand large language models, prompts, context windows, basic API use, and basic Python.
+The guide assumes **working familiarity with large language models and prompts**. It gives only short refreshers when an agentic concept needs them. API and Python experience helps, but is not required. The focus is the agentic system, not model internals or prompt engineering.
 
 The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. The illustrations make complex systems easier to enter. They do not replace technical detail or evidence.
 
@@ -50,7 +50,7 @@ Every guide directory has a local `AGENTS.md` and `chapter-plan.md`. Together th
 
 ## Reproducible autonomous workflow
 
-A future agent can resume from the repository state, select the first unblocked unit, research and write **only that unit**, fetch or create its visuals, validate it, record progress, and stop.
+A future agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, fetch or create its visuals, validate it, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
 
 ```text
 Read AGENTS.md and continue the guide from the last checkpoint.
@@ -85,7 +85,7 @@ python3 scripts/validate_repo.py
 | `knowledge/` | Canonical chapters and local plans |
 | `sources/` | Verified source records |
 | `assets/images/` | One local image folder per chapter, plus repository images |
-| `assets/attribution.yml` | Visual provenance, licenses, checksums, and usage |
+| `assets/attribution.yml` | Index of chapter-local visual manifests |
+| `scripts/` | State automation, validation, generation, and regression tests |
 | `examples/` | Runnable examples and security labs |
-| `scripts/` | Deterministic validation and generation tools |
 | `site/` | Future static site implementation |

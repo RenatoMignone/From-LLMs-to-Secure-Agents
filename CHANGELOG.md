@@ -37,3 +37,23 @@
 - Files or sections: README
 - Summary: Positioned the project as a deep technical guide, added compact structural badges, and removed operational checkpoint details from the project overview.
 - Validation: Checked badge targets, layout structure, internal links, style, and repository validation.
+
+### Reader scope refinement
+
+- Files or sections: charter, instructions, style, chapter planning, project status, and README
+- Summary: Set working LLM familiarity as the baseline and limited LLM coverage to brief refreshers needed for agentic topics.
+- Validation: Checked scope language, internal links, style, and repository validation.
+
+## 2026-08-06
+
+### Automated production controls
+
+- Files or sections: workflow, machine-readable state, state and provenance helpers, schemas, validator, CI, visual manifests, guide plans, and README
+- Summary: Added script-driven unit progression and provenance registration with separate review, strict validation, continuous integration, protected main history, and pinned Actions.
+- Validation: Passed repository validation, eleven regression tests, syntax checks, link checks, checksum checks, and style checks.
+
+### Instruction context compression
+
+- Files or sections: root and local instructions, autonomous workflow, artifact policies, state resolver, tests, changelog, and README
+- Summary: Reduced recurring context with exact unit routing, conditional artifact policies, script-owned metadata, and unambiguous author, review, and blocked runs.
+- Validation: Passed repository validation, thirteen regression tests, syntax checks, link checks, style checks, and enforced instruction-size budgets.

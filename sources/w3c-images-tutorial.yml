@@ -1,13 +1,13 @@
 id: w3c-images-tutorial
 title: Images Tutorial
 authors_or_organization: W3C Web Accessibility Initiative
-date: 2026-04-08
+date: "2026-04-08"
 source_type: official accessibility guidance
 canonical_url: https://www.w3.org/WAI/tutorials/images/
 doi:
 version:
-accessed: 2026-08-05
-last_verified: 2026-08-05
+accessed: "2026-08-05"
+last_verified: "2026-08-05"
 status: checked
 claims_supported:
   - Informative images require text alternatives that convey their essential information.

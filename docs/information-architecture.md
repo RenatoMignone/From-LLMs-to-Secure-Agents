@@ -72,11 +72,14 @@ assets/images/
   repo-images/<repository-image>
   <chapter-id>/
     <final-visual>
+    manifest.yml
     source/<editable-input>
 examples/<unit-id-lowercase>/
 ```
 
 Use the chapter's lowercase `unit_id` as `chapter-id`. Give each chapter one image folder, and do not create it until the selected chapter requires a visual.
+
+Each image folder owns its visual metadata. `assets/attribution.yml` indexes those local manifests.
 
 ## File rules
 

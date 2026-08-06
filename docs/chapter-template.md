@@ -77,20 +77,11 @@ Security chapters link back to every architecture component and workflow step th
 
 ## Completion checklist
 
-- prerequisites linked;
-- terms defined;
-- acronyms expanded;
-- every visual required by the plan is included, or the plan explicitly says none is needed;
-- every `visual_assets` entry points into that chapter's `assets/images/<chapter-id>/` folder;
-- important claims cited;
-- checked sources recorded under `sources/`;
-- front matter links every used source record, visual asset, and example;
-- examples runnable or marked as pseudocode;
-- limitations stated;
-- architecture chapters contain only a linked security preview;
-- security chapters are tied to concrete components and the threat model;
-- preventive, detective, and recovery controls are distinct;
-- security tests are included in security chapters;
-- required visuals exist locally, are explained, and have complete metadata;
-- navigation updated;
-- `README.md` updated.
+- Link prerequisites; define terms and acronyms; keep model refreshers brief.
+- Cite important claims and record checked sources.
+- Link every used source, visual, and example in front matter.
+- Include plan-required local visuals with explanation, accessibility text, and metadata.
+- Keep examples runnable or clearly mark pseudocode.
+- State limitations and open uncertainty.
+- Architecture chapters contain only a linked security preview.
+- Security chapters map to taught components and threat model, separate preventive, detective, and recovery controls, and include tests.

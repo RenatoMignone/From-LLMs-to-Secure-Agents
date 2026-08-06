@@ -7,4 +7,4 @@
 - Terminology: Authentication proves identity; authorization decides access; delegation preserves actor chains.
 - Required links: [tools](../07-tools-and-function-calling/chapter-plan.md) and [execution](../09-execution-environments/chapter-plan.md).
 - Security scope: Only a short preview of confused-deputy, token, and secret risk.
-- Follow [chapter templates](../../../docs/chapter-template.md), [style](../../../docs/style-guide.md), [evidence](../../../docs/evidence-policy.md), [visuals](../../../docs/visuals-policy.md), and [examples](../../../docs/examples-policy.md).
+- Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

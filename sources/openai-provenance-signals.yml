@@ -6,8 +6,8 @@ source_type: official product guidance
 canonical_url: https://help.openai.com/en/articles/8912793
 doi:
 version:
-accessed: 2026-08-05
-last_verified: 2026-08-05
+accessed: "2026-08-05"
+last_verified: "2026-08-05"
 status: checked
 claims_supported:
   - Supported OpenAI-generated images can include C2PA metadata and SynthID watermarks.

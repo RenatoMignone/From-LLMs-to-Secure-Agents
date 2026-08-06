@@ -7,4 +7,4 @@
 - Terminology: Separate metric, evaluator, benchmark, test set, trajectory, and outcome.
 - Required links: [observability](../11-observability-and-tracing/chapter-plan.md) and [multi-agent systems](../13-multi-agent-systems/chapter-plan.md).
 - Security scope: Only a short preview linking to security evaluation in Pass 2.
-- Follow [chapter templates](../../../docs/chapter-template.md), [style](../../../docs/style-guide.md), [evidence](../../../docs/evidence-policy.md), [visuals](../../../docs/visuals-policy.md), and [examples](../../../docs/examples-policy.md).
+- Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

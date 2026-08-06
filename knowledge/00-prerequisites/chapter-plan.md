@@ -2,7 +2,7 @@
 
 ## Section purpose
 
-Give the reader the minimum software-system vocabulary needed to trace an agent without reteaching large language models.
+Give the reader the minimum software-system vocabulary needed to trace an agent. Do not reteach large language models.
 
 ## Learning outcomes
 
@@ -10,7 +10,7 @@ The reader can read a component diagram, distinguish data from instructions, fol
 
 ## Prerequisites
 
-Basic Python, API use, prompts, context windows, and large language model concepts.
+Working familiarity with large language models and prompts. No programming or API experience is required.
 
 ## Planned child chapters
 
@@ -29,7 +29,7 @@ Follow the concept order stated above and the numbered child chapters.
 
 ## Concepts explicitly out of scope
 
-Agent patterns, framework APIs, detailed threats, controls, and security testing.
+Large language model internals, model training, prompt engineering, agent patterns, framework APIs, detailed threats, controls, and security testing.
 
 ## Required diagrams or visuals
 

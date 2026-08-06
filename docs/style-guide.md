@@ -12,6 +12,13 @@
 - Avoid marketing language.
 - Do not use em dashes.
 
+## Reader level
+
+- Assume working familiarity with large language models and prompts.
+- Refresh only the model concepts required to explain an agentic mechanism.
+- Keep refreshers short and return immediately to the agentic system.
+- Explain API or Python details when an example depends on them.
+
 ## Architecture teaching order
 
 1. State the problem.

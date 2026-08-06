@@ -2,7 +2,13 @@
 
 ## Goal
 
-Create a complete two-pass learning path from basic LLM applications to secure agentic AI systems.
+Create a complete two-pass learning path from agentic AI foundations to secure agentic AI systems.
+
+## Reader contract
+
+The reader already knows what a large language model is and has basic experience with prompts. Briefly refresh model behavior, context, or interfaces only when an agentic concept depends on them. API and Python experience is helpful, not required.
+
+Keep the focus on agents. Do not add standalone deep coverage of model training, transformer internals, model history, prompt engineering, or large language model mathematics.
 
 The project explains:
 
@@ -43,6 +49,7 @@ First establish the threat model. Then revisit every component and workflow step
 
 This is not:
 
+- an introduction to large language models;
 - a transformer mathematics course;
 - a prompt engineering guide;
 - a guide to only one framework;

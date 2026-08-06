@@ -1,26 +1,40 @@
 # Autonomous Workflow
 
-This workflow makes the prompt "Read `AGENTS.md` and continue from the last checkpoint" sufficient to complete one unit.
+The prompt "Read `AGENTS.md` and continue from the last checkpoint" advances one unit through one controlled run.
 
-## Resume contract
+## Resolve
 
-- If `Current unit` is set, resume it from `Current unit state`.
-- Otherwise use `Next recommended unit` and verify its title and planned filename in the nearest `chapter-plan.md`.
-- Inspect the worktree before editing. Preserve unrelated work.
-- Set `Current unit`, `Current unit path`, and `Current unit state: researching` before collecting artifacts.
-- A unit is complete only after its chapter, sources, visuals, examples, validation, and state updates are complete.
+1. Inspect the worktree and preserve unrelated changes.
+2. Run `python3 scripts/project_state.py resolve`. Trust its selected unit and mode. Do not load full `PROJECT_STATUS.md` or `ROADMAP.md`.
+3. Read returned local instructions, plan, and only required policies.
 
-## Unit loop
+## Author run
 
-1. Read root `AGENTS.md`, `PROJECT_STATUS.md`, and `ROADMAP.md`.
-2. Use the user-selected unit, or select the first unblocked incomplete roadmap unit.
-3. Read the nearest local `AGENTS.md`, its `chapter-plan.md`, and only the global policies they require.
-4. Research only that unit. Turn its required concepts into research questions, search current authoritative sources, open every cited source, and create or update source records.
-5. Write or revise only that unit using `docs/chapter-template.md`.
-6. Add only the visuals and examples required by its plan. Choose an original diagram, reproducible plot, licensed download, or generated image by following `docs/visuals-policy.md`. Store every chapter visual under `assets/images/<chapter-id>/` and update `assets/attribution.yml`.
-7. Validate content, links, source records, citations, local visual files, visual metadata, accessibility text, examples, terminology, pass boundaries, and em dashes. Run `python3 scripts/validate_repo.py`.
-8. Update `README.md`, mark the unit complete in `PROJECT_STATUS.md`, set the next unblocked unit, and append one concise `CHANGELOG.md` entry.
-9. Stop. Do not begin another unit unless the user explicitly requests it.
+Use when mode is `author`.
+
+1. If state is `idle`, run `python3 scripts/project_state.py start`.
+2. Turn unit scope into research questions. Research only that unit. Open every cited source and register exact claims with `scripts/register_source.py`.
+3. Advance to `drafting`; write only the selected chapter using its template.
+4. Advance to `building-assets`; add only plan-required visuals and examples. Register visuals with `scripts/register_visual.py`.
+5. Advance to `validating`; run relevant examples, generators, tests, and `python3 scripts/validate_repo.py`.
+6. Run `python3 scripts/project_state.py review` and stop. Do not start review in this run.
+
+Resume an interrupted author run from its recorded state. Inspect existing artifacts first and do not repeat finished work.
+
+## Review run
+
+Use when mode is `review`.
+
+1. Review only the current unit against its plan, sources, artifacts, template, and pass boundary.
+2. Reopen important sources. Rerun examples, generators, tests, and repository validation.
+3. Fix findings within this unit and revalidate.
+4. Run `python3 scripts/project_state.py complete`. It advances state and writes one changelog entry. Stop without starting the next unit.
+
+Update `README.md` only when public structure, navigation, or project facts changed.
+
+## Blocked run
+
+Use when mode is `blocked`. Confirm whether the recorded blocker is resolved. If yes, run `python3 scripts/project_state.py resume` and continue only the restored state. Otherwise report the blocker and stop without changing state.
 
 ## Acquisition rules
 
@@ -28,18 +42,27 @@ This workflow makes the prompt "Read `AGENTS.md` and continue from the last chec
 - Search results, snippets, and model memory are not citable sources.
 - Do not hotlink images. Download an allowed copy or create a project-owned visual.
 - If reuse rights are unclear, do not download the visual. Prefer an original diagram or generated illustration.
-- Generated images follow the installed `imagegen` skill. Project-bound outputs must be copied into `assets/images/<chapter-id>/` and recorded.
+- Generated images follow the installed `imagegen` skill. Save project outputs in `assets/images/<chapter-id>/` and record them.
 - Technical diagrams and plots must be code-native and reproducible. Do not use image generation for precise topology, labels, or quantitative claims.
-
-## Interrupted work
-
-- Keep the current unit and state in `PROJECT_STATUS.md`.
-- Keep verified source records and finished visual metadata even if prose is incomplete.
-- On resume, inspect existing artifacts and continue from the recorded state. Do not repeat completed acquisition without a reason.
+- Download into a temporary directory. Check final URL, media type, size, license, dimensions, and visible content before moving files into `assets/`.
+- Do not embed downloaded SVG or HTML. Recreate the diagram or safely rasterize a permitted source.
 
 ## Selection rules
 
-- A unit is unblocked when all roadmap dependencies are complete and no blocker is recorded.
-- If the current unit is in review, address only that review unless directed otherwise.
-- Do not work across sections to fill incidental gaps. Record them as blockers or unresolved questions.
-- Stop when the unit meets its plan, when review is required, or when evidence, authority, or a prerequisite is missing.
+- If the current unit is in `review`, run only the review loop.
+- Do not cross unit boundaries. Record external gaps as blockers or unresolved questions.
+- Stop at review, completion, or when evidence, authority, or a prerequisite is missing.
+
+## State transitions
+
+Allowed forward path:
+
+```text
+idle -> researching -> drafting -> building-assets -> validating -> review -> idle
+```
+
+Any active state may move to `blocked` with `python3 scripts/project_state.py block "reason"`. After resolution, run `python3 scripts/project_state.py resume`. Only `complete` advances `completed_through`.
+
+## Git checkpoint
+
+Content completion and Git publication are separate. Never assume authorization to stage, commit, or push. When explicitly authorized, validate first, stage only unit-related files, create one focused commit, and push directly to the requested branch. Do not open a pull request unless explicitly requested.

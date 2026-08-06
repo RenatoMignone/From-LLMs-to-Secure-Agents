@@ -1,4 +1,4 @@
-# Curriculum Plan
+# Guide Plan
 
 ## Section purpose
 
@@ -10,7 +10,7 @@ The reader can progress from agent foundations to complete system architecture, 
 
 ## Prerequisites
 
-The reader knows large language model basics, prompts, context windows, basic APIs, and basic Python.
+The reader has working familiarity with large language models and prompts. Brief model refreshers may appear only when required by an agentic topic. API and Python experience is helpful, not required.
 
 ## Planned child sections
 
@@ -32,7 +32,7 @@ Agent loops, architectures, all runtime building blocks, frameworks, protocols, 
 
 ## Concepts explicitly out of scope
 
-Transformer mathematics, a single-framework tutorial, unsupported security checklists, and website implementation.
+Large language model fundamentals beyond brief refreshers, transformer mathematics, prompt engineering, a single-framework tutorial, unsupported security checklists, and website implementation.
 
 ## Recommended teaching order
 

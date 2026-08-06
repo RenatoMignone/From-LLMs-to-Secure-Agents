@@ -6,8 +6,8 @@ source_type: official guidance
 canonical_url: https://wiki.creativecommons.org/index.php?title=Recommended_practices_for_attribution
 doi:
 version:
-accessed: 2026-08-05
-last_verified: 2026-08-05
+accessed: "2026-08-05"
+last_verified: "2026-08-05"
 status: checked
 claims_supported:
   - Reused Creative Commons works should identify title, author, source, and license when supplied.

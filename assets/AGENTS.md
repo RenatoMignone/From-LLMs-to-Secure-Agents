@@ -13,6 +13,8 @@ Rules:
 - Never hotlink remote content visuals. The root README may use the live status badges allowed by `docs/visuals-policy.md`.
 - Verify source and license before downloading external visuals.
 - Use the installed `imagegen` skill only for suitable raster illustrations and save project outputs locally.
-- Record prompts, generators, source data, checksums, and usage in `assets/attribution.yml`.
+- Record prompts, generators, source data, checksums, and usage in the image folder's `manifest.yml`.
+- Add every image-folder manifest to `assets/attribution.yml`.
 - Keep editable sources.
 - Do not add unlicensed images.
+- Use `scripts/register_visual.py` instead of formatting manifest entries by hand.

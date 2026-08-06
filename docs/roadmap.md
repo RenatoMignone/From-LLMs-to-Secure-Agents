@@ -7,7 +7,8 @@ The stable ordered unit queue is root `ROADMAP.md`. Operational state belongs in
 - Keep units in strict prerequisite order.
 - Give every unit a stable identifier, dependencies, and completion criteria.
 - Complete all architecture units before detailed security units.
-- Change the queue only when curriculum structure changes. Do not use it as a changelog.
-- The next unit is the first incomplete unit whose dependencies are complete and which has no recorded blocker.
-- Resolve a unit to its chapter path by matching its numbered position and title to the nearest `chapter-plan.md` entry.
-- Record the resolved path in `PROJECT_STATUS.md` before research begins.
+- Change the queue only when guide structure changes. Do not use it as a changelog.
+- The validator resolves every unit identifier to exactly one planned chapter path and rejects title or filename drift.
+- The next unit is the item immediately after `completed_through`, unless the current unit must be resumed.
+- Use `scripts/project_state.py start` to record the resolved unit and path before research begins.
+- Do not skip units. Record a blocker instead.

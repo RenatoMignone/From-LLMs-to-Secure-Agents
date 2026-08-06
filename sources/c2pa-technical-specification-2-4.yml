@@ -6,8 +6,8 @@ source_type: official specification
 canonical_url: https://spec.c2pa.org/specifications/specifications/2.4/specs/C2PA_Specification.html
 doi:
 version: "2.4"
-accessed: 2026-08-05
-last_verified: 2026-08-05
+accessed: "2026-08-05"
+last_verified: "2026-08-05"
 status: checked
 claims_supported:
   - Content Credentials can carry tamper-evident provenance assertions bound to a digital asset.
