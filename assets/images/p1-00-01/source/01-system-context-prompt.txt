@@ -1,0 +1,18 @@
+Use case: infographic-diagram
+Asset type: labeled system-context diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the same friendly educational style as the repository banner: simple shapes, soft outlines, a professional technical-guide tone, and a light cream background. Use a calm palette of soft blue, teal, green, cream, and warm neutral orange. Do not use cyberpunk, hacker, dark, or futuristic styling.
+
+Show a left-to-right system map with these exact labels, in large clear sans-serif English text:
+- USER
+- APPLICATION
+- TASK STORE
+- EVENT LOG
+- NOTIFICATION SERVICE
+- APPLICATION TRUST BOUNDARY
+
+Composition: USER is on the left. APPLICATION is in the centre, inside a clearly visible dashed rounded rectangle labeled APPLICATION TRUST BOUNDARY. TASK STORE and EVENT LOG are inside that boundary to the right and below the APPLICATION. NOTIFICATION SERVICE is outside the boundary on the right. Use a person icon, an application window icon, a database cylinder, an event circle or log icon, and a notification bell or message icon.
+
+Use solid teal arrows labeled DATA FLOW for USER to APPLICATION, APPLICATION to TASK STORE, and APPLICATION to EVENT LOG. Use one dashed warm-orange arrow labeled CONTROL FLOW from APPLICATION to NOTIFICATION SERVICE. Include a small, readable legend with exactly: solid teal = data flow; dashed orange = control flow.
+
+Keep labels accurate, large, and high contrast. No extra words, no code, no logos, and no watermark.

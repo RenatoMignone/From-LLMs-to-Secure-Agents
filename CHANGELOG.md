@@ -63,3 +63,9 @@
 - Files or sections: research and maintenance workflow, evidence and style policies, chapter guidance, relevant Pass 1 plans, roadmap, and README
 - Summary: Added controlled discovery and teaching of emerging practitioner terms, including context, harness, and loop engineering, without treating social posts as technical proof.
 - Validation: Checked source provenance rules, prerequisite placement, internal links, instruction budgets, style, and repository tests.
+
+### P1-00-01 complete
+
+- Files or sections: `knowledge/00-prerequisites/01-reader-contract-and-system-map.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Reader contract and system map.
+- Validation: Passed repository validation and the unit review checklist.

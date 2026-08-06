@@ -1,3 +1,4 @@
 schema_version: 1
 manifests:
-  - images/repo-images/manifest.yml
+- images/p1-00-01/manifest.yml
+- images/repo-images/manifest.yml

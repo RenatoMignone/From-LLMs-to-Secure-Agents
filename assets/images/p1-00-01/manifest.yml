@@ -1,0 +1,55 @@
+schema_version: 1
+unit_id: P1-00-01
+visuals:
+- id: p1-00-01-system-context
+  title: System context map
+  kind: generated
+  file: images/p1-00-01/01-system-context.png
+  media_type: image/png
+  width: 1536
+  height: 1024
+  editable_source: null
+  creator: OpenAI image generation, directed by project authors
+  source_url: null
+  direct_asset_url: null
+  license: Project-owned generated asset
+  license_url: null
+  accessed: '2026-08-06'
+  generated_with: OpenAI image generation via imagegen skill
+  prompt_file: images/p1-00-01/source/01-system-context-prompt.txt
+  modified: false
+  sha256: d294d9914b0a833fbfbf24b37a30cc166a5cc72c1d053ec3bfcae9c366fe1112
+  alt: 'A labeled cartoon system map: a user sends data to an application inside an
+    application trust boundary, which connects to a task store and event log, while
+    a dashed control-flow arrow requests work from an external notification service.'
+  caption: A system-context map distinguishing data flow, control flow, stored state,
+    an event log, and an external side effect.
+  source_records: []
+  used_in:
+  - knowledge/00-prerequisites/01-reader-contract-and-system-map.md
+- id: p1-00-01-state-transition-legend
+  title: State-transition legend
+  kind: generated
+  file: images/p1-00-01/02-state-transition-legend.png
+  media_type: image/png
+  width: 1774
+  height: 887
+  editable_source: null
+  creator: OpenAI image generation, directed by project authors
+  source_url: null
+  direct_asset_url: null
+  license: Project-owned generated asset
+  license_url: null
+  accessed: '2026-08-06'
+  generated_with: OpenAI image generation via imagegen skill
+  prompt_file: images/p1-00-01/source/02-state-transition-legend-prompt.txt
+  modified: false
+  sha256: 44c56c315eaa6653348cecda76129f364e9dfc0a6f99d9b075e19cd7faab5b35
+  alt: A labeled cartoon state-transition diagram. Current state and an incoming event
+    feed a transition; it produces next state, an emitted event, and a separately
+    colored side effect. A dashed outline denotes a trust boundary.
+  caption: State-transition notation that distinguishes data flow from control flow
+    and separates next state, emitted events, and side effects.
+  source_records: []
+  used_in:
+  - knowledge/00-prerequisites/01-reader-contract-and-system-map.md

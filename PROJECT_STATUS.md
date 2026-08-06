@@ -1,20 +1,19 @@
 ---
 schema_version: 1
-current_phase: guide-production-ready
+current_phase: pass-1-architecture
 current_unit: null
 current_unit_path: null
 current_unit_state: idle
 blocked_from: null
-completed_through: null
+completed_through: P1-00-01
 units_in_review: []
-next_recommended_unit: P1-00-01
+next_recommended_unit: P1-00-02
 blockers: []
 unresolved_research_questions:
-  - Reference workflow domain
-  - Policy engine as a separate component
-  - Protocol version churn
-  - Cross-framework artifact metadata
-last_validation_date: "2026-08-06"
+- Reference workflow domain
+- Protocol version churn
+- Cross-framework artifact metadata
+last_validation_date: '2026-08-06'
 ---
 
 # Project Status

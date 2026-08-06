@@ -1,0 +1,25 @@
+id: rfc-8693-oauth-token-exchange
+title: 'RFC 8693: OAuth 2.0 Token Exchange'
+authors_or_organization: Internet Engineering Task Force
+date: 2020-01
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc8693.html
+doi: null
+version: RFC 8693
+accessed: '2026-08-06'
+last_verified: '2026-08-06'
+status: checked
+claims_supported:
+- A security token conveys identity and security information across environments or
+  security domains; an actor token can represent the acting party.
+limitations:
+- This token-exchange specification is only one authorization pattern and does not
+  define all identity or permission models.
+related_topics:
+- identity and authority vocabulary
+unit_ids:
+- P1-00-01
+used_in:
+- knowledge/00-prerequisites/01-reader-contract-and-system-map.md
+local_copy: null
+sha256: null

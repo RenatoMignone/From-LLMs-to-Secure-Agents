@@ -1,0 +1,25 @@
+id: rfc-9110-http-semantics
+title: 'RFC 9110: HTTP Semantics'
+authors_or_organization: Internet Engineering Task Force
+date: 2022-06
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc9110.html
+doi: null
+version: RFC 9110
+accessed: '2026-08-06'
+last_verified: '2026-08-06'
+status: checked
+claims_supported:
+- HTTP is a stateless application-level protocol, and its core terminology includes
+  clients, servers, messages, request methods, and status codes.
+limitations:
+- HTTP semantics do not define an agent architecture or application-specific state
+  model.
+related_topics:
+- HTTP message exchanges
+unit_ids:
+- P1-00-01
+used_in:
+- knowledge/00-prerequisites/01-reader-contract-and-system-map.md
+local_copy: null
+sha256: null

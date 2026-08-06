@@ -1,0 +1,25 @@
+id: rfc-8259-json
+title: 'RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format'
+authors_or_organization: Internet Engineering Task Force
+date: 2017-12
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc8259.html
+doi: null
+version: RFC 8259
+accessed: '2026-08-06'
+last_verified: '2026-08-06'
+status: checked
+claims_supported:
+- JSON is a text format for serializing structured data, with primitive and structured
+  types including objects and arrays.
+limitations:
+- JSON specifies data syntax, not the meaning, validity, or authority of application
+  fields.
+related_topics:
+- structured messages
+unit_ids:
+- P1-00-01
+used_in:
+- knowledge/00-prerequisites/01-reader-contract-and-system-map.md
+local_copy: null
+sha256: null

@@ -1,0 +1,19 @@
+Use case: infographic-diagram
+Asset type: labeled state-transition legend for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the same friendly educational style as the repository banner: simple shapes, soft outlines, a professional technical-guide tone, and a light cream background. Use a calm palette of soft blue, teal, green, cream, and warm neutral orange. Do not use cyberpunk, hacker, dark, or futuristic styling.
+
+Show a left-to-right state-transition diagram with these exact labels, in large clear sans-serif English text:
+- CURRENT STATE
+- INCOMING EVENT
+- TRANSITION
+- NEXT STATE
+- EMITTED EVENT
+- SIDE EFFECT
+- TRUST BOUNDARY
+
+Composition: a blue database cylinder labeled CURRENT STATE and a blue event circle labeled INCOMING EVENT feed into a central rounded rectangle labeled TRANSITION. The transition produces a blue database cylinder labeled NEXT STATE, a blue event circle labeled EMITTED EVENT, and a separate warm-orange hexagon labeled SIDE EFFECT. Use a dashed rounded enclosure or sample around part of the visual labeled TRUST BOUNDARY.
+
+Use solid teal arrows labeled DATA FLOW for state and event movement. Use a dashed warm-orange arrow labeled CONTROL FLOW from TRANSITION to SIDE EFFECT. Include a small, readable legend with exactly: solid teal = data flow; dashed orange = control flow.
+
+Keep labels accurate, large, and high contrast. No extra words, no code, no logos, and no watermark.

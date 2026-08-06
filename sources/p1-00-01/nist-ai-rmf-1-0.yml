@@ -1,0 +1,25 @@
+id: nist-ai-rmf-1-0
+title: Artificial Intelligence Risk Management Framework (AI RMF 1.0)
+authors_or_organization: National Institute of Standards and Technology
+date: 2023-01
+source_type: standard
+canonical_url: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
+doi: 10.6028/NIST.AI.100-1
+version: '1.0'
+accessed: '2026-08-06'
+last_verified: '2026-08-06'
+status: checked
+claims_supported:
+- NIST frames AI risk as an event probability combined with the magnitude of its consequences
+  and describes trustworthy AI systems as including secure and resilient characteristics.
+limitations:
+- The AI RMF is voluntary, broad guidance and does not prescribe a particular agent
+  implementation or control set.
+related_topics:
+- security preview
+unit_ids:
+- P1-00-01
+used_in:
+- knowledge/00-prerequisites/01-reader-contract-and-system-map.md
+local_copy: null
+sha256: null
