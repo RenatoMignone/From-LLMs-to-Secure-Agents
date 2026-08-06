@@ -55,6 +55,21 @@ def numbered_directory(parent: Path, number: int) -> Path:
     return matches[0]
 
 
+def child_learning_paths(plan_text: str) -> dict[int, str]:
+    paths: dict[int, str] = {}
+    learning_path = "main"
+    for line in plan_text.splitlines():
+        marker = line.strip().lower()
+        if marker in {"deep dive:", "deep dives:"} or "optional deep-dive branch" in marker:
+            learning_path = "deep-dive"
+        elif marker in {"main path:", "main path resumes:"}:
+            learning_path = "main"
+        match = re.match(r"^\s*(\d+)\. `[^`]+`$", line)
+        if match:
+            paths[int(match.group(1))] = learning_path
+    return paths
+
+
 def roadmap_units() -> list[dict[str, str]]:
     content = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
     units: list[dict[str, str]] = []
@@ -66,7 +81,8 @@ def roadmap_units() -> list[dict[str, str]]:
         else:
             directory, child = numbered_directory(top, numbers[1]), numbers[2]
         plan = directory / "chapter-plan.md"
-        match = re.search(rf"^\s*{child}\. `([^`]+)`$", plan.read_text(encoding="utf-8"), re.MULTILINE)
+        plan_text = plan.read_text(encoding="utf-8")
+        match = re.search(rf"^\s*{child}\. `([^`]+)`$", plan_text, re.MULTILINE)
         if not match:
             raise SystemExit(f"Cannot resolve {unit_id} in {plan.relative_to(ROOT)}")
         units.append({
@@ -75,6 +91,7 @@ def roadmap_units() -> list[dict[str, str]]:
             "path": (directory / match.group(1)).relative_to(ROOT).as_posix(),
             "plan": plan.relative_to(ROOT).as_posix(),
             "pass": "architecture" if unit_id.startswith("P1-") else "security",
+            "learning_path": child_learning_paths(plan_text).get(child, "main"),
         })
     return units
 
@@ -100,13 +117,14 @@ def chapter_template(unit: dict[str, str]) -> str:
         "visual_assets": [],
         "example_paths": [],
         "pass": unit["pass"],
+        "learning_path": unit["learning_path"],
         "status": "outline",
         "last_reviewed": None,
     }
     architecture = [
         "Why this matters", "Simple mental model", "Position in the agent workflow", "How it works",
         "Main variants", "Minimal implementation", "Framework implementations", "Data flow and state changes",
-        "Trust boundaries", "Reliability failures", "Executable example", "Limitations and trade-offs",
+        "Trust boundaries", "Reliability failures", "Worked example", "Limitations and trade-offs",
         "Security preview", "Open research questions", "Key takeaways", "References",
     ]
     security = [
@@ -271,6 +289,7 @@ def main() -> int:
             "local_instructions_path": local_instructions,
             "plan_path": selected["plan"] if selected else None,
             "pass": selected["pass"] if selected else None,
+            "learning_path": selected["learning_path"] if selected else None,
             "mode": mode,
             "state": state,
             "blockers": data.get("blockers", []),

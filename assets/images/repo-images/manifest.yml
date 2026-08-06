@@ -5,6 +5,9 @@ visuals:
     title: From LLMs to Secure Agents banner
     kind: generated
     file: images/repo-images/banner.png
+    media_type: image/png
+    width: 2172
+    height: 724
     editable_source:
     creator: Project author
     source_url:

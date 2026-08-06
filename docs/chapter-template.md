@@ -13,6 +13,7 @@ source_records: []
 visual_assets: []
 example_paths: []
 pass: architecture
+learning_path: main
 status: draft
 last_reviewed:
 ---
@@ -29,7 +30,7 @@ last_reviewed:
 ## Data flow and state changes
 ## Trust boundaries
 ## Reliability failures
-## Executable example
+## Worked example
 ## Limitations and trade-offs
 ## Security preview
 ## Open research questions
@@ -52,6 +53,7 @@ source_records: []
 visual_assets: []
 example_paths: []
 pass: security
+learning_path: main
 status: draft
 last_reviewed:
 ---
@@ -82,10 +84,13 @@ Add a short subsection within the most relevant existing section when current vo
 ## Completion checklist
 
 - Link prerequisites; define terms and acronyms; keep model refreshers brief.
+- Begin with a familiar situation; avoid unexplained software vocabulary.
+- Set `learning_path` from the resolved plan classification. Deep dives link to their main-path entry and return point.
 - Cite important claims and record checked sources.
 - Link every used source, visual, and example in front matter.
 - Include plan-required local visuals with explanation, accessibility text, and metadata.
-- Keep examples runnable or clearly mark pseudocode.
+- Explain every visual nearby and verify that its labels teach the intended relationship.
+- Use the smallest useful example form. Keep external examples runnable and label inline pseudocode clearly.
 - State limitations and open uncertainty.
 - Include useful current terminology with provenance and maturity; omit irrelevant trends.
 - Architecture chapters contain only a linked security preview.

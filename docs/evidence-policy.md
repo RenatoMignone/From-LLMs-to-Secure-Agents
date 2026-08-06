@@ -29,7 +29,7 @@
 
 ## Source record
 
-Store checked sources at `sources/<source-id>.yml`; reuse shared records. Link each using unit and chapter. Update changed versions or claims.
+Store checked chapter sources at `sources/<unit-id-lowercase>/<source-id>.yml`. Store repository-wide records at `sources/project/<source-id>.yml`. Each record belongs to one owner folder and links to its unit and chapter where applicable. Update changed versions or claims.
 
 Use `scripts/register_source.py`, not hand-written YAML. Supply exact supported claims and limitations. Use `practitioner-post` or `practitioner-talk` as `source_type` when applicable. Script handles dates, merging, and checksums. Keep local copies only when rights and reproducibility require them.
 

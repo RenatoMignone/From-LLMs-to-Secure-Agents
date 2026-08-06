@@ -2,22 +2,22 @@
 
 ## Language
 
-- Use simple, precise English.
-- Prefer short sentences.
-- Use active voice.
-- Explain one main idea per paragraph.
-- Define technical terms on first use.
-- Expand acronyms on first use.
-- Use one term consistently.
-- Avoid marketing language.
-- Do not use em dashes.
+- Use simple, precise, active English. Keep one main idea per paragraph.
+- Define terms and expand acronyms on first use. Use terms consistently.
+- Avoid marketing language and em dashes.
 
 ## Reader level
 
-- Assume working familiarity with large language models and prompts.
-- Refresh only the model concepts required to explain an agentic mechanism.
-- Keep refreshers short and return immediately to the agentic system.
-- Explain API or Python details when an example depends on them.
+- Assume LLM and prompt familiarity, but no software-system vocabulary.
+- Explain model, API, or Python details only when needed.
+
+## Teach for understanding
+
+- Start with a concrete situation. Explain the ordinary idea before its technical name.
+- Introduce, define, and motivate one new term at a time, then reuse it in the example.
+- Do not trade essential explanation for brevity. Use prose, tables, or visuals when they improve understanding.
+- Make a connected story, not a list of definitions. Explain the question before a formula, diagram, JSON example, or acronym.
+- Explain how to read every visual nearby.
 
 ## Architecture teaching order
 
@@ -33,27 +33,18 @@ Do not explain attacks, controls, recovery, or security tests in an architecture
 
 ## Security teaching order
 
-Start with the threat model. Map each failure, attack, control, and test to an architecture component or workflow step already taught in Pass 1. Separate preventive, detective, and recovery controls.
+Start with the threat model. Map each security item to Pass 1 architecture. Separate preventive, detective, and recovery controls.
 
 ## Formatting
 
-- Use descriptive headings.
-- Use tables for comparisons.
-- Use code blocks only when useful.
-- Give every visual alt text and a caption.
+- Use descriptive headings and tables for comparisons.
+- Use code only when useful. Give every visual alt text and a caption.
 - Split large files into focused chapters.
 
 ## Claims
 
-Distinguish:
-
-- definitions;
-- official guidance;
-- research results;
-- implementation choices;
-- project opinions;
-- open questions.
+Distinguish definitions, official guidance, research results, implementation choices, project opinions, and open questions.
 
 ## Current field terminology
 
-When useful, map current terms to the stable architecture already taught. Define the concrete mechanism first, then its popular label and aliases. State whether usage is standardized, vendor-specific, research, or emerging. Do not present novelty, popularity, or social engagement as technical evidence.
+Map current terms to the architecture already taught. Define the mechanism first, state its maturity, and do not treat popularity as evidence.

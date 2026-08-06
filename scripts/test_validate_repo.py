@@ -63,10 +63,10 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_wrong_next_unit_fails(self) -> None:
-        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-00-01", "next_recommended_unit: P1-00-02")
+        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-00-02", "next_recommended_unit: P1-00-03")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("next_recommended_unit must be P1-00-01", result.stdout)
+        self.assertIn("next_recommended_unit must be P1-00-02", result.stdout)
 
     def test_roadmap_plan_drift_fails(self) -> None:
         self.replace("ROADMAP.md", "Execution boundaries and threat-independent requirements", "Execution boundaries and requirements")
@@ -74,17 +74,43 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("roadmap and plan filename drift", result.stdout)
 
+    def test_chapter_learning_path_mismatch_fails(self) -> None:
+        self.replace(
+            "knowledge/00-prerequisites/01-reader-contract-and-system-map.md",
+            "learning_path: main",
+            "learning_path: deep-dive",
+        )
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("chapter learning_path mismatch", result.stdout)
+
     def test_visual_checksum_fails(self) -> None:
         self.replace("assets/images/repo-images/manifest.yml", "4327b1a3", "0327b1a3")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("visual checksum mismatch", result.stdout)
 
+    def test_visual_dimensions_fail(self) -> None:
+        self.replace("assets/images/repo-images/manifest.yml", "width: 2172", "width: 2173")
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("visual media metadata mismatch", result.stdout)
+
     def test_source_schema_fails(self) -> None:
-        self.replace("sources/w3c-images-tutorial.yml", "claims_supported:", "unsupported_claims:")
+        self.replace("sources/project/w3c-images-tutorial.yml", "claims_supported:", "unsupported_claims:")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("schema error", result.stdout)
+
+    def test_source_record_cannot_belong_to_multiple_units(self) -> None:
+        self.replace(
+            "sources/project/w3c-images-tutorial.yml",
+            "unit_ids: []",
+            "unit_ids:\n  - P1-00-01\n  - P1-00-02",
+        )
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("more than one unit", result.stdout)
 
     def test_instruction_budget_fails(self) -> None:
         path = self.repo / "AGENTS.md"
@@ -97,19 +123,29 @@ class ValidatorTests(unittest.TestCase):
         result = self.run_state("start")
         self.assertEqual(result.returncode, 0, result.stdout)
         status = (self.repo / "PROJECT_STATUS.md").read_text(encoding="utf-8")
-        self.assertIn("current_unit: P1-00-01", status)
+        self.assertIn("current_unit: P1-00-02", status)
         self.assertIn("current_unit_state: researching", status)
-        self.assertTrue((self.repo / "knowledge/00-prerequisites/01-reader-contract-and-system-map.md").is_file())
+        chapter = self.repo / "knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md"
+        self.assertTrue(chapter.is_file())
+        self.assertIn("learning_path: main", chapter.read_text(encoding="utf-8"))
 
     def test_state_resolve_returns_compact_next_unit(self) -> None:
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertIn("unit_id: P1-00-01", result.stdout)
-        self.assertIn("chapter_path: knowledge/00-prerequisites/01-reader-contract-and-system-map.md", result.stdout)
+        self.assertIn("unit_id: P1-00-02", result.stdout)
+        self.assertIn("chapter_path: knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md", result.stdout)
         self.assertIn("local_instructions_path: knowledge/00-prerequisites/AGENTS.md", result.stdout)
         self.assertIn("plan_path: knowledge/00-prerequisites/chapter-plan.md", result.stdout)
         self.assertIn("mode: author", result.stdout)
-        self.assertNotIn("P1-00-02", result.stdout)
+        self.assertIn("learning_path: main", result.stdout)
+        self.assertNotIn("P1-00-03", result.stdout)
+
+    def test_state_resolve_reports_deep_dive_classification(self) -> None:
+        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-01", "completed_through: P1-03-06-03")
+        result = self.run_state("resolve")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn("unit_id: P1-03-06-04", result.stdout)
+        self.assertIn("learning_path: deep-dive", result.stdout)
 
     def test_state_resolve_reports_review_mode(self) -> None:
         self.assertEqual(self.run_state("start").returncode, 0)
@@ -119,7 +155,7 @@ class ValidatorTests(unittest.TestCase):
         status_path = self.repo / "PROJECT_STATUS.md"
         status = status_path.read_text(encoding="utf-8")
         status_path.write_text(status.replace("current_unit_state: validating", "current_unit_state: review").replace("units_in_review: []", "units_in_review:\n- P1-00-01"), encoding="utf-8")
-        chapter_path = self.repo / "knowledge/00-prerequisites/01-reader-contract-and-system-map.md"
+        chapter_path = self.repo / "knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md"
         chapter = chapter_path.read_text(encoding="utf-8")
         chapter_path.write_text(chapter.replace("status: outline", "status: review"), encoding="utf-8")
         result = self.run_state("resolve")
@@ -173,10 +209,47 @@ class ValidatorTests(unittest.TestCase):
             "--alt", "A technical guide banner.",
             "--caption", "The project path from models to secure agents.",
             "--used-in", "README.md",
+            "--prompt-file", "images/repo-images/source/prompt.txt",
         )
         self.assertEqual(result.returncode, 0, result.stdout)
         validation = self.run_validator()
         self.assertEqual(validation.returncode, 0, validation.stdout)
+
+    def test_visual_registration_rejects_svg(self) -> None:
+        path = self.repo / "assets/images/repo-images/test.svg"
+        path.write_text("<svg xmlns=\"http://www.w3.org/2000/svg\"></svg>", encoding="utf-8")
+        result = self.run_script(
+            "register_visual.py",
+            "--unit-id", "project",
+            "--id", "svg-test",
+            "--title", "SVG test",
+            "--kind", "diagram",
+            "--file", "images/repo-images/test.svg",
+            "--creator", "Test",
+            "--license", "Test-only",
+            "--alt", "Test",
+            "--caption", "Test",
+            "--used-in", "README.md",
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("SVG is not allowed", result.stdout)
+
+    def test_downloaded_visual_requires_provenance(self) -> None:
+        result = self.run_script(
+            "register_visual.py",
+            "--unit-id", "project",
+            "--id", "download-test",
+            "--title", "Download test",
+            "--kind", "downloaded",
+            "--file", "images/repo-images/banner.png",
+            "--creator", "Test",
+            "--license", "Test-only",
+            "--alt", "Test",
+            "--caption", "Test",
+            "--used-in", "README.md",
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("downloaded visual requires provenance fields", result.stdout)
 
 
 if __name__ == "__main__":

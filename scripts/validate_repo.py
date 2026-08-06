@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import struct
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -32,6 +33,7 @@ class Unit:
     chapter_path: str
     plan_path: str
     pass_name: str
+    learning_path: str
 
 
 def fail(message: str) -> None:
@@ -90,12 +92,44 @@ def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
+def image_metadata(path: Path) -> tuple[str, int, int]:
+    data = path.read_bytes()
+    if data.startswith(b"\x89PNG\r\n\x1a\n") and len(data) >= 24:
+        width, height = struct.unpack(">II", data[16:24])
+        return "image/png", width, height
+    if data.startswith(b"RIFF") and data[8:12] == b"WEBP":
+        chunk = data[12:16]
+        if chunk == b"VP8X" and len(data) >= 30:
+            return "image/webp", 1 + int.from_bytes(data[24:27], "little"), 1 + int.from_bytes(data[27:30], "little")
+        if chunk == b"VP8 " and len(data) >= 30 and data[23:26] == b"\x9d\x01\x2a":
+            return "image/webp", int.from_bytes(data[26:28], "little") & 0x3FFF, int.from_bytes(data[28:30], "little") & 0x3FFF
+        if chunk == b"VP8L" and len(data) >= 25 and data[20] == 0x2F:
+            bits = int.from_bytes(data[21:25], "little")
+            return "image/webp", (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+    raise ValueError("not a valid PNG or WebP image")
+
+
 def numbered_directory(parent: Path, number: int) -> Path | None:
     matches = sorted(path for path in parent.iterdir() if path.is_dir() and path.name.startswith(f"{number:02d}-"))
     if len(matches) != 1:
         fail(f"expected one {number:02d}-* directory under {relative(parent)}")
         return None
     return matches[0]
+
+
+def child_learning_paths(plan_text: str) -> dict[int, str]:
+    paths: dict[int, str] = {}
+    learning_path = "main"
+    for line in plan_text.splitlines():
+        marker = line.strip().lower()
+        if marker in {"deep dive:", "deep dives:"} or "optional deep-dive branch" in marker:
+            learning_path = "deep-dive"
+        elif marker in {"main path:", "main path resumes:"}:
+            learning_path = "main"
+        match = re.match(r"^\s*(\d+)\. `[^`]+`$", line)
+        if match:
+            paths[int(match.group(1))] = learning_path
+    return paths
 
 
 def resolve_units() -> list[Unit]:
@@ -124,7 +158,8 @@ def resolve_units() -> list[Unit]:
             fail(f"unsupported unit identifier shape: {unit_id}")
             continue
         plan = directory / "chapter-plan.md"
-        match = re.search(rf"^\s*{child_number}\. `([^`]+)`$", plan.read_text(encoding="utf-8"), re.MULTILINE)
+        plan_text = plan.read_text(encoding="utf-8")
+        match = re.search(rf"^\s*{child_number}\. `([^`]+)`$", plan_text, re.MULTILINE)
         if not match:
             fail(f"missing plan entry for {unit_id}: {relative(plan)}")
             continue
@@ -132,7 +167,14 @@ def resolve_units() -> list[Unit]:
         expected_filename = f"{child_number:02d}-{slugify(title)}.md"
         if filename != expected_filename:
             fail(f"roadmap and plan filename drift: {unit_id}: {filename} != {expected_filename}")
-        units.append(Unit(unit_id, title, relative(directory / filename), relative(plan), "architecture" if unit_id.startswith("P1-") else "security"))
+        units.append(Unit(
+            unit_id,
+            title,
+            relative(directory / filename),
+            relative(plan),
+            "architecture" if unit_id.startswith("P1-") else "security",
+            child_learning_paths(plan_text).get(child_number, "main"),
+        ))
     planned = []
     for plan in (ROOT / "knowledge").rglob("chapter-plan.md"):
         planned.extend(re.findall(r"^\s*\d+\. `([0-9]{2}-[^`]+\.md)`$", plan.read_text(encoding="utf-8"), re.MULTILINE))
@@ -292,7 +334,7 @@ def check_status(units: list[Unit]) -> None:
 def check_sources(units: list[Unit]) -> dict[str, dict[str, Any]]:
     unit_ids = {unit.unit_id for unit in units}
     records: dict[str, dict[str, Any]] = {}
-    for path in (ROOT / "sources").glob("*.yml"):
+    for path in (ROOT / "sources").rglob("*.yml"):
         if path.name == "source-template.yml":
             continue
         data = load_yaml(path)
@@ -305,6 +347,11 @@ def check_sources(units: list[Unit]) -> dict[str, dict[str, Any]]:
         records[source_id] = data
         if path.stem != source_id:
             fail(f"source id does not match filename: {relative(path)}")
+        expected_owner = data.get("unit_ids", [])[0].lower() if len(data.get("unit_ids", [])) == 1 else "project"
+        if len(data.get("unit_ids", [])) > 1:
+            fail(f"source record belongs to more than one unit: {source_id}")
+        if path.parent.name != expected_owner:
+            fail(f"source record folder must match owner: {relative(path)}")
         for unit_id in data.get("unit_ids", []):
             if unit_id not in unit_ids:
                 fail(f"source record has unknown unit id: {source_id} -> {unit_id}")
@@ -354,6 +401,8 @@ def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[st
                 fail(f"duplicate visual record: {file_name}")
             visual_files[file_name] = visual | {"unit_id": data.get("unit_id")}
             asset = ROOT / "assets" / file_name
+            if asset.suffix.lower() not in {".png", ".webp"}:
+                fail(f"final visual must be PNG or WebP: assets/{file_name}")
             if not asset.is_file():
                 fail(f"visual file missing: assets/{file_name}")
                 continue
@@ -361,10 +410,26 @@ def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[st
                 fail(f"visual is not owned by its manifest folder: assets/{file_name}")
             if hashlib.sha256(asset.read_bytes()).hexdigest() != visual.get("sha256"):
                 fail(f"visual checksum mismatch: assets/{file_name}")
+            try:
+                actual_metadata = image_metadata(asset)
+                recorded_metadata = (visual.get("media_type"), visual.get("width"), visual.get("height"))
+                if recorded_metadata != actual_metadata:
+                    fail(f"visual media metadata mismatch: assets/{file_name}")
+            except ValueError:
+                fail(f"visual is not a valid PNG or WebP: assets/{file_name}")
             for optional_path in ("editable_source", "prompt_file"):
                 value = visual.get(optional_path)
                 if value and not (ROOT / "assets" / value).is_file():
                     fail(f"visual {optional_path} missing: assets/{value}")
+            prompt_file = visual.get("prompt_file")
+            if prompt_file and (ROOT / "assets" / prompt_file).parent != asset.parent / "source":
+                fail(f"visual prompt_file must be chapter-local: assets/{file_name}")
+            if visual.get("kind") == "generated" and not visual.get("prompt_file"):
+                fail(f"generated visual requires prompt_file: assets/{file_name}")
+            if visual.get("kind") == "downloaded":
+                for field in ("source_url", "direct_asset_url", "license_url"):
+                    if not visual.get(field):
+                        fail(f"downloaded visual requires {field}: assets/{file_name}")
             for used_in in visual.get("used_in", []):
                 if not (ROOT / used_in).is_file():
                     fail(f"visual used_in missing: {file_name} -> {used_in}")
@@ -384,11 +449,11 @@ def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[st
 def check_chapters(units: list[Unit], sources: dict[str, dict[str, Any]], visuals: dict[str, dict[str, Any]]) -> None:
     by_path = {unit.chapter_path: unit for unit in units}
     seen_units: set[str] = set()
-    required_front_matter = {"title", "unit_id", "summary", "prerequisites", "learning_objectives", "source_records", "visual_assets", "example_paths", "pass", "status", "last_reviewed"}
+    required_front_matter = {"title", "unit_id", "summary", "prerequisites", "learning_objectives", "source_records", "visual_assets", "example_paths", "pass", "learning_path", "status", "last_reviewed"}
     architecture_headings = {
         "Why this matters", "Simple mental model", "Position in the agent workflow", "How it works",
         "Main variants", "Minimal implementation", "Framework implementations", "Data flow and state changes",
-        "Trust boundaries", "Reliability failures", "Executable example", "Limitations and trade-offs",
+        "Trust boundaries", "Reliability failures", "Worked example", "Limitations and trade-offs",
         "Security preview", "Open research questions", "Key takeaways", "References",
     }
     security_headings = {
@@ -422,6 +487,8 @@ def check_chapters(units: list[Unit], sources: dict[str, dict[str, Any]], visual
             fail(f"chapter title mismatch: {chapter_path}")
         if metadata.get("pass") != unit.pass_name:
             fail(f"chapter pass mismatch: {chapter_path}")
+        if metadata.get("learning_path") != unit.learning_path:
+            fail(f"chapter learning_path mismatch: {chapter_path}")
         if not isinstance(metadata.get("summary"), str) or not metadata["summary"].strip():
             fail(f"chapter summary is empty: {chapter_path}")
         if not isinstance(metadata.get("learning_objectives"), list) or not metadata["learning_objectives"]:

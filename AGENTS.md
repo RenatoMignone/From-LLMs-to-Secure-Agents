@@ -16,17 +16,22 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Sources, visuals, and code: `docs/evidence-policy.md`, `docs/visuals-policy.md`, `docs/examples-policy.md`
 - Site and upkeep: `docs/site-policy.md`, `docs/maintenance.md`, `docs/roadmap.md`
 
-Normal chapter runs load style and evidence policies. The generated scaffold and validator enforce the chapter template; open that policy only for structural repair. Load visuals or examples policy only when the plan requires that artifact. Load other policies only for structural, site, or maintenance work.
+Normal chapter runs load style and evidence. Load other policies only when the plan requires them.
 
 ## Invariants
 
-- Assume the reader has working familiarity with large language models and prompts. Give only brief, just-in-time refreshers needed for agentic topics. Do not teach model internals in depth.
+- Assume LLM and prompt familiarity, not software-system vocabulary. Teach needed terms one at a time through familiar examples; use plain English before the technical term. Do not compress essential background.
+- Use a scenario, labeled visual, or table whenever it improves comprehension.
 - Teach in dependency order. Finish functional architecture and workflows before detailed security.
+- Preserve a short main learning path. Put specialized expansions in labeled deep-dive branches that readers may skip without losing later prerequisites.
 - Map risks to known components or workflow steps. State uncertainty and limitations.
 - Ground important claims in official sources or primary research.
-- Keep final visuals local and traceable. Prefer original visuals and attribute reuse.
+- Keep final visuals local and traceable. Do not create SVGs. Prefer verified raster downloads or generated PNG/WebP assets.
+- Before generation, save a chapter-local prompt under `assets/images/<unit-id-lowercase>/source/`, use the banner's technical-cartoon style, then register the prompt and asset.
+- Store source records by owner: `sources/<unit-id-lowercase>/<source-id>.yml` for a chapter and `sources/project/<source-id>.yml` for repository-wide material.
 - Keep Markdown canonical. Generate the site from it.
 - Keep examples small, safe, runnable, and linked to their chapters.
+- Prefer prose, tables, visuals, pseudocode, or inline code. Create a runnable artifact only when execution improves understanding or verifies behavior.
 - Let scripts update operational metadata. Update `README.md` only when public facts change.
 - Treat `PROJECT_STATUS.md` front matter as the operational source of truth. Never infer completion from files alone.
 - Do not use em dashes.

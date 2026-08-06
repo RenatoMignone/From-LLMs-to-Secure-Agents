@@ -37,7 +37,11 @@ def main() -> int:
     args = parser.parse_args()
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", args.id):
         parser.error("--id must use lowercase kebab-case")
-    path = ROOT / "sources" / f"{args.id}.yml"
+    if len(args.unit) > 1:
+        parser.error("a source record belongs to one unit; register separate records when needed")
+    owner = args.unit[0].lower() if args.unit else "project"
+    path = ROOT / "sources" / owner / f"{args.id}.yml"
+    path.parent.mkdir(parents=True, exist_ok=True)
     previous = yaml.safe_load(path.read_text(encoding="utf-8")) if path.exists() else {}
     today = dt.date.today().isoformat()
     record = {

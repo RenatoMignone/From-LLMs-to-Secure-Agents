@@ -5,7 +5,7 @@ Read `docs/evidence-policy.md`.
 Rules:
 
 - One focused record per source.
-- Use `sources/<source-id>.yml` and link each record to its unit and chapter.
+- Use `sources/<unit-id-lowercase>/<source-id>.yml` for a chapter record. Use `sources/project/<source-id>.yml` only for repository-wide material.
 - Record exact supported claims.
 - Record canonical URL or DOI, access and verification dates, version, and limitations.
 - Prefer official and primary sources.

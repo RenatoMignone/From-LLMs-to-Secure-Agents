@@ -18,7 +18,7 @@
     "claims_supported": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
     "related_topics": {"type": "array", "items": {"type": "string", "minLength": 1}},
-    "unit_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "unit_ids": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"type": "string"}},
     "used_in": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
     "local_copy": {"type": ["string", "null"]},
     "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}

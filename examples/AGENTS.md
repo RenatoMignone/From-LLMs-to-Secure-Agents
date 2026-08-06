@@ -5,6 +5,7 @@ Read `docs/examples-policy.md`.
 Rules:
 
 - One learning goal per example.
+- Create an external example only when execution or reuse adds teaching value beyond an inline chapter snippet.
 - Keep dependencies small.
 - Include setup, run, and expected output.
 - Use safe local defaults.
