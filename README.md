@@ -18,7 +18,7 @@ Agent security is difficult to learn from isolated vulnerability lists. This pro
 
 The guide assumes **working familiarity with large language models and prompts**. It gives only short refreshers when an agentic concept needs them. API and Python experience helps, but is not required. The focus is the agentic system, not model internals or prompt engineering.
 
-The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. The illustrations make complex systems easier to enter. They do not replace technical detail or evidence.
+The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels. Illustrations support technical detail and evidence.
 
 ## Two learning passes
 

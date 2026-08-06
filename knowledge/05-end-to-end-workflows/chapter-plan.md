@@ -22,7 +22,7 @@ The reader can trace input, context, planning, retrieval, state, authority, tool
 
 ## Required concepts
 
-Define one bounded service task. Draw the system and authority map. Walk a happy path, tool error, retry, approval pause, resume, and termination. Then show a multi-agent variant and evaluate complete trajectories.
+Define one bounded service task and its agent harness: instructions, context, tools, state, constraints, permissions, tracing, verification, and recovery. Draw the system and authority map. Walk success, failure, retry, approval, resume, and termination. Then distinguish a single harnessed run from an external reusable operating loop, often called loop engineering, and evaluate complete trajectories.
 
 ## Recommended teaching order
 
@@ -53,6 +53,10 @@ Candidate primary sources:
 - [AutoGen termination](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html)
 - [OpenTelemetry agent spans](https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md)
 - [Tau-bench](https://arxiv.org/abs/2406.12045)
+- [OpenAI: Harness engineering](https://openai.com/index/harness-engineering/)
+- [Harness-Bench](https://arxiv.org/abs/2605.27922)
+- [IBM: What is loop engineering?](https://www.ibm.com/think/topics/loop-engineering)
+- [Stop Hand-Holding Your Coding Agent](https://arxiv.org/abs/2607.00038)
 
 ## Connections to later security chapters
 
@@ -60,7 +64,7 @@ The exact workflows become the assets and attack paths for the [threat model](..
 
 ## Open questions
 
-Select a domain that permits realistic authorization and side effects while remaining safe and easy to mock.
+Select a domain that permits realistic authorization and side effects while remaining safe and easy to mock. Treat harness engineering and loop engineering as evolving labels, and state where definitions overlap or conflict.
 
 ## Completion criteria
 

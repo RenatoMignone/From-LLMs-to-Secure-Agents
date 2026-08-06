@@ -22,7 +22,7 @@ Define tasks, datasets, simulators, oracles, metrics, repeated trials, pass rate
 
 ## Required concepts
 
-Evaluation, benchmark, task, environment, simulator, oracle, metric, trajectory, task success, pass@k, pass^k, variance, contamination, and judge model.
+Evaluation, benchmark, task, environment, simulator, oracle, metric, trajectory, task success, pass@k, pass^k, variance, contamination, judge model, harness effects, and model-harness configuration reporting.
 
 ## Concepts explicitly out of scope
 
@@ -51,6 +51,7 @@ Candidate primary sources:
 - [Tau-bench](https://arxiv.org/abs/2406.12045)
 - [SWE-bench](https://proceedings.iclr.cc/paper_files/paper/2024/hash/edac78c3e300629acfe6cbe9ca88fb84-Abstract-Conference.html)
 - [Google Agent Development Kit evaluation](https://adk.dev/agents/)
+- [Harness-Bench](https://arxiv.org/abs/2605.27922)
 
 ## Connections to later security chapters
 

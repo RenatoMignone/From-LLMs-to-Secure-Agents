@@ -53,3 +53,7 @@ Distinguish:
 - implementation choices;
 - project opinions;
 - open questions.
+
+## Current field terminology
+
+When useful, map current terms to the stable architecture already taught. Define the concrete mechanism first, then its popular label and aliases. State whether usage is standardized, vendor-specific, research, or emerging. Do not present novelty, popularity, or social engagement as technical evidence.

@@ -13,7 +13,7 @@ The prompt "Read `AGENTS.md` and continue from the last checkpoint" advances one
 Use when mode is `author`.
 
 1. If state is `idle`, run `python3 scripts/project_state.py start`.
-2. Turn unit scope into research questions. Research only that unit. Open every cited source and register exact claims with `scripts/register_source.py`.
+2. Turn unit scope into research questions. Research only that unit. Check current official material and practitioner discussion for useful field terms. Open every cited source and register exact claims with `scripts/register_source.py`.
 3. Advance to `drafting`; write only the selected chapter using its template.
 4. Advance to `building-assets`; add only plan-required visuals and examples. Register visuals with `scripts/register_visual.py`.
 5. Advance to `validating`; run relevant examples, generators, tests, and `python3 scripts/validate_repo.py`.
@@ -25,7 +25,7 @@ Resume an interrupted author run from its recorded state. Inspect existing artif
 
 Use when mode is `review`.
 
-1. Review only the current unit against its plan, sources, artifacts, template, and pass boundary.
+1. Review only the current unit against its plan, sources, artifacts, template, terminology status, and pass boundary.
 2. Reopen important sources. Rerun examples, generators, tests, and repository validation.
 3. Fix findings within this unit and revalidate.
 4. Run `python3 scripts/project_state.py complete`. It advances state and writes one changelog entry. Stop without starting the next unit.
@@ -40,6 +40,7 @@ Use when mode is `blocked`. Confirm whether the recorded blocker is resolved. If
 
 - Candidate sources in a plan are leads, not evidence. Reopen and verify them for the current unit.
 - Search results, snippets, and model memory are not citable sources.
+- Treat social posts as terminology provenance, attributed experience, or research leads. Verify technical claims elsewhere.
 - Do not hotlink images. Download an allowed copy or create a project-owned visual.
 - If reuse rights are unclear, do not download the visual. Prefer an original diagram or generated illustration.
 - Generated images follow the installed `imagegen` skill. Save project outputs in `assets/images/<chapter-id>/` and record them.

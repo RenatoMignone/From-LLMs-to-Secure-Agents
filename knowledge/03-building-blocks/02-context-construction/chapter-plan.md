@@ -21,7 +21,7 @@ Classify context sources, apply precedence and budgets, serialize messages and t
 
 ## Required concepts
 
-System instructions, developer instructions, user input, conversation history, retrieved evidence, tool output, scratch data, token budget, truncation, caching, and provenance.
+Context engineering as the runtime discipline for selecting and maintaining model-visible information; its difference from prompt engineering; system and developer instructions, user input, history, retrieved evidence, tool output, scratch data, token budgets, truncation, caching, and provenance.
 
 ## Concepts explicitly out of scope
 
@@ -48,6 +48,7 @@ Candidate primary sources:
 - [OpenAI Agents SDK context management](https://openai.github.io/openai-agents-python/agents/)
 - [Google Agent Development Kit context and sessions](https://adk.dev/agents/)
 - [Lost in the Middle](https://arxiv.org/abs/2307.03172)
+- [Anthropic: Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
 ## Connections to later security chapters
 

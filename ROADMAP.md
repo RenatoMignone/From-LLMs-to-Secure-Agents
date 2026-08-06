@@ -8,7 +8,7 @@ Units form one dependency chain in the order below. Every unit depends on the im
 
 ## Unit completion criteria
 
-A unit is complete when it meets its roadmap scope and local plan, follows the correct chapter template, records checked sources, includes required local visuals and examples, passes validation, receives a separate review, and updates project state and history. Update README only when public structure or navigation changes.
+A unit is complete when it meets its roadmap scope and local plan, follows its chapter template, maps useful current terminology to stable concepts, records checked sources, includes required local visuals and examples, passes validation, receives a separate review, and updates project state and history. Update README only when public structure or navigation changes.
 
 ## Pass 1A: Prerequisites
 

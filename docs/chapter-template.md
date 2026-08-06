@@ -75,6 +75,10 @@ last_reviewed:
 
 Security chapters link back to every architecture component and workflow step they revisit.
 
+## Field terminology
+
+Add a short subsection within the most relevant existing section when current vocabulary helps the reader. Map each term to the concrete mechanism, give aliases and maturity, and cite its origin or representative use. Do not create a detached trend list.
+
 ## Completion checklist
 
 - Link prerequisites; define terms and acronyms; keep model refreshers brief.
@@ -83,5 +87,6 @@ Security chapters link back to every architecture component and workflow step th
 - Include plan-required local visuals with explanation, accessibility text, and metadata.
 - Keep examples runnable or clearly mark pseudocode.
 - State limitations and open uncertainty.
+- Include useful current terminology with provenance and maturity; omit irrelevant trends.
 - Architecture chapters contain only a linked security preview.
 - Security chapters map to taught components and threat model, separate preventive, detective, and recovery controls, and include tests.

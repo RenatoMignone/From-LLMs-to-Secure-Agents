@@ -11,7 +11,7 @@
 
 1. Run `python3 scripts/validate_repo.py`.
 2. Run unit examples, generators, and tests.
-3. Check citations, terminology, limitations, and required artifact metadata.
+3. Check citations, terminology, limitations, and required artifact metadata. Recheck the status and provenance of emerging terms.
 4. Confirm pass boundary and required cross-links.
 5. Let state scripts update `PROJECT_STATUS.md` and `CHANGELOG.md`.
 6. Update navigation or `README.md` only when public facts changed.

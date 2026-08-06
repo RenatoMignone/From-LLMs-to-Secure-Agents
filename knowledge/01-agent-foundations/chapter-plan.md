@@ -22,7 +22,7 @@ The reader can define an agent, trace a perception-decision-action loop, disting
 
 ## Required concepts
 
-Define model, agent, environment, observation, action, goal, and policy. Build a manual loop. Compare fixed code paths with model-selected paths. Add autonomy levels, feedback, errors, budgets, and explicit stop conditions.
+Define model, agent, environment, observation, action, goal, and policy. Build a manual loop. Distinguish its internal perceive-decide-act cycle from the external operating workflow sometimes called loop engineering. Compare fixed and model-selected paths. Add autonomy levels, feedback, errors, budgets, and stop conditions.
 
 ## Recommended teaching order
 
@@ -52,6 +52,8 @@ Candidate primary sources:
 - [Google Agent Development Kit agents](https://adk.dev/agents/)
 - [LangGraph workflows and agents](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
 - [ReAct](https://arxiv.org/abs/2210.03629)
+- [IBM: What is loop engineering?](https://www.ibm.com/think/topics/loop-engineering)
+- [Stop Hand-Holding Your Coding Agent](https://arxiv.org/abs/2607.00038)
 
 ## Connections to later security chapters
 
@@ -59,7 +61,7 @@ Link the security preview to [threat modeling](../06-threat-model/chapter-plan.m
 
 ## Open questions
 
-Agent definitions vary across standards and frameworks. The chapter must present a project definition and label competing definitions.
+Agent and loop definitions vary across standards, frameworks, and practitioner usage. Present project definitions, label competing meanings, and defer full outer-loop design to end-to-end workflows.
 
 ## Completion criteria
 

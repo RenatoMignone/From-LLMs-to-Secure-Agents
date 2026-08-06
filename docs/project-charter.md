@@ -22,6 +22,8 @@ The project explains:
 - how controls reduce those risks;
 - how controls can be tested.
 
+The guide also explains useful current practitioner vocabulary. It maps each emerging term to stable architecture, records where the label came from, and distinguishes durable practice from vendor language or short-lived trends.
+
 ## Learning passes
 
 ### Pass 1: Understand the complete agentic system

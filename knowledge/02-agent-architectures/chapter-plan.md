@@ -25,7 +25,7 @@ The reader can choose and diagram single-agent loops, routers, pipelines, parall
 
 ## Required concepts
 
-Begin with the least dynamic design that solves the task. Add routing, parallelism, loops, planning, evaluation, durable graphs, and multi-agent control. Compare determinism, latency, cost, debuggability, failure propagation, and termination.
+Begin with the least dynamic design that solves the task. Add routing, parallelism, loops, planning, evaluation, durable graphs, and multi-agent control. Distinguish architecture patterns from the runtime harness that realizes them. Compare determinism, latency, cost, debuggability, failure propagation, and termination.
 
 ## Recommended teaching order
 

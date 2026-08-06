@@ -28,7 +28,7 @@ Pass 2 revisits every Pass 1 component. It separates preventive, detective, and 
 
 ## Required concepts
 
-Agent loops, architectures, all runtime building blocks, frameworks, protocols, workflows, threats, controls, reference architectures, evaluation, assurance, and open questions.
+Agent loops, architectures, all runtime building blocks, frameworks, protocols, workflows, threats, controls, reference architectures, evaluation, assurance, open questions, and current field vocabulary mapped to these stable concepts.
 
 ## Concepts explicitly out of scope
 

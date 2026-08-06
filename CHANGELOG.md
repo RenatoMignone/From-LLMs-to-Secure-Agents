@@ -57,3 +57,9 @@
 - Files or sections: root and local instructions, autonomous workflow, artifact policies, state resolver, tests, changelog, and README
 - Summary: Reduced recurring context with exact unit routing, conditional artifact policies, script-owned metadata, and unambiguous author, review, and blocked runs.
 - Validation: Passed repository validation, thirteen regression tests, syntax checks, link checks, style checks, and enforced instruction-size budgets.
+
+### Current field vocabulary
+
+- Files or sections: research and maintenance workflow, evidence and style policies, chapter guidance, relevant Pass 1 plans, roadmap, and README
+- Summary: Added controlled discovery and teaching of emerging practitioner terms, including context, harness, and loop engineering, without treating social posts as technical proof.
+- Validation: Checked source provenance rules, prerequisite placement, internal links, instruction budgets, style, and repository tests.
