@@ -1,0 +1,25 @@
+id: p1-00-03-cloudevents-1-0
+title: CloudEvents Specification
+authors_or_organization: Cloud Native Computing Foundation
+date: null
+source_type: specification
+canonical_url: https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md
+doi: null
+version: CloudEvents 1.0
+accessed: '2026-08-12'
+last_verified: '2026-08-12'
+status: checked
+claims_supported:
+- CloudEvents defines an occurrence as a captured statement of fact during software
+  operation and an event as a data record expressing that occurrence and its context.
+limitations:
+- CloudEvents standardizes an event format, not application-specific event meaning,
+  persistence, authorization, or delivery guarantees.
+related_topics:
+- event terminology and event delivery
+unit_ids:
+- P1-00-03
+used_in:
+- knowledge/00-prerequisites/03-requests-events-state-and-side-effects.md
+local_copy: null
+sha256: null

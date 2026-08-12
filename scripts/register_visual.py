@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import hashlib
+import re
 import struct
 from pathlib import Path
 
@@ -14,6 +15,35 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
+
+
+def chapter_image_folder(unit_id: str, used_in: list[str]) -> Path:
+    """Return the image folder that mirrors the owning chapter's Markdown path."""
+    if unit_id == "project":
+        return ASSETS / "images" / "repo-images"
+    for relative_path in used_in:
+        chapter = ROOT / relative_path
+        if not chapter.is_file() or chapter.suffix != ".md":
+            continue
+        try:
+            chapter_relative = chapter.relative_to(ROOT / "knowledge")
+        except ValueError:
+            continue
+        match = re.match(r"^---\n(.*?)\n---(?:\n|$)", chapter.read_text(encoding="utf-8"), re.DOTALL)
+        if match and re.search(rf"^unit_id:\s*{re.escape(unit_id)}\s*$", match.group(1), re.MULTILINE):
+            return ASSETS / "images" / chapter_relative.with_suffix("")
+    raise ValueError(f"--used-in must include the knowledge chapter owned by {unit_id}")
+
+
+def existing_manifest(unit_id: str) -> Path:
+    matches = []
+    for path in (ASSETS / "images").rglob("manifest.yml"):
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        if isinstance(data, dict) and data.get("unit_id") == unit_id:
+            matches.append(path)
+    if len(matches) != 1:
+        raise ValueError(f"expected one visual manifest for {unit_id}, found {len(matches)}")
+    return matches[0]
 
 
 def image_metadata(path: Path) -> tuple[str, int, int]:
@@ -61,9 +91,11 @@ def main() -> int:
     parser.add_argument("--modified", action="store_true")
     parser.add_argument("--remove", action="store_true", help="Remove this visual record before deleting its asset.")
     args = parser.parse_args()
-    expected_folder = "repo-images" if args.unit_id == "project" else args.unit_id.lower()
-    manifest_path = ASSETS / "images" / expected_folder / "manifest.yml"
     if args.remove:
+        try:
+            manifest_path = existing_manifest(args.unit_id)
+        except ValueError as error:
+            parser.error(str(error))
         if not manifest_path.is_file():
             parser.error(f"visual manifest does not exist: {manifest_path.relative_to(ROOT)}")
         manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
@@ -79,6 +111,10 @@ def main() -> int:
     missing = [name for name, value in required.items() if not value]
     if missing or not args.used_in:
         parser.error(f"missing required registration fields: {', '.join([*missing, *( [ '--used-in' ] if not args.used_in else [])])}")
+    try:
+        expected_folder = chapter_image_folder(args.unit_id, args.used_in)
+    except ValueError as error:
+        parser.error(str(error))
     if args.kind == "generated" and not args.prompt_file:
         parser.error("--prompt-file is required for a generated visual and must exist before registration")
     asset = ASSETS / args.file
@@ -106,8 +142,8 @@ def main() -> int:
         invalid_urls = [name for name, value in download_fields.items() if not value.startswith("https://")]
         if invalid_urls:
             parser.error(f"downloaded visual provenance URLs must use HTTPS: {', '.join(invalid_urls)}")
-    if asset.parent.name != expected_folder:
-        parser.error(f"visual must be directly under assets/images/{expected_folder}/")
+    if asset.parent != expected_folder:
+        parser.error(f"visual must be directly under {expected_folder.relative_to(ROOT)}/")
     manifest_path = asset.parent / "manifest.yml"
     manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {
         "schema_version": 1,

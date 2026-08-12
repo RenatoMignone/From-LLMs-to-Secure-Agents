@@ -370,7 +370,17 @@ def check_sources(units: list[Unit]) -> dict[str, dict[str, Any]]:
     return records
 
 
-def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[str, Any]]:
+def chapter_image_folder(unit: Unit) -> Path:
+    return ROOT / "assets" / "images" / Path(unit.chapter_path).relative_to("knowledge").with_suffix("")
+
+
+def check_visuals(source_ids: set[str], units: list[Unit]) -> dict[str, dict[str, Any]]:
+    units_by_id = {unit.unit_id: unit for unit in units}
+    unit_ids = set(units_by_id)
+    for unit in units:
+        folder = chapter_image_folder(unit)
+        if not folder.is_dir():
+            fail(f"missing chapter image folder: {relative(folder)}")
     index_path = ROOT / "assets" / "attribution.yml"
     index = load_yaml(index_path)
     validate_schema(index, "attribution-index.schema.json", relative(index_path))
@@ -391,8 +401,8 @@ def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[st
         manifest_unit = data.get("unit_id")
         if manifest_unit != "project" and manifest_unit not in unit_ids:
             fail(f"visual manifest has unknown unit: assets/{manifest_relative} -> {manifest_unit}")
-        if manifest_unit != "project" and manifest_path.parent.name != str(manifest_unit).lower():
-            fail(f"visual manifest folder must match unit id: assets/{manifest_relative}")
+        if manifest_unit != "project" and manifest_unit in units_by_id and manifest_path.parent != chapter_image_folder(units_by_id[manifest_unit]):
+            fail(f"visual manifest folder must mirror chapter path: assets/{manifest_relative}")
         for visual in data.get("visuals", []):
             if not isinstance(visual, dict) or not isinstance(visual.get("file"), str):
                 continue
@@ -439,7 +449,7 @@ def check_visuals(source_ids: set[str], unit_ids: set[str]) -> dict[str, dict[st
     final_assets = {
         path.relative_to(ROOT / "assets").as_posix()
         for path in (ROOT / "assets" / "images").rglob("*")
-        if path.is_file() and path.name != "manifest.yml" and "source" not in path.relative_to(ROOT / "assets").parts
+        if path.is_file() and path.name not in {"manifest.yml", ".gitkeep"} and "source" not in path.relative_to(ROOT / "assets").parts
     }
     if set(visual_files) != final_assets:
         fail(f"visual records differ from files: unregistered={sorted(final_assets - set(visual_files))}, missing={sorted(set(visual_files) - final_assets)}")
@@ -543,7 +553,7 @@ def main() -> int:
     units = resolve_units()
     check_status(units)
     sources = check_sources(units)
-    visuals = check_visuals(set(sources), {unit.unit_id for unit in units})
+    visuals = check_visuals(set(sources), units)
     check_chapters(units, sources, visuals)
     if ERRORS:
         print("Validation failed:")

@@ -86,7 +86,7 @@ python3 scripts/validate_repo.py
 | `docs/` | Focused project policies |
 | `knowledge/` | Canonical chapters and local plans |
 | `sources/` | Verified source records |
-| `assets/images/` | One local image folder per chapter, plus repository images |
+| `assets/images/` | Image folders mirroring the chapter hierarchy, plus repository images |
 | `assets/attribution.yml` | Index of chapter-local visual manifests |
 | `scripts/` | State automation, validation, generation, and regression tests |
 | `examples/` | Runnable examples and security labs |

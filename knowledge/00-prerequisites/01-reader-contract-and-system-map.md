@@ -16,8 +16,8 @@ source_records:
 - rfc-8693-oauth-token-exchange
 - nist-ai-rmf-1-0
 visual_assets:
-- assets/images/p1-00-01/01-system-context.png
-- assets/images/p1-00-01/02-state-transition-legend.png
+- assets/images/00-prerequisites/01-reader-contract-and-system-map/01-system-context.png
+- assets/images/00-prerequisites/01-reader-contract-and-system-map/02-state-transition-legend.png
 example_paths:
 - examples/p1-00-01
 pass: architecture
@@ -56,7 +56,7 @@ Now separate two kinds of information in the save message. **Data** is the thing
 
 This diagram tells the task-app story. It is a **system-context diagram**: a picture of the people and software around the app. It does not explain the app's internal code. Instead, it helps you see where information goes and where the app asks another system to act.
 
-![System context diagram: a user sends a create-task request to an application process. The process reads and writes a task store, sends an event to an event log, and calls an external notification service. A dashed boundary surrounds the application process, store, and event log. Solid teal arrows represent data flow; dashed orange arrows represent control flow.](../../assets/images/p1-00-01/01-system-context.png)
+![System context diagram: a user sends a create-task request to an application process. The process reads and writes a task store, sends an event to an event log, and calls an external notification service. A dashed boundary surrounds the application process, store, and event log. Solid teal arrows represent data flow; dashed orange arrows represent control flow.](../../assets/images/00-prerequisites/01-reader-contract-and-system-map/01-system-context.png)
 
 *Figure 1. A reusable system-context map. The dashed application boundary means “the part of the system we are discussing.” It does not mean every component inside it is equally safe or equally trusted.*
 
@@ -130,7 +130,7 @@ No framework is required for this chapter. Framework names can hide the simple p
 
 The following legend is the notation for later workflow diagrams.
 
-![State-transition legend: an incoming event and current state enter a transition box. The box produces next state, emitted events, and an external side effect. Solid teal arrows are data flow, dashed orange arrows are control flow, and a dashed rounded rectangle is a trust boundary.](../../assets/images/p1-00-01/02-state-transition-legend.png)
+![State-transition legend: an incoming event and current state enter a transition box. The box produces next state, emitted events, and an external side effect. Solid teal arrows are data flow, dashed orange arrows are control flow, and a dashed rounded rectangle is a trust boundary.](../../assets/images/00-prerequisites/01-reader-contract-and-system-map/02-state-transition-legend.png)
 
 *Figure 2. State-transition notation. A transition can be successful even when a later external side effect has not completed.*
 

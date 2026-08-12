@@ -27,7 +27,7 @@ Normal chapter runs load style and evidence. Load other policies only when the p
 - Map risks to known components or workflow steps. State uncertainty and limitations.
 - Ground important claims in official sources or primary research.
 - Keep final visuals local and traceable. Do not create SVGs. Prefer verified raster downloads or generated PNG/WebP assets.
-- Before generation, save a chapter-local prompt under `assets/images/<unit-id-lowercase>/source/`, use the banner's technical-cartoon style, then register the prompt and asset.
+- Mirror chapters under `assets/images/`, without `knowledge/` or `.md`. Save prompts in local `source/`, use banner style, then register them.
 - Store source records by owner: `sources/<unit-id-lowercase>/<source-id>.yml` for a chapter and `sources/project/<source-id>.yml` for repository-wide material.
 - Keep Markdown canonical. Generate the site from it.
 - Keep examples small, safe, runnable, and linked to their chapters.

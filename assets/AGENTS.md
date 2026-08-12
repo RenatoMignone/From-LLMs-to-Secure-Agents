@@ -5,9 +5,9 @@ Read `docs/visuals-policy.md`.
 Rules:
 
 - Use only PNG or WebP final assets. Do not create or register SVG files.
-- Give each chapter one image folder at `assets/images/<chapter-id>/`, using its lowercase `unit_id` as `chapter-id`.
+- Mirror every chapter path under `assets/images/`, omitting the leading `knowledge/` and the `.md` suffix. For example, `knowledge/00-prerequisites/01-reader-contract-and-system-map.md` owns `assets/images/00-prerequisites/01-reader-contract-and-system-map/`.
 - Store repository-level images under `assets/images/repo-images/`.
-- Put prompts and permitted editable inputs under the matching image folder's `source/` directory. Write a generated image's complete prompt before generation.
+- Keep the full chapter and subchapter directory hierarchy, including empty chapter folders tracked with `.gitkeep`. Put prompts and permitted editable inputs under the owning chapter folder's `source/` directory. Write a generated image's complete prompt before generation.
 - Use meaningful names.
 - Add alt text and captions in chapters.
 - Never hotlink remote content visuals. The root README may use the live status badges allowed by `docs/visuals-policy.md`.

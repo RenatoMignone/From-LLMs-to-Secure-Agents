@@ -1,0 +1,19 @@
+Use case: scientific-educational
+Asset type: labeled workflow legend for a technical learning guide
+
+Create a wide, clean, polished technical-cartoon infographic in the same friendly educational identity as the repository banner: simple shapes, soft outlines, professional guide tone, light cream background, and calm teal, blue, green, cream, and warm-orange palette. No cyberpunk, hacker imagery, dark background, logos, watermark, code, or extra words.
+
+Show a left-to-right workflow with these exact large, high-contrast, clear sans-serif labels:
+- REQUEST
+- CURRENT STATE
+- APPLY RULES
+- NEXT STATE
+- EVENT: ITINERARY SAVED
+- SIDE EFFECT: REMINDER REQUESTED
+- TRUST BOUNDARY
+
+Composition: at the left, an envelope or rounded message card labeled REQUEST and a blue database cylinder labeled CURRENT STATE feed a central rounded rectangle labeled APPLY RULES. From it, a blue database cylinder labeled NEXT STATE goes right. A small blue event circle labeled EVENT: ITINERARY SAVED branches below it. A warm-orange hexagon labeled SIDE EFFECT: REMINDER REQUESTED branches to the far right, across a dashed rounded boundary labeled TRUST BOUNDARY.
+
+Use solid teal arrows for information moving through the workflow. Use a dashed warm-orange arrow only to the side-effect hexagon. Include a small, readable legend with exactly these two lines: solid teal = data flow; dashed orange = requested external effect.
+
+Make the visual factually precise: the request and current state are inputs; next state, event, and side effect are distinct outputs. The side-effect label must clearly say REQUESTED, not SENT or COMPLETED. Keep all required labels fully legible and correctly spelled.

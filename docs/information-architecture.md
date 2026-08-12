@@ -84,14 +84,14 @@ sources/
 assets/attribution.yml
 assets/images/
   repo-images/<repository-image>
-  <chapter-id>/
+  <chapter-path-without-md>/
     <final-visual>
     manifest.yml
     source/<editable-input>
 examples/<unit-id-lowercase>/
 ```
 
-Use the chapter's lowercase `unit_id` as `chapter-id`. Give each chapter one image folder and one source-record folder, and do not create either until the selected chapter requires them. Repository-wide source records belong in `sources/project/`.
+Mirror each path below `knowledge/` in `assets/images/`, replacing the chapter's `.md` file with a directory of the same name. Keep empty image folders with `.gitkeep`; create source-record folders only when needed. Repository-wide source records belong in `sources/project/`.
 
 Each image folder owns its visual metadata. `assets/attribution.yml` indexes those local manifests.
 

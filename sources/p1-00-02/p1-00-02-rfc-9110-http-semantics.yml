@@ -1,0 +1,25 @@
+id: p1-00-02-rfc-9110-http-semantics
+title: 'RFC 9110: HTTP Semantics'
+authors_or_organization: Internet Engineering Task Force
+date: 2022-06
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc9110.html
+doi: null
+version: RFC 9110
+accessed: '2026-08-10'
+last_verified: '2026-08-10'
+status: checked
+claims_supported:
+- HTTP defines the semantics of requests and responses and is a stateless application-level
+  protocol.
+limitations:
+- HTTP semantics do not define an application’s data model, authorization rules, or
+  durable state.
+related_topics:
+- HTTP requests and responses
+unit_ids:
+- P1-00-02
+used_in:
+- knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md
+local_copy: null
+sha256: null

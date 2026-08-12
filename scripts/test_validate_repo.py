@@ -63,10 +63,10 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_wrong_next_unit_fails(self) -> None:
-        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-00-02", "next_recommended_unit: P1-00-03")
+        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-00-04", "next_recommended_unit: P1-01-01")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("next_recommended_unit must be P1-00-02", result.stdout)
+        self.assertIn("next_recommended_unit must be P1-00-04", result.stdout)
 
     def test_roadmap_plan_drift_fails(self) -> None:
         self.replace("ROADMAP.md", "Execution boundaries and threat-independent requirements", "Execution boundaries and requirements")
@@ -123,25 +123,25 @@ class ValidatorTests(unittest.TestCase):
         result = self.run_state("start")
         self.assertEqual(result.returncode, 0, result.stdout)
         status = (self.repo / "PROJECT_STATUS.md").read_text(encoding="utf-8")
-        self.assertIn("current_unit: P1-00-02", status)
+        self.assertIn("current_unit: P1-00-04", status)
         self.assertIn("current_unit_state: researching", status)
-        chapter = self.repo / "knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md"
+        chapter = self.repo / "knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md"
         self.assertTrue(chapter.is_file())
         self.assertIn("learning_path: main", chapter.read_text(encoding="utf-8"))
 
     def test_state_resolve_returns_compact_next_unit(self) -> None:
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertIn("unit_id: P1-00-02", result.stdout)
-        self.assertIn("chapter_path: knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md", result.stdout)
+        self.assertIn("unit_id: P1-00-04", result.stdout)
+        self.assertIn("chapter_path: knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md", result.stdout)
         self.assertIn("local_instructions_path: knowledge/00-prerequisites/AGENTS.md", result.stdout)
         self.assertIn("plan_path: knowledge/00-prerequisites/chapter-plan.md", result.stdout)
         self.assertIn("mode: author", result.stdout)
         self.assertIn("learning_path: main", result.stdout)
-        self.assertNotIn("P1-00-03", result.stdout)
+        self.assertNotIn("P1-01-01", result.stdout)
 
     def test_state_resolve_reports_deep_dive_classification(self) -> None:
-        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-01", "completed_through: P1-03-06-03")
+        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-03", "completed_through: P1-03-06-03")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("unit_id: P1-03-06-04", result.stdout)
@@ -214,6 +214,35 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
         validation = self.run_validator()
         self.assertEqual(validation.returncode, 0, validation.stdout)
+
+    def test_missing_chapter_image_folder_fails(self) -> None:
+        shutil.rmtree(self.repo / "assets/images/01-agent-foundations/01-what-is-an-agent")
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("missing chapter image folder", result.stdout)
+
+    def test_visual_registration_rejects_flat_unit_folder(self) -> None:
+        wrong_folder = self.repo / "assets/images/p1-00-01"
+        wrong_folder.mkdir()
+        shutil.copy2(
+            self.repo / "assets/images/00-prerequisites/01-reader-contract-and-system-map/01-system-context.png",
+            wrong_folder / "test.png",
+        )
+        result = self.run_script(
+            "register_visual.py",
+            "--unit-id", "P1-00-01",
+            "--id", "wrong-folder",
+            "--title", "Wrong folder",
+            "--kind", "diagram",
+            "--file", "images/p1-00-01/test.png",
+            "--creator", "Test",
+            "--license", "Test-only",
+            "--alt", "Test",
+            "--caption", "Test",
+            "--used-in", "knowledge/00-prerequisites/01-reader-contract-and-system-map.md",
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("visual must be directly under assets/images/00-prerequisites/01-reader-contract-and-system-map/", result.stdout)
 
     def test_visual_registration_rejects_svg(self) -> None:
         path = self.repo / "assets/images/repo-images/test.svg"

@@ -69,3 +69,25 @@
 - Files or sections: `knowledge/00-prerequisites/01-reader-contract-and-system-map.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Reader contract and system map.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-10
+
+### P1-00-02 complete
+
+- Files or sections: `knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Data, control, and trust boundaries.
+- Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-12
+
+### Chapter-mirrored image hierarchy
+
+- Files or sections: image assets, chapter references, visual registration and validation, workflow policies, regression tests, and README
+- Summary: Replaced flat unit-ID image folders with an asset hierarchy that mirrors every planned chapter and subchapter path.
+- Validation: Passed repository validation, 21 regression tests, Python syntax checks, stale-path checks, and Git diff checks.
+
+### P1-00-03 complete
+
+- Files or sections: `knowledge/00-prerequisites/03-requests-events-state-and-side-effects.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Requests, events, state, and side effects.
+- Validation: Passed repository validation and the unit review checklist.

@@ -21,7 +21,7 @@ A planned example does not require a separate artifact. Record the chosen form i
 - Mock external services when live access is unnecessary.
 - Never commit secrets or destructive payloads.
 - Test each runnable artifact's main property. Label pseudocode.
-- Store plot generators beside their visual under `assets/images/<chapter-id>/source/`.
+- Store plot generators with visuals in the chapter folder's `source/`.
 
 ## Security lab structure
 

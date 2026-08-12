@@ -1,0 +1,25 @@
+id: p1-00-03-rfc-9110-http-semantics
+title: 'RFC 9110: HTTP Semantics'
+authors_or_organization: Internet Engineering Task Force
+date: 2022-06
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc9110.html
+doi: null
+version: RFC 9110
+accessed: '2026-08-12'
+last_verified: '2026-08-12'
+status: checked
+claims_supported:
+- HTTP defines safe methods in terms of the state change requested by the client,
+  while allowing implementations to have incidental side effects such as access logging.
+limitations:
+- HTTP method semantics do not define an application’s complete state machine or prove
+  that a requested effect occurred.
+related_topics:
+- request semantics and intended effects
+unit_ids:
+- P1-00-03
+used_in:
+- knowledge/00-prerequisites/03-requests-events-state-and-side-effects.md
+local_copy: null
+sha256: null

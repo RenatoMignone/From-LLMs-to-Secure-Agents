@@ -20,7 +20,7 @@ Use visuals only when they clarify architecture, flows, trust boundaries, state,
 
 ## Storage
 
-Give each chapter one image folder. Derive `chapter-id` from the chapter's lowercase `unit_id`. Repository-level presentation images use `repo-images`.
+Give each chapter one image folder that mirrors its Markdown path. Remove the leading `knowledge/` and the `.md` suffix. Repository-level presentation images use `repo-images`.
 
 ```text
 assets/images/
@@ -28,13 +28,14 @@ assets/images/
     <descriptive-name>.png
     manifest.yml
     source/                 Optional editable inputs
-  <chapter-id>/
-    <nn>-<descriptive-name>.png
-    manifest.yml
-    source/                 Diagram, plot script, prompt, or data
+  00-prerequisites/
+    01-reader-contract-and-system-map/
+      <nn>-<descriptive-name>.png
+      manifest.yml
+      source/               Diagram, plot script, prompt, or data
 ```
 
-Keep final visuals and manifest in the chapter folder; Markdown references local files. Never hotlink content visuals. Create folders only when needed. `scripts/register_visual.py` adds manifests to `assets/attribution.yml`.
+Keep the complete chapter and subchapter hierarchy, tracking empty chapter folders with `.gitkeep`. Keep final visuals and the manifest in the owning chapter folder; Markdown references local files. Never hotlink content visuals. `scripts/register_visual.py` adds manifests to `assets/attribution.yml`.
 
 README badges may be remote when they report useful, verifiable facts and link to their source.
 
