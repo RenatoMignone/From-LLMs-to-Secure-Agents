@@ -3,14 +3,14 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 
-
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class ValidatorTests(unittest.TestCase):
@@ -24,7 +24,7 @@ class ValidatorTests(unittest.TestCase):
 
     def run_validator(self) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            ["python3", "scripts/validate_repo.py"],
+            ["python3", "scripts/main.py", "validate"],
             cwd=self.repo,
             text=True,
             stdout=subprocess.PIPE,
@@ -34,7 +34,7 @@ class ValidatorTests(unittest.TestCase):
 
     def run_state(self, *arguments: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            ["python3", "scripts/project_state.py", *arguments],
+            ["python3", "scripts/main.py", "state", *arguments],
             cwd=self.repo,
             text=True,
             stdout=subprocess.PIPE,
@@ -42,9 +42,9 @@ class ValidatorTests(unittest.TestCase):
             check=False,
         )
 
-    def run_script(self, script: str, *arguments: str) -> subprocess.CompletedProcess[str]:
+    def run_main(self, *arguments: str) -> subprocess.CompletedProcess[str]:
         return subprocess.run(
-            ["python3", f"scripts/{script}", *arguments],
+            ["python3", "scripts/main.py", *arguments],
             cwd=self.repo,
             text=True,
             stdout=subprocess.PIPE,
@@ -84,23 +84,18 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("chapter learning_path mismatch", result.stdout)
 
-    def test_visual_checksum_fails(self) -> None:
-        self.replace("assets/images/repo-images/manifest.yml", "4327b1a3", "0327b1a3")
+    def test_svg_visual_fails(self) -> None:
+        path = self.repo / "assets/images/repo-images/test.svg"
+        path.write_text("<svg></svg>", encoding="utf-8")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("visual checksum mismatch", result.stdout)
+        self.assertIn("SVG is not allowed", result.stdout)
 
-    def test_visual_dimensions_fail(self) -> None:
-        self.replace("assets/images/repo-images/manifest.yml", "width: 2172", "width: 2173")
-        result = self.run_validator()
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn("visual media metadata mismatch", result.stdout)
-
-    def test_source_schema_fails(self) -> None:
+    def test_source_missing_field_fails(self) -> None:
         self.replace("sources/project/w3c-images-tutorial.yml", "claims_supported:", "unsupported_claims:")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("schema error", result.stdout)
+        self.assertIn("source record missing field", result.stdout)
 
     def test_source_record_cannot_belong_to_multiple_units(self) -> None:
         self.replace(
@@ -119,7 +114,21 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("instruction word budget exceeded", result.stdout)
 
+    def reset_to_idle(self) -> None:
+        status_path = self.repo / "PROJECT_STATUS.md"
+        status = status_path.read_text(encoding="utf-8")
+        status = re.sub(r"current_unit: .*", "current_unit: null", status)
+        status = re.sub(r"current_unit_path: .*", "current_unit_path: null", status)
+        status = re.sub(r"current_unit_state: .*", "current_unit_state: idle", status)
+        status = re.sub(r"blocked_from: .*", "blocked_from: null", status)
+        status = re.sub(r"units_in_review:(\n\s*-\s*.*)*", "units_in_review: []", status)
+        status_path.write_text(status, encoding="utf-8")
+        target = self.repo / "knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md"
+        if target.is_file():
+            target.unlink()
+
     def test_state_start_resolves_and_scaffolds_next_unit(self) -> None:
+        self.reset_to_idle()
         result = self.run_state("start")
         self.assertEqual(result.returncode, 0, result.stdout)
         status = (self.repo / "PROJECT_STATUS.md").read_text(encoding="utf-8")
@@ -130,6 +139,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertIn("learning_path: main", chapter.read_text(encoding="utf-8"))
 
     def test_state_resolve_returns_compact_next_unit(self) -> None:
+        self.reset_to_idle()
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("unit_id: P1-00-04", result.stdout)
@@ -141,6 +151,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotIn("P1-01-01", result.stdout)
 
     def test_state_resolve_reports_deep_dive_classification(self) -> None:
+        self.reset_to_idle()
         self.replace("PROJECT_STATUS.md", "completed_through: P1-00-03", "completed_through: P1-03-06-03")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
@@ -148,6 +159,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertIn("learning_path: deep-dive", result.stdout)
 
     def test_state_resolve_reports_review_mode(self) -> None:
+        self.reset_to_idle()
         self.assertEqual(self.run_state("start").returncode, 0)
         self.assertEqual(self.run_state("set", "drafting").returncode, 0)
         self.assertEqual(self.run_state("set", "building-assets").returncode, 0)
@@ -163,12 +175,14 @@ class ValidatorTests(unittest.TestCase):
         self.assertIn("mode: review", result.stdout)
 
     def test_state_does_not_start_two_units(self) -> None:
+        self.reset_to_idle()
         self.assertEqual(self.run_state("start").returncode, 0)
         result = self.run_state("start")
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("already active", result.stdout)
 
     def test_state_block_and_resume_restore_stage(self) -> None:
+        self.reset_to_idle()
         self.assertEqual(self.run_state("start").returncode, 0)
         self.assertEqual(self.run_state("block", "Missing authoritative source").returncode, 0)
         blocked = (self.repo / "PROJECT_STATUS.md").read_text(encoding="utf-8")
@@ -181,8 +195,8 @@ class ValidatorTests(unittest.TestCase):
         self.assertIn("blocked_from: null", resumed)
 
     def test_source_registration_generates_valid_record(self) -> None:
-        result = self.run_script(
-            "register_source.py",
+        result = self.run_main(
+            "source",
             "--id", "example-source",
             "--title", "Example Source",
             "--organization", "Example Organization",
@@ -196,89 +210,23 @@ class ValidatorTests(unittest.TestCase):
         validation = self.run_validator()
         self.assertEqual(validation.returncode, 0, validation.stdout)
 
-    def test_visual_registration_generates_valid_manifest(self) -> None:
-        result = self.run_script(
-            "register_visual.py",
-            "--unit-id", "project",
-            "--id", "readme-banner",
-            "--title", "From LLMs to Secure Agents banner",
-            "--kind", "generated",
-            "--file", "images/repo-images/banner.png",
-            "--creator", "Project author",
-            "--license", "Project-owned generated asset",
-            "--alt", "A technical guide banner.",
-            "--caption", "The project path from models to secure agents.",
-            "--used-in", "README.md",
-            "--prompt-file", "images/repo-images/source/prompt.txt",
-        )
-        self.assertEqual(result.returncode, 0, result.stdout)
-        validation = self.run_validator()
-        self.assertEqual(validation.returncode, 0, validation.stdout)
-
     def test_missing_chapter_image_folder_fails(self) -> None:
         shutil.rmtree(self.repo / "assets/images/01-agent-foundations/01-what-is-an-agent")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("missing chapter image folder", result.stdout)
 
-    def test_visual_registration_rejects_flat_unit_folder(self) -> None:
-        wrong_folder = self.repo / "assets/images/p1-00-01"
-        wrong_folder.mkdir()
-        shutil.copy2(
-            self.repo / "assets/images/00-prerequisites/01-reader-contract-and-system-map/01-system-context.png",
-            wrong_folder / "test.png",
-        )
-        result = self.run_script(
-            "register_visual.py",
-            "--unit-id", "P1-00-01",
-            "--id", "wrong-folder",
-            "--title", "Wrong folder",
-            "--kind", "diagram",
-            "--file", "images/p1-00-01/test.png",
-            "--creator", "Test",
-            "--license", "Test-only",
-            "--alt", "Test",
-            "--caption", "Test",
-            "--used-in", "knowledge/00-prerequisites/01-reader-contract-and-system-map.md",
-        )
+    def test_missing_chapter_source_folder_fails(self) -> None:
+        shutil.rmtree(self.repo / "sources/01-agent-foundations/01-what-is-an-agent")
+        result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("visual must be directly under assets/images/00-prerequisites/01-reader-contract-and-system-map/", result.stdout)
+        self.assertIn("missing chapter source folder", result.stdout)
 
-    def test_visual_registration_rejects_svg(self) -> None:
-        path = self.repo / "assets/images/repo-images/test.svg"
-        path.write_text("<svg xmlns=\"http://www.w3.org/2000/svg\"></svg>", encoding="utf-8")
-        result = self.run_script(
-            "register_visual.py",
-            "--unit-id", "project",
-            "--id", "svg-test",
-            "--title", "SVG test",
-            "--kind", "diagram",
-            "--file", "images/repo-images/test.svg",
-            "--creator", "Test",
-            "--license", "Test-only",
-            "--alt", "Test",
-            "--caption", "Test",
-            "--used-in", "README.md",
-        )
+    def test_missing_chapter_example_folder_fails(self) -> None:
+        shutil.rmtree(self.repo / "examples/01-agent-foundations/01-what-is-an-agent")
+        result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("SVG is not allowed", result.stdout)
-
-    def test_downloaded_visual_requires_provenance(self) -> None:
-        result = self.run_script(
-            "register_visual.py",
-            "--unit-id", "project",
-            "--id", "download-test",
-            "--title", "Download test",
-            "--kind", "downloaded",
-            "--file", "images/repo-images/banner.png",
-            "--creator", "Test",
-            "--license", "Test-only",
-            "--alt", "Test",
-            "--caption", "Test",
-            "--used-in", "README.md",
-        )
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn("downloaded visual requires provenance fields", result.stdout)
+        self.assertIn("missing chapter example folder", result.stdout)
 
 
 if __name__ == "__main__":

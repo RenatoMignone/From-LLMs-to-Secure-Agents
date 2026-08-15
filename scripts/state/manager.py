@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Advance the single-unit guide workflow without hand-editing project state."""
 
 from __future__ import annotations
@@ -11,12 +10,11 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 import yaml
 
-
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path.cwd() if (Path.cwd() / "PROJECT_STATUS.md").is_file() else Path(__file__).resolve().parents[2]
 STATUS_PATH = ROOT / "PROJECT_STATUS.md"
 STATE_ORDER = ["researching", "drafting", "building-assets", "validating", "review"]
 
@@ -59,51 +57,70 @@ def child_learning_paths(plan_text: str) -> dict[int, str]:
     paths: dict[int, str] = {}
     learning_path = "main"
     for line in plan_text.splitlines():
-        marker = line.strip().lower()
-        if marker in {"deep dive:", "deep dives:"} or "optional deep-dive branch" in marker:
+        clean = line.strip().lower()
+        if "deep dive" in clean or "deep-dive" in clean:
             learning_path = "deep-dive"
-        elif marker in {"main path:", "main path resumes:"}:
+            continue
+        elif "main path" in clean:
             learning_path = "main"
-        match = re.match(r"^\s*(\d+)\. `[^`]+`$", line)
-        if match:
-            paths[int(match.group(1))] = learning_path
+            continue
+        item = re.match(r"^\s*(\d+)\.\s+`[^`]+`", line)
+        if item:
+            paths[int(item.group(1))] = learning_path
     return paths
 
 
+def parse_roadmap_unit(unit_id: str, title: str, pass_name: str) -> dict[str, str]:
+    parts = unit_id.split("-")[1:]
+    numbers = [int(p) for p in parts]
+    top = numbered_directory(ROOT / "knowledge", numbers[0])
+    if len(numbers) == 2:
+        directory, child = top, numbers[1]
+    else:
+        directory, child = numbered_directory(top, numbers[1]), numbers[2]
+    plan_path = directory / "chapter-plan.md"
+    plan_text = plan_path.read_text(encoding="utf-8")
+    plan_match = re.search(rf"^\s*{child}\. `([^`]+)`$", plan_text, re.MULTILINE)
+    if not plan_match:
+        raise SystemExit(f"Unit {unit_id} not found in {plan_path.relative_to(ROOT)}")
+    chapter_file = directory / plan_match.group(1)
+    paths = child_learning_paths(plan_text)
+    learning_path = paths.get(child, "main")
+    return {
+        "id": unit_id,
+        "title": title,
+        "path": chapter_file.relative_to(ROOT).as_posix(),
+        "pass": pass_name,
+        "learning_path": learning_path,
+        "plan": plan_path.relative_to(ROOT).as_posix(),
+    }
+
+
 def roadmap_units() -> list[dict[str, str]]:
-    content = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+    roadmap_path = ROOT / "ROADMAP.md"
+    content = roadmap_path.read_text(encoding="utf-8")
     units: list[dict[str, str]] = []
-    for unit_id, number_text, title in re.findall(r"^\d+\. `(P[12]-([0-9-]+))` (.+)$", content, re.MULTILINE):
-        numbers = [int(part) for part in number_text.split("-")]
-        top = numbered_directory(ROOT / "knowledge", numbers[0])
-        if len(numbers) == 2:
-            directory, child = top, numbers[1]
-        else:
-            directory, child = numbered_directory(top, numbers[1]), numbers[2]
-        plan = directory / "chapter-plan.md"
-        plan_text = plan.read_text(encoding="utf-8")
-        match = re.search(rf"^\s*{child}\. `([^`]+)`$", plan_text, re.MULTILINE)
-        if not match:
-            raise SystemExit(f"Cannot resolve {unit_id} in {plan.relative_to(ROOT)}")
-        units.append({
-            "id": unit_id,
-            "title": title,
-            "path": (directory / match.group(1)).relative_to(ROOT).as_posix(),
-            "plan": plan.relative_to(ROOT).as_posix(),
-            "pass": "architecture" if unit_id.startswith("P1-") else "security",
-            "learning_path": child_learning_paths(plan_text).get(child, "main"),
-        })
+    current_pass = "architecture"
+    for line in content.splitlines():
+        if line.startswith("## Pass 1"):
+            current_pass = "architecture"
+        elif line.startswith("## Pass 2"):
+            current_pass = "security"
+        match = re.match(r"^\d+\.\s+`([^`]+)`\s+(.+)$", line)
+        if match:
+            unit_id, title = match.group(1), match.group(2).strip()
+            units.append(parse_roadmap_unit(unit_id, title, current_pass))
     return units
 
 
 def expected_next(data: dict[str, Any], units: list[dict[str, str]]) -> dict[str, str] | None:
     completed = data.get("completed_through")
     if completed is None:
-        return units[0]
+        return units[0] if units else None
     for index, unit in enumerate(units):
         if unit["id"] == completed:
             return units[index + 1] if index + 1 < len(units) else None
-    raise SystemExit(f"Unknown completed_through value: {completed}")
+    raise SystemExit(f"Unknown completed_through unit: {completed}")
 
 
 def chapter_template(unit: dict[str, str]) -> str:
@@ -139,6 +156,8 @@ def chapter_template(unit: dict[str, str]) -> str:
 
 
 def update_chapter_status(path: Path, status: str, reviewed: bool = False) -> None:
+    if not path.is_file():
+        return
     content = path.read_text(encoding="utf-8")
     match = re.match(r"^---\n(.*?)\n---\n?(.*)$", content, re.DOTALL)
     if not match:
@@ -151,7 +170,7 @@ def update_chapter_status(path: Path, status: str, reviewed: bool = False) -> No
 
 
 def run_validator() -> None:
-    result = subprocess.run([sys.executable, "scripts/validate_repo.py"], cwd=ROOT, check=False)
+    result = subprocess.run([sys.executable, "scripts/main.py", "validate"], cwd=ROOT, check=False)
     if result.returncode:
         raise SystemExit("Validation failed. State was not advanced.")
 
@@ -180,6 +199,7 @@ def command_start(data: dict[str, Any], body: str, units: list[dict[str, str]]) 
         raise SystemExit("Clear recorded blockers before starting a unit.")
     chapter = ROOT / unit["path"]
     if not chapter.exists():
+        chapter.parent.mkdir(parents=True, exist_ok=True)
         chapter.write_text(chapter_template(unit), encoding="utf-8")
     data.update({
         "current_phase": "pass-1-architecture" if unit["pass"] == "architecture" else "pass-2-security",
@@ -188,6 +208,7 @@ def command_start(data: dict[str, Any], body: str, units: list[dict[str, str]]) 
         "current_unit_state": "researching",
         "blocked_from": None,
         "units_in_review": [],
+        "next_recommended_unit": unit["id"],
     })
     write_status(data, body)
     print(f"Started {unit['id']}: {unit['path']}")
@@ -259,20 +280,23 @@ def command_complete(data: dict[str, Any], body: str, units: list[dict[str, str]
     print(f"Completed {unit['id']}. Next: {data['next_recommended_unit']}")
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="python3 scripts/main.py state",
+        description="Manage unit lifecycle and project state progression.",
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("show")
-    subparsers.add_parser("resolve")
-    subparsers.add_parser("start")
-    state_parser = subparsers.add_parser("set")
+    subparsers.add_parser("show", help="Show current front matter status")
+    subparsers.add_parser("resolve", help="Resolve active unit and run mode")
+    subparsers.add_parser("start", help="Start the next scheduled unit and scaffold template")
+    state_parser = subparsers.add_parser("set", help="Advance state (drafting, building-assets, validating)")
     state_parser.add_argument("state", choices=STATE_ORDER[1:-1])
-    subparsers.add_parser("review")
-    block_parser = subparsers.add_parser("block")
+    subparsers.add_parser("review", help="Advance unit to review state")
+    block_parser = subparsers.add_parser("block", help="Record a blocker on active unit")
     block_parser.add_argument("reason")
-    subparsers.add_parser("resume")
-    subparsers.add_parser("complete")
-    args = parser.parse_args()
+    subparsers.add_parser("resume", help="Resume active unit from blocked state")
+    subparsers.add_parser("complete", help="Complete and archive active unit in review")
+    args = parser.parse_args(argv)
     data, body = parse_status()
     units = roadmap_units()
     if args.command == "show":
@@ -311,4 +335,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())
