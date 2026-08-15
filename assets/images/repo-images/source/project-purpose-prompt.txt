@@ -1,0 +1,30 @@
+Create a wide, clean, polished cartoon illustration in the exact same friendly educational style as the repository banner: simple shapes, soft outlines, cute rounded robot characters, an approachable technical-guide tone, and a light cream background. Use a calm palette of soft blue, teal, sage green, cream, and warm neutral orange. Do not use cyberpunk, hacker, dark, futuristic, or stiff corporate flowchart styling.
+
+Show a clear left-to-right 3-stage visual transformation across the canvas:
+
+1. Left Section (STAGE 1: Raw LLM):
+- A cute, friendly little robot assistant sitting at a desk with a speech bubble ("Prompt in -> Response out").
+- Simple, friendly, isolated, and stateless.
+- Clear label in bold friendly sans-serif: "1. Raw LLM" and subtitle "Stateless text completion".
+
+2. Center Section (STAGE 2: Pass 1 - Full Agentic System):
+- The cute robot now standing actively, equipped with a tool belt and connected to clear cartoon elements:
+  - a small cognitive loop arrow circle (Plan -> Act -> Observe)
+  - a memory filing cabinet / notebook (Memory & Context)
+  - a magnifying glass on documents (Retrieval / RAG)
+  - a wrench & gear (Tool Calling)
+  - a keycard badge (Identity & Delegation)
+- A small warning sign below: "Emerging Attack Surface: Authority & External Side Effects".
+- Clear label: "2. Pass 1: Complete Agentic AI" and subtitle "Loop, Memory, Tools & Actions".
+
+3. Right Section (STAGE 3: Pass 2 - Hardened Secure Agent):
+- The cute robot now protected by a friendly, sturdy defensive fortress / shield dome with:
+  - a secure boundary fence (Data & Control Plane Separation)
+  - a permission checklist (Least Privilege & Scoped Policy)
+  - a secure glass sandbox container (Isolated Tool Sandboxing)
+  - a friendly security scanner / radar (Runtime Telemetry & Audit)
+- Clear label: "3. Pass 2: Hardened Secure Agent" and subtitle "Boundaries, Policy & Defense-in-Depth".
+
+Header at the top center: "From LLMs to Secure Agents"
+Large high-contrast readable text, clean cartoon outlines, warm educational atmosphere.
+Aspect ratio: 16:9.

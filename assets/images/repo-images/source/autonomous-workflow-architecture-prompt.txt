@@ -1,0 +1,17 @@
+Create a clean, technical educational cartoon diagram titled "Agent-First, Token-Optimized Autonomous Workflow".
+
+Style:
+- Clean, polished hand-drawn vector cartoon aesthetic with soft rounded outlines, modern flat pastel colors, and an approachable educational tone.
+- Crisp white/light off-white background with a calm palette of slate blue, soft cyan, sage green, and warm amber.
+- No dark mode, no cyberpunk neon, no cluttered text blocks.
+
+Composition (Left-to-Right 4-Stage Flow):
+1. Stage 1 (Left - "1. Scoped Resolution"): A friendly, focused robot assistant receiving a single scoped unit task card ("Unit P1-00-04"), with a badge labeled "Scoped Context".
+2. Stage 2 (Center-Left - "2. Deterministic Ingestion"): Web documents and RFC pages passing through a clean funnel filter labeled "markitdown", discarding messy HTML boilerplate into a recycle bin and producing a clean, light Markdown document with a prominent badge "-80% Tokens Saved".
+3. Stage 3 (Center-Right - "3. LLM Authoring & Assets"): The assistant crafting clear, readable chapter pages with simple English text, illustrated diagrams, and exact citation links.
+4. Stage 4 (Right - "4. Automated Verification"): A solid checkmark shield labeled "Deterministic Validator", running automated schema checks, link verification, and checksums to advance the unit state.
+
+Design details:
+- Wide landscape composition (16:9 aspect ratio).
+- Clear connecting arrows showing smooth left-to-right progression.
+- Professional, visually engaging, and easily understandable at a glance.

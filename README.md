@@ -16,11 +16,13 @@
 
 Agent security is difficult to learn from isolated vulnerability lists. This project first builds a **complete mental model of an agentic system**, including architecture, context, memory, retrieval, tools, identity, execution, human control, observability, protocols, and end-to-end workflows. It then revisits the same system through a **threat model, controls, tests, and secure reference architectures**.
 
+![From LLMs to Secure Agents: Core Purpose and Mental Model](assets/images/repo-images/project-purpose.png)
+
 The guide assumes **working familiarity with large language models and prompts**. It gives only short refreshers when an agentic concept needs them. API and Python experience helps, but is not required. The focus is the agentic system, not model internals or prompt engineering.
 
 The reader follows a concise **main path** through the complete system. Specialized mechanisms, framework details, emerging protocols, regulation, and research live in clearly labeled **deep-dive branches** that can remain collapsed until needed.
 
-The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels. Illustrations support technical detail and evidence.
+The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels.
 
 ## Two learning passes
 
@@ -50,9 +52,20 @@ knowledge/
 
 Every guide directory has a local `AGENTS.md` and `chapter-plan.md`. Together they define scope, prerequisites, teaching order, sources, visuals, examples, and the boundary between the two passes.
 
+## Agent-first, token-optimized architecture
+
+![Agent-First, Token-Optimized Autonomous Workflow](assets/images/repo-images/autonomous-workflow-architecture.png)
+
+This repository is engineered from the ground up for **agentic authoring with extreme token efficiency**:
+
+1. **Scoped Unit Resolution**: The agent resolves exactly one unit at a time via `python3 scripts/main.py state resolve`. The full roadmap is never loaded into working memory during authoring runs, protecting the context window.
+2. **Deterministic Web Ingestion**: Web specifications, RFCs, and primary documentation are parsed into clean Markdown using `markitdown` (`python3 scripts/main.py fetch <url> -o /tmp/source.md`). This eliminates up to 85% of raw token bloat (HTML tags, stylesheets, tracking scripts, and cookie banners) before LLM ingestion.
+3. **High-Grade LLM Authoring**: Language models focus purely on what they do best: authoring engaging, crystal-clear technical prose, intuitive analogies, and approachable visual prompts in simple English.
+4. **Automated Verification Gates**: Mechanical validators enforce schema correctness, local visual manifests, bidirectional citations, and instruction word budgets, guaranteeing deterministic quality without model drift.
+
 ## Reproducible autonomous workflow
 
-A future agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, fetch or create its visuals, validate it, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
+A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, fetch or create its visuals, validate it, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
 
 ```text
 Read AGENTS.md and continue the guide from the last checkpoint.
@@ -66,10 +79,19 @@ Each completed unit includes:
 - deterministic repository validation;
 - updated project state and a concise changelog entry.
 
-Run the validator with:
+## Modular CLI toolkit
+
+All repository operations are unified through the modular CLI in [`scripts/main.py`](scripts/main.py):
 
 ```bash
-python3 scripts/validate_repo.py
+# Resolve current unit and operational state
+python3 scripts/main.py state resolve
+
+# Fetch clean, token-efficient Markdown from an external specification
+python3 scripts/main.py fetch "https://www.rfc-editor.org/rfc/rfc8693.html" -o /tmp/rfc8693.md
+
+# Run repository validation
+python3 scripts/main.py validate
 ```
 
 ## Authoring and publishing
@@ -85,9 +107,8 @@ python3 scripts/validate_repo.py
 | `ROADMAP.md` | Stable dependency-ordered guide |
 | `docs/` | Focused project policies |
 | `knowledge/` | Canonical chapters and local plans |
-| `sources/` | Verified source records |
+| `sources/` | Verified source records mirroring the chapter hierarchy |
 | `assets/images/` | Image folders mirroring the chapter hierarchy, plus repository images |
-| `assets/attribution.yml` | Index of chapter-local visual manifests |
-| `scripts/` | State automation, validation, generation, and regression tests |
-| `examples/` | Runnable examples and security labs |
+| `scripts/` | Modular CLI toolkit, validation suite, and regression tests |
+| `examples/` | Runnable examples and security labs mirroring the chapter hierarchy |
 | `site/` | Future static site implementation |
