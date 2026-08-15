@@ -1,0 +1,24 @@
+id: p1-01-03-anthropic-workflows-agents-2024
+title: 'Building Effective Agents: Workflows vs Agents'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Distinguishes deterministic workflows orchestrated through code from autonomous
+  agents where models dynamically direct their own processes and tool usage.
+limitations:
+- Focuses on engineering heuristics rather than formal algorithmic proofs.
+related_topics:
+- workflows vs agents architectural patterns
+unit_ids:
+- P1-01-03
+used_in:
+- knowledge/01-agent-foundations/03-workflows-versus-agents.md
+local_copy: null
+sha256: null

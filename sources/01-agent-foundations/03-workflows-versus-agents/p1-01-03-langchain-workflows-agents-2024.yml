@@ -1,0 +1,24 @@
+id: p1-01-03-langchain-workflows-agents-2024
+title: 'LangGraph: Workflows and Agents'
+authors_or_organization: LangChain
+date: '2024'
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Defines workflows as systems where LLMs and tools are orchestrated via fixed code
+  paths and graphs, while agents let the model dynamically choose next steps.
+limitations:
+- Focuses on LangGraph state graph primitives and conventions.
+related_topics:
+- workflows vs agents in graph runtimes
+unit_ids:
+- P1-01-03
+used_in:
+- knowledge/01-agent-foundations/03-workflows-versus-agents.md
+local_copy: null
+sha256: null

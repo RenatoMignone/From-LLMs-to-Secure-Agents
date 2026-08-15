@@ -1,0 +1,27 @@
+Use case: infographic-diagram
+Asset type: labeled conceptual comparison diagram for a technical learning guide
+
+Create a clean, polished technical-cartoon infographic in the canonical educational style of the repository banner: cute rounded robot assistant characters, simple shapes, soft outlines, approachable technical book-guide tone, light cream background, and a calm pastel palette consisting of soft blue, teal, sage green, warm cream, and soft pastel amber. Strictly no dark backgrounds, no cyberpunk or hacker themes, no sterile corporate flowchart boxes, no UML or Visio style, and no 3D photorealism.
+
+Show a side-by-side comparison illustrating Workflows versus Agents:
+
+Left Panel (DETERMINISTIC WORKFLOW):
+- Title: "DETERMINISTIC WORKFLOW"
+- Illustration: A friendly automated train or tram on a fixed railway track stopping at three distinct numbered stations:
+  1. "1. EXTRACT"
+  2. "2. VALIDATE"
+  3. "3. FORMAT"
+- Solid arrows along the track leading to "PREDICTABLE OUTPUT".
+- Caption: "Code controls the fixed execution path"
+
+Right Panel (AUTONOMOUS AGENT):
+- Title: "AUTONOMOUS AGENT"
+- Illustration: A cute robot character driving a friendly electric cart along an open branching roadway. The robot has a toolbox of tools (API wrench, search magnifying glass) and looks at a feedback sign ("Environment Feedback"), dynamically choosing which path to take toward "GOAL DESTINATION".
+- Circular feedback arrows showing "Perceive -> Decide -> Act".
+- Caption: "Model dynamically directs tool choices and path"
+
+Composition:
+- 16:9 widescreen layout with clear separation between left and right panels.
+- Warm light cream background with soft subtle borders.
+- High-contrast, clean sans-serif text labels.
+- Clear, approachable educational tone.

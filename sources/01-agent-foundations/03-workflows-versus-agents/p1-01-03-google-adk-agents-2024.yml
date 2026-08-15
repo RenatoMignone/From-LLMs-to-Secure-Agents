@@ -1,0 +1,24 @@
+id: p1-01-03-google-adk-agents-2024
+title: 'Google Agent Development Kit: Agents and Workflows'
+authors_or_organization: Google
+date: '2024'
+source_type: documentation
+canonical_url: https://adk.dev/agents/
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Contrasts structured procedural orchestration with goal-directed agent loops for
+  enterprise application development.
+limitations:
+- Reflects the architectural perspective of Google ADK abstractions.
+related_topics:
+- structured orchestration vs goal-directed agents
+unit_ids:
+- P1-01-03
+used_in:
+- knowledge/01-agent-foundations/03-workflows-versus-agents.md
+local_copy: null
+sha256: null
