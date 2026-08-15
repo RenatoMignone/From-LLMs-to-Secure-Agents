@@ -1,0 +1,26 @@
+id: p1-00-04-rfc-8693-oauth-token-exchange
+title: 'RFC 8693: OAuth 2.0 Token Exchange'
+authors_or_organization: Internet Engineering Task Force
+date: 2020-01
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc8693.html
+doi: null
+version: RFC 8693
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Defines delegation semantics where an actor acts on behalf of a subject while keeping
+  their identities distinct, and specifies token structures to represent delegation
+  chains.
+limitations:
+- Token exchange defines identity and authority structures in token envelopes, not
+  internal agent reasoning or safety policies.
+related_topics:
+- delegation, impersonation, and composite token semantics
+unit_ids:
+- P1-00-04
+used_in:
+- knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md
+local_copy: null
+sha256: null

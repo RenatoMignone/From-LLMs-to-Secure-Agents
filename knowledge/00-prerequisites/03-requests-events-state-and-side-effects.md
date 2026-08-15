@@ -15,7 +15,7 @@ source_records:
 visual_assets:
 - assets/images/00-prerequisites/03-requests-events-state-and-side-effects/01-request-state-event-effect.png
 example_paths:
-- examples/p1-00-01
+- examples/00-prerequisites/01-reader-contract-and-system-map
 pass: architecture
 learning_path: main
 status: complete
@@ -113,8 +113,8 @@ The same itinerary values can appear in every step, but their movement does not 
 Give each transition an identifier when the workflow needs to be traced. The mocked example from the system-map chapter uses a request identifier, applies one authorized transition, saves one task, and records one event:
 
 ```bash
-python3 examples/p1-00-01/task_transition.py
-python3 -m unittest examples/p1-00-01/tests/test_task_transition.py
+python3 examples/00-prerequisites/01-reader-contract-and-system-map/task_transition.py
+python3 -m unittest examples/00-prerequisites/01-reader-contract-and-system-map/tests/test_task_transition.py
 ```
 
 It deliberately records a requested notification instead of contacting a real service. That small limit is the lesson: recording a request for an effect is not observing the effect's completion.

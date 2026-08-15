@@ -1,0 +1,26 @@
+id: p1-00-04-saltzer-schroeder-1975
+title: The Protection of Information in Computer Systems
+authors_or_organization: Jerome H. Saltzer and Michael D. Schroeder
+date: 1975-09
+source_type: paper
+canonical_url: https://doi.org/10.1109/PROC.1975.9939
+doi: 10.1109/PROC.1975.9939
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- 'Defines the Principle of Least Privilege: every program and user should operate
+  with the least set of privileges necessary to complete the job, limiting damage
+  from accidents, errors, or compromises.'
+limitations:
+- The paper establishes foundational security principles for operating systems and
+  multi-user environments, not autonomous language model architectures.
+related_topics:
+- least privilege and protection principles
+unit_ids:
+- P1-00-04
+used_in:
+- knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md
+local_copy: null
+sha256: null

@@ -19,7 +19,7 @@ visual_assets:
 - assets/images/00-prerequisites/01-reader-contract-and-system-map/01-system-context.png
 - assets/images/00-prerequisites/01-reader-contract-and-system-map/02-state-transition-legend.png
 example_paths:
-- examples/p1-00-01
+- examples/00-prerequisites/01-reader-contract-and-system-map
 pass: architecture
 learning_path: main
 status: complete
@@ -164,11 +164,11 @@ This chapter does not prescribe retry behavior. Later reliability material will 
 Run the mocked request locally:
 
 ```bash
-python3 examples/p1-00-01/task_transition.py
-python3 -m unittest examples/p1-00-01/tests/test_task_transition.py
+python3 examples/00-prerequisites/01-reader-contract-and-system-map/task_transition.py
+python3 -m unittest examples/00-prerequisites/01-reader-contract-and-system-map/tests/test_task_transition.py
 ```
 
-The example is a small local version of the task-app story. It receives a JSON-like request, checks the `tasks:create` permission, saves one task, and records one event. It does not actually contact a notification service. Instead, it records that a notification was requested. That deliberate omission shows the difference between saving a task, recording an event, requesting an effect, and observing a completed effect. See the [example README](../../examples/p1-00-01/README.md) for expected output and limitations.
+The example is a small local version of the task-app story. It receives a JSON-like request, checks the `tasks:create` permission, saves one task, and records one event. It does not actually contact a notification service. Instead, it records that a notification was requested. That deliberate omission shows the difference between saving a task, recording an event, requesting an effect, and observing a completed effect. See the [example README](../../examples/00-prerequisites/01-reader-contract-and-system-map/README.md) for expected output and limitations.
 
 ## Limitations and trade-offs
 

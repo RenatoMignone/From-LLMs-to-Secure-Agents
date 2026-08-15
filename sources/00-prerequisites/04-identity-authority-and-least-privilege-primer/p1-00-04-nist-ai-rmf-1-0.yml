@@ -1,0 +1,25 @@
+id: p1-00-04-nist-ai-rmf-1-0
+title: Artificial Intelligence Risk Management Framework (AI RMF 1.0)
+authors_or_organization: National Institute of Standards and Technology
+date: 2023-01
+source_type: guidance
+canonical_url: https://doi.org/10.6028/NIST.AI.100-1
+doi: 10.6028/NIST.AI.100-1
+version: NIST AI 100-1
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Recommends establishing clear authority boundaries, organizational governance, and
+  risk management practices for AI systems operating across external interfaces.
+limitations:
+- Provides high-level voluntary risk management guidance rather than specific access-token
+  protocols or software-level authorization filters.
+related_topics:
+- AI risk management, authority boundaries, and governance
+unit_ids:
+- P1-00-04
+used_in:
+- knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md
+local_copy: null
+sha256: null
