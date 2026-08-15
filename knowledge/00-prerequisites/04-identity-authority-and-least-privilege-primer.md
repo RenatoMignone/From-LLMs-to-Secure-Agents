@@ -19,7 +19,7 @@ visual_assets:
 example_paths: []
 pass: architecture
 learning_path: main
-status: review
+status: complete
 last_reviewed: '2026-08-15'
 ---
 

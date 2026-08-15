@@ -91,3 +91,11 @@
 - Files or sections: `knowledge/00-prerequisites/03-requests-events-state-and-side-effects.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Requests, events, state, and side effects.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-15
+
+### P1-00-04 complete
+
+- Files or sections: `knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Identity, authority, and least privilege primer.
+- Validation: Passed repository validation and the unit review checklist.
