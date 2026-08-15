@@ -1,0 +1,24 @@
+id: p1-01-05-langchain-human-in-the-loop-2024
+title: 'LangGraph: Human-in-the-Loop and State Persistence'
+authors_or_organization: LangChain
+date: '2024'
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/human-in-the-loop
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Specifies graph execution lifecycles, pause-and-resume mechanisms, checkpointers,
+  and human interruption hooks.
+limitations:
+- Focuses on LangGraph state graph mechanics.
+related_topics:
+- execution lifecycle state management and pause mechanisms
+unit_ids:
+- P1-01-05
+used_in:
+- knowledge/01-agent-foundations/05-run-lifecycle-and-termination.md
+local_copy: null
+sha256: null

@@ -1,0 +1,25 @@
+Use case: infographic-diagram
+Asset type: labeled state-machine lifecycle diagram for a technical learning guide
+
+Create a clean, polished technical-cartoon infographic in the canonical educational style of the repository banner: cute rounded robot assistant characters, simple shapes, soft outlines, approachable technical book-guide tone, light cream background, and a calm pastel palette consisting of soft blue, teal, sage green, warm cream, and soft pastel amber. Strictly no dark backgrounds, no cyberpunk or hacker themes, no sterile corporate flowchart boxes, no UML or Visio style, and no 3D photorealism.
+
+Show the complete state transitions of an Agent Run Lifecycle:
+
+1. Top: INITIALIZATION
+   - A box labeled "CREATED & INITIALIZED" where a cute robot assistant prepares prompt context and loads tool schemas.
+   - Downward arrow leading to Active Loop.
+
+2. Center: ACTIVE EXECUTION & PAUSE
+   - Main central box: "RUNNING (ACTIVE LOOP)" with circular action-observation arrows.
+   - Bi-directional arrow to a side box: "PAUSED / SUSPENDED" (cute robot waiting with a pause icon for Human Approval or webhook event).
+
+3. Bottom: THREE TERMINATION OUTCOMES
+   - Left branch: "SUCCEEDED" (soft green banner with checkmark, goal completed safely).
+   - Center branch: "ABORTED" (soft amber banner with a stopwatch and budget meter: Max Turns / Token Budget / Policy Stop).
+   - Right branch: "FAILED" (soft coral/red banner: Unrecoverable Error / Runtime Crash).
+
+Composition:
+- 16:9 widescreen layout with clear top-to-bottom flowchart progression.
+- Warm light cream background.
+- High-contrast, clean sans-serif text labels.
+- Approaches state machines with friendly clarity.

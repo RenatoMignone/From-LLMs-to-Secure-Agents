@@ -1,0 +1,24 @@
+id: p1-01-05-stop-hand-holding-agents-2026
+title: Stop Hand-Holding Your Coding Agent
+authors_or_organization: arXiv
+date: 2026-07
+source_type: paper
+canonical_url: https://arxiv.org/abs/2607.00038
+doi: 10.48550/arXiv.2607.00038
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Analyzes the impact of step budgets, error backoff strategies, and autonomous termination
+  criteria on agent benchmark performance and runaway costs.
+limitations:
+- Focuses primarily on automated coding and software engineering benchmarks.
+related_topics:
+- agent termination criteria and budgeting strategies
+unit_ids:
+- P1-01-05
+used_in:
+- knowledge/01-agent-foundations/05-run-lifecycle-and-termination.md
+local_copy: null
+sha256: null

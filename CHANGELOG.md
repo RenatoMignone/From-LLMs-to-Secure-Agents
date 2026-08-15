@@ -99,3 +99,33 @@
 - Files or sections: `knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Identity, authority, and least privilege primer.
 - Validation: Passed repository validation and the unit review checklist.
+
+### P1-01-01 complete
+
+- Files or sections: `knowledge/01-agent-foundations/01-what-is-an-agent.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed What is an agent.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-01-02 complete
+
+- Files or sections: `knowledge/01-agent-foundations/02-the-agent-loop.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed The agent loop.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-01-03 complete
+
+- Files or sections: `knowledge/01-agent-foundations/03-workflows-versus-agents.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Workflows versus agents.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-01-04 complete
+
+- Files or sections: `knowledge/01-agent-foundations/04-goals-policies-environments-and-autonomy.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Goals, policies, environments, and autonomy.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-01-05 complete
+
+- Files or sections: `knowledge/01-agent-foundations/05-run-lifecycle-and-termination.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Run lifecycle and termination.
+- Validation: Passed repository validation and the unit review checklist.

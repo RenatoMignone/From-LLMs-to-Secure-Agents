@@ -1,0 +1,24 @@
+id: p1-01-05-openai-agents-sdk-lifecycle-2024
+title: 'OpenAI Agents SDK: Runs and Lifecycle'
+authors_or_organization: OpenAI
+date: '2024'
+source_type: documentation
+canonical_url: https://openai.github.io/openai-agents-python/
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Defines agent run lifecycles, execution states, termination conditions, and tool
+  guardrails in Python agent runtimes.
+limitations:
+- Focuses on the specific API conventions of the OpenAI Agents SDK.
+related_topics:
+- agent run lifecycle and termination
+unit_ids:
+- P1-01-05
+used_in:
+- knowledge/01-agent-foundations/05-run-lifecycle-and-termination.md
+local_copy: null
+sha256: null

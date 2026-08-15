@@ -1,14 +1,13 @@
 ---
 schema_version: 1
 current_phase: pass-1-architecture
-current_unit: P1-01-01
-current_unit_path: knowledge/01-agent-foundations/01-what-is-an-agent.md
-current_unit_state: review
+current_unit: null
+current_unit_path: null
+current_unit_state: idle
 blocked_from: null
-completed_through: P1-00-04
-units_in_review:
-- P1-01-01
-next_recommended_unit: P1-01-01
+completed_through: P1-01-05
+units_in_review: []
+next_recommended_unit: P1-02-01
 blockers: []
 unresolved_research_questions:
 - Reference workflow domain
