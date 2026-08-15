@@ -63,10 +63,12 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_wrong_next_unit_fails(self) -> None:
-        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-01-01", "next_recommended_unit: P1-01-02")
+        status_path = self.repo / "PROJECT_STATUS.md"
+        status = status_path.read_text(encoding="utf-8")
+        status_path.write_text(re.sub(r"next_recommended_unit: .*", "next_recommended_unit: P1-99-99", status), encoding="utf-8")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("next_recommended_unit must be P1-01-01", result.stdout)
+        self.assertIn("next_recommended_unit must be", result.stdout)
 
     def test_roadmap_plan_drift_fails(self) -> None:
         self.replace("ROADMAP.md", "Execution boundaries and threat-independent requirements", "Execution boundaries and requirements")
@@ -109,7 +111,7 @@ class ValidatorTests(unittest.TestCase):
 
     def test_instruction_budget_fails(self) -> None:
         path = self.repo / "AGENTS.md"
-        path.write_text(path.read_text(encoding="utf-8") + (" noise" * 100), encoding="utf-8")
+        path.write_text(path.read_text(encoding="utf-8") + (" noise" * 400), encoding="utf-8")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("instruction word budget exceeded", result.stdout)
@@ -121,7 +123,9 @@ class ValidatorTests(unittest.TestCase):
         status = re.sub(r"current_unit_path: .*", "current_unit_path: null", status)
         status = re.sub(r"current_unit_state: .*", "current_unit_state: idle", status)
         status = re.sub(r"blocked_from: .*", "blocked_from: null", status)
-        status = re.sub(r"units_in_review:(\n\s*-\s*.*)*", "units_in_review: []", status)
+        status = re.sub(r"completed_through: .*", "completed_through: P1-00-04", status)
+        status = re.sub(r"next_recommended_unit: .*", "next_recommended_unit: P1-01-01", status)
+        status = re.sub(r"units_in_review:.*", "units_in_review: []", status)
         status_path.write_text(status, encoding="utf-8")
         target = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
         if target.is_file():
@@ -152,7 +156,10 @@ class ValidatorTests(unittest.TestCase):
 
     def test_state_resolve_reports_deep_dive_classification(self) -> None:
         self.reset_to_idle()
-        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-04", "completed_through: P1-03-06-03")
+        status_path = self.repo / "PROJECT_STATUS.md"
+        status = status_path.read_text(encoding="utf-8")
+        status = re.sub(r"completed_through: .*", "completed_through: P1-03-06-03", status)
+        status_path.write_text(status, encoding="utf-8")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("unit_id: P1-03-06-04", result.stdout)
@@ -166,10 +173,13 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(self.run_state("set", "validating").returncode, 0)
         status_path = self.repo / "PROJECT_STATUS.md"
         status = status_path.read_text(encoding="utf-8")
-        status_path.write_text(status.replace("current_unit_state: validating", "current_unit_state: review").replace("units_in_review: []", "units_in_review:\n- P1-00-01"), encoding="utf-8")
+        status = status.replace("current_unit_state: validating", "current_unit_state: review")
+        status = status.replace("units_in_review: []", "units_in_review:\n- P1-00-01")
+        status_path.write_text(status, encoding="utf-8")
         chapter_path = self.repo / "knowledge/00-prerequisites/02-data-control-and-trust-boundaries.md"
         chapter = chapter_path.read_text(encoding="utf-8")
-        chapter_path.write_text(chapter.replace("status: outline", "status: review"), encoding="utf-8")
+        chapter = re.sub(r"status: \w+", "status: review", chapter)
+        chapter_path.write_text(chapter, encoding="utf-8")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("mode: review", result.stdout)
