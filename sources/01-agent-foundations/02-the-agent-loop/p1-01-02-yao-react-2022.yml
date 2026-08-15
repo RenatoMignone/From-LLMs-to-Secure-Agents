@@ -1,0 +1,25 @@
+id: p1-01-02-yao-react-2022
+title: 'ReAct: Synergizing Reasoning and Acting in Language Models'
+authors_or_organization: ICLR / Princeton & Google Research
+date: 2022-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2210.03629
+doi: 10.48550/arXiv.2210.03629
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Formalizes the perception-reasoning-action loop where language models interleave
+  thought generation with action execution and observation integration.
+limitations:
+- Evaluates prompt-based agent loops on benchmark search and QA tasks rather than
+  production tool harnesses.
+related_topics:
+- agent loop mechanics
+unit_ids:
+- P1-01-02
+used_in:
+- knowledge/01-agent-foundations/02-the-agent-loop.md
+local_copy: null
+sha256: null

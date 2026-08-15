@@ -1,0 +1,32 @@
+Use case: infographic-diagram
+Asset type: labeled cyclic architecture diagram for a technical learning guide
+
+Create a clean, polished technical-cartoon infographic in the canonical educational style of the repository banner: cute rounded robot assistant character, simple shapes, soft outlines, approachable technical book-guide tone, light cream background, and a calm pastel palette consisting of soft blue, teal, sage green, warm cream, and soft pastel amber. Strictly no dark backgrounds, no cyberpunk or hacker themes, no sterile corporate flowchart boxes, no UML or Visio style, and no 3D photorealism.
+
+Show a clear 5-step cyclic perception-reasoning-action loop arranged in a clockwise circle around a central cute robot character:
+
+1. Step 1 (Top): CONTEXT ASSEMBLY
+   - A friendly document folder icon combining Goal, System Policy, and History into a prompt.
+   - Arrow pointing to Step 2.
+
+2. Step 2 (Top Right): MODEL REASONING & DECISION
+   - Cute robot assistant thinking with a glowing lightbulb, selecting a tool action or final answer.
+   - Arrow pointing to Step 3.
+
+3. Step 3 (Bottom Right): TOOL DISPATCH & EXECUTION
+   - A tool wrench/gear icon crossing a soft dashed line labeled "Trust Boundary" to execute in the Environment.
+   - Arrow pointing to Step 4.
+
+4. Step 4 (Bottom Left): OBSERVATION FEEDBACK
+   - A sensor gauge/log sheet icon returning structured results and feedback back to the agent host.
+   - Arrow pointing to Step 5.
+
+5. Step 5 (Top Left): TERMINATION CHECK
+   - A checklist/stopwatch icon evaluating step limits, token budget, or goal completion.
+   - Arrow looping back to Step 1 (or exiting to "Final Answer").
+
+Composition:
+- 16:9 widescreen layout with clear spacing and strong visual hierarchy.
+- Warm light cream background with subtle, rounded cards.
+- High-contrast, clean sans-serif text labels.
+- Approaches technical concepts with warmth and clarity.

@@ -1,0 +1,25 @@
+id: p1-01-02-ibm-loop-engineering-2024
+title: What is loop engineering?
+authors_or_organization: IBM Think
+date: '2024'
+source_type: documentation
+canonical_url: https://www.ibm.com/think/topics/loop-engineering
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Defines loop engineering as the practice of designing, wrapping, and constraining
+  the iterative execution cycle of foundation models and tools.
+limitations:
+- Focuses on enterprise architectural concepts without specifying a single runtime
+  standard.
+related_topics:
+- loop engineering and iterative agent runtime
+unit_ids:
+- P1-01-02
+used_in:
+- knowledge/01-agent-foundations/02-the-agent-loop.md
+local_copy: null
+sha256: null
