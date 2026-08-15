@@ -1,0 +1,32 @@
+Use case: infographic-diagram
+Asset type: labeled architecture comparison diagram for a technical learning guide
+
+Create a wide, clean, polished technical-cartoon infographic in the same friendly educational identity as the repository banner: simple shapes, soft outlines, professional guide tone, light cream background, and a calm palette of soft blue, teal, green, cream, and warm neutral orange. No cyberpunk, hacker imagery, dark background, logos, watermark, code, or extra words.
+
+Show a wide three-panel comparison from left to right with high-contrast, clear sans-serif labels:
+
+Panel 1 (Left): STANDALONE MODEL
+- A single input arrow labeled USER PROMPT leading into a friendly robot assistant icon labeled LANGUAGE MODEL, which outputs a single arrow labeled TEXT RESPONSE.
+- Bottom label: Single-Turn Prediction (No Tools)
+
+Panel 2 (Center): DETERMINISTIC WORKFLOW
+- A structured sequence of three connected steps inside a rounded card:
+  1. Box labeled STEP 1: PROMPT LLM
+  2. Box labeled STEP 2: CODE LOGIC
+  3. Box labeled STEP 3: API CALL
+- Solid directional arrows connect the steps in a fixed line to a final OUTPUT box.
+- Bottom label: Predefined Code Path
+
+Panel 3 (Right): AUTONOMOUS AGENT LOOP
+- A dynamic perception-action loop inside a rounded card:
+  - Top: an input box labeled USER GOAL
+  - Center: a smart robot character labeled MODEL (REASONING)
+  - Downward teal arrow labeled ACTION / TOOL CALL pointing to a box labeled ENVIRONMENT (TOOLS)
+  - Upward green arrow labeled OBSERVATION / FEEDBACK looping back to the MODEL
+  - Exit arrow labeled TASK COMPLETED
+- Bottom label: Model-Directed Control Loop
+
+Composition:
+- Wide horizontal layout (16:9 or ~3:1 aspect ratio).
+- Light cream background with soft subtle borders separating the three panels.
+- Highly legible, correctly spelled text labels.

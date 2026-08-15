@@ -1,0 +1,27 @@
+id: p1-01-01-russell-norvig-aima
+title: 'Artificial Intelligence: A Modern Approach'
+authors_or_organization: Stuart Russell and Peter Norvig
+date: '2020'
+source_type: book
+canonical_url: https://aima.cs.berkeley.edu/
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Defines an agent as an entity that perceives its environment through sensors and
+  acts upon it through actuators toward a goal.
+limitations:
+- Classical definition predates modern LLMs, focusing on general rational agents,
+  search, and probabilistic models rather than token-based autoregressive foundation
+  models.
+related_topics:
+- foundational agent definition and perception-action loop
+unit_ids:
+- P1-01-01
+used_in:
+- /home/ren/Documents/personal-projects/From-LLMs-to-Secure-Agents/knowledge/01-agent-foundations/01-what-is-an-agent.md
+- knowledge/01-agent-foundations/01-what-is-an-agent.md
+local_copy: null
+sha256: null

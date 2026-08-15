@@ -1,0 +1,25 @@
+id: p1-01-01-anthropic-building-effective-agents-2024
+title: Building Effective Agents
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: guidance
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Distinguishes deterministic workflows from autonomous agents where the language
+  model dynamically directs control flow and tool usage based on environmental feedback.
+limitations:
+- Engineering guidance focused on practical patterns for LLM-based applications rather
+  than general non-transformer agent theory.
+related_topics:
+- workflows versus agents and augmented LLM architectures
+unit_ids:
+- P1-01-01
+used_in:
+- knowledge/01-agent-foundations/01-what-is-an-agent.md
+local_copy: null
+sha256: null

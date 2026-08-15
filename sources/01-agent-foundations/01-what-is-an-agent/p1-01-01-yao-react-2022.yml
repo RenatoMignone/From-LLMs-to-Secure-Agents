@@ -1,0 +1,26 @@
+id: p1-01-01-yao-react-2022
+title: 'ReAct: Synergizing Reasoning and Acting in Language Models'
+authors_or_organization: Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran,
+  Karthik Narasimhan, and Yuan Cao
+date: 2022-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2210.03629
+doi: 10.48550/arXiv.2210.03629
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Demonstrates how language models interleave reasoning traces and task-specific actions
+  to interact with external environments and solve multi-step tasks.
+limitations:
+- Focuses on prompt-based reasoning-action interleaving on benchmark datasets rather
+  than broad production agent systems.
+related_topics:
+- reasoning and action interleaving in agent loops
+unit_ids:
+- P1-01-01
+used_in:
+- knowledge/01-agent-foundations/01-what-is-an-agent.md
+local_copy: null
+sha256: null

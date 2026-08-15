@@ -1,14 +1,14 @@
 ---
 schema_version: 1
 current_phase: pass-1-architecture
-current_unit: P1-00-04
-current_unit_path: knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md
+current_unit: P1-01-01
+current_unit_path: knowledge/01-agent-foundations/01-what-is-an-agent.md
 current_unit_state: review
 blocked_from: null
-completed_through: P1-00-03
+completed_through: P1-00-04
 units_in_review:
-- P1-00-04
-next_recommended_unit: P1-00-04
+- P1-01-01
+next_recommended_unit: P1-01-01
 blockers: []
 unresolved_research_questions:
 - Reference workflow domain
