@@ -1,0 +1,24 @@
+id: p1-01-04-nist-ai-rmf-2023
+title: NIST AI Risk Management Framework (AI RMF 1.0)
+authors_or_organization: National Institute of Standards and Technology
+date: 2023-01
+source_type: standard
+canonical_url: https://www.nist.gov/itl/ai-risk-management-framework
+doi: 10.6028/NIST.AI.100-1
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Establishes governance, measurement, and operational management guidelines for autonomous
+  and human-supervised AI systems.
+limitations:
+- Broad risk management principles rather than code-level implementation specifications.
+related_topics:
+- AI risk governance and human oversight policies
+unit_ids:
+- P1-01-04
+used_in:
+- knowledge/01-agent-foundations/04-goals-policies-environments-and-autonomy.md
+local_copy: null
+sha256: null

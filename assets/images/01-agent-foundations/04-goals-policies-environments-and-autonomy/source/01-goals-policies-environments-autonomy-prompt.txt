@@ -1,0 +1,30 @@
+Use case: infographic-diagram
+Asset type: labeled architectural infographic diagram for a technical learning guide
+
+Create a clean, polished technical-cartoon infographic in the canonical educational style of the repository banner: cute rounded robot assistant characters, simple shapes, soft outlines, approachable technical book-guide tone, light cream background, and a calm pastel palette consisting of soft blue, teal, sage green, warm cream, and soft pastel amber. Strictly no dark backgrounds, no cyberpunk or hacker themes, no sterile corporate flowchart boxes, no UML or Visio style, and no 3D photorealism.
+
+Show the four foundational pillars of an agent system in an integrated architecture:
+
+1. Top: GOAL (OBJECTIVE)
+   - A friendly target board / mission flag labeled "GOAL: Specific Desired Outcome".
+   - Arrow pointing down through policy boundaries.
+
+2. Upper Middle: POLICY (GUARDRAILS)
+   - A protective pastel teal fence/shield labeled "POLICY: Safety Rules & Authority Limits".
+   - A cute clipboard checklist: "Allowed Tools", "Step Budget", "Human Sign-off".
+
+3. Center: AGENT & ENVIRONMENT
+   - A cute robot assistant working with safe tools (wrench, magnifying glass) inside a warm workbench labeled "ENVIRONMENT: Operating System, APIs, Databases".
+   - Bi-directional feedback arrows: "Actions" and "Observations".
+
+4. Bottom: AUTONOMY SPECTRUM
+   - A horizontal pastel slider gauge from left to right:
+     - Level 1: "Human-in-the-Loop" (Hands-on approval)
+     - Level 2: "Human-on-the-Loop" (Supervised autonomy)
+     - Level 3: "Full Autonomy" (Independent execution)
+
+Composition:
+- 16:9 widescreen layout with clear vertical and horizontal hierarchy.
+- Warm light cream background.
+- High-contrast, clean sans-serif text labels.
+- Friendly, trustworthy educational tone.

@@ -1,0 +1,24 @@
+id: p1-01-04-russell-norvig-aima-environments
+title: 'Artificial Intelligence: A Modern Approach (4th Edition)'
+authors_or_organization: Pearson / UC Berkeley
+date: '2020'
+source_type: paper
+canonical_url: https://aima.cs.berkeley.edu/
+doi: null
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Classifies agent environments across observability, determinism, dynamism, and continuity,
+  and defines goal-based vs utility-based agent behavior.
+limitations:
+- Presents foundational AI definitions prior to modern LLM-based tool-calling harnesses.
+related_topics:
+- environment classification and agent goals
+unit_ids:
+- P1-01-04
+used_in:
+- knowledge/01-agent-foundations/04-goals-policies-environments-and-autonomy.md
+local_copy: null
+sha256: null

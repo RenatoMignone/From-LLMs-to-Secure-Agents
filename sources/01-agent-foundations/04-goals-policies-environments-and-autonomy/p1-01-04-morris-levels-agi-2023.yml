@@ -1,0 +1,24 @@
+id: p1-01-04-morris-levels-agi-2023
+title: 'Levels of AGI: Operationalizing Progress to AGI'
+authors_or_organization: Google DeepMind
+date: 2023-11
+source_type: paper
+canonical_url: https://arxiv.org/abs/2311.02462
+doi: 10.48550/arXiv.2311.02462
+version: null
+accessed: '2026-08-15'
+last_verified: '2026-08-15'
+status: checked
+claims_supported:
+- Framework defining levels of agent autonomy and autonomy vs capability distinctions
+  in modern AI systems.
+limitations:
+- Focuses on taxonomy and capability tiers rather than runtime execution protocols.
+related_topics:
+- autonomy levels and autonomy vs capability
+unit_ids:
+- P1-01-04
+used_in:
+- knowledge/01-agent-foundations/04-goals-policies-environments-and-autonomy.md
+local_copy: null
+sha256: null
