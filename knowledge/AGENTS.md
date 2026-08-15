@@ -15,6 +15,8 @@ Rules:
 - Read the nearest local `AGENTS.md` and `chapter-plan.md`.
 - Create `index.md` only when its roadmap unit is selected.
 - Always read style and evidence policies. Personalize chapter structure to the topic, keeping core sections and omitting empty placeholders.
+- Do not create ASCII or text-based .md schemas. Generate visual cartoon illustrations for all diagrams and flows.
+- Include a clear navigation link or button to the next sequential unit at the end of every chapter.
 - Read visuals or examples policy only when the plan requires that artifact.
 - Link prerequisites and next steps; avoid duplicate explanations.
 - Pass 1 explains function before its brief security preview. Pass 2 maps threats and controls to taught components.

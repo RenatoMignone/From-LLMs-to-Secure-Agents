@@ -1,3 +1,4 @@
+<!--
 ---
 title: Data, control, and trust boundaries
 unit_id: P1-00-02
@@ -19,6 +20,7 @@ learning_path: main
 status: complete
 last_reviewed: '2026-08-10'
 ---
+-->
 
 # Data, control, and trust boundaries
 
@@ -165,3 +167,7 @@ Where should a later reliability chapter introduce retries: immediately after th
 
 - [RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format](https://www.rfc-editor.org/rfc/rfc8259.html)
 - [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+---
+
+[Next Unit: Requests, events, state, and side effects →](03-requests-events-state-and-side-effects.md)

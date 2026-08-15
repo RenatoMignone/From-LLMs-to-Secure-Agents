@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Visuals must clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or multi-step execution.
+Visuals must clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or multi-step execution. Do not create ASCII or text-based .md schemas. Whenever a schema, workflow, state flow, or architecture map is needed, generate a visual cartoon illustration instead.
 
 A chapter can contain as many visuals as needed (from 0 if text and tables suffice, to multiple diagrams and schemes when visual clarity helps). The agent evaluates the topic and decides the number of visuals that best supports reader comprehension.
 

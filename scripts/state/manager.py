@@ -21,7 +21,7 @@ STATE_ORDER = ["researching", "drafting", "building-assets", "validating", "revi
 
 def parse_status() -> tuple[dict[str, Any], str]:
     content = STATUS_PATH.read_text(encoding="utf-8")
-    match = re.match(r"^---\n(.*?)\n---\n?(.*)$", content, re.DOTALL)
+    match = re.match(r"^(?:<!--\s*)?---\n(.*?)\n---\s*(?:-->)?\n?(.*)$", content, re.DOTALL)
     if not match:
         raise SystemExit("PROJECT_STATUS.md has no YAML front matter")
     data = yaml.safe_load(match.group(1))
@@ -152,21 +152,24 @@ def chapter_template(unit: dict[str, str]) -> str:
     ]
     headings = architecture if unit["pass"] == "architecture" else security
     front = yaml.safe_dump(common, sort_keys=False, allow_unicode=True).rstrip()
-    return f"---\n{front}\n---\n\n# {unit['title']}\n\n" + "\n\n".join(f"## {heading}" for heading in headings) + "\n"
+    return f"<!--\n---\n{front}\n---\n-->\n\n# {unit['title']}\n\n" + "\n\n".join(f"## {heading}" for heading in headings) + "\n"
 
 
 def update_chapter_status(path: Path, status: str, reviewed: bool = False) -> None:
     if not path.is_file():
         return
     content = path.read_text(encoding="utf-8")
-    match = re.match(r"^---\n(.*?)\n---\n?(.*)$", content, re.DOTALL)
+    match = re.match(r"^(?:<!--\s*)?---\n(.*?)\n---\s*(?:-->)?\n?(.*)$", content, re.DOTALL)
     if not match:
         raise SystemExit(f"Missing chapter front matter: {path.relative_to(ROOT)}")
     data = yaml.safe_load(match.group(1))
     data["status"] = status
     if reviewed:
         data["last_reviewed"] = dt.date.today().isoformat()
-    path.write_text("---\n" + yaml.safe_dump(data, sort_keys=False, allow_unicode=True) + "---\n\n" + match.group(2).lstrip("\n"), encoding="utf-8")
+    is_comment = content.startswith("<!--")
+    front_yaml = yaml.safe_dump(data, sort_keys=False, allow_unicode=True).rstrip()
+    prefix = f"<!--\n---\n{front_yaml}\n---\n-->\n\n" if is_comment else f"---\n{front_yaml}\n---\n\n"
+    path.write_text(prefix + match.group(2).lstrip("\n"), encoding="utf-8")
 
 
 def run_validator() -> None:

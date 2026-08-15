@@ -23,6 +23,8 @@
 
 - Personalize sections to the chapter topic. Include optional sections only when they provide substantive technical value.
 - Do not add placeholder text or artificial questions.
+- Do not create ASCII or text-based .md schemas. Generate visual cartoon illustrations for all diagrams and flows.
+- End every unit with a clear navigation link or button to the next sequential unit to ensure smooth reading progression.
 
 ## Architecture teaching order
 

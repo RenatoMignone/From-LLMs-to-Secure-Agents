@@ -1,3 +1,4 @@
+<!--
 ---
 title: Reader contract and system map
 unit_id: P1-00-01
@@ -25,6 +26,7 @@ learning_path: main
 status: complete
 last_reviewed: '2026-08-06'
 ---
+-->
 
 # Reader contract and system map
 
@@ -197,3 +199,7 @@ When later chapters introduce distributed retries, should their delivery guarant
 - [RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format](https://www.rfc-editor.org/rfc/rfc8259.html)
 - [RFC 8693: OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html)
 - [NIST AI RMF 1.0](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+---
+
+[Next Unit: Data, control, and trust boundaries →](02-data-control-and-trust-boundaries.md)

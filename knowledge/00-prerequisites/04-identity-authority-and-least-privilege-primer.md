@@ -1,3 +1,4 @@
+<!--
 ---
 title: Identity, authority, and least privilege primer
 unit_id: P1-00-04
@@ -22,6 +23,7 @@ learning_path: main
 status: complete
 last_reviewed: '2026-08-15'
 ---
+-->
 
 # Identity, authority, and least privilege primer
 
@@ -253,3 +255,7 @@ This chapter introduces the structural mechanics of identity, delegation, and le
 - Jerome H. Saltzer and Michael D. Schroeder. *The Protection of Information in Computer Systems*. Proceedings of the IEEE, 63(9):1278-1308, September 1975. [DOI: 10.1109/PROC.1975.9939](https://doi.org/10.1109/PROC.1975.9939).
 - Michael B. Jones, Anthony Nadalin, Brian Campbell, John Bradley, and Chuck Mortimore. *RFC 8693: OAuth 2.0 Token Exchange*. Internet Engineering Task Force, January 2020. [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html).
 - National Institute of Standards and Technology. *Artificial Intelligence Risk Management Framework (AI RMF 1.0)*. NIST AI 100-1, January 2023. [DOI: 10.6028/NIST.AI.100-1](https://doi.org/10.6028/NIST.AI.100-1).
+
+---
+
+[Next Section: What is an agent →](../01-agent-foundations/01-what-is-an-agent.md)

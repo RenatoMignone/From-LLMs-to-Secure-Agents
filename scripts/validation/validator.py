@@ -49,7 +49,7 @@ def front_matter(path: Path) -> dict[str, Any] | None:
     except OSError as error:
         fail(f"cannot read {relative(path)}: {error}")
         return None
-    match = re.match(r"^---\n(.*?)\n---\n?(.*)$", content, re.DOTALL)
+    match = re.match(r"^(?:<!--\s*)?---\n(.*?)\n---\s*(?:-->)?\n?(.*)$", content, re.DOTALL)
     if not match:
         fail(f"missing yaml front matter: {relative(path)}")
         return None

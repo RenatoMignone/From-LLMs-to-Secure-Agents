@@ -1,3 +1,4 @@
+<!--
 ---
 title: Requests, events, state, and side effects
 unit_id: P1-00-03
@@ -21,6 +22,7 @@ learning_path: main
 status: complete
 last_reviewed: '2026-08-12'
 ---
+-->
 
 # Requests, events, state, and side effects
 
@@ -172,3 +174,7 @@ Where should retry semantics first become part of the main learning path? The an
 
 - [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
 - [CloudEvents Specification](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md)
+
+---
+
+[Next Unit: Identity, authority, and least privilege primer →](04-identity-authority-and-least-privilege-primer.md)

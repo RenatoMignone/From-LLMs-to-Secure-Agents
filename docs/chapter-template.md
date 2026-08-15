@@ -37,5 +37,7 @@ Add a short subsection inside the relevant section when terms help the reader. M
 - Begin with a familiar situation; avoid unexplained software vocabulary.
 - Include only sections with substantive content; omit unnecessary headings.
 - Determine the number of visuals (0 to many) based on educational need to maximize comprehension.
+- Never create ASCII or text schemas; generate cartoon visuals for all architectural diagrams.
+- Include a next-unit reading link or button at the end of each unit.
 - Link every source, visual, and example in front matter.
 - Explain every visual nearby.
