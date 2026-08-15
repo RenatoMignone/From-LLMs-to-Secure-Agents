@@ -26,7 +26,7 @@ Normal chapter runs load style and evidence. Load other policies only when requi
 - Preserve a short main learning path. Put specialized expansions in labeled deep-dive branches that readers may skip without losing later prerequisites.
 - Map risks to known components or workflow steps. State uncertainty and limitations.
 - Ground important claims in official sources or primary research.
-- Keep final visuals local and traceable. Do not create SVGs. Prefer verified raster downloads or generated PNG/WebP.
+- Keep final visuals local and traceable. Do not create SVGs. Prefer verified raster downloads or generated PNG/WebP matching the canonical cartoon style archetype in `assets/images/repo-images/source/prompt.txt`.
 - Mirror chapters under `assets/images/`, `sources/`, and `examples/`, without `knowledge/` or `.md`. Save visual prompts in local `source/` before generation.
 - Store chapter sources at `sources/<chapter-path>/<source-id>.yml` and repository records at `sources/project/<source-id>.yml`. Load only unit-scoped sources into context.
 - Keep Markdown canonical. Generate the site from it.

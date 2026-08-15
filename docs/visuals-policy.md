@@ -7,20 +7,24 @@ Use visuals only when they clarify architecture, flows, trust boundaries, state,
 ## Preference order
 
 1. Official or external raster visual with verified reuse permission
-2. Generated PNG or WebP illustration
+2. Generated PNG or WebP illustration matching the canonical style
 3. Recreated raster visual with cited sources
 4. Reproducible raster plot from checked data
 
-## Visual identity
+## Visual identity (Canonical Cartoon Style)
 
-- Generated illustrations use an approachable technical cartoon style matching the repository banner: simple shapes, clear hierarchy, restrained labels, cute rounded characters/elements, soft outlines, and calm blue, teal, green, cream, and warm neutrals on a light cream background.
-- Preserve technical structure and trust boundaries. Keep style consistent without repeating compositions.
-- Do not force downloaded figures, official diagrams, plots, or evidence visuals into the cartoon style.
-- Keep prose and layout technical. Illustrations explain, not decorate.
+All generated project visuals MUST strictly follow the canonical educational cartoon style established by the repository banner (`assets/images/repo-images/source/prompt.txt`):
+
+- **Aesthetics**: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical book-guide tone.
+- **Palette**: Warm light cream background. Calm pastel palette consisting of soft blue, teal, sage green, warm cream, and soft pastel orange or amber.
+- **Composition**: Clear spacing, strong visual hierarchy, bold high-contrast sans-serif labels, and clean flow (left-to-right or cyclical).
+- **Strictly Forbidden**: No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no UML or Visio style, and no 3D photorealism.
+
+Preserve technical accuracy and trust boundaries within this friendly cartoon aesthetic.
 
 ## Storage
 
-Give each chapter one image folder that mirrors its Markdown path. Remove the leading `knowledge/` and the `.md` suffix. Repository-level presentation images use `repo-images`.
+Give each chapter one image folder mirroring its Markdown path (omitting `knowledge/` and `.md`). Repository-level images use `repo-images`.
 
 ```text
 assets/images/
@@ -33,37 +37,33 @@ assets/images/
       source/               Diagram, plot script, prompt, or data
 ```
 
-Keep the complete chapter and subchapter hierarchy, tracking empty chapter folders with `.gitkeep`. Keep final visuals and prompt files in the owning chapter folder; Markdown references local files. Never hotlink content visuals.
-
-README badges may be remote when they report useful, verifiable facts and link to their source.
+Keep the complete chapter directory hierarchy, tracking empty folders with `.gitkeep`. Keep final visuals and prompt files in the owning folder; Markdown references local files. Never hotlink content visuals. README badges may be remote.
 
 ## Rules
 
-- Use PNG or WebP. Do not create SVG assets. Keep prompts or permitted editable inputs and meaningful names.
-- Add contextual alt text, caption, and nearby explanation in chapter Markdown. Give complex visuals an equivalent explanation or data table.
+- Use PNG or WebP. Do not create SVG assets. Keep prompts or editable inputs and meaningful names.
+- Add contextual alt text, caption, and nearby explanation in chapter Markdown.
 - Do not reuse an image without checking its license.
 
 ## Plots and diagrams
 
-- Prefer a verified downloadable raster visual or a generated raster visual. Do not create SVG assets.
-- For every generated visual, create and save a complete chapter-local prompt under `source/` before calling the generator. Adapt the repository banner's approachable technical-cartoon style.
-- Prompts must state the visual purpose, required labels as exact text, required layout, factual constraints, and unwanted elements. Inspect generated labels, values, contrast, legibility, and chapter correspondence before use.
-- Keep source, data, command, dependency versions, and fixed seed when a reproducible raster plot is required. Cite source records for facts or data encoded in a visual.
+- Prefer verified downloadable or generated raster visuals. Do not create SVG assets.
+- For every generated visual, write and save the complete prompt in `source/<image-name>-prompt.txt` before generation. Every prompt must explicitly mandate the canonical banner cartoon style, cute robot characters, light cream background, and exact text labels.
+- Inspect generated labels, values, contrast, legibility, and chapter correspondence before keeping the output. Reject sterile, dark, or illegible images.
 
 ## Downloaded visuals
 
-- Before download, verify and record creator, original page, direct asset URL, license URL, and modification rights. Apply every license condition and record modifications.
-- Verify PNG/WebP media type, dimensions, and visible content after download. Do not embed external SVG files.
-- If rights are missing, ambiguous, or incompatible, do not use the file.
+- Before download, verify creator, original page, direct URL, license URL, and modification rights.
+- Verify PNG/WebP media type, dimensions, and visible content after download. Do not embed SVG files.
 
 ## Generated visuals
 
-- Use image generation for generated raster assets and follow its rules. Create the prompt file in `source/` before generating, not after selecting an output.
+- Use image generation for raster assets and follow its rules. Create the prompt file in `source/` before generating.
 - Save selected output in its chapter folder.
-- Keep the final prompt under `source/` and record the tool, mode, creation date, and model when known.
 - If image generation is unavailable, record a blocker, not an untracked placeholder.
 
 ## Authoritative guidance
 
+- Canonical style archetype: `assets/images/repo-images/source/prompt.txt`
 - [Creative Commons attribution practices](https://wiki.creativecommons.org/index.php?title=Recommended_practices_for_attribution)
 - [W3C image accessibility tutorial](https://www.w3.org/WAI/tutorials/images/)
