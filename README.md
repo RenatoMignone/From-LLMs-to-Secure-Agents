@@ -74,7 +74,8 @@ Read AGENTS.md and continue the guide from the last checkpoint.
 Each completed unit includes:
 
 - checked source records with exact claims and canonical links;
-- local, attributed visuals, with reproducible diagrams and plots where possible;
+- canonical 2D cartoon visual illustrations (strictly no text-based ASCII schemas);
+- smooth reading progression with next-unit navigation links;
 - small runnable examples when the plan requires them;
 - deterministic repository validation;
 - updated project state and a concise changelog entry.
