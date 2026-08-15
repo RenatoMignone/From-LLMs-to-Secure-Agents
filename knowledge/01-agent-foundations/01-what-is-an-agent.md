@@ -1,3 +1,4 @@
+<!--
 ---
 title: What is an agent
 unit_id: P1-01-01
@@ -20,9 +21,10 @@ visual_assets:
 example_paths: []
 pass: architecture
 learning_path: main
-status: review
+status: complete
 last_reviewed: '2026-08-15'
 ---
+-->
 
 # What is an agent
 
@@ -178,29 +180,15 @@ Industry frameworks standardize this separation between the reasoning model and 
 
 Follow how data flows through an agent during a single turn of the perception-action loop:
 
-```text
-1. User provides Goal & System Policy
-      │
-      ▼
-2. Agent Host builds Prompt Context (Goal + Policy + Short-Term History)
-      │
-      ▼
-3. Model generates Thought & Action Request: tool_call("search_docs", query="API keys")
-      │
-      ▼
-4. Host intercepts tool call across Trust Boundary & executes against Environment
-      │
-      ▼
-5. Environment returns Observation: {"result": "Rotate keys every 90 days"}
-      │
-      ▼
-6. Host appends Action & Observation to History (State Transition)
-      │
-      ▼
-7. Model evaluates updated History:
-      ├── [Goal Incomplete] ──► Select next Action (Return to Step 3)
-      └── [Goal Complete]   ──► Output Final Answer to User
-```
+| Stage | Subsystem | Action | Data Payload |
+| --- | --- | --- | --- |
+| 1. Goal & Policy Input | User & Host | Operator supplies objective and constraints. | User prompt + system guardrails |
+| 2. Context Assembly | Agent Host | Host compiles working memory and tool definitions into prompt. | Prompt context with chronological history |
+| 3. Model Inference | Model Engine | Model reasons over context and emits tool request. | Structured action: `tool_call("search_docs", query="API keys")` |
+| 4. Dispatch & Execution | Host Runtime | Intercepts call, checks permissions, and executes tool. | Invokes search tool across Trust Boundary |
+| 5. Observation Feedback | Environment | Environment returns output data or error to host. | Observation: `{"result": "Rotate keys every 90 days"}` |
+| 6. State Update | Agent Host | Appends action and observation to short-term history. | Updated conversation history array |
+| 7. Decision Check | Model & Host | Evaluates goal completion status. | If incomplete, loops to Stage 3; if complete, outputs final answer. |
 
 ## Trust boundaries
 
@@ -257,3 +245,7 @@ Because autonomous agents possess agency (the ability to trigger state changes i
 - Stuart Russell and Peter Norvig. *Artificial Intelligence: A Modern Approach*. 4th Edition, Pearson, 2020. [AIMA](https://aima.cs.berkeley.edu/).
 - Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan, and Yuan Cao. *ReAct: Synergizing Reasoning and Acting in Language Models*. International Conference on Learning Representations (ICLR), October 2022. [DOI: 10.48550/arXiv.2210.03629](https://doi.org/10.48550/arXiv.2210.03629).
 - Anthropic. *Building Effective Agents*. Anthropic Research & Engineering Guidance, December 2024. [Anthropic Guide](https://www.anthropic.com/research/building-effective-agents).
+
+---
+
+[Next Unit: The agent loop →](02-the-agent-loop.md)
