@@ -80,7 +80,7 @@ Every directory shown above contains `AGENTS.md` and `chapter-plan.md`. Create c
 ```text
 sources/
   project/<source-id>.yml
-  <unit-id-lowercase>/<source-id>.yml
+  <chapter-path-without-md>/<source-id>.yml
 assets/attribution.yml
 assets/images/
   repo-images/<repository-image>
@@ -88,10 +88,12 @@ assets/images/
     <final-visual>
     manifest.yml
     source/<editable-input>
-examples/<unit-id-lowercase>/
+examples/
+  project/
+  <chapter-path-without-md>/
 ```
 
-Mirror each path below `knowledge/` in `assets/images/`, replacing the chapter's `.md` file with a directory of the same name. Keep empty image folders with `.gitkeep`; create source-record folders only when needed. Repository-wide source records belong in `sources/project/`.
+Mirror each path below `knowledge/` in `assets/images/`, `sources/`, and `examples/`, replacing the chapter's `.md` file with a directory of the same name. Keep empty folders tracked with `.gitkeep`. Repository-wide source records belong in `sources/project/`. The agent loads only unit-scoped artifacts into context during execution.
 
 Each image folder owns its visual metadata. `assets/attribution.yml` indexes those local manifests.
 

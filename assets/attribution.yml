@@ -1,5 +1,0 @@
-schema_version: 1
-manifests:
-- images/00-prerequisites/01-reader-contract-and-system-map/manifest.yml
-- images/00-prerequisites/03-requests-events-state-and-side-effects/manifest.yml
-- images/repo-images/manifest.yml

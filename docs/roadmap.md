@@ -12,5 +12,5 @@ The stable ordered unit queue is root `ROADMAP.md`. Operational state belongs in
 - Change the queue only when guide structure changes. Do not use it as a changelog.
 - The validator resolves every unit identifier to exactly one planned chapter path and rejects title or filename drift.
 - The next unit is the item immediately after `completed_through`, unless the current unit must be resumed.
-- Use `scripts/project_state.py start` to record the resolved unit and path before research begins.
+- Use `scripts/main.py state start` to record the resolved unit and path before research begins.
 - Do not skip units. Record a blocker instead.

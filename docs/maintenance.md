@@ -3,13 +3,13 @@
 ## Before editing
 
 1. Read root `AGENTS.md`.
-2. Run `python3 scripts/project_state.py resolve`.
+2. Run `python3 scripts/main.py state resolve`.
 3. Read returned local instructions, plan, and selected policies.
 4. Follow returned run mode in `docs/autonomous-workflow.md`.
 
 ## After editing
 
-1. Run `python3 scripts/validate_repo.py`.
+1. Run `python3 scripts/main.py validate`.
 2. Run unit examples, generators, and tests.
 3. Check citations, terminology, limitations, and required artifact metadata. Recheck the status and provenance of emerging terms.
 4. Confirm pass boundary and required cross-links.

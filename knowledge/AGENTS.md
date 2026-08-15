@@ -10,7 +10,7 @@
 
 Rules:
 
-- Use `scripts/project_state.py resolve`; do not load the full roadmap.
+- Use `scripts/main.py state resolve`; do not load the full roadmap.
 - Work only on the resolved unit and run mode.
 - Read the nearest local `AGENTS.md` and `chapter-plan.md`.
 - Create `index.md` only when its roadmap unit is selected.
