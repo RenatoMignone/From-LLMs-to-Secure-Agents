@@ -6,7 +6,7 @@
 
 <p><strong>A deep, visual, source-grounded guide to understanding complete agentic AI systems and learning how to secure them.</strong></p>
 
-<p><a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="ROADMAP.md"><img alt="209 ordered guide units" src="https://img.shields.io/badge/guide_units-209-14a38b?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
+<p><a href="https://renatomignone.github.io/From-LLMs-to-Secure-Agents/"><img alt="Documentation website" src="https://img.shields.io/badge/docs-live_site-14a38b?style=flat-square"></a> <a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="ROADMAP.md"><img alt="209 ordered guide units" src="https://img.shields.io/badge/guide_units-209-14a38b?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
 
 <p>Architecture first · Security second · Sources and visuals traced</p>
 
@@ -95,9 +95,23 @@ python3 scripts/main.py fetch "https://www.rfc-editor.org/rfc/rfc8693.html" -o /
 python3 scripts/main.py validate
 ```
 
-## Authoring and publishing
+## Publishing and static website
 
-**Markdown is the canonical knowledge format.** It stays readable in GitHub, keeps reviews and citations clear, and costs less context than repeated page markup. The future static site will generate semantic HTML and add CSS, JavaScript, navigation, search, themes, and interactive features from that source. See the [site policy](docs/site-policy.md).
+**Markdown under `knowledge/` is the canonical knowledge format.** The static website is a deterministic projection of this knowledge base built with Astro and Starlight, deployed to GitHub Pages at:
+
+🔗 **[renatomignone.github.io/From-LLMs-to-Secure-Agents](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/)**
+
+To develop or build the site locally:
+
+```bash
+cd site
+npm ci
+npm run dev    # Start local development server with auto-rebuilding pipeline
+npm run build  # Build production static site to site/dist/
+npm run check  # Verify site integrity, links, images, and endpoints
+```
+
+See [`docs/site-policy.md`](docs/site-policy.md) and [`site/AGENTS.md`](site/AGENTS.md) for publishing invariants.
 
 ## Repository map
 
@@ -112,4 +126,4 @@ python3 scripts/main.py validate
 | `assets/images/` | Image folders mirroring the chapter hierarchy, plus repository images |
 | `scripts/` | Modular CLI toolkit, validation suite, and regression tests |
 | `examples/` | Runnable examples and security labs mirroring the chapter hierarchy |
-| `site/` | Future static site implementation |
+| `site/` | Static documentation website (Astro & Starlight) |

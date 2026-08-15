@@ -1,0 +1,9 @@
+dist/
+.astro/
+node_modules/
+src/content/docs/
+public/assets/images/
+public/markdown/
+public/guide-index.json
+public/llms.txt
+src/assets/images/
