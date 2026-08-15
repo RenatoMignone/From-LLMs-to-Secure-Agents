@@ -63,10 +63,10 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
 
     def test_wrong_next_unit_fails(self) -> None:
-        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-00-04", "next_recommended_unit: P1-01-01")
+        self.replace("PROJECT_STATUS.md", "next_recommended_unit: P1-01-01", "next_recommended_unit: P1-01-02")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("next_recommended_unit must be P1-00-04", result.stdout)
+        self.assertIn("next_recommended_unit must be P1-01-01", result.stdout)
 
     def test_roadmap_plan_drift_fails(self) -> None:
         self.replace("ROADMAP.md", "Execution boundaries and threat-independent requirements", "Execution boundaries and requirements")
@@ -123,7 +123,7 @@ class ValidatorTests(unittest.TestCase):
         status = re.sub(r"blocked_from: .*", "blocked_from: null", status)
         status = re.sub(r"units_in_review:(\n\s*-\s*.*)*", "units_in_review: []", status)
         status_path.write_text(status, encoding="utf-8")
-        target = self.repo / "knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md"
+        target = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
         if target.is_file():
             target.unlink()
 
@@ -132,9 +132,9 @@ class ValidatorTests(unittest.TestCase):
         result = self.run_state("start")
         self.assertEqual(result.returncode, 0, result.stdout)
         status = (self.repo / "PROJECT_STATUS.md").read_text(encoding="utf-8")
-        self.assertIn("current_unit: P1-00-04", status)
+        self.assertIn("current_unit: P1-01-01", status)
         self.assertIn("current_unit_state: researching", status)
-        chapter = self.repo / "knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md"
+        chapter = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
         self.assertTrue(chapter.is_file())
         self.assertIn("learning_path: main", chapter.read_text(encoding="utf-8"))
 
@@ -142,17 +142,17 @@ class ValidatorTests(unittest.TestCase):
         self.reset_to_idle()
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertIn("unit_id: P1-00-04", result.stdout)
-        self.assertIn("chapter_path: knowledge/00-prerequisites/04-identity-authority-and-least-privilege-primer.md", result.stdout)
-        self.assertIn("local_instructions_path: knowledge/00-prerequisites/AGENTS.md", result.stdout)
-        self.assertIn("plan_path: knowledge/00-prerequisites/chapter-plan.md", result.stdout)
+        self.assertIn("unit_id: P1-01-01", result.stdout)
+        self.assertIn("chapter_path: knowledge/01-agent-foundations/01-what-is-an-agent.md", result.stdout)
+        self.assertIn("local_instructions_path: knowledge/01-agent-foundations/AGENTS.md", result.stdout)
+        self.assertIn("plan_path: knowledge/01-agent-foundations/chapter-plan.md", result.stdout)
         self.assertIn("mode: author", result.stdout)
         self.assertIn("learning_path: main", result.stdout)
-        self.assertNotIn("P1-01-01", result.stdout)
+        self.assertNotIn("P1-01-02", result.stdout)
 
     def test_state_resolve_reports_deep_dive_classification(self) -> None:
         self.reset_to_idle()
-        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-03", "completed_through: P1-03-06-03")
+        self.replace("PROJECT_STATUS.md", "completed_through: P1-00-04", "completed_through: P1-03-06-03")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("unit_id: P1-03-06-04", result.stdout)
@@ -227,6 +227,25 @@ class ValidatorTests(unittest.TestCase):
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("missing chapter example folder", result.stdout)
+
+    def test_omitting_optional_heading_passes(self) -> None:
+        chapter = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
+        content = chapter.read_text(encoding="utf-8")
+        # Remove the optional Open research questions section
+        trimmed = re.sub(r"## Open research questions\n\n.*?\n\n(?=## )", "", content, flags=re.DOTALL)
+        chapter.write_text(trimmed, encoding="utf-8")
+        result = self.run_validator()
+        self.assertEqual(result.returncode, 0, result.stdout)
+
+    def test_missing_core_heading_fails(self) -> None:
+        chapter = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
+        content = chapter.read_text(encoding="utf-8")
+        # Remove the core Why this matters section
+        trimmed = re.sub(r"## Why this matters\n\n.*?\n\n(?=## )", "", content, flags=re.DOTALL)
+        chapter.write_text(trimmed, encoding="utf-8")
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("missing core heading 'Why this matters'", result.stdout)
 
 
 if __name__ == "__main__":

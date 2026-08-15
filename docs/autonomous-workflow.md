@@ -14,7 +14,7 @@ Use when mode is `author`.
 
 1. If state is `idle`, run `python3 scripts/main.py state start`.
 2. Turn unit scope into research questions. Check official material and practitioner terms. Use `markitdown` or `python3 scripts/main.py fetch <url> -o /tmp/<id>.md` to extract clean Markdown to temporary storage, trimming HTML boilerplate for token efficiency. Register exact claims with `python3 scripts/main.py source` under the mirrored `sources/<chapter-path>/` folder. Load only active unit sources into context.
-3. Advance to `drafting`; write only the selected chapter using its template. Start from a familiar scenario, introduce one term at a time, and explain each visual nearby. Do not assume untaught software vocabulary.
+3. Advance to `drafting`; personalize chapter structure to the unit plan. Keep core sections, include only relevant contextual sections, and omit empty placeholders. Use simple, accessible English while defining exact technical terms clearly.
 4. Advance to `building-assets`; add required visuals. Mirror the chapter path under `assets/images/`, omitting `knowledge/` and `.md`. For generated visuals, save a local `source/<image-name>-prompt.txt` prompt specifying labels, layout, and constraints. Generate only after the prompt exists, inspect legibility, and save the raster asset in the chapter folder.
 5. Advance to `validating`; unwrap changed Markdown prose paragraphs to one physical line. Preserve front matter, headings, lists, tables, blockquotes, and code. Run relevant examples, generators, tests, and `python3 scripts/main.py validate`.
 6. Run `python3 scripts/main.py state review` and stop. Do not review in this run.

@@ -2,7 +2,9 @@
 
 ## Purpose
 
-Use visuals only when they clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or evaluation.
+Visuals must clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or multi-step execution.
+
+A chapter can contain as many visuals as needed (from 0 if text and tables suffice, to multiple diagrams and schemes when visual clarity helps). The agent evaluates the topic and decides the number of visuals that best supports reader comprehension.
 
 ## Preference order
 

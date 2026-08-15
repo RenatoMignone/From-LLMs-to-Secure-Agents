@@ -14,7 +14,7 @@ Rules:
 - Work only on the resolved unit and run mode.
 - Read the nearest local `AGENTS.md` and `chapter-plan.md`.
 - Create `index.md` only when its roadmap unit is selected.
-- Always read style and evidence policies. The generated scaffold and validator enforce the chapter template; open its policy only for structural repair.
+- Always read style and evidence policies. Personalize chapter structure to the topic, keeping core sections and omitting empty placeholders.
 - Read visuals or examples policy only when the plan requires that artifact.
 - Link prerequisites and next steps; avoid duplicate explanations.
 - Pass 1 explains function before its brief security preview. Pass 2 maps threats and controls to taught components.

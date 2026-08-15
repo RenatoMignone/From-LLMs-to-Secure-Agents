@@ -28,7 +28,7 @@ def resolve_chapter_rel(unit_id: str, used_in: list[str]) -> Path:
     if unit_id == "project":
         return Path("project")
     for doc in used_in:
-        path = Path(doc)
+        path = Path(doc) if Path(doc).is_absolute() else (ROOT / doc)
         if path.suffix == ".md" and "knowledge/" in path.as_posix():
             return path.relative_to(ROOT / "knowledge").with_suffix("")
     roadmap_path = ROOT / "ROADMAP.md"

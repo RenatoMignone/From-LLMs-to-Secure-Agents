@@ -371,13 +371,20 @@ def check_chapters(units: list[Unit], sources: dict[str, dict[str, Any]], visual
     by_path = {unit.chapter_path: unit for unit in units}
     seen_units: set[str] = set()
     required_front_matter = {"title", "unit_id", "summary", "prerequisites", "learning_objectives", "source_records", "visual_assets", "example_paths", "pass", "learning_path", "status", "last_reviewed"}
-    architecture_headings = {
+    core_architecture_headings = {
+        "Why this matters", "How it works", "Security preview", "Key takeaways", "References",
+    }
+    allowed_architecture_headings = {
         "Why this matters", "Simple mental model", "Position in the agent workflow", "How it works",
         "Main variants", "Minimal implementation", "Framework implementations", "Data flow and state changes",
         "Trust boundaries", "Reliability failures", "Worked example", "Limitations and trade-offs",
         "Security preview", "Open research questions", "Key takeaways", "References",
     }
-    security_headings = {
+    core_security_headings = {
+        "Architecture and workflow scope", "Threat model assumptions", "Failures and attacks",
+        "Preventive controls", "Key takeaways", "References",
+    }
+    allowed_security_headings = {
         "Architecture and workflow scope", "Threat model assumptions", "Assets and trust boundaries",
         "Failures and attacks", "Preventive controls", "Detective controls", "Recovery controls",
         "Security tests", "Secure design pattern", "Limitations and residual risk", "Open research questions",
@@ -420,10 +427,13 @@ def check_chapters(units: list[Unit], sources: dict[str, dict[str, Any]], visual
             fail(f"chapter has invalid status: {chapter_path}")
         content = path.read_text(encoding="utf-8")
         headings = set(re.findall(r"^## (.+)$", content, re.MULTILINE))
-        required = architecture_headings if unit.pass_name == "architecture" else security_headings
-        for heading in sorted(required - headings):
-            fail(f"chapter missing heading '{heading}': {chapter_path}")
-        for heading in sorted(required.intersection(headings)):
+        core = core_architecture_headings if unit.pass_name == "architecture" else core_security_headings
+        allowed = allowed_architecture_headings if unit.pass_name == "architecture" else allowed_security_headings
+        for heading in sorted(core - headings):
+            fail(f"chapter missing core heading '{heading}': {chapter_path}")
+        for heading in sorted(headings - allowed):
+            fail(f"chapter contains unknown heading '{heading}': {chapter_path}")
+        for heading in sorted(allowed.intersection(headings)):
             section = re.search(rf"^## {re.escape(heading)}\n(.*?)(?=^## |\Z)", content, re.MULTILINE | re.DOTALL)
             if section is None or not section.group(1).strip():
                 fail(f"chapter section is empty '{heading}': {chapter_path}")
