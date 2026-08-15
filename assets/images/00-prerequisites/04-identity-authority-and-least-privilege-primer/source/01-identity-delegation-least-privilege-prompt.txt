@@ -1,0 +1,28 @@
+Use case: infographic-diagram
+Asset type: labeled architecture diagram for a technical learning guide
+
+Create a wide, clean, polished technical-cartoon infographic in the same friendly educational identity as the repository banner: simple shapes, soft outlines, professional guide tone, light cream background, and a calm palette of soft blue, teal, green, cream, and warm neutral orange. No cyberpunk, hacker imagery, dark background, logos, watermark, code, or extra words.
+
+Show a left-to-right delegation and access-control workflow with these exact large, high-contrast, clear sans-serif labels:
+- USER (PRINCIPAL)
+- SCOPED DELEGATION
+- AGENT (ACTOR)
+- TRUST BOUNDARY
+- AUTHORIZATION FILTER
+- CALENDAR TOOL (ALLOWED)
+- EMAIL TOOL (BLOCKED)
+- LEAST PRIVILEGE
+
+Composition:
+At the left, a friendly person icon labeled USER (PRINCIPAL) delegates authority to an agent icon labeled AGENT (ACTOR) via a connector labeled SCOPED DELEGATION.
+In the center, a dashed rounded boundary line labeled TRUST BOUNDARY separates the agent from external tools.
+At the trust boundary, a checkpoint icon labeled AUTHORIZATION FILTER checks incoming requests against the policy labeled LEAST PRIVILEGE.
+To the right of the boundary, two tool components are shown:
+1. Above: a green calendar card labeled CALENDAR TOOL (ALLOWED) receiving a solid teal arrow with a green checkmark.
+2. Below: an orange mail envelope labeled EMAIL TOOL (BLOCKED) with a dashed arrow ending at a red stop mark.
+
+Include a small, readable legend with exactly:
+- Teal arrow: allowed scoped request
+- Orange dashed arrow: blocked unauthorized request
+
+Keep all required labels fully legible, correctly spelled, and visually prominent.
