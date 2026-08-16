@@ -857,32 +857,59 @@ fs.writeFileSync(
   path.join(DOCS_DIR, 'index.mdx'),
   `---
 title: "From LLMs to Secure Agents"
-description: "The visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them."
+description: "A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them."
 template: splash
 tableOfContents: false
 prev: false
 next: false
 ---
 
-<div class="hero-container not-content">
-  <div class="hero-pill-badge"><span>🛡️ Autonomous AI Systems & Security Handbook</span></div>
-  <h1 class="hero-title">From LLMs to Secure Agents</h1>
-  <p class="hero-subtitle">A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.</p>
+<div class="hero-section not-content">
+  <div class="hero-glow-bg"></div>
+  <div class="hero-pill-badge">
+    <span>🛡️ Autonomous AI Systems & Security Handbook</span>
+  </div>
+  <h1 class="hero-title">
+    From LLMs to <span class="gradient-text">Secure Agents</span>
+  </h1>
+  <p class="hero-subtitle">
+    The comprehensive visual, source-grounded engineering guide to understanding complete agentic architectures and learning how to threat-model, sandbox, and secure them.
+  </p>
   <div class="hero-cta-group">
-    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">🚀 Start Reading Guide</a>
-    <a href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents" target="_blank" rel="noopener noreferrer" class="btn-hero-github"><span class="star-icon">★</span> Star on GitHub</a>
-    <a href="${BASE_URL}/security/securing-ai-agents/" class="btn-hero-secondary">🛡️ Explore Security Hubs</a>
+    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">
+      🚀 Start Reading Chapter 1 →
+    </a>
+    <a href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents" target="_blank" rel="noopener noreferrer" class="btn-hero-github">
+      <span class="star-gold">★</span> Star on GitHub
+    </a>
+    <a href="${BASE_URL}/security/securing-ai-agents/" class="btn-hero-secondary">
+      🛡️ Explore Security Defenses
+    </a>
   </div>
 </div>
 
-<div class="hero-visual-frame not-content">
-  <img src="${BASE_URL}/assets/images/repo-images/project-purpose.png" alt="Core Purpose and Mental Model: From LLM to Agentic System to Secured Agent" />
-  <figcaption style="text-align: center; margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">The Fundamental Transformation: Moving from isolated model calls to dynamic agentic loops, protected by zero-trust boundaries and least-privilege sandboxing.</figcaption>
+<div class="blueprint-window not-content">
+  <div class="blueprint-header">
+    <div class="blueprint-dots">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+    </div>
+    <div class="blueprint-title">system-architecture-overview.blueprint</div>
+    <div style="width: 3rem;"></div>
+  </div>
+  <div class="blueprint-body">
+    <img src="${BASE_URL}/assets/images/repo-images/project-purpose.png" alt="Core Purpose: From LLM Call to Agentic Loop to Secured System" />
+  </div>
+  <div class="blueprint-caption">
+    <strong>The Core Engineering Transformation:</strong> Transitioning from isolated, stateless LLM calls to dynamic goal-directed agent loops, protected by zero-trust boundaries and least-privilege execution sandboxes.
+  </div>
 </div>
 
 <div class="transformation-grid not-content">
   <div class="transformation-card">
     <div>
+      <div class="transformation-icon-badge badge-icon-1">🔄</div>
       <div class="transformation-step step-1">Stage 01 • Architecture</div>
       <h3>The Autonomous Loop</h3>
       <p>Master how agents make runtime decisions: cyclic reasoning loops, context construction, tool dispatching, and deterministic run lifecycles.</p>
@@ -892,6 +919,7 @@ next: false
 
   <div class="transformation-card">
     <div>
+      <div class="transformation-icon-badge badge-icon-2">🧩</div>
       <div class="transformation-step step-2">Stage 02 • Subsystems</div>
       <h3>Tools, Memory & State</h3>
       <p>Deep-dive into function calling schemas, persistent memory stores, agentic RAG, state graphs, and Model Context Protocol (MCP).</p>
@@ -901,6 +929,7 @@ next: false
 
   <div class="transformation-card">
     <div>
+      <div class="transformation-icon-badge badge-icon-3">🛡️</div>
       <div class="transformation-step step-3">Stage 03 • Security</div>
       <h3>Threat Models & Sandboxes</h3>
       <p>Analyze indirect prompt injection, confused deputy attacks, excessive agency, ephemeral execution sandboxes, and verification gates.</p>
@@ -909,12 +938,79 @@ next: false
   </div>
 </div>
 
+<div class="foundations-showcase-section not-content">
+  <div class="section-header-row">
+    <div class="section-badge">Core Curriculum</div>
+    <h2 class="section-main-title">01 Agent Foundations: Read Now</h2>
+  </div>
+
+  <div class="foundations-chapter-grid">
+    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 01</span>
+        <div class="chapter-card-title">What is an AI Agent</div>
+        <div class="chapter-card-desc">Defines autonomous model-directed control loops versus static prompts and deterministic code pipelines.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+
+    <a href="${BASE_URL}/foundations/the-agent-loop-explained/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 02</span>
+        <div class="chapter-card-title">The Agent Loop Explained</div>
+        <div class="chapter-card-desc">Detailed breakdown of the 5-step cyclic loop: Context, Reasoning, Tool Dispatch, Observation, and Termination.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+
+    <a href="${BASE_URL}/foundations/workflows-versus-autonomous-agents/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 03</span>
+        <div class="chapter-card-title">Workflows vs Autonomous Agents</div>
+        <div class="chapter-card-desc">Trade-offs and architectural spectrum between deterministic pipelines, router graphs, and dynamic agents.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+
+    <a href="${BASE_URL}/foundations/goals-policies-environments-and-autonomy/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 04</span>
+        <div class="chapter-card-title">Goals, Policies & Autonomy</div>
+        <div class="chapter-card-desc">Formal autonomy spectrum, environment boundaries, and deterministic policy guardrails constraining actions.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+
+    <a href="${BASE_URL}/foundations/run-lifecycle-and-termination/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 05</span>
+        <div class="chapter-card-title">Run Lifecycle & Termination</div>
+        <div class="chapter-card-desc">State transitions, human approval pause gates, budget bounds, and guaranteed loop termination semantics.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+
+    <a href="${BASE_URL}/foundations/identity-authority-and-least-privilege/" class="chapter-showcase-card">
+      <div>
+        <span class="chapter-card-num">Chapter 06</span>
+        <div class="chapter-card-title">Identity & Least Privilege</div>
+        <div class="chapter-card-desc">Separates principal from actor identity, downscoped token exchange (RFC 8693), and least privilege enforcement.</div>
+      </div>
+      <div class="chapter-card-action">Read Chapter →</div>
+    </a>
+  </div>
+</div>
+
 <div class="start-reading-banner not-content">
-  <h2>Ready to Dive into Agent Engineering?</h2>
-  <p>Begin with the core foundations of autonomous agents, from reasoning loops to scoped delegation and least privilege.</p>
-  <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">Start Chapter 1: What is an AI Agent →</a>
-    <a href="${BASE_URL}/overview/curriculum/" class="btn-hero-secondary">View Master Curriculum Roadmap</a>
+  <h2>Ready to Build Secure Autonomous Agents?</h2>
+  <p>Start with the foundational mechanics of reasoning loops, or jump directly into threat modeling and defensive architectures.</p>
+  <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
+    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">
+      Start Chapter 1: What is an AI Agent →
+    </a>
+    <a href="${BASE_URL}/overview/curriculum/" class="btn-hero-secondary">
+      View Master Curriculum Roadmap
+    </a>
   </div>
 </div>
 `,
