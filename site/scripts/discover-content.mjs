@@ -1,0 +1,178 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import yaml from 'yaml';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const SITE_ROOT = path.resolve(__dirname, '..');
+const REPO_ROOT = path.resolve(SITE_ROOT, '..');
+
+const BASE_URL = '/From-LLMs-to-Secure-Agents';
+const SITE_ORIGIN = 'https://renatomignone.github.io';
+
+export function loadSources() {
+  const sourcesDir = path.join(REPO_ROOT, 'sources');
+  const sourceIndex = new Map();
+
+  function scan(dir) {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        scan(full);
+      } else if (entry.isFile() && entry.name.endsWith('.yml')) {
+        try {
+          const raw = fs.readFileSync(full, 'utf8');
+          const doc = yaml.parse(raw);
+          if (doc && doc.id) {
+            sourceIndex.set(doc.id, doc);
+            const relPath = path.relative(sourcesDir, full);
+            sourceIndex.set(relPath, doc);
+          }
+        } catch (err) {
+          console.warn(`Warning: failed to parse source at ${full}:`, err.message);
+        }
+      }
+    }
+  }
+
+  scan(sourcesDir);
+  return sourceIndex;
+}
+
+export function discoverCanonicalChapters() {
+  const knowledgeDir = path.join(REPO_ROOT, 'knowledge');
+  const sourceIndex = loadSources();
+  const rawChapters = [];
+
+  function scan(dir) {
+    if (!fs.existsSync(dir)) return;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        scan(full);
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        if (entry.name === 'AGENTS.md' || entry.name === 'chapter-plan.md' || entry.name.startsWith('.')) {
+          continue;
+        }
+        const rel = path.relative(knowledgeDir, full);
+        const content = fs.readFileSync(full, 'utf8');
+        const match = content.match(/^(?:<!--\s*)?---\n([\s\S]*?)\n---\s*(?:-->)?\n?([\s\S]*)$/);
+        if (!match) continue;
+
+        let fm = {};
+        try {
+          fm = yaml.parse(match[1]) || {};
+        } catch (e) {
+          console.error(`Error parsing YAML frontmatter in ${full}:`, e);
+          continue;
+        }
+
+        // Must have at least unit_id and title to be a valid chapter
+        if (!fm.unit_id || !fm.title) continue;
+
+        rawChapters.push({
+          fullPath: full,
+          relPath: rel,
+          frontmatter: fm,
+          body: match[2],
+        });
+      }
+    }
+  }
+
+  scan(knowledgeDir);
+
+  // Sort chapters deterministically by directory and filename
+  rawChapters.sort((a, b) => a.relPath.localeCompare(b.relPath));
+
+  // Map route directories and clean slugs
+  const sectionLabels = {
+    '00-prerequisites': { label: 'Prerequisites', routeDir: 'prerequisites', pass: 'Pass 0' },
+    '01-agent-foundations': { label: 'Pass 1: Agent Foundations', routeDir: 'foundations', pass: 'Pass 1' },
+    '02-agent-architectures': { label: 'Pass 1: Agent Architectures', routeDir: 'architectures', pass: 'Pass 1' },
+    '03-building-blocks': { label: 'Pass 1: Building Blocks', routeDir: 'building-blocks', pass: 'Pass 1' },
+    '04-frameworks-and-protocols': { label: 'Pass 1: Frameworks & Protocols', routeDir: 'frameworks-and-protocols', pass: 'Pass 1' },
+    '05-end-to-end-workflows': { label: 'Pass 1: End-to-End Workflows', routeDir: 'end-to-end-workflows', pass: 'Pass 1' },
+    '06-threat-model': { label: 'Pass 2: Threat Model', routeDir: 'threat-model', pass: 'Pass 2' },
+    '07-security-by-component-and-workflow-stage': { label: 'Pass 2: Security by Component', routeDir: 'security-by-component', pass: 'Pass 2' },
+    '08-secure-reference-architectures': { label: 'Pass 2: Secure Reference Architectures', routeDir: 'secure-architectures', pass: 'Pass 2' },
+    '09-security-testing-evaluation-and-assurance': { label: 'Pass 2: Testing & Assurance', routeDir: 'testing-and-assurance', pass: 'Pass 2' },
+    '10-open-research-questions': { label: 'Pass 2: Open Research Questions', routeDir: 'open-research', pass: 'Pass 2' },
+  };
+
+  const processedChapters = rawChapters.map((ch, index) => {
+    const parts = ch.relPath.split(path.sep);
+    const topSection = parts[0];
+    const fileName = parts[parts.length - 1].replace(/\.md$/, '');
+    const secMeta = sectionLabels[topSection] || {
+      label: topSection.replace(/^\d+-/, '').replace(/-/g, ' '),
+      routeDir: topSection.replace(/^\d+-/, ''),
+      pass: 'Core',
+    };
+
+    const routeDir = secMeta.routeDir;
+    const slug = fileName;
+    const route = `${BASE_URL}/${routeDir}/${slug}/`;
+    const docPath = path.join(routeDir, `${slug}.md`);
+    const markdownPath = path.join('markdown', routeDir, `${slug}.md`);
+    const canonicalUrl = `${SITE_ORIGIN}${route}`;
+    const markdownUrl = `${SITE_ORIGIN}${BASE_URL}/${markdownPath}`;
+
+    // Resolve sources
+    const sourcesData = [];
+    const sourceRecords = ch.frontmatter.source_records || [];
+    const chDirRel = ch.relPath.replace(/\.md$/, '');
+    for (const srcId of sourceRecords) {
+      const srcDoc = sourceIndex.get(srcId) || sourceIndex.get(`${chDirRel}/${srcId}.yml`);
+      if (srcDoc) {
+        sourcesData.push(srcDoc);
+      }
+    }
+
+    return {
+      unit_id: ch.frontmatter.unit_id,
+      title: ch.frontmatter.title,
+      summary: ch.frontmatter.summary,
+      pass: ch.frontmatter.pass || secMeta.pass,
+      learning_path: ch.frontmatter.learning_path || 'main-path',
+      status: ch.frontmatter.status || 'completed',
+      last_reviewed: ch.frontmatter.last_reviewed || '2026-08-15',
+      prerequisites: ch.frontmatter.prerequisites || [],
+      learning_objectives: ch.frontmatter.learning_objectives || [],
+      source_records: sourcesData,
+      visual_assets: ch.frontmatter.visual_assets || [],
+      example_paths: ch.frontmatter.example_paths || [],
+      fullPath: ch.fullPath,
+      relPath: ch.relPath,
+      sectionKey: topSection,
+      sectionLabel: secMeta.label,
+      routeDir,
+      slug,
+      route,
+      docPath,
+      markdownPath,
+      canonicalUrl,
+      markdownUrl,
+      body: ch.body,
+      index,
+    };
+  });
+
+  return {
+    chapters: processedChapters,
+    sourceIndex,
+    sectionLabels,
+  };
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const { chapters } = discoverCanonicalChapters();
+  console.log(`Discovered ${chapters.length} canonical chapters:`);
+  for (const c of chapters) {
+    console.log(`- [${c.unit_id}] ${c.title} -> ${c.route} (${c.source_records.length} sources)`);
+  }
+}

@@ -1,0 +1,94 @@
+---
+interface Props {
+  firstChapterRoute: string;
+  completedThrough: string;
+  totalUnits: number;
+}
+
+const { firstChapterRoute, completedThrough, totalUnits } = Astro.props;
+---
+
+<section class="start-section not-content">
+  <div class="start-container">
+    <h2 class="start-title">Begin reading</h2>
+    <p class="start-progress">
+      Currently published: <strong>{totalUnits} canonical units</strong> (Prerequisites &amp; Agent Foundations). Verified and completed through <code>{completedThrough}</code>.
+    </p>
+    <div class="start-action">
+      <a href={firstChapterRoute} class="btn-start">
+        Begin with the prerequisites <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .start-section {
+    padding: 4rem 1rem 3.5rem;
+    text-align: center;
+  }
+
+  .start-container {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .start-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 1.85rem);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 0.85rem;
+  }
+
+  .start-progress {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    margin: 0 0 2rem;
+  }
+
+  .start-progress strong {
+    color: var(--color-ink);
+  }
+
+  .start-progress code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background-color: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--color-ink);
+  }
+
+  .btn-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-teal);
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.02rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 140ms ease;
+  }
+
+  .btn-start:hover {
+    background-color: var(--color-teal-hover);
+  }
+
+  .arrow {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .btn-start {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

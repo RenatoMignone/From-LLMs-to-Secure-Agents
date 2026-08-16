@@ -1,0 +1,139 @@
+/* Header Styling */
+header.header {
+  background-color: var(--color-canvas) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  backdrop-filter: blur(8px);
+}
+
+.site-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  color: var(--color-ink) !important;
+  letter-spacing: -0.01em;
+}
+
+/* Sidebar Navigation */
+nav.sidebar {
+  background-color: var(--color-canvas) !important;
+  border-right: 1px solid var(--color-border) !important;
+}
+
+.sidebar-content {
+  padding: 1.5rem 1rem !important;
+}
+
+.sidebar-pane {
+  background-color: var(--color-canvas) !important;
+}
+
+/* Sidebar Section Headers */
+.top-level > li > details > summary,
+.top-level > li > .large {
+  font-family: var(--font-heading) !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--color-ink-muted) !important;
+  padding: 0.5rem 0.65rem !important;
+}
+
+/* Sidebar Links */
+.sidebar-content a {
+  font-size: 0.94rem !important;
+  color: var(--color-ink-muted) !important;
+  padding: 0.4rem 0.65rem !important;
+  border-radius: 6px !important;
+  line-height: 1.45 !important;
+  transition: all 120ms ease !important;
+  text-decoration: none !important;
+}
+
+.sidebar-content a:hover {
+  color: var(--color-ink) !important;
+  background-color: var(--color-surface-subtle) !important;
+  text-decoration: none !important;
+}
+
+.sidebar-content a[aria-current='page'] {
+  color: var(--color-teal) !important;
+  background-color: var(--color-teal-subtle) !important;
+  font-weight: 600 !important;
+}
+
+/* Main Content Area */
+.main-pane {
+  background-color: var(--color-canvas) !important;
+}
+
+.content-panel {
+  padding: 1.5rem 2rem 4rem !important;
+  max-width: var(--sl-content-width) !important;
+  margin: 0 auto !important;
+}
+
+.sl-markdown-content {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+}
+
+/* Table of Contents (Right Sidebar) */
+starlight-toc {
+  font-size: 0.875rem !important;
+}
+
+starlight-toc h2 {
+  font-family: var(--font-heading) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--color-ink-muted) !important;
+  margin-bottom: 0.75rem !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+starlight-toc a {
+  color: var(--color-ink-muted) !important;
+  line-height: 1.45 !important;
+  text-decoration: none !important;
+  transition: color 120ms ease !important;
+}
+
+starlight-toc a:hover {
+  color: var(--color-ink) !important;
+}
+
+starlight-toc a[aria-current='true'] {
+  color: var(--color-teal) !important;
+  font-weight: 600 !important;
+}
+
+/* Search Button & Modal */
+button[data-open-modal] {
+  border: 1px solid var(--color-border) !important;
+  background-color: var(--color-surface) !important;
+  border-radius: 6px !important;
+}
+
+/* Hide default starlight pagination since we have custom editorial unit pagination */
+.pagination-links {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .content-panel {
+    padding: 1rem 1rem 3rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-title {
+    font-size: 0.88rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

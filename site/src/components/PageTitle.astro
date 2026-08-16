@@ -1,0 +1,26 @@
+---
+const PAGE_TITLE_ID = '_top';
+const entry = Astro.locals.starlightRoute?.entry;
+const isHomepage = !entry || entry.slug === '' || entry.data?.template === 'splash';
+const title = entry?.data?.title;
+---
+
+{
+  !isHomepage && title && (
+    <h1 id={PAGE_TITLE_ID} class="chapter-page-title">
+      {title}
+    </h1>
+  )
+}
+
+<style>
+  .chapter-page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-ink);
+    margin: 0.5rem 0 1.25rem;
+    letter-spacing: -0.015em;
+  }
+</style>

@@ -1,14 +1,13 @@
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
 Sitemap: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/sitemap-index.xml
-Sitemap: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/sitemap-0.xml

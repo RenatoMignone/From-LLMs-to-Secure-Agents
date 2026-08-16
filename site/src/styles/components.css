@@ -1,0 +1,334 @@
+/* Chapter Metadata Line */
+.chapter-meta-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.meta-unit {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+.meta-sep {
+  color: var(--color-border);
+}
+
+/* Chapter Abstract / Deck */
+.chapter-abstract {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--color-ink);
+  padding: 1.1rem 1.35rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-teal);
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.chapter-abstract p {
+  margin: 0;
+}
+
+/* Prerequisites & Objectives Grid */
+.chapter-goals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.goals-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.15rem 1.25rem;
+}
+
+.goals-heading {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.goals-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.goals-card li {
+  font-size: 0.93rem;
+  line-height: 1.58;
+  margin-bottom: 0.35rem;
+  color: var(--color-ink-muted);
+}
+
+.goals-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* Visual Figures & Images */
+.sl-markdown-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.sl-markdown-content figure {
+  margin: 2.25rem 0;
+  text-align: center;
+}
+
+.sl-markdown-content figcaption {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-ink-muted);
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* Code Blocks */
+.sl-markdown-content pre {
+  background-color: var(--color-code-bg) !important;
+  border: 1px solid var(--color-code-border) !important;
+  border-radius: 6px !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+}
+
+.sl-markdown-content code {
+  font-family: var(--font-mono) !important;
+}
+
+/* Tables */
+.sl-markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sl-markdown-content th {
+  background-color: var(--color-surface-subtle);
+  color: var(--color-ink);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sl-markdown-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  color: var(--color-ink);
+}
+
+.sl-markdown-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* Sources & Evidence Panel */
+.chapter-sources {
+  margin: 3rem 0 2rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sources-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.25rem;
+  background-color: var(--color-surface-subtle);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+}
+
+.sources-title {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  color: var(--color-ink);
+}
+
+.sources-hint {
+  font-size: 0.84rem;
+  font-weight: 400;
+  color: var(--color-ink-muted);
+}
+
+.sources-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.source-item {
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.source-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.source-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.source-title-link {
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--color-teal);
+}
+
+.source-type-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  color: var(--color-ink-muted);
+}
+
+.source-item-meta {
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.source-claims {
+  font-size: 0.88rem;
+  color: var(--color-ink);
+  margin-top: 0.45rem;
+}
+
+.claims-heading {
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.25rem;
+}
+
+.source-claims ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.source-claims li {
+  margin-bottom: 0.2rem;
+  line-height: 1.5;
+}
+
+.source-limitations {
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+  margin-top: 0.45rem;
+}
+
+.limitations-heading {
+  font-weight: 600;
+}
+
+/* Sequential Unit Navigation */
+.unit-pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 140ms ease;
+}
+
+.pagination-prev {
+  text-align: left;
+}
+
+.pagination-next {
+  text-align: right;
+}
+
+.pagination-end {
+  opacity: 0.7;
+}
+
+.pagination-link:hover:not(.pagination-end) {
+  border-color: var(--color-teal);
+  background-color: var(--color-surface-subtle);
+}
+
+.pagination-sub {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-teal);
+}
+
+.pagination-name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .chapter-goals-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .unit-pagination {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .pagination-next {
+    text-align: left;
+  }
+}

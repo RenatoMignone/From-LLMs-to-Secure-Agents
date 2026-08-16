@@ -1,0 +1,136 @@
+---
+interface Props {
+  firstChapterRoute: string;
+  githubUrl: string;
+}
+
+const { firstChapterRoute, githubUrl } = Astro.props;
+---
+
+<section class="hero-editorial not-content">
+  <div class="hero-container">
+    <span class="hero-eyebrow">From LLMs to Secure Agents</span>
+    <h1 class="hero-heading">
+      Understand how agentic AI systems actually work. <br class="hero-br" />Then learn how to secure them.
+    </h1>
+    <p class="hero-lead">
+      A visual, source-grounded engineering guide to the architecture, deployment, threat modeling, testing, and security of autonomous AI agents.
+    </p>
+    <div class="hero-actions">
+      <a href={firstChapterRoute} class="btn-primary">
+        Start the guide <span class="arrow">→</span>
+      </a>
+      <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        View on GitHub <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-editorial {
+    padding: 3.5rem 1rem 2.5rem;
+    text-align: center;
+  }
+
+  .hero-container {
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 2.85rem);
+    font-weight: 700;
+    line-height: 1.22;
+    color: var(--color-ink);
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.015em;
+  }
+
+  .hero-lead {
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    max-width: 44rem;
+    margin: 0 auto 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: var(--color-teal);
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 0.75rem 1.45rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 140ms ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-teal-hover);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: transparent;
+    color: var(--color-ink) !important;
+    border: 1px solid var(--color-border);
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 0.75rem 1.45rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 140ms ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-surface-subtle);
+    border-color: var(--color-ink-muted);
+  }
+
+  .arrow {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .hero-editorial {
+      padding: 2.25rem 0.5rem 1.75rem;
+    }
+    .hero-br {
+      display: none;
+    }
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

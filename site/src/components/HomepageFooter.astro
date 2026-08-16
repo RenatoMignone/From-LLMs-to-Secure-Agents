@@ -1,0 +1,75 @@
+---
+interface Props {
+  githubUrl: string;
+}
+
+const { githubUrl } = Astro.props;
+---
+
+<footer class="editorial-footer not-content">
+  <div class="footer-container">
+    <div class="footer-meta">
+      <span><strong>From LLMs to Secure Agents</strong>: A source-grounded visual engineering guide.</span>
+    </div>
+    <div class="footer-links">
+      <a href={githubUrl} target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      <span class="sep">·</span>
+      <a href={`${githubUrl}/blob/main/docs/evidence-policy.md`} target="_blank" rel="noopener noreferrer">Source Methodology</a>
+      <span class="sep">·</span>
+      <a href={`${githubUrl}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">License</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .editorial-footer {
+    padding: 3rem 1rem 4rem;
+    border-top: 1px solid var(--color-border-subtle);
+    color: var(--color-ink-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer-container {
+    max-width: 52rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-meta strong {
+    color: var(--color-ink);
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color 120ms ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-teal);
+  }
+
+  .sep {
+    color: var(--color-border);
+  }
+
+  @media (max-width: 640px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

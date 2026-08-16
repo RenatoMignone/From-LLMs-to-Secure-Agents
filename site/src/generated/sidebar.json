@@ -1,0 +1,48 @@
+[
+  {
+    "label": "Prerequisites",
+    "items": [
+      {
+        "label": "Reader contract and system map",
+        "link": "/prerequisites/01-reader-contract-and-system-map/"
+      },
+      {
+        "label": "Data, control, and trust boundaries",
+        "link": "/prerequisites/02-data-control-and-trust-boundaries/"
+      },
+      {
+        "label": "Requests, events, state, and side effects",
+        "link": "/prerequisites/03-requests-events-state-and-side-effects/"
+      },
+      {
+        "label": "Identity, authority, and least privilege primer",
+        "link": "/prerequisites/04-identity-authority-and-least-privilege-primer/"
+      }
+    ]
+  },
+  {
+    "label": "Pass 1: Agent Foundations",
+    "items": [
+      {
+        "label": "What is an agent",
+        "link": "/foundations/01-what-is-an-agent/"
+      },
+      {
+        "label": "The agent loop",
+        "link": "/foundations/02-the-agent-loop/"
+      },
+      {
+        "label": "Workflows versus agents",
+        "link": "/foundations/03-workflows-versus-agents/"
+      },
+      {
+        "label": "Goals, policies, environments, and autonomy",
+        "link": "/foundations/04-goals-policies-environments-and-autonomy/"
+      },
+      {
+        "label": "Run lifecycle and termination",
+        "link": "/foundations/05-run-lifecycle-and-termination/"
+      }
+    ]
+  }
+]

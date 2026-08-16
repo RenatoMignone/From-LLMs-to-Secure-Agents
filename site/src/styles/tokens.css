@@ -1,0 +1,122 @@
+:root {
+  /* Fonts */
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Color Palette - Light Theme (Reference Canonical Identity) */
+  --color-canvas: #FAF7F2;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4EFEA;
+  --color-border: #E5DFD5;
+  --color-border-subtle: #EFEBE4;
+
+  --color-ink: #1B2A32;
+  --color-ink-muted: #526677;
+  --color-ink-light: #7A8F9E;
+
+  --color-teal: #0D9488;
+  --color-teal-hover: #0F766E;
+  --color-teal-subtle: #E6F7F5;
+
+  --color-blue: #2B6CB0;
+  --color-blue-hover: #1E4E8C;
+  --color-blue-subtle: #EBF4FA;
+
+  --color-green: #3A754F;
+  --color-green-hover: #2C5C3D;
+  --color-green-subtle: #EDF7EE;
+
+  --color-amber: #B45309;
+  --color-amber-hover: #92400E;
+  --color-amber-subtle: #FEF3C7;
+
+  --color-code-bg: #F4EFEA;
+  --color-code-border: #E5DFD5;
+
+  /* Starlight Tokens Mapping - Light Theme */
+  --sl-font: var(--font-body);
+  --sl-font-mono: var(--font-mono);
+
+  --sl-color-accent: var(--color-teal);
+  --sl-color-accent-low: var(--color-teal-subtle);
+  --sl-color-accent-high: var(--color-teal-hover);
+
+  --sl-color-bg: var(--color-canvas);
+  --sl-color-bg-nav: var(--color-canvas);
+  --sl-color-bg-sidebar: var(--color-canvas);
+
+  --sl-color-white: var(--color-ink);
+  --sl-color-gray-1: #243542;
+  --sl-color-gray-2: #384C5A;
+  --sl-color-gray-3: #526677;
+  --sl-color-gray-4: #7A8F9E;
+  --sl-color-gray-5: var(--color-border);
+  --sl-color-gray-6: var(--color-surface-subtle);
+  --sl-color-black: var(--color-surface);
+
+  --sl-color-hairline: var(--color-border);
+  --sl-color-hairline-light: var(--color-border-subtle);
+  --sl-color-hairline-shade: var(--color-border);
+
+  /* Layout Widths */
+  --sl-sidebar-width: 18.5rem;
+  --sl-toc-width: 16rem;
+  --sl-content-width: 52rem;
+  --sl-nav-height: 3.75rem;
+  --sl-line-height: 1.72;
+}
+
+:root[data-theme='dark'] {
+  /* Color Palette - Dark Theme (Calm Slate / Charcoal) */
+  --color-canvas: #12171E;
+  --color-surface: #18202A;
+  --color-surface-subtle: #202A36;
+  --color-border: #2C3947;
+  --color-border-subtle: #232E3A;
+
+  --color-ink: #E2E8F0;
+  --color-ink-muted: #94A3B8;
+  --color-ink-light: #64748B;
+
+  --color-teal: #2DD4BF;
+  --color-teal-hover: #5EEAD4;
+  --color-teal-subtle: #132D2B;
+
+  --color-blue: #60A5FA;
+  --color-blue-hover: #93C5FD;
+  --color-blue-subtle: #192D46;
+
+  --color-green: #6EE7B7;
+  --color-green-hover: #A7F3D0;
+  --color-green-subtle: #142F24;
+
+  --color-amber: #FBBF24;
+  --color-amber-hover: #FCD34D;
+  --color-amber-subtle: #332712;
+
+  --color-code-bg: #18202A;
+  --color-code-border: #2C3947;
+
+  /* Starlight Tokens Mapping - Dark Theme */
+  --sl-color-accent: var(--color-teal);
+  --sl-color-accent-low: var(--color-teal-subtle);
+  --sl-color-accent-high: var(--color-teal-hover);
+
+  --sl-color-bg: var(--color-canvas);
+  --sl-color-bg-nav: var(--color-canvas);
+  --sl-color-bg-sidebar: var(--color-canvas);
+
+  --sl-color-white: #F8FAFC;
+  --sl-color-gray-1: #E2E8F0;
+  --sl-color-gray-2: #CBD5E1;
+  --sl-color-gray-3: #94A3B8;
+  --sl-color-gray-4: #64748B;
+  --sl-color-gray-5: var(--color-border);
+  --sl-color-gray-6: var(--color-surface-subtle);
+  --sl-color-black: var(--color-canvas);
+
+  --sl-color-hairline: var(--color-border);
+  --sl-color-hairline-light: var(--color-border-subtle);
+  --sl-color-hairline-shade: var(--color-border);
+}
