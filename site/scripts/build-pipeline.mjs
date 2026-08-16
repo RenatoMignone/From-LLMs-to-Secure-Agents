@@ -857,36 +857,27 @@ fs.writeFileSync(
   path.join(DOCS_DIR, 'index.mdx'),
   `---
 title: "From LLMs to Secure Agents"
-description: "The visual, source-grounded engineering guide to understanding, building, deploying, and securing autonomous AI agent systems."
+description: "The visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them."
 template: splash
+tableOfContents: false
+prev: false
+next: false
 ---
 
 <div class="hero-container not-content">
-  <div class="hero-pill-badge">
-    <span>🛡️ Autonomous AI Systems & Security Handbook</span>
-  </div>
+  <div class="hero-pill-badge"><span>🛡️ Autonomous AI Systems & Security Handbook</span></div>
   <h1 class="hero-title">From LLMs to Secure Agents</h1>
-  <p class="hero-subtitle">
-    A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.
-  </p>
+  <p class="hero-subtitle">A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.</p>
   <div class="hero-cta-group">
-    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">
-      🚀 Start Reading Guide
-    </a>
-    <a href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents" target="_blank" rel="noopener noreferrer" class="btn-hero-github">
-      <span class="star-icon">★</span> Star on GitHub
-    </a>
-    <a href="${BASE_URL}/security/securing-ai-agents/" class="btn-hero-secondary">
-      🛡️ Explore Security Hubs
-    </a>
+    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">🚀 Start Reading Guide</a>
+    <a href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents" target="_blank" rel="noopener noreferrer" class="btn-hero-github"><span class="star-icon">★</span> Star on GitHub</a>
+    <a href="${BASE_URL}/security/securing-ai-agents/" class="btn-hero-secondary">🛡️ Explore Security Hubs</a>
   </div>
 </div>
 
 <div class="hero-visual-frame not-content">
   <img src="${BASE_URL}/assets/images/repo-images/project-purpose.png" alt="Core Purpose and Mental Model: From LLM to Agentic System to Secured Agent" />
-  <figcaption style="text-align: center; margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">
-    The Fundamental Transformation: Moving from isolated model calls to dynamic agentic loops, protected by zero-trust boundaries and least-privilege sandboxing.
-  </figcaption>
+  <figcaption style="text-align: center; margin-top: 1rem; color: var(--sl-color-gray-3); font-size: 0.9rem;">The Fundamental Transformation: Moving from isolated model calls to dynamic agentic loops, protected by zero-trust boundaries and least-privilege sandboxing.</figcaption>
 </div>
 
 <div class="transformation-grid not-content">
@@ -922,12 +913,8 @@ template: splash
   <h2>Ready to Dive into Agent Engineering?</h2>
   <p>Begin with the core foundations of autonomous agents, from reasoning loops to scoped delegation and least privilege.</p>
   <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">
-      Start Chapter 1: What is an AI Agent →
-    </a>
-    <a href="${BASE_URL}/overview/curriculum/" class="btn-hero-secondary">
-      View Master Curriculum Roadmap
-    </a>
+    <a href="${BASE_URL}/foundations/what-is-an-ai-agent/" class="btn-hero-primary">Start Chapter 1: What is an AI Agent →</a>
+    <a href="${BASE_URL}/overview/curriculum/" class="btn-hero-secondary">View Master Curriculum Roadmap</a>
   </div>
 </div>
 `,
