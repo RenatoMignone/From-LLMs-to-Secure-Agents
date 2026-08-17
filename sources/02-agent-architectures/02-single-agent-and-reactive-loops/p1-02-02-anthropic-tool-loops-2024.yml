@@ -1,0 +1,25 @@
+id: p1-02-02-anthropic-tool-loops-2024
+title: 'Building Effective Agents: Autonomous Tool Loops'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Analyzes the autonomous tool loop where models dynamically select tools based on
+  environmental feedback, evaluating when autonomy is necessary and how to manage
+  termination.
+limitations:
+- Focuses on engineering best practices rather than formal state machine verification.
+related_topics:
+- autonomous tool loop
+unit_ids:
+- P1-02-02
+used_in:
+- knowledge/02-agent-architectures/02-single-agent-and-reactive-loops.md
+local_copy: null
+sha256: null

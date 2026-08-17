@@ -1,0 +1,13 @@
+Create a wide educational cartoon illustration titled "The ReAct Loop: Thought, Action, and Observation Cycle".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and pastel orange. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a circular flow with clear directional arrows representing the 4-step reactive loop:
+1. Top: "1. Thought (Reasoning)" - Cute blue robot with a lightbulb above its head inspecting a goal card and context history.
+2. Right: "2. Action (Tool Call)" - Robot selecting a tool from its toolbelt and emitting a structured tool call envelope (e.g. search_db(id=123)).
+3. Bottom: "3. Environment Execution" - An environment box with gear icons running the tool and producing output.
+4. Left: "4. Observation" - Robot receiving the tool observation and appending it to its memory context.
+5. Exit branch: "Goal Satisfied -> Return Final Answer" with a green badge and happy robot holding the completed result.
+
+Clear, bold sans-serif labels, high contrast, clean readable layout.
+Aspect ratio: 16:9.

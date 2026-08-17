@@ -1,0 +1,12 @@
+Create a wide educational cartoon illustration titled "Context Growth, Observation Overload, and Semantic Drift in Reactive Loops".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a horizontal sequence of 3 context states as turns progress from left to right:
+1. "Turn 1: Crisp Focus" (Left): A cute robot holding a neat, compact stack of blocks labeled "User Goal" and "Turn 1 Thought + Tool". Context size is small, focus is sharp.
+2. "Turn 3: Observation Bloat" (Center): The context stack has grown tall with bulky document blocks and large JSON observation outputs. The robot is balancing the heavy stack.
+3. "Turn 5: Semantic Drift & Context Exhaustion" (Right): The context stack is towering and wobbly. The original "User Goal" block at the bottom is almost hidden under massive observation clutter. A confused robot with spiral eyes struggles to recall the initial instruction.
+
+Include warning badges: "Observation Bloat", "Attention Dilution", and "Context Window Limits".
+High legibility, clean pastel cards, friendly cartoon style.
+Aspect ratio: 16:9.

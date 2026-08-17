@@ -1,0 +1,25 @@
+id: p1-02-02-yao-react-2022
+title: 'ReAct: Synergizing Reasoning and Acting in Language Models'
+authors_or_organization: Princeton University & Google Research
+date: 2022-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2210.03629
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Introduces the ReAct paradigm combining explicit verbal reasoning traces with environment
+  actions and observations, improving task trajectory accuracy and reducing hallucination.
+limitations:
+- Focuses on text-based web and game benchmarks without external production security
+  controls.
+related_topics:
+- react agent loop pattern
+unit_ids:
+- P1-02-02
+used_in:
+- knowledge/02-agent-architectures/02-single-agent-and-reactive-loops.md
+local_copy: null
+sha256: null

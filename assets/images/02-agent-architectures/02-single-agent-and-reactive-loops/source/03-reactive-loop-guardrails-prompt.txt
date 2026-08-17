@@ -1,0 +1,12 @@
+Create a wide educational cartoon illustration titled "Runtime Guardrails and Termination Failsafes for Reactive Loops".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a central reactive robot performing actions, surrounded and protected by four distinct host runtime guardrails:
+1. "Turn Budget Counter" (Top): A digital counter showing "Turn 4/5" preventing runaway infinite loops.
+2. "Tool Timeout Timer" (Right): A stopwatch stopping any hanging external API call after 5 seconds.
+3. "Schema Validator Gate" (Bottom): A friendly green shield filtering tool arguments to ensure valid parameters before execution.
+4. "Loop & Thrashing Detector" (Left): A detector robot noticing repetitive identical tool calls and forcing an intervention.
+
+Clean cards, friendly icons for timer, counter, shield, and detector. High contrast, bold labels.
+Aspect ratio: 16:9.

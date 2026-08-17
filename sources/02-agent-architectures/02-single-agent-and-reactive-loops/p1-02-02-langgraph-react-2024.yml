@@ -1,0 +1,24 @@
+id: p1-02-02-langgraph-react-2024
+title: 'LangGraph: Cyclic State Graphs and ReAct Agents'
+authors_or_organization: LangChain
+date: '2024'
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explains cyclic state machines implementing ReAct agent patterns with message history,
+  tool nodes, and conditional stopping edges.
+limitations:
+- Focuses on LangGraph framework constructs.
+related_topics:
+- cyclic agent graph
+unit_ids:
+- P1-02-02
+used_in:
+- knowledge/02-agent-architectures/02-single-agent-and-reactive-loops.md
+local_copy: null
+sha256: null
