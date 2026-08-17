@@ -1,0 +1,25 @@
+id: p1-03-01-01-google-adk-models-2024
+title: 'Google Agent Development Kit: Model Configurations and Capability Profiles'
+authors_or_organization: Google
+date: 2024-09
+source_type: documentation
+canonical_url: https://adk.dev/agents/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details configuring distinct model roles (planner, router, verifier) and provider adapters in production agentic systems.
+limitations:
+- Focuses on Google Agent Development Kit runtime conventions.
+related_topics:
+- model roles
+- model capabilities
+- provider adapters
+unit_ids:
+- P1-03-01-01
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/01-model-roles-and-selection.md
+local_copy: null
+sha256: null

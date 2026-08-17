@@ -1,0 +1,11 @@
+Create a clear, educational cartoon illustration showing the Four Core Model Roles in agentic AI architectures.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds or cyberpunk aesthetics.
+
+Show four distinct model role cards with cute specialized robot characters:
+1. 'Primary Planner & Reasoner' (Deep thinking blue robot holding a strategic blueprint scroll, high intelligence, large reasoning capacity).
+2. 'Intent Router & Classifier' (Ultra-fast yellow courier robot sorting mail envelopes into distinct baskets with sub-50ms latency).
+3. 'Domain Worker / Specialist' (Green technician robot with a wrench and code screen, executing narrow scoped tasks).
+4. 'Evaluator & Critic' (Purple inspector robot holding an audit checklist and magnifying glass, evaluating candidate outputs).
+
+Ensure bold typography, clear feature badges, and balanced horizontal spacing.

@@ -1,0 +1,25 @@
+id: p1-03-01-01-chen-frugalgpt-2023
+title: 'FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance'
+authors_or_organization: Lingjiao Chen, Matei Zaharia, James Zou
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.05176
+doi: 10.48550/arXiv.2305.05176
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explores model selection, cascades, and assigning tasks to small vs large models based on task complexity to cut costs by up to 98%.
+limitations:
+- Focuses primarily on single-turn benchmark tasks rather than long-horizon multi-agent loops.
+related_topics:
+- model selection
+- cost reduction
+- model cascades
+unit_ids:
+- P1-03-01-01
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/01-model-roles-and-selection.md
+local_copy: null
+sha256: null

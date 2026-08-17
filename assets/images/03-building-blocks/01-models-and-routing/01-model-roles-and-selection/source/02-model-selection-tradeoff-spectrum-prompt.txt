@@ -1,0 +1,10 @@
+Create a clear, educational cartoon illustration of the Model Selection Trade-Off Spectrum for AI agent architectures.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, warm coral, and sage green.
+
+Show a 3-tier model tiering comparison:
+1. 'Tier 1: Heavy Reasoning Frontier Models' (Blue robot: Max reasoning, 1M+ context window, JSON schema precision, $5.00/1M tokens, 800ms TTFT).
+2. 'Tier 2: Balanced Mid-Weight Models' (Teal robot: Strong tool calling, 128k context, $0.50/1M tokens, 300ms TTFT).
+3. 'Tier 3: Small Specialized SLMs / Edge Models' (Green robot: Ultra-fast 40ms latency, deterministic classification, $0.05/1M tokens, on-device/local privacy).
+
+Add clear comparison badges for Reasoning Depth, Latency, Token Cost, and Structured Output Reliability.
