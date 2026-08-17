@@ -397,54 +397,15 @@ ${formattedObjectives.map((o) => `      <li>${o}</li>`).join('\n')}
     // Clean body
     let cleanBody = ch.body.trim();
     cleanBody = cleanBody.replace(/^#\s+[^\n]+\n+/, '');
+    // Strip redundant trailing Markdown navigation buttons/links since unit-pagination provides them
+    cleanBody = cleanBody.replace(/\n*---\s*\n+\[(?:Next|Previous) Unit:[^\]]+\]\([^)]+\)\s*$/i, '');
+    cleanBody = cleanBody.replace(/\n*\[(?:Next|Previous) Unit:[^\]]+\]\([^)]+\)\s*$/i, '');
     cleanBody = rewriteChapterLinks(cleanBody, ch.relPath, chapters);
 
     pageContent += cleanBody;
 
-    // Sources and evidence panel
-    if (ch.source_records.length > 0) {
-      pageContent += `\n\n<details class="chapter-sources not-content">
-  <summary class="sources-summary">
-    <span class="sources-title">Sources and evidence (${ch.source_records.length} primary records)</span>
-    <span class="sources-hint">Expand to inspect citations and grounded claims</span>
-  </summary>
-  <div class="sources-body">
-${ch.source_records
-  .map(
-    (s) => `    <div class="source-item">
-      <div class="source-item-header">
-        <a href="${s.canonical_url}" target="_blank" rel="noopener noreferrer" class="source-title-link">${s.title} ↗</a>
-        <span class="source-type">${s.source_type || 'specification'}</span>
-      </div>
-      <div class="source-item-meta">
-        <span>${s.authors_or_organization}</span> · <span>${s.date}</span> ${s.version ? `· <span>v${s.version}</span>` : ''} · <span>Verified ${s.last_verified || '2026-08-15'}</span>
-      </div>
-      ${
-        s.claims_supported && s.claims_supported.length > 0
-          ? `<div class="source-claims">
-        <div class="claims-heading">Claims grounded:</div>
-        <ul>
-          ${s.claims_supported.map((c) => `<li>${c}</li>`).join('')}
-        </ul>
-      </div>`
-          : ''
-      }
-      ${
-        s.limitations && s.limitations.length > 0
-          ? `<div class="source-limitations">
-        <span class="limitations-heading">Scope &amp; limitations:</span> ${s.limitations.join(' ')}
-      </div>`
-          : ''
-      }
-    </div>`
-  )
-  .join('\n')}
-  </div>
-</details>\n`;
-    }
-
-    // Unit Pagination
-    pageContent += `\n<div class="unit-pagination not-content">\n`;
+    // Unit Pagination (Single clean 2-column row at bottom)
+    pageContent += `\n\n<div class="unit-pagination not-content">\n`;
     if (prevCh) {
       pageContent += `  <a href="${prevCh.route}" class="pagination-link pagination-prev">
     <span class="pagination-sub">← Previous unit</span>
@@ -514,6 +475,7 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
   for (const [label, sectionChapters] of chaptersBySection.entries()) {
     sidebarSections.push({
       label,
+      collapsed: true,
       items: sectionChapters.map((c) => ({
         label: `${c.title}`,
         link: `${c.route.replace(BASE_URL, '')}`,
@@ -650,7 +612,7 @@ import HomepageIdea from '../../components/HomepageIdea.astro';
 import HomepageStart from '../../components/HomepageStart.astro';
 import HomepageFooter from '../../components/HomepageFooter.astro';
 
-<HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" />
+<HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" publishedCount={${chapters.length}} />
 
 <HomepageIdea />
 

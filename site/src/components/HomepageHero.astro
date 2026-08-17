@@ -2,9 +2,10 @@
 interface Props {
   firstChapterRoute: string;
   baseUrl: string;
+  publishedCount?: number;
 }
 
-const { firstChapterRoute, baseUrl } = Astro.props;
+const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
 ---
 
 <section class="hero-section not-content">
@@ -38,7 +39,7 @@ const { firstChapterRoute, baseUrl } = Astro.props;
       <div class="hero-feature-pills">
         <div class="feature-pill">
           <span class="pill-dot pill-teal"></span>
-          <span>9 Published Units</span>
+          <span>{publishedCount} Published Units</span>
         </div>
         <div class="feature-pill">
           <span class="pill-dot pill-amber"></span>

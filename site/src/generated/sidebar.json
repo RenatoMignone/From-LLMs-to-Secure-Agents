@@ -1,6 +1,7 @@
 [
   {
     "label": "Prerequisites",
+    "collapsed": true,
     "items": [
       {
         "label": "Reader contract and system map",
@@ -22,6 +23,7 @@
   },
   {
     "label": "Agent foundations",
+    "collapsed": true,
     "items": [
       {
         "label": "What is an agent",
@@ -47,6 +49,7 @@
   },
   {
     "label": "Agent architectures",
+    "collapsed": true,
     "items": [
       {
         "label": "Architecture selection criteria",

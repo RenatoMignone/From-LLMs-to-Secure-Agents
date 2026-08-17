@@ -1,8 +1,21 @@
-/* Header Styling */
+/* Header Layout & Navigation */
 header.header {
   background-color: var(--color-canvas) !important;
   border-bottom: 1px solid var(--color-border) !important;
-  padding-inline: clamp(1rem, 3vw, 2.5rem) !important;
+  padding-inline-start: clamp(1rem, 2.5vw, 2rem) !important;
+  padding-inline-end: clamp(1rem, 2.5vw, 2rem) !important;
+  transition: background-color 200ms ease, border-color 200ms ease !important;
+}
+
+:global([data-has-sidebar]) header.header {
+  /* Ensure reserved right space on mobile when mobile hamburger is rendered */
+  padding-inline-end: clamp(1rem, 2.5vw, 2rem) !important;
+}
+
+@media (max-width: 50rem) {
+  :global([data-has-sidebar]) header.header {
+    padding-inline-end: calc(var(--sl-menu-button-size, 2.25rem) + 1.25rem) !important;
+  }
 }
 
 .site-title {
@@ -11,6 +24,7 @@ header.header {
   font-size: 0.98rem !important;
   color: var(--color-ink) !important;
   letter-spacing: -0.01em;
+  text-decoration: none !important;
 }
 
 .site-title img {
@@ -18,55 +32,91 @@ header.header {
   height: 1.55rem !important;
 }
 
-/* Sidebar Navigation */
+/* Sidebar Navigation - Distinct Section Groups & Clean Hierarchy */
 nav.sidebar {
-  background-color: var(--color-canvas) !important;
-  border-right: 1px solid var(--color-border-subtle) !important;
+  background-color: var(--color-surface-subtle) !important;
+  border-right: 1px solid var(--color-border) !important;
 }
 
 .sidebar-content {
-  padding: 1.5rem 1rem !important;
+  padding: 1.25rem 0.85rem !important;
+  gap: 0.65rem !important;
 }
 
 .sidebar-pane {
-  background-color: var(--color-canvas) !important;
+  background-color: var(--color-surface-subtle) !important;
 }
 
-/* Sidebar Section Headers */
+/* Section Header Accordions */
+.top-level > li {
+  margin-bottom: 0.5rem !important;
+  border-radius: 10px !important;
+  border: 1px solid var(--color-border-subtle) !important;
+  background-color: var(--color-canvas) !important;
+  overflow: hidden !important;
+  transition: border-color 160ms ease !important;
+}
+
+.top-level > li:hover {
+  border-color: var(--color-border) !important;
+}
+
 .top-level > li > details > summary,
 .top-level > li > .large {
   font-family: var(--font-heading) !important;
-  font-size: 0.9rem !important;
-  font-weight: 650 !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
   text-transform: none !important;
-  letter-spacing: 0 !important;
+  letter-spacing: 0.01em !important;
   color: var(--color-ink) !important;
-  padding: 0.5rem 0.65rem !important;
+  padding: 0.65rem 0.85rem !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background-color: var(--color-surface) !important;
+  border-bottom: 1px solid transparent !important;
+  transition: background-color 140ms ease, color 140ms ease !important;
+}
+
+:root[data-theme='dark'] .top-level > li > details > summary,
+:root[data-theme='dark'] .top-level > li > .large {
+  background-color: var(--color-surface-card) !important;
+}
+
+.top-level > li > details[open] > summary {
+  border-bottom: 1px solid var(--color-border-subtle) !important;
+  color: var(--color-teal) !important;
+}
+
+.top-level > li > details > summary:hover {
+  background-color: var(--color-teal-subtle) !important;
+  color: var(--color-teal) !important;
 }
 
 /* Sidebar Links */
 .sidebar-content a {
-  font-size: 0.94rem !important;
+  font-size: 0.91rem !important;
   color: var(--color-ink-muted) !important;
-  padding: 0.4rem 0.65rem !important;
+  padding: 0.45rem 0.85rem !important;
+  margin: 0.15rem 0.35rem !important;
   border-left: 2px solid transparent !important;
-  border-radius: 0 !important;
+  border-radius: 6px !important;
   line-height: 1.45 !important;
-  transition: color 120ms ease, border-color 120ms ease !important;
+  transition: all 140ms ease !important;
   text-decoration: none !important;
+  display: block !important;
 }
 
 .sidebar-content a:hover {
   color: var(--color-ink) !important;
-  background-color: transparent !important;
+  background-color: var(--color-surface-subtle) !important;
   text-decoration: none !important;
 }
 
 .sidebar-content a[aria-current='page'] {
   color: var(--color-teal) !important;
-  background-color: transparent !important;
+  background-color: var(--color-teal-subtle) !important;
   border-left-color: var(--color-teal) !important;
-  font-weight: 600 !important;
+  font-weight: 650 !important;
 }
 
 /* Main Content Area */
@@ -75,12 +125,12 @@ nav.sidebar {
 }
 
 .content-panel {
-  padding: 2rem clamp(1.25rem, 3.5vw, 3rem) 3rem !important;
+  padding: 2rem clamp(1.25rem, 3.5vw, 3rem) 3.5rem !important;
 }
 
 .content-panel + .content-panel {
   border-top: 0 !important;
-  padding-top: 0.75rem !important;
+  padding-top: 0.5rem !important;
   padding-bottom: 4.5rem !important;
 }
 
@@ -111,7 +161,7 @@ html:not([data-has-sidebar]) main {
 }
 
 .sl-markdown-content {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   line-height: 1.76;
 }
 
@@ -129,9 +179,9 @@ starlight-toc {
 starlight-toc h2 {
   font-family: var(--font-heading) !important;
   font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
   color: var(--color-ink-muted) !important;
   margin-bottom: 0.75rem !important;
   border-bottom: none !important;
@@ -181,7 +231,7 @@ button[data-open-modal] {
 button[data-open-modal]:hover {
   color: var(--color-ink) !important;
   border-color: var(--color-teal) !important;
-  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.15) !important;
+  box-shadow: 0 2px 8px var(--color-teal-subtle) !important;
 }
 
 button[data-open-modal] kbd {
@@ -198,26 +248,36 @@ button[data-open-modal] kbd {
   color: var(--color-ink-muted) !important;
 }
 
-/* Mobile Hamburger Menu Toggle Button */
+/* Mobile Hamburger Menu Toggle Button - No Overlap & Modern Catppuccin Styling */
+starlight-menu-button {
+  margin: 0 !important;
+}
+
 starlight-menu-button button {
+  position: fixed !important;
+  top: calc((var(--sl-nav-height) - 2.25rem) / 2) !important;
+  inset-inline-end: 0.85rem !important;
+  z-index: calc(var(--sl-z-index-navbar) + 10) !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  border: 1.5px solid var(--color-border) !important;
-  background-color: var(--color-surface) !important;
-  color: var(--color-ink) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
-  transition: all 160ms ease !important;
   width: 2.25rem !important;
   height: 2.25rem !important;
   padding: 0.4rem !important;
+  border: 1.5px solid var(--color-border) !important;
+  border-radius: 10px !important;
+  background-color: var(--color-surface) !important;
+  color: var(--color-ink) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+  cursor: pointer !important;
+  transition: all 160ms ease !important;
 }
 
 :root[data-theme='dark'] starlight-menu-button button {
-  background-color: var(--color-surface-subtle) !important;
+  background-color: var(--color-surface-card) !important;
   border-color: var(--color-border) !important;
   color: var(--color-ink) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
 }
 
 starlight-menu-button button:hover {
@@ -231,13 +291,12 @@ starlight-menu-button[aria-expanded='true'] button {
   color: var(--color-teal) !important;
 }
 
-/* Hide default starlight pagination since we have custom editorial unit pagination */
+/* Hide default starlight pagination */
 .pagination-links {
   display: none !important;
 }
 
 @media (max-width: 768px) {
-  /* Hide Ctrl K writing on mobile and tablets */
   button[data-open-modal] kbd {
     display: none !important;
   }
@@ -257,10 +316,6 @@ starlight-menu-button[aria-expanded='true'] button {
 }
 
 @media (max-width: 640px) {
-  header.header {
-    padding-inline: 0.75rem !important;
-  }
-
   .site-title {
     font-size: 0.88rem !important;
     white-space: nowrap;
