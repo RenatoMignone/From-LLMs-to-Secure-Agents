@@ -1,0 +1,19 @@
+Create a wide educational cartoon illustration titled "Parallel Workflows: Sectioning (Map-Reduce) versus Consensus Voting".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Divide the visual into two balanced comparative halves:
+1. Left Half: "Sectioning (Map-Reduce)"
+   - A tall document icon split into 3 colored slices (Section A, B, C).
+   - Three cute robots concurrently processing their respective slices.
+   - Slices fed into a "Combiner Robot" that binds them into a complete final book.
+   - Label: "Purpose: High-throughput batch & document chunk processing".
+
+2. Right Half: "Consensus Voting (Self-Consistency)"
+   - A single complex math/logic prompt sent simultaneously to 3 robots.
+   - Robot 1 outputs "Answer: 42", Robot 2 outputs "Answer: 42", Robot 3 outputs "Answer: 17".
+   - A "Majority Judge Robot" holding a gavel selects "Final Consensus: 42" with 2/3 votes.
+   - Label: "Purpose: Error reduction on complex reasoning tasks".
+
+Clean high-contrast labels, friendly cartoon characters, light cream background.
+Aspect ratio: 16:9.

@@ -1,0 +1,11 @@
+Create a wide educational cartoon illustration titled "Deterministic Workflow Topologies: Prompt Chaining, Routing, and Parallelization".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and pastel orange. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show three distinct horizontal workflow topologies stacked vertically or side-by-side:
+1. "Prompt Chaining (Linear Pipeline)" (Top): Three robot stations in a linear row connected by conveyor arrows ("1. Extract Data" -> "2. Translate" -> "3. Format Output") with small green validation checkpoints between stations.
+2. "Conditional Routing" (Middle): A friendly classifier robot standing at a railroad-style junction, evaluating an incoming ticket and directing it to either Track A ("Billing Specialist") or Track B ("Technical Support").
+3. "Parallelization & Fan-Out" (Bottom): An incoming task splitting across three parallel worker robots simultaneously ("Worker 1", "Worker 2", "Worker 3"), with their results joining into an "Aggregator" robot holding the combined summary.
+
+Clear, high-contrast sans-serif labels. Clean, uncluttered layout.
+Aspect ratio: 16:9.

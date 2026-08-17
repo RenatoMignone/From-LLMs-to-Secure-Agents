@@ -1,0 +1,12 @@
+Create a wide educational cartoon illustration titled "Validation Checkpoints, Error Isolation, and Dead-Letter Routing in Workflows".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a robust pipeline conveyor flow with safety mechanisms:
+1. "Step 1: Extract" (Left) -> Output package moving toward a "Schema Validation Checkpoint Gate" with a friendly green shield scanner.
+2. If Valid -> Package moves safely along the main conveyor to "Step 2: Transform".
+3. If Invalid / Malformed -> A trapdoor / diverter chute diverts the bad package down to a "Dead-Letter / Human Review Queue" with a helpful inspector robot.
+4. "Parallel Timeout Guard" -> A timer clock icon showing a straggler timeout dropping an unresponsive worker node without crashing the rest of the pipeline.
+
+High legibility, clear arrows, friendly cartoon badges.
+Aspect ratio: 16:9.

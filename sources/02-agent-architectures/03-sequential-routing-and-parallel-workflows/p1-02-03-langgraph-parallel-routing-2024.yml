@@ -1,0 +1,24 @@
+id: p1-02-03-langgraph-parallel-routing-2024
+title: 'LangGraph: Branching, Parallel Execution, and Map-Reduce'
+authors_or_organization: LangChain
+date: '2024'
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explains DAG control flow constructs for branching, fan-out parallel nodes, and
+  state aggregation reducers in workflow graphs.
+limitations:
+- Framed around LangGraph execution runtime.
+related_topics:
+- workflow DAG branching and fan-out
+unit_ids:
+- P1-02-03
+used_in:
+- knowledge/02-agent-architectures/03-sequential-routing-and-parallel-workflows.md
+local_copy: null
+sha256: null

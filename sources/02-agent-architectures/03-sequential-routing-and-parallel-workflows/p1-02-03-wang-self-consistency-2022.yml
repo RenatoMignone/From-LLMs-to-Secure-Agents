@@ -1,0 +1,25 @@
+id: p1-02-03-wang-self-consistency-2022
+title: Self-Consistency Improves Chain of Thought Reasoning in Language Models
+authors_or_organization: Google Research
+date: 2022-03
+source_type: paper
+canonical_url: https://arxiv.org/abs/2203.11171
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Demonstrates that generating diverse parallel reasoning paths and taking a majority
+  vote significantly improves reasoning performance and robustness over single-path
+  execution.
+limitations:
+- Requires multiple parallel model generations, increasing total token consumption.
+related_topics:
+- parallel voting self-consistency
+unit_ids:
+- P1-02-03
+used_in:
+- knowledge/02-agent-architectures/03-sequential-routing-and-parallel-workflows.md
+local_copy: null
+sha256: null

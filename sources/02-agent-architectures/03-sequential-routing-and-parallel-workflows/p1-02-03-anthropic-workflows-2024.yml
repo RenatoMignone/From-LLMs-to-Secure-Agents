@@ -1,0 +1,25 @@
+id: p1-02-03-anthropic-workflows-2024
+title: 'Building Effective Agents: Workflow Patterns'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Categorizes deterministic orchestration patterns including prompt chaining, conditional
+  routing, and parallel sectioning or voting.
+limitations:
+- Focuses on engineering best practices rather than formal algorithmic complexity
+  analysis.
+related_topics:
+- prompt chaining routing parallel workflows
+unit_ids:
+- P1-02-03
+used_in:
+- knowledge/02-agent-architectures/03-sequential-routing-and-parallel-workflows.md
+local_copy: null
+sha256: null
