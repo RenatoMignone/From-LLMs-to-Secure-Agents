@@ -32,10 +32,85 @@ const base = '/From-LLMs-to-Secure-Agents';
       </svg>
       <span class="github-text">GitHub</span>
     </a>
-    <Search />
+
+    <div class="search-wrap">
+      <Search />
+    </div>
+
     <ThemeSelect />
+
+    <!-- Mobile Hamburger Menu Button Stuck to Right -->
+    <button
+      type="button"
+      class="nav-mobile-menu-btn"
+      id="custom-mobile-menu-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="starlight__sidebar"
+    >
+      <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path>
+      </svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+      </svg>
+    </button>
   </div>
 </div>
+
+<script>
+  function setupMobileMenu() {
+    const toggleBtn = document.getElementById('custom-mobile-menu-toggle');
+    if (!toggleBtn) return;
+
+    function syncState() {
+      const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
+      toggleBtn?.setAttribute('aria-expanded', String(isExpanded));
+      if (isExpanded) {
+        toggleBtn?.classList.add('is-active');
+      } else {
+        toggleBtn?.classList.remove('is-active');
+      }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
+      if (isExpanded) {
+        document.body.removeAttribute('data-mobile-menu-expanded');
+      } else {
+        document.body.setAttribute('data-mobile-menu-expanded', 'true');
+      }
+      syncState();
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'Escape' && document.body.hasAttribute('data-mobile-menu-expanded')) {
+        document.body.removeAttribute('data-mobile-menu-expanded');
+        syncState();
+      }
+    });
+
+    // Close when navigating in mobile menu
+    document.querySelectorAll('#starlight__sidebar a').forEach((a) => {
+      a.addEventListener('click', () => {
+        document.body.removeAttribute('data-mobile-menu-expanded');
+        syncState();
+      });
+    });
+
+    syncState();
+  }
+
+  // Run on first load and on Starlight page transitions
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupMobileMenu);
+    } else {
+      setupMobileMenu();
+    }
+    document.addEventListener('astro:page-load', setupMobileMenu);
+  }
+</script>
 
 <style>
   .publication-header {
@@ -44,13 +119,15 @@ const base = '/From-LLMs-to-Secure-Agents';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: clamp(1rem, 2.5vw, 2.5rem);
+    gap: clamp(0.75rem, 2vw, 2rem);
   }
 
   .publication-brand {
     min-width: 0;
+    flex: 0 1 auto;
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
 
   .publication-nav {
@@ -117,7 +194,14 @@ const base = '/From-LLMs-to-Secure-Agents';
   .publication-tools {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: 0.65rem;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .search-wrap {
+    display: flex;
+    align-items: center;
   }
 
   /* GitHub Button - Dark Charcoal in Light theme, Pastel mint/sky in Dark theme */
@@ -172,6 +256,54 @@ const base = '/From-LLMs-to-Secure-Agents';
     flex-shrink: 0;
   }
 
+  /* Custom Mobile Menu Button */
+  .nav-mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.15rem;
+    height: 2.15rem;
+    padding: 0.35rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 150ms ease;
+  }
+
+  :global(:root[data-theme='dark']) .nav-mobile-menu-btn {
+    background-color: var(--color-surface-card);
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+
+  .nav-mobile-menu-btn:hover {
+    border-color: var(--color-teal);
+    color: var(--color-teal);
+    background-color: var(--color-teal-subtle);
+  }
+
+  .nav-mobile-menu-btn .icon-close {
+    display: none;
+  }
+
+  .nav-mobile-menu-btn.is-active,
+  :global([data-mobile-menu-expanded]) .nav-mobile-menu-btn {
+    background-color: var(--color-teal-subtle);
+    border-color: var(--color-teal);
+    color: var(--color-teal);
+  }
+
+  :global([data-mobile-menu-expanded]) .nav-mobile-menu-btn .icon-bars {
+    display: none;
+  }
+
+  :global([data-mobile-menu-expanded]) .nav-mobile-menu-btn .icon-close {
+    display: block;
+  }
+
   @media (max-width: 60rem) {
     .publication-nav {
       margin-left: 0.75rem;
@@ -179,24 +311,20 @@ const base = '/From-LLMs-to-Secure-Agents';
   }
 
   @media (max-width: 50rem) {
-    .publication-header {
-      gap: 0.5rem;
-    }
-
-    .publication-brand {
-      min-width: 0;
-      flex: 1 1 auto;
-      overflow: hidden;
-    }
-
     .publication-nav {
       display: none;
     }
 
+    .search-wrap {
+      display: none; /* Replaced by search inside the mobile menu drawer on guide pages */
+    }
+
+    .nav-mobile-menu-btn {
+      display: inline-flex; /* Shown stuck to the far right */
+    }
+
     .publication-tools {
-      gap: 0.5rem;
-      flex-shrink: 0;
-      padding-right: 3.25rem; /* Guarantees zero collision with hamburger menu button */
+      gap: 0.45rem;
     }
     
     .nav-github-btn .github-text {
@@ -219,7 +347,6 @@ const base = '/From-LLMs-to-Secure-Agents';
 
     .publication-tools {
       gap: 0.35rem;
-      padding-right: 3rem;
     }
   }
 </style>

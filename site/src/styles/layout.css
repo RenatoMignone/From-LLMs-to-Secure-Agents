@@ -2,34 +2,48 @@
 header.header {
   background-color: var(--color-canvas) !important;
   border-bottom: 1px solid var(--color-border) !important;
-  padding-inline-start: clamp(1rem, 2.5vw, 2rem) !important;
-  padding-inline-end: clamp(1rem, 2.5vw, 2rem) !important;
+  padding-inline-start: clamp(0.75rem, 2vw, 1.75rem) !important;
+  padding-inline-end: clamp(0.75rem, 2vw, 1.75rem) !important;
   transition: background-color 200ms ease, border-color 200ms ease !important;
-}
-
-:global([data-has-sidebar]) header.header {
-  /* Ensure reserved right space on mobile when mobile hamburger is rendered */
-  padding-inline-end: clamp(1rem, 2.5vw, 2rem) !important;
-}
-
-@media (max-width: 50rem) {
-  :global([data-has-sidebar]) header.header {
-    padding-inline-end: calc(var(--sl-menu-button-size, 2.25rem) + 1.25rem) !important;
-  }
 }
 
 .site-title {
   font-family: var(--font-heading) !important;
-  font-weight: 700 !important;
-  font-size: 0.98rem !important;
+  font-weight: 750 !important;
+  font-size: clamp(0.82rem, 3.2vw, 0.98rem) !important;
   color: var(--color-ink) !important;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  white-space: nowrap !important;
+  line-height: 1.2 !important;
 }
 
 .site-title img {
   width: 1.55rem !important;
   height: 1.55rem !important;
+  flex-shrink: 0 !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 500px) {
+  .site-title {
+    font-size: 0.84rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .site-title img {
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-title {
+    font-size: 0.78rem !important;
+  }
 }
 
 /* Sidebar Navigation - Distinct Section Groups & Clean Hierarchy */
@@ -285,58 +299,33 @@ button[data-open-modal] kbd {
   color: var(--color-ink-muted) !important;
 }
 
-/* Mobile Hamburger Menu Toggle Button - Completely hidden on desktop; shown only on mobile/tablet */
+/* Starlight Default Floating Menu Button is replaced by integrated button in Header */
 starlight-menu-button {
   display: none !important;
 }
 
-@media (max-width: 50rem) {
-  :global([data-has-sidebar]) starlight-menu-button {
-    display: block !important;
-  }
+/* Mobile Sidebar Drawer styling when expanded */
+:global([data-mobile-menu-expanded]) nav.sidebar {
+  display: block !important;
+  position: fixed !important;
+  inset-block-start: var(--sl-nav-height) !important;
+  inset-inline-start: 0 !important;
+  inset-inline-end: 0 !important;
+  inset-block-end: 0 !important;
+  width: 100% !important;
+  height: calc(100vh - var(--sl-nav-height)) !important;
+  background-color: var(--color-canvas) !important;
+  z-index: calc(var(--sl-z-index-navbar) - 1) !important;
+  overflow-y: auto !important;
+  padding: 1.25rem 1rem 3rem !important;
+}
 
-  :global([data-has-sidebar]) starlight-menu-button button {
-    position: fixed !important;
-    top: calc((var(--sl-nav-height) - 2.25rem) / 2) !important;
-    inset-inline-end: 0.85rem !important;
-    z-index: calc(var(--sl-z-index-navbar) + 10) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 2.25rem !important;
-    height: 2.25rem !important;
-    padding: 0.4rem !important;
-    border: 1.5px solid var(--color-border) !important;
-    border-radius: 10px !important;
-    background-color: var(--color-surface) !important;
-    color: var(--color-ink) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
-    cursor: pointer !important;
-    transition: all 160ms ease !important;
-  }
-
-  :root[data-theme='dark'] :global([data-has-sidebar]) starlight-menu-button button {
-    background-color: var(--color-surface-card) !important;
-    border-color: var(--color-border) !important;
-    color: var(--color-ink) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
-  }
-
-  :global([data-has-sidebar]) starlight-menu-button button:hover {
-    border-color: var(--color-teal) !important;
-    color: var(--color-teal) !important;
-  }
-
-  :root[data-theme='dark'] :global([data-has-sidebar]) starlight-menu-button button:hover {
-    border-color: var(--color-mauve) !important;
-    color: var(--color-mauve) !important;
-  }
-
-  :global([data-has-sidebar]) starlight-menu-button[aria-expanded='true'] button {
-    background-color: var(--color-teal-subtle) !important;
-    border-color: var(--color-teal) !important;
-    color: var(--color-teal) !important;
-  }
+:global([data-mobile-menu-expanded]) .sidebar-pane {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  border-right: none !important;
+  background-color: transparent !important;
 }
 
 /* Hide default starlight pagination */
