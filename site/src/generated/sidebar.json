@@ -92,6 +92,10 @@
       {
         "label": "Model roles and selection",
         "link": "/building-blocks/01-model-roles-and-selection/"
+      },
+      {
+        "label": "Routing, cascades, and fallbacks",
+        "link": "/building-blocks/02-routing-cascades-and-fallbacks/"
       }
     ]
   }
