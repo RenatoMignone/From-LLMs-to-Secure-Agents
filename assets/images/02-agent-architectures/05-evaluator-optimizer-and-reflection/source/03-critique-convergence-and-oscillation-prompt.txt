@@ -1,0 +1,22 @@
+Create a wide educational cartoon illustration titled "Iteration Dynamics: Convergence, Oscillation, and Diminishing Returns".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show three distinct iteration scenarios in separate panels from left to right:
+1. Panel 1: "Healthy Convergence (Optimal)"
+   - A robot progressively refining a statue / document across 3 turns.
+   - Quality score chart rising smoothly: Turn 1 (60%) -> Turn 2 (85%) -> Turn 3 (98% Pass).
+   - Label: "Passes rubric in bounded turns".
+
+2. Panel 2: "Oscillation & Thrashing (Failure)"
+   - A frustrated robot switching a sentence style back and forth between "Formal" and "Casual" because two conflicting evaluator prompts disagree.
+   - Score curve zig-zags without progress.
+   - Label: "Contradictory feedback triggers infinite loop".
+
+3. Panel 3: "Diminishing Returns & Drift"
+   - A tired robot making tiny unnecessary punctuation micro-edits on Turn 7.
+   - Quality score plateaued flat; token costs compounding.
+   - Label: "Enforce hard max iteration budget (typically 2-4 loops)".
+
+Clean layout, high contrast labels, friendly cartoon robots.
+Aspect ratio: 16:9.

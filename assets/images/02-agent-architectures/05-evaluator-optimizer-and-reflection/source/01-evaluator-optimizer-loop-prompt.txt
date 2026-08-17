@@ -1,0 +1,12 @@
+Create a wide educational cartoon illustration titled "The Evaluator-Optimizer Architecture: Generator, Rubric, and Critique Loop".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and pastel orange. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show an iterative quality loop between two specialized robots:
+1. Left: "Generator Model (Drafting)" - A cute blue robot at a workbench writing draft code / text on a neat paper scroll.
+2. Center-Right: "Evaluator Model (Critique & Testing)" - A friendly green inspector robot with a magnifying glass examining the draft against a clipboard checklist labeled "Rubric & Unit Tests".
+3. Feedback Arrow: "Structured Critique & Guidance" - A curved arrow carrying specific actionable feedback notes from the Evaluator back to the Generator.
+4. Exit Path: "Quality Accepted -> Final Output" - A green checkmark badge leading to the completed artifact once all criteria pass.
+
+Clear bold sans-serif labels, balanced composition, approachable technical style.
+Aspect ratio: 16:9.

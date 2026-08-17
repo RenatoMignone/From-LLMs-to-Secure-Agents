@@ -1,0 +1,26 @@
+id: p1-02-05-madaan-self-refine-2023
+title: 'Self-Refine: Iterative Refinement with Self-Feedback'
+authors_or_organization: NeurIPS
+date: 2023-12
+source_type: paper
+canonical_url: https://arxiv.org/abs/2303.17651
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Demonstrates how iterative generator-feedback-refiner loops improve accuracy and
+  alignment across code generation, math reasoning, and writing tasks without additional
+  model training.
+limitations:
+- Evaluates isolated generation tasks rather than interactive multi-tool execution
+  environments.
+related_topics:
+- self refine iterative feedback loops
+unit_ids:
+- P1-02-05
+used_in:
+- knowledge/02-agent-architectures/05-evaluator-optimizer-and-reflection.md
+local_copy: null
+sha256: null

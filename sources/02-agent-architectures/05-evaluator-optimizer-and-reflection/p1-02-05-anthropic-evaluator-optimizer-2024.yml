@@ -1,0 +1,24 @@
+id: p1-02-05-anthropic-evaluator-optimizer-2024
+title: 'Building Effective Agents: Evaluator-Optimizer Pattern'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Analyzes the evaluator-optimizer pattern where one LLM generates while another provides
+  critique and feedback in an iterative loop against explicit evaluation criteria.
+limitations:
+- Focuses on architectural patterns rather than mathematical convergence proofs.
+related_topics:
+- evaluator optimizer feedback pattern
+unit_ids:
+- P1-02-05
+used_in:
+- knowledge/02-agent-architectures/05-evaluator-optimizer-and-reflection.md
+local_copy: null
+sha256: null

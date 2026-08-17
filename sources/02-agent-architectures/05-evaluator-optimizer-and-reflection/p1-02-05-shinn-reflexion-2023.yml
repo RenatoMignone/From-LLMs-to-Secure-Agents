@@ -1,0 +1,25 @@
+id: p1-02-05-shinn-reflexion-2023
+title: 'Reflexion: Language Agents with Verbal Reinforcement Learning'
+authors_or_organization: NeurIPS
+date: 2023-12
+source_type: paper
+canonical_url: https://arxiv.org/abs/2303.11366
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Introduces verbal reflection memory where agents convert environment error signals
+  into structured self-reflection critiques stored in episodic memory to guide subsequent
+  attempts.
+limitations:
+- Requires multiple task rollout attempts, increasing token cost.
+related_topics:
+- reflexion verbal reflection
+unit_ids:
+- P1-02-05
+used_in:
+- knowledge/02-agent-architectures/05-evaluator-optimizer-and-reflection.md
+local_copy: null
+sha256: null

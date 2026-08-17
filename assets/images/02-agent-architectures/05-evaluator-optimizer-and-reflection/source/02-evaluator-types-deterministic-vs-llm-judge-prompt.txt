@@ -1,0 +1,18 @@
+Create a wide educational cartoon comparison illustration titled "Evaluator Modalities: Deterministic Code Tests versus LLM Rubric Judges".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Divide the visual into two balanced comparative halves with a hybrid summary at the bottom:
+1. Left Half: "Deterministic Evaluator (Code & Schema)"
+   - A cute programmer robot running unit tests, regex linters, and compilers in a terminal.
+   - Badges: "100% Objective", "Sub-millisecond execution", "Zero token cost", "Binary Pass / Fail".
+   - Visual: Terminal screen showing `pytest: 15 passed, 0 failed`.
+
+2. Right Half: "LLM-as-a-Judge Evaluator (Semantic Rubric)"
+   - A cute judge robot wearing a small powdered wig or holding a balance scale, reviewing prose for tone, clarity, and policy compliance.
+   - Badges: "Evaluates nuance & creativity", "Multi-dimensional scoring rubric", "Subject to model bias", "Token cost per check".
+
+3. Bottom Banner: "Best Practice: Hybrid Evaluation (Deterministic Filters First, LLM Judge Second)"
+
+High contrast, bold readable text, friendly characters.
+Aspect ratio: 16:9.
