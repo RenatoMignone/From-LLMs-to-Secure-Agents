@@ -1,0 +1,12 @@
+Create a wide educational cartoon illustration titled "Plan State Board: Managing Step Lifecycle and Dynamic Re-planning".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a large, neat Kanban/status board monitored by an architect robot and worker robots:
+1. Column / Row 1: "Step 1: Ingest Data" with a green checkmark badge labeled "[COMPLETED]".
+2. Column / Row 2: "Step 2: Connect DB" with a soft red warning badge labeled "[FAILED: Timeout]".
+3. Column / Row 3: "Dynamic Replanning Event" - Architect robot drawing a green new branch card "Step 2b: Use Read-Replica DB" and updating "Step 3: Analyze Records".
+4. Column / Row 4: "Step 4: Generate Report" labeled "[PENDING]".
+
+Clear visual hierarchy, friendly robot assistants, distinct status colors (green for success, soft red/orange for blocked/replanning, neutral blue for pending).
+Aspect ratio: 16:9.

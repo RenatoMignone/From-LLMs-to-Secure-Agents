@@ -1,0 +1,17 @@
+Create a wide educational cartoon comparison illustration titled "Single-Step ReAct versus Plan-and-Execute".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Divide the visual into two balanced comparative halves:
+1. Left Half: "ReAct: Greedy 1-Step Horizon"
+   - A cute robot walking inside a low maze, looking only at the immediate wall in front of it.
+   - It bumps into a dead end, scratches its head, and turns around to try another path.
+   - Metrics badge: "Zero upfront planning latency, high adaptability, but risk of thrashing or wandering on complex tasks".
+
+2. Right Half: "Plan-and-Execute: Global Strategic Horizon"
+   - A cute robot standing on an elevated observation tower looking down at the entire maze.
+   - It draws a neat dotted green path from start to finish on a blueprint map before walking smoothly along the route.
+   - Metrics badge: "Higher upfront planning cost, structured execution board, and strong long-horizon task completion".
+
+High contrast labels, clear visual storytelling, friendly robot characters.
+Aspect ratio: 16:9.

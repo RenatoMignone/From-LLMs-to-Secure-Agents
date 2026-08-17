@@ -1,0 +1,24 @@
+id: p1-02-04-langgraph-plan-execute-2024
+title: 'LangGraph: Plan-and-Execute and Dynamic Replanning'
+authors_or_organization: LangChain
+date: '2024'
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details the architecture separating a global planner model from execution nodes,
+  using explicit plan state lists and conditional replanning feedback edges.
+limitations:
+- Framed around LangGraph stateful graph abstractions.
+related_topics:
+- plan and execute replanning graph
+unit_ids:
+- P1-02-04
+used_in:
+- knowledge/02-agent-architectures/04-plan-and-execute.md
+local_copy: null
+sha256: null

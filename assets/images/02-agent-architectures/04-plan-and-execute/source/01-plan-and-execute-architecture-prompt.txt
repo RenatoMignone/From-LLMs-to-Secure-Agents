@@ -1,0 +1,11 @@
+Create a wide educational cartoon illustration titled "The Plan-and-Execute Architecture: Decoupling Planning from Execution".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and pastel orange. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Show a clean, two-tiered architecture with a dynamic replanning feedback loop:
+1. Top Tier: "Planner (Strategy & Decomposition)" - A cute architect robot wearing small round glasses reviewing a master roadmap chalkboard with labeled step cards ("Step 1: Discover", "Step 2: Process", "Step 3: Verify").
+2. Bottom Tier: "Executor (Action & Tool Dispatch)" - Two worker robots executing step 1 and step 2 against external tool boxes (Database, API, File System) and reporting observations.
+3. Feedback Arrow: "Dynamic Replanning" - An arrow leading back from an obstacle observation to the Planner chalkboard to adjust remaining steps.
+
+Clear bold sans-serif labels, balanced composition, friendly educational style.
+Aspect ratio: 16:9.

@@ -1,0 +1,25 @@
+id: p1-02-04-anthropic-orchestrator-workers-2024
+title: 'Building Effective Agents: Orchestrator-Workers Pattern'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Analyzes the orchestrator-workers pattern where a central planning model breaks
+  down a complex task, delegates independent sub-tasks to workers, and synthesizes
+  results.
+limitations:
+- Focuses on high-level orchestration heuristics rather than formal algorithmic verification.
+related_topics:
+- orchestrator workers planning
+unit_ids:
+- P1-02-04
+used_in:
+- knowledge/02-agent-architectures/04-plan-and-execute.md
+local_copy: null
+sha256: null

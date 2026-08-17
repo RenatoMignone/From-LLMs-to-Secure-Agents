@@ -1,0 +1,27 @@
+id: p1-02-04-wang-plan-solve-2023
+title: 'Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by
+  Large Language Models'
+authors_or_organization: ACL
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.04091
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Introduces Plan-and-Solve prompting, which guides models to explicitly devise a
+  multi-step plan before calculating sub-tasks, reducing calculation and missing-step
+  errors.
+limitations:
+- Focuses on static mathematical and reasoning benchmarks rather than dynamic tool
+  execution environments.
+related_topics:
+- plan and execute pattern
+unit_ids:
+- P1-02-04
+used_in:
+- knowledge/02-agent-architectures/04-plan-and-execute.md
+local_copy: null
+sha256: null
