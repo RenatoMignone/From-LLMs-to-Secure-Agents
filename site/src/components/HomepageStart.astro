@@ -10,83 +10,170 @@ const { firstChapterRoute, completedThrough, totalUnits } = Astro.props;
 
 <section class="start-section not-content">
   <div class="start-container">
-    <h2 class="start-title">Begin reading</h2>
-    <p class="start-progress">
-      Currently published: <strong>{totalUnits} canonical units</strong> (Prerequisites &amp; Agent Foundations). Verified and completed through <code>{completedThrough}</code>.
-    </p>
-    <div class="start-action">
-      <a href={firstChapterRoute} class="btn-start">
-        Begin with the prerequisites <span class="arrow">→</span>
-      </a>
+    <div class="start-banner-card">
+      <div class="start-content">
+        <span class="start-eyebrow">Interactive Curriculum</span>
+        <h2 class="start-heading">Ready to master agent architecture &amp; security?</h2>
+        <p class="start-description">
+          Follow the sequential, dependency-ordered path starting from first principles of distributed systems, model control loops, and threat surfaces.
+        </p>
+        <div class="start-progress-pill">
+          <span class="progress-dot"></span>
+          <span><strong>{totalUnits} canonical units published</strong> · verified through {completedThrough}</span>
+        </div>
+      </div>
+      <div class="start-action-wrap">
+        <a href={firstChapterRoute} class="btn-start-primary">
+          <span>Start Chapter 1</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .start-section {
-    padding: 4rem 1rem 3.5rem;
-    text-align: center;
+    width: 100%;
+    padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4.5rem);
+    background-color: var(--color-canvas);
+    box-sizing: border-box;
   }
 
   .start-container {
-    max-width: 44rem;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
   }
 
-  .start-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 3vw, 1.85rem);
+  .start-banner-card {
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-subtle) 100%);
+    border: 1.5px solid var(--color-border);
+    border-radius: 20px;
+    padding: clamp(2.5rem, 5vw, 3.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.04);
+  }
+
+  :root[data-theme='dark'] .start-banner-card {
+    background: linear-gradient(135deg, #1E293B 0%, #151D2A 100%);
+    box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.35);
+  }
+
+  .start-content {
+    max-width: 48rem;
+  }
+
+  .start-eyebrow {
+    display: inline-block;
+    color: var(--color-teal);
+    font-size: 0.8rem;
     font-weight: 700;
-    color: var(--color-ink);
-    margin: 0 0 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
 
-  .start-progress {
-    font-size: 1.0625rem;
-    line-height: 1.65;
+  .start-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: 750;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .start-description {
+    font-size: 1.05rem;
+    line-height: 1.62;
     color: var(--color-ink-muted);
-    margin: 0 0 2rem;
+    margin: 0 0 1.5rem;
   }
 
-  .start-progress strong {
-    color: var(--color-ink);
-  }
-
-  .start-progress code {
-    font-family: var(--font-mono);
-    font-size: 0.875em;
-    background-color: var(--color-surface-subtle);
-    border: 1px solid var(--color-border);
-    padding: 0.15em 0.4em;
-    border-radius: 4px;
-    color: var(--color-ink);
-  }
-
-  .btn-start {
+  .start-progress-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+
+  :root[data-theme='dark'] .start-progress-pill {
+    background-color: #0F172A;
+  }
+
+  .start-progress-pill strong {
+    color: var(--color-ink);
+  }
+
+  .progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     background-color: var(--color-teal);
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 1.02rem;
-    padding: 0.85rem 1.75rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 140ms ease;
+    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.25);
   }
 
-  .btn-start:hover {
-    background-color: var(--color-teal-hover);
+  .start-action-wrap {
+    flex-shrink: 0;
   }
 
-  .arrow {
-    font-size: 1.1em;
-    line-height: 1;
+  .btn-start-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0D9488 0%, #0f766e 100%);
+    color: #FFFFFF !important;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
-  @media (max-width: 640px) {
-    .btn-start {
+  :root[data-theme='dark'] .btn-start-primary {
+    background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.35);
+  }
+
+  .btn-start-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(13, 148, 136, 0.45);
+    color: #FFFFFF !important;
+  }
+
+  .btn-arrow {
+    transition: transform 160ms ease;
+  }
+
+  .btn-start-primary:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 900px) {
+    .start-banner-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .start-action-wrap {
+      width: 100%;
+    }
+
+    .btn-start-primary {
       width: 100%;
       justify-content: center;
     }
