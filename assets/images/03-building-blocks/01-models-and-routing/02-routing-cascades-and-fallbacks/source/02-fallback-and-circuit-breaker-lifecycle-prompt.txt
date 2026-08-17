@@ -1,0 +1,10 @@
+Create a clear, educational cartoon illustration explaining Model Fallbacks and the Circuit Breaker Lifecycle for AI agent gateways.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, warm coral, and sage green.
+
+Show the 3 states of a resilient Circuit Breaker gateway:
+1. 'CLOSED State (Normal Operations)' - Traffic flows smoothly to the Primary Model Provider (blue robot) with a green status light.
+2. 'OPEN State (Tripped upon Outage/429)' - When Primary Provider returns HTTP 429 rate limit or 500 error, the red switch trips open; traffic instantly diverts through a smooth curved bypass to a Secondary Fallback Provider (teal robot) with zero dropped requests.
+3. 'HALF-OPEN State (Probing Recovery)' - A small canary test probe checks if Primary Provider has recovered before safely resetting the switch to CLOSED.
+
+Add high-contrast labels, friendly status lights, and clear flow arrows.

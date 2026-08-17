@@ -1,0 +1,25 @@
+id: p1-03-01-02-netflix-circuit-breakers-fallbacks-2023
+title: 'Fault Tolerance and Circuit Breakers in Distributed AI Systems'
+authors_or_organization: Netflix Technology Blog
+date: 2023-11
+source_type: documentation
+canonical_url: https://netflixtechblog.com/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details circuit breaker patterns, automated failover, jittered retries, and graceful degradation for distributed AI model gateways.
+limitations:
+- Emphasizes enterprise streaming microservices infrastructure.
+related_topics:
+- circuit breakers
+- automated failover
+- model gateways
+unit_ids:
+- P1-03-01-02
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks.md
+local_copy: null
+sha256: null

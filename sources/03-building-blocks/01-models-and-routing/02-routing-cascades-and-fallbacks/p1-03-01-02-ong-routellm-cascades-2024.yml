@@ -1,0 +1,25 @@
+id: p1-03-01-02-ong-routellm-cascades-2024
+title: 'RouteLLM: Learning to Route to Large Language Models with Preference Data'
+authors_or_organization: Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao Wu, Joseph E. Gonzalez, Ion Stoica
+date: 2024-06
+source_type: paper
+canonical_url: https://arxiv.org/abs/2406.18665
+doi: 10.48550/arXiv.2406.18665
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explains learned routing algorithms, threshold-based model dispatching, and cost-quality Pareto optimization.
+limitations:
+- Requires offline calibration on representative query distributions.
+related_topics:
+- model routing
+- threshold dispatching
+- cost optimization
+unit_ids:
+- P1-03-01-02
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks.md
+local_copy: null
+sha256: null

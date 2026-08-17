@@ -1,0 +1,13 @@
+Create a clear, educational cartoon illustration showing Model Routing and Cascade Architectures.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds or cyberpunk aesthetics.
+
+Show a 2-part horizontal flow:
+1. Left: 'Dynamic Router' - A yellow dispatcher robot examining incoming query scrolls and evaluating complexity score theta. Simple queries are routed directly to a small, fast green robot.
+2. Right: 'Progressive Escalation Cascade' - A stepped 3-tier escalation ladder:
+   - Tier 1: Small SLM ($0.02 cost) attempts generation.
+   - Quality Verifier Gate: Checks response confidence.
+   - If confidence is low, a curved escalation arrow ascends to Tier 2 Mid-Weight model ($0.50 cost).
+   - If verification fails again, ascends to Tier 3 Frontier Reasoning model ($5.00 cost) with a guaranteed high-quality badge.
+
+Include clear labels, clean transition arrows, and high visual clarity.

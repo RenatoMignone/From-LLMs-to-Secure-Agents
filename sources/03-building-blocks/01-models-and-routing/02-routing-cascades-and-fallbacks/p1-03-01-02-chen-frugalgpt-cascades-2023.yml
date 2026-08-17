@@ -1,0 +1,25 @@
+id: p1-03-01-02-chen-frugalgpt-cascades-2023
+title: 'FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance'
+authors_or_organization: Lingjiao Chen, Matei Zaharia, James Zou
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.05176
+doi: 10.48550/arXiv.2305.05176
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details the LLM Cascade architecture, scoring answer generation confidence, and progressive escalation across model APIs.
+limitations:
+- Focuses on single-turn tasks rather than long-running conversational memory state.
+related_topics:
+- model cascades
+- progressive escalation
+- confidence thresholds
+unit_ids:
+- P1-03-01-02
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks.md
+local_copy: null
+sha256: null
