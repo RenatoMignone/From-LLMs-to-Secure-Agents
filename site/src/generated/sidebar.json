@@ -44,5 +44,30 @@
         "link": "/foundations/05-run-lifecycle-and-termination/"
       }
     ]
+  },
+  {
+    "label": "Agent architectures",
+    "items": [
+      {
+        "label": "Architecture selection criteria",
+        "link": "/architectures/01-architecture-selection-criteria/"
+      },
+      {
+        "label": "Single-agent and reactive loops",
+        "link": "/architectures/02-single-agent-and-reactive-loops/"
+      },
+      {
+        "label": "Sequential, routing, and parallel workflows",
+        "link": "/architectures/03-sequential-routing-and-parallel-workflows/"
+      },
+      {
+        "label": "Plan and execute",
+        "link": "/architectures/04-plan-and-execute/"
+      },
+      {
+        "label": "Evaluator-optimizer and reflection",
+        "link": "/architectures/05-evaluator-optimizer-and-reflection/"
+      }
+    ]
   }
 ]

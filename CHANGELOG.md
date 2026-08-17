@@ -129,3 +129,35 @@
 - Files or sections: `knowledge/01-agent-foundations/05-run-lifecycle-and-termination.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Run lifecycle and termination.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-17
+
+### P1-02-01 complete
+
+- Files or sections: `knowledge/02-agent-architectures/01-architecture-selection-criteria.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Architecture selection criteria.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-02 complete
+
+- Files or sections: `knowledge/02-agent-architectures/02-single-agent-and-reactive-loops.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Single-agent and reactive loops.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-03 complete
+
+- Files or sections: `knowledge/02-agent-architectures/03-sequential-routing-and-parallel-workflows.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Sequential, routing, and parallel workflows.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-04 complete
+
+- Files or sections: `knowledge/02-agent-architectures/04-plan-and-execute.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Plan and execute.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-05 complete
+
+- Files or sections: `knowledge/02-agent-architectures/05-evaluator-optimizer-and-reflection.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Evaluator-optimizer and reflection.
+- Validation: Passed repository validation and the unit review checklist.
