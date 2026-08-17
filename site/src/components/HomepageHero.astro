@@ -85,9 +85,14 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   .hero-section {
     width: 100%;
     padding: clamp(3rem, 6vh, 5.5rem) clamp(1.5rem, 4vw, 4.5rem);
-    background: radial-gradient(circle at 15% 15%, rgba(13, 148, 136, 0.06), transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.05), transparent 45%);
+    background: radial-gradient(circle at 15% 15%, rgba(23, 146, 153, 0.07), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(114, 135, 253, 0.06), transparent 45%);
     box-sizing: border-box;
+  }
+
+  :global(:root[data-theme='dark']) .hero-section {
+    background: radial-gradient(circle at 15% 15%, rgba(203, 166, 247, 0.09), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(148, 226, 213, 0.08), transparent 45%);
   }
 
   .hero-container {
@@ -117,12 +122,22 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     margin-bottom: 1.5rem;
   }
 
+  :global(:root[data-theme='dark']) .hero-badge {
+    background-color: rgba(203, 166, 247, 0.12);
+    border-color: rgba(203, 166, 247, 0.3);
+  }
+
   .badge-pulse {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: var(--color-teal);
-    box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.25);
+    box-shadow: 0 0 0 2px rgba(23, 146, 153, 0.25);
+  }
+
+  :global(:root[data-theme='dark']) .badge-pulse {
+    background-color: var(--color-mauve);
+    box-shadow: 0 0 0 2px rgba(203, 166, 247, 0.3);
   }
 
   .badge-text {
@@ -130,6 +145,10 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: var(--color-teal);
+  }
+
+  :global(:root[data-theme='dark']) .badge-text {
+    color: var(--color-mauve);
   }
 
   .hero-heading {
@@ -143,14 +162,14 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   }
 
   .hero-accent-text {
-    background: linear-gradient(135deg, var(--color-teal) 0%, #0891b2 100%);
+    background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-blue) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
   }
 
   :global(:root[data-theme='dark']) .hero-accent-text {
-    background: linear-gradient(135deg, #5EEAD4 0%, #93C5FD 100%);
+    background: linear-gradient(135deg, #CBA6F7 0%, #89B4FA 50%, #94E2D5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -177,27 +196,35 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     gap: 0.65rem;
     padding: 0.95rem 1.85rem;
     border-radius: 12px;
-    background: linear-gradient(135deg, #0D9488 0%, #0f766e 100%);
+    background: linear-gradient(135deg, #179299 0%, #1e66f2 100%);
     color: #FFFFFF !important;
     font-family: var(--font-heading);
     font-size: 1.08rem;
     font-weight: 700;
     text-decoration: none !important;
-    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 14px rgba(23, 146, 153, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   :global(:root[data-theme='dark']) .btn-hero-primary {
-    background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
-    box-shadow: 0 4px 16px rgba(20, 184, 166, 0.35);
+    background: linear-gradient(135deg, #CBA6F7 0%, #89B4FA 100%);
+    color: #11111B !important;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(203, 166, 247, 0.35);
   }
 
   .btn-hero-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(13, 148, 136, 0.45);
-    background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);
+    box-shadow: 0 8px 22px rgba(23, 146, 153, 0.45);
+    background: linear-gradient(135deg, #13777d 0%, #1550c0 100%);
     color: #FFFFFF !important;
+  }
+
+  :global(:root[data-theme='dark']) .btn-hero-primary:hover {
+    background: linear-gradient(135deg, #F5C2E7 0%, #B4BEFE 100%);
+    color: #11111B !important;
+    box-shadow: 0 8px 24px rgba(203, 166, 247, 0.45);
   }
 
   .btn-hero-secondary {
@@ -217,11 +244,22 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  :global(:root[data-theme='dark']) .btn-hero-secondary {
+    background-color: var(--color-surface-card);
+    border-color: var(--color-border);
+  }
+
   .btn-hero-secondary:hover {
     transform: translateY(-2px);
     border-color: var(--color-teal);
     color: var(--color-teal) !important;
-    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+    box-shadow: 0 4px 12px var(--color-teal-subtle);
+  }
+
+  :global(:root[data-theme='dark']) .btn-hero-secondary:hover {
+    border-color: var(--color-mauve);
+    color: var(--color-mauve) !important;
+    box-shadow: 0 4px 14px rgba(203, 166, 247, 0.2);
   }
 
   .btn-arrow {
@@ -257,7 +295,8 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   }
 
   :global(:root[data-theme='dark']) .feature-pill {
-    background-color: var(--color-surface-subtle);
+    background-color: var(--color-surface-card);
+    border-color: var(--color-border);
   }
 
   .pill-dot {
@@ -267,9 +306,9 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   }
 
   .pill-teal { background-color: var(--color-teal); }
-  .pill-amber { background-color: #F59E0B; }
-  .pill-lavender { background-color: #8B5CF6; }
-  .pill-sage { background-color: #10B981; }
+  .pill-amber { background-color: var(--color-amber); }
+  .pill-lavender { background-color: var(--color-lavender); }
+  .pill-sage { background-color: var(--color-sage); }
 
   /* Right Visual Card */
   .hero-visual {
@@ -278,22 +317,27 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
 
   .visual-card {
     width: 100%;
+    border-radius: 18px;
     background-color: var(--color-surface);
     border: 1.5px solid var(--color-border);
-    border-radius: 20px;
+    box-shadow: 0 14px 40px -6px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    box-shadow: 0 14px 40px -6px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
     transition: transform 220ms ease, box-shadow 220ms ease;
   }
 
   :global(:root[data-theme='dark']) .visual-card {
-    background-color: var(--color-surface-subtle);
-    box-shadow: 0 14px 44px -6px rgba(0, 0, 0, 0.4);
+    background-color: var(--color-surface-card);
+    border-color: var(--color-border);
+    box-shadow: 0 16px 44px -6px rgba(0, 0, 0, 0.45);
   }
 
   .visual-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 20px 52px -6px rgba(13, 148, 136, 0.16);
+    box-shadow: 0 20px 52px -6px var(--color-teal-subtle);
+  }
+
+  :global(:root[data-theme='dark']) .visual-card:hover {
+    box-shadow: 0 20px 52px -6px rgba(203, 166, 247, 0.2);
   }
 
   .visual-card-header {

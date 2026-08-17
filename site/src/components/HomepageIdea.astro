@@ -179,14 +179,20 @@
   }
 
   :root[data-theme='dark'] .reality-card {
-    background-color: var(--color-surface-subtle);
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-surface-card);
+    border-color: var(--color-border);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25);
   }
 
   .reality-card:hover {
     transform: translateY(-3px);
     border-color: var(--color-teal);
-    box-shadow: 0 12px 28px -4px rgba(13, 148, 136, 0.14);
+    box-shadow: 0 12px 28px -4px var(--color-teal-subtle);
+  }
+
+  :root[data-theme='dark'] .reality-card:hover {
+    border-color: var(--color-mauve);
+    box-shadow: 0 12px 32px -4px rgba(203, 166, 247, 0.2);
   }
 
   .reality-num {
@@ -196,7 +202,11 @@
     line-height: 1;
     color: var(--color-teal);
     margin-bottom: 1.25rem;
-    opacity: 0.85;
+    opacity: 0.9;
+  }
+
+  :root[data-theme='dark'] .reality-num {
+    color: var(--color-mauve);
   }
 
   .reality-heading {
@@ -230,8 +240,9 @@
   }
 
   :root[data-theme='dark'] .method-banner {
-    background: linear-gradient(135deg, #1E293B 0%, #131B26 100%);
-    box-shadow: 0 8px 28px -4px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(135deg, var(--color-surface-card) 0%, var(--color-surface-subtle) 100%);
+    border-color: var(--color-border);
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.35);
   }
 
   .method-label {
@@ -242,6 +253,10 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
+  }
+
+  :root[data-theme='dark'] .method-label {
+    color: var(--color-mauve);
   }
 
   .method-title {
@@ -280,9 +295,9 @@
     flex-shrink: 0;
   }
 
-  .m-dot.teal { background-color: var(--color-teal); box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2); }
-  .m-dot.amber { background-color: #F59E0B; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2); }
-  .m-dot.lavender { background-color: #8B5CF6; box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2); }
+  .m-dot.teal { background-color: var(--color-teal); box-shadow: 0 0 0 2px var(--color-teal-subtle); }
+  .m-dot.amber { background-color: var(--color-amber); box-shadow: 0 0 0 2px var(--color-amber-subtle); }
+  .m-dot.lavender { background-color: var(--color-lavender); box-shadow: 0 0 0 2px var(--color-lavender-subtle); }
 
   .m-feat div {
     display: flex;
