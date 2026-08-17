@@ -4,7 +4,7 @@
 
 Visuals must clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or multi-step execution. Do not create ASCII or text-based .md schemas. Whenever a schema, workflow, state flow, or architecture map is needed, generate a visual cartoon illustration instead.
 
-A chapter can contain as many visuals as needed (from 0 if text and tables suffice, to multiple diagrams and schemes when visual clarity helps). The agent evaluates the topic and decides the number of visuals that best supports reader comprehension.
+Chapters should incorporate multiple visual illustrations (typically 2 to 4 diagrams per unit, covering system topology, sequence flows, boundary crossings, state machines, and threat scenarios). The authoring agent should proactively identify every concept that benefits from visual depiction rather than relying on a single overview image. Visuals are a primary learning mechanism for readers.
 
 ## Preference order
 

@@ -20,13 +20,14 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 
 - Use simple, accessible English; define technical terms on first use. Omit empty placeholders.
 - Never create ASCII/text-based .md schemas. Generate PNG/WebP cartoon illustrations matching `assets/images/repo-images/source/prompt.txt`.
+- Include multiple cartoon visuals per chapter (2 to 4 where possible, covering architecture, control flow, boundaries, and threat paths) whenever visual illustration improves reader comprehension.
 - Include a next-unit navigation button/link at the end of each chapter.
 - Teach in dependency order: functional architecture before detailed security.
 - Preserve a short main path; label deep-dive branches clearly.
 - Map risks to components; ground claims in official sources (`sources/<chapter-path>/<source-id>.yml`).
 - Keep visuals local and traceable; save visual prompts in `source/` before generating. No SVGs.
 - Mirror chapters under `assets/images/`, `sources/`, and `examples/`.
-- Keep Markdown canonical; generate the site from it.
+- Keep Markdown canonical; generate and validate the site (`npm --prefix site run build && npm --prefix site run check`).
 - Store small runnable examples under `examples/<chapter-path>/`.
 - Let scripts update operational metadata. Update `README.md` only when public facts change.
 - Treat `PROJECT_STATUS.md` front matter as operational truth.
