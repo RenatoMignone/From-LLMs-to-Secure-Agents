@@ -1,0 +1,25 @@
+id: p1-02-06-harel-statecharts-1987
+title: 'Statecharts: A Visual Formalism for Complex Systems'
+authors_or_organization: David Harel
+date: 1987-06
+source_type: paper
+canonical_url: https://www.sciencedirect.com/science/article/pii/0167642387900359
+doi: 10.1016/0167-6423(87)90035-9
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Defines the formal foundation for state machines with hierarchical states, orthogonality and concurrency, and event-driven transitions.
+limitations:
+- Seminal foundational computer science paper, written prior to modern neural network architectures.
+related_topics:
+- statecharts
+- finite state machines
+- event driven systems
+unit_ids:
+- P1-02-06
+used_in:
+- knowledge/02-agent-architectures/06-state-machines-and-event-driven-graphs.md
+local_copy: null
+sha256: null

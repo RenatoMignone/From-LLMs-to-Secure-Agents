@@ -1,0 +1,25 @@
+id: p1-02-06-langchain-langgraph-2024
+title: 'LangGraph: Multi-Agent Workflows and State Machines'
+authors_or_organization: LangChain
+date: 2024-01
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explains cyclic event-driven graph architectures for LLM agents, defining state schemas, nodes, conditional edges, checkpointers, and human-in-the-loop interruption.
+limitations:
+- Focuses primarily on graph orchestration rather than low-level distributed consensus protocols.
+related_topics:
+- state machines
+- event driven graphs
+- checkpointers
+unit_ids:
+- P1-02-06
+used_in:
+- knowledge/02-agent-architectures/06-state-machines-and-event-driven-graphs.md
+local_copy: null
+sha256: null

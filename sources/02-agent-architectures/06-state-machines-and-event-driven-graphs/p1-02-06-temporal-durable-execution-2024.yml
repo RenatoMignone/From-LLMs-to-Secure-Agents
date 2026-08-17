@@ -1,0 +1,25 @@
+id: p1-02-06-temporal-durable-execution-2024
+title: 'Durable Execution: Designing Resilient AI Workflows and State Machines'
+authors_or_organization: Temporal Technologies
+date: 2024-06
+source_type: documentation
+canonical_url: https://temporal.io/blog/durable-execution-for-ai-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details deterministic event sourcing, durable state machines, execution replay, and handling external event signals and timeouts in agentic workflows.
+limitations:
+- Emphasizes workflow-as-code paradigms rather than prompt-directed emergent routing.
+related_topics:
+- durable execution
+- event sourcing
+- state machines
+unit_ids:
+- P1-02-06
+used_in:
+- knowledge/02-agent-architectures/06-state-machines-and-event-driven-graphs.md
+local_copy: null
+sha256: null

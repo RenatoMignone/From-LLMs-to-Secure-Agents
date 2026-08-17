@@ -1,0 +1,15 @@
+Create a clear, educational cartoon illustration explaining a State Machine and Event-Driven Graph Architecture for AI agents.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Use a light cream background with a calm pastel palette of soft blue, teal, sage green, and warm neutral tones. Avoid dark backgrounds, cyberpunk themes, or sterile flowchart aesthetics.
+
+Show a cyclic graph layout with distinct circular and rounded-rectangle nodes connected by smooth directional arrows:
+1. An 'Input State' box on the left feeding an initial payload into the graph.
+2. A central 'Agent Planner' robot node evaluating the state.
+3. Conditional branching edges with clear labels:
+   - One edge leads to a 'Tool Execution' robot node carrying a wrench and magnifying glass.
+   - Another edge leads to a 'Human Approval' checkpoint node with a friendly supervisor badge.
+4. A central glowing 'Shared State Schema' clipboard showing tracked variables (messages, memory, step count) updated at each step.
+5. An edge leading to a green 'End / Final Artifact' output on the right with a checkmark badge.
+6. A return feedback edge looping back from Tool Execution to Agent Planner.
+
+Include clear, readable labels on nodes and edges. Keep the composition balanced, spacious, and inviting for learners.

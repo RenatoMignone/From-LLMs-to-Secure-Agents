@@ -1,0 +1,10 @@
+Create a clear, educational cartoon illustration explaining Durable Checkpoints and Human-in-the-Loop Interruption in event-driven agent graphs.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Use a light cream background with a calm pastel palette of soft blue, teal, warm coral, and sage green.
+
+Show a 3-stage horizontal process:
+1. Left stage: 'Step Execution & Snapshot' showing a cute blue agent robot completing a reasoning step and saving its state snapshot into a sturdy, friendly database safe labeled 'Durable Checkpointer'.
+2. Middle stage: 'Execution Interrupted' showing a yellow pause gate. The agent is sleeping safely while a friendly human inspector reviews an action proposal on a tablet labeled 'External Approval Event'.
+3. Right stage: 'Re-entrant Resume' showing the human approving the action with a green checkmark signal, and the agent waking up, loading the exact state from the Checkpointer database, and safely completing the workflow.
+
+Add clear, cheerful labels, smooth curved transition arrows, and well-spaced elements. Ensure high educational clarity and visual warmth.
