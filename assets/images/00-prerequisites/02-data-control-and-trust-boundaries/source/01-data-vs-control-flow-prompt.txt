@@ -1,0 +1,16 @@
+Use case: scientific-educational
+Asset type: labeled architecture diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Data vs. Control: Dissecting Software Messages"
+
+Composition (left-to-right flow):
+1. On the left, a friendly user sends an envelope labeled "HTTP Request (JSON)".
+2. In the center, a cute blue robot assistant with a magnifying glass inspects the message and separates it into two distinct glowing trays:
+   - Top Tray (Teal) labeled "DATA PAYLOAD" containing items: `destination: "Florence"`, `date: "2026-09-12"`. A label below reads: "What is being discussed or remembered".
+   - Bottom Tray (Pastel Orange) labeled "CONTROL COMMAND" containing: `action: "save_itinerary"`, `actor_id: "maya"`. A label below reads: "What action is requested to happen next".
+3. On the right, an authorization checkpoint shield checks permissions before passing the data to a friendly storage cylinder labeled "DURABLE STORE".
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

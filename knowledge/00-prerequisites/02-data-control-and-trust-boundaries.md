@@ -13,7 +13,10 @@ learning_objectives:
 source_records:
 - p1-00-02-rfc-8259-json
 - p1-00-02-rfc-9110-http-semantics
-visual_assets: []
+visual_assets:
+- assets/images/00-prerequisites/02-data-control-and-trust-boundaries/01-data-vs-control-flow.png
+- assets/images/00-prerequisites/02-data-control-and-trust-boundaries/02-trust-boundaries-and-assumptions.png
+- assets/images/00-prerequisites/02-data-control-and-trust-boundaries/03-boundary-crossing-controls.png
 example_paths: []
 pass: architecture
 learning_path: main
@@ -48,7 +51,11 @@ The last two fields are neither proof nor permission by themselves. They are inp
 
 ## Position in the agent workflow
 
-Use the system-context diagram in the previous chapter as the map. A user, an application process, a store, and an external service are the named components. Label each arrow twice: first with the data that crosses it, then with the control meaning, if any.
+Use this diagram to trace how software systems separate data payloads from control commands during request processing.
+
+![A labeled cartoon architecture diagram titled 'Data vs. Control: Dissecting Software Messages'. A user sends an HTTP Request envelope. A cute blue robot helper inspects the message and separates it into a teal Data Payload containing destination Florence and date 2026-09-12, and a pastel orange Control Command containing action save_itinerary and actor_id maya. The control command passes through a Permission Check gate before allowing data to be written into a Durable Store.](../../assets/images/00-prerequisites/02-data-control-and-trust-boundaries/01-data-vs-control-flow.png)
+
+*Figure 1. Separating data from control. Data describes information to be stored or transformed; control requests an explicit action. A system evaluates permissions before allowing control instructions to update durable state.*
 
 For the itinerary story, a browser sends the application the chosen destination and a request to save it. The application writes the itinerary to its store. It might later ask a map service to calculate travel times. The write moves data into durable state. The map request also directs another system to perform work. The same arrow can carry both a destination and an instruction such as “calculate route.”
 
@@ -76,6 +83,10 @@ Read the message in two passes. In the data pass, `destination` and `date` descr
 ### A boundary marks a changed assumption
 
 A **trust boundary** is a line in a diagram where an assumption must be checked again. It is a teaching and design term, not a claim that one side is safe and the other is unsafe. The useful question is: *what no longer follows automatically after this line?*
+
+![A labeled cartoon architecture diagram titled 'Trust Boundaries: Identifying Changed Assumptions'. On the left, a user at a laptop labeled Client Browser (Maya) sends a request across an orange dashed Client Boundary (Untrusted Input). In the center, an Application Host box features a cute blue robot verifying permissions and routing messages. On the right, two separate paths cross dashed lines: an upper path across a Storage Boundary to an Internal Store database cylinder, and a lower path across a Vendor Boundary to an External Map Service cloud.](../../assets/images/00-prerequisites/02-data-control-and-trust-boundaries/02-trust-boundaries-and-assumptions.png)
+
+*Figure 2. Identifying changed assumptions across trust boundaries. A dashed boundary marks where caller identity, data validity, or execution authority must be re-evaluated rather than assumed.*
 
 For example, the application may regard a value in its own store as having passed its normal checks. When it receives the same-looking value from a browser, it cannot make that assumption. When it sends a request to a map service, the map service has its own account, rules, availability, and records. Each crossing changes which component is responsible for interpreting the message and deciding whether to act.
 
@@ -127,6 +138,10 @@ Control flow alone does not promise that an action completed. An application can
 ## Trust boundaries
 
 Draw a trust boundary around the part whose rules you are currently discussing. Then label every connection that crosses it with the smallest useful set of facts: the sender, the receiver, the data, and the requested action. If the connection can cause an effect outside the boundary, name that effect too.
+
+![A labeled cartoon architecture diagram titled 'Boundary Crossing Controls: The Verification Gate'. On the left, an untrusted message envelope crosses a vertical dashed trust boundary line. In the center, two cute robot inspectors represent verification gates: one verifying schema validation and the second verifying an authority check. On the right, controlled outcomes show an authorized path leading to database state updates and an unauthorized path returning a rejection without changing state.](../../assets/images/00-prerequisites/02-data-control-and-trust-boundaries/03-boundary-crossing-controls.png)
+
+*Figure 3. Verification gates at trust boundaries. Before an incoming request can trigger state transitions or invoke downstream components, the host runtime evaluates schema structure and caller authorization.*
 
 This is not detailed security analysis. It is inventory. Later, the [threat model](../06-threat-model/chapter-plan.md) will use the inventory to discuss assets, actors, authority, boundaries, and side effects. For now, a well-labelled boundary prevents us from assigning every decision to the vague phrase “the system.”
 

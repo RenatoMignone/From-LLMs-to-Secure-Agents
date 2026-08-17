@@ -1,0 +1,17 @@
+Use case: scientific-educational
+Asset type: labeled comparison diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Agent Loop Variants: Sequential, Parallel, and Human-Gated"
+
+Composition (3 horizontal rows or panels):
+1. Panel 1 (Top): "1. Synchronous Single-Action Loop"
+   - Sequential flow: Model emits Tool A -> Host executes Tool A -> Observation returned -> Next turn.
+2. Panel 2 (Middle): "2. Parallel Multi-Tool Dispatch"
+   - Model emits 3 concurrent queries [Search A, Search B, Search C] -> Host dispatches concurrently to 3 tool workers -> Merges observations in a single turn.
+3. Panel 3 (Bottom): "3. Human-in-the-Loop Paused Turn"
+   - Model proposes high-impact action `delete_database()` -> Host pauses loop with amber traffic light -> Presents raw parameters to human operator -> Waits for approval before dispatching.
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

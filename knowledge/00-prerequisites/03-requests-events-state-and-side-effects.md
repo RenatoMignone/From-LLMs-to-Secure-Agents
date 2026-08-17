@@ -15,6 +15,8 @@ source_records:
 - p1-00-03-cloudevents-1-0
 visual_assets:
 - assets/images/00-prerequisites/03-requests-events-state-and-side-effects/01-request-state-event-effect.png
+- assets/images/00-prerequisites/03-requests-events-state-and-side-effects/02-requests-vs-events-comparison.png
+- assets/images/00-prerequisites/03-requests-events-state-and-side-effects/03-state-transition-and-side-effect-decoupling.png
 example_paths:
 - examples/00-prerequisites/01-reader-contract-and-system-map
 pass: architecture
@@ -54,6 +56,10 @@ Read it from left to right. An incoming message reaches a running application pr
 
 A **request** is directed at a receiver: it asks that receiver to try some work. An HTTP request is a familiar example. HTTP defines method semantics, including whether the client requests a state change, but the application decides what each request means for its own data. [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html) also makes an important distinction: a method can be safe from the client's point of view even though the server performs an incidental effect, such as writing an access log.
 
+![A labeled cartoon comparison diagram titled 'Requests vs. Events: Two Different Kinds of Messages'. On the left, a blue panel labeled 'A REQUEST: Please try this' shows a user handing a single envelope to a blue robot receiver, with points noting it is directed, forward-looking, and may fail. On the right, a green panel labeled 'AN EVENT: This occurred' shows a green robot broadcasting a statement 'itinerary.saved' to separate analytics and notification worker robots, noting it is a broadcast backward-looking statement of fact.](../../assets/images/00-prerequisites/03-requests-events-state-and-side-effects/02-requests-vs-events-comparison.png)
+
+*Figure 2. Contrasting requests and events. A request asks a specific receiver to attempt an action; an event publishes a completed occurrence that independent consumers can observe asynchronously.*
+
 An **event** looks backward rather than forward. It is a record that an occurrence took place, plus its context. CloudEvents, a vendor-neutral event format specification, uses exactly this distinction: an occurrence is a captured statement of fact during system operation, and an event expresses that occurrence and its context. [CloudEvents 1.0](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md) does not make the event true by itself or define its delivery guarantee. It gives different systems a common envelope for carrying it.
 
 | Message | Direction of meaning | Example | It does not prove |
@@ -66,6 +72,10 @@ One physical message can contain either kind, and a receiving component may turn
 ### State changes one transition at a time
 
 **State** is the information a system currently uses to describe its situation. For this chapter, the itinerary store's state is the saved itinerary and its status. A **state transition** is the named step from the old situation to the next one. It is clearer to write both states than to say merely “update it.”
+
+![A labeled cartoon architecture diagram titled 'Decoupling: State Changes vs. Emitted Events vs. Side Effects'. Three outcome panels show: 1. Core State Committed (a blue robot writing to a database cylinder), 2. Event Log Recorded (a green robot stamping an event into a stream), and 3. External Side Effect (a message crossing a dashed trust boundary to an external notification service). A callout notes that if the external service fails, the database state remains safe.](../../assets/images/00-prerequisites/03-requests-events-state-and-side-effects/03-state-transition-and-side-effect-decoupling.png)
+
+*Figure 3. Decoupling state updates, event logging, and side effects. Persisting core state is separate from recording an event or requesting external actions across network boundaries.*
 
 ```text
 old state:  no itinerary for Maya on 2026-09-12

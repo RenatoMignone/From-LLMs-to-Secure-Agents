@@ -18,6 +18,7 @@ source_records:
 - p1-01-01-anthropic-building-effective-agents-2024
 visual_assets:
 - assets/images/01-agent-foundations/01-what-is-an-agent/01-model-workflow-agent-comparison.png
+- assets/images/01-agent-foundations/01-what-is-an-agent/02-seven-components-of-an-agent.png
 example_paths: []
 pass: architecture
 learning_path: main
@@ -69,6 +70,10 @@ Read the three paradigms from left to right:
 ### Core components of an agent system
 
 An agent is not a single algorithm or neural network. It is a composite software architecture consisting of seven interrelated components:
+
+![A labeled cartoon architecture diagram titled 'The Seven Core Components of an Agent System'. A central cute blue robot labeled Agent System is surrounded by seven modular component cards: 1. Goal (target objective), 2. Policy and Guardrails (protective shield), 3. Reasoning Model (cognitive engine), 4. Environment (APIs, files, databases), 5. Actions and Tools (tool belt), 6. Observations (feedback sensor), and 7. State and Memory (database cylinder and context history).](../../assets/images/01-agent-foundations/01-what-is-an-agent/02-seven-components-of-an-agent.png)
+
+*Figure 2. The seven structural components of an agent system. The reasoning model is surrounded by goals, policies, tools, environments, observations, and memory.*
 
 1. **Goal (Objective)**: The desired end state or task definition assigned to the agent (for example, "Find all customer accounts with expired subscriptions and generate renewal notices").
 2. **Policy (Instructions and Guardrails)**: The governing rules, system prompts, operational constraints, and authority limits that define how the agent is permitted to pursue its goal.

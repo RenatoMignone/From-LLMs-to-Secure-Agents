@@ -19,7 +19,8 @@ source_records:
 - p1-01-02-anthropic-effective-agents-2024
 visual_assets:
 - assets/images/01-agent-foundations/02-the-agent-loop/01-agent-loop-cycle.png
-example_paths: []
+example_paths:
+- examples/01-agent-foundations/02-the-agent-loop
 pass: architecture
 learning_path: main
 status: complete
@@ -201,6 +202,13 @@ Turn 3:
 - **Premature Halting**: The model encounters a minor warning in a tool observation and assumes the entire task is impossible, aborting without attempting alternative tools.
 
 ## Worked example
+
+Run the typed agent loop implementation locally:
+
+```bash
+python3 examples/01-agent-foundations/02-the-agent-loop/agent_loop.py
+python3 -m unittest examples/01-agent-foundations/02-the-agent-loop/tests/test_agent_loop.py
+```
 
 Consider an agent diagnosing disk space on a remote server:
 

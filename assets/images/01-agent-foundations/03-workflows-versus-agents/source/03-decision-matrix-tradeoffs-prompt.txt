@@ -1,0 +1,25 @@
+Use case: scientific-educational
+Asset type: labeled decision guide diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Architectural Decision Guide: Workflow or Agent?"
+
+Composition (comparison decision tree / trade-off balance):
+1. Left Branch (Sage Green - Choose Workflow):
+   - "CHOOSE A DETERMINISTIC WORKFLOW WHEN:"
+     • Execution steps are predictable in advance
+     • Strict low latency (<1s) and bounded cost are required
+     • High determinism and straightforward unit testability needed
+     • Security requires rigid, compile-time tool access
+   - Visual: Friendly blue robot happily operating a reliable train on tracks.
+2. Right Branch (Pastel Orange - Choose Autonomous Agent):
+   - "CHOOSE AN AUTONOMOUS AGENT WHEN:"
+     • Task requires open-ended discovery and multi-step exploration
+     • Execution trajectory depends on unpredictable intermediate findings
+     • System must handle unstructured, highly variable inputs
+     • Higher latency and API budget are acceptable
+   - Visual: Cute robot navigator with compass and tool backpack exploring novel paths.
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

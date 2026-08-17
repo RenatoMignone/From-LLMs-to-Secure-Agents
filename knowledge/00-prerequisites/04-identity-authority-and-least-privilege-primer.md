@@ -17,6 +17,8 @@ source_records:
 - p1-00-04-nist-ai-rmf-1-0
 visual_assets:
 - assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/01-identity-delegation-least-privilege.png
+- assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/02-impersonation-vs-delegation.png
+- assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/03-least-privilege-blast-radius.png
 example_paths: []
 pass: architecture
 learning_path: main
@@ -83,11 +85,19 @@ Standards such as [RFC 8693](https://www.rfc-editor.org/rfc/rfc8693.html) define
 - **Impersonation**: Actor A is granted a credential that makes it completely indistinguishable from User B. Downstream systems only see User B. If Actor A performs an action, the audit log records User B as the sole actor.
 - **Delegation**: Actor A retains its own identity while presenting proof that User B authorized it to act on B's behalf. Downstream systems can inspect both identities simultaneously: the subject on whose behalf the action is taken, and the actor executing the call.
 
+![A labeled cartoon comparison diagram titled 'Impersonation vs. Scoped Delegation: Preserving Auditability'. On the left, an orange panel shows Impersonation as an anti-pattern: a robot wears a disguise mask of user Maya, causing audit logs to attribute changes solely to Maya. On the right, a sage green panel shows Scoped Delegation as best practice: a cute robot presents a dual-identity badge with distinct actor and subject identifiers along with scoped permissions, ensuring audit logs cleanly attribute agent actions.](../../assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/02-impersonation-vs-delegation.png)
+
+*Figure 2. Impersonation versus scoped delegation. Delegation maintains dual-actor attribution in audit trails and limits granted authority to specific operational scopes.*
+
 Delegation semantics are essential for multi-actor workflows. When an agent calls an external API using delegation, security logs can trace that `agent_travel_01` created a calendar entry for `user_maya_102`. If an anomaly occurs, administrators can identify whether an issue originated from human user interaction or an autonomous agent loop.
 
 ### The principle of least privilege shrinks the blast radius
 
 The **Principle of Least Privilege**, first formulated by Jerome H. Saltzer and Michael D. Schroeder in [The Protection of Information in Computer Systems (1975)](https://doi.org/10.1109/PROC.1975.9939), states that every program and user in a system should operate using the smallest set of privileges necessary to complete its assigned job.
+
+![A labeled cartoon architecture diagram titled 'The Principle of Least Privilege: Blast Radius Containment'. The top panel illustrates excessive privilege: a robot wielding a master admin key creates a massive uncontained blast radius across database, mailbox, and financials upon error. The bottom panel illustrates least privilege: a cute blue robot holds only a scoped calendar write key, keeping all other services safely protected behind security shields with a minimal contained blast radius.](../../assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/03-least-privilege-blast-radius.png)
+
+*Figure 3. Principle of least privilege and blast radius containment. Restricting an agent to the minimal required capability ensures errors or malicious inputs cannot affect unrelated services.*
 
 Saltzer and Schroeder demonstrated that limiting privileges achieves two vital safeguards:
 

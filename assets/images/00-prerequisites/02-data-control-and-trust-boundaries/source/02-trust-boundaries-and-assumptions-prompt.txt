@@ -1,0 +1,18 @@
+Use case: scientific-educational
+Asset type: labeled architecture diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Trust Boundaries: Identifying Changed Assumptions"
+
+Composition (left-to-right flow with dashed boundary lines):
+1. Left Box: "CLIENT BROWSER (Maya)". A user at a laptop sending an HTTP Request.
+   - [Dashed Boundary 1 labeled "CLIENT BOUNDARY (Untrusted Input)"]
+2. Center Main Box: "APPLICATION HOST". A cute blue robot worker managing application logic.
+   - Above the robot: "Validates schema and actor authority".
+   - Split output paths to the right:
+     a) Top Path across [Dashed Boundary 2 labeled "STORAGE BOUNDARY (Durable State)"] leading to a blue database cylinder labeled "INTERNAL STORE".
+     b) Bottom Path across [Dashed Boundary 3 labeled "VENDOR BOUNDARY (External Domain)"] leading to a green cloud service box labeled "EXTERNAL MAP SERVICE".
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

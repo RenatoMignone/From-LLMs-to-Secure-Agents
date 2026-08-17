@@ -1,0 +1,21 @@
+Use case: scientific-educational
+Asset type: labeled security & lifecycle diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Multi-Layered Termination Defenses: Halting Runaway Agents"
+
+Composition (4 defensive filter layers protecting system stability):
+A running agent loop attempting turns passes through 4 sequential defensive filters:
+1. "Layer 1: Model Completion Signal" (Green Checkmark):
+   - Model explicitly emits `FINAL_ANSWER` or `finish_task()`. Normal clean completion.
+2. "Layer 2: Resource Budgets" (Amber Stopwatch & Token Gauge):
+   - Host runtime caps: Max Turns (e.g. 5 steps), Max Tokens (e.g. 10k), Max Wall-clock Time (30s).
+   - If exceeded, forces immediate abort.
+3. "Layer 3: Policy Invariant Guards" (Teal Shield):
+   - Catches forbidden tool calls, repetitive stuck loop thrashing, and unhandled runtime exceptions.
+4. "Layer 4: External Operator Interrupt" (Red Emergency Stop Switch):
+   - Human operator click or system SIGTERM signal immediately halts process and tears down sandbox resources.
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

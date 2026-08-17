@@ -1,0 +1,18 @@
+Use case: scientific-educational
+Asset type: labeled architecture diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "Boundary Crossing Controls: The Verification Gate"
+
+Composition (3-step inspection process across a trust boundary):
+1. Left: "1. UNTRUSTED MESSAGE". A message card containing JSON `{actor: maya, action: save_itinerary, data: Florence}` crossing an orange dashed line labeled "TRUST BOUNDARY".
+2. Center: "2. VERIFICATION GATES". Two cute robot security inspectors evaluating the message:
+   - Inspector A (Teal Robot) holding a ruler labeled "SCHEMA VALIDATION" (Checks structure and fields).
+   - Inspector B (Sage Green Robot) holding a key and badge labeled "AUTHORITY CHECK" (Verifies permission: `itineraries:write`).
+3. Right: "3. CONTROLLED OUTCOME". Split into two outcomes:
+   - Green Checkmark Path: "Authorized Request -> State Written to Database".
+   - Red Cross Path: "Unauthorized or Malformed -> Rejection Returned (No State Change)".
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

@@ -1,0 +1,19 @@
+Use case: scientific-educational
+Asset type: labeled cycle diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "The Perception-Reasoning-Action Loop (Classical AI to Modern Agents)"
+
+Composition (clockwise 4-step cyclical loop):
+1. Top Step: "1. PERCEIVE / OBSERVE" (Sage Green)
+   - Cute blue robot reading sensor gauges, API responses, or error messages from the environment.
+2. Right Step: "2. REASON / PLAN (Thought)" (Soft Blue)
+   - Robot generating an intermediate thought trace, consulting goals and policy guardrails.
+3. Bottom Step: "3. ACT / TOOL EXECUTION" (Pastel Orange)
+   - Robot executing an action across a trust boundary (calling a search API, editing a file, sending a command).
+4. Left Step: "4. EVALUATE FEEDBACK" (Teal)
+   - Robot checking observation against goal criteria: "Is task complete? If no, loop back to Step 1; if yes, finish."
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

@@ -1,0 +1,20 @@
+Use case: scientific-educational
+Asset type: labeled autonomy spectrum diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "The Autonomy Spectrum and Human Escalation Gates"
+
+Composition (horizontal progression from left to right with escalation triggers):
+1. Tier 1 (Left - Direct Tool): "1. Direct Tool (No Autonomy)"
+   - Human clicks run for every single model prompt. No independent tool selection.
+2. Tier 2 (Center-Left - HITL): "2. Human-in-the-Loop (Low Autonomy)"
+   - Agent proposes each action; human must click "Approve" before any tool executes.
+3. Tier 3 (Center-Right - HOTL): "3. Human-on-the-Loop (Supervised Autonomy)"
+   - Agent executes routine safe actions (read files, query search) independently.
+   - Escalation trigger: High-risk action (transfer money, delete table) pauses loop and rings human alarm bell.
+4. Tier 4 (Right - Full Autonomy): "4. Human-out-of-the-Loop (Full Autonomy)"
+   - End-to-end autonomous execution bounded strictly by automated deterministic runtime policies.
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.

@@ -1,0 +1,19 @@
+Use case: scientific-educational
+Asset type: labeled architecture diagram for a technical learning guide
+
+Create a wide, clean, polished cartoon illustration in the canonical educational guide style: clean 2D vector shapes, cute rounded robot assistant characters, soft outlines, a warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and soft pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+Title: "The Seven Core Components of an Agent System"
+
+Composition:
+A central friendly blue robot agent labeled "AGENT SYSTEM" surrounded by 6 clearly labeled modular components in balanced circular or radial cards:
+1. "1. GOAL": A golden flag with target objective & success criteria.
+2. "2. POLICY & GUARDRAILS": A green protective shield with deterministic rules.
+3. "3. REASONING MODEL": A brain icon or cognitive engine for planning and decision-making.
+4. "4. ENVIRONMENT": External world box (Databases, APIs, Filesystem).
+5. "5. ACTIONS & TOOLS": Tool belt icons (Search, Code Runner, Web API).
+6. "6. OBSERVATIONS": Sensor glasses / meter receiving environment output.
+7. "7. STATE & MEMORY": A database cylinder and working context history.
+
+Use clear, bold, high-contrast sans-serif labels in English. High legibility, balanced spacing, and friendly technical book-guide tone.
+Aspect ratio: 16:9.
