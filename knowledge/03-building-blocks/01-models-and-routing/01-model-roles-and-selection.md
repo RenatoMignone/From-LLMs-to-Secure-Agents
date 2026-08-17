@@ -20,9 +20,7 @@ source_records:
 - p1-03-01-01-chen-frugalgpt-2023
 - p1-03-01-01-ong-routellm-2024
 - p1-03-01-01-google-adk-models-2024
-visual_assets:
-- assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/01-model-roles-taxonomy.png
-- assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/02-model-selection-tradeoff-spectrum.png
+visual_assets: []
 example_paths:
 - examples/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/model_role_adapter.py
 pass: architecture
@@ -53,13 +51,12 @@ In an agentic architecture, assigning every task to the Director is ruinously ex
 
 ## Position in the agent workflow
 
-The illustrations below depict the four specialized model roles and compare model selection tiers across latency, cost, and reasoning capability.
+The figures below outline the four specialized model roles and compare model selection tiers across latency, cost, and reasoning capability.
 
-![A wide educational cartoon illustration showing the Four Core Model Roles in Agent Systems: Planner/Reasoner blue robot holding a strategic blueprint scroll, Intent Router yellow courier robot sorting messages, Domain Worker green technician robot writing code, and Evaluator/Judge purple inspector robot holding an audit checklist.](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/01-model-roles-taxonomy.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Four Core Model Roles in Agent Systems; Figure 2: Model Selection & Capability Trade-Off Spectrum) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The four specialized model roles in agent systems. Distinct model capability profiles are bound to specific operational responsibilities across planning, routing, execution, and evaluation.*
-
-![A wide educational cartoon illustration showing the Model Selection & Capability Trade-Off Spectrum: comparing Tier 1 Frontier Reasoning Models, Tier 2 Mid-Weight Workhorse Models, and Tier 3 Small Specialized SLMs across reasoning depth, time-to-first-token latency, token economics, and tool schema adherence.](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/02-model-selection-tradeoff-spectrum.png)
 
 *Figure 2. Model selection and capability trade-off spectrum. Production systems strategically tier models to optimize latency and token budgets while maintaining high tool calling precision.*
 

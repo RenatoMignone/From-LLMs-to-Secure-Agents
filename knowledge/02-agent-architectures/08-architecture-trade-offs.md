@@ -21,9 +21,7 @@ source_records:
 - p1-02-08-anthropic-building-effective-agents-2024
 - p1-02-08-google-cloud-agent-design-patterns-2024
 - p1-02-08-microsoft-patterns-enterprise-agents-2024
-visual_assets:
-- assets/images/02-agent-architectures/08-architecture-trade-offs/01-architecture-tradeoffs-matrix.png
-- assets/images/02-agent-architectures/08-architecture-trade-offs/02-architecture-selection-flowchart.png
+visual_assets: []
 example_paths:
 - examples/02-agent-architectures/08-architecture-trade-offs/architecture_tradeoff_benchmarker.py
 pass: architecture
@@ -54,13 +52,12 @@ In software architecture, you do not hire a cargo fleet when a conveyor belt sol
 
 ## Position in the agent workflow
 
-The illustrations below depict the trade-off matrix and the systematic selection flowchart across all orchestration patterns.
+The figures below depict the trade-off matrix and the systematic selection flowchart across all orchestration patterns.
 
-![A wide educational cartoon illustration showing the Agent Architecture Trade-Offs Matrix: plotting Deterministic Pipelines, Evaluator-Optimizer Loops, State Machines, and Multi-Agent Supervisors across Autonomy and System Complexity/Cost axes with cute robot characters and metric badges.](../../assets/images/02-agent-architectures/08-architecture-trade-offs/01-architecture-tradeoffs-matrix.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Architecture Trade-Offs Matrix; Figure 2: Architecture Selection Decision Flowchart) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The architecture trade-off matrix. As systems move from deterministic pipelines to autonomous multi-agent graphs, flexibility and context isolation increase alongside token cost, latency, and coordination complexity.*
-
-![A wide educational cartoon illustration showing the Architecture Selection Decision Flowchart: a step-by-step decision tree guiding engineers from predictable deterministic logic to intent routing, test evaluation, state machine persistence, and multi-agent supervisors.](../../assets/images/02-agent-architectures/08-architecture-trade-offs/02-architecture-selection-flowchart.png)
 
 *Figure 2. The architecture selection decision flowchart. Always default to the simplest architecture that satisfies your performance, determinism, and safety requirements.*
 

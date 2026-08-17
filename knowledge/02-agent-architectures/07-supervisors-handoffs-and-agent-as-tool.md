@@ -20,9 +20,7 @@ source_records:
 - p1-02-07-openai-swarm-2024
 - p1-02-07-anthropic-multi-agent-orchestrator-2024
 - p1-02-07-microsoft-autogen-teams-2024
-visual_assets:
-- assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/01-multi-agent-coordination-patterns.png
-- assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/02-context-isolation-and-delegation-flow.png
+visual_assets: []
 example_paths:
 - examples/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/multi_agent_coordination.py
 pass: architecture
@@ -52,13 +50,12 @@ In software engineering, these three topologies provide varying levels of centra
 
 ## Position in the agent workflow
 
-The illustrations below compare the three primary coordination topologies and demonstrate how subagent encapsulation isolates prompt context.
+The figures below compare the three primary coordination topologies and demonstrate how subagent encapsulation isolates prompt context.
 
-![A wide educational cartoon illustration comparing three multi-agent coordination architectures: Column 1 shows a central Supervisor robot directing sub-tasks to Worker robots; Column 2 shows three Peer robots in a Swarm transferring conversational control via handoff functions; Column 3 shows a Parent Agent calling an encapsulated Subagent inside a private tool capsule.](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/01-multi-agent-coordination-patterns.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Multi-Agent Coordination Topologies; Figure 2: Context Isolation & Delegation Flow) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The three multi-agent coordination topologies: Hierarchical Supervisor (star topology), Peer Handoffs (decentralized mesh), and Agent-as-a-Tool (black-box encapsulation).*
-
-![A wide educational cartoon illustration explaining Context Isolation and Subagent Encapsulation Flow: on the left, a Parent Supervisor maintains a lean 500-token prompt context; in the center, an isolated Subagent executes 10 noisy tool calls and 25,000 tokens inside a private sandbox bubble; on the right, the subagent returns a concise 60-token synthesized summary, protecting the parent from context pollution.](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/02-context-isolation-and-delegation-flow.png)
 
 *Figure 2. Context isolation and subagent encapsulation. Heavy intermediate tool interactions remain trapped inside the worker sandbox, preserving parent context capacity.*
 

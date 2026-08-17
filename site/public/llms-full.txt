@@ -3093,13 +3093,12 @@ In software orchestration, an agent graph treats computational steps as flight w
 
 ## Position in the agent workflow
 
-The illustrations below depict the cyclic graph architecture and the durable checkpointing lifecycle.
+The figures below outline the cyclic graph architecture and the durable checkpointing lifecycle.
 
-![A wide educational cartoon illustration showing a State Machine and Event-Driven Graph Architecture: an input box triggers the Start Node; a central blue robot Agent Reasoner evaluates the Shared State Schema; conditional routing edges direct control flow to a green robot Tool Node, a Human Gate checkpoint, or the End Node; and a return loop channels tool outputs back to the Agent Reasoner.](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/01-state-machine-graph-architecture.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: State Machine & Event-Driven Graph Architecture; Figure 2: Durable Checkpoint & Interruption Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The state machine and event-driven graph architecture. Nodes execute computation or model reasoning, conditional edges evaluate routing predicates, and a typed state schema channels data across iterations.*
-
-![A wide educational cartoon illustration showing the Durable Checkpointing & Asynchronous Interruption Lifecycle: in Step 1, an agent robot saves its state snapshot into a Durable Checkpointer database safe; in Step 2, a yellow pause gate interrupts execution while a human reviews a pending action on a tablet; in Step 3, the human approves the action, the exact checkpoint is restored, and execution resumes without data loss.](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/02-durable-checkpoint-and-interruption.png)
 
 *Figure 2. Durable checkpointing and asynchronous interruption lifecycle. State is snapshotted atomically at every step, allowing safe long-running pauses for external human approval events.*
 
@@ -3335,13 +3334,12 @@ In software engineering, these three topologies provide varying levels of centra
 
 ## Position in the agent workflow
 
-The illustrations below compare the three primary coordination topologies and demonstrate how subagent encapsulation isolates prompt context.
+The figures below compare the three primary coordination topologies and demonstrate how subagent encapsulation isolates prompt context.
 
-![A wide educational cartoon illustration comparing three multi-agent coordination architectures: Column 1 shows a central Supervisor robot directing sub-tasks to Worker robots; Column 2 shows three Peer robots in a Swarm transferring conversational control via handoff functions; Column 3 shows a Parent Agent calling an encapsulated Subagent inside a private tool capsule.](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/01-multi-agent-coordination-patterns.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Multi-Agent Coordination Topologies; Figure 2: Context Isolation & Delegation Flow) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The three multi-agent coordination topologies: Hierarchical Supervisor (star topology), Peer Handoffs (decentralized mesh), and Agent-as-a-Tool (black-box encapsulation).*
-
-![A wide educational cartoon illustration explaining Context Isolation and Subagent Encapsulation Flow: on the left, a Parent Supervisor maintains a lean 500-token prompt context; in the center, an isolated Subagent executes 10 noisy tool calls and 25,000 tokens inside a private sandbox bubble; on the right, the subagent returns a concise 60-token synthesized summary, protecting the parent from context pollution.](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/02-context-isolation-and-delegation-flow.png)
 
 *Figure 2. Context isolation and subagent encapsulation. Heavy intermediate tool interactions remain trapped inside the worker sandbox, preserving parent context capacity.*
 
@@ -3525,13 +3523,12 @@ In software architecture, you do not hire a cargo fleet when a conveyor belt sol
 
 ## Position in the agent workflow
 
-The illustrations below depict the trade-off matrix and the systematic selection flowchart across all orchestration patterns.
+The figures below depict the trade-off matrix and the systematic selection flowchart across all orchestration patterns.
 
-![A wide educational cartoon illustration showing the Agent Architecture Trade-Offs Matrix: plotting Deterministic Pipelines, Evaluator-Optimizer Loops, State Machines, and Multi-Agent Supervisors across Autonomy and System Complexity/Cost axes with cute robot characters and metric badges.](../../assets/images/02-agent-architectures/08-architecture-trade-offs/01-architecture-tradeoffs-matrix.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Architecture Trade-Offs Matrix; Figure 2: Architecture Selection Decision Flowchart) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The architecture trade-off matrix. As systems move from deterministic pipelines to autonomous multi-agent graphs, flexibility and context isolation increase alongside token cost, latency, and coordination complexity.*
-
-![A wide educational cartoon illustration showing the Architecture Selection Decision Flowchart: a step-by-step decision tree guiding engineers from predictable deterministic logic to intent routing, test evaluation, state machine persistence, and multi-agent supervisors.](../../assets/images/02-agent-architectures/08-architecture-trade-offs/02-architecture-selection-flowchart.png)
 
 *Figure 2. The architecture selection decision flowchart. Always default to the simplest architecture that satisfies your performance, determinism, and safety requirements.*
 
@@ -3720,13 +3717,12 @@ In an agentic architecture, assigning every task to the Director is ruinously ex
 
 ## Position in the agent workflow
 
-The illustrations below depict the four specialized model roles and compare model selection tiers across latency, cost, and reasoning capability.
+The figures below outline the four specialized model roles and compare model selection tiers across latency, cost, and reasoning capability.
 
-![A wide educational cartoon illustration showing the Four Core Model Roles in Agent Systems: Planner/Reasoner blue robot holding a strategic blueprint scroll, Intent Router yellow courier robot sorting messages, Domain Worker green technician robot writing code, and Evaluator/Judge purple inspector robot holding an audit checklist.](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/01-model-roles-taxonomy.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Four Core Model Roles in Agent Systems; Figure 2: Model Selection & Capability Trade-Off Spectrum) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The four specialized model roles in agent systems. Distinct model capability profiles are bound to specific operational responsibilities across planning, routing, execution, and evaluation.*
-
-![A wide educational cartoon illustration showing the Model Selection & Capability Trade-Off Spectrum: comparing Tier 1 Frontier Reasoning Models, Tier 2 Mid-Weight Workhorse Models, and Tier 3 Small Specialized SLMs across reasoning depth, time-to-first-token latency, token economics, and tool schema adherence.](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/02-model-selection-tradeoff-spectrum.png)
 
 *Figure 2. Model selection and capability trade-off spectrum. Production systems strategically tier models to optimize latency and token budgets while maintaining high tool calling precision.*
 
@@ -3906,13 +3902,12 @@ In agent engineering, routing dispatches the appropriate model tier, cascades es
 
 ## Position in the agent workflow
 
-The illustrations below depict model routing cascades and the three-state circuit breaker failover lifecycle.
+The figures below outline model routing cascades and the three-state circuit breaker failover lifecycle.
 
-![A wide educational cartoon illustration showing Model Routing & Progressive Cascade Architecture: on the left, a yellow Dispatcher Robot evaluates query complexity score theta; on the right, a 3-tier escalation ladder attempts resolution on a fast Small SLM first, cascading to Mid-Weight Model and Frontier Reasoner upon verification failure.](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/01-routing-and-cascade-architectures.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Model Routing & Progressive Cascade Architecture; Figure 2: Model Gateway Circuit Breaker & Fallback Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. Model routing and progressive cascade architecture. Queries are routed based on complexity score thresholds or escalated step-by-step through a multi-tier cascade.*
-
-![A wide educational cartoon illustration showing the Model Gateway Circuit Breaker & Fallback Lifecycle: illustrating Closed State for normal operations, Open State for instant failover to secondary provider upon 429/500 errors, and Half-Open State for canary recovery probing.](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/02-fallback-and-circuit-breaker-lifecycle.png)
 
 *Figure 2. Circuit breaker and fallback lifecycle. The gateway automatically diverts traffic to secondary provider endpoints during upstream outages, resetting once health probes succeed.*
 

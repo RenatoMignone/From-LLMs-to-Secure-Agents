@@ -20,9 +20,7 @@ source_records:
 - p1-03-01-02-ong-routellm-cascades-2024
 - p1-03-01-02-chen-frugalgpt-cascades-2023
 - p1-03-01-02-netflix-circuit-breakers-fallbacks-2023
-visual_assets:
-- assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/01-routing-and-cascade-architectures.png
-- assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/02-fallback-and-circuit-breaker-lifecycle.png
+visual_assets: []
 example_paths:
 - examples/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/routing_cascade_gateway.py
 pass: architecture
@@ -52,13 +50,12 @@ In agent engineering, routing dispatches the appropriate model tier, cascades es
 
 ## Position in the agent workflow
 
-The illustrations below depict model routing cascades and the three-state circuit breaker failover lifecycle.
+The figures below outline model routing cascades and the three-state circuit breaker failover lifecycle.
 
-![A wide educational cartoon illustration showing Model Routing & Progressive Cascade Architecture: on the left, a yellow Dispatcher Robot evaluates query complexity score theta; on the right, a 3-tier escalation ladder attempts resolution on a fast Small SLM first, cascading to Mid-Weight Model and Frontier Reasoner upon verification failure.](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/01-routing-and-cascade-architectures.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: Model Routing & Progressive Cascade Architecture; Figure 2: Model Gateway Circuit Breaker & Fallback Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. Model routing and progressive cascade architecture. Queries are routed based on complexity score thresholds or escalated step-by-step through a multi-tier cascade.*
-
-![A wide educational cartoon illustration showing the Model Gateway Circuit Breaker & Fallback Lifecycle: illustrating Closed State for normal operations, Open State for instant failover to secondary provider upon 429/500 errors, and Half-Open State for canary recovery probing.](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/02-fallback-and-circuit-breaker-lifecycle.png)
 
 *Figure 2. Circuit breaker and fallback lifecycle. The gateway automatically diverts traffic to secondary provider endpoints during upstream outages, resetting once health probes succeed.*
 

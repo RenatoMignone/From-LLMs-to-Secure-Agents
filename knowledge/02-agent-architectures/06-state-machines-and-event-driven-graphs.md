@@ -19,9 +19,7 @@ source_records:
 - p1-02-06-langchain-langgraph-2024
 - p1-02-06-temporal-durable-execution-2024
 - p1-02-06-harel-statecharts-1987
-visual_assets:
-- assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/01-state-machine-graph-architecture.png
-- assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/02-durable-checkpoint-and-interruption.png
+visual_assets: []
 example_paths:
 - examples/02-agent-architectures/06-state-machines-and-event-driven-graphs/state_graph_runtime.py
 pass: architecture
@@ -52,13 +50,12 @@ In software orchestration, an agent graph treats computational steps as flight w
 
 ## Position in the agent workflow
 
-The illustrations below depict the cyclic graph architecture and the durable checkpointing lifecycle.
+The figures below outline the cyclic graph architecture and the durable checkpointing lifecycle.
 
-![A wide educational cartoon illustration showing a State Machine and Event-Driven Graph Architecture: an input box triggers the Start Node; a central blue robot Agent Reasoner evaluates the Shared State Schema; conditional routing edges direct control flow to a green robot Tool Node, a Human Gate checkpoint, or the End Node; and a return loop channels tool outputs back to the Agent Reasoner.](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/01-state-machine-graph-architecture.png)
+> [!NOTE]
+> *Visual illustrations (Figure 1: State Machine & Event-Driven Graph Architecture; Figure 2: Durable Checkpoint & Interruption Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
 
 *Figure 1. The state machine and event-driven graph architecture. Nodes execute computation or model reasoning, conditional edges evaluate routing predicates, and a typed state schema channels data across iterations.*
-
-![A wide educational cartoon illustration showing the Durable Checkpointing & Asynchronous Interruption Lifecycle: in Step 1, an agent robot saves its state snapshot into a Durable Checkpointer database safe; in Step 2, a yellow pause gate interrupts execution while a human reviews a pending action on a tablet; in Step 3, the human approves the action, the exact checkpoint is restored, and execution resumes without data loss.](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/02-durable-checkpoint-and-interruption.png)
 
 *Figure 2. Durable checkpointing and asynchronous interruption lifecycle. State is snapshotted atomically at every step, allowing safe long-running pauses for external human approval events.*
 
