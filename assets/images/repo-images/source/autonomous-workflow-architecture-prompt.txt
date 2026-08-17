@@ -1,26 +1,11 @@
-Create a wide educational cartoon illustration titled "Agent-First, Token-Optimized Autonomous Workflow".
+Create a clean educational cartoon diagram showing a 4-step engineering workflow.
+Title at the top center: "Agent-First, Token-Optimized Autonomous Workflow".
+Solid light cream background, minimalist 2D flat vector aesthetic, pastel teal, soft blue, green, and warm beige.
 
-Use the canonical educational cartoon illustration style matching the repository banner:
-- Clean 2D vector shapes with soft rounded outlines, friendly character design, and an approachable technical handbook tone.
-- Warm light cream background with a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber.
-- Strictly no dark backgrounds, no cyberpunk or neon themes, no sterile corporate flowchart boxes, and no 3D photorealism.
+Four cute robot characters in a clean horizontal row connected by simple arrows:
+- Step 1 (first robot holding a checklist): single label underneath "1. Scoped Resolution"
+- Step 2 (second robot putting web documents into a funnel to produce clean markdown): single label underneath "2. Web Ingestion"
+- Step 3 (third robot coding at a desk): single label underneath "3. Technical Authoring"
+- Step 4 (fourth robot holding a magnifying glass and green checkmark shield): single label underneath "4. Automated Verification"
 
-Show a 4-stage left-to-right autonomous engineering workflow featuring our friendly robot assistant characters across every stage:
-
-1. Stage 1 (Left - "1. Scoped Unit Resolution"):
-   - A cute blue robot assistant receiving a single scoped unit task card ("Unit P1-02-01: Agent Architectures").
-   - Badge: "Scoped Context Memory (Zero Roadmap Bloat)".
-
-2. Stage 2 (Center-Left - "2. Deterministic Web Ingestion"):
-   - A cute teal robot feeding raw RFC/HTML documentation into a clean funnel filter labeled "markitdown".
-   - Discarded boilerplate falls away, producing clean Markdown with a golden badge: "-85% Tokens Saved".
-
-3. Stage 3 (Center-Right - "3. LLM Technical Authoring & Visuals"):
-   - A focused robot author at a desk writing crystal-clear chapter prose, drawing cartoon diagram prompts, and attaching verified citations.
-   - Badge: "Source-Grounded & Pedagogical".
-
-4. Stage 4 (Right - "4. Automated Verification Gates"):
-   - A friendly inspector robot holding a sturdy green shield labeled "Deterministic Validator", verifying schema compliance, link integrity, and static site builds.
-   - Badge: "Automated Build & Check Gates".
-
-Include clear directional arrows between stages, bold readable high-contrast sans-serif labels, and a balanced 16:9 composition.
+Clean composition, zero duplicate text, no redundant header labels, crisp typography, 16:9 aspect ratio.
