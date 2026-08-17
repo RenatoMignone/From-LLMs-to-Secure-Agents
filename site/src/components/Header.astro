@@ -1,0 +1,180 @@
+---
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+const base = '/From-LLMs-to-Secure-Agents';
+---
+
+<div class="publication-header">
+  <div class="publication-brand">
+    <SiteTitle />
+  </div>
+
+  <nav class="publication-nav" aria-label="Publication Navigation">
+    <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-link-guide">
+      <span class="nav-guide-dot"></span>
+      Guide
+    </a>
+  </nav>
+
+  <div class="publication-tools">
+    <a
+      href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="nav-github-btn"
+      aria-label="GitHub Repository"
+    >
+      <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+      </svg>
+      <span class="github-text">GitHub</span>
+    </a>
+    <Search />
+    <ThemeSelect />
+  </div>
+</div>
+
+<style>
+  .publication-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+  }
+
+  .publication-brand {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .publication-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: auto;
+    margin-left: 1.5rem;
+  }
+
+  .nav-link-guide {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--color-ink);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    transition: background-color 140ms ease, color 140ms ease;
+  }
+
+  .nav-guide-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+  }
+
+  .nav-link-guide:hover {
+    color: var(--color-teal);
+    background-color: var(--color-surface-subtle);
+  }
+
+  .publication-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  /* Black Gradient GitHub Button */
+  .nav-github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #24292f 0%, #101418 100%);
+    color: #FFFFFF !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(:root[data-theme='dark']) .nav-github-btn {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-github-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF !important;
+  }
+
+  .nav-github-btn:active {
+    transform: translateY(0);
+  }
+
+  .github-icon {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 60rem) {
+    .publication-nav {
+      margin-left: 0.75rem;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .publication-header {
+      gap: 0.5rem;
+    }
+
+    .publication-brand {
+      min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    .publication-nav {
+      display: none;
+    }
+
+    .publication-tools {
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+    
+    .nav-github-btn .github-text {
+      display: none;
+    }
+
+    .nav-github-btn {
+      padding: 0.35rem;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .publication-header {
+      gap: 0.35rem;
+    }
+
+    .publication-tools {
+      gap: 0.25rem;
+    }
+  }
+</style>

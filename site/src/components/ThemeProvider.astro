@@ -13,17 +13,13 @@ import { Icon } from '@astrojs/starlight/components';
 		return {
 			updatePickers(t = storedTheme || 'light') {
 				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const isDark = t === 'dark';
+					const btn = picker.querySelector('.theme-toggle-switch');
+					if (btn) {
+						btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+					}
 					const select = picker.querySelector('select');
 					if (select) select.value = t;
-					/** @type {HTMLTemplateElement | null} */
-					const tmpl = document.querySelector(`#theme-icons`);
-					const newIcon = tmpl && tmpl.content.querySelector('.' + t);
-					if (newIcon) {
-						const oldIcon = picker.querySelector('svg.label-icon');
-						if (oldIcon) {
-							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
-						}
-					}
 				});
 			},
 		};

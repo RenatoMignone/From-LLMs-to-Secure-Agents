@@ -3,24 +3,96 @@ const PAGE_TITLE_ID = '_top';
 const entry = Astro.locals.starlightRoute?.entry;
 const isHomepage = !entry || entry.slug === '' || entry.data?.template === 'splash';
 const title = entry?.data?.title;
+const summary = entry?.data?.summary;
+const unitId = entry?.data?.unit_id;
+const pass = entry?.data?.pass;
+const learningPath = entry?.data?.learning_path;
+const reviewedLabel = entry?.data?.reviewed_label;
+
+const pathLabel = learningPath === 'deep_dive' || learningPath === 'deep-dive' ? 'Deep dive' : 'Main path';
 ---
 
 {
   !isHomepage && title && (
-    <h1 id={PAGE_TITLE_ID} class="chapter-page-title">
-      {title}
-    </h1>
+    <header class="chapter-heading">
+      {unitId && (
+        <div class="chapter-meta-line">
+          <span class="meta-unit">{unitId}</span>
+          {pass && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-badge">{pass}</span></>}
+          <span class="meta-sep" aria-hidden="true">·</span>
+          <span class="meta-badge">{pathLabel}</span>
+          {reviewedLabel && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-date">Reviewed {reviewedLabel}</span></>}
+        </div>
+      )}
+      <h1 id={PAGE_TITLE_ID} class="chapter-page-title">{title}</h1>
+      {summary && <p class="chapter-standfirst">{summary}</p>}
+    </header>
   )
 }
 
 <style>
+  .chapter-heading {
+    width: 100%;
+    margin-bottom: 2.25rem;
+  }
+
+  .chapter-meta-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .meta-unit {
+    color: var(--color-teal);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background-color: var(--color-teal-subtle);
+    border: 1px solid var(--color-teal-border);
+  }
+
+  .meta-badge {
+    color: var(--color-ink-muted);
+    font-weight: 600;
+  }
+
+  .meta-sep {
+    color: var(--color-border);
+  }
+
+  .meta-date {
+    color: var(--color-ink-light);
+  }
+
   .chapter-page-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.85rem, 3.5vw, 2.35rem);
-    font-weight: 700;
-    line-height: 1.25;
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 750;
+    line-height: 1.15;
     color: var(--color-ink);
-    margin: 0.5rem 0 1.25rem;
-    letter-spacing: -0.015em;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.03em;
+  }
+
+  .chapter-standfirst {
+    max-width: 58rem;
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: clamp(1.15rem, 1.8vw, 1.28rem);
+    line-height: 1.62;
+  }
+
+  @media (max-width: 640px) {
+    .chapter-page-title {
+      font-size: 2.1rem;
+    }
+    .chapter-standfirst {
+      font-size: 1.1rem;
+    }
   }
 </style>
