@@ -13,7 +13,7 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
   </div>
 
   <nav class="publication-nav" aria-label="Publication Navigation">
-    <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-link-guide">
+    <a href={`${base}/foundations/01-what-is-an-agent/`} class="nav-link-guide">
       <span class="nav-guide-dot"></span>
       <span>Read Guide</span>
       <span class="nav-guide-arrow" aria-hidden="true">→</span>
@@ -42,7 +42,7 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
 
     {/* Show Guide link on homepage mobile if no sidebar, otherwise show Hamburger menu button */}
     {!hasSidebar ? (
-      <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-mobile-guide-btn">
+      <a href={`${base}/foundations/01-what-is-an-agent/`} class="nav-mobile-guide-btn">
         <span>Guide</span>
         <span aria-hidden="true">→</span>
       </a>

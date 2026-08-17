@@ -31,11 +31,14 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
+> [!NOTE]
+> **Curriculum Starting Point**: This chapter is the default entry point of the guide. It assumes working familiarity with software engineering and large language models. For readers who would like an optional background refresher on distributed systems foundations (data versus control flow, state transitions, trust boundaries, and least privilege), see the optional [Prerequisites](../00-prerequisites/chapter-plan.md) section.
+
 In everyday conversations about artificial intelligence, the word "agent" is frequently applied to any chatbot, prompt template, or software script connected to a large language model. This loose labeling causes widespread confusion. A software team might build a simple two-step prompt pipeline and call it an agent, while another team builds an autonomous coding system that modifies hundreds of files, runs integration tests, and deploys cloud services. Treating these distinct architectures as identical makes it impossible to reason about system reliability, operational cost, or security risk.
 
 A standalone language model is a stateless text processor. It takes an input sequence of tokens and predicts the most plausible continuation. On its own, the model cannot see the outside world, cannot browse the web, cannot execute commands on a server, and cannot verify whether its answers are accurate in a changing environment. To turn a predictive model into an effective problem solver, engineers build a surrounding software harness that equips the model with tools, supplies live feedback from external systems, and runs a control loop that drives toward a user's objective.
 
-Tracing, designing, and securing modern AI systems requires a precise definition of what an agent is and where its boundaries lie. The [prerequisites](../00-prerequisites/chapter-plan.md) section established fundamental concepts of state, trust boundaries, delegation, and least privilege. This chapter introduces the structural components of an agent, distinguishing autonomous model-directed systems from static prompt calls and hardcoded workflows before exploring complex patterns in [agent architectures](../02-agent-architectures/chapter-plan.md).
+Tracing, designing, and securing modern AI systems requires a precise definition of what an agent is and where its boundaries lie. This chapter introduces the structural components of an agent, distinguishing autonomous model-directed systems from static prompt calls and hardcoded workflows before exploring complex patterns in [agent architectures](../02-agent-architectures/chapter-plan.md).
 
 ## Simple mental model
 

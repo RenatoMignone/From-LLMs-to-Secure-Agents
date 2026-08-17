@@ -491,7 +491,8 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
 
   // 6. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
   console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
-  const firstChapterRoute = chapters.length > 0 ? chapters[0].route : `${BASE_URL}/`;
+  const entryChapter = chapters.find((c) => c.unit_id === 'P1-01-01') || chapters[0];
+  const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/foundations/01-what-is-an-agent/`;
 
   const homepageJsonLd = {
     '@context': 'https://schema.org',
