@@ -1,4 +1,4 @@
-/* Prerequisites & Objectives Grid - Catppuccin Accent Card */
+/* Prerequisites & Objectives Grid - Soft Pastel Accent Card */
 .chapter-goals-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,12 +7,12 @@
   padding: 1.5rem 1.75rem;
   border-radius: 16px;
   background-color: var(--color-surface-subtle);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
 }
 
 :root[data-theme='dark'] .chapter-goals-grid {
-  background-color: var(--color-surface-subtle);
+  background-color: var(--color-surface-card);
   border-color: var(--color-border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
@@ -24,7 +24,7 @@
 .goals-heading {
   font-family: var(--font-heading);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-teal);
@@ -37,7 +37,7 @@
 }
 
 :root[data-theme='dark'] .goals-heading {
-  color: var(--color-lavender);
+  color: var(--color-teal);
   border-bottom-color: var(--color-border);
 }
 
@@ -100,7 +100,7 @@
   text-align: center;
 }
 
-/* Code Blocks - Catppuccin Styling */
+/* Code Blocks - Soft Pastel Styling */
 .sl-markdown-content pre {
   background-color: var(--color-code-bg) !important;
   border: 1.5px solid var(--color-code-border) !important;
@@ -119,7 +119,7 @@
   font-family: var(--font-mono) !important;
 }
 
-/* Modern, Luxurious, Responsive Tables with Generous Margins & Padding */
+/* Modern, Luxurious, Responsive Tables with Generous Margins & Pastel Highlights */
 .sl-markdown-content table {
   width: 100% !important;
   min-width: 100% !important;
@@ -135,7 +135,7 @@
 }
 
 :root[data-theme='dark'] .sl-markdown-content table {
-  background-color: var(--color-surface-subtle) !important;
+  background-color: var(--color-surface-card) !important;
   border-color: var(--color-border) !important;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3) !important;
 }
@@ -145,7 +145,7 @@
 }
 
 :root[data-theme='dark'] .sl-markdown-content thead {
-  background-color: var(--color-surface-card) !important;
+  background-color: var(--color-surface-subtle) !important;
 }
 
 .sl-markdown-content th {
@@ -162,7 +162,7 @@
 }
 
 :root[data-theme='dark'] .sl-markdown-content th {
-  color: var(--color-lavender) !important;
+  color: var(--color-teal) !important;
   border-bottom-color: var(--color-border) !important;
 }
 
@@ -189,11 +189,11 @@
 }
 
 .sl-markdown-content tr:nth-child(even) td {
-  background-color: rgba(0, 0, 0, 0.018);
+  background-color: rgba(0, 0, 0, 0.015);
 }
 
 :root[data-theme='dark'] .sl-markdown-content tr:nth-child(even) td {
-  background-color: rgba(255, 255, 255, 0.025);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .sl-markdown-content tr:hover td {
@@ -201,14 +201,14 @@
 }
 
 :root[data-theme='dark'] .sl-markdown-content tr:hover td {
-  background-color: var(--color-mauve-subtle);
+  background-color: rgba(120, 196, 189, 0.09);
 }
 
 .sl-markdown-content tr:last-child td {
   border-bottom: none !important;
 }
 
-/* Sequential Unit Navigation Cards - Catppuccin Mocha & Latte Polish */
+/* Sequential Unit Navigation Cards - Soft Pastel Polish */
 .unit-pagination {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
@@ -259,8 +259,8 @@
 }
 
 :root[data-theme='dark'] .pagination-link:hover:not(.pagination-end) {
-  border-color: var(--color-mauve) !important;
-  box-shadow: 0 8px 24px -2px rgba(203, 166, 247, 0.25) !important;
+  border-color: var(--color-teal) !important;
+  box-shadow: 0 8px 24px -2px rgba(120, 196, 189, 0.25) !important;
 }
 
 .pagination-link:hover:not(.pagination-end) .pagination-name {
@@ -268,7 +268,7 @@
 }
 
 :root[data-theme='dark'] .pagination-link:hover:not(.pagination-end) .pagination-name {
-  color: var(--color-mauve) !important;
+  color: var(--color-teal) !important;
 }
 
 .pagination-sub {
@@ -280,7 +280,7 @@
 }
 
 :root[data-theme='dark'] .pagination-sub {
-  color: var(--color-lavender) !important;
+  color: var(--color-teal) !important;
 }
 
 .pagination-name {

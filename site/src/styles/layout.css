@@ -47,34 +47,48 @@ nav.sidebar {
   background-color: var(--color-surface-subtle) !important;
 }
 
-/* Section Header Accordions */
+/* Sidebar Container */
+.sidebar-pane {
+  background-color: var(--color-surface-subtle) !important;
+  border-right: 1.5px solid var(--color-border) !important;
+}
+
+/* Section Header Accordions - Colorful Card Containers */
 .top-level > li {
-  margin-bottom: 0.5rem !important;
-  border-radius: 10px !important;
-  border: 1px solid var(--color-border-subtle) !important;
-  background-color: var(--color-canvas) !important;
+  margin-bottom: 0.75rem !important;
+  border-radius: 12px !important;
+  border: 1.5px solid var(--color-border) !important;
+  background-color: var(--color-surface) !important;
   overflow: hidden !important;
-  transition: border-color 160ms ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+:root[data-theme='dark'] .top-level > li {
+  background-color: var(--color-surface-card) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
 .top-level > li:hover {
-  border-color: var(--color-border) !important;
+  border-color: var(--color-teal) !important;
+  transform: translateY(-1px) !important;
 }
 
 .top-level > li > details > summary,
 .top-level > li > .large {
   font-family: var(--font-heading) !important;
   font-size: 0.88rem !important;
-  font-weight: 700 !important;
+  font-weight: 750 !important;
   text-transform: none !important;
   letter-spacing: 0.01em !important;
   color: var(--color-ink) !important;
-  padding: 0.65rem 0.85rem !important;
+  padding: 0.75rem 1rem !important;
   cursor: pointer !important;
   user-select: none !important;
   background-color: var(--color-surface) !important;
   border-bottom: 1px solid transparent !important;
-  transition: background-color 140ms ease, color 140ms ease !important;
+  transition: all 140ms ease !important;
 }
 
 :root[data-theme='dark'] .top-level > li > details > summary,
@@ -85,6 +99,13 @@ nav.sidebar {
 .top-level > li > details[open] > summary {
   border-bottom: 1px solid var(--color-border-subtle) !important;
   color: var(--color-teal) !important;
+  background-color: var(--color-teal-subtle) !important;
+}
+
+:root[data-theme='dark'] .top-level > li > details[open] > summary {
+  background-color: rgba(120, 196, 189, 0.1) !important;
+  border-bottom-color: var(--color-border) !important;
+  color: var(--color-teal) !important;
 }
 
 .top-level > li > details > summary:hover {
@@ -92,31 +113,47 @@ nav.sidebar {
   color: var(--color-teal) !important;
 }
 
-/* Sidebar Links */
+/* Sidebar Links - Colorful, Pill-Shaped, Engaging */
 .sidebar-content a {
   font-size: 0.91rem !important;
   color: var(--color-ink-muted) !important;
-  padding: 0.45rem 0.85rem !important;
-  margin: 0.15rem 0.35rem !important;
-  border-left: 2px solid transparent !important;
-  border-radius: 6px !important;
+  padding: 0.5rem 0.95rem !important;
+  margin: 0.2rem 0.4rem !important;
+  border-left: 3px solid transparent !important;
+  border-radius: 8px !important;
   line-height: 1.45 !important;
-  transition: all 140ms ease !important;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
   text-decoration: none !important;
   display: block !important;
 }
 
 .sidebar-content a:hover {
-  color: var(--color-ink) !important;
-  background-color: var(--color-surface-subtle) !important;
+  color: var(--color-teal) !important;
+  background-color: var(--color-teal-subtle) !important;
+  transform: translateX(3px) !important;
   text-decoration: none !important;
 }
 
-.sidebar-content a[aria-current='page'] {
+:root[data-theme='dark'] .sidebar-content a:hover {
   color: var(--color-teal) !important;
-  background-color: var(--color-teal-subtle) !important;
-  border-left-color: var(--color-teal) !important;
-  font-weight: 650 !important;
+  background-color: rgba(120, 196, 189, 0.08) !important;
+  transform: translateX(3px) !important;
+}
+
+.sidebar-content a[aria-current='page'] {
+  color: #2B6E68 !important;
+  background: linear-gradient(135deg, #E5F3F1 0%, #EBF5EF 100%) !important;
+  border-left: 3.5px solid var(--color-teal) !important;
+  font-weight: 750 !important;
+  box-shadow: 0 2px 6px rgba(66, 148, 142, 0.12) !important;
+}
+
+:root[data-theme='dark'] .sidebar-content a[aria-current='page'] {
+  color: #9BE0DA !important;
+  background: linear-gradient(135deg, rgba(120, 196, 189, 0.18) 0%, rgba(138, 194, 228, 0.12) 100%) !important;
+  border-left: 3.5px solid var(--color-teal) !important;
+  font-weight: 750 !important;
+  box-shadow: 0 2px 8px rgba(120, 196, 189, 0.18) !important;
 }
 
 /* Main Content Area */

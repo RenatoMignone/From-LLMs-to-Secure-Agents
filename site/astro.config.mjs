@@ -22,8 +22,10 @@ export default defineConfig({
     starlight({
       title: 'From LLMs to Secure Agents',
       description: 'A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to secure them.',
+      favicon: '/favicon.png',
       logo: {
-        src: './src/assets/logo.svg',
+        src: './src/assets/logo.png',
+        alt: 'From LLMs to Secure Agents Robot Mascot',
       },
       social: {
         github: 'https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents',
@@ -39,10 +41,51 @@ export default defineConfig({
       },
       head: [
         {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '32x32',
+            href: '/From-LLMs-to-Secure-Agents/favicon-32x32.png',
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '16x16',
+            href: '/From-LLMs-to-Secure-Agents/favicon-16x16.png',
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/From-LLMs-to-Secure-Agents/favicon.png',
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'shortcut icon',
+            href: '/From-LLMs-to-Secure-Agents/favicon.ico',
+          },
+        },
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'apple-touch-icon',
+            sizes: '180x180',
+            href: '/From-LLMs-to-Secure-Agents/apple-touch-icon.png',
+          },
+        },
+        {
           tag: 'meta',
           attrs: {
             name: 'theme-color',
-            content: '#0d9488',
+            content: '#42948e',
           },
         },
         {

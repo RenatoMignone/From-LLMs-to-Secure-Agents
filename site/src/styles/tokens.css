@@ -1,56 +1,57 @@
 :root {
-  /* Fonts */
+  /* Typography */
   --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Color Palette - Light Theme (Catppuccin Latte & Warm Editorial) */
-  --color-canvas: #FAF8F5;
-  --color-surface: #FFFFFF;
-  --color-surface-subtle: #F4EFEA;
+  /* Color Palette - Light Theme (Soft Picture-Book Pastel & Warm Parchment) */
+  --color-canvas: #FAF6EE;          /* Warm soft cream parchment */
+  --color-surface: #FFFFFF;         /* Crisp white card surface */
+  --color-surface-subtle: #F3ECE0;  /* Soft warm oatmeal / almond */
   --color-surface-card: #FFFFFF;
-  --color-border: #E8E0D5;
-  --color-border-subtle: #F0EAE1;
+  --color-border: #E5DACB;          /* Soft warm pastel border */
+  --color-border-subtle: #EFE8DD;
 
-  --color-ink: #2E3440;
-  --color-ink-muted: #5C6575;
-  --color-ink-light: #8C97A8;
+  --color-ink: #1D2C38;             /* Deep warm slate charcoal */
+  --color-ink-muted: #576A79;       /* Muted dusty slate */
+  --color-ink-light: #899AA8;       /* Subtle slate gray */
 
-  /* Catppuccin Accents - Light (Latte) */
-  --color-teal: #179299;
-  --color-teal-hover: #04A5E5;
-  --color-teal-subtle: #E6F7F5;
-  --color-teal-border: #99F6E4;
+  /* Pure Pastel Accents (Derived directly from cartoon guide illustrations) */
+  --color-teal: #42948E;            /* Soft pastel editorial teal */
+  --color-teal-hover: #337671;
+  --color-teal-subtle: #E5F3F1;
+  --color-teal-border: #BCE2DE;
 
-  --color-blue: #1E66F2;
-  --color-blue-hover: #04A5E5;
-  --color-blue-subtle: #EFF6FF;
+  --color-peach: #E58E58;           /* Warm soft pastel peach / leather */
+  --color-peach-hover: #CD7742;
+  --color-peach-subtle: #FDF1E7;
+  --color-peach-border: #F7D4BD;
 
-  --color-lavender: #7287FD;
-  --color-lavender-hover: #8839EF;
-  --color-lavender-subtle: #F5F3FF;
+  --color-sage: #66A37E;            /* Soft pastel sage green */
+  --color-sage-hover: #508665;
+  --color-sage-subtle: #EBF5EF;
+  --color-sage-border: #C8E6D3;
 
-  --color-mauve: #8839EF;
-  --color-mauve-hover: #7287FD;
-  --color-mauve-subtle: #F6F0FE;
+  --color-blue: #4F88AC;            /* Soft dusty sky blue */
+  --color-blue-hover: #3B6F90;
+  --color-blue-subtle: #EBF4F9;
+  --color-blue-border: #C2DFEF;
 
-  --color-peach: #FE640B;
-  --color-peach-hover: #DF8E1D;
-  --color-peach-subtle: #FFF7ED;
+  --color-lavender: #837FB8;        /* Soft dusty pastel lavender */
+  --color-lavender-hover: #6B67A0;
+  --color-lavender-subtle: #F2F0F9;
+  --color-lavender-border: #D7D4ED;
 
-  --color-sage: #40A02B;
-  --color-sage-hover: #179299;
-  --color-sage-subtle: #ECFDF5;
+  --color-amber: #D89C3D;           /* Soft warm honey yellow */
+  --color-amber-hover: #BE8429;
+  --color-amber-subtle: #FDF7EA;
+  --color-amber-border: #F7E4BE;
 
-  --color-amber: #DF8E1D;
-  --color-amber-hover: #FE640B;
-  --color-amber-subtle: #FFFBEB;
+  --color-red: #D96075;             /* Soft pastel rose / berry */
+  --color-red-subtle: #FDF0F2;
 
-  --color-red: #D20F39;
-  --color-red-subtle: #FCE8EC;
-
-  --color-code-bg: #F4EFEA;
-  --color-code-border: #E8E0D5;
+  --color-code-bg: #F3ECE0;
+  --color-code-border: #E5DACB;
 
   /* Starlight Tokens Mapping - Light Theme */
   --sl-font: var(--font-body);
@@ -62,13 +63,13 @@
 
   --sl-color-bg: var(--color-canvas);
   --sl-color-bg-nav: var(--color-canvas);
-  --sl-color-bg-sidebar: var(--color-canvas);
+  --sl-color-bg-sidebar: var(--color-surface-subtle);
 
   --sl-color-white: var(--color-ink);
-  --sl-color-gray-1: #3B4252;
-  --sl-color-gray-2: #434C5E;
-  --sl-color-gray-3: #5C6575;
-  --sl-color-gray-4: #8C97A8;
+  --sl-color-gray-1: #2B3D4B;
+  --sl-color-gray-2: #3E5160;
+  --sl-color-gray-3: #576A79;
+  --sl-color-gray-4: #899AA8;
   --sl-color-gray-5: var(--color-border);
   --sl-color-gray-6: var(--color-surface-subtle);
   --sl-color-black: var(--color-surface);
@@ -89,53 +90,54 @@
 }
 
 :root[data-theme='dark'] {
-  /* Color Palette - Dark Theme (Catppuccin Mocha) */
-  --color-canvas: #1E1E2E;          /* Mocha Base */
-  --color-surface: #25273A;         /* Mocha Surface 0 / Surface 1 blend */
-  --color-surface-subtle: #181825;  /* Mocha Mantle */
-  --color-surface-card: #313244;    /* Mocha Surface 0 */
-  --color-border: #45475A;          /* Mocha Surface 1 */
-  --color-border-subtle: #313244;   /* Mocha Surface 0 */
+  /* Color Palette - Dark Theme (Soft Pastel Twilight Slate - Warm & Calm) */
+  --color-canvas: #161D24;          /* Soft twilight slate canvas */
+  --color-surface: #1E2732;         /* Soft slate card surface */
+  --color-surface-subtle: #19212A;  /* Deep mantle background */
+  --color-surface-card: #25313E;    /* Elevated card surface */
+  --color-border: #354454;          /* Soft dusty slate border */
+  --color-border-subtle: #273442;
 
-  --color-ink: #CDD6F4;             /* Mocha Text */
-  --color-ink-muted: #A6ADC8;       /* Mocha Subtext 0 */
-  --color-ink-light: #6C7086;       /* Mocha Overlay 0 */
+  --color-ink: #E5ECF2;             /* Soft milky slate white */
+  --color-ink-muted: #A1B2C2;       /* Dusty pastel slate */
+  --color-ink-light: #6C7F91;       /* Subtle muted text */
 
-  /* Catppuccin Accents - Dark (Mocha) */
-  --color-teal: #94E2D5;            /* Mocha Teal */
-  --color-teal-hover: #89DCEB;      /* Mocha Sky */
-  --color-teal-subtle: rgba(148, 226, 213, 0.12);
-  --color-teal-border: rgba(148, 226, 213, 0.35);
+  /* Pure Pastel Accents - Dark (Gentle, glowing, non-aggressive pastels) */
+  --color-teal: #78C4BD;            /* Soft pastel mint / teal */
+  --color-teal-hover: #9BE0DA;
+  --color-teal-subtle: rgba(120, 196, 189, 0.12);
+  --color-teal-border: rgba(120, 196, 189, 0.3);
 
-  --color-blue: #89B4FA;            /* Mocha Blue */
-  --color-blue-hover: #B4BEFE;      /* Mocha Lavender */
-  --color-blue-subtle: rgba(137, 180, 250, 0.12);
+  --color-peach: #F0A678;           /* Soft pastel warm peach */
+  --color-peach-hover: #FFC099;
+  --color-peach-subtle: rgba(240, 166, 120, 0.12);
+  --color-peach-border: rgba(240, 166, 120, 0.3);
 
-  --color-lavender: #B4BEFE;        /* Mocha Lavender */
-  --color-lavender-hover: #CBA6F7;  /* Mocha Mauve */
-  --color-lavender-subtle: rgba(180, 190, 254, 0.12);
+  --color-sage: #88CF9F;            /* Soft pastel sage green */
+  --color-sage-hover: #A7EAC0;
+  --color-sage-subtle: rgba(136, 207, 159, 0.12);
+  --color-sage-border: rgba(136, 207, 159, 0.3);
 
-  --color-mauve: #CBA6F7;           /* Mocha Mauve */
-  --color-mauve-hover: #B4BEFE;
-  --color-mauve-subtle: rgba(203, 166, 247, 0.12);
+  --color-blue: #8AC2E4;            /* Soft pastel sky blue */
+  --color-blue-hover: #AFDBF5;
+  --color-blue-subtle: rgba(138, 194, 228, 0.12);
+  --color-blue-border: rgba(138, 194, 228, 0.3);
 
-  --color-peach: #FAB387;           /* Mocha Peach */
-  --color-peach-hover: #F9E2AF;     /* Mocha Yellow */
-  --color-peach-subtle: rgba(250, 179, 135, 0.12);
+  --color-lavender: #B5AEE5;        /* Soft pastel lavender */
+  --color-lavender-hover: #D2CCF7;
+  --color-lavender-subtle: rgba(181, 174, 229, 0.12);
+  --color-lavender-border: rgba(181, 174, 229, 0.3);
 
-  --color-sage: #A6E3A1;            /* Mocha Green */
-  --color-sage-hover: #94E2D5;
-  --color-sage-subtle: rgba(166, 227, 161, 0.12);
+  --color-amber: #F0C96F;           /* Soft pastel honey yellow */
+  --color-amber-hover: #FFE099;
+  --color-amber-subtle: rgba(240, 201, 111, 0.12);
+  --color-amber-border: rgba(240, 201, 111, 0.3);
 
-  --color-amber: #F9E2AF;           /* Mocha Yellow */
-  --color-amber-hover: #FAB387;
-  --color-amber-subtle: rgba(249, 226, 175, 0.12);
+  --color-red: #F08E9E;             /* Soft pastel rose */
+  --color-red-subtle: rgba(240, 142, 158, 0.12);
 
-  --color-red: #F38BA8;             /* Mocha Red */
-  --color-red-subtle: rgba(243, 139, 168, 0.12);
-
-  --color-code-bg: #181825;         /* Mocha Mantle */
-  --color-code-border: #313244;     /* Mocha Surface 0 */
+  --color-code-bg: #1A222B;
+  --color-code-border: #354454;
 
   /* Starlight Tokens Mapping - Dark Theme */
   --sl-color-accent: var(--color-teal);
@@ -143,14 +145,14 @@
   --sl-color-accent-high: var(--color-teal-hover);
 
   --sl-color-bg: var(--color-canvas);
-  --sl-color-bg-nav: var(--color-surface-subtle);
+  --sl-color-bg-nav: var(--color-canvas);
   --sl-color-bg-sidebar: var(--color-surface-subtle);
 
-  --sl-color-white: #CDD6F4;
-  --sl-color-gray-1: #BAC2DE;
-  --sl-color-gray-2: #A6ADC8;
-  --sl-color-gray-3: #9399B2;
-  --sl-color-gray-4: #6C7086;
+  --sl-color-white: #E5ECF2;
+  --sl-color-gray-1: #CBD9E5;
+  --sl-color-gray-2: #A1B2C2;
+  --sl-color-gray-3: #8498AA;
+  --sl-color-gray-4: #5F7386;
   --sl-color-gray-5: var(--color-border);
   --sl-color-gray-6: var(--color-surface-subtle);
   --sl-color-black: var(--color-canvas);

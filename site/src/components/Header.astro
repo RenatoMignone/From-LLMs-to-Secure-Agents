@@ -14,7 +14,8 @@ const base = '/From-LLMs-to-Secure-Agents';
   <nav class="publication-nav" aria-label="Publication Navigation">
     <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-link-guide">
       <span class="nav-guide-dot"></span>
-      Guide
+      <span>Read Guide</span>
+      <span class="nav-guide-arrow" aria-hidden="true">→</span>
     </a>
   </nav>
 
@@ -63,14 +64,23 @@ const base = '/From-LLMs-to-Secure-Agents';
   .nav-link-guide {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    color: var(--color-ink);
-    font-size: 0.92rem;
-    font-weight: 600;
+    gap: 0.55rem;
+    color: var(--color-teal);
+    font-size: 0.88rem;
+    font-weight: 700;
     text-decoration: none;
-    padding: 0.35rem 0.75rem;
-    border-radius: 8px;
-    transition: background-color 140ms ease, color 140ms ease;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background-color: var(--color-teal-subtle);
+    border: 1.5px solid var(--color-teal-border);
+    box-shadow: 0 1px 3px rgba(66, 148, 142, 0.08);
+    transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(:root[data-theme='dark']) .nav-link-guide {
+    background-color: rgba(120, 196, 189, 0.12);
+    border-color: rgba(120, 196, 189, 0.3);
+    color: var(--color-teal);
   }
 
   .nav-guide-dot {
@@ -78,11 +88,30 @@ const base = '/From-LLMs-to-Secure-Agents';
     height: 7px;
     border-radius: 50%;
     background-color: var(--color-teal);
+    box-shadow: 0 0 0 2px var(--color-teal-subtle);
+  }
+
+  .nav-guide-arrow {
+    font-size: 0.85rem;
+    transition: transform 140ms ease;
   }
 
   .nav-link-guide:hover {
     color: var(--color-teal);
-    background-color: var(--color-surface-subtle);
+    background-color: #D5ECE8;
+    border-color: var(--color-teal);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--color-teal-subtle);
+  }
+
+  :global(:root[data-theme='dark']) .nav-link-guide:hover {
+    background-color: rgba(120, 196, 189, 0.22);
+    border-color: var(--color-teal);
+    box-shadow: 0 4px 14px rgba(120, 196, 189, 0.25);
+  }
+
+  .nav-link-guide:hover .nav-guide-arrow {
+    transform: translateX(2px);
   }
 
   .publication-tools {
@@ -91,39 +120,48 @@ const base = '/From-LLMs-to-Secure-Agents';
     gap: 0.85rem;
   }
 
-  /* Catppuccin Styled GitHub Button */
+  /* GitHub Button - Dark Charcoal in Light theme, Pastel mint/sky in Dark theme */
   .nav-github-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.4rem 0.85rem;
     border-radius: 9999px;
-    background: linear-gradient(135deg, #313244 0%, #1e1e2e 100%);
+    background: linear-gradient(135deg, #24292f 0%, #101418 100%);
     color: #FFFFFF !important;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 650;
     text-decoration: none !important;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .nav-github-btn svg {
+    fill: #FFFFFF;
+  }
+
   :global(:root[data-theme='dark']) .nav-github-btn {
-    background: linear-gradient(135deg, var(--color-surface-card) 0%, var(--color-surface-subtle) 100%);
-    border-color: var(--color-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #78C4BD 0%, #8AC2E4 100%);
+    color: #141E26 !important;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(120, 196, 189, 0.25);
+  }
+
+  :global(:root[data-theme='dark']) .nav-github-btn svg {
+    fill: #141E26;
   }
 
   .nav-github-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    border-color: var(--color-teal);
     color: #FFFFFF !important;
   }
 
   :global(:root[data-theme='dark']) .nav-github-btn:hover {
-    border-color: var(--color-mauve);
-    box-shadow: 0 4px 14px rgba(203, 166, 247, 0.25);
+    background: linear-gradient(135deg, #9BE0DA 0%, #AFDBF5 100%);
+    color: #141E26 !important;
+    box-shadow: 0 4px 16px rgba(120, 196, 189, 0.4);
   }
 
   .nav-github-btn:active {

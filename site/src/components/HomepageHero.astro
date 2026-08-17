@@ -2,20 +2,14 @@
 interface Props {
   firstChapterRoute: string;
   baseUrl: string;
-  publishedCount?: number;
 }
 
-const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
+const { firstChapterRoute, baseUrl } = Astro.props;
 ---
 
 <section class="hero-section not-content">
   <div class="hero-container">
     <div class="hero-copy">
-      <div class="hero-badge">
-        <span class="badge-pulse"></span>
-        <span class="badge-text">Interactive Engineering Handbook · 2-Pass Architecture</span>
-      </div>
-
       <h1 class="hero-heading">
         Understand the complete agentic system first.<br />
         <span class="hero-accent-text">Then learn how to secure it.</span>
@@ -34,25 +28,6 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
           <span>Why This Guide Is Needed</span>
           <span class="btn-arrow" aria-hidden="true">↓</span>
         </a>
-      </div>
-
-      <div class="hero-feature-pills">
-        <div class="feature-pill">
-          <span class="pill-dot pill-teal"></span>
-          <span>{publishedCount} Published Units</span>
-        </div>
-        <div class="feature-pill">
-          <span class="pill-dot pill-amber"></span>
-          <span>100% Grounded Sources</span>
-        </div>
-        <div class="feature-pill">
-          <span class="pill-dot pill-lavender"></span>
-          <span>Cartoon System Schemas</span>
-        </div>
-        <div class="feature-pill">
-          <span class="pill-dot pill-sage"></span>
-          <span>Machine-Readable AEO</span>
-        </div>
       </div>
     </div>
 
@@ -84,15 +59,15 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
 <style>
   .hero-section {
     width: 100%;
-    padding: clamp(3rem, 6vh, 5.5rem) clamp(1.5rem, 4vw, 4.5rem);
-    background: radial-gradient(circle at 15% 15%, rgba(23, 146, 153, 0.07), transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(114, 135, 253, 0.06), transparent 45%);
+    padding: clamp(3.5rem, 7vh, 6rem) clamp(1.5rem, 4vw, 4.5rem);
+    background: radial-gradient(circle at 15% 15%, rgba(66, 148, 142, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(229, 142, 88, 0.07), transparent 45%);
     box-sizing: border-box;
   }
 
   :global(:root[data-theme='dark']) .hero-section {
-    background: radial-gradient(circle at 15% 15%, rgba(203, 166, 247, 0.09), transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(148, 226, 213, 0.08), transparent 45%);
+    background: radial-gradient(circle at 15% 15%, rgba(120, 196, 189, 0.1), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(240, 166, 120, 0.08), transparent 45%);
   }
 
   .hero-container {
@@ -111,74 +86,34 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     align-items: flex-start;
   }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.4rem 0.95rem;
-    border-radius: 9999px;
-    background-color: var(--color-teal-subtle);
-    border: 1px solid var(--color-teal-border);
-    margin-bottom: 1.5rem;
-  }
-
-  :global(:root[data-theme='dark']) .hero-badge {
-    background-color: rgba(203, 166, 247, 0.12);
-    border-color: rgba(203, 166, 247, 0.3);
-  }
-
-  .badge-pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--color-teal);
-    box-shadow: 0 0 0 2px rgba(23, 146, 153, 0.25);
-  }
-
-  :global(:root[data-theme='dark']) .badge-pulse {
-    background-color: var(--color-mauve);
-    box-shadow: 0 0 0 2px rgba(203, 166, 247, 0.3);
-  }
-
-  .badge-text {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--color-teal);
-  }
-
-  :global(:root[data-theme='dark']) .badge-text {
-    color: var(--color-mauve);
-  }
-
   .hero-heading {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 3.8vw, 4rem);
+    font-size: clamp(2.4rem, 3.8vw, 4.1rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.12;
     color: var(--color-ink);
     margin: 0 0 1.5rem;
     letter-spacing: -0.035em;
   }
 
   .hero-accent-text {
-    background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-blue) 100%);
+    background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-peach) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
   }
 
   :global(:root[data-theme='dark']) .hero-accent-text {
-    background: linear-gradient(135deg, #CBA6F7 0%, #89B4FA 50%, #94E2D5 100%);
+    background: linear-gradient(135deg, #78C4BD 0%, #8AC2E4 50%, #F0A678 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .hero-lead {
-    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    font-size: clamp(1.12rem, 1.4vw, 1.3rem);
     line-height: 1.68;
     color: var(--color-ink-muted);
-    max-width: 52rem;
+    max-width: 50rem;
     margin: 0 0 2.5rem;
   }
 
@@ -187,7 +122,6 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     align-items: center;
     gap: 1.15rem;
     flex-wrap: wrap;
-    margin-bottom: 2.75rem;
   }
 
   .btn-hero-primary {
@@ -195,36 +129,36 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     align-items: center;
     gap: 0.65rem;
     padding: 0.95rem 1.85rem;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #179299 0%, #1e66f2 100%);
+    border-radius: 14px;
+    background: linear-gradient(135deg, #42948E 0%, #4F88AC 100%);
     color: #FFFFFF !important;
     font-family: var(--font-heading);
     font-size: 1.08rem;
     font-weight: 700;
     text-decoration: none !important;
-    box-shadow: 0 4px 14px rgba(23, 146, 153, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 18px rgba(66, 148, 142, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   :global(:root[data-theme='dark']) .btn-hero-primary {
-    background: linear-gradient(135deg, #CBA6F7 0%, #89B4FA 100%);
-    color: #11111B !important;
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 16px rgba(203, 166, 247, 0.35);
+    background: linear-gradient(135deg, #78C4BD 0%, #8AC2E4 100%);
+    color: #141E26 !important;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 20px rgba(120, 196, 189, 0.32);
   }
 
   .btn-hero-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(23, 146, 153, 0.45);
-    background: linear-gradient(135deg, #13777d 0%, #1550c0 100%);
+    box-shadow: 0 10px 24px rgba(66, 148, 142, 0.42);
+    background: linear-gradient(135deg, #377E79 0%, #437596 100%);
     color: #FFFFFF !important;
   }
 
   :global(:root[data-theme='dark']) .btn-hero-primary:hover {
-    background: linear-gradient(135deg, #F5C2E7 0%, #B4BEFE 100%);
-    color: #11111B !important;
-    box-shadow: 0 8px 24px rgba(203, 166, 247, 0.45);
+    background: linear-gradient(135deg, #9BE0DA 0%, #AFDBF5 100%);
+    color: #141E26 !important;
+    box-shadow: 0 10px 26px rgba(120, 196, 189, 0.42);
   }
 
   .btn-hero-secondary {
@@ -232,15 +166,15 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     align-items: center;
     gap: 0.5rem;
     padding: 0.95rem 1.65rem;
-    border-radius: 12px;
+    border-radius: 14px;
     background-color: var(--color-surface);
     color: var(--color-ink) !important;
     font-family: var(--font-heading);
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 650;
     text-decoration: none !important;
     border: 1.5px solid var(--color-border);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -253,13 +187,13 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
     transform: translateY(-2px);
     border-color: var(--color-teal);
     color: var(--color-teal) !important;
-    box-shadow: 0 4px 12px var(--color-teal-subtle);
+    box-shadow: 0 6px 16px var(--color-teal-subtle);
   }
 
   :global(:root[data-theme='dark']) .btn-hero-secondary:hover {
-    border-color: var(--color-mauve);
-    color: var(--color-mauve) !important;
-    box-shadow: 0 4px 14px rgba(203, 166, 247, 0.2);
+    border-color: var(--color-teal);
+    color: var(--color-teal) !important;
+    box-shadow: 0 6px 16px rgba(120, 196, 189, 0.2);
   }
 
   .btn-arrow {
@@ -273,42 +207,6 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   .btn-hero-secondary:hover .btn-arrow {
     transform: translateY(2px);
   }
-
-  .hero-feature-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem;
-  }
-
-  .feature-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 8px;
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border-subtle);
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--color-ink-muted);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-  }
-
-  :global(:root[data-theme='dark']) .feature-pill {
-    background-color: var(--color-surface-card);
-    border-color: var(--color-border);
-  }
-
-  .pill-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-  }
-
-  .pill-teal { background-color: var(--color-teal); }
-  .pill-amber { background-color: var(--color-amber); }
-  .pill-lavender { background-color: var(--color-lavender); }
-  .pill-sage { background-color: var(--color-sage); }
 
   /* Right Visual Card */
   .hero-visual {
@@ -337,89 +235,86 @@ const { firstChapterRoute, baseUrl, publishedCount = 14 } = Astro.props;
   }
 
   :global(:root[data-theme='dark']) .visual-card:hover {
-    box-shadow: 0 20px 52px -6px rgba(203, 166, 247, 0.2);
+    box-shadow: 0 20px 52px -6px rgba(120, 196, 189, 0.22);
   }
 
   .visual-card-header {
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    padding: 0.85rem 1.35rem;
+    padding: 0.85rem 1.25rem;
     background-color: var(--color-surface-subtle);
-    border-bottom: 1px solid var(--color-border-subtle);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .visual-dots {
     display: flex;
+    align-items: center;
     gap: 0.35rem;
   }
 
   .window-dot {
-    width: 11px;
-    height: 11px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
   }
 
-  .window-dot.red { background-color: #EF4444; opacity: 0.85; }
-  .window-dot.yellow { background-color: #F59E0B; opacity: 0.85; }
-  .window-dot.green { background-color: #10B981; opacity: 0.85; }
+  .window-dot.red { background-color: #E26D7D; }
+  .window-dot.yellow { background-color: #E5B25D; }
+  .window-dot.green { background-color: #6CAE83; }
 
   .visual-title {
+    font-family: var(--font-heading);
     font-size: 0.85rem;
-    font-weight: 650;
+    font-weight: 700;
     color: var(--color-ink-muted);
   }
 
   .visual-image-wrapper {
-    padding: 1.5rem;
+    width: 100%;
+    background-color: var(--color-surface);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, rgba(13, 148, 136, 0.04), transparent 70%);
+    padding: 0.5rem;
+  }
+
+  :global(:root[data-theme='dark']) .visual-image-wrapper {
+    background-color: var(--color-surface-card);
   }
 
   .visual-image-wrapper img {
-    display: block;
     width: 100%;
     height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--color-border-subtle);
-    background-color: #FFFFFF;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-
-  :global(:root[data-theme='dark']) .visual-image-wrapper img {
-    background-color: #0F172A;
+    display: block;
+    border-radius: 10px;
   }
 
   .visual-card-footer {
-    padding: 0.85rem 1.35rem;
+    padding: 0.85rem 1.25rem;
     background-color: var(--color-surface-subtle);
-    border-top: 1px solid var(--color-border-subtle);
+    border-top: 1px solid var(--color-border);
   }
 
   .visual-card-footer p {
-    margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     line-height: 1.5;
     color: var(--color-ink-muted);
+    margin: 0;
     text-align: center;
+    font-style: italic;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 960px) {
     .hero-container {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 3.5rem;
     }
   }
 
   @media (max-width: 640px) {
     .hero-section {
-      padding: 2.25rem 1rem 3.5rem;
-    }
-
-    .hero-heading {
-      font-size: 2.2rem;
+      padding: 3rem 1.15rem 4rem;
     }
 
     .hero-actions {
