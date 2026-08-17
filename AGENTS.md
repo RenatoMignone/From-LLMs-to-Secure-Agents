@@ -32,3 +32,12 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Let scripts update operational metadata. Update `README.md` only when public facts change.
 - Treat `PROJECT_STATUS.md` front matter as operational truth.
 - Do not use em dashes.
+
+## Pending Image Generation (Post-Quota Reset)
+
+There are 10 pending visual assets across recent chapters with completed prompts saved in their `source/` folders that must be generated using `generate_image` once API quota resets, after which this note should be removed:
+- `assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/` (2 images)
+- `assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/` (2 images)
+- `assets/images/02-agent-architectures/08-architecture-trade-offs/` (2 images)
+- `assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/` (2 images)
+- `assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/` (2 images)

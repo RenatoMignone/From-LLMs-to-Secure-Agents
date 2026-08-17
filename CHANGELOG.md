@@ -161,3 +161,33 @@
 - Files or sections: `knowledge/02-agent-architectures/05-evaluator-optimizer-and-reflection.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Evaluator-optimizer and reflection.
 - Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-06 complete
+
+- Files or sections: `knowledge/02-agent-architectures/06-state-machines-and-event-driven-graphs.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed State machines and event-driven graphs.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-07 complete
+
+- Files or sections: `knowledge/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Supervisors, handoffs, and agent-as-tool.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-02-08 complete
+
+- Files or sections: `knowledge/02-agent-architectures/08-architecture-trade-offs.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Architecture trade-offs.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-01-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/01-models-and-routing/01-model-roles-and-selection.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Model roles and selection.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-01-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Routing, cascades, and fallbacks.
+- Validation: Passed repository validation and the unit review checklist.

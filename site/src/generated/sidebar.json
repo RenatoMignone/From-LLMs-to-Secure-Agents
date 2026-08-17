@@ -70,6 +70,28 @@
       {
         "label": "Evaluator-optimizer and reflection",
         "link": "/architectures/05-evaluator-optimizer-and-reflection/"
+      },
+      {
+        "label": "State machines and event-driven graphs",
+        "link": "/architectures/06-state-machines-and-event-driven-graphs/"
+      },
+      {
+        "label": "Supervisors, handoffs, and agent-as-tool",
+        "link": "/architectures/07-supervisors-handoffs-and-agent-as-tool/"
+      },
+      {
+        "label": "Architecture trade-offs",
+        "link": "/architectures/08-architecture-trade-offs/"
+      }
+    ]
+  },
+  {
+    "label": "Building blocks",
+    "collapsed": true,
+    "items": [
+      {
+        "label": "Model roles and selection",
+        "link": "/building-blocks/01-model-roles-and-selection/"
       }
     ]
   }
