@@ -1,0 +1,26 @@
+id: p1-02-01-anthropic-agent-patterns-2024
+title: 'Building Effective Agents: Common Agentic Patterns'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Outlines common architecture patterns (prompt chaining, routing, parallelization,
+  orchestrator-workers, evaluator-optimizer) and establishes the principle of starting
+  with the simplest deterministic design before increasing model autonomy.
+limitations:
+- Provides empirical heuristics for pattern selection rather than formal mathematical
+  optimization models.
+related_topics:
+- agent architecture selection patterns
+unit_ids:
+- P1-02-01
+used_in:
+- knowledge/02-agent-architectures/01-architecture-selection-criteria.md
+local_copy: null
+sha256: null

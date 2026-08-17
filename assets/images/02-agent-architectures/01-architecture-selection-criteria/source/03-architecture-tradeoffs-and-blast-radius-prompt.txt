@@ -1,0 +1,23 @@
+Create a wide educational cartoon comparison illustration titled "Architectural Trade-Offs and Failure Containment".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle pastel amber. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Divide the visual into three comparative vertical columns representing three architecture paradigms:
+
+1. Column 1: "Deterministic Workflow" (Left)
+   - Cute blue robot standing behind a sturdy green protective boundary shield.
+   - Metrics: "Latency: Sub-second (Fast)", "Cost: Fixed & Minimum", "Debuggability: Line-by-line deterministic", "Failure Blast Radius: Contained to single step".
+   - Visual: Small error sign neatly caught in a sandbox filter.
+
+2. Column 2: "Single-Agent ReAct Loop" (Center)
+   - Cute green robot with tool belt navigating a dynamic feedback circle.
+   - Metrics: "Latency: Multi-second (Variable)", "Cost: Moderate (Multi-turn)", "Debuggability: Step-by-step trace log", "Failure Blast Radius: Scoped to agent tools".
+   - Visual: Robot inspecting a tool error code and trying another tool.
+
+3. Column 3: "Multi-Agent Supervisor Network" (Right)
+   - Team of specialist robots passing messages to a central supervisor robot.
+   - Metrics: "Latency: Highest (Multi-agent hops)", "Cost: Highest (Multiplied tokens)", "Debuggability: Distributed message traces", "Failure Blast Radius: Cascading error / confusion risk".
+   - Visual: Supervisor robot coordinating message bubbles across team boundaries.
+
+Clean cards, friendly cartoon icons for Latency (clock), Cost (token coin), Debuggability (magnifying glass), and Blast Radius (shield).
+Aspect ratio: 16:9.

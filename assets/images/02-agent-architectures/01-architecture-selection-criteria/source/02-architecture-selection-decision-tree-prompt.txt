@@ -1,0 +1,25 @@
+Create a wide educational cartoon flowchart illustration titled "Architecture Selection Guide: The Principle of Least Agency".
+
+Use the canonical educational cartoon illustration style: clean 2D vector shapes, cute rounded robot assistant characters, soft friendly outlines, warm light cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and gentle orange. Strictly avoid dark themes, cyberpunk/neon lights, and sterile corporate flowcharts.
+
+Structure the visual as a clear, top-to-bottom or left-to-right decision flow with cute robots holding signs at each key decision gate:
+
+1. Question 1: "Is the sequence of execution known in advance?"
+   - [YES] -> Green badge pointing to "Fixed Pipeline / Prompt Chain" (Robot assembling a neat linear stack of blocks).
+   - [NO] -> Arrow down to Question 2.
+
+2. Question 2: "Can inputs be classified into distinct fixed workflows?"
+   - [YES] -> Green badge pointing to "Router Workflow" (Robot directing traffic with colored arrows).
+   - [NO] -> Arrow down to Question 3.
+
+3. Question 3: "Does output require iterative refinement against clear criteria?"
+   - [YES] -> Green badge pointing to "Evaluator-Optimizer Loop" (Robot crafting draft and robot reviewer with magnifying glass).
+   - [NO] -> Arrow down to Question 4.
+
+4. Question 4: "Does the task require multi-step environment discovery and tool execution?"
+   - Single domain -> "ReAct / Plan-and-Execute Agent" (Robot with tool belt and notepad).
+   - Multiple specialized domains / teams -> "Multi-Agent Supervisor / Network" (Team of specialist robots collaborating).
+
+Include a prominent callout badge: "Core Principle: Start with the least dynamic architecture that solves the problem."
+Clear typography, high legibility, clean pastel cards, and friendly robot guides.
+Aspect ratio: 16:9.

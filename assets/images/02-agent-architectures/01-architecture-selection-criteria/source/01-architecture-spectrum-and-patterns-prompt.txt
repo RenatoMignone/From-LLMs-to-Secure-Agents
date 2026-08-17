@@ -1,0 +1,14 @@
+Create a wide educational cartoon illustration titled "The Agent Architecture Spectrum: From Deterministic Workflows to Autonomous Multi-Agent Networks".
+
+Use the canonical educational cartoon illustration style: clean 2D vector-like shapes, cute rounded robot assistant characters, soft outlines, warm cream background, and a calm pastel palette of soft blue, teal, sage green, warm cream, and pastel orange. Strictly no dark backgrounds, no cyberpunk or neon aesthetics, no sterile corporate flowchart boxes, and no 3D photorealism.
+
+The composition should display four distinct architecture tiers horizontally from left to right, clearly demonstrating increasing model autonomy:
+
+1. "Fixed Chaining & Parallel Workflows" (Left): A friendly blue robot assembling documents along a straight, predictable conveyor track with labeled stations ("Extract", "Format"). High determinism, low latency.
+2. "Conditional Routing" (Center-Left): A cute green robot at a railway-style switchboard directing incoming tasks to distinct specialized helper stations based on classification.
+3. "Iterative & ReAct Loops" (Center-Right): A purple robot wearing a tool belt, actively testing tools against an environment box and observing feedback in a circular loop, alongside a second robot holding an "Evaluator" checklist.
+4. "Multi-Agent Coordination" (Right): A supervisor robot with a clipboard coordinating and handing off tasks to specialized worker robots (Search specialist, Coder, Analyst).
+
+Use clear, bold, high-contrast sans-serif labels for each tier. Include a subtle bottom gradient arrow labeled "Increasing Autonomy & Dynamic Discovery ->" and an opposing top arrow labeled "<- Higher Determinism & Predictability".
+The image must be clean, balanced, visually appealing, and highly readable.
+Aspect ratio: 16:9.

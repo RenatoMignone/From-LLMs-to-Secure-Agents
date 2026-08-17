@@ -1,0 +1,25 @@
+id: p1-02-01-google-adk-orchestration-2024
+title: Agent Architecture and Orchestration
+authors_or_organization: Google
+date: '2024'
+source_type: documentation
+canonical_url: https://adk.dev/agents/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Classifies single-agent, hierarchical workflow, and multi-agent topologies, prescribing
+  architecture selection based on tool scope, isolation boundaries, and determinism
+  requirements.
+limitations:
+- Concentrates on Google Cloud and ADK primitives.
+related_topics:
+- agent orchestration topology
+unit_ids:
+- P1-02-01
+used_in:
+- knowledge/02-agent-architectures/01-architecture-selection-criteria.md
+local_copy: null
+sha256: null
