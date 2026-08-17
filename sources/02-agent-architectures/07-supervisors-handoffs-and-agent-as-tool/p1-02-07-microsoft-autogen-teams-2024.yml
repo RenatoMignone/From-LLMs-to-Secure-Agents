@@ -1,0 +1,25 @@
+id: p1-02-07-microsoft-autogen-teams-2024
+title: 'AutoGen: Enabling Next-Generation LLM Applications via Multi-Agent Conversation'
+authors_or_organization: Microsoft Research
+date: 2024-03
+source_type: paper
+canonical_url: https://microsoft.github.io/autogen/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Analyzes structured multi-agent collaboration topologies, supervisor group chats, nested agent tool patterns, and conversational handoffs.
+limitations:
+- Broad architectural survey across diverse research prototypes and production runtime models.
+related_topics:
+- multi-agent teams
+- group chat
+- conversational coordination
+unit_ids:
+- P1-02-07
+used_in:
+- knowledge/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool.md
+local_copy: null
+sha256: null

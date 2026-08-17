@@ -1,0 +1,25 @@
+id: p1-02-07-openai-swarm-2024
+title: 'Swarm: Educational Framework for Multi-Agent Orchestration and Handoffs'
+authors_or_organization: OpenAI
+date: 2024-10
+source_type: documentation
+canonical_url: https://github.com/openai/swarm
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Explains lightweight multi-agent handoff mechanics, function-based transfer routines, and dynamic context transfer between peer agents.
+limitations:
+- Designed as an educational architectural exploration rather than an enterprise production framework.
+related_topics:
+- agent handoffs
+- peer routing
+- multi-agent systems
+unit_ids:
+- P1-02-07
+used_in:
+- knowledge/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool.md
+local_copy: null
+sha256: null

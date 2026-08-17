@@ -1,0 +1,10 @@
+Create a clear, educational cartoon illustration explaining Context Isolation and Subagent Encapsulation in multi-agent workflows.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, warm coral, and sage green.
+
+Show a 3-part horizontal flow:
+1. Left: 'Parent Context (Lean)' - A cheerful blue Parent Supervisor robot managing a clean, short prompt context scroll with the primary user task.
+2. Center: 'Isolated Subagent Sandbox' - A semi-transparent purple bubble containing a specialized Worker robot executing 10 detailed raw API tool calls, generating noisy raw JSON data that stays completely trapped inside the sandbox bubble.
+3. Right: 'Clean Synthesized Return' - A small green summary parcel passed from the bubble back to the Parent Supervisor, keeping the parent's context window pristine, compact, and free from noise.
+
+Include clear typography, smooth arrows, and visual contrast between the clean parent context and the isolated subagent sandbox.

@@ -1,0 +1,10 @@
+Create a clear, educational cartoon illustration comparing three Multi-Agent Coordination Architectures: Supervisor, Peer Handoffs, and Agent-as-a-Tool.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds or cyberpunk aesthetics.
+
+Show three distinct side-by-side architecture columns:
+1. Column 1: 'Supervisor (Manager-Worker)' - A central manager robot in a navy cap directing task arrows down to two specialized worker robots (Researcher and Coder), and gathering synthesized outputs back.
+2. Column 2: 'Peer Handoffs (Swarm)' - Three specialized peer robots (Triage, Billing, Tech Support) connected in a direct transfer chain with smooth curved handoff arrows passing a conversation baton.
+3. Column 3: 'Agent-as-a-Tool (Encapsulated)' - A primary agent robot holding a tool capsule containing a smaller subagent robot performing internal tool calls inside a private sandbox bubble.
+
+Ensure bold, high-contrast title labels and crisp educational hierarchy.

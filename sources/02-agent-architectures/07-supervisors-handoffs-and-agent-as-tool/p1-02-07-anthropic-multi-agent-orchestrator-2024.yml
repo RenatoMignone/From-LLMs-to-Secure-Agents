@@ -1,0 +1,25 @@
+id: p1-02-07-anthropic-multi-agent-orchestrator-2024
+title: 'Building Effective Agents: Orchestrator-Workers and Multi-Agent Patterns'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Details the supervisor (orchestrator-workers) pattern, subagent context encapsulation, task decomposition, and result synthesis across specialized worker models.
+limitations:
+- Emphasizes prompt-based coordination over binary inter-process communication protocols.
+related_topics:
+- supervisor pattern
+- manager worker
+- agent as tool
+unit_ids:
+- P1-02-07
+used_in:
+- knowledge/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool.md
+local_copy: null
+sha256: null
