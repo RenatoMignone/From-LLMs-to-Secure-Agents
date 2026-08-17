@@ -1,0 +1,12 @@
+Create a clear, educational cartoon illustration of the Architecture Selection Decision Flowchart for AI systems.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, warm coral, and sage green.
+
+Show a clean top-to-bottom decision tree guided by a friendly robot guide with a pointer:
+1. Top Decision: 'Can code solve the task deterministically?' -> YES -> Choose 'Deterministic Pipeline / Script'.
+2. Branch: 'Does the input require domain classification?' -> YES -> Choose 'Intent Router'.
+3. Branch: 'Does output need iterative quality/test critique?' -> YES -> Choose 'Evaluator-Optimizer Loop'.
+4. Branch: 'Does task require multi-step state persistence & human gates?' -> YES -> Choose 'State Machine / Event Graph'.
+5. Bottom Decision: 'Do sub-tasks exceed single context or require strict credential isolation?' -> YES -> Choose 'Multi-Agent Supervisor'.
+
+Highlight the core rule: 'Default to the simplest pattern that satisfies requirements.' Use clear directional badges, checkmarks, and friendly rounded cards.

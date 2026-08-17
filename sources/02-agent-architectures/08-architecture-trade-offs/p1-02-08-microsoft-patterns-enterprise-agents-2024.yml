@@ -1,0 +1,25 @@
+id: p1-02-08-microsoft-patterns-enterprise-agents-2024
+title: 'Design Patterns for Multi-Agent AI Systems in Enterprise Applications'
+authors_or_organization: Microsoft Azure Architecture Center
+date: 2024-10
+source_type: documentation
+canonical_url: https://learn.microsoft.com/en-us/azure/architecture/guide/ai/
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Analyzes trade-offs between centralized supervisors, event-driven graphs, and single-agent loops regarding state management, observability, and failure isolation.
+limitations:
+- Emphasizes Microsoft Azure enterprise cloud topologies.
+related_topics:
+- failure isolation
+- observability trade-offs
+- enterprise patterns
+unit_ids:
+- P1-02-08
+used_in:
+- knowledge/02-agent-architectures/08-architecture-trade-offs.md
+local_copy: null
+sha256: null

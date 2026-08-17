@@ -1,0 +1,25 @@
+id: p1-02-08-anthropic-building-effective-agents-2024
+title: 'Building Effective Agents: Architecture Trade-Offs and Simplicity Principles'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Recommends starting with the simplest pattern that solves the task, comparing cost, latency, error recovery, and failure blast radius across agent architectures.
+limitations:
+- Focuses primarily on prompt engineering and orchestration patterns rather than hardware-level optimizations.
+related_topics:
+- architecture trade offs
+- simplicity principle
+- cost latency trade-offs
+unit_ids:
+- P1-02-08
+used_in:
+- knowledge/02-agent-architectures/08-architecture-trade-offs.md
+local_copy: null
+sha256: null

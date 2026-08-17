@@ -1,0 +1,25 @@
+id: p1-02-08-google-cloud-agent-design-patterns-2024
+title: 'Enterprise Generative AI Agent Design Patterns and Evaluation'
+authors_or_organization: Google Cloud Architecture Center
+date: 2024-08
+source_type: documentation
+canonical_url: https://cloud.google.com/architecture/ai-ml
+doi: null
+version: null
+accessed: '2026-08-17'
+last_verified: '2026-08-17'
+status: checked
+claims_supported:
+- Compares deterministic workflows against dynamic agent loops across enterprise latency, cost budgets, and compliance constraints.
+limitations:
+- Emphasizes Google Cloud enterprise platform features.
+related_topics:
+- enterprise agent architectures
+- cost budgets
+- latency constraints
+unit_ids:
+- P1-02-08
+used_in:
+- knowledge/02-agent-architectures/08-architecture-trade-offs.md
+local_copy: null
+sha256: null

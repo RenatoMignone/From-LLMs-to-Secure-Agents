@@ -1,0 +1,15 @@
+Create a clear, educational cartoon illustration showing the Architecture Trade-Offs Matrix for AI agent systems.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds or cyberpunk aesthetics.
+
+Show a 2-axis comparison grid / spectrum:
+- Horizontal Axis: 'Autonomy & Flexibility' (from Fixed Deterministic to Autonomous Multi-Agent).
+- Vertical Axis: 'System Complexity & Cost' (from Low Tokens / Millisecond Latency to High Token Multiplier).
+
+Plot four key architecture archetypes with cute robot icons and badges:
+1. 'Deterministic Pipelines & Routers' (Bottom-Left: Zero loop risk, Lowest cost, Sub-second latency).
+2. 'Evaluator-Optimizer Loops' (Center-Left: Controlled iteration, Test verification, $2\times$ token multiplier).
+3. 'State Machines & Event Graphs' (Center-Right: Durable checkpoints, Human-in-the-loop gates, Cyclic resilience).
+4. 'Multi-Agent Supervisors' (Top-Right: Maximum domain specialization, Context isolation, Highest cost & coordination overhead).
+
+Include clear high-contrast labels and friendly callout badges summarizing key trade-off metrics.
