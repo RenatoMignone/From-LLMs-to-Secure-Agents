@@ -4,6 +4,7 @@ import SiteTitle from 'virtual:starlight/components/SiteTitle';
 import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 
 const base = '/From-LLMs-to-Secure-Agents';
+const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
 ---
 
 <div class="publication-header">
@@ -39,22 +40,29 @@ const base = '/From-LLMs-to-Secure-Agents';
 
     <ThemeSelect />
 
-    <!-- Mobile Hamburger Menu Button Stuck to Right -->
-    <button
-      type="button"
-      class="nav-mobile-menu-btn"
-      id="custom-mobile-menu-toggle"
-      aria-label="Toggle navigation menu"
-      aria-expanded="false"
-      aria-controls="starlight__sidebar"
-    >
-      <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path>
-      </svg>
-      <svg class="icon-close" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-      </svg>
-    </button>
+    {/* Show Guide link on homepage mobile if no sidebar, otherwise show Hamburger menu button */}
+    {!hasSidebar ? (
+      <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-mobile-guide-btn">
+        <span>Guide</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    ) : (
+      <button
+        type="button"
+        class="nav-mobile-menu-btn"
+        id="custom-mobile-menu-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="starlight__sidebar"
+      >
+        <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+        </svg>
+      </button>
+    )}
   </div>
 </div>
 
@@ -73,7 +81,9 @@ const base = '/From-LLMs-to-Secure-Agents';
       }
     }
 
-    toggleBtn.addEventListener('click', () => {
+    // Toggle menu
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
       if (isExpanded) {
         document.body.removeAttribute('data-mobile-menu-expanded');
@@ -83,6 +93,7 @@ const base = '/From-LLMs-to-Secure-Agents';
       syncState();
     });
 
+    // Close on escape
     window.addEventListener('keyup', (e) => {
       if (e.key === 'Escape' && document.body.hasAttribute('data-mobile-menu-expanded')) {
         document.body.removeAttribute('data-mobile-menu-expanded');
@@ -119,7 +130,7 @@ const base = '/From-LLMs-to-Secure-Agents';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: clamp(0.75rem, 2vw, 2rem);
+    gap: clamp(0.5rem, 1.5vw, 1.75rem);
   }
 
   .publication-brand {
@@ -194,7 +205,7 @@ const base = '/From-LLMs-to-Secure-Agents';
   .publication-tools {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.5rem;
     margin-left: auto;
     flex-shrink: 0;
   }
@@ -304,6 +315,20 @@ const base = '/From-LLMs-to-Secure-Agents';
     display: block;
   }
 
+  .nav-mobile-guide-btn {
+    display: none;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 9999px;
+    background-color: var(--color-teal-subtle);
+    border: 1px solid var(--color-teal-border);
+    color: var(--color-teal);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
   @media (max-width: 60rem) {
     .publication-nav {
       margin-left: 0.75rem;
@@ -316,11 +341,15 @@ const base = '/From-LLMs-to-Secure-Agents';
     }
 
     .search-wrap {
-      display: none; /* Replaced by search inside the mobile menu drawer on guide pages */
+      display: none;
     }
 
     .nav-mobile-menu-btn {
-      display: inline-flex; /* Shown stuck to the far right */
+      display: inline-flex;
+    }
+
+    .nav-mobile-guide-btn {
+      display: inline-flex;
     }
 
     .publication-tools {

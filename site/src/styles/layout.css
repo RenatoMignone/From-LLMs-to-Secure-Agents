@@ -307,25 +307,46 @@ starlight-menu-button {
 /* Mobile Sidebar Drawer styling when expanded */
 :global([data-mobile-menu-expanded]) nav.sidebar {
   display: block !important;
+  visibility: visible !important;
+}
+
+:global([data-mobile-menu-expanded]) .sidebar-pane,
+:global([data-mobile-menu-expanded]) #starlight__sidebar {
+  --sl-sidebar-visibility: visible !important;
+  visibility: visible !important;
+  display: block !important;
   position: fixed !important;
   inset-block-start: var(--sl-nav-height) !important;
   inset-inline-start: 0 !important;
   inset-inline-end: 0 !important;
   inset-block-end: 0 !important;
   width: 100% !important;
+  max-width: 100% !important;
   height: calc(100vh - var(--sl-nav-height)) !important;
   background-color: var(--color-canvas) !important;
-  z-index: calc(var(--sl-z-index-navbar) - 1) !important;
+  z-index: calc(var(--sl-z-index-navbar) + 50) !important;
   overflow-y: auto !important;
-  padding: 1.25rem 1rem 3rem !important;
+  padding: 1.25rem 1rem 4rem !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-right: none !important;
 }
 
-:global([data-mobile-menu-expanded]) .sidebar-pane {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  border-right: none !important;
-  background-color: transparent !important;
+:global([data-mobile-menu-expanded]) .sidebar-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  padding: 0 !important;
+  height: auto !important;
+  min-height: max-content !important;
+}
+
+:global([data-mobile-menu-expanded]) .top-level {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Hide default starlight pagination */
