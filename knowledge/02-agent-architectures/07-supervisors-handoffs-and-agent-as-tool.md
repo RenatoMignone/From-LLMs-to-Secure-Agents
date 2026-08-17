@@ -96,6 +96,9 @@ The **Agent-as-a-Tool pattern** treats an entire agent loop as a callable functi
 
 The following Python script implements the three coordination patterns in a clean, framework-agnostic runtime:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Optional
 
@@ -135,6 +138,8 @@ class SupervisorAgent:
             "synthesis": f"Supervisor complete for '{goal}'.\n1. {res}\n2. {code}"
         }
 ```
+
+</details>
 
 ## Framework implementations
 

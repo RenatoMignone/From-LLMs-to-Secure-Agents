@@ -93,6 +93,9 @@ The visual below contrasts parallel sectioning (Map-Reduce) with consensus votin
 
 The following Python script demonstrates prompt chaining with validation checkpoints, conditional routing, and parallel consensus voting:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 import concurrent.futures
@@ -141,6 +144,8 @@ def parallel_voting_workflow(complex_clause: str, client: WorkflowModelClient, n
     majority_vote = max(set(votes), key=votes.count)
     return majority_vote
 ```
+
+</details>
 
 ## Framework implementations
 

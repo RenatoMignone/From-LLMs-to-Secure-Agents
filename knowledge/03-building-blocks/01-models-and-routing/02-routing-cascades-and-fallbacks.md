@@ -95,6 +95,9 @@ To handle provider rate limits (HTTP 429) and service outages (HTTP 500/503), th
 
 The following Python script implements a functional model gateway with dynamic routing, confidence cascades, and circuit breaker failover:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 import time
@@ -141,6 +144,8 @@ class ModelGateway:
                 return {"provider": "Secondary Fallback", "data": self.mock_call("secondary", prompt)}
         return {"provider": "Secondary Fallback (Circuit Open)", "data": self.mock_call("secondary", prompt)}
 ```
+
+</details>
 
 ## Framework implementations
 

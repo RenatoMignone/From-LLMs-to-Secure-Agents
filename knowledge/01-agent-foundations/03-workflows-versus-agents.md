@@ -89,6 +89,9 @@ Industry architectures, such as those cataloged by [Anthropic (2024)](https://ww
 
 The following Python code contrasts a deterministic workflow with an autonomous agent performing a document audit:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, List
 
@@ -132,6 +135,8 @@ def parse_tool_call(decision: str):
     # Minimal placeholder parser for demonstration
     return "read_doc_section", {"section": "header"}
 ```
+
+</details>
 
 ## Framework implementations
 

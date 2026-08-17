@@ -96,6 +96,9 @@ The visual below compares the execution behavior of single-step ReAct loops with
 
 The following Python code demonstrates a complete plan-and-execute harness with dynamic replanning:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 import json
@@ -132,6 +135,8 @@ class PlanAndExecuteEngine:
 
         return {"status": "SUCCEEDED", "completed": completed_steps}
 ```
+
+</details>
 
 ## Framework implementations
 

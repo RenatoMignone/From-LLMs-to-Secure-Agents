@@ -92,6 +92,9 @@ When observations contain large JSON payloads or verbose error dumps, the model 
 
 The following Python script demonstrates a robust single-agent reactive loop with turn limits, tool dispatch, and observation recording:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Callable
 import json
@@ -144,6 +147,8 @@ class ReactiveAgentHost:
 
         return {"status": "ABORTED", "reason": "Max turns reached", "turns": self.max_turns}
 ```
+
+</details>
 
 ## Framework implementations
 

@@ -98,6 +98,9 @@ To prevent vendor lock-in, agents use **provider adapters** that abstract vendor
 
 The following Python script demonstrates the Provider Adapter pattern, binding specialized model profiles to discrete architectural roles:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 from dataclasses import dataclass
@@ -141,6 +144,8 @@ class ProviderAdapter:
             "estimated_cost_usd": round(cost, 6)
         }
 ```
+
+</details>
 
 ## Framework implementations
 

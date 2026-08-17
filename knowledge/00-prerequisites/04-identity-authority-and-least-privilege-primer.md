@@ -120,6 +120,9 @@ Software systems implement authority and identity in several standard patterns:
 
 The following pseudocode demonstrates how an authorization filter evaluates identity, delegation, and least-privilege scopes before executing a requested action.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Set
@@ -175,6 +178,8 @@ blocked_request = ToolRequest(
 )
 assert authorize_tool_execution(blocked_request) is False
 ```
+
+</details>
 
 ## Framework implementations
 

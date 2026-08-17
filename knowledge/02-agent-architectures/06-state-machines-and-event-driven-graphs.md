@@ -87,6 +87,9 @@ While traditional pipelines are Directed Acyclic Graphs (DAGs) that execute in o
 
 The following Python example demonstrates a functional state graph engine supporting cyclic routing, typed state snapshots, and human-in-the-loop interruption gates:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Callable, Optional
 import json
@@ -192,6 +195,8 @@ class StateGraphEngine:
         state.status = "RESUMED"
         return self.run(state, thread_id=thread_id)
 ```
+
+</details>
 
 ## Framework implementations
 

@@ -88,6 +88,9 @@ When the agent attempts the next turn or a similar future task, past reflection 
 
 The following Python script implements a robust evaluator-optimizer harness for SQL query generation with deterministic schema checking:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, Tuple
 
@@ -128,6 +131,8 @@ def evaluator_optimizer_loop(request: str, client: EvaluationModelClient, max_ro
 
     return {"status": "MAX_ROUNDS_EXCEEDED", "rounds": max_rounds, "query": current_draft}
 ```
+
+</details>
 
 ## Framework implementations
 

@@ -101,6 +101,9 @@ It is critical to distinguish between the **inner loop** and the **outer loop**:
 
 The following Python program implements a typed agent loop with step budgets, schema validation, and error feedback.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass, field
 import json
@@ -159,6 +162,8 @@ class AgentRuntime:
 
         return "ERROR: Maximum turn budget exhausted without completion."
 ```
+
+</details>
 
 ## Framework implementations
 

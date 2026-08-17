@@ -846,6 +846,9 @@ Software systems implement authority and identity in several standard patterns:
 
 The following pseudocode demonstrates how an authorization filter evaluates identity, delegation, and least-privilege scopes before executing a requested action.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Set
@@ -901,6 +904,8 @@ blocked_request = ToolRequest(
 )
 assert authorize_tool_execution(blocked_request) is False
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -1085,6 +1090,9 @@ Modern applications use agentic concepts across several standard structural patt
 
 The following Python script illustrates the minimal mechanics of an agent loop without relying on third-party frameworks. The agent inspects an environment (a simulated file store), chooses actions, receives observations, and terminates when the objective is met or a step limit is reached.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Dict, List, Optional
@@ -1147,6 +1155,8 @@ result = run_agent(goal="Find the secret project code", env=mock_env)
 print("Agent Result:", result)
 assert "ATLAS-99" in result
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -1311,6 +1321,9 @@ It is critical to distinguish between the **inner loop** and the **outer loop**:
 
 The following Python program implements a typed agent loop with step budgets, schema validation, and error feedback.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass, field
 import json
@@ -1369,6 +1382,8 @@ class AgentRuntime:
 
         return "ERROR: Maximum turn budget exhausted without completion."
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -1528,6 +1543,9 @@ Industry architectures, such as those cataloged by [Anthropic (2024)](https://ww
 
 The following Python code contrasts a deterministic workflow with an autonomous agent performing a document audit:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, List
 
@@ -1571,6 +1589,8 @@ def parse_tool_call(decision: str):
     # Minimal placeholder parser for demonstration
     return "read_doc_section", {"section": "header"}
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -1731,6 +1751,9 @@ Systems operate across a spectrum of human involvement, formalizing frameworks l
 
 The following Python code demonstrates an agent environment with deterministic policy enforcement and human-on-the-loop escalation:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, List
@@ -1773,6 +1796,8 @@ demo_policy = Policy(
 )
 env = SecureEnvironment(demo_policy)
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -1926,6 +1951,9 @@ Production systems must enforce four independent layers of termination checks on
 
 The following Python program implements a complete agent run lifecycle with durable states, token budgeting, turn caps, and clean resource disposal:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass, field
 from enum import Enum
@@ -2007,6 +2035,8 @@ class ManagedAgentRuntime:
 
         return state
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -2161,6 +2191,9 @@ Modern AI architectures combine eight fundamental orchestration patterns across 
 
 The following Python script illustrates how the same problem (incident triage) is realized under a deterministic router, an evaluator-optimizer, and an autonomous agent loop:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 
@@ -2215,6 +2248,8 @@ def reactive_agent_triage(incident_id: str, model: MockModel, env: ToolEnvironme
         state.append({"role": "tool", "content": observation})
     return "Investigation timed out: maximum turns reached."
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -2383,6 +2418,9 @@ When observations contain large JSON payloads or verbose error dumps, the model 
 
 The following Python script demonstrates a robust single-agent reactive loop with turn limits, tool dispatch, and observation recording:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Callable
 import json
@@ -2435,6 +2473,8 @@ class ReactiveAgentHost:
 
         return {"status": "ABORTED", "reason": "Max turns reached", "turns": self.max_turns}
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -2580,6 +2620,9 @@ The visual below contrasts parallel sectioning (Map-Reduce) with consensus votin
 
 The following Python script demonstrates prompt chaining with validation checkpoints, conditional routing, and parallel consensus voting:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 import concurrent.futures
@@ -2628,6 +2671,8 @@ def parallel_voting_workflow(complex_clause: str, client: WorkflowModelClient, n
     majority_vote = max(set(votes), key=votes.count)
     return majority_vote
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -2774,6 +2819,9 @@ The visual below compares the execution behavior of single-step ReAct loops with
 
 The following Python code demonstrates a complete plan-and-execute harness with dynamic replanning:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 import json
@@ -2810,6 +2858,8 @@ class PlanAndExecuteEngine:
 
         return {"status": "SUCCEEDED", "completed": completed_steps}
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -2955,6 +3005,9 @@ When the agent attempts the next turn or a similar future task, past reflection 
 
 The following Python script implements a robust evaluator-optimizer harness for SQL query generation with deterministic schema checking:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, Tuple
 
@@ -2995,6 +3048,8 @@ def evaluator_optimizer_loop(request: str, client: EvaluationModelClient, max_ro
 
     return {"status": "MAX_ROUNDS_EXCEEDED", "rounds": max_rounds, "query": current_draft}
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -3130,6 +3185,9 @@ While traditional pipelines are Directed Acyclic Graphs (DAGs) that execute in o
 
 The following Python example demonstrates a functional state graph engine supporting cyclic routing, typed state snapshots, and human-in-the-loop interruption gates:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Callable, Optional
 import json
@@ -3235,6 +3293,8 @@ class StateGraphEngine:
         state.status = "RESUMED"
         return self.run(state, thread_id=thread_id)
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -3380,6 +3440,9 @@ The **Agent-as-a-Tool pattern** treats an entire agent loop as a callable functi
 
 The following Python script implements the three coordination patterns in a clean, framework-agnostic runtime:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List, Optional
 
@@ -3419,6 +3482,8 @@ class SupervisorAgent:
             "synthesis": f"Supervisor complete for '{goal}'.\n1. {res}\n2. {code}"
         }
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -3559,6 +3624,9 @@ The overarching rule for production AI engineering is the **Simplicity Principle
 
 The following Python script benchmarks and quantifies token costs, execution turns, and failure blast radius across three core architectural archetypes:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 import time
@@ -3612,6 +3680,8 @@ class ArchitectureBenchmark:
             "blast_radius": "Isolated Workers (Scoped Privilege)"
         }
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -3764,6 +3834,9 @@ To prevent vendor lock-in, agents use **provider adapters** that abstract vendor
 
 The following Python script demonstrates the Provider Adapter pattern, binding specialized model profiles to discrete architectural roles:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 from dataclasses import dataclass
@@ -3807,6 +3880,8 @@ class ProviderAdapter:
             "estimated_cost_usd": round(cost, 6)
         }
 ```
+
+</details>
 
 ## Framework implementations
 
@@ -3947,6 +4022,9 @@ To handle provider rate limits (HTTP 429) and service outages (HTTP 500/503), th
 
 The following Python script implements a functional model gateway with dynamic routing, confidence cascades, and circuit breaker failover:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 import time
@@ -3993,6 +4071,8 @@ class ModelGateway:
                 return {"provider": "Secondary Fallback", "data": self.mock_call("secondary", prompt)}
         return {"provider": "Secondary Fallback (Circuit Open)", "data": self.mock_call("secondary", prompt)}
 ```
+
+</details>
 
 ## Framework implementations
 

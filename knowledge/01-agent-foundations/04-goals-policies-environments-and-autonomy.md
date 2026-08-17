@@ -106,6 +106,9 @@ Systems operate across a spectrum of human involvement, formalizing frameworks l
 
 The following Python code demonstrates an agent environment with deterministic policy enforcement and human-on-the-loop escalation:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Any, Callable, Dict, List
@@ -148,6 +151,8 @@ demo_policy = Policy(
 )
 env = SecureEnvironment(demo_policy)
 ```
+
+</details>
 
 ## Framework implementations
 

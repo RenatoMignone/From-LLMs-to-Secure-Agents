@@ -110,6 +110,9 @@ Modern AI architectures combine eight fundamental orchestration patterns across 
 
 The following Python script illustrates how the same problem (incident triage) is realized under a deterministic router, an evaluator-optimizer, and an autonomous agent loop:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any, List
 
@@ -164,6 +167,8 @@ def reactive_agent_triage(incident_id: str, model: MockModel, env: ToolEnvironme
         state.append({"role": "tool", "content": observation})
     return "Investigation timed out: maximum turns reached."
 ```
+
+</details>
 
 ## Framework implementations
 

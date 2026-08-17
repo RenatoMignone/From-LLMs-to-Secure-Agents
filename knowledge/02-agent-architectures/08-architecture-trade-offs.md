@@ -88,6 +88,9 @@ The overarching rule for production AI engineering is the **Simplicity Principle
 
 The following Python script benchmarks and quantifies token costs, execution turns, and failure blast radius across three core architectural archetypes:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from typing import Dict, Any
 import time
@@ -141,6 +144,8 @@ class ArchitectureBenchmark:
             "blast_radius": "Isolated Workers (Scoped Privilege)"
         }
 ```
+
+</details>
 
 ## Framework implementations
 

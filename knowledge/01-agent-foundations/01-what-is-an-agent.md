@@ -109,6 +109,9 @@ Modern applications use agentic concepts across several standard structural patt
 
 The following Python script illustrates the minimal mechanics of an agent loop without relying on third-party frameworks. The agent inspects an environment (a simulated file store), chooses actions, receives observations, and terminates when the objective is met or a step limit is reached.
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Dict, List, Optional
@@ -171,6 +174,8 @@ result = run_agent(goal="Find the secret project code", env=mock_env)
 print("Agent Result:", result)
 assert "ATLAS-99" in result
 ```
+
+</details>
 
 ## Framework implementations
 

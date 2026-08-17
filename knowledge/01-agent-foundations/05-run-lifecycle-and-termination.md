@@ -100,6 +100,9 @@ Production systems must enforce four independent layers of termination checks on
 
 The following Python program implements a complete agent run lifecycle with durable states, token budgeting, turn caps, and clean resource disposal:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass, field
 from enum import Enum
@@ -181,6 +184,8 @@ class ManagedAgentRuntime:
 
         return state
 ```
+
+</details>
 
 ## Framework implementations
 
