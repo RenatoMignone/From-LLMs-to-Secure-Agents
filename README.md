@@ -65,19 +65,19 @@ This repository is engineered from the ground up for **agentic authoring with ex
 
 ## Reproducible autonomous workflow
 
-A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, fetch or create its visuals, validate it, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
+A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, design and generate multiple visual cartoon diagrams across key concepts, validate both the repo and the static site, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
 
 ```text
-Read AGENTS.md and continue the guide from the last checkpoint.
+Read AGENTS.md and continue the guide from the last checkpoint. Proactively design and generate multiple visual cartoon illustrations per chapter (covering architecture flows, trust boundaries, state transitions, and attack paths) wherever visuals improve reader understanding.
 ```
 
 Each completed unit includes:
 
 - checked source records with exact claims and canonical links;
-- canonical 2D cartoon visual illustrations (strictly no text-based ASCII schemas);
+- multiple canonical 2D cartoon visual illustrations (strictly no text-based ASCII schemas);
 - smooth reading progression with next-unit navigation links;
 - small runnable examples when the plan requires them;
-- deterministic repository validation;
+- deterministic repository validation and static site build verification (`pytest` and `npm --prefix site run build`);
 - updated project state and a concise changelog entry.
 
 ## Modular CLI toolkit
@@ -127,3 +127,21 @@ See [`docs/site-policy.md`](docs/site-policy.md) and [`site/AGENTS.md`](site/AGE
 | `scripts/` | Modular CLI toolkit, validation suite, and regression tests |
 | `examples/` | Runnable examples and security labs mirroring the chapter hierarchy |
 | `site/` | Static documentation website (Astro & Starlight) |
+
+## Author & Maintainer
+
+**Renato Mignone** ([GitHub](https://github.com/RenatoMignone))
+AI Systems & Security Researcher.
+
+## Contributing
+
+Contributions are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) before submitting issues or pull requests.
+
+## Security
+
+Please report vulnerabilities confidentially according to [`SECURITY.md`](SECURITY.md).
+
+## License
+
+This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
+

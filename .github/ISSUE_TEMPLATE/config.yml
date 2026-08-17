@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security Vulnerability Disclosure
+    url: https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/security/advisories/new
+    about: Please report security vulnerabilities and sensitive flaws through private advisories.
+  - name: Community Discussions
+    url: https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/discussions
+    about: Ask questions, share ideas, and discuss agent architectures with the community.
