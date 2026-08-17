@@ -30,6 +30,7 @@ checkFileExists('404.html', '404 page');
 checkFileExists('robots.txt', 'robots.txt');
 checkFileExists('sitemap-index.xml', 'sitemap index');
 checkFileExists('llms.txt', 'llms.txt');
+checkFileExists('llms-full.txt', 'llms-full.txt');
 checkFileExists('guide-index.json', 'guide-index.json');
 checkFileExists('pagefind/pagefind.js', 'Pagefind search index');
 
@@ -45,9 +46,12 @@ if (fs.existsSync(path.join(DIST_DIR, 'robots.txt'))) {
   if (!robots.includes('User-agent: OAI-SearchBot')) {
     errors.push('robots.txt does not explicitly configure OAI-SearchBot');
   }
+  if (!robots.includes('User-agent: PerplexityBot')) {
+    errors.push('robots.txt does not explicitly configure PerplexityBot');
+  }
 }
 
-// 3. Validate llms.txt
+// 3. Validate llms.txt and llms-full.txt
 if (fs.existsSync(path.join(DIST_DIR, 'llms.txt'))) {
   const llms = fs.readFileSync(path.join(DIST_DIR, 'llms.txt'), 'utf8');
   if (!llms.includes('# From LLMs to Secure Agents')) {
@@ -55,6 +59,13 @@ if (fs.existsSync(path.join(DIST_DIR, 'llms.txt'))) {
   }
   if (!llms.includes('/From-LLMs-to-Secure-Agents/guide-index.json')) {
     errors.push('llms.txt does not link to guide-index.json');
+  }
+}
+
+if (fs.existsSync(path.join(DIST_DIR, 'llms-full.txt'))) {
+  const llmsFull = fs.readFileSync(path.join(DIST_DIR, 'llms-full.txt'), 'utf8');
+  if (!llmsFull.includes('COMPLETE CANONICAL HANDBOOK TEXT')) {
+    errors.push('llms-full.txt is missing canonical text header');
   }
 }
 

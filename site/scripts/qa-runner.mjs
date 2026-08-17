@@ -22,7 +22,7 @@ async function cdpRequest(ws, method, params = {}) {
   });
 }
 
-async function captureWithCdp(url, outPath, { width, height, theme = 'light' }) {
+async function captureWithCdp(url, outPath, { width, height, theme = 'light', scrollSelector }) {
   const chrome = spawn('google-chrome', [
     '--headless=new',
     '--remote-debugging-port=9222',
@@ -63,9 +63,17 @@ async function captureWithCdp(url, outPath, { width, height, theme = 'light' }) 
       expression: `
         document.documentElement.dataset.theme = '${theme}';
         localStorage.setItem('starlight-theme', '${theme}');
+        window.StarlightThemeProvider?.updatePickers('${theme}');
       `,
     });
     await new Promise((r) => setTimeout(r, 300));
+
+    if (scrollSelector) {
+      await cdpRequest(ws, 'Runtime.evaluate', {
+        expression: `document.querySelector(${JSON.stringify(scrollSelector)})?.scrollIntoView({ block: 'center' });`,
+      });
+      await new Promise((r) => setTimeout(r, 300));
+    }
 
     // Capture screenshot
     const screenshot = await cdpRequest(ws, 'Page.captureScreenshot', {
@@ -117,6 +125,20 @@ async function main() {
   await captureWithCdp(`${BASE}/`, `${SCREENSHOTS_DIR}/home-1440-dark.png`, { width: 1440, height: 900, theme: 'dark' });
   await captureWithCdp(`${BASE}/foundations/01-what-is-an-agent/`, `${SCREENSHOTS_DIR}/found1-1440-dark.png`, { width: 1440, height: 900, theme: 'dark' });
   await captureWithCdp(`${BASE}/foundations/02-the-agent-loop/`, `${SCREENSHOTS_DIR}/found2-1440-dark.png`, { width: 1440, height: 900, theme: 'dark' });
+
+  // 4. Editorial detail captures for explicit visual inspection
+  await captureWithCdp(`${BASE}/`, `${SCREENSHOTS_DIR}/home-methodology-1440-light.png`, {
+    width: 1440,
+    height: 900,
+    theme: 'light',
+    scrollSelector: '#methodology',
+  });
+  await captureWithCdp(`${BASE}/foundations/02-the-agent-loop/`, `${SCREENSHOTS_DIR}/found2-illustration-1440-light.png`, {
+    width: 1440,
+    height: 900,
+    theme: 'light',
+    scrollSelector: '.sl-markdown-content img',
+  });
 
   console.log('✅ Visual QA Suite completed successfully!');
 }

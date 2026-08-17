@@ -193,32 +193,113 @@ export function generateAll() {
       example_paths: ch.example_paths,
     });
 
-    // JSON-LD structured metadata
+    // Enhanced JSON-LD structured metadata for 2026 AEO & GEO
     const jsonLd = {
       '@context': 'https://schema.org',
-      '@type': 'TechArticle',
-      headline: ch.title,
-      description: ch.summary,
-      url: ch.canonicalUrl,
-      dateModified: ch.last_reviewed,
-      inLanguage: 'en-US',
-      isPartOf: {
-        '@type': 'Book',
-        name: 'From LLMs to Secure Agents',
-        url: `${SITE_ORIGIN}${BASE_URL}/`,
-      },
-      author: {
-        '@type': 'Organization',
-        name: 'From LLMs to Secure Agents Project',
-        url: GITHUB_REPO,
-      },
-      educationalLevel: 'Core Engineering Curriculum',
+      '@graph': [
+        {
+          '@type': 'TechArticle',
+          '@id': `${ch.canonicalUrl}#article`,
+          headline: ch.title,
+          description: ch.summary,
+          url: ch.canonicalUrl,
+          datePublished: '2026-08-15',
+          dateModified: ch.last_reviewed,
+          inLanguage: 'en-US',
+          isPartOf: {
+            '@type': 'Course',
+            '@id': `${SITE_ORIGIN}${BASE_URL}/#course`,
+            name: 'From LLMs to Secure Agents',
+            url: `${SITE_ORIGIN}${BASE_URL}/`,
+          },
+          author: {
+            '@type': 'Organization',
+            name: 'From LLMs to Secure Agents Project',
+            url: GITHUB_REPO,
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'From LLMs to Secure Agents',
+            url: `${SITE_ORIGIN}${BASE_URL}/`,
+          },
+          mainEntityOfPage: ch.canonicalUrl,
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['#_top', '.chapter-standfirst', '.goals-card ul', '.sl-markdown-content > p:first-of-type'],
+          },
+          about: [
+            {
+              '@type': 'Thing',
+              name: 'Intelligent Agent',
+              sameAs: 'https://www.wikidata.org/wiki/Q11660',
+            },
+            {
+              '@type': 'Thing',
+              name: 'Large Language Model',
+              sameAs: 'https://www.wikidata.org/wiki/Q115682855',
+            },
+            {
+              '@type': 'Thing',
+              name: 'Computer Security',
+              sameAs: 'https://www.wikidata.org/wiki/Q11204',
+            },
+            {
+              '@type': 'Thing',
+              name: 'Prompt Injection',
+              sameAs: 'https://www.wikidata.org/wiki/Q117793740',
+            },
+          ],
+        },
+        {
+          '@type': 'LearningResource',
+          '@id': `${ch.canonicalUrl}#learning-resource`,
+          name: ch.title,
+          description: ch.summary,
+          learningResourceType: 'Handbook Unit',
+          educationalLevel: 'Core Engineering Curriculum',
+          teaches: ch.learning_objectives,
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${ch.canonicalUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Handbook',
+              item: `${SITE_ORIGIN}${BASE_URL}/`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: ch.sectionLabel,
+              item: `${SITE_ORIGIN}${BASE_URL}/#curriculum`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: ch.title,
+              item: ch.canonicalUrl,
+            },
+          ],
+        },
+      ],
     };
 
     // Starlight frontmatter
     const starlightFm = {
       title: ch.title,
       description: ch.summary,
+      summary: ch.summary,
+      unit_id: ch.unit_id,
+      pass: passLabel,
+      learning_path: ch.learning_path,
+      reviewed_label: new Intl.DateTimeFormat('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date(`${ch.last_reviewed}T00:00:00Z`)),
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 3,
@@ -228,6 +309,10 @@ export function generateAll() {
           tag: 'script',
           attrs: { type: 'application/ld+json' },
           content: JSON.stringify(jsonLd),
+        },
+        {
+          tag: 'link',
+          attrs: { rel: 'canonical', href: ch.canonicalUrl },
         },
         {
           tag: 'link',
@@ -243,27 +328,45 @@ export function generateAll() {
         },
         {
           tag: 'meta',
+          attrs: { property: 'og:type', content: 'article' },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:url', content: ch.canonicalUrl },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:site_name', content: 'From LLMs to Secure Agents' },
+        },
+        {
+          tag: 'meta',
           attrs: { property: 'og:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:card', content: 'summary_large_image' },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:title', content: `${ch.title} | From LLMs to Secure Agents` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:description', content: ch.summary },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'keywords', content: `AI agent, LLM security, threat model, ${ch.title}, ${ch.sectionLabel}, prompt injection defense, agentic architecture` },
         },
       ],
     };
 
     let pageContent = `---
 ${yaml.stringify(starlightFm)}---
-
-<div class="chapter-meta-line not-content">
-  <span class="meta-item meta-unit">${ch.unit_id}</span>
-  <span class="meta-sep">·</span>
-  <span class="meta-item">${passLabel}</span>
-  <span class="meta-sep">·</span>
-  <span class="meta-item">${pathLabel}</span>
-  <span class="meta-sep">·</span>
-  <span class="meta-item meta-date">Reviewed ${ch.last_reviewed}</span>
-</div>
-
-<div class="chapter-abstract not-content">
-  <p>${ch.summary}</p>
-</div>
 `;
 
     // Prerequisites and Objectives
@@ -311,7 +414,7 @@ ${ch.source_records
     (s) => `    <div class="source-item">
       <div class="source-item-header">
         <a href="${s.canonical_url}" target="_blank" rel="noopener noreferrer" class="source-title-link">${s.title} ↗</a>
-        <span class="source-type-pill">${s.source_type || 'specification'}</span>
+        <span class="source-type">${s.source_type || 'specification'}</span>
       </div>
       <div class="source-item-meta">
         <span>${s.authors_or_organization}</span> · <span>${s.date}</span> ${s.version ? `· <span>v${s.version}</span>` : ''} · <span>Verified ${s.last_verified || '2026-08-15'}</span>
@@ -424,34 +527,136 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     'utf8'
   );
 
-  // 6. Generate Calm Editorial Homepage (index.mdx)
-  console.log('🏠 Generating calm editorial homepage...');
+  // 6. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
+  console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
   const firstChapterRoute = chapters.length > 0 ? chapters[0].route : `${BASE_URL}/`;
 
+  const homepageJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_ORIGIN}${BASE_URL}/#website`,
+        url: `${SITE_ORIGIN}${BASE_URL}/`,
+        name: 'From LLMs to Secure Agents',
+        description: 'A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to secure them.',
+        inLanguage: 'en-US',
+        author: {
+          '@type': 'Person',
+          name: 'Renato Mignone',
+          url: 'https://github.com/RenatoMignone',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'From LLMs to Secure Agents Project',
+          url: GITHUB_REPO,
+        },
+      },
+      {
+        '@type': 'Course',
+        '@id': `${SITE_ORIGIN}${BASE_URL}/#course`,
+        name: 'From LLMs to Secure Agents: Engineering Curriculum',
+        description: 'A sequential engineering guide covering autonomous agent architecture, runtime execution loops, tools, and defensive threat modeling.',
+        author: {
+          '@type': 'Person',
+          name: 'Renato Mignone',
+          url: 'https://github.com/RenatoMignone',
+        },
+        provider: {
+          '@type': 'Organization',
+          name: 'From LLMs to Secure Agents Project',
+          url: GITHUB_REPO,
+        },
+        educationalCredentialAwarded: 'Engineering Competency in AI Agent Security',
+        hasPart: guideIndex.map((u) => ({
+          '@type': 'LearningResource',
+          name: u.title,
+          description: u.summary,
+          url: u.html_url,
+        })),
+      },
+    ],
+  };
+
+  const homepageFm = {
+    title: 'From LLMs to Secure Agents',
+    description: 'A visual, source-grounded engineering guide to the architecture, deployment, threat modeling, testing, and security of autonomous AI agents by Renato Mignone.',
+    template: 'splash',
+    tableOfContents: false,
+    prev: false,
+    next: false,
+    head: [
+      {
+        tag: 'script',
+        attrs: { type: 'application/ld+json' },
+        content: JSON.stringify(homepageJsonLd),
+      },
+      {
+        tag: 'link',
+        attrs: { rel: 'canonical', href: `${SITE_ORIGIN}${BASE_URL}/` },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:title', content: 'From LLMs to Secure Agents | Visual Engineering Guide' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:description', content: 'Understand the complete agentic system first. Then learn how to secure it. By Renato Mignone.' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:type', content: 'website' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:url', content: `${SITE_ORIGIN}${BASE_URL}/` },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:card', content: 'summary_large_image' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:title', content: 'From LLMs to Secure Agents' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:description', content: 'Understand the complete agentic system first. Then learn how to secure it. By Renato Mignone.' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'twitter:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'author', content: 'Renato Mignone' },
+      },
+      {
+        tag: 'meta',
+        attrs: { name: 'keywords', content: 'Renato Mignone, AI agent security, LLM agents architecture, prompt injection defense, agent runtime sandbox, threat modeling autonomous AI' },
+      },
+    ],
+  };
+
   const homepageContent = `---
-title: "From LLMs to Secure Agents"
-description: "A visual, source-grounded guide to the architecture, deployment, threat modeling, testing, and security of AI agents."
-template: splash
-tableOfContents: false
-prev: false
-next: false
----
+${yaml.stringify(homepageFm)}---
 
 import HomepageHero from '../../components/HomepageHero.astro';
-import HomepagePurpose from '../../components/HomepagePurpose.astro';
-import HomepageTwoPass from '../../components/HomepageTwoPass.astro';
+import HomepageIdea from '../../components/HomepageIdea.astro';
 import HomepageStart from '../../components/HomepageStart.astro';
 import HomepageFooter from '../../components/HomepageFooter.astro';
 
-<HomepageHero firstChapterRoute="${firstChapterRoute}" githubUrl="${GITHUB_REPO}" />
+<HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" />
 
-<HomepagePurpose baseUrl="${BASE_URL}" />
-
-<HomepageTwoPass />
+<HomepageIdea />
 
 <HomepageStart firstChapterRoute="${firstChapterRoute}" completedThrough="${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'}" totalUnits="${chapters.length}" />
 
-<HomepageFooter githubUrl="${GITHUB_REPO}" />
+<HomepageFooter githubUrl="${GITHUB_REPO}" baseUrl="${BASE_URL}" />
 `;
 
   fs.writeFileSync(path.join(DOCS_DIR, 'index.mdx'), homepageContent, 'utf8');
@@ -464,11 +669,18 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
       {
         title: 'From LLMs to Secure Agents: Engineering Guide Index',
         description: 'Machine-readable index of published units, learning objectives, source records, and canonical links.',
-        version: '1.2.0',
+        author: 'Renato Mignone',
+        author_url: 'https://github.com/RenatoMignone',
+        version: '2.0.0',
         origin: SITE_ORIGIN,
         base_path: BASE_URL,
         last_updated: new Date().toISOString().split('T')[0],
         total_published_units: guideIndex.length,
+        curriculum_passes: [
+          { pass_id: 0, title: 'Prerequisites', focus: 'Distributed boundaries and systems foundations' },
+          { pass_id: 1, title: 'Understand the Complete System', focus: 'Agent loop, context, memory, tools, and runtimes' },
+          { pass_id: 2, title: 'Secure the System', focus: 'Threat modeling, isolation, and security assurance' },
+        ],
         units: guideIndex,
       },
       null,
@@ -477,16 +689,26 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
     'utf8'
   );
 
-  // 8. Generate llms.txt
-  console.log('📄 Generating llms.txt...');
+  // 8. Generate 2026 llms.txt & llms-full.txt
+  console.log('📄 Generating 2026 llms.txt & llms-full.txt...');
   const llmsTxtContent = `# From LLMs to Secure Agents
 
 > A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.
 
+- **Author:** Renato Mignone (https://github.com/RenatoMignone)
 - **Site Origin:** ${SITE_ORIGIN}${BASE_URL}/
-- **Structured Index:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
+- **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
+- **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
 - **Current Canonical Progress:** Completed through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units published)
+
+## Executive Summary & Core Definitions (AEO Grounding)
+
+- **What is an AI Agent?** An agent is a software architecture where a foundation model autonomously directs a runtime control loop, choosing tools and actions dynamically in response to environment feedback until a termination goal or invariant is reached.
+- **Workflows vs Agents:** Workflows execute predefined, hardcoded DAGs where code directs control flow. Agents use model outputs to decide dynamic control paths and step-by-step tool dispatches.
+- **The 5-Step Agent Loop:** (1) Context Construction, (2) Model Inference, (3) Tool / Action Dispatch, (4) Environment Execution, (5) State & Memory Update.
+- **Trust Boundaries:** The separation line between untrusted data (user input, web pages, tool outputs) and the privileged execution plane (tool credentials, system prompts, host environment).
+- **Core Security Threat (Pass 2):** Indirect Prompt Injection, where untrusted retrieved data hijacks model control flow and weaponizes authorized tool access.
 
 ## Curriculum Architecture (Two-Pass Model)
 
@@ -514,7 +736,7 @@ ${guideIndex
 - **Clean Markdown URL:** ${u.markdown_url}
 - **Learning Objectives:**
 ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
-- **Verified Sources:** ${u.source_records.map((s) => `[${s.title}](${s.canonical_url})`).join(', ')}
+- **Verified Primary Sources:** ${u.source_records.map((s) => `[${s.title}](${s.canonical_url})`).join(', ')}
 `
   )
   .join('\n')}
@@ -522,8 +744,20 @@ ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
 
   fs.writeFileSync(path.join(PUBLIC_DIR, 'llms.txt'), llmsTxtContent, 'utf8');
 
-  // 9. Generate robots.txt
-  console.log('🤖 Generating robots.txt...');
+  // Generate llms-full.txt for comprehensive single-file retrieval
+  let llmsFullContent = llmsTxtContent + '\n\n---\n# COMPLETE CANONICAL HANDBOOK TEXT\n\n';
+  for (const ch of chapters) {
+    llmsFullContent += `\n\n================================================================================\n`;
+    llmsFullContent += `UNIT: ${ch.unit_id} - ${ch.title}\n`;
+    llmsFullContent += `URL: ${ch.canonicalUrl}\n`;
+    llmsFullContent += `SUMMARY: ${ch.summary}\n`;
+    llmsFullContent += `================================================================================\n\n`;
+    llmsFullContent += ch.body.trim() + '\n';
+  }
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullContent, 'utf8');
+
+  // 9. Generate 2026 robots.txt
+  console.log('🤖 Generating 2026 AI-friendly robots.txt...');
   const robotsTxtContent = `User-agent: *
 Allow: /
 
@@ -533,7 +767,31 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
 User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Cohere-ai
 Allow: /
 
 Sitemap: ${SITE_ORIGIN}${BASE_URL}/sitemap-index.xml

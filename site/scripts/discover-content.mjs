@@ -11,8 +11,7 @@ const REPO_ROOT = path.resolve(SITE_ROOT, '..');
 const BASE_URL = '/From-LLMs-to-Secure-Agents';
 const SITE_ORIGIN = 'https://renatomignone.github.io';
 
-export function loadSources() {
-  const sourcesDir = path.join(REPO_ROOT, 'sources');
+export function loadSources(sourcesDir = path.join(REPO_ROOT, 'sources')) {
   const sourceIndex = new Map();
 
   function scan(dir) {
@@ -42,9 +41,11 @@ export function loadSources() {
   return sourceIndex;
 }
 
-export function discoverCanonicalChapters() {
-  const knowledgeDir = path.join(REPO_ROOT, 'knowledge');
-  const sourceIndex = loadSources();
+export function discoverCanonicalChapters({
+  knowledgeDir = path.join(REPO_ROOT, 'knowledge'),
+  sourcesDir = path.join(REPO_ROOT, 'sources'),
+} = {}) {
+  const sourceIndex = loadSources(sourcesDir);
   const rawChapters = [];
 
   function scan(dir) {
@@ -71,8 +72,8 @@ export function discoverCanonicalChapters() {
           continue;
         }
 
-        // Must have at least unit_id and title to be a valid chapter
-        if (!fm.unit_id || !fm.title) continue;
+        // Only explicitly complete canonical units are public.
+        if (!fm.unit_id || !fm.title || fm.status !== 'complete') continue;
 
         rawChapters.push({
           fullPath: full,
@@ -92,16 +93,16 @@ export function discoverCanonicalChapters() {
   // Map route directories and clean slugs
   const sectionLabels = {
     '00-prerequisites': { label: 'Prerequisites', routeDir: 'prerequisites', pass: 'Pass 0' },
-    '01-agent-foundations': { label: 'Pass 1: Agent Foundations', routeDir: 'foundations', pass: 'Pass 1' },
-    '02-agent-architectures': { label: 'Pass 1: Agent Architectures', routeDir: 'architectures', pass: 'Pass 1' },
-    '03-building-blocks': { label: 'Pass 1: Building Blocks', routeDir: 'building-blocks', pass: 'Pass 1' },
-    '04-frameworks-and-protocols': { label: 'Pass 1: Frameworks & Protocols', routeDir: 'frameworks-and-protocols', pass: 'Pass 1' },
-    '05-end-to-end-workflows': { label: 'Pass 1: End-to-End Workflows', routeDir: 'end-to-end-workflows', pass: 'Pass 1' },
-    '06-threat-model': { label: 'Pass 2: Threat Model', routeDir: 'threat-model', pass: 'Pass 2' },
-    '07-security-by-component-and-workflow-stage': { label: 'Pass 2: Security by Component', routeDir: 'security-by-component', pass: 'Pass 2' },
-    '08-secure-reference-architectures': { label: 'Pass 2: Secure Reference Architectures', routeDir: 'secure-architectures', pass: 'Pass 2' },
-    '09-security-testing-evaluation-and-assurance': { label: 'Pass 2: Testing & Assurance', routeDir: 'testing-and-assurance', pass: 'Pass 2' },
-    '10-open-research-questions': { label: 'Pass 2: Open Research Questions', routeDir: 'open-research', pass: 'Pass 2' },
+    '01-agent-foundations': { label: 'Agent foundations', routeDir: 'foundations', pass: 'Pass 1' },
+    '02-agent-architectures': { label: 'Agent architectures', routeDir: 'architectures', pass: 'Pass 1' },
+    '03-building-blocks': { label: 'Building blocks', routeDir: 'building-blocks', pass: 'Pass 1' },
+    '04-frameworks-and-protocols': { label: 'Frameworks and protocols', routeDir: 'frameworks-and-protocols', pass: 'Pass 1' },
+    '05-end-to-end-workflows': { label: 'End-to-end workflows', routeDir: 'end-to-end-workflows', pass: 'Pass 1' },
+    '06-threat-model': { label: 'Threat model', routeDir: 'threat-model', pass: 'Pass 2' },
+    '07-security-by-component-and-workflow-stage': { label: 'Security by component', routeDir: 'security-by-component', pass: 'Pass 2' },
+    '08-secure-reference-architectures': { label: 'Secure reference architectures', routeDir: 'secure-architectures', pass: 'Pass 2' },
+    '09-security-testing-evaluation-and-assurance': { label: 'Testing and assurance', routeDir: 'testing-and-assurance', pass: 'Pass 2' },
+    '10-open-research-questions': { label: 'Open research questions', routeDir: 'open-research', pass: 'Pass 2' },
   };
 
   const processedChapters = rawChapters.map((ch, index) => {
@@ -139,7 +140,7 @@ export function discoverCanonicalChapters() {
       summary: ch.frontmatter.summary,
       pass: ch.frontmatter.pass || secMeta.pass,
       learning_path: ch.frontmatter.learning_path || 'main-path',
-      status: ch.frontmatter.status || 'completed',
+      status: ch.frontmatter.status,
       last_reviewed: ch.frontmatter.last_reviewed || '2026-08-15',
       prerequisites: ch.frontmatter.prerequisites || [],
       learning_objectives: ch.frontmatter.learning_objectives || [],

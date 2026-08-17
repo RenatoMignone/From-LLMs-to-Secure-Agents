@@ -10,6 +10,7 @@ export const collections = {
         learning_path: z.string().optional(),
         status: z.string().optional(),
         last_reviewed: z.string().optional(),
+        reviewed_label: z.string().optional(),
         summary: z.string().optional(),
         prerequisites: z.array(z.string()).optional(),
         learning_objectives: z.array(z.string()).optional(),

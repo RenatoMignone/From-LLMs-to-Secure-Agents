@@ -7,7 +7,8 @@
     "build:content": "node scripts/build-pipeline.mjs",
     "build": "node scripts/build-pipeline.mjs && astro build",
     "preview": "astro preview",
-    "check": "node scripts/check-site.mjs"
+    "check": "node scripts/check-site.mjs",
+    "test": "node --test scripts/tests/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.32.0",

@@ -32,6 +32,7 @@ export default defineConfig({
         './src/styles/theme.css',
       ],
       components: {
+        Header: './src/components/Header.astro',
         PageTitle: './src/components/PageTitle.astro',
         ThemeProvider: './src/components/ThemeProvider.astro',
         ThemeSelect: './src/components/ThemeSelect.astro',
@@ -42,6 +43,27 @@ export default defineConfig({
           attrs: {
             name: 'theme-color',
             content: '#0d9488',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'robots',
+            content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            property: 'og:site_name',
+            content: 'From LLMs to Secure Agents',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'author',
+            content: 'From LLMs to Secure Agents Project',
           },
         },
       ],
