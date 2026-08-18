@@ -96,6 +96,10 @@
       {
         "label": "Routing, cascades, and fallbacks",
         "link": "/building-blocks/02-routing-cascades-and-fallbacks/"
+      },
+      {
+        "label": "Capability, cost, latency, and reliability",
+        "link": "/building-blocks/03-capability-cost-latency-and-reliability/"
       }
     ]
   }

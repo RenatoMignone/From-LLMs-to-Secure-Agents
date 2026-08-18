@@ -191,3 +191,11 @@
 - Files or sections: `knowledge/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Routing, cascades, and fallbacks.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-18
+
+### P1-03-01-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Capability, cost, latency, and reliability.
+- Validation: Passed repository validation and the unit review checklist.
