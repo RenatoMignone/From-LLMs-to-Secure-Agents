@@ -20,7 +20,9 @@ source_records:
 - p1-03-01-01-chen-frugalgpt-2023
 - p1-03-01-01-ong-routellm-2024
 - p1-03-01-01-google-adk-models-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/01-model-roles-taxonomy.png
+- assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/02-model-selection-tradeoff-spectrum.png
 example_paths:
 - examples/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/model_role_adapter.py
 pass: architecture
@@ -53,10 +55,11 @@ In an agentic architecture, assigning every task to the Director is ruinously ex
 
 The figures below outline the four specialized model roles and compare model selection tiers across latency, cost, and reasoning capability.
 
-> [!NOTE]
-> *Visual illustrations (Figure 1: Four Core Model Roles in Agent Systems; Figure 2: Model Selection & Capability Trade-Off Spectrum) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
+![Figure 1: Four Core Model Roles in Agent Systems](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/01-model-roles-taxonomy.png)
 
 *Figure 1. The four specialized model roles in agent systems. Distinct model capability profiles are bound to specific operational responsibilities across planning, routing, execution, and evaluation.*
+
+![Figure 2: Model Selection & Capability Trade-Off Spectrum](../../../assets/images/03-building-blocks/01-models-and-routing/01-model-roles-and-selection/02-model-selection-tradeoff-spectrum.png)
 
 *Figure 2. Model selection and capability trade-off spectrum. Production systems strategically tier models to optimize latency and token budgets while maintaining high tool calling precision.*
 

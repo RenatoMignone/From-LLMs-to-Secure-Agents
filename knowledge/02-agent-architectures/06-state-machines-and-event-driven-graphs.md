@@ -19,7 +19,9 @@ source_records:
 - p1-02-06-langchain-langgraph-2024
 - p1-02-06-temporal-durable-execution-2024
 - p1-02-06-harel-statecharts-1987
-visual_assets: []
+visual_assets:
+- assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/01-state-machine-graph-architecture.png
+- assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/02-durable-checkpoint-and-interruption.png
 example_paths:
 - examples/02-agent-architectures/06-state-machines-and-event-driven-graphs/state_graph_runtime.py
 pass: architecture
@@ -52,10 +54,11 @@ In software orchestration, an agent graph treats computational steps as flight w
 
 The figures below outline the cyclic graph architecture and the durable checkpointing lifecycle.
 
-> [!NOTE]
-> *Visual illustrations (Figure 1: State Machine & Event-Driven Graph Architecture; Figure 2: Durable Checkpoint & Interruption Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
+![Figure 1: State Machine & Event-Driven Graph Architecture](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/01-state-machine-graph-architecture.png)
 
 *Figure 1. The state machine and event-driven graph architecture. Nodes execute computation or model reasoning, conditional edges evaluate routing predicates, and a typed state schema channels data across iterations.*
+
+![Figure 2: Durable Checkpoint & Interruption Lifecycle](../../assets/images/02-agent-architectures/06-state-machines-and-event-driven-graphs/02-durable-checkpoint-and-interruption.png)
 
 *Figure 2. Durable checkpointing and asynchronous interruption lifecycle. State is snapshotted atomically at every step, allowing safe long-running pauses for external human approval events.*
 

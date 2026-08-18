@@ -20,7 +20,9 @@ source_records:
 - p1-02-07-openai-swarm-2024
 - p1-02-07-anthropic-multi-agent-orchestrator-2024
 - p1-02-07-microsoft-autogen-teams-2024
-visual_assets: []
+visual_assets:
+- assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/01-multi-agent-coordination-patterns.png
+- assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/02-context-isolation-and-delegation-flow.png
 example_paths:
 - examples/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/multi_agent_coordination.py
 pass: architecture
@@ -52,10 +54,11 @@ In software engineering, these three topologies provide varying levels of centra
 
 The figures below compare the three primary coordination topologies and demonstrate how subagent encapsulation isolates prompt context.
 
-> [!NOTE]
-> *Visual illustrations (Figure 1: Multi-Agent Coordination Topologies; Figure 2: Context Isolation & Delegation Flow) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
+![Figure 1: Multi-Agent Coordination Topologies](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/01-multi-agent-coordination-patterns.png)
 
 *Figure 1. The three multi-agent coordination topologies: Hierarchical Supervisor (star topology), Peer Handoffs (decentralized mesh), and Agent-as-a-Tool (black-box encapsulation).*
+
+![Figure 2: Context Isolation & Delegation Flow](../../assets/images/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/02-context-isolation-and-delegation-flow.png)
 
 *Figure 2. Context isolation and subagent encapsulation. Heavy intermediate tool interactions remain trapped inside the worker sandbox, preserving parent context capacity.*
 

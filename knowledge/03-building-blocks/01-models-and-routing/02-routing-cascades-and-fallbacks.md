@@ -20,7 +20,9 @@ source_records:
 - p1-03-01-02-ong-routellm-cascades-2024
 - p1-03-01-02-chen-frugalgpt-cascades-2023
 - p1-03-01-02-netflix-circuit-breakers-fallbacks-2023
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/01-routing-and-cascade-architectures.png
+- assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/02-fallback-and-circuit-breaker-lifecycle.png
 example_paths:
 - examples/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/routing_cascade_gateway.py
 pass: architecture
@@ -52,10 +54,11 @@ In agent engineering, routing dispatches the appropriate model tier, cascades es
 
 The figures below outline model routing cascades and the three-state circuit breaker failover lifecycle.
 
-> [!NOTE]
-> *Visual illustrations (Figure 1: Model Routing & Progressive Cascade Architecture; Figure 2: Model Gateway Circuit Breaker & Fallback Lifecycle) are staged for AI generation once API quota resets. Prompts are preserved in `source/`.*
+![Figure 1: Model Routing & Progressive Cascade Architecture](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/01-routing-and-cascade-architectures.png)
 
 *Figure 1. Model routing and progressive cascade architecture. Queries are routed based on complexity score thresholds or escalated step-by-step through a multi-tier cascade.*
+
+![Figure 2: Model Gateway Circuit Breaker & Fallback Lifecycle](../../../assets/images/03-building-blocks/01-models-and-routing/02-routing-cascades-and-fallbacks/02-fallback-and-circuit-breaker-lifecycle.png)
 
 *Figure 2. Circuit breaker and fallback lifecycle. The gateway automatically diverts traffic to secondary provider endpoints during upstream outages, resetting once health probes succeed.*
 
@@ -214,4 +217,4 @@ Routing mechanisms introduce **router manipulation** risks. Attackers can embed 
 
 ---
 
-[Next Unit: Capability, cost, latency, and reliability →](chapter-plan.md)
+[Next Unit: Capability, cost, latency, and reliability →](03-capability-cost-latency-and-reliability.md)
