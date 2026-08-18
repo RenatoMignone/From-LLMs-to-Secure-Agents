@@ -1,0 +1,25 @@
+id: p1-03-01-03-anthropic-prompt-caching-2024
+title: 'Anthropic Claude API: Prompt Caching, Rate Limits, and Operational Resilience'
+authors_or_organization: Anthropic
+date: 2024-08
+source_type: documentation
+canonical_url: https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Quantifies prompt caching latency reduction (up to 85%) and token cost discounts
+  (up to 90%), analyzing rate limits and deterministic sampling trade-offs.
+limitations:
+- Specific cache write and read discounts vary by prompt structure and minimum token
+  thresholds (1,024 tokens).
+related_topics:
+- caching economics and reliability
+unit_ids:
+- P1-03-01-03
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability.md
+local_copy: null
+sha256: null

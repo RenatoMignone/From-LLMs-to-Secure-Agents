@@ -1,0 +1,26 @@
+id: p1-03-01-03-kwon-vllm-serving-2023
+title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+authors_or_organization: Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin
+  Zheng, Cody Hao Yu, Joseph E. Gonzalez, Hao Zhang, Ion Stoica
+date: 2023-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2309.06180
+doi: 10.1145/3600006.3613165
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Defines and analyzes LLM serving metrics including Time to First Token (TTFT), Time
+  Per Output Token (TPOT), KV cache bottlenecks, and throughput trade-offs.
+limitations:
+- Focuses primarily on self-hosted inference server architectures rather than closed
+  commercial cloud API rate-limiting.
+related_topics:
+- inference latency and throughput
+unit_ids:
+- P1-03-01-03
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability.md
+local_copy: null
+sha256: null

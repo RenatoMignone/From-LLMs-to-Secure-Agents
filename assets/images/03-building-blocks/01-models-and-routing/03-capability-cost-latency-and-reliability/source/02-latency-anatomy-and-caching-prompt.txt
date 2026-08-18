@@ -1,0 +1,18 @@
+Create a clear, educational cartoon illustration showing the Anatomy of LLM Inference Latency and Prompt Caching Acceleration.
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds, cyberpunk aesthetics, or sterile corporate flowchart styles.
+
+Show a horizontal pipeline timeline showing two comparing tracks:
+1. Top Track: 'Uncached Request (Cold Start)'
+   - Step 1: Network & Ingress Queue (small blue block).
+   - Step 2: Prefill Phase (TTFT - Time to First Token): A wide orange block where a robot processes all prompt tokens from scratch.
+   - Step 3: Decode Phase (TPOT - Time Per Output Token): A series of sequential green blocks showing tokens generated one by one.
+   - Total time indicator: 'Long Total Latency (e.g. 5.2s)'.
+
+2. Bottom Track: 'Cached Request (Warm Prefix Hit)'
+   - Step 1: Network & Ingress Queue (identical small blue block).
+   - Step 2: Cached Prefill Phase: A tiny green block with a lightning bolt and a 'Cache Hit (85% Faster TTFT)' badge, retrieving pre-computed KV tensors instantly.
+   - Step 3: Decode Phase: Identical token generation speed.
+   - Total time indicator: 'Accelerated Latency (e.g. 1.2s, 90% Cost Savings)'.
+
+Include clear, readable labels, soft outlines, and high visual clarity.

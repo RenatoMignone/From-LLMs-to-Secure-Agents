@@ -1,0 +1,17 @@
+Create a clear, educational cartoon illustration showing the 4-way Trade-off Pareto Frontier for AI Models in Agent Systems (Capability, Cost, Latency, and Reliability).
+
+Use a clean, polished cartoon style with simple shapes, soft outlines, and a friendly educational tone. Light cream background, calm pastel palette of soft blue, teal, sage green, and warm amber tones. Avoid dark backgrounds, cyberpunk aesthetics, or sterile corporate flowchart styles.
+
+Show a 2-part composition:
+1. Left: 'The 4-Way Balancing Scale' - A cute yellow robot operating a futuristic control dashboard with 4 balanced slider gauges labeled 'Reasoning Capability', 'Inference Cost ($)', 'Response Latency (ms)', and 'SLA Reliability (%)'.
+2. Right: 'The Pareto Frontier Curve' - A clean 2D trade-off plot:
+   - Horizontal X-axis: 'Inference Latency & Cost' (Low to High).
+   - Vertical Y-axis: 'Model Capability & Reasoning Depth' (Low to High).
+   - A smooth curved line representing the 'Optimal Pareto Frontier'.
+   - Placed along the curve are distinct friendly robots representing different model tiers:
+     - 'Fast SLM' (near bottom-left: Ultra-low cost, ultra-low latency, basic tasks).
+     - 'Mid-Tier Model' (in the middle: Balanced cost, moderate latency, routine tool use).
+     - 'Frontier Reasoning Model' (near top-right: High reasoning depth, higher cost, longer TTFT).
+   - A red cross marker below the curve labeled 'Sub-optimal Zone (High Cost, Low Speed)'.
+
+Include clear readable labels, soft shadows, and high visual clarity suitable for an educational handbook.

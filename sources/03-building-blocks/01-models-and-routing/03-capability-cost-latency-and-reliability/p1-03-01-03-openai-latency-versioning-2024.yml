@@ -1,0 +1,24 @@
+id: p1-03-01-03-openai-latency-versioning-2024
+title: 'OpenAI API: Latency Optimization, Prompt Caching, and Model Version Pinning'
+authors_or_organization: OpenAI
+date: 2024-10
+source_type: documentation
+canonical_url: https://platform.openai.com/docs/guides/latency-optimization
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Provides production guidance on reducing TTFT, token streaming, prompt caching cost
+  dynamics, and snapshot version pinning vs alias drift hazards.
+limitations:
+- Provider-specific API details and pricing tiers subject to commercial updates.
+related_topics:
+- cost, latency, and model versioning
+unit_ids:
+- P1-03-01-03
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability.md
+local_copy: null
+sha256: null
