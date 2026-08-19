@@ -103,9 +103,12 @@ When a tool returns an error code (such as HTTP 404, database timeout, or syntax
 
 The following Python script implements a complete ReAct loop with step tracking, tool execution, and cycle bounds:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Callable, Dict, Optional, Tuple
 
 @dataclass
 class Tool:
@@ -117,26 +120,28 @@ class ReActRunner:
         self.tools = tools
         self.max_turns = max_turns
 
-    def run_step(self, context: str) -> Tuple[Optional[str], Optional[dict], Optional[str]]:
+    def run_step(self, context: str) -> Tuple[Optional[str], Optional[str], Optional[dict]]:
         # In production: model emits "Thought: ...\nAction: tool_name(args)" or "Final Answer: ..."
         # Mocking turn 1 lookup
         if "Observation:" not in context:
             return "Need to check balance.", "get_balance", {"account_id": "ACC-99"}
-        return "Balance verified.", None, "Your account balance is $5,400."
+        return "Balance verified.", None, {"final_answer": "Your account balance is $5,400."}
 
     def execute(self, user_prompt: str) -> str:
         context = f"User Goal: {user_prompt}\n"
         for turn in range(1, self.max_turns + 1):
             thought, tool_name, final_or_args = self.run_step(context)
-            if tool_name is None:
-                return str(final_or_args)  # Final Answer emitted
+            if tool_name is None and final_or_args:
+                return str(final_or_args.get("final_answer", ""))  # Final Answer emitted
 
-            tool = self.tools.get(tool_name)
-            observation = tool.func(final_or_args) if tool else f"Error: Tool '{tool_name}' not found"
+            tool = self.tools.get(tool_name) if tool_name else None
+            observation = tool.func(final_or_args) if tool and final_or_args else f"Error: Tool '{tool_name}' not found"
             context += f"Thought: {thought}\nAction: {tool_name}\nObservation: {observation}\n"
 
         return "Error: Maximum iteration limit reached."
 ```
+
+</details>
 
 The full runnable implementation is available in [react_loop_runner.py](../../../examples/03-building-blocks/03-planning-and-reasoning/01-reactive-and-reason-act-patterns/react_loop_runner.py).
 

@@ -1,22 +1,19 @@
 # Knowledge Instructions
 
-- Purpose: hold the canonical two-pass guide and, later, its chapters.
-- Reader prerequisite: working familiarity with large language models and prompts. API and Python experience is helpful, not required.
-- May assume: only concepts completed earlier in `ROADMAP.md`.
-- Do not cover yet: detailed security before Pass 1 is complete, or any unit not selected for the current run.
-- Terminology: use the canonical terms defined by earlier sections; define new terms once.
-- Required links: every unit links to prerequisites, its section plan, and the next relevant section.
-- Security scope: Pass 1 permits only short forward-linked previews; detailed security belongs in Pass 2.
+- Purpose: Canonical two-pass guide.
+- Reader prerequisite: Familiarity with LLMs and prompts.
+- May assume: Only concepts completed earlier in the roadmap.
+- Terminology: Canonical terms defined in earlier sections.
+- Required links: Prerequisites, section plan, and next sequential unit.
+- Security scope: Pass 1 allows short previews; detailed security belongs in Pass 2.
 
 Rules:
 
-- Use `scripts/main.py state resolve`; do not load the full roadmap.
+- Run `scripts/main.py state resolve`; do not load full roadmap.
 - Work only on the resolved unit and run mode.
-- Read the nearest local `AGENTS.md` and `chapter-plan.md`.
-- Create `index.md` only when its roadmap unit is selected.
-- Always read style and evidence policies. Personalize chapter structure to the topic, keeping core sections and omitting empty placeholders.
-- Do not create ASCII or text-based .md schemas. Generate visual cartoon illustrations for all diagrams and flows.
-- Include a clear navigation link or button to the next sequential unit at the end of every chapter.
-- Read visuals or examples policy only when the plan requires that artifact.
-- Link prerequisites and next steps; avoid duplicate explanations.
-- Pass 1 explains function before its brief security preview. Pass 2 maps threats and controls to taught components.
+- Read nearest local `AGENTS.md` and `chapter-plan.md`.
+- Follow style and evidence policies; omit empty placeholders.
+- Never create ASCII schemas; generate cartoon illustrations.
+- Wrap minimal implementations in `<details><summary>Expand minimal Python implementation</summary>...</details>` so code is expandable on demand.
+- Include a next-unit navigation link at chapter ends.
+- Pass 1 explains functional architecture before brief security previews.

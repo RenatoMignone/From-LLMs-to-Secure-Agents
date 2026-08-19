@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of the Two-Tier Planner-Executor Agent Architecture.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Top Section: "Planner Tier" - A wise architect robot wearing glasses holding a master blueprint roll ("Planner Model: Decomposes Complex Goal into Ordered Steps").
+2. Center Section: "Structured Execution Plan & Task Board" - A clean magnetic whiteboard with 4 subtask cards:
+   - Step 1 (Green checkmark): "1. Fetch API data (COMPLETED)"
+   - Step 2 (Blue gear): "2. Transform JSON schema (IN_PROGRESS)"
+   - Step 3 (Gray clock): "3. Validate database constraint (PENDING)"
+   - Step 4 (Gray clock): "4. Render executive summary (PENDING)"
+3. Bottom Section: "Executor Tier" - A nimble worker robot wearing a toolbelt executing Step 2 in a safe sandbox terminal.
+4. Feedback Loop: A curved dashed arrow leading from the Executor back up to the Planner labeled "Replan Loop: Adjust Remaining Steps on Error or New Evidence".
+5. Top header: "Planner-Executor Architecture & Replanning".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

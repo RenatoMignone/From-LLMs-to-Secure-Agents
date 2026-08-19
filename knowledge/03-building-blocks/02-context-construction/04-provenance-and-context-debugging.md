@@ -114,6 +114,9 @@ Standardizing context telemetry enables interoperability across distributed trac
 
 The following Python script implements a context provenance tracker and pre-dispatch boundary auditor:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass, field
 import hashlib
@@ -145,6 +148,8 @@ class ContextAuditor:
                     violations.append(f"Prompt injection risk in {rec.item_id} from {rec.source_uri}")
         return violations
 ```
+
+</details>
 
 The full runnable implementation is available in [provenance_debugger.py](../../../examples/03-building-blocks/02-context-construction/04-provenance-and-context-debugging/provenance_debugger.py).
 

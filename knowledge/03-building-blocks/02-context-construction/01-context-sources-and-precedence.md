@@ -109,6 +109,9 @@ To maximize model reasoning fidelity:
 
 The following Python snippet demonstrates how an agent runtime categorizes context sources, tags trust levels, and serializes a compliant model payload:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from enum import Enum, auto
@@ -158,6 +161,8 @@ def assemble_context(items: List[ContextItem], token_budget: int = 4096) -> List
         {"role": "user", "content": "\n\n".join(user_payloads)},
     ]
 ```
+
+</details>
 
 The full runnable implementation is available in [context_assembler.py](../../../examples/03-building-blocks/02-context-construction/01-context-sources-and-precedence/context_assembler.py).
 

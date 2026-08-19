@@ -31,5 +31,6 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Store small runnable examples under `examples/<chapter-path>/`.
 - Let scripts update operational metadata. Update `README.md` only when public facts change.
 - Treat `PROJECT_STATUS.md` front matter as operational truth.
+- Make minimal implementation code blocks expandable by default using `<details><summary>Expand minimal Python implementation</summary>...</details>` so that code is expandable on demand by the reader.
 - Do not use em dashes.
 

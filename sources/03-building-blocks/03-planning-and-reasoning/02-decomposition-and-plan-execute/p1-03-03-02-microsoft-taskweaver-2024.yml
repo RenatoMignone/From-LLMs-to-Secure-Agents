@@ -1,0 +1,25 @@
+id: p1-03-03-02-microsoft-taskweaver-2024
+title: 'TaskWeaver: A Code-First Agent Framework for Seamless Data Analytics'
+authors_or_organization: Bo Qiao, Liqun Li, Xu Zhang, Shilin He, Kangning Zhang, Chaoyun
+  Zhang, Saravan Rajmohan, Qingwei Lin, Dongmei Zhang
+date: 2024-03
+source_type: paper
+canonical_url: https://arxiv.org/abs/2311.17541
+doi: null
+version: null
+accessed: '2026-08-19'
+last_verified: '2026-08-19'
+status: checked
+claims_supported:
+- Formalizes two-tier Planner-Executor agent architecture with explicit state tracking,
+  plan execution graphs, and dynamic subtask replanning.
+limitations:
+- Focuses primarily on Python code generation and data analytics tasks.
+related_topics:
+- planner-executor architecture and replanning
+unit_ids:
+- P1-03-03-02
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute.md
+local_copy: null
+sha256: null

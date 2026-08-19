@@ -104,6 +104,9 @@ Repeatedly summarizing a summary introduces **recursive semantic drift**, where 
 
 The following Python implementation demonstrates tool output compaction and rolling summary buffer management:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Dict, List
@@ -143,6 +146,8 @@ class SummaryBufferHistory:
             self.summary += "\n" + "\n".join(bullets)
             self.turns = self.turns[-self.keep_recent:]
 ```
+
+</details>
 
 The full runnable implementation is available in [history_compressor.py](../../../examples/03-building-blocks/02-context-construction/03-history-summaries-and-compression/history_compressor.py).
 

@@ -1,0 +1,21 @@
+Create a clear, high-quality technical educational cartoon illustration of Subtask State Transitions and Replanning in an Agent Planner.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements (State Transition Diagram):
+1. Center: A horizontal sequence of rounded state nodes connected by directional arrows:
+   - Node 1 (Gray/Blue): "PLANNED" (Initial subtask specification)
+   - Node 2 (Blue): "IN_PROGRESS" (Executor worker running tool)
+   - Node 3 (Sage Green): "COMPLETED" (Output verified against assertion)
+   - Node 4 (Gold): "FINAL SYNTHESIS" (All subtasks integrated into goal response)
+2. Error Branch from "IN_PROGRESS":
+   - Downward branch to Node (Soft Coral): "BLOCKED / FAILED" (Tool error or constraint breach)
+   - Upward loop back to Planner labeled: "Replanning Trigger -> Generate Alternative Step"
+3. Right side: A friendly robot inspector with a clipboard checking off valid transitions.
+4. Top header: "Subtask Lifecycle and Dynamic Replanning".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

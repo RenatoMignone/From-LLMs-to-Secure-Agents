@@ -2,29 +2,26 @@
 
 ## Language
 
-- Use simple, direct, active English. Avoid overly complex sentences and unnecessary academic jargon.
-- Keep exact technical terms. Define them clearly with familiar analogies on first use.
-- Avoid marketing language and em dashes.
+- Use simple, active English. Avoid overly complex sentences and marketing language.
+- Define exact technical terms on first use. Do not use em dashes.
 
 ## Reader level
 
-- Assume LLM and prompt familiarity, but no software-system vocabulary.
-- Explain model, API, or Python details only when needed.
+- Assume LLM and prompt familiarity, but no advanced software-system vocabulary.
+- Explain API or Python details only when needed.
 
 ## Teach for understanding
 
-- Start with a concrete situation. Explain the ordinary idea before its technical name.
-- Introduce and define one technical term at a time, then reuse it in examples.
-- Do not trade essential explanation for brevity. Use prose, tables, or visuals to clarify mechanisms.
-- Make a connected story, not a list of disconnected definitions.
-- Explain how to read every visual nearby.
+- Start with a concrete situation before giving technical names.
+- Introduce one concept at a time and reuse it in examples.
+- Make a connected story, not disconnected definitions. Explain how to read every visual nearby.
 
 ## Chapter structure
 
-- Personalize sections to the chapter topic. Include optional sections only when they provide substantive technical value.
-- Do not add placeholder text or artificial questions.
-- Do not create ASCII or text-based .md schemas. Generate visual cartoon illustrations for all diagrams and flows.
-- End every unit with a clear navigation link or button to the next sequential unit to ensure smooth reading progression.
+- Personalize sections to the topic; omit empty placeholders.
+- Do not create ASCII or text-based .md schemas. Generate visual cartoon illustrations for all diagrams.
+- Wrap minimal implementations in `<details><summary>Expand minimal Python implementation</summary>...</details>` to keep code expandable on demand.
+- End every unit with a clear next-unit navigation link.
 
 ## Architecture teaching order
 
@@ -34,10 +31,10 @@
 4. Add technical detail.
 5. Show an example.
 6. Explain limitations.
-7. Add a short security preview that links to Pass 2.
+7. Add a short security preview linking to Pass 2.
 
-Do not explain attacks, controls, recovery, or security tests in an architecture chapter.
+Do not explain attacks, controls, or security tests in architecture chapters.
 
 ## Security teaching order
 
-Start with the threat model. Map each security item to Pass 1 architecture. Separate preventive, detective, and recovery controls.
+Start with the threat model. Map security items to Pass 1 components. Separate preventive, detective, and recovery controls.

@@ -1,0 +1,24 @@
+id: p1-03-03-02-langchain-plan-execute-2024
+title: Plan-and-Execute Agent Architectures and State Graphs
+authors_or_organization: LangChain Community
+date: 2024-06
+source_type: doc
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-19'
+last_verified: '2026-08-19'
+status: checked
+claims_supported:
+- Details state graph transitions, step status management, and replanning loop protocols
+  for production plan-and-execute workflows.
+limitations:
+- API patterns tailored to LangGraph runtime abstractions.
+related_topics:
+- plan-and-execute state transitions
+unit_ids:
+- P1-03-03-02
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute.md
+local_copy: null
+sha256: null

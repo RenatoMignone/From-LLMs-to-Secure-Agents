@@ -1,0 +1,28 @@
+id: p1-03-03-02-wang-plan-and-solve-2023
+title: 'Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by
+  Large Language Models'
+authors_or_organization: Lei Wang, Wanyu Xu, Yihuai Lan, Zhiqiang Hu, Yunshi Lan,
+  Roy Ka-Wei Lee, Ee-Peng Lim
+date: 2023-07
+source_type: paper
+canonical_url: https://aclanthology.org/2023.acl-long.147/
+doi: null
+version: null
+accessed: '2026-08-19'
+last_verified: '2026-08-19'
+status: checked
+claims_supported:
+- Introduces explicit multi-step plan generation before execution, improving reasoning
+  accuracy on complex multi-stage tasks by eliminating missing-step and calculation
+  errors.
+limitations:
+- Focuses on prompt-level mathematical and reasoning benchmarks rather than interactive
+  external tool execution.
+related_topics:
+- plan-and-solve and task decomposition
+unit_ids:
+- P1-03-03-02
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute.md
+local_copy: null
+sha256: null

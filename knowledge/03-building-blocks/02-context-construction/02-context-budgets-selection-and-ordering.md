@@ -107,6 +107,9 @@ To overcome the U-shaped attention dip ("Lost in the Middle") identified by Liu 
 
 The following Python code demonstrates token budget allocation and attention-anchored prompt sequencing:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import List, Tuple
@@ -147,6 +150,8 @@ def pack_and_order_context(
     }
     return [system_msg, user_msg]
 ```
+
+</details>
 
 The complete runnable implementation is available in [budget_packager.py](../../../examples/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering/budget_packager.py).
 

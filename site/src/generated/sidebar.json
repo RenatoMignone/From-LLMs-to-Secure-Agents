@@ -124,6 +124,10 @@
       {
         "label": "Reactive and reason-act patterns",
         "link": "/building-blocks/01-reactive-and-reason-act-patterns/"
+      },
+      {
+        "label": "Decomposition and plan-execute",
+        "link": "/building-blocks/02-decomposition-and-plan-execute/"
       }
     ]
   }

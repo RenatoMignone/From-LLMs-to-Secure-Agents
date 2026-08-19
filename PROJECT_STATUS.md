@@ -1,14 +1,16 @@
 ---
 schema_version: 1
 current_phase: pass-1-architecture
-current_unit: null
-current_unit_path: null
-current_unit_state: idle
-blocked_from: null
+current_unit: P1-03-03-02
+current_unit_path: knowledge/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute.md
+current_unit_state: blocked
+blocked_from: building-assets
 completed_through: P1-03-03-01
 units_in_review: []
 next_recommended_unit: P1-03-03-02
-blockers: []
+blockers:
+- Image generation quota exhausted (429 Resource Exhausted on gemini-3.1-flash-image;
+  quota reset in ~76h)
 unresolved_research_questions:
 - Reference workflow domain
 - Protocol version churn

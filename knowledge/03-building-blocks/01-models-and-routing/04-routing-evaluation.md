@@ -105,6 +105,9 @@ When using LLM-as-a-judge for routing evaluation, three systematic biases must b
 
 The following implementation defines an evaluation harness comparing routing policies against static baselines:
 
+<details>
+<summary>Expand minimal Python implementation</summary>
+
 ```python
 from dataclasses import dataclass
 from typing import Callable, List, Tuple
@@ -153,6 +156,8 @@ def evaluate_routing_policy(
         "cost_savings": ((frontier_baseline_cost - total_cost) / frontier_baseline_cost) * 100.0,
     }
 ```
+
+</details>
 
 The full runnable test script is available in [router_evaluator.py](../../../examples/03-building-blocks/01-models-and-routing/04-routing-evaluation/router_evaluator.py).
 
