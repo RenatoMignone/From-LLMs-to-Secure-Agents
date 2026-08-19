@@ -1,0 +1,18 @@
+Create a clear, high-quality technical educational cartoon illustration comparing Pure Reactive vs Interleaved ReAct Agent Architectures.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements (Two-Column Side-by-Side Comparison):
+1. Left Column: "Pure Reactive / Direct Tool Calling"
+   - Linear flow: User Query -> Direct Tool Call -> Direct Response.
+   - Character: A hurried little robot immediately pressing buttons without thinking, encountering a tool error card and looking confused ("Fragile on multi-step reasoning, prone to tool loops").
+2. Right Column: "Interleaved ReAct (Reason + Act)"
+   - Iterative cycle: User Query -> [Thought -> Tool Action -> Observation -> Re-evaluation] -> Verified Final Answer.
+   - Character: A calm, thoughtful robot inspecting tool results with a notebook, self-correcting intermediate mistakes, and delivering a verified solution ("Robust, grounded in observations, self-correcting").
+3. Top header: "Pure Reactive vs Interleaved ReAct Pattern".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

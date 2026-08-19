@@ -1,0 +1,27 @@
+id: p1-03-03-01-yao-react-2022
+title: 'ReAct: Synergizing Reasoning and Acting in Language Models'
+authors_or_organization: Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran,
+  Karthik Narasimhan, Yuan Cao
+date: 2022-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2210.03629
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Introduces interleaved Thought-Action-Observation trajectories, demonstrating that
+  reasoning traces improve tool decision quality while tool observations ground reasoning
+  against hallucinations.
+limitations:
+- Evaluates on text-based web navigation and benchmark QA rather than sandboxed production
+  operating environments.
+related_topics:
+- ReAct loop and reason-act patterns
+unit_ids:
+- P1-03-03-01
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/01-reactive-and-reason-act-patterns.md
+local_copy: null
+sha256: null

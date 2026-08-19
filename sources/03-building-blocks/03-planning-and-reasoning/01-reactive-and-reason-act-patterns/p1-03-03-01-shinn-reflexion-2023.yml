@@ -1,0 +1,25 @@
+id: p1-03-03-01-shinn-reflexion-2023
+title: 'Reflexion: Language Agents with Verbal Reinforcement Learning'
+authors_or_organization: Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath,
+  Karthik Narasimhan, Shunyu Yao
+date: 2023-03
+source_type: paper
+canonical_url: https://arxiv.org/abs/2303.11366
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Establishes dynamic evaluation, error-reflective self-correction, and iterative
+  heuristic adjustment in interleaved agent loops.
+limitations:
+- Relies on external binary/scalar evaluators for feedback signal.
+related_topics:
+- reflection and reactive reasoning
+unit_ids:
+- P1-03-03-01
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/01-reactive-and-reason-act-patterns.md
+local_copy: null
+sha256: null

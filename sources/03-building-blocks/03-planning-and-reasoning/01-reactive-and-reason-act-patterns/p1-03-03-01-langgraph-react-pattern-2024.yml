@@ -1,0 +1,24 @@
+id: p1-03-03-01-langgraph-react-pattern-2024
+title: Tool Calling and Reactive Agent Execution Loops
+authors_or_organization: LangChain Community
+date: 2024-06
+source_type: doc
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Specifies runtime state transitions, termination conditions, and tool invocation
+  graphs for production ReAct loops.
+limitations:
+- Focuses on LangGraph state graph execution primitives.
+related_topics:
+- reactive tool loops and graph transitions
+unit_ids:
+- P1-03-03-01
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/01-reactive-and-reason-act-patterns.md
+local_copy: null
+sha256: null
