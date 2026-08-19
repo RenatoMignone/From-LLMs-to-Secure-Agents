@@ -100,6 +100,30 @@
       {
         "label": "Capability, cost, latency, and reliability",
         "link": "/building-blocks/03-capability-cost-latency-and-reliability/"
+      },
+      {
+        "label": "Routing evaluation",
+        "link": "/building-blocks/04-routing-evaluation/"
+      },
+      {
+        "label": "Context sources and precedence",
+        "link": "/building-blocks/01-context-sources-and-precedence/"
+      },
+      {
+        "label": "Context budgets, selection, and ordering",
+        "link": "/building-blocks/02-context-budgets-selection-and-ordering/"
+      },
+      {
+        "label": "History, summaries, and compression",
+        "link": "/building-blocks/03-history-summaries-and-compression/"
+      },
+      {
+        "label": "Provenance and context debugging",
+        "link": "/building-blocks/04-provenance-and-context-debugging/"
+      },
+      {
+        "label": "Reactive and reason-act patterns",
+        "link": "/building-blocks/01-reactive-and-reason-act-patterns/"
       }
     ]
   }

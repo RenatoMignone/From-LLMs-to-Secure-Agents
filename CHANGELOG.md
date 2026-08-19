@@ -199,3 +199,39 @@
 - Files or sections: `knowledge/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Capability, cost, latency, and reliability.
 - Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-01-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/01-models-and-routing/04-routing-evaluation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Routing evaluation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-02-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/02-context-construction/01-context-sources-and-precedence.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Context sources and precedence.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-02-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Context budgets, selection, and ordering.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-02-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/02-context-construction/03-history-summaries-and-compression.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed History, summaries, and compression.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-02-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/02-context-construction/04-provenance-and-context-debugging.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Provenance and context debugging.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-03-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/03-planning-and-reasoning/01-reactive-and-reason-act-patterns.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Reactive and reason-act patterns.
+- Validation: Passed repository validation and the unit review checklist.

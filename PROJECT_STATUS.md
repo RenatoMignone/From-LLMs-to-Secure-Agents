@@ -5,9 +5,9 @@ current_unit: null
 current_unit_path: null
 current_unit_state: idle
 blocked_from: null
-completed_through: P1-03-01-03
+completed_through: P1-03-03-01
 units_in_review: []
-next_recommended_unit: P1-03-01-04
+next_recommended_unit: P1-03-03-02
 blockers: []
 unresolved_research_questions:
 - Reference workflow domain
