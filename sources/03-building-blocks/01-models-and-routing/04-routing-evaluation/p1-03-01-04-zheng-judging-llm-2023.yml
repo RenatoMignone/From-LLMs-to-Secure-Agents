@@ -1,0 +1,27 @@
+id: p1-03-01-04-zheng-judging-llm-2023
+title: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena
+authors_or_organization: Lianmin Zheng, Hao Zhang, Wei-Lin Chiang, Robert Xing, Shiyang
+  Qiu, Sheng Shen, Hao Wang, Xinya Zhang, Siyuan Zhuang, Yang Liu, Joseph E. Gonzalez,
+  Ion Stoica
+date: 2023-06
+source_type: paper
+canonical_url: https://arxiv.org/abs/2306.05685
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Demonstrates LLM-as-a-judge evaluation protocols, pairwise win-rate calculations,
+  and bias mitigations for model output assessment.
+limitations:
+- Judge models exhibit position, verbosity, and self-enhancement biases that require
+  calibration in router evaluation.
+related_topics:
+- automated evaluation and judge calibration
+unit_ids:
+- P1-03-01-04
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/04-routing-evaluation.md
+local_copy: null
+sha256: null

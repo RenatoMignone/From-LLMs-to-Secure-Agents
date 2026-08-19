@@ -1,0 +1,22 @@
+Create a clear, high-quality technical educational cartoon illustration of a Cost vs Quality Pareto Frontier Evaluation curve for Model Routing.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A large, clean 2D graphical chart with rounded coordinate axes:
+   - Vertical Y-axis: "Task Quality / Accuracy (%)" ranging from 50% to 100%.
+   - Horizontal X-axis: "Relative Cost / Strong Model Calls (%)" ranging from 0% to 100%.
+2. Plotted Curves and Points:
+   - Point at bottom-left (0% Cost, 75% Quality): "Small Model Baseline (Fast & Cheap)".
+   - Point at top-right (100% Cost, 98% Quality): "Frontier Model Baseline (All Calls)".
+   - Dotted straight line between them: "Random Router Baseline".
+   - Smooth curved green Pareto frontier line arching steeply upward: "Learned Matrix Factorization / Classifier Router".
+   - A highlighted golden star marker at (30% Cost, 96% Quality): "Optimal Sweet Spot: 96% Quality at 70% Cost Savings".
+3. Right side: A cute robot researcher with a pointer stick explaining the graph, holding a magnifying glass and pointing to the optimal sweet spot star.
+4. Top banner label: "Router Benchmark: Quality vs Cost Pareto Frontier".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

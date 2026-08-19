@@ -226,4 +226,4 @@ We examine denial-of-wallet defenses, model abuse controls, and side-channel ris
 
 ---
 
-[Next Unit: Routing evaluation →](chapter-plan.md)
+[Next Unit: Routing evaluation →](04-routing-evaluation.md)

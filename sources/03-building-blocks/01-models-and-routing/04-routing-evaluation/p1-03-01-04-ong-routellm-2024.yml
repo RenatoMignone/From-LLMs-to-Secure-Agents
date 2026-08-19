@@ -1,0 +1,26 @@
+id: p1-03-01-04-ong-routellm-2024
+title: 'RouteLLM: Learning to Route LLMs with Preference Data'
+authors_or_organization: Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao
+  Wu, Joseph E. Gonzalez, Hao Zhang
+date: 2024-06
+source_type: paper
+canonical_url: https://arxiv.org/abs/2406.18665
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Defines evaluation metrics for LLM routers including strong model call percentage,
+  quality recovery rates, and cost-quality Pareto frontiers across diverse benchmarks.
+limitations:
+- Evaluates primarily single-turn prompt-response tasks rather than multi-hop stateful
+  agent trajectories.
+related_topics:
+- routing evaluation and benchmark metrics
+unit_ids:
+- P1-03-01-04
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/04-routing-evaluation.md
+local_copy: null
+sha256: null

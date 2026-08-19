@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of an LLM Routing Evaluation Framework.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#7ED321 / #50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and muted slate.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements (Left-to-Right workflow):
+1. Left side: "Evaluation Benchmark Dataset" - A tidy stack of test cards and query envelopes with a small clipboard robot holding a checklist.
+2. Center-Left: "Router Under Test" - A friendly sorting robot with a dial/threshold slider that directs traffic along two conveyor tracks:
+   - Top track (70%): "Fast Small Model (SLM)" - A small, nimble blue robot rapidly typing and generating responses.
+   - Bottom track (30%): "Frontier Reasoning Model" - A larger, thoughtful teal robot wearing glasses solving complex multi-step queries.
+3. Center-Right: "Evaluation Engine & Judge" - An analytical robot judge wearing a scholar cap comparing the generated responses against reference ground-truth answers.
+4. Right side: "Evaluation Metrics Dashboard" - A clean, friendly whiteboard displaying three key scorecards:
+   - "Call-Through Rate: 30%"
+   - "Quality Recovery: 98.2%"
+   - "Cost Savings: 68%"
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

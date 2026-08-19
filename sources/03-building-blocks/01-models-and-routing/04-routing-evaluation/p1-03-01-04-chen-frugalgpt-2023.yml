@@ -1,0 +1,25 @@
+id: p1-03-01-04-chen-frugalgpt-2023
+title: 'FrugalGPT: How to Use Multiple LLMs Efficiently'
+authors_or_organization: Lingjiao Chen, Matei Zaharia, James Zou
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.05176
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Establishes cascade evaluation methodologies, cost reduction benchmarks, and scoring
+  functions for multi-LLM generation pipelines.
+limitations:
+- Focuses on static cascade ordering and generation scoring rather than active tool-use
+  evaluation.
+related_topics:
+- cascade evaluation and cost-quality benchmarking
+unit_ids:
+- P1-03-01-04
+used_in:
+- knowledge/03-building-blocks/01-models-and-routing/04-routing-evaluation.md
+local_copy: null
+sha256: null
