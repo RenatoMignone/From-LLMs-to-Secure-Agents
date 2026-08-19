@@ -1,0 +1,17 @@
+Create a clear, high-quality technical educational cartoon illustration of Context Positional Ordering and Attention Anchors for LLM Agent Prompts.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A large horizontal sequence layout overlaid with a smooth U-shaped curve showing attention retention:
+   - Left Zone: "Primacy Anchor (Index 0)" - System instructions & core rules with high green attention curve.
+   - Middle Zone: "Middle Body (RAG Docs & History)" - Dips lower into yellow/amber attention dip ("Lost in the Middle Risk").
+   - Right Zone: "Recency Anchor (Tail)" - Immediate user request & output schema instructions rising back to high green attention curve.
+2. Right side: A friendly robot researcher with an attention magnifying glass pointing to the recency anchor, showing why placing immediate instructions at the end ensures high model recall.
+3. Top header: "Context Ordering & U-Shaped Attention Dynamics".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

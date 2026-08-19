@@ -1,0 +1,18 @@
+Create a clear, high-quality technical educational cartoon illustration of History Summarization and Compression Strategies for LLM Agents.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements (Left-to-Right comparison):
+1. Left side: "Raw History Bloat" - A tall, wobbly stack of 50 conversational turn cards and large verbose tool log files causing context strain.
+2. Center: A friendly librarian robot wearing glasses operating a "History Compactor Engine" with a lever.
+3. Right side: Three neat, compact output trays showing the primary compression patterns:
+   - Top tray: "Sliding Window FIFO" (Fixed buffer of recent 5 turns, older turns dropped)
+   - Middle tray: "Incremental Rolling Summary" (A compact golden summary card representing turns 1-45, attached to 5 recent turns)
+   - Bottom tray: "Tool Output Compaction" (Verbose 10,000-token JSON shrunk to a clean 3-line structured key-value receipt)
+4. Top header: "Context History Compression Strategies".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

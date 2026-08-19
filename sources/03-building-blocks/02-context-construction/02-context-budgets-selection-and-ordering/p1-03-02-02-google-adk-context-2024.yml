@@ -1,0 +1,24 @@
+id: p1-03-02-02-google-adk-context-2024
+title: Session State, Context Windows, and Memory Budgeting in Agent Frameworks
+authors_or_organization: Google
+date: 2024-10
+source_type: doc
+canonical_url: https://adk.dev/agents/
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Specifies context window partitioning, token eviction algorithms, and session memory
+  budgeting for enterprise agents.
+limitations:
+- Focuses on Google Agent Development Kit runtime abstractions.
+related_topics:
+- session state and context budgeting
+unit_ids:
+- P1-03-02-02
+used_in:
+- knowledge/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering.md
+local_copy: null
+sha256: null

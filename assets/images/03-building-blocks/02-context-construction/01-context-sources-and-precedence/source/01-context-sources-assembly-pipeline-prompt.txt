@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of an LLM Context Sources Assembly Pipeline.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements (Left-to-Right workflow):
+1. Left side: Five distinct labeled input bins/feeders:
+   - Top bin: "System & Developer Instructions" (Gold shield/badge icon)
+   - Second bin: "Retrieved Knowledge (RAG)" (Neat stack of doc pages)
+   - Third bin: "Tool Call Results" (Wrench and structured data payload)
+   - Fourth bin: "Conversation Memory & History" (Chronological message cards)
+   - Bottom bin: "Current User Prompt" (Blue chat speech bubble)
+2. Center: A friendly builder robot wearing a small yellow safety hat operating a "Context Builder Engine". The robot carefully arranges the items in prioritized order onto a structured conveyor tray.
+3. Right side: The formatted, bounded "Model Input Context Window" entering the LLM Inference Engine (a smiling, thoughtful robot brain).
+4. Top header label: "Context Construction: Dynamic Assembly Pipeline".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of Context Provenance Tracking and Data Lineage for LLM Agents.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A transparent serialized prompt token pipeline where individual context blocks pass through.
+2. Detail Callouts: Each context block has an attached metadata "Provenance Passport Tag":
+   - Block 1 (Gold): "Origin: System Policy v2.1 | Authority: Root | Hash: 0x8F21"
+   - Block 2 (Blue): "Origin: User Session #491 | Auth: Alice (Role: Analyst)"
+   - Block 3 (Teal): "Origin: RAG Chunk doc-88 | Source: wiki/hr-policy.pdf | Trust: Untrusted"
+   - Block 4 (Coral): "Origin: Tool: execute_sql | Host: db-replica-01 | Latency: 42ms"
+3. Left side: A cute robot detective wearing a deerstalker hat with a magnifying glass inspecting the tags, verifying data integrity.
+4. Top header: "Context Provenance & Metadata Lineage".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

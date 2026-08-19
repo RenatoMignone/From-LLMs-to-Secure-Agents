@@ -1,0 +1,24 @@
+id: p1-03-02-04-w3c-prov-dm-2013
+title: 'PROV-DM: The PROV Data Model for Provenance Interchange'
+authors_or_organization: World Wide Web Consortium (W3C)
+date: 2013-04
+source_type: standard
+canonical_url: https://www.w3.org/TR/prov-dm/
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Defines foundational data structures for tracking entities, activities, agents,
+  and derivations across distributed computing pipelines.
+limitations:
+- General data model designed prior to modern large language model agent architectures.
+related_topics:
+- data provenance and derivation tracking
+unit_ids:
+- P1-03-02-04
+used_in:
+- knowledge/03-building-blocks/02-context-construction/04-provenance-and-context-debugging.md
+local_copy: null
+sha256: null

@@ -1,0 +1,25 @@
+id: p1-03-02-02-liu-attention-ordering-2023
+title: Positional Sensitivity and Context Ordering in Language Model Inference
+authors_or_organization: Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape,
+  Michele Bevilacqua, Fabio Petroni, Percy Liang
+date: 2023-07
+source_type: paper
+canonical_url: https://arxiv.org/abs/2307.03172
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Measures accuracy variations caused by input document ordering, proving that placing
+  key context at prompt boundaries maximizes generation accuracy.
+limitations:
+- Evaluated on single-turn multi-document extraction rather than autonomous tool loops.
+related_topics:
+- positional attention and context ordering
+unit_ids:
+- P1-03-02-02
+used_in:
+- knowledge/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering.md
+local_copy: null
+sha256: null

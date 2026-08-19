@@ -1,0 +1,16 @@
+Create a clear, high-quality technical educational cartoon illustration of the Summary Buffer Memory Lifecycle in an Autonomous Agent.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements (Sequential 3-Step Lifecycle Flow):
+1. Step 1 (Left): "Buffer Threshold Saturation" - An incoming queue of turn messages fills up past the 4,000-token warning marker on a friendly meter.
+2. Step 2 (Center): "Recursive Summarization & State Extraction" - A smart summarizer robot condenses the older message block into a structured `<state_summary>` card with key facts, active goals, and confirmed tool outputs.
+3. Step 3 (Right): "Active Prompt Injection & Archival" - The clean summary card is placed at the top of the active working window alongside the newest turns, while the raw historical cards are safely placed into an "External Cold Storage Archive" file cabinet by a helper robot.
+4. Bottom label: "Preserving Critical Decision State Across Long Horizons".
+5. Top header: "Summary Buffer Memory Lifecycle".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

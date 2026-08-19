@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of Token Budget Partitioning in an Agent Context Window.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A large, horizontal partitioned container representing the "Context Token Window" divided into five clearly labeled, color-coded compartments:
+   - Compartment 1 (Gold, 10%): "System & Safety Policy (Fixed Reserved)"
+   - Compartment 2 (Teal, 40%): "Retrieved Evidence / RAG (Dynamic Slice)"
+   - Compartment 3 (Blue, 30%): "Turn History & Tool Traces (Sliding Window)"
+   - Compartment 4 (Sage Green, 5%): "Current User Turn (Priority Reserved)"
+   - Compartment 5 (Soft Coral, 15%): "Output Completion Headroom (Buffer)"
+2. Left side: A cute robot accountant wearing a green visor holding a ledger and calculator, carefully allocating token allowances.
+3. Top header: "Context Engineering: Token Budget Allocation".
+4. Bottom label: "Total Window Bounded: Zero Eviction Overflow".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

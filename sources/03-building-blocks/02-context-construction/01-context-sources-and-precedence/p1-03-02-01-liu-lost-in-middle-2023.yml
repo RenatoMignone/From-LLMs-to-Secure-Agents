@@ -1,0 +1,27 @@
+id: p1-03-02-01-liu-lost-in-middle-2023
+title: 'Lost in the Middle: How Language Models Use Long Contexts'
+authors_or_organization: Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape,
+  Michele Bevilacqua, Fabio Petroni, Percy Liang
+date: 2023-07
+source_type: paper
+canonical_url: https://arxiv.org/abs/2307.03172
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Demonstrates U-shaped attention curves in large context windows where information
+  in the middle suffers severe retrieval degradation compared to the beginning and
+  end.
+limitations:
+- Evaluates multi-document QA and key-value retrieval rather than full interactive
+  multi-turn agent tool traces.
+related_topics:
+- positional attention and context ordering
+unit_ids:
+- P1-03-02-01
+used_in:
+- knowledge/03-building-blocks/02-context-construction/01-context-sources-and-precedence.md
+local_copy: null
+sha256: null

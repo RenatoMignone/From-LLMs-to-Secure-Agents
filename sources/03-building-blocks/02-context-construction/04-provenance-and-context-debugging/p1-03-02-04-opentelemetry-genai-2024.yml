@@ -1,0 +1,24 @@
+id: p1-03-02-04-opentelemetry-genai-2024
+title: OpenTelemetry Semantic Conventions for Generative AI and Agent Systems
+authors_or_organization: OpenTelemetry Community
+date: 2024-07
+source_type: standard
+canonical_url: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Establishes standardized telemetry attributes, span hierarchies, and token event
+  schemas for inspecting model invocations, prompt inputs, and tool completions.
+limitations:
+- Focuses on telemetry data models rather than runtime prompt injection filtering.
+related_topics:
+- agent telemetry and context tracing
+unit_ids:
+- P1-03-02-04
+used_in:
+- knowledge/03-building-blocks/02-context-construction/04-provenance-and-context-debugging.md
+local_copy: null
+sha256: null

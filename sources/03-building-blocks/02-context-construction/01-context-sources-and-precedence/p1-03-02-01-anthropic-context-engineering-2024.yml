@@ -1,0 +1,24 @@
+id: p1-03-02-01-anthropic-context-engineering-2024
+title: Effective Context Engineering for AI Agents
+authors_or_organization: Anthropic
+date: 2024-09
+source_type: report
+canonical_url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Defines context engineering as the dynamic runtime curation of prompt components,
+  tool outputs, and memory, establishing priority hierarchies over static prompt engineering.
+limitations:
+- Focuses primarily on Claude model series architecture and API features.
+related_topics:
+- context engineering and source precedence
+unit_ids:
+- P1-03-02-01
+used_in:
+- knowledge/03-building-blocks/02-context-construction/01-context-sources-and-precedence.md
+local_copy: null
+sha256: null

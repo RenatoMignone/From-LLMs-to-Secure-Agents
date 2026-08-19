@@ -1,0 +1,24 @@
+id: p1-03-02-03-langchain-message-trimming-2024
+title: Conversation History Trimming and Summary Buffer Architectures
+authors_or_organization: Harrison Chase, Bagatur Askaryan
+date: 2024-08
+source_type: doc
+canonical_url: https://python.langchain.com/docs/concepts/memory/
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Specifies token-based sliding window algorithms, summary buffer memory strategies,
+  and message role preservation rules during history compaction.
+limitations:
+- Framework-specific abstractions in LangChain/LangGraph.
+related_topics:
+- message trimming and summary buffers
+unit_ids:
+- P1-03-02-03
+used_in:
+- knowledge/03-building-blocks/02-context-construction/03-history-summaries-and-compression.md
+local_copy: null
+sha256: null

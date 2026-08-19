@@ -1,0 +1,18 @@
+Create a clear, high-quality technical educational cartoon illustration of the Precedence and Trust Hierarchy in LLM Context Construction.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A 3-tiered hierarchical pyramid or stepped pedestal:
+   - Top Tier (Highest Trust & Priority): "Level 1: System / Developer Instructions" - Protected by a glowing golden border and a cute robot administrator holding an authoritative scroll ("Core Safety & Policy Rules").
+   - Middle Tier (Interactive Authority): "Level 2: Authenticated User Input" - A friendly user robot speaking a task goal ("Analyze this Q3 financial report").
+   - Base Tier (Untrusted External Context): "Level 3: Retrieved RAG & Tool Data" - A tray of external data packets marked with a small warning label ("Unverified External Content").
+2. Left side: A vertical priority arrow pointing UP: "Precedence & Instruction Priority".
+3. Right side: A friendly robot security guard pointing with a wand to a dotted trust boundary line between Level 2 and Level 3, indicating "Trust Boundary: External data must never override System Instructions".
+4. Top header: "Context Precedence and Trust Boundaries".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

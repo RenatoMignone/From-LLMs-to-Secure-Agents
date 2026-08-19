@@ -1,0 +1,17 @@
+Create a clear, high-quality technical educational cartoon illustration of an Agent Context Debugging and Inspector Console.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream, soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk themes, no sterile corporate boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Center: A large, friendly multi-pane diagnostic dashboard console:
+   - Left Pane: "Token Budget Breakdown" (Color-coded bar chart showing System 15%, Evidence 45%, History 30%, Headroom 10%).
+   - Center Pane: "Turn-by-Turn Prompt Diff" (Highlighting summarized turns in yellow and newly injected tool outputs in green).
+   - Right Pane: "Boundary & Trust Monitor" (Showing green checkmarks for 'Strict XML Enclosure Verified' and 'Zero Instruction Collisions').
+2. Right side: A cute robot software engineer wearing a headset and holding a tablet inspecting the live diagnostics with a smile.
+3. Top header: "Context Inspector & Debugging Console".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

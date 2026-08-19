@@ -1,0 +1,24 @@
+id: p1-03-02-01-openai-agent-context-2024
+title: Agent Instructions and Context Management Architecture
+authors_or_organization: OpenAI
+date: 2024-11
+source_type: doc
+canonical_url: https://platform.openai.com/docs/guides/agents
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Specifies message-role hierarchies, developer instruction precedence, and tool output
+  context serialization formats.
+limitations:
+- API-specific serialization format that differs from open-weight chat templates.
+related_topics:
+- message hierarchy and context serialization
+unit_ids:
+- P1-03-02-01
+used_in:
+- knowledge/03-building-blocks/02-context-construction/01-context-sources-and-precedence.md
+local_copy: null
+sha256: null

@@ -1,0 +1,25 @@
+id: p1-03-02-03-packer-memgpt-2023
+title: 'MemGPT: Towards LLMs as Operating Systems'
+authors_or_organization: Charles Packer, Vivian Fang, Shishir G. Patil, Kevin Lin,
+  Sarah Wooders, Joseph E. Gonzalez
+date: 2023-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2310.08560
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Establishes hierarchical context tiering, self-editing memory compaction, and recursive
+  summarization for long-running autonomous agent sessions.
+limitations:
+- Focuses on OS-style memory management rather than stateless API gateway middleware.
+related_topics:
+- hierarchical memory and context compaction
+unit_ids:
+- P1-03-02-03
+used_in:
+- knowledge/03-building-blocks/02-context-construction/03-history-summaries-and-compression.md
+local_copy: null
+sha256: null

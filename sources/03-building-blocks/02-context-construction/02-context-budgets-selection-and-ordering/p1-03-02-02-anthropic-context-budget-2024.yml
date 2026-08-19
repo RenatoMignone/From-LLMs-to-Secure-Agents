@@ -1,0 +1,24 @@
+id: p1-03-02-02-anthropic-context-budget-2024
+title: Managing Context Budgets and Information Architecture in Long-Running Agents
+authors_or_organization: Anthropic
+date: 2024-09
+source_type: report
+canonical_url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+doi: null
+version: null
+accessed: '2026-08-18'
+last_verified: '2026-08-18'
+status: checked
+claims_supported:
+- Details token budgeting strategies, dynamic allocation rules, and prompt ordering
+  structures for multi-turn agent execution.
+limitations:
+- API-specific context caching behaviors may differ across providers.
+related_topics:
+- token budgeting and context architecture
+unit_ids:
+- P1-03-02-02
+used_in:
+- knowledge/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering.md
+local_copy: null
+sha256: null
