@@ -1062,6 +1062,9 @@ Sitemap: ${SITE_ORIGIN}${BASE_URL}/sitemap-index.xml
 `;
   fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), robotsTxtContent, 'utf8');
 
+  // 11. Generate .nojekyll file to bypass Jekyll on GitHub Pages
+  fs.writeFileSync(path.join(PUBLIC_DIR, '.nojekyll'), '', 'utf8');
+
   console.log('🎉 Site content generation finished cleanly!');
 }
 
