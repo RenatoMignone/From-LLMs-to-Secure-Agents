@@ -4,6 +4,10 @@
     "collapsed": true,
     "items": [
       {
+        "label": "Section Overview",
+        "link": "/prerequisites/"
+      },
+      {
         "label": "Reader contract and system map",
         "link": "/prerequisites/01-reader-contract-and-system-map/"
       },
@@ -25,6 +29,10 @@
     "label": "Agent foundations",
     "collapsed": true,
     "items": [
+      {
+        "label": "Section Overview",
+        "link": "/foundations/"
+      },
       {
         "label": "What is an agent",
         "link": "/foundations/01-what-is-an-agent/"
@@ -51,6 +59,10 @@
     "label": "Agent architectures",
     "collapsed": true,
     "items": [
+      {
+        "label": "Section Overview",
+        "link": "/architectures/"
+      },
       {
         "label": "Architecture selection criteria",
         "link": "/architectures/01-architecture-selection-criteria/"
@@ -89,6 +101,10 @@
     "label": "Building blocks",
     "collapsed": true,
     "items": [
+      {
+        "label": "Section Overview",
+        "link": "/building-blocks/"
+      },
       {
         "label": "Model roles and selection",
         "link": "/building-blocks/01-model-roles-and-selection/"

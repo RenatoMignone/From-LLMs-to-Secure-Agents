@@ -7,7 +7,7 @@
 - **Structured Index API:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/guide-index.json
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
-- **Current Canonical Progress:** Completed through P1-03-03-02 (27 units published)
+- **Current Canonical Progress:** Completed through P1-03-03-02 (27 units published across 4 sections)
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -20,10 +20,10 @@
 ## Curriculum Architecture (Two-Pass Model)
 
 1. **Pass 1: Understand the Complete System**
-   - **00 Prerequisites:** Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
-   - **01 Agent Foundations:** Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
-   - **02 Agent Architectures (Roadmap):** Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
-   - **03 Building Blocks (Roadmap):** Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
+   - **00 Prerequisites:** [Section Overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
+   - **01 Agent Foundations:** [Section Overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
+   - **02 Agent Architectures:** [Section Overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
+   - **03 Building Blocks:** [Section Overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
    - **04 Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
    - **05 End-to-End Workflows (Roadmap):** Reference production architectures.
 
@@ -38,6 +38,7 @@
 
 ### [P1-00-01: Reader contract and system map](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/01-reader-contract-and-system-map/)
 - **Summary:** Establishes the system vocabulary and diagram notation used to trace an agent safely.
+- **Section:** [Prerequisites](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/prerequisites/01-reader-contract-and-system-map.md
 - **Learning Objectives:**
   * Trace a request through a process, a store, and an external service.
@@ -47,6 +48,7 @@
 
 ### [P1-00-02: Data, control, and trust boundaries](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/02-data-control-and-trust-boundaries/)
 - **Summary:** Separates information from instructions and shows where a system must reconsider its assumptions.
+- **Section:** [Prerequisites](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/prerequisites/02-data-control-and-trust-boundaries.md
 - **Learning Objectives:**
   * Distinguish data from control in one structured message.
@@ -56,6 +58,7 @@
 
 ### [P1-00-03: Requests, events, state, and side effects](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/03-requests-events-state-and-side-effects/)
 - **Summary:** Explains how a requested action, remembered state, event record, and outside-world result describe different parts of one workflow.
+- **Section:** [Prerequisites](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/prerequisites/03-requests-events-state-and-side-effects.md
 - **Learning Objectives:**
   * Distinguish a request from an event in a simple workflow.
@@ -65,6 +68,7 @@
 
 ### [P1-00-04: Identity, authority, and least privilege primer](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/04-identity-authority-and-least-privilege-primer/)
 - **Summary:** Explains identity, delegation, authority, and least privilege in multi-actor software workflows.
+- **Section:** [Prerequisites](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/prerequisites/04-identity-authority-and-least-privilege-primer.md
 - **Learning Objectives:**
   * Distinguish an actor's identity from the authority granted to perform an action.
@@ -74,6 +78,7 @@
 
 ### [P1-01-01: What is an agent](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/01-what-is-an-agent/)
 - **Summary:** Defines an agent as an autonomous software system combining a reasoning model with tools, environment observations, and goal-directed control loops.
+- **Section:** [Agent foundations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/foundations/01-what-is-an-agent.md
 - **Learning Objectives:**
   * Distinguish a standalone language model from a complete agent system.
@@ -83,6 +88,7 @@
 
 ### [P1-01-02: The agent loop](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/02-the-agent-loop/)
 - **Summary:** Explains the internal mechanics of the agent execution loop, detailing how models perceive environment feedback, decide actions, and execute tools across iterative turns.
+- **Section:** [Agent foundations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/foundations/02-the-agent-loop.md
 - **Learning Objectives:**
   * Trace the step-by-step lifecycle of a single turn in an agent execution loop.
@@ -92,6 +98,7 @@
 
 ### [P1-01-03: Workflows versus agents](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/03-workflows-versus-agents/)
 - **Summary:** Compares deterministic code-orchestrated workflows with model-directed autonomous agents, establishing clear criteria for when each architectural pattern should be used.
+- **Section:** [Agent foundations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/foundations/03-workflows-versus-agents.md
 - **Learning Objectives:**
   * Classify an AI system as a prompt chain, routing workflow, parallel pipeline, or autonomous agent.
@@ -101,6 +108,7 @@
 
 ### [P1-01-04: Goals, policies, environments, and autonomy](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/04-goals-policies-environments-and-autonomy/)
 - **Summary:** Details how agent goals, operational policies, environment characteristics, and autonomy levels interact to govern agent behavior and safety.
+- **Section:** [Agent foundations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/foundations/04-goals-policies-environments-and-autonomy.md
 - **Learning Objectives:**
   * Define agent goals and differentiate declarative end-states from procedural instructions.
@@ -111,6 +119,7 @@
 
 ### [P1-01-05: Run lifecycle and termination](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/05-run-lifecycle-and-termination/)
 - **Summary:** Defines the complete lifecycle of an agent run from initialization to termination, detailing execution states, pause mechanisms, and multi-layered stopping conditions.
+- **Section:** [Agent foundations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/foundations/05-run-lifecycle-and-termination.md
 - **Learning Objectives:**
   * Map the state transitions of an agent run across initialization, execution, suspension, and termination.
@@ -120,6 +129,7 @@
 
 ### [P1-02-01: Architecture selection criteria](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/01-architecture-selection-criteria/)
 - **Summary:** Establishes a systematic decision framework and trade-off matrix for selecting among deterministic workflows, single-agent loops, and multi-agent coordination patterns based on latency, cost, determinism, and failure containment.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/01-architecture-selection-criteria.md
 - **Learning Objectives:**
   * Classify AI orchestration architectures across four distinct tiers of agency from fixed pipelines to multi-agent networks.
@@ -130,6 +140,7 @@
 
 ### [P1-02-02: Single-agent and reactive loops](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/02-single-agent-and-reactive-loops/)
 - **Summary:** Explores the internal mechanics, state progression, and failure modes of single-agent ReAct loops, detailing how models interleave reasoning with dynamic tool actions and how host runtimes enforce termination guardrails.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/02-single-agent-and-reactive-loops.md
 - **Learning Objectives:**
   * Trace the step-by-step mechanics of the ReAct (Reason + Act) loop pattern.
@@ -140,6 +151,7 @@
 
 ### [P1-02-03: Sequential, routing, and parallel workflows](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/03-sequential-routing-and-parallel-workflows/)
 - **Summary:** Deep dive into deterministic workflow orchestration topologies including linear prompt chaining, conditional routing, parallel sectioning, and consensus voting, emphasizing error isolation and validation gates.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/03-sequential-routing-and-parallel-workflows.md
 - **Learning Objectives:**
   * Construct linear prompt chaining pipelines with structured intermediate validation checkpoints.
@@ -150,6 +162,7 @@
 
 ### [P1-02-04: Plan and execute](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/04-plan-and-execute/)
 - **Summary:** Explores the plan-and-execute architectural pattern, detailing how separating strategic task planning from tactical action execution and dynamic replanning improves reliability on complex long-horizon tasks.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/04-plan-and-execute.md
 - **Learning Objectives:**
   * Contrast the global strategic horizon of plan-and-execute with greedy single-step reactive loops.
@@ -160,6 +173,7 @@
 
 ### [P1-02-05: Evaluator-optimizer and reflection](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/05-evaluator-optimizer-and-reflection/)
 - **Summary:** Explores the evaluator-optimizer and reflection patterns, detailing how decoupled generator and evaluator models iteratively critique, score, and refine outputs against deterministic tests and semantic rubrics.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/05-evaluator-optimizer-and-reflection.md
 - **Learning Objectives:**
   * Construct iterative generator-evaluator loops using explicit scoring rubrics and acceptance thresholds.
@@ -170,6 +184,7 @@
 
 ### [P1-02-06: State machines and event-driven graphs](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/06-state-machines-and-event-driven-graphs/)
 - **Summary:** Explores state machines and event-driven graphs for AI agents, detailing typed state schemas, cyclic nodes, conditional edge routing, durable checkpointing, and asynchronous human-in-the-loop interruption.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/06-state-machines-and-event-driven-graphs.md
 - **Learning Objectives:**
   * Model agent workflows as deterministic state graphs with explicit state schemas and state reducers.
@@ -180,6 +195,7 @@
 
 ### [P1-02-07: Supervisors, handoffs, and agent-as-tool](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/07-supervisors-handoffs-and-agent-as-tool/)
 - **Summary:** Explores multi-agent coordination architectures, comparing centralized supervisors (manager-worker), decentralized peer handoffs (swarm), and encapsulated subagents (agent-as-a-tool).
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/07-supervisors-handoffs-and-agent-as-tool.md
 - **Learning Objectives:**
   * Distinguish hierarchical supervisor architectures from peer-to-peer handoffs and tool-encapsulated subagents.
@@ -190,6 +206,7 @@
 
 ### [P1-02-08: Architecture trade-offs](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/08-architecture-trade-offs/)
 - **Summary:** Compares orchestration patterns across determinism, latency, token expenditure, observability, failure propagation, and termination guarantees to guide minimal architecture selection.
+- **Section:** [Agent architectures](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/architectures/08-architecture-trade-offs.md
 - **Learning Objectives:**
   * Evaluate the six core trade-off dimensions across deterministic pipelines, reactive loops, evaluator-optimizer loops, state graphs, and multi-agent systems.
@@ -200,6 +217,7 @@
 
 ### [P1-03-01-01: Model roles and selection](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-model-roles-and-selection/)
 - **Summary:** Explains model roles, capability profiles, selection dimensions, provider adapters, and cost-latency-quality trade-offs in production agentic systems.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-model-roles-and-selection.md
 - **Learning Objectives:**
   * Differentiate the core model roles in agent architectures: planner, router, worker, and evaluator.
@@ -210,6 +228,7 @@
 
 ### [P1-03-01-02: Routing, cascades, and fallbacks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-routing-cascades-and-fallbacks/)
 - **Summary:** Explores dynamic model routing, progressive escalation cascades, circuit breaker patterns, and multi-provider fallbacks for high-availability agent architectures.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-routing-cascades-and-fallbacks.md
 - **Learning Objectives:**
   * Implement dynamic routing mechanisms including rule-based, embedding similarity, and learned threshold routers.
@@ -220,6 +239,7 @@
 
 ### [P1-03-01-03: Capability, cost, latency, and reliability](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-capability-cost-latency-and-reliability/)
 - **Summary:** Analyzes the multi-dimensional trade-offs between model capability, token economics, latency profiles, and operational reliability in production agent workflows.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-capability-cost-latency-and-reliability.md
 - **Learning Objectives:**
   * Deconstruct inference latency into Time to First Token (TTFT), inter-token latency (TPOT), and queue delays across streaming and non-streaming modes.
@@ -230,6 +250,7 @@
 
 ### [P1-03-01-04: Routing evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-routing-evaluation/)
 - **Summary:** Explains quantitative evaluation frameworks, cost-quality Pareto benchmarks, and judge calibration techniques for model routers and cascades.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-routing-evaluation.md
 - **Learning Objectives:**
   * Deconstruct router evaluation metrics including Call-Through Rate, Quality Recovery, and Cost Reduction on Pareto curves.
@@ -240,6 +261,7 @@
 
 ### [P1-03-02-01: Context sources and precedence](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-context-sources-and-precedence/)
 - **Summary:** Explains the runtime discipline of context engineering, classifying dynamic prompt sources, trust boundaries, and precedence hierarchies in agent loops.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-context-sources-and-precedence.md
 - **Learning Objectives:**
   * Distinguish dynamic context engineering from static prompt engineering across autonomous agent iterations.
@@ -250,6 +272,7 @@
 
 ### [P1-03-02-02: Context budgets, selection, and ordering](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-context-budgets-selection-and-ordering/)
 - **Summary:** Explains quantitative token budgeting, knapsack chunk selection algorithms, and attention-anchored positional ordering in agent context windows.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-context-budgets-selection-and-ordering.md
 - **Learning Objectives:**
   * Allocate token budgets dynamically across system policies, RAG evidence, conversation history, and completion headroom.
@@ -260,6 +283,7 @@
 
 ### [P1-03-02-03: History, summaries, and compression](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-history-summaries-and-compression/)
 - **Summary:** Explains conversation history management, lossy and lossless token compaction, tool trace pruning, and recursive summarization for long-running agents.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-history-summaries-and-compression.md
 - **Learning Objectives:**
   * Deconstruct conversation history growth curves and quantify token accumulation across multi-step agent loops.
@@ -270,6 +294,7 @@
 
 ### [P1-03-02-04: Provenance and context debugging](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-provenance-and-context-debugging/)
 - **Summary:** Explains token-level lineage tracking, context debugging inspection consoles, OpenTelemetry telemetry standards, and boundary integrity auditing.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-provenance-and-context-debugging.md
 - **Learning Objectives:**
   * Track token-level provenance and data lineage across system policies, user inputs, RAG chunks, and tool outputs.
@@ -280,6 +305,7 @@
 
 ### [P1-03-03-01: Reactive and reason-act patterns](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-reactive-and-reason-act-patterns/)
 - **Summary:** Explains reactive action selection and interleaved ReAct (Thought-Action-Observation) loops, error recovery, and cycle bounds in autonomous systems.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-reactive-and-reason-act-patterns.md
 - **Learning Objectives:**
   * Contrast pure reactive tool calling against interleaved ReAct (Reason-Act-Observe) trajectories in autonomous agents.
@@ -290,6 +316,7 @@
 
 ### [P1-03-03-02: Decomposition and plan-execute](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-decomposition-and-plan-execute/)
 - **Summary:** Explains multi-step goal decomposition, the two-tier Planner-Executor pattern, subtask lifecycle management, and dynamic replanning protocols.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
 - **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-decomposition-and-plan-execute.md
 - **Learning Objectives:**
   * Decompose complex high-level goals into directed subtask graphs with explicit dependency ordering.

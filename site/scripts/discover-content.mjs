@@ -11,6 +11,20 @@ const REPO_ROOT = path.resolve(SITE_ROOT, '..');
 const BASE_URL = '/From-LLMs-to-Secure-Agents';
 const SITE_ORIGIN = 'https://renatomignone.github.io';
 
+export const sectionLabels = {
+  '00-prerequisites': { label: 'Prerequisites', routeDir: 'prerequisites', pass: 'Pass 0: Prerequisites' },
+  '01-agent-foundations': { label: 'Agent foundations', routeDir: 'foundations', pass: 'Pass 1: Agent Foundations' },
+  '02-agent-architectures': { label: 'Agent architectures', routeDir: 'architectures', pass: 'Pass 1: Architectures' },
+  '03-building-blocks': { label: 'Building blocks', routeDir: 'building-blocks', pass: 'Pass 1: Building Blocks' },
+  '04-frameworks-and-protocols': { label: 'Frameworks and protocols', routeDir: 'frameworks-and-protocols', pass: 'Pass 1: Protocols' },
+  '05-end-to-end-workflows': { label: 'End-to-end workflows', routeDir: 'end-to-end-workflows', pass: 'Pass 1: Workflows' },
+  '06-threat-model': { label: 'Threat model', routeDir: 'threat-model', pass: 'Pass 2: Threat Model' },
+  '07-security-by-component-and-workflow-stage': { label: 'Security by component', routeDir: 'security-by-component', pass: 'Pass 2: Security Controls' },
+  '08-secure-reference-architectures': { label: 'Secure reference architectures', routeDir: 'secure-architectures', pass: 'Pass 2: Reference Architectures' },
+  '09-security-testing-evaluation-and-assurance': { label: 'Testing and assurance', routeDir: 'testing-and-assurance', pass: 'Pass 2: Testing & Assurance' },
+  '10-open-research-questions': { label: 'Open research questions', routeDir: 'open-research', pass: 'Pass 2: Open Research' },
+};
+
 export function loadSources(sourcesDir = path.join(REPO_ROOT, 'sources')) {
   const sourceIndex = new Map();
 
@@ -90,21 +104,6 @@ export function discoverCanonicalChapters({
   // Sort chapters deterministically by directory and filename
   rawChapters.sort((a, b) => a.relPath.localeCompare(b.relPath));
 
-  // Map route directories and clean slugs
-  const sectionLabels = {
-    '00-prerequisites': { label: 'Prerequisites', routeDir: 'prerequisites', pass: 'Pass 0' },
-    '01-agent-foundations': { label: 'Agent foundations', routeDir: 'foundations', pass: 'Pass 1' },
-    '02-agent-architectures': { label: 'Agent architectures', routeDir: 'architectures', pass: 'Pass 1' },
-    '03-building-blocks': { label: 'Building blocks', routeDir: 'building-blocks', pass: 'Pass 1' },
-    '04-frameworks-and-protocols': { label: 'Frameworks and protocols', routeDir: 'frameworks-and-protocols', pass: 'Pass 1' },
-    '05-end-to-end-workflows': { label: 'End-to-end workflows', routeDir: 'end-to-end-workflows', pass: 'Pass 1' },
-    '06-threat-model': { label: 'Threat model', routeDir: 'threat-model', pass: 'Pass 2' },
-    '07-security-by-component-and-workflow-stage': { label: 'Security by component', routeDir: 'security-by-component', pass: 'Pass 2' },
-    '08-secure-reference-architectures': { label: 'Secure reference architectures', routeDir: 'secure-architectures', pass: 'Pass 2' },
-    '09-security-testing-evaluation-and-assurance': { label: 'Testing and assurance', routeDir: 'testing-and-assurance', pass: 'Pass 2' },
-    '10-open-research-questions': { label: 'Open research questions', routeDir: 'open-research', pass: 'Pass 2' },
-  };
-
   const processedChapters = rawChapters.map((ch, index) => {
     const parts = ch.relPath.split(path.sep);
     const topSection = parts[0];
@@ -163,17 +162,83 @@ export function discoverCanonicalChapters({
     };
   });
 
+  const sections = discoverSections({ knowledgeDir, chapters: processedChapters });
+
   return {
     chapters: processedChapters,
+    sections,
     sourceIndex,
     sectionLabels,
   };
 }
 
+export function parseChapterPlan(planPath) {
+  if (!fs.existsSync(planPath)) return null;
+  const content = fs.readFileSync(planPath, 'utf8');
+
+  const titleMatch = content.match(/^#\s+(.+)$/m);
+  const purposeMatch = content.match(/## Section purpose\s*\n+([\s\S]*?)(?=\n##|$)/i);
+  const outcomesMatch = content.match(/## Learning outcomes\s*\n+([\s\S]*?)(?=\n##|$)/i);
+  const prereqMatch = content.match(/## Prerequisites\s*\n+([\s\S]*?)(?=\n##|$)/i);
+  const conceptsMatch = content.match(/## Required concepts\s*\n+([\s\S]*?)(?=\n##|$)/i);
+  const securityMatch = content.match(/## Connections to later security chapters\s*\n+([\s\S]*?)(?=\n##|$)/i);
+
+  return {
+    rawTitle: titleMatch ? titleMatch[1].trim() : '',
+    purpose: purposeMatch ? purposeMatch[1].trim() : '',
+    outcomes: outcomesMatch ? outcomesMatch[1].trim() : '',
+    prerequisites: prereqMatch ? prereqMatch[1].trim() : '',
+    concepts: conceptsMatch ? conceptsMatch[1].trim() : '',
+    securityConnection: securityMatch ? securityMatch[1].trim() : '',
+  };
+}
+
+export function discoverSections({
+  knowledgeDir = path.join(REPO_ROOT, 'knowledge'),
+  chapters = [],
+} = {}) {
+  const sections = [];
+  const sectionKeys = Object.keys(sectionLabels);
+
+  for (const key of sectionKeys) {
+    const secMeta = sectionLabels[key];
+    const planPath = path.join(knowledgeDir, key, 'chapter-plan.md');
+    const plan = parseChapterPlan(planPath);
+    const sectionChapters = chapters.filter((c) => c.sectionKey === key);
+
+    if (sectionChapters.length > 0) {
+      const route = `${BASE_URL}/${secMeta.routeDir}/`;
+      const docPath = path.join(secMeta.routeDir, 'index.md');
+      const markdownPath = path.join('markdown', secMeta.routeDir, 'index.md');
+      const canonicalUrl = `${SITE_ORIGIN}${route}`;
+      const markdownUrl = `${SITE_ORIGIN}${BASE_URL}/${markdownPath}`;
+
+      sections.push({
+        sectionKey: key,
+        label: secMeta.label,
+        routeDir: secMeta.routeDir,
+        pass: secMeta.pass,
+        route,
+        docPath,
+        markdownPath,
+        canonicalUrl,
+        markdownUrl,
+        plan,
+        chapters: sectionChapters,
+      });
+    }
+  }
+
+  return sections;
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const { chapters } = discoverCanonicalChapters();
-  console.log(`Discovered ${chapters.length} canonical chapters:`);
-  for (const c of chapters) {
-    console.log(`- [${c.unit_id}] ${c.title} -> ${c.route} (${c.source_records.length} sources)`);
+  const { chapters, sections } = discoverCanonicalChapters();
+  console.log(`Discovered ${chapters.length} canonical chapters across ${sections.length} sections:`);
+  for (const s of sections) {
+    console.log(`\n📁 [${s.pass}] ${s.label} -> ${s.route} (${s.chapters.length} units)`);
+    for (const c of s.chapters) {
+      console.log(`   - [${c.unit_id}] ${c.title}`);
+    }
   }
 }

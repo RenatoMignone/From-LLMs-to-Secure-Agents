@@ -15,7 +15,7 @@ const pathLabel = learningPath === 'deep_dive' || learningPath === 'deep-dive' ?
 {
   !isHomepage && title && (
     <header class="chapter-heading">
-      {unitId && (
+      {unitId ? (
         <div class="chapter-meta-line">
           <span class="meta-unit">{unitId}</span>
           {pass && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-badge">{pass}</span></>}
@@ -23,7 +23,13 @@ const pathLabel = learningPath === 'deep_dive' || learningPath === 'deep-dive' ?
           <span class="meta-badge">{pathLabel}</span>
           {reviewedLabel && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-date">Reviewed {reviewedLabel}</span></>}
         </div>
-      )}
+      ) : pass ? (
+        <div class="chapter-meta-line">
+          <span class="meta-unit">Section Overview</span>
+          <span class="meta-sep" aria-hidden="true">·</span>
+          <span class="meta-badge">{pass}</span>
+        </div>
+      ) : null}
       <h1 id={PAGE_TITLE_ID} class="chapter-page-title">{title}</h1>
       {summary && <p class="chapter-standfirst">{summary}</p>}
     </header>

@@ -337,3 +337,188 @@
     font-size: 0.88rem !important;
   }
 }
+
+/* Section Hub & Topic Cluster Cards */
+.section-hub-hero {
+  margin: 0 0 2.5rem;
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, var(--color-surface-subtle) 0%, var(--color-surface) 100%);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+
+:root[data-theme='dark'] .section-hub-hero {
+  background: linear-gradient(135deg, var(--color-surface-card) 0%, var(--color-surface-subtle) 100%);
+  border-color: var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.section-pill-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-teal);
+  background-color: var(--color-teal-subtle);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  margin-bottom: 0.85rem;
+}
+
+:root[data-theme='dark'] .section-pill-badge {
+  background-color: rgba(120, 196, 189, 0.15);
+  color: var(--color-teal);
+}
+
+.section-hub-lead {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--color-ink);
+  margin: 0;
+  font-weight: 500;
+}
+
+.section-units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0 3rem;
+}
+
+.section-unit-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme='dark'] .section-unit-card {
+  background-color: var(--color-surface-card);
+  border-color: var(--color-border);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+}
+
+.section-unit-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-teal);
+  box-shadow: 0 8px 24px -2px var(--color-teal-subtle);
+}
+
+:root[data-theme='dark'] .section-unit-card:hover {
+  border-color: var(--color-teal);
+  box-shadow: 0 8px 24px -2px rgba(120, 196, 189, 0.25);
+}
+
+.unit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.unit-card-id {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 750;
+  color: var(--color-teal);
+  background-color: var(--color-surface-subtle);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.unit-card-path {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-muted);
+}
+
+.unit-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.35;
+  margin: 0 0 0.65rem;
+}
+
+.unit-card-title a {
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+.unit-card-title a:hover {
+  color: var(--color-teal);
+}
+
+.unit-card-summary {
+  font-size: 0.92rem;
+  line-height: 1.58;
+  color: var(--color-ink-muted);
+  margin: 0 0 1.25rem;
+  flex-grow: 1;
+}
+
+.unit-card-objectives {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 0.85rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.unit-card-objectives strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-teal);
+  margin-bottom: 0.4rem;
+}
+
+.unit-card-objectives ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.unit-card-objectives li {
+  color: var(--color-ink);
+  margin-bottom: 0.25rem;
+  line-height: 1.45;
+}
+
+.unit-card-footer {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.unit-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-teal) !important;
+  text-decoration: none !important;
+  transition: gap 140ms ease;
+}
+
+.unit-card-cta:hover {
+  gap: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .section-units-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -34,6 +34,13 @@ checkFileExists('llms-full.txt', 'llms-full.txt');
 checkFileExists('guide-index.json', 'guide-index.json');
 checkFileExists('pagefind/pagefind.js', 'Pagefind search index');
 
+// Check published Section Hub endpoints
+console.log('  Checking section hub endpoints...');
+checkFileExists('prerequisites/index.html', 'Prerequisites section hub');
+checkFileExists('foundations/index.html', 'Foundations section hub');
+checkFileExists('architectures/index.html', 'Architectures section hub');
+checkFileExists('building-blocks/index.html', 'Building blocks section hub');
+
 // 2. Validate robots.txt
 if (fs.existsSync(path.join(DIST_DIR, 'robots.txt'))) {
   const robots = fs.readFileSync(path.join(DIST_DIR, 'robots.txt'), 'utf8');
@@ -81,6 +88,16 @@ if (fs.existsSync(path.join(DIST_DIR, 'guide-index.json'))) {
       for (const u of index.units) {
         if (!u.unit_id || !u.title || !u.html_url || !u.markdown_url) {
           errors.push(`guide-index.json unit missing required fields: ${JSON.stringify(u)}`);
+        }
+      }
+    }
+    if (!index.sections || !Array.isArray(index.sections) || index.sections.length === 0) {
+      errors.push('guide-index.json does not contain sections array');
+    } else {
+      console.log(`  guide-index.json valid with ${index.sections.length} published sections.`);
+      for (const s of index.sections) {
+        if (!s.section_key || !s.label || !s.html_url || !s.markdown_url) {
+          errors.push(`guide-index.json section missing required fields: ${JSON.stringify(s)}`);
         }
       }
     }

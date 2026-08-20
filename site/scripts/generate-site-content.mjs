@@ -104,9 +104,9 @@ export function rewriteChapterLinks(markdown, currentRelPath, allChapters) {
 export function generateAll() {
   console.log('🔄 Running From-LLMs-to-Secure-Agents publishing pipeline...');
 
-  // 1. Discover chapters
-  const { chapters } = discoverCanonicalChapters();
-  console.log(`✓ Discovered ${chapters.length} canonical chapters in knowledge/.`);
+  // 1. Discover chapters and sections
+  const { chapters, sections } = discoverCanonicalChapters();
+  console.log(`✓ Discovered ${chapters.length} canonical chapters across ${sections.length} sections in knowledge/.`);
 
   // 2. Clean directories
   fs.rmSync(DOCS_DIR, { recursive: true, force: true });
@@ -172,6 +172,8 @@ export function generateAll() {
       title: ch.title,
       summary: ch.summary,
       pass: passLabel,
+      section_key: ch.sectionKey,
+      section_label: ch.sectionLabel,
       learning_path: ch.learning_path,
       status: ch.status,
       last_reviewed: ch.last_reviewed,
@@ -273,7 +275,7 @@ export function generateAll() {
               '@type': 'ListItem',
               position: 2,
               name: ch.sectionLabel,
-              item: `${SITE_ORIGIN}${BASE_URL}/#curriculum`,
+              item: `${SITE_ORIGIN}${BASE_URL}/${ch.routeDir}/`,
             },
             {
               '@type': 'ListItem',
@@ -412,9 +414,9 @@ ${formattedObjectives.map((o) => `      <li>${o}</li>`).join('\n')}
     <span class="pagination-name">${prevCh.title}</span>
   </a>\n`;
     } else {
-      pageContent += `  <a href="${BASE_URL}/" class="pagination-link pagination-prev">
-    <span class="pagination-sub">← Overview</span>
-    <span class="pagination-name">Handbook Introduction</span>
+      pageContent += `  <a href="${BASE_URL}/${ch.routeDir}/" class="pagination-link pagination-prev">
+    <span class="pagination-sub">← Section Overview</span>
+    <span class="pagination-name">${ch.sectionLabel}</span>
   </a>\n`;
     }
 
@@ -460,26 +462,304 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
 
   console.log(`✓ Successfully generated ${chapters.length} chapter documentation pages.`);
 
-  // 5. Generate Dynamic Sidebar Configuration
-  console.log('📑 Generating dynamic sidebar configuration...');
-  const sidebarSections = [];
-  const chaptersBySection = new Map();
+  // 5. Generate Section Hub Pages (Indexable Pillar Pages)
+  console.log('🏛️ Generating section hub overview pages...');
+  for (let sIdx = 0; sIdx < sections.length; sIdx++) {
+    const s = sections[sIdx];
+    const prevSection = sIdx > 0 ? sections[sIdx - 1] : null;
+    const nextSection = sIdx < sections.length - 1 ? sections[sIdx + 1] : null;
 
-  for (const ch of chapters) {
-    if (!chaptersBySection.has(ch.sectionLabel)) {
-      chaptersBySection.set(ch.sectionLabel, []);
+    const sectionOutDir = path.join(DOCS_DIR, s.routeDir);
+    fs.mkdirSync(sectionOutDir, { recursive: true });
+    const sectionDocPath = path.join(DOCS_DIR, s.docPath);
+
+    const sectionRawMarkdownDir = path.join(PUBLIC_MARKDOWN_DIR, s.routeDir);
+    fs.mkdirSync(sectionRawMarkdownDir, { recursive: true });
+    const sectionRawMarkdownPath = path.join(PUBLIC_DIR, s.markdownPath);
+
+    const formattedSectionPrereqs = s.plan?.prerequisites
+      ? renderInlineMarkdown(rewriteChapterLinks(s.plan.prerequisites, path.join(s.sectionKey, 'chapter-plan.md'), chapters))
+      : 'Working familiarity with large language models and prompts.';
+    const formattedSectionOutcomes = s.plan?.outcomes
+      ? renderInlineMarkdown(s.plan.outcomes)
+      : `Master core architectural patterns and functional boundaries in ${s.label.toLowerCase()}.`;
+
+    const sectionJsonLd = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': `${s.canonicalUrl}#collection`,
+          name: `${s.label}: Curriculum Section Overview`,
+          description: s.plan?.purpose || `Engineering curriculum units covering ${s.label.toLowerCase()} in autonomous AI systems.`,
+          url: s.canonicalUrl,
+          inLanguage: 'en-US',
+          isPartOf: {
+            '@type': 'Course',
+            '@id': `${SITE_ORIGIN}${BASE_URL}/#course`,
+            name: 'From LLMs to Secure Agents',
+            url: `${SITE_ORIGIN}${BASE_URL}/`,
+          },
+          author: {
+            '@type': 'Person',
+            name: 'Renato Mignone',
+            url: 'https://github.com/RenatoMignone',
+          },
+          publisher: {
+            '@type': 'Organization',
+            name: 'From LLMs to Secure Agents Project',
+            url: GITHUB_REPO,
+          },
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: s.chapters.length,
+            itemListElement: s.chapters.map((c, idx) => ({
+              '@type': 'ListItem',
+              position: idx + 1,
+              name: `${c.unit_id}: ${c.title}`,
+              url: c.canonicalUrl,
+              description: c.summary,
+            })),
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${s.canonicalUrl}#breadcrumb`,
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Handbook',
+              item: `${SITE_ORIGIN}${BASE_URL}/`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: s.label,
+              item: s.canonicalUrl,
+            },
+          ],
+        },
+      ],
+    };
+
+    const sectionFm = {
+      title: s.label,
+      description: s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()} in autonomous AI systems.`,
+      summary: s.plan?.purpose || `Complete curriculum units for ${s.label.toLowerCase()}.`,
+      pass: s.pass,
+      reviewed_label: new Intl.DateTimeFormat('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      }).format(new Date()),
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 3,
+      },
+      head: [
+        {
+          tag: 'script',
+          attrs: { type: 'application/ld+json' },
+          content: JSON.stringify(sectionJsonLd),
+        },
+        {
+          tag: 'link',
+          attrs: { rel: 'canonical', href: s.canonicalUrl },
+        },
+        {
+          tag: 'link',
+          attrs: { rel: 'alternate', type: 'text/markdown', href: s.markdownUrl, title: `${s.label} (Markdown)` },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:title', content: `${s.label} | From LLMs to Secure Agents` },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:description', content: s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()}.` },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:type', content: 'website' },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:url', content: s.canonicalUrl },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:site_name', content: 'From LLMs to Secure Agents' },
+        },
+        {
+          tag: 'meta',
+          attrs: { property: 'og:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:card', content: 'summary_large_image' },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:title', content: `${s.label} | From LLMs to Secure Agents` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:description', content: s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()}.` },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'keywords',
+            content:
+              s.sectionKey === '00-prerequisites'
+                ? 'AI agent prerequisites, data flow vs control flow, trust boundaries, requests events state, identity least privilege, agent security fundamentals'
+                : s.sectionKey === '01-agent-foundations'
+                  ? 'AI agent foundations, agent loop, ReAct cycle, workflows vs agents, agent autonomy levels, run lifecycle, termination guarantees'
+                  : s.sectionKey === '02-agent-architectures'
+                    ? 'agent architectures, single-agent loops, prompt chaining, plan and execute, reflection, evaluator optimizer, state machines, supervisor agent, swarm handoffs, architecture trade-offs'
+                    : s.sectionKey === '03-building-blocks'
+                      ? 'agent building blocks, model routing, context engineering, memory systems, agentic RAG, tool calling, execution sandboxes, observability, agent tracing'
+                      : `AI agent, LLM security, ${s.label}, agentic system architecture, prompt injection, runtime loop`,
+          },
+        },
+      ],
+    };
+
+    let sectionContent = `---
+${yaml.stringify(sectionFm)}---
+
+<div class="section-hub-hero not-content">
+  <div class="section-pill-badge">${s.pass} · ${s.chapters.length} Published ${s.chapters.length === 1 ? 'Unit' : 'Units'}</div>
+  <p class="section-hub-lead">Explore the sequential engineering units below. Each unit contains architectural diagrams, trust boundaries, verified source records, and runnable implementations.</p>
+</div>
+
+## Module Overview & Outcomes
+
+<div class="chapter-goals-grid not-content">
+  <div class="goals-card">
+    <div class="goals-heading">Prerequisites</div>
+    <p>${formattedSectionPrereqs}</p>
+  </div>
+  <div class="goals-card">
+    <div class="goals-heading">Learning outcomes</div>
+    <p>${formattedSectionOutcomes}</p>
+  </div>
+</div>
+
+${s.plan?.concepts ? `## Required Concepts & Scope\n\n${renderInlineMarkdown(s.plan.concepts)}\n` : ''}
+
+## Published Units in this Module
+
+<div class="section-units-grid not-content">
+${s.chapters
+  .map(
+    (c) => `  <div class="section-unit-card">
+    <div class="unit-card-header">
+      <span class="unit-card-id">${c.unit_id}</span>
+      <span class="unit-card-path">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep Dive' : 'Main Path'}</span>
+    </div>
+    <h3 class="unit-card-title"><a href="${c.route}">${c.title}</a></h3>
+    <p class="unit-card-summary">${c.summary}</p>
+    ${
+      c.learning_objectives && c.learning_objectives.length > 0
+        ? `    <div class="unit-card-objectives">
+      <strong>Key Topics:</strong>
+      <ul>
+${c.learning_objectives.slice(0, 3).map((o) => `        <li>${renderInlineMarkdown(formatStringOrObject(o))}</li>`).join('\n')}
+      </ul>
+    </div>`
+        : ''
     }
-    chaptersBySection.get(ch.sectionLabel).push(ch);
+    <div class="unit-card-footer">
+      <a href="${c.route}" class="unit-card-cta">
+        <span>Read Unit</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>`
+  )
+  .join('\n')}
+</div>
+
+${s.plan?.securityConnection ? `## Security & Threat Model Connections (Pass 2 Preview)\n\n${renderInlineMarkdown(s.plan.securityConnection)}\n` : ''}
+
+<div class="unit-pagination not-content">
+${
+  prevSection
+    ? `  <a href="${prevSection.route}" class="pagination-link pagination-prev">
+    <span class="pagination-sub">← Previous Module</span>
+    <span class="pagination-name">${prevSection.label}</span>
+  </a>\n`
+    : `  <a href="${BASE_URL}/" class="pagination-link pagination-prev">
+    <span class="pagination-sub">← Overview</span>
+    <span class="pagination-name">Handbook Introduction</span>
+  </a>\n`
+}
+${
+  nextSection
+    ? `  <a href="${nextSection.route}" class="pagination-link pagination-next">
+    <span class="pagination-sub">Next Module →</span>
+    <span class="pagination-name">${nextSection.label}</span>
+  </a>\n`
+    : `  <div class="pagination-link pagination-next pagination-end">
+    <span class="pagination-sub">Curriculum status</span>
+    <span class="pagination-name">End of Published Modules</span>
+  </div>\n`
+}
+</div>
+`;
+
+    fs.writeFileSync(sectionDocPath, sectionContent, 'utf8');
+
+    // Section clean markdown
+    const sectionCleanMarkdown = `---
+title: ${JSON.stringify(s.label)}
+section_key: ${JSON.stringify(s.sectionKey)}
+pass: ${JSON.stringify(s.pass)}
+canonical_url: ${JSON.stringify(s.canonicalUrl)}
+total_units: ${s.chapters.length}
+---
+
+# ${s.label}
+
+> **Section Overview:** ${s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()}.`}
+> **Pass:** ${s.pass} · **Published Units:** ${s.chapters.length}
+
+## Learning Outcomes
+${s.plan?.outcomes || ''}
+
+## Published Units
+${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.summary}`).join('\n')}
+`;
+    fs.writeFileSync(sectionRawMarkdownPath, sectionCleanMarkdown, 'utf8');
   }
 
-  for (const [label, sectionChapters] of chaptersBySection.entries()) {
+  console.log(`✓ Successfully generated ${sections.length} section hub documentation pages.`);
+
+  // 6. Generate Dynamic Sidebar Configuration
+  console.log('📑 Generating dynamic sidebar configuration...');
+  const sidebarSections = [];
+
+  for (const s of sections) {
     sidebarSections.push({
-      label,
+      label: s.label,
       collapsed: true,
-      items: sectionChapters.map((c) => ({
-        label: `${c.title}`,
-        link: `${c.route.replace(BASE_URL, '')}`,
-      })),
+      items: [
+        {
+          label: 'Section Overview',
+          link: `/${s.routeDir}/`,
+        },
+        ...s.chapters.map((c) => ({
+          label: `${c.title}`,
+          link: `${c.route.replace(BASE_URL, '')}`,
+        })),
+      ],
     });
   }
 
@@ -489,7 +769,7 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     'utf8'
   );
 
-  // 6. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
+  // 7. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
   console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
   const entryChapter = chapters.find((c) => c.unit_id === 'P1-01-01') || chapters[0];
   const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/foundations/01-what-is-an-agent/`;
@@ -531,12 +811,20 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
           url: GITHUB_REPO,
         },
         educationalCredentialAwarded: 'Engineering Competency in AI Agent Security',
-        hasPart: guideIndex.map((u) => ({
-          '@type': 'LearningResource',
-          name: u.title,
-          description: u.summary,
-          url: u.html_url,
-        })),
+        hasPart: [
+          ...sections.map((s) => ({
+            '@type': 'CollectionPage',
+            name: s.label,
+            description: s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()}.`,
+            url: s.canonicalUrl,
+          })),
+          ...guideIndex.map((u) => ({
+            '@type': 'LearningResource',
+            name: u.title,
+            description: u.summary,
+            url: u.html_url,
+          })),
+        ],
       },
     ],
   };
@@ -624,26 +912,38 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 
   fs.writeFileSync(path.join(DOCS_DIR, 'index.mdx'), homepageContent, 'utf8');
 
-  // 7. Generate guide-index.json
+  // 8. Generate guide-index.json
   console.log('🤖 Generating machine-readable guide-index.json...');
   fs.writeFileSync(
     path.join(PUBLIC_DIR, 'guide-index.json'),
     JSON.stringify(
       {
         title: 'From LLMs to Secure Agents: Engineering Guide Index',
-        description: 'Machine-readable index of published units, learning objectives, source records, and canonical links.',
+        description: 'Machine-readable index of published sections, units, learning objectives, source records, and canonical links.',
         author: 'Renato Mignone',
         author_url: 'https://github.com/RenatoMignone',
-        version: '2.0.0',
+        version: '2.1.0',
         origin: SITE_ORIGIN,
         base_path: BASE_URL,
         last_updated: new Date().toISOString().split('T')[0],
+        total_published_sections: sections.length,
         total_published_units: guideIndex.length,
         curriculum_passes: [
           { pass_id: 0, title: 'Prerequisites', focus: 'Distributed boundaries and systems foundations' },
           { pass_id: 1, title: 'Understand the Complete System', focus: 'Agent loop, context, memory, tools, and runtimes' },
           { pass_id: 2, title: 'Secure the System', focus: 'Threat modeling, isolation, and security assurance' },
         ],
+        sections: sections.map((s) => ({
+          section_key: s.sectionKey,
+          label: s.label,
+          route_dir: s.routeDir,
+          pass: s.pass,
+          html_url: s.canonicalUrl,
+          markdown_url: s.markdownUrl,
+          purpose: s.plan?.purpose || '',
+          total_published_units: s.chapters.length,
+          units: s.chapters.map((c) => c.unit_id),
+        })),
         units: guideIndex,
       },
       null,
@@ -652,7 +952,7 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
     'utf8'
   );
 
-  // 8. Generate 2026 llms.txt & llms-full.txt
+  // 9. Generate 2026 llms.txt & llms-full.txt
   console.log('📄 Generating 2026 llms.txt & llms-full.txt...');
   const llmsTxtContent = `# From LLMs to Secure Agents
 
@@ -663,7 +963,7 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 - **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
 - **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
-- **Current Canonical Progress:** Completed through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units published)
+- **Current Canonical Progress:** Completed through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units published across ${sections.length} sections)
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -676,10 +976,10 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 ## Curriculum Architecture (Two-Pass Model)
 
 1. **Pass 1: Understand the Complete System**
-   - **00 Prerequisites:** Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
-   - **01 Agent Foundations:** Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
-   - **02 Agent Architectures (Roadmap):** Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
-   - **03 Building Blocks (Roadmap):** Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
+   - **00 Prerequisites:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
+   - **01 Agent Foundations:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
+   - **02 Agent Architectures:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
+   - **03 Building Blocks:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
    - **04 Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
    - **05 End-to-End Workflows (Roadmap):** Reference production architectures.
 
@@ -696,6 +996,7 @@ ${guideIndex
   .map(
     (u) => `### [${u.unit_id}: ${u.title}](${u.html_url})
 - **Summary:** ${u.summary}
+- **Section:** [${u.section_label}](${SITE_ORIGIN}${BASE_URL}/${sections.find((s) => s.sectionKey === u.section_key)?.routeDir || ''}/)
 - **Clean Markdown URL:** ${u.markdown_url}
 - **Learning Objectives:**
 ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
@@ -719,7 +1020,7 @@ ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
   }
   fs.writeFileSync(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullContent, 'utf8');
 
-  // 9. Generate 2026 robots.txt
+  // 10. Generate 2026 robots.txt
   console.log('🤖 Generating 2026 AI-friendly robots.txt...');
   const robotsTxtContent = `User-agent: *
 Allow: /
