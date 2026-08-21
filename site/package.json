@@ -1,6 +1,10 @@
 {
   "name": "from-llms-to-secure-agents-site",
   "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "type": "module",
   "scripts": {
     "dev": "node scripts/build-pipeline.mjs && astro dev",
@@ -8,7 +12,8 @@
     "build": "node scripts/build-pipeline.mjs && astro build --force",
     "preview": "astro preview",
     "check": "node scripts/check-site.mjs",
-    "test": "node --test scripts/tests/*.test.mjs"
+    "test": "node --test scripts/tests/*.test.mjs",
+    "quality": "npm test && npm run build && npm run check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

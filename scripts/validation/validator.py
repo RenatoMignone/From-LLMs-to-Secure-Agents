@@ -15,6 +15,7 @@ import yaml
 ROOT = Path.cwd() if (Path.cwd() / "PROJECT_STATUS.md").is_file() else Path(__file__).resolve().parents[2]
 ERRORS: list[str] = []
 STATE_NAMES = {"researching", "drafting", "building-assets", "validating", "review"}
+MAX_VISUAL_BYTES = 2_500 * 1024
 
 
 @dataclass(frozen=True)
@@ -363,6 +364,11 @@ def check_visuals(units: list[Unit]) -> set[str]:
         if image_path.suffix.lower() == ".svg":
             fail(f"SVG is not allowed for visual assets: {relative(image_path)}")
         if image_path.suffix.lower() in {".png", ".webp", ".jpg", ".jpeg"}:
+            if image_path.stat().st_size > MAX_VISUAL_BYTES:
+                fail(
+                    f"visual asset exceeds 2.5 MiB source budget: {relative(image_path)} "
+                    f"({image_path.stat().st_size / (1024 * 1024):.2f} MiB)"
+                )
             visual_files.add(relative(image_path))
     return visual_files
 

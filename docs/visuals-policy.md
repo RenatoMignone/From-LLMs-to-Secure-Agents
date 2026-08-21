@@ -44,6 +44,8 @@ Keep the complete chapter directory hierarchy, tracking empty folders with `.git
 ## Rules
 
 - Use PNG or WebP. Do not create SVG assets. Keep prompts or editable inputs and meaningful names.
+- Keep each canonical raster asset at or below 2.5 MiB. Crop excess whitespace and optimize the selected master before committing it.
+- The site pipeline must publish responsive WebP variants and reject any generated variant above 250 KiB.
 - Add contextual alt text, caption, and nearby explanation in chapter Markdown.
 - Do not reuse an image without checking its license.
 

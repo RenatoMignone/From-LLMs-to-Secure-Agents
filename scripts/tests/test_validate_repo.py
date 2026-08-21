@@ -93,6 +93,13 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("SVG is not allowed", result.stdout)
 
+    def test_oversized_visual_fails(self) -> None:
+        path = self.repo / "assets/images/repo-images/oversized.png"
+        path.write_bytes(b"0" * (2_500 * 1024 + 1))
+        result = self.run_validator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("visual asset exceeds 2.5 MiB source budget", result.stdout)
+
     def test_source_missing_field_fails(self) -> None:
         self.replace("sources/project/w3c-images-tutorial.yml", "claims_supported:", "unsupported_claims:")
         result = self.run_validator()

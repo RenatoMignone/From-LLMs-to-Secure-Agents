@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+minversion = "9.0"
+testpaths = ["scripts/tests", "examples"]
+addopts = "--strict-config --strict-markers"
