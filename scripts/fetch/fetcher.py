@@ -6,8 +6,54 @@ import argparse
 import sys
 import tempfile
 import urllib.request
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Sequence
+
+
+class _ReadableHTMLParser(HTMLParser):
+    """Extract readable text while ignoring non-content HTML elements."""
+
+    ignored_tags = {"head", "script", "style"}
+    block_tags = {
+        "article", "aside", "blockquote", "br", "div", "footer", "h1", "h2", "h3",
+        "h4", "h5", "h6", "header", "li", "main", "nav", "ol", "p", "section", "table", "tr", "ul",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.ignored_stack: list[str] = []
+        self.parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        del attrs
+        normalized = tag.lower()
+        if normalized in self.ignored_tags:
+            self.ignored_stack.append(normalized)
+        elif not self.ignored_stack and normalized in self.block_tags:
+            self.parts.append("\n")
+
+    def handle_endtag(self, tag: str) -> None:
+        normalized = tag.lower()
+        if self.ignored_stack and normalized == self.ignored_stack[-1]:
+            self.ignored_stack.pop()
+        elif not self.ignored_stack and normalized in self.block_tags:
+            self.parts.append("\n")
+
+    def handle_data(self, data: str) -> None:
+        if not self.ignored_stack:
+            self.parts.append(data)
+
+    def readable_text(self) -> str:
+        lines = [line.strip() for line in "".join(self.parts).splitlines() if line.strip()]
+        return "\n\n".join(lines)
+
+
+def fallback_html_to_text(data: bytes) -> str:
+    parser = _ReadableHTMLParser()
+    parser.feed(data.decode("utf-8", errors="replace"))
+    parser.close()
+    return parser.readable_text()
 
 
 def fetch_url(url: str, user_agent: str = "Mozilla/5.0") -> bytes:
@@ -34,15 +80,7 @@ def convert_to_markdown(data: bytes, suffix: str = ".html") -> str:
         finally:
             Path(temp_path).unlink(missing_ok=True)
     except ImportError:
-        import re
-
-        text = data.decode("utf-8", errors="replace")
-        text = re.sub(r"<style[\s\S]*?</style>", "", text, flags=re.IGNORECASE)
-        text = re.sub(r"<script[\s\S]*?</script>", "", text, flags=re.IGNORECASE)
-        text = re.sub(r"<head[\s\S]*?</head>", "", text, flags=re.IGNORECASE)
-        text = re.sub(r"<[^>]+>", "\n", text)
-        lines = [line.strip() for line in text.splitlines() if line.strip()]
-        return "\n\n".join(lines)
+        return fallback_html_to_text(data)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
