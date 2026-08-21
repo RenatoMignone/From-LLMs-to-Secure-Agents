@@ -4,7 +4,8 @@ const entry = Astro.locals.starlightRoute?.entry;
 const isHomepage = !entry || entry.slug === '' || entry.data?.template === 'splash';
 const title = entry?.data?.title;
 const summary = entry?.data?.summary;
-const unitId = entry?.data?.unit_id;
+const chapterLabel = entry?.data?.chapter_label;
+const sectionLabel = entry?.data?.section_label;
 const pass = entry?.data?.pass;
 const learningPath = entry?.data?.learning_path;
 const reviewedLabel = entry?.data?.reviewed_label;
@@ -15,17 +16,17 @@ const pathLabel = learningPath === 'deep_dive' || learningPath === 'deep-dive' ?
 {
   !isHomepage && title && (
     <header class="chapter-heading">
-      {unitId ? (
+      {chapterLabel ? (
         <div class="chapter-meta-line">
-          <span class="meta-unit">{unitId}</span>
-          {pass && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-badge">{pass}</span></>}
+          <span class="meta-unit">{chapterLabel}</span>
+          {sectionLabel && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-badge">{sectionLabel}</span></>}
           <span class="meta-sep" aria-hidden="true">·</span>
           <span class="meta-badge">{pathLabel}</span>
           {reviewedLabel && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-date">Reviewed {reviewedLabel}</span></>}
         </div>
       ) : pass ? (
         <div class="chapter-meta-line">
-          <span class="meta-unit">Section Overview</span>
+          <span class="meta-unit">Section overview</span>
           <span class="meta-sep" aria-hidden="true">·</span>
           <span class="meta-badge">{pass}</span>
         </div>

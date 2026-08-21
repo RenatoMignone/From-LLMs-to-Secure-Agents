@@ -1,34 +1,55 @@
 ---
 interface Props {
   firstChapterRoute: string;
-  publishedThrough: string;
-  totalUnits: number;
+  latestChapter: string;
+  totalChapters: number;
+  sections: Array<{
+    title: string;
+    href: string;
+    count: number;
+    firstChapter: string;
+    latestChapter: string;
+  }>;
 }
 
-const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
+const { firstChapterRoute, latestChapter, totalChapters, sections } = Astro.props;
 ---
 
-<section class="start-section not-content">
+<section class="start-section not-content" id="learning-path" aria-labelledby="learning-path-title">
   <div class="start-container">
     <div class="start-banner-card">
       <div class="start-content">
-        <span class="start-eyebrow">Sequential Curriculum</span>
-        <h2 class="start-heading">Ready to master agent architecture &amp; security?</h2>
+        <span class="start-eyebrow">Your learning path</span>
+        <h2 class="start-heading" id="learning-path-title">Build the system model one section at a time</h2>
         <p class="start-description">
-          Follow the dependency-ordered path from software-system prerequisites into agent architecture and its building blocks. The security pass follows once the complete functional system is established.
+          Start with software boundaries, move through agent foundations and architectures, then study each building block. Security chapters follow after the functional system is clear.
         </p>
         <div class="start-progress-pill">
-          <span class="progress-dot"></span>
-          <span><strong>{totalUnits} canonical units published</strong> · available through {publishedThrough}</span>
+          <span class="progress-dot" aria-hidden="true"></span>
+          <span><strong>{totalChapters} chapters published</strong> across {sections.length} sections · latest: {latestChapter}</span>
         </div>
       </div>
       <div class="start-action-wrap">
-        <a href={firstChapterRoute} class="btn-start-primary">
-          <span>Start Chapter 1</span>
+        <a href={firstChapterRoute} class="btn-start-primary" data-reading-link data-start-route={firstChapterRoute}>
+          <span data-reading-label>Start with chapter 1</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
+
+    <ol class="path-grid" aria-label="Published learning path">
+      {sections.map((section, index) => (
+        <li class="path-card">
+          <a href={section.href} aria-label={`Open ${section.title}, ${section.count} published chapters`}>
+            <span class="path-step">{index === 0 ? 'Start here' : `Step ${index + 1}`}</span>
+            <strong>{section.title}</strong>
+            <span class="path-count">{section.count} published {section.count === 1 ? 'chapter' : 'chapters'}</span>
+            <span class="path-range">From {section.firstChapter}<br />to {section.latestChapter}</span>
+            <span class="path-link">View section <span aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
@@ -42,8 +63,69 @@ const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
 
   .start-container {
     width: 100%;
-    max-width: 100%;
+    max-width: 88rem;
     margin: 0 auto;
+  }
+
+  .path-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+
+  .path-card {
+    margin: 0;
+  }
+
+  .path-card a {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.25rem;
+    color: var(--color-ink);
+    text-decoration: none;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-border);
+    border-radius: 14px;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .path-card a:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-teal);
+    box-shadow: 0 8px 22px var(--color-teal-subtle);
+  }
+
+  .path-step,
+  .path-count {
+    color: var(--color-teal);
+    font-size: 0.76rem;
+    font-weight: 750;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .path-card strong {
+    font-family: var(--font-heading);
+    font-size: 1.02rem;
+  }
+
+  .path-range {
+    color: var(--color-ink-muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 0.55rem;
+  }
+
+  .path-link {
+    margin-top: auto;
+    color: var(--color-teal);
+    font-size: 0.88rem;
+    font-weight: 700;
   }
 
   .start-banner-card {
@@ -79,7 +161,7 @@ const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
   }
 
   :root[data-theme='dark'] .start-eyebrow {
-    color: var(--color-mauve);
+    color: var(--color-lavender);
   }
 
   .start-heading {
@@ -128,7 +210,7 @@ const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
   }
 
   :root[data-theme='dark'] .progress-dot {
-    background-color: var(--color-mauve);
+    background-color: var(--color-lavender);
     box-shadow: 0 0 0 2px rgba(203, 166, 247, 0.3);
   }
 
@@ -182,6 +264,10 @@ const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
   }
 
   @media (max-width: 900px) {
+    .path-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .start-banner-card {
       flex-direction: column;
       align-items: flex-start;
@@ -195,6 +281,25 @@ const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
     .btn-start-primary {
       width: 100%;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .start-section {
+      padding-inline: 1rem;
+    }
+
+    .start-banner-card {
+      padding: 1.5rem;
+    }
+
+    .start-progress-pill {
+      align-items: flex-start;
+      border-radius: 12px;
+    }
+
+    .path-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

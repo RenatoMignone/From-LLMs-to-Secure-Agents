@@ -91,6 +91,29 @@ checkFileExists('llms-full.txt', 'llms-full.txt');
 checkFileExists('guide-index.json', 'guide-index.json');
 checkFileExists('pagefind/pagefind.js', 'Pagefind search index');
 
+const responsiveAssetDir = path.join(DIST_DIR, 'assets', 'images');
+let responsiveVariantCount = 0;
+function checkResponsiveAssetBudgets(dir) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) checkResponsiveAssetBudgets(fullPath);
+    else if (entry.name.endsWith('.webp') && /-\d+w\.webp$/.test(entry.name)) {
+      responsiveVariantCount += 1;
+      const size = fs.statSync(fullPath).size;
+      if (size > 250 * 1024) {
+        errors.push(`Responsive image exceeds 250 KiB budget: ${path.relative(DIST_DIR, fullPath)} (${Math.ceil(size / 1024)} KiB)`);
+      }
+    }
+  }
+}
+checkResponsiveAssetBudgets(responsiveAssetDir);
+if (responsiveVariantCount === 0) {
+  errors.push('No responsive WebP image variants were generated');
+} else {
+  console.log(`  Responsive image budget valid for ${responsiveVariantCount} WebP variants.`);
+}
+
 if (fs.existsSync(path.join(DIST_DIR, 'sitemap-0.xml'))) {
   const sitemap = fs.readFileSync(path.join(DIST_DIR, 'sitemap-0.xml'), 'utf8');
   const urls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)];
@@ -102,6 +125,26 @@ if (fs.existsSync(path.join(DIST_DIR, 'sitemap-0.xml'))) {
       errors.push(`Sitemap URL is missing lastmod: ${entry.match(/<loc>(.*?)<\/loc>/)?.[1] || 'unknown URL'}`);
     }
   }
+}
+
+if (fs.existsSync(path.join(DIST_DIR, 'index.html'))) {
+  const homepage = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8');
+  if (!homepage.includes('id="learning-path-title"') || !homepage.includes('data-reading-link')) {
+    errors.push('Homepage is missing the learning-path map or Continue Reading hooks');
+  }
+  if (!/project-purpose-[^"']+\.webp/.test(homepage) || !homepage.includes('fetchpriority="high"')) {
+    errors.push('Homepage hero is missing responsive WebP markup or high fetch priority');
+  }
+}
+
+const generatedCss = fs.existsSync(path.join(DIST_DIR, '_astro'))
+  ? fs.readdirSync(path.join(DIST_DIR, '_astro'))
+      .filter((name) => name.endsWith('.css'))
+      .map((name) => fs.readFileSync(path.join(DIST_DIR, '_astro', name), 'utf8'))
+      .join('\n')
+  : '';
+if (!generatedCss.includes(':focus-visible') || !generatedCss.includes('prefers-reduced-motion')) {
+  errors.push('Generated CSS is missing focus-visible or reduced-motion accessibility rules');
 }
 
 // Check published Section Hub endpoints
@@ -137,6 +180,9 @@ if (fs.existsSync(path.join(DIST_DIR, 'llms.txt'))) {
   if (!llms.includes('/From-LLMs-to-Secure-Agents/guide-index.json')) {
     errors.push('llms.txt does not link to guide-index.json');
   }
+  if (/\bP[0-2]-\d{2}/.test(llms)) {
+    errors.push('llms.txt exposes internal operational unit identifiers');
+  }
 }
 
 if (fs.existsSync(path.join(DIST_DIR, 'llms-full.txt'))) {
@@ -150,14 +196,17 @@ if (fs.existsSync(path.join(DIST_DIR, 'llms-full.txt'))) {
 if (fs.existsSync(path.join(DIST_DIR, 'guide-index.json'))) {
   try {
     const raw = fs.readFileSync(path.join(DIST_DIR, 'guide-index.json'), 'utf8');
+    if (/\bP[0-2]-\d{2}/.test(raw)) {
+      errors.push('guide-index.json exposes internal operational unit identifiers');
+    }
     const index = JSON.parse(raw);
-    if (!index.units || !Array.isArray(index.units) || index.units.length === 0) {
-      errors.push('guide-index.json does not contain units array');
+    if (!index.chapters || !Array.isArray(index.chapters) || index.chapters.length === 0) {
+      errors.push('guide-index.json does not contain chapters array');
     } else {
-      console.log(`  guide-index.json valid with ${index.units.length} published units.`);
-      for (const u of index.units) {
-        if (!u.unit_id || !u.title || !u.html_url || !u.markdown_url) {
-          errors.push(`guide-index.json unit missing required fields: ${JSON.stringify(u)}`);
+      console.log(`  guide-index.json valid with ${index.chapters.length} published chapters.`);
+      for (const chapter of index.chapters) {
+        if (!chapter.id || !chapter.title || !chapter.html_url || !chapter.markdown_url) {
+          errors.push(`guide-index.json chapter missing required fields: ${JSON.stringify(chapter)}`);
         }
       }
     }
@@ -166,7 +215,7 @@ if (fs.existsSync(path.join(DIST_DIR, 'guide-index.json'))) {
     } else {
       console.log(`  guide-index.json valid with ${index.sections.length} published sections.`);
       for (const s of index.sections) {
-        if (!s.section_key || !s.label || !s.html_url || !s.markdown_url) {
+        if (!s.id || !s.label || !s.html_url || !s.markdown_url) {
           errors.push(`guide-index.json section missing required fields: ${JSON.stringify(s)}`);
         }
       }
@@ -187,6 +236,16 @@ function scanHtml(dir) {
     } else if (entry.isFile() && entry.name.endsWith('.html')) {
       const content = fs.readFileSync(fullPath, 'utf8');
       const relFile = path.relative(DIST_DIR, fullPath);
+
+      if (/\bP[0-2]-\d{2}/.test(content)) {
+        errors.push(`Operational unit identifier leaked into public HTML: ${relFile}`);
+      }
+
+      for (const imageTag of content.matchAll(/<img\b[^>]*>/gi)) {
+        if (!/\balt=["'][^"']*["']/.test(imageTag[0])) {
+          errors.push(`Image is missing alt text in ${relFile}: ${imageTag[0].slice(0, 120)}`);
+        }
+      }
 
       // Check navigational links and same-page fragments.
       const anchorMatches = content.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi);
@@ -239,6 +298,29 @@ function scanHtml(dir) {
         }
       }
 
+      for (const pictureMatch of content.matchAll(/<picture\b[^>]*class=["'][^"']*responsive-illustration[^"']*["'][^>]*>([\s\S]*?)<\/picture>/gi)) {
+        const picture = pictureMatch[0];
+        if (!/\bsrcset=["'][^"']+\.webp\s+\d+w/.test(picture)) {
+          errors.push(`Responsive illustration is missing a WebP srcset in ${relFile}`);
+        }
+        if (!/<img\b[^>]*\bwidth=["']\d+["'][^>]*\bheight=["']\d+["'][^>]*\bloading=["']lazy["']/.test(picture)) {
+          errors.push(`Responsive illustration is missing dimensions or lazy loading in ${relFile}`);
+        }
+      }
+
+      for (const sourceMatch of content.matchAll(/\bsrcset=["']([^"']+)["']/g)) {
+        for (const candidate of sourceMatch[1].split(',')) {
+          const src = candidate.trim().split(/\s+/, 1)[0];
+          if (!src || /^https?:|^data:/.test(src)) continue;
+          let cleanSrc = stripQueryAndFragment(src);
+          if (cleanSrc.startsWith(BASE_URL)) cleanSrc = cleanSrc.substring(BASE_URL.length);
+          cleanSrc = cleanSrc.replace(/^\/+/, '');
+          if (!fs.existsSync(path.join(DIST_DIR, cleanSrc))) {
+            errors.push(`Broken responsive image candidate in ${relFile}: ${src}`);
+          }
+        }
+      }
+
       // Check stylesheet references
       const linkMatches = content.matchAll(/<link[^>]+href=["']([^"']+)["'][^>]*>/g);
       for (const m of linkMatches) {
@@ -275,6 +357,9 @@ function scanMarkdown(dir) {
       scanMarkdown(fullPath);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
       const content = fs.readFileSync(fullPath, 'utf8');
+      if (/\bP[0-2]-\d{2}/.test(content)) {
+        errors.push(`Operational unit identifier leaked into public Markdown: ${path.relative(DIST_DIR, fullPath)}`);
+      }
       for (const match of content.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
         const href = match[1].trim();
         if (

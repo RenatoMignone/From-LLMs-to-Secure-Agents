@@ -121,6 +121,9 @@ export function discoverCanonicalChapters({
     const markdownPath = path.join('markdown', routeDir, `${slug}.md`);
     const canonicalUrl = `${SITE_ORIGIN}${route}`;
     const markdownUrl = `${SITE_ORIGIN}${BASE_URL}/${markdownPath}`;
+    const chapterNumber = rawChapters
+      .filter((candidate) => candidate.relPath.split(path.sep)[0] === topSection)
+      .findIndex((candidate) => candidate.relPath === ch.relPath) + 1;
 
     // Resolve sources
     const sourcesData = [];
@@ -135,6 +138,9 @@ export function discoverCanonicalChapters({
 
     return {
       unit_id: ch.frontmatter.unit_id,
+      reader_id: `${routeDir}/${slug}`,
+      chapterNumber,
+      chapterLabel: `Chapter ${chapterNumber}`,
       title: ch.frontmatter.title,
       summary: ch.frontmatter.summary,
       pass: ch.frontmatter.pass || secMeta.pass,

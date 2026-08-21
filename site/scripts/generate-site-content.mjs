@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
 import yaml from 'yaml';
 import { discoverCanonicalChapters } from './discover-content.mjs';
 
@@ -17,8 +18,10 @@ const DOCS_DIR = path.join(SITE_ROOT, 'src', 'content', 'docs');
 const GENERATED_DIR = path.join(SITE_ROOT, 'src', 'generated');
 const PUBLIC_DIR = path.join(SITE_ROOT, 'public');
 const PUBLIC_ASSETS_DIR = path.join(PUBLIC_DIR, 'assets', 'images');
-const SRC_ASSETS_DIR = path.join(SITE_ROOT, 'src', 'assets', 'images');
+const LEGACY_SRC_ASSETS_DIR = path.join(SITE_ROOT, 'src', 'assets', 'images');
 const PUBLIC_MARKDOWN_DIR = path.join(PUBLIC_DIR, 'markdown');
+const RESPONSIVE_WIDTHS = [480, 800, 1200, 1600];
+const responsiveImages = new Map();
 
 export function copyDirRecursive(src, dest) {
   if (!fs.existsSync(src)) return;
@@ -35,6 +38,72 @@ export function copyDirRecursive(src, dest) {
       fs.copyFileSync(srcPath, destPath);
     }
   }
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+async function publishResponsiveImages(srcRoot, destRoot) {
+  responsiveImages.clear();
+  copyDirRecursive(srcRoot, destRoot);
+
+  const sourceFiles = [];
+  function scan(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'source') continue;
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) scan(fullPath);
+      else if (/\.(png|jpe?g|webp)$/i.test(entry.name)) sourceFiles.push(fullPath);
+    }
+  }
+  scan(srcRoot);
+
+  for (const sourcePath of sourceFiles) {
+    const relPath = path.relative(srcRoot, sourcePath).split(path.sep).join('/');
+    const metadata = await sharp(sourcePath).metadata();
+    if (!metadata.width || !metadata.height) continue;
+
+    const widths = RESPONSIVE_WIDTHS.filter((width) => width < metadata.width);
+    widths.push(metadata.width);
+    const uniqueWidths = [...new Set(widths)];
+    const parsed = path.posix.parse(relPath);
+    const variants = [];
+
+    for (const width of uniqueWidths) {
+      const variantRelPath = path.posix.join(parsed.dir, `${parsed.name}-${width}w.webp`);
+      const variantPath = path.join(destRoot, ...variantRelPath.split('/'));
+      fs.mkdirSync(path.dirname(variantPath), { recursive: true });
+      await sharp(sourcePath)
+        .resize({ width, withoutEnlargement: true })
+        .webp({ quality: 82, effort: 5, smartSubsample: true })
+        .toFile(variantPath);
+      variants.push({ width, path: variantRelPath });
+    }
+
+    responsiveImages.set(relPath, {
+      width: metadata.width,
+      height: metadata.height,
+      variants,
+    });
+  }
+}
+
+function responsiveImageMarkup(relPath, alt, { eager = false, sizes = '(max-width: 56rem) calc(100vw - 2rem), 56rem' } = {}) {
+  const image = responsiveImages.get(relPath);
+  if (!image) return `![${alt}](${BASE_URL}/assets/images/${relPath})`;
+  const largest = image.variants.at(-1);
+  const srcset = image.variants
+    .map((variant) => `${BASE_URL}/assets/images/${variant.path} ${variant.width}w`)
+    .join(', ');
+  return `<picture class="responsive-illustration">
+  <source type="image/webp" srcset="${srcset}" sizes="${sizes}">
+  <img src="${BASE_URL}/assets/images/${largest.path}" alt="${escapeHtml(alt)}" width="${image.width}" height="${image.height}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>
+</picture>`;
 }
 
 export function formatStringOrObject(item) {
@@ -56,11 +125,13 @@ export function renderInlineMarkdown(str) {
   return s;
 }
 
-export function rewriteChapterLinks(markdown, currentRelPath, allChapters) {
+export function rewriteChapterLinks(markdown, currentRelPath, allChapters, { responsive = false } = {}) {
   // 1. Rewrite images
   let text = markdown.replace(
     /!\[(.*?)\]\((?:\.\.\/)*assets\/images\/(.*?)\)/g,
-    `![$1](${BASE_URL}/assets/images/$2)`
+    (_match, alt, relPath) => responsive
+      ? responsiveImageMarkup(relPath, alt)
+      : `![${alt}](${BASE_URL}/assets/images/${relPath})`
   );
 
   // 2. Resolve every repository-relative link from the canonical Markdown file.
@@ -116,7 +187,7 @@ export function rewriteChapterLinks(markdown, currentRelPath, allChapters) {
   return text;
 }
 
-export function generateAll() {
+export async function generateAll() {
   console.log('🔄 Running From-LLMs-to-Secure-Agents publishing pipeline...');
 
   // 1. Discover chapters and sections
@@ -132,16 +203,16 @@ export function generateAll() {
   fs.rmSync(PUBLIC_ASSETS_DIR, { recursive: true, force: true });
   fs.mkdirSync(PUBLIC_ASSETS_DIR, { recursive: true });
 
-  fs.rmSync(SRC_ASSETS_DIR, { recursive: true, force: true });
-  fs.mkdirSync(SRC_ASSETS_DIR, { recursive: true });
+  // Images are served from public/. Remove the old duplicate generated tree.
+  fs.rmSync(LEGACY_SRC_ASSETS_DIR, { recursive: true, force: true });
 
   fs.rmSync(PUBLIC_MARKDOWN_DIR, { recursive: true, force: true });
   fs.mkdirSync(PUBLIC_MARKDOWN_DIR, { recursive: true });
 
   // 3. Copy visual assets
-  console.log('📦 Copying visual assets...');
-  copyDirRecursive(path.join(REPO_ROOT, 'assets', 'images'), PUBLIC_ASSETS_DIR);
-  copyDirRecursive(path.join(REPO_ROOT, 'assets', 'images'), SRC_ASSETS_DIR);
+  console.log('📦 Publishing responsive visual assets...');
+  await publishResponsiveImages(path.join(REPO_ROOT, 'assets', 'images'), PUBLIC_ASSETS_DIR);
+  console.log(`✓ Published responsive variants for ${responsiveImages.size} images.`);
 
   // 4. Generate Chapter Pages & Clean Markdown Alternates
   console.log('📖 Generating chapter documentation pages...');
@@ -183,13 +254,16 @@ export function generateAll() {
 
     // Register in guide index
     guideIndex.push({
-      unit_id: ch.unit_id,
+      id: ch.reader_id,
       title: ch.title,
       summary: ch.summary,
       pass: passLabel,
-      section_key: ch.sectionKey,
+      section: ch.sectionLabel,
+      section_id: ch.routeDir,
+      chapter_number: ch.chapterNumber,
+      chapter_label: ch.chapterLabel,
       section_label: ch.sectionLabel,
-      learning_path: ch.learning_path,
+      learning_path: pathLabel,
       status: ch.status,
       last_reviewed: ch.last_reviewed,
       html_url: ch.canonicalUrl,
@@ -250,7 +324,7 @@ export function generateAll() {
           '@id': `${ch.canonicalUrl}#learning-resource`,
           name: ch.title,
           description: ch.summary,
-          learningResourceType: 'Handbook Unit',
+          learningResourceType: 'Handbook Chapter',
           educationalLevel: 'Core Engineering Curriculum',
           teaches: ch.learning_objectives.map(formatStringOrObject),
         },
@@ -286,7 +360,8 @@ export function generateAll() {
       title: ch.title,
       description: ch.summary,
       summary: ch.summary,
-      unit_id: ch.unit_id,
+      chapter_label: ch.chapterLabel,
+      section_label: ch.sectionLabel,
       pass: passLabel,
       learning_path: ch.learning_path,
       reviewed_label: new Intl.DateTimeFormat('en-GB', {
@@ -395,33 +470,33 @@ ${formattedObjectives.map((o) => `      <li>${o}</li>`).join('\n')}
     // Strip redundant trailing Markdown navigation buttons/links since unit-pagination provides them
     cleanBody = cleanBody.replace(/\n*---\s*\n+\[(?:Next|Previous) Unit:[^\]]+\]\([^)]+\)\s*$/i, '');
     cleanBody = cleanBody.replace(/\n*\[(?:Next|Previous) Unit:[^\]]+\]\([^)]+\)\s*$/i, '');
-    cleanBody = rewriteChapterLinks(cleanBody, ch.relPath, chapters);
+    cleanBody = rewriteChapterLinks(cleanBody, ch.relPath, chapters, { responsive: true });
 
     pageContent += cleanBody;
 
-    // Unit Pagination (Single clean 2-column row at bottom)
+    // Chapter pagination
     pageContent += `\n\n<div class="unit-pagination not-content">\n`;
     if (prevCh) {
       pageContent += `  <a href="${prevCh.route}" class="pagination-link pagination-prev">
-    <span class="pagination-sub">← Previous unit</span>
+    <span class="pagination-sub">← Previous chapter</span>
     <span class="pagination-name">${prevCh.title}</span>
   </a>\n`;
     } else {
       pageContent += `  <a href="${BASE_URL}/${ch.routeDir}/" class="pagination-link pagination-prev">
-    <span class="pagination-sub">← Section Overview</span>
+    <span class="pagination-sub">← Section overview</span>
     <span class="pagination-name">${ch.sectionLabel}</span>
   </a>\n`;
     }
 
     if (nextCh) {
       pageContent += `  <a href="${nextCh.route}" class="pagination-link pagination-next">
-    <span class="pagination-sub">Next unit →</span>
+    <span class="pagination-sub">Next chapter →</span>
     <span class="pagination-name">${nextCh.title}</span>
   </a>\n`;
     } else {
       pageContent += `  <div class="pagination-link pagination-next pagination-end">
-    <span class="pagination-sub">Curriculum status</span>
-    <span class="pagination-name">Completed through ${ch.unit_id}</span>
+    <span class="pagination-sub">Latest published chapter</span>
+    <span class="pagination-name">${ch.title}</span>
   </div>\n`;
     }
     pageContent += `</div>\n`;
@@ -431,7 +506,7 @@ ${formattedObjectives.map((o) => `      <li>${o}</li>`).join('\n')}
     // Clean canonical markdown alternate
     const cleanMarkdown = `---
 title: ${JSON.stringify(ch.title)}
-unit_id: ${JSON.stringify(ch.unit_id)}
+id: ${JSON.stringify(ch.reader_id)}
 summary: ${JSON.stringify(ch.summary)}
 pass: ${JSON.stringify(passLabel)}
 learning_path: ${JSON.stringify(ch.learning_path)}
@@ -443,7 +518,7 @@ canonical_url: ${JSON.stringify(ch.canonicalUrl)}
 # ${ch.title}
 
 > **Summary:** ${ch.summary}
-> **Unit ID:** ${ch.unit_id} · **Pass:** ${passLabel} · **Reviewed:** ${ch.last_reviewed}
+> **Section:** ${ch.sectionLabel} · **Chapter:** ${ch.chapterNumber} · **Path:** ${pathLabel} · **Reviewed:** ${ch.last_reviewed}
 
 ${rewriteChapterLinks(ch.body.trim(), ch.relPath, chapters)}
 
@@ -509,7 +584,7 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
             itemListElement: s.chapters.map((c, idx) => ({
               '@type': 'ListItem',
               position: idx + 1,
-              name: `${c.unit_id}: ${c.title}`,
+              name: c.title,
               url: c.canonicalUrl,
               description: c.summary,
             })),
@@ -628,8 +703,8 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
 ${yaml.stringify(sectionFm)}---
 
 <div class="section-hub-hero not-content">
-  <div class="section-pill-badge">${s.pass} · ${s.chapters.length} Published ${s.chapters.length === 1 ? 'Unit' : 'Units'}</div>
-  <p class="section-hub-lead">Explore the sequential engineering units below. Units combine visual explanations and traceable source records, with runnable examples where they improve understanding.</p>
+  <div class="section-pill-badge">${s.pass} · ${s.chapters.length} published ${s.chapters.length === 1 ? 'chapter' : 'chapters'}</div>
+  <p class="section-hub-lead">Follow the chapters in order. Each one combines a clear explanation, local illustrations, traceable sources, and runnable examples where code helps.</p>
 </div>
 
 ## Module Overview & Outcomes
@@ -647,15 +722,15 @@ ${yaml.stringify(sectionFm)}---
 
 ${s.plan?.concepts ? `## Required Concepts & Scope\n\n${renderInlineMarkdown(s.plan.concepts)}\n` : ''}
 
-## Published Units in this Module
+## Published chapters in this section
 
 <div class="section-units-grid not-content">
 ${s.chapters
   .map(
     (c) => `  <div class="section-unit-card">
     <div class="unit-card-header">
-      <span class="unit-card-id">${c.unit_id}</span>
-      <span class="unit-card-path">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep Dive' : 'Main Path'}</span>
+      <span class="unit-card-id">${c.chapterLabel}</span>
+      <span class="unit-card-path">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep dive' : 'Main path'}</span>
     </div>
     <h3 class="unit-card-title"><a href="${c.route}">${c.title}</a></h3>
     <p class="unit-card-summary">${c.summary}</p>
@@ -671,7 +746,7 @@ ${c.learning_objectives.slice(0, 3).map((o) => `        <li>${renderInlineMarkdo
     }
     <div class="unit-card-footer">
       <a href="${c.route}" class="unit-card-cta">
-        <span>Read Unit</span>
+        <span>Read chapter</span>
         <span aria-hidden="true">→</span>
       </a>
     </div>
@@ -717,22 +792,22 @@ ${
     // Section clean markdown
     const sectionCleanMarkdown = `---
 title: ${JSON.stringify(s.label)}
-section_key: ${JSON.stringify(s.sectionKey)}
+id: ${JSON.stringify(s.routeDir)}
 pass: ${JSON.stringify(s.pass)}
 canonical_url: ${JSON.stringify(s.canonicalUrl)}
-total_units: ${s.chapters.length}
+total_chapters: ${s.chapters.length}
 ---
 
 # ${s.label}
 
 > **Section Overview:** ${s.plan?.purpose || `Engineering module covering ${s.label.toLowerCase()}.`}
-> **Pass:** ${s.pass} · **Published Units:** ${s.chapters.length}
+> **Pass:** ${s.pass} · **Published chapters:** ${s.chapters.length}
 
 ## Learning Outcomes
 ${s.plan?.outcomes || ''}
 
-## Published Units
-${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.summary}`).join('\n')}
+## Published chapters
+${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join('\n')}
 `;
     fs.writeFileSync(sectionRawMarkdownPath, sectionCleanMarkdown, 'utf8');
   }
@@ -793,6 +868,15 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
   console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
   const entryChapter = chapters[0];
   const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/prerequisites/01-reader-contract-and-system-map/`;
+  const latestChapter = chapters.at(-1);
+  const heroImage = responsiveImages.get('repo-images/project-purpose.png');
+  const homepageSections = sections.map((section) => ({
+    title: section.label,
+    href: section.route,
+    count: section.chapters.length,
+    firstChapter: section.chapters[0]?.title || '',
+    latestChapter: section.chapters.at(-1)?.title || '',
+  }));
 
   const homepageJsonLd = {
     '@context': 'https://schema.org',
@@ -925,11 +1009,11 @@ import HomepageIdea from '../../components/HomepageIdea.astro';
 import HomepageStart from '../../components/HomepageStart.astro';
 import HomepageFooter from '../../components/HomepageFooter.astro';
 
-<HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" publishedCount={${chapters.length}} />
+<HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" image={${JSON.stringify(heroImage)}} />
 
 <HomepageIdea />
 
-<HomepageStart firstChapterRoute="${firstChapterRoute}" publishedThrough="${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'}" totalUnits="${chapters.length}" />
+<HomepageStart firstChapterRoute="${firstChapterRoute}" latestChapter="${escapeHtml(latestChapter?.title || 'the first chapter')}" totalChapters={${chapters.length}} sections={${JSON.stringify(homepageSections)}} />
 
 <HomepageFooter githubUrl="${GITHUB_REPO}" baseUrl="${BASE_URL}" />
 `;
@@ -943,32 +1027,31 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
     JSON.stringify(
       {
         title: 'From LLMs to Secure Agents: Engineering Guide Index',
-        description: 'Machine-readable index of published sections, units, learning objectives, source records, and canonical links.',
+        description: 'Machine-readable index of published sections, chapters, learning objectives, source records, and canonical links.',
         author: 'Renato Mignone',
         author_url: 'https://github.com/RenatoMignone',
-        version: '2.1.0',
+        version: '3.0.0',
         origin: SITE_ORIGIN,
         base_path: BASE_URL,
         last_updated: new Date().toISOString().split('T')[0],
         total_published_sections: sections.length,
-        total_published_units: guideIndex.length,
+        total_published_chapters: guideIndex.length,
         curriculum_passes: [
           { pass_id: 0, title: 'Prerequisites', focus: 'Distributed boundaries and systems foundations' },
           { pass_id: 1, title: 'Understand the Complete System', focus: 'Agent loop, context, memory, tools, and runtimes' },
           { pass_id: 2, title: 'Secure the System', focus: 'Threat modeling, isolation, and security assurance' },
         ],
         sections: sections.map((s) => ({
-          section_key: s.sectionKey,
+          id: s.routeDir,
           label: s.label,
-          route_dir: s.routeDir,
           pass: s.pass,
           html_url: s.canonicalUrl,
           markdown_url: s.markdownUrl,
           purpose: s.plan?.purpose || '',
-          total_published_units: s.chapters.length,
-          units: s.chapters.map((c) => c.unit_id),
+          total_published_chapters: s.chapters.length,
+          chapters: s.chapters.map((c) => c.reader_id),
         })),
-        units: guideIndex,
+        chapters: guideIndex,
       },
       null,
       2
@@ -987,7 +1070,7 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 - **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
 - **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
-- **Current Canonical Progress:** Published through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units across ${sections.length} sections)
+- **Current publication:** ${chapters.length} chapters across ${sections.length} sections. The latest chapter is [${latestChapter?.title || 'the opening chapter'}](${latestChapter?.canonicalUrl || `${SITE_ORIGIN}${firstChapterRoute}`}).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -1000,27 +1083,27 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 ## Curriculum Architecture (Two-Pass Model)
 
 1. **Pass 1: Understand the Complete System**
-   - **00 Prerequisites:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
-   - **01 Agent Foundations:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
-   - **02 Agent Architectures:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
-   - **03 Building Blocks:** [Section Overview](${SITE_ORIGIN}${BASE_URL}/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
-   - **04 Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
-   - **05 End-to-End Workflows (Roadmap):** Reference production architectures.
+   - **Prerequisites:** [Section overview](${SITE_ORIGIN}${BASE_URL}/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
+   - **Agent Foundations:** [Section overview](${SITE_ORIGIN}${BASE_URL}/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
+   - **Agent Architectures:** [Section overview](${SITE_ORIGIN}${BASE_URL}/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
+   - **Building Blocks:** [Section overview](${SITE_ORIGIN}${BASE_URL}/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
+   - **Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
+   - **End-to-End Workflows (Roadmap):** Reference production architectures.
 
 2. **Pass 2: Secure the System (Roadmap)**
-   - **06 Threat Model:** Entry points, adversaries, and comprehensive agent attack taxonomy.
-   - **07 Security by Component:** Indirect prompt injection defenses, credential scoping, memory isolation, execution sandboxing.
-   - **08 Secure Reference Architectures:** Zero-trust agent gateways and dual-model verification.
-   - **09 Testing & Assurance:** Automated red teaming, prompt fuzzing, invariant testing.
-   - **10 Open Research Questions:** Formal loop verification and verifiable provenance.
+   - **Threat Model:** Entry points, adversaries, and comprehensive agent attack taxonomy.
+   - **Security by Component:** Indirect prompt injection defenses, credential scoping, memory isolation, execution sandboxing.
+   - **Secure Reference Architectures:** Zero-trust agent gateways and dual-model verification.
+   - **Testing & Assurance:** Automated red teaming, prompt fuzzing, invariant testing.
+   - **Open Research Questions:** Formal loop verification and verifiable provenance.
 
-## Published Canonical Units
+## Published chapters
 
 ${guideIndex
   .map(
-    (u) => `### [${u.unit_id}: ${u.title}](${u.html_url})
+    (u) => `### [${u.title}](${u.html_url})
 - **Summary:** ${u.summary}
-- **Section:** [${u.section_label}](${SITE_ORIGIN}${BASE_URL}/${sections.find((s) => s.sectionKey === u.section_key)?.routeDir || ''}/)
+- **Section:** [${u.section_label}](${SITE_ORIGIN}${BASE_URL}/${u.section_id}/)
 - **Clean Markdown URL:** ${u.markdown_url}
 - **Learning Objectives:**
 ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
@@ -1036,7 +1119,7 @@ ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
   let llmsFullContent = llmsTxtContent + '\n\n---\n# COMPLETE CANONICAL HANDBOOK TEXT\n\n';
   for (const ch of chapters) {
     llmsFullContent += `\n\n================================================================================\n`;
-    llmsFullContent += `UNIT: ${ch.unit_id} - ${ch.title}\n`;
+    llmsFullContent += `CHAPTER: ${ch.title}\n`;
     llmsFullContent += `URL: ${ch.canonicalUrl}\n`;
     llmsFullContent += `SUMMARY: ${ch.summary}\n`;
     llmsFullContent += `================================================================================\n\n`;
@@ -1093,5 +1176,5 @@ Sitemap: ${SITE_ORIGIN}${BASE_URL}/sitemap-index.xml
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  generateAll();
+  await generateAll();
 }

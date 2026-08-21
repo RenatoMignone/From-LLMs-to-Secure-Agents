@@ -1,3 +1,3 @@
 import { generateAll } from './generate-site-content.mjs';
 
-generateAll();
+await generateAll();

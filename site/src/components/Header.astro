@@ -4,18 +4,26 @@ import SiteTitle from 'virtual:starlight/components/SiteTitle';
 import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 
 const base = '/From-LLMs-to-Secure-Agents';
-const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
+const route = Astro.locals.starlightRoute;
+const { hasSidebar } = route || { hasSidebar: false };
+const currentChapterTitle = route?.entry?.data?.chapter_label ? route.entry.data.title : undefined;
+const currentChapterRoute = currentChapterTitle ? Astro.url.pathname : undefined;
+const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-map/`;
 ---
 
-<div class="publication-header">
+<div
+  class="publication-header"
+  data-current-reading-route={currentChapterRoute}
+  data-current-reading-title={currentChapterTitle}
+>
   <div class="publication-brand">
     <SiteTitle />
   </div>
 
   <nav class="publication-nav" aria-label="Publication Navigation">
-    <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-link-guide">
-      <span class="nav-guide-dot"></span>
-      <span>Read Guide</span>
+    <a href={firstChapterRoute} class="nav-link-guide" data-reading-link data-start-route={firstChapterRoute}>
+      <span class="nav-guide-dot" aria-hidden="true"></span>
+      <span data-reading-label>Read guide</span>
       <span class="nav-guide-arrow" aria-hidden="true">→</span>
     </a>
   </nav>
@@ -26,7 +34,7 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
       target="_blank"
       rel="noopener noreferrer"
       class="nav-github-btn"
-      aria-label="GitHub Repository"
+      aria-label="GitHub repository (opens in a new tab)"
     >
       <svg class="github-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
@@ -42,8 +50,8 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
 
     {/* Show Guide link on homepage mobile if no sidebar, otherwise show Hamburger menu button */}
     {!hasSidebar ? (
-      <a href={`${base}/prerequisites/01-reader-contract-and-system-map/`} class="nav-mobile-guide-btn">
-        <span>Guide</span>
+      <a href={firstChapterRoute} class="nav-mobile-guide-btn" data-reading-link data-start-route={firstChapterRoute}>
+        <span data-reading-label>Guide</span>
         <span aria-hidden="true">→</span>
       </a>
     ) : (
@@ -55,10 +63,10 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
         aria-expanded="false"
         aria-controls="starlight__sidebar"
       >
-        <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
           <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path>
         </svg>
-        <svg class="icon-close" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <svg class="icon-close" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
         </svg>
       </button>
@@ -67,6 +75,32 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
 </div>
 
 <script>
+  const readingProgressKey = 'secure-agents-reading-progress-v1';
+
+  function setupReadingProgress() {
+    const header = document.querySelector<HTMLElement>('.publication-header');
+    const currentRoute = header?.dataset.currentReadingRoute;
+    const currentTitle = header?.dataset.currentReadingTitle;
+
+    try {
+      if (currentRoute && currentTitle) {
+        localStorage.setItem(readingProgressKey, JSON.stringify({ href: currentRoute, title: currentTitle }));
+      }
+
+      const saved = JSON.parse(localStorage.getItem(readingProgressKey) || 'null');
+      if (!saved?.href || !saved?.title) return;
+
+      document.querySelectorAll<HTMLAnchorElement>('[data-reading-link]').forEach((link) => {
+        link.href = saved.href;
+        link.setAttribute('aria-label', `Continue reading: ${saved.title}`);
+        const label = link.querySelector<HTMLElement>('[data-reading-label]');
+        if (label) label.textContent = 'Continue reading';
+      });
+    } catch {
+      // The start links remain useful when storage is disabled.
+    }
+  }
+
   function setupMobileMenu() {
     const toggleBtn = document.getElementById('custom-mobile-menu-toggle');
     if (!toggleBtn) return;
@@ -74,12 +108,22 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
     function syncState() {
       const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
       toggleBtn?.setAttribute('aria-expanded', String(isExpanded));
+      toggleBtn?.setAttribute('aria-label', isExpanded ? 'Close navigation menu' : 'Open navigation menu');
+      document.querySelectorAll<HTMLElement>('.main-frame, .sl-skip-link').forEach((element) => {
+        element.toggleAttribute('inert', isExpanded);
+      });
       if (isExpanded) {
         toggleBtn?.classList.add('is-active');
       } else {
         toggleBtn?.classList.remove('is-active');
       }
     }
+
+    if (toggleBtn.dataset.menuReady === 'true') {
+      syncState();
+      return;
+    }
+    toggleBtn.dataset.menuReady = 'true';
 
     // Toggle menu
     toggleBtn.addEventListener('click', (e) => {
@@ -91,11 +135,22 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
         document.body.setAttribute('data-mobile-menu-expanded', 'true');
       }
       syncState();
+      if (!isExpanded) {
+        document.querySelector<HTMLAnchorElement>('#starlight__sidebar a')?.focus();
+      }
     });
 
     // Close on escape
     window.addEventListener('keyup', (e) => {
       if (e.key === 'Escape' && document.body.hasAttribute('data-mobile-menu-expanded')) {
+        document.body.removeAttribute('data-mobile-menu-expanded');
+        syncState();
+        toggleBtn.focus();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && document.body.hasAttribute('data-mobile-menu-expanded')) {
         document.body.removeAttribute('data-mobile-menu-expanded');
         syncState();
       }
@@ -115,11 +170,18 @@ const { hasSidebar } = Astro.locals.starlightRoute || { hasSidebar: false };
   // Run on first load and on Starlight page transitions
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupMobileMenu);
+      document.addEventListener('DOMContentLoaded', () => {
+        setupReadingProgress();
+        setupMobileMenu();
+      });
     } else {
+      setupReadingProgress();
       setupMobileMenu();
     }
-    document.addEventListener('astro:page-load', setupMobileMenu);
+    document.addEventListener('astro:page-load', () => {
+      setupReadingProgress();
+      setupMobileMenu();
+    });
   }
 </script>
 

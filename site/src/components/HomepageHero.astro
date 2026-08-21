@@ -2,9 +2,18 @@
 interface Props {
   firstChapterRoute: string;
   baseUrl: string;
+  image: {
+    width: number;
+    height: number;
+    variants: Array<{ width: number; path: string }>;
+  };
 }
 
-const { firstChapterRoute, baseUrl } = Astro.props;
+const { firstChapterRoute, baseUrl, image } = Astro.props;
+const largestImage = image.variants.at(-1);
+const imageSrcset = image.variants
+  .map((variant) => `${baseUrl}/assets/images/${variant.path} ${variant.width}w`)
+  .join(', ');
 ---
 
 <section class="hero-section not-content">
@@ -16,16 +25,16 @@ const { firstChapterRoute, baseUrl } = Astro.props;
       </h1>
 
       <p class="hero-lead">
-        A visual, source-grounded engineering guide to the architecture, runtime control loops, tool interfaces, threat modeling, and defense in depth of autonomous AI agents.
+        Learn how AI agents work as complete software systems, then use that understanding to secure their data, tools, identities, and runtime behavior.
       </p>
 
       <div class="hero-actions">
-        <a href={firstChapterRoute} class="btn-hero-primary">
-          <span>Start Reading Guide</span>
+        <a href={firstChapterRoute} class="btn-hero-primary" data-reading-link data-start-route={firstChapterRoute}>
+          <span data-reading-label>Start reading</span>
           <span class="btn-arrow" aria-hidden="true">→</span>
         </a>
         <a href="#the-idea" class="btn-hero-secondary">
-          <span>Why This Guide Is Needed</span>
+          <span>Why this guide exists</span>
           <span class="btn-arrow" aria-hidden="true">↓</span>
         </a>
       </div>
@@ -34,7 +43,7 @@ const { firstChapterRoute, baseUrl } = Astro.props;
     <div class="hero-visual">
       <div class="visual-card">
         <div class="visual-card-header">
-          <div class="visual-dots">
+          <div class="visual-dots" aria-hidden="true">
             <span class="window-dot red"></span>
             <span class="window-dot yellow"></span>
             <span class="window-dot green"></span>
@@ -42,11 +51,18 @@ const { firstChapterRoute, baseUrl } = Astro.props;
           <span class="visual-title">Agent Architecture &amp; Security Evolution</span>
         </div>
         <div class="visual-image-wrapper">
-          <img
-            src={`${baseUrl}/assets/images/repo-images/project-purpose.png`}
-            alt="The progression from a raw language model to a complete agentic system and then a hardened secure agent"
-            loading="eager"
-          />
+          <picture>
+            <source type="image/webp" srcset={imageSrcset} sizes="(max-width: 60rem) calc(100vw - 2.3rem), 44vw" />
+            <img
+              src={`${baseUrl}/assets/images/${largestImage.path}`}
+              alt="The progression from a language model to a complete agentic system and then a hardened secure agent"
+              width={image.width}
+              height={image.height}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
         <div class="visual-card-footer">
           <p>From one model call to a complete agentic system, then to a hardened secure agent.</p>
@@ -72,7 +88,7 @@ const { firstChapterRoute, baseUrl } = Astro.props;
 
   .hero-container {
     width: 100%;
-    max-width: 100%;
+    max-width: 88rem;
     margin: 0 auto;
     display: grid;
     grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
@@ -320,6 +336,10 @@ const { firstChapterRoute, baseUrl } = Astro.props;
     .hero-actions {
       flex-direction: column;
       width: 100%;
+    }
+
+    .hero-heading br {
+      display: none;
     }
 
     .btn-hero-primary,

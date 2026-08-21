@@ -7,7 +7,8 @@ export const collections = {
     loader: docsLoader(),
     schema: docsSchema({
       extend: z.object({
-        unit_id: z.string().optional(),
+        chapter_label: z.string().optional(),
+        section_label: z.string().optional(),
         pass: z.string().optional(),
         learning_path: z.string().optional(),
         status: z.string().optional(),

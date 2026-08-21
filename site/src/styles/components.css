@@ -59,9 +59,14 @@
 
 /* Visual Figures & Images - Cartoon Handbook Plates */
 .sl-markdown-content figure,
+.sl-markdown-content .responsive-illustration,
 .sl-markdown-content p:has(> img:only-child) {
   margin: 3rem 0 1.5rem;
   text-align: center;
+}
+
+.responsive-illustration {
+  display: block;
 }
 
 .sl-markdown-content img {
@@ -521,4 +526,3 @@
     grid-template-columns: 1fr;
   }
 }
-
