@@ -63,40 +63,55 @@ export function rewriteChapterLinks(markdown, currentRelPath, allChapters) {
     `![$1](${BASE_URL}/assets/images/$2)`
   );
 
-  // 2. Build mapping of canonical relative markdown paths to site URLs
-  const linkMap = new Map();
-  for (const c of allChapters) {
-    linkMap.set(c.relPath, c.route);
-    const fileName = path.basename(c.relPath);
-    linkMap.set(fileName, c.route);
-    const parts = c.relPath.split(path.sep);
-    if (parts.length > 1) {
-      linkMap.set(`../${c.relPath}`, c.route);
+  // 2. Resolve every repository-relative link from the canonical Markdown file.
+  // Filename-only matching is unsafe because many nested sections reuse names
+  // such as 01-*.md. Preserve fragments and queries when rewriting.
+  const chapterRoutes = new Map(
+    allChapters.map((chapter) => [chapter.relPath.split(path.sep).join('/'), chapter.route])
+  );
+  const publishedSectionRoutes = new Map(
+    allChapters.map((chapter) => [chapter.sectionKey, `${BASE_URL}/${chapter.routeDir}/`])
+  );
+  const currentRepoPath = path.posix.join('knowledge', currentRelPath.split(path.sep).join('/'));
+
+  text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, rawHref) => {
+    const href = rawHref.trim();
+    if (
+      href.startsWith('#') ||
+      href.startsWith('/') ||
+      /^[a-z][a-z\d+.-]*:/i.test(href)
+    ) {
+      return match;
     }
-  }
 
-  // Rewrite section plan links to first chapter of published sections
-  linkMap.set('00-prerequisites/chapter-plan.md', `${BASE_URL}/prerequisites/01-reader-contract-and-system-map/`);
-  linkMap.set('../00-prerequisites/chapter-plan.md', `${BASE_URL}/prerequisites/01-reader-contract-and-system-map/`);
-  linkMap.set('01-agent-foundations/chapter-plan.md', `${BASE_URL}/foundations/01-what-is-an-agent/`);
-  linkMap.set('../01-agent-foundations/chapter-plan.md', `${BASE_URL}/foundations/01-what-is-an-agent/`);
+    const targetMatch = href.match(/^([^?#]+)([?#].*)?$/);
+    if (!targetMatch) return match;
+    const [, target, suffix = ''] = targetMatch;
+    const resolvedRepoPath = path.posix.normalize(
+      path.posix.join(path.posix.dirname(currentRepoPath), target)
+    );
+    const resolvedKnowledgePath = resolvedRepoPath.startsWith('knowledge/')
+      ? resolvedRepoPath.slice('knowledge/'.length)
+      : null;
 
-  // Rewrite chapter cross-links
-  for (const [targetPattern, targetRoute] of linkMap.entries()) {
-    const escaped = targetPattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`\\[(.*?)\\]\\(${escaped}\\)`, 'g');
-    text = text.replace(regex, `[$1](${targetRoute})`);
-  }
+    if (resolvedKnowledgePath && chapterRoutes.has(resolvedKnowledgePath)) {
+      return `[${label}](${chapterRoutes.get(resolvedKnowledgePath)}${suffix})`;
+    }
 
-  // Rewrite remaining chapter-plan.md or unwritten section links to GitHub canonical repo links
-  text = text.replace(
-    /\[(.*?)\]\((\.\.\/)*(\d+-[^/]+)\/chapter-plan\.md\)/g,
-    `[$1](${GITHUB_REPO}/blob/main/knowledge/$3/chapter-plan.md)`
-  );
-  text = text.replace(
-    /\[(.*?)\]\(chapter-plan\.md\)/g,
-    `[$1](${GITHUB_REPO}/blob/main/knowledge/)`
-  );
+    if (resolvedKnowledgePath?.endsWith('/chapter-plan.md')) {
+      const planDirectory = path.posix.dirname(resolvedKnowledgePath);
+      const sectionKey = planDirectory.split('/')[0];
+      if (planDirectory === sectionKey && publishedSectionRoutes.has(sectionKey)) {
+        return `[${label}](${publishedSectionRoutes.get(sectionKey)}${suffix})`;
+      }
+    }
+
+    if (!resolvedRepoPath.startsWith('../')) {
+      return `[${label}](${GITHUB_REPO}/blob/main/${resolvedRepoPath}${suffix})`;
+    }
+
+    return match;
+  });
 
   return text;
 }
@@ -205,19 +220,18 @@ export function generateAll() {
           headline: ch.title,
           description: ch.summary,
           url: ch.canonicalUrl,
-          datePublished: '2026-08-15',
           dateModified: ch.last_reviewed,
           inLanguage: 'en-US',
           isPartOf: {
-            '@type': 'Course',
-            '@id': `${SITE_ORIGIN}${BASE_URL}/#course`,
+            '@type': 'Book',
+            '@id': `${SITE_ORIGIN}${BASE_URL}/#handbook`,
             name: 'From LLMs to Secure Agents',
             url: `${SITE_ORIGIN}${BASE_URL}/`,
           },
           author: {
-            '@type': 'Organization',
-            name: 'From LLMs to Secure Agents Project',
-            url: GITHUB_REPO,
+            '@type': 'Person',
+            name: 'Renato Mignone',
+            url: 'https://github.com/RenatoMignone',
           },
           publisher: {
             '@type': 'Organization',
@@ -229,28 +243,7 @@ export function generateAll() {
             '@type': 'SpeakableSpecification',
             cssSelector: ['#_top', '.chapter-standfirst', '.goals-card ul', '.sl-markdown-content > p:first-of-type'],
           },
-          about: [
-            {
-              '@type': 'Thing',
-              name: 'Intelligent Agent',
-              sameAs: 'https://www.wikidata.org/wiki/Q11660',
-            },
-            {
-              '@type': 'Thing',
-              name: 'Large Language Model',
-              sameAs: 'https://www.wikidata.org/wiki/Q115682855',
-            },
-            {
-              '@type': 'Thing',
-              name: 'Computer Security',
-              sameAs: 'https://www.wikidata.org/wiki/Q11204',
-            },
-            {
-              '@type': 'Thing',
-              name: 'Prompt Injection',
-              sameAs: 'https://www.wikidata.org/wiki/Q117793740',
-            },
-          ],
+          about: [ch.title, ch.sectionLabel, 'AI agent engineering'],
         },
         {
           '@type': 'LearningResource',
@@ -259,7 +252,7 @@ export function generateAll() {
           description: ch.summary,
           learningResourceType: 'Handbook Unit',
           educationalLevel: 'Core Engineering Curriculum',
-          teaches: ch.learning_objectives,
+          teaches: ch.learning_objectives.map(formatStringOrObject),
         },
         {
           '@type': 'BreadcrumbList',
@@ -452,7 +445,7 @@ canonical_url: ${JSON.stringify(ch.canonicalUrl)}
 > **Summary:** ${ch.summary}
 > **Unit ID:** ${ch.unit_id} · **Pass:** ${passLabel} · **Reviewed:** ${ch.last_reviewed}
 
-${ch.body.trim()}
+${rewriteChapterLinks(ch.body.trim(), ch.relPath, chapters)}
 
 ## Sources & Evidence
 ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_or_organization}, ${s.date})`).join('\n')}
@@ -636,7 +629,7 @@ ${yaml.stringify(sectionFm)}---
 
 <div class="section-hub-hero not-content">
   <div class="section-pill-badge">${s.pass} · ${s.chapters.length} Published ${s.chapters.length === 1 ? 'Unit' : 'Units'}</div>
-  <p class="section-hub-lead">Explore the sequential engineering units below. Each unit contains architectural diagrams, trust boundaries, verified source records, and runnable implementations.</p>
+  <p class="section-hub-lead">Explore the sequential engineering units below. Units combine visual explanations and traceable source records, with runnable examples where they improve understanding.</p>
 </div>
 
 ## Module Overview & Outcomes
@@ -687,7 +680,11 @@ ${c.learning_objectives.slice(0, 3).map((o) => `        <li>${renderInlineMarkdo
   .join('\n')}
 </div>
 
-${s.plan?.securityConnection ? `## Security & Threat Model Connections (Pass 2 Preview)\n\n${renderInlineMarkdown(s.plan.securityConnection)}\n` : ''}
+${
+  s.plan?.securityConnection
+    ? `## Security & Threat Model Connections (Pass 2 Preview)\n\n${renderInlineMarkdown(rewriteChapterLinks(s.plan.securityConnection, path.join(s.sectionKey, 'chapter-plan.md'), chapters))}\n`
+    : ''
+}
 
 <div class="unit-pagination not-content">
 ${
@@ -747,6 +744,18 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
   const sidebarSections = [];
 
   for (const s of sections) {
+    const topLevelChapters = s.chapters.filter(
+      (chapter) => chapter.relPath.split(path.sep).length === 2
+    );
+    const subsectionGroups = new Map();
+    for (const chapter of s.chapters) {
+      const parts = chapter.relPath.split(path.sep);
+      if (parts.length <= 2) continue;
+      const subsectionKey = parts.slice(1, -1).join('/');
+      if (!subsectionGroups.has(subsectionKey)) subsectionGroups.set(subsectionKey, []);
+      subsectionGroups.get(subsectionKey).push(chapter);
+    }
+
     sidebarSections.push({
       label: s.label,
       collapsed: true,
@@ -755,9 +764,20 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
           label: 'Section Overview',
           link: `/${s.routeDir}/`,
         },
-        ...s.chapters.map((c) => ({
+        ...topLevelChapters.map((c) => ({
           label: `${c.title}`,
           link: `${c.route.replace(BASE_URL, '')}`,
+        })),
+        ...Array.from(subsectionGroups.entries()).map(([subsectionKey, subsectionChapters]) => ({
+          label: (() => {
+            const label = subsectionKey.split('/').at(-1).replace(/^\d+-/, '').replaceAll('-', ' ');
+            return label.charAt(0).toUpperCase() + label.slice(1);
+          })(),
+          collapsed: true,
+          items: subsectionChapters.map((chapter) => ({
+            label: chapter.title,
+            link: chapter.route.replace(BASE_URL, ''),
+          })),
         })),
       ],
     });
@@ -771,8 +791,8 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
 
   // 7. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
   console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
-  const entryChapter = chapters.find((c) => c.unit_id === 'P1-01-01') || chapters[0];
-  const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/foundations/01-what-is-an-agent/`;
+  const entryChapter = chapters[0];
+  const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/prerequisites/01-reader-contract-and-system-map/`;
 
   const homepageJsonLd = {
     '@context': 'https://schema.org',
@@ -796,10 +816,11 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
         },
       },
       {
-        '@type': 'Course',
-        '@id': `${SITE_ORIGIN}${BASE_URL}/#course`,
-        name: 'From LLMs to Secure Agents: Engineering Curriculum',
+        '@type': 'Book',
+        '@id': `${SITE_ORIGIN}${BASE_URL}/#handbook`,
+        name: 'From LLMs to Secure Agents',
         description: 'A sequential engineering guide covering autonomous agent architecture, runtime execution loops, tools, and defensive threat modeling.',
+        bookFormat: 'https://schema.org/EBook',
         author: {
           '@type': 'Person',
           name: 'Renato Mignone',
@@ -810,7 +831,6 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
           name: 'From LLMs to Secure Agents Project',
           url: GITHUB_REPO,
         },
-        educationalCredentialAwarded: 'Engineering Competency in AI Agent Security',
         hasPart: [
           ...sections.map((s) => ({
             '@type': 'CollectionPage',
@@ -837,6 +857,10 @@ ${s.chapters.map((c) => `- [${c.unit_id}: ${c.title}](${c.canonicalUrl}) - ${c.s
     prev: false,
     next: false,
     head: [
+      {
+        tag: 'title',
+        content: 'From LLMs to Secure Agents',
+      },
       {
         tag: 'script',
         attrs: { type: 'application/ld+json' },
@@ -905,7 +929,7 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 
 <HomepageIdea />
 
-<HomepageStart firstChapterRoute="${firstChapterRoute}" completedThrough="${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'}" totalUnits="${chapters.length}" />
+<HomepageStart firstChapterRoute="${firstChapterRoute}" publishedThrough="${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'}" totalUnits="${chapters.length}" />
 
 <HomepageFooter githubUrl="${GITHUB_REPO}" baseUrl="${BASE_URL}" />
 `;
@@ -963,7 +987,7 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 - **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
 - **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
-- **Current Canonical Progress:** Completed through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units published across ${sections.length} sections)
+- **Current Canonical Progress:** Published through ${chapters[chapters.length - 1]?.unit_id || 'P1-01-05'} (${chapters.length} units across ${sections.length} sections)
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -1016,7 +1040,7 @@ ${u.learning_objectives.map((o) => `  * ${o}`).join('\n')}
     llmsFullContent += `URL: ${ch.canonicalUrl}\n`;
     llmsFullContent += `SUMMARY: ${ch.summary}\n`;
     llmsFullContent += `================================================================================\n\n`;
-    llmsFullContent += ch.body.trim() + '\n';
+    llmsFullContent += rewriteChapterLinks(ch.body.trim(), ch.relPath, chapters) + '\n';
   }
   fs.writeFileSync(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullContent, 'utf8');
 

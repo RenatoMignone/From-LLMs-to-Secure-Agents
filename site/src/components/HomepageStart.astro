@@ -1,25 +1,25 @@
 ---
 interface Props {
   firstChapterRoute: string;
-  completedThrough: string;
+  publishedThrough: string;
   totalUnits: number;
 }
 
-const { firstChapterRoute, completedThrough, totalUnits } = Astro.props;
+const { firstChapterRoute, publishedThrough, totalUnits } = Astro.props;
 ---
 
 <section class="start-section not-content">
   <div class="start-container">
     <div class="start-banner-card">
       <div class="start-content">
-        <span class="start-eyebrow">Interactive Curriculum</span>
+        <span class="start-eyebrow">Sequential Curriculum</span>
         <h2 class="start-heading">Ready to master agent architecture &amp; security?</h2>
         <p class="start-description">
-          Follow the sequential, dependency-ordered path starting from first principles of distributed systems, model control loops, and threat surfaces.
+          Follow the dependency-ordered path from software-system prerequisites into agent architecture and its building blocks. The security pass follows once the complete functional system is established.
         </p>
         <div class="start-progress-pill">
           <span class="progress-dot"></span>
-          <span><strong>{totalUnits} canonical units published</strong> · verified through {completedThrough}</span>
+          <span><strong>{totalUnits} canonical units published</strong> · available through {publishedThrough}</span>
         </div>
       </div>
       <div class="start-action-wrap">
