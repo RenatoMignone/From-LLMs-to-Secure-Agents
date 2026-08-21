@@ -41,7 +41,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'From LLMs to Secure Agents',
-      description: 'A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to secure them.',
+      description: 'An early-alpha, visual and source-grounded guide to agentic AI architecture and security.',
       favicon: '/favicon.png',
       logo: {
         src: './src/assets/logo.png',

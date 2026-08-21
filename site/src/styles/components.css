@@ -1,3 +1,36 @@
+/* Recovery actions for the generated 404 page */
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.not-found-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.not-found-actions a:first-child {
+  border-color: transparent;
+  background: var(--color-teal);
+  color: #fff;
+}
+
+.not-found-actions a:hover {
+  border-color: var(--color-teal);
+  transform: translateY(-1px);
+}
+
 /* Prerequisites & Objectives Grid - Soft Pastel Accent Card */
 .chapter-goals-grid {
   display: grid;

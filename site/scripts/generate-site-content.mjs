@@ -886,7 +886,7 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
         '@id': `${SITE_ORIGIN}${BASE_URL}/#website`,
         url: `${SITE_ORIGIN}${BASE_URL}/`,
         name: 'From LLMs to Secure Agents',
-        description: 'A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to secure them.',
+        description: 'An early-alpha, visual and source-grounded guide to agentic AI architecture and security.',
         inLanguage: 'en-US',
         author: {
           '@type': 'Person',
@@ -935,7 +935,7 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
 
   const homepageFm = {
     title: 'From LLMs to Secure Agents',
-    description: 'A visual, source-grounded engineering guide to the architecture, deployment, threat modeling, testing, and security of autonomous AI agents by Renato Mignone.',
+    description: 'An early-alpha, visual and source-grounded guide to agentic AI architecture and security by Renato Mignone.',
     template: 'splash',
     tableOfContents: false,
     prev: false,
@@ -1020,6 +1020,31 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 
   fs.writeFileSync(path.join(DOCS_DIR, 'index.mdx'), homepageContent, 'utf8');
 
+  const notFoundContent = `---
+title: Page not found
+description: The requested guide page does not exist or has moved.
+template: splash
+pagefind: false
+head:
+  - tag: meta
+    attrs:
+      name: robots
+      content: noindex, nofollow
+---
+
+<span id="_top"></span>
+
+# This page is not part of the published guide
+
+The address may be outdated, or the chapter may still be on the roadmap. Use the published learning path or search to find the closest topic.
+
+<div class="not-found-actions">
+  <a class="btn-hero-primary" href="${BASE_URL}/">Return to the guide</a>
+  <a class="btn-hero-secondary" href="${firstChapterRoute}">Start from chapter 1</a>
+</div>
+`;
+  fs.writeFileSync(path.join(DOCS_DIR, '404.md'), notFoundContent, 'utf8');
+
   // 8. Generate guide-index.json
   console.log('🤖 Generating machine-readable guide-index.json...');
   fs.writeFileSync(
@@ -1063,18 +1088,19 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
   console.log('📄 Generating 2026 llms.txt & llms-full.txt...');
   const llmsTxtContent = `# From LLMs to Secure Agents
 
-> A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.
+> An early-alpha, visual and source-grounded guide to agentic AI architecture and security.
 
 - **Author:** Renato Mignone (https://github.com/RenatoMignone)
 - **Site Origin:** ${SITE_ORIGIN}${BASE_URL}/
 - **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
 - **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
+- **Maturity:** Early alpha. The architecture pass is in progress; detailed security chapters remain on the roadmap.
 - **Current publication:** ${chapters.length} chapters across ${sections.length} sections. The latest chapter is [${latestChapter?.title || 'the opening chapter'}](${latestChapter?.canonicalUrl || `${SITE_ORIGIN}${firstChapterRoute}`}).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
-- **What is an AI Agent?** An agent is a software architecture where a foundation model autonomously directs a runtime control loop, choosing tools and actions dynamically in response to environment feedback until a termination goal or invariant is reached.
+- **What is an AI Agent?** In this guide, an AI agent is a software system in which a model helps select actions inside a runtime loop. The runtime supplies context, tools, state, policy checks, and termination rules.
 - **Workflows vs Agents:** Workflows execute predefined, hardcoded DAGs where code directs control flow. Agents use model outputs to decide dynamic control paths and step-by-step tool dispatches.
 - **The 5-Step Agent Loop:** (1) Context Construction, (2) Model Inference, (3) Tool / Action Dispatch, (4) Environment Execution, (5) State & Memory Update.
 - **Trust Boundaries:** The separation line between untrusted data (user input, web pages, tool outputs) and the privileged execution plane (tool credentials, system prompts, host environment).
@@ -1084,14 +1110,14 @@ import HomepageFooter from '../../components/HomepageFooter.astro';
 
 1. **Pass 1: Understand the Complete System**
    - **Prerequisites:** [Section overview](${SITE_ORIGIN}${BASE_URL}/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
-   - **Agent Foundations:** [Section overview](${SITE_ORIGIN}${BASE_URL}/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
+   - **Agent Foundations:** [Section overview](${SITE_ORIGIN}${BASE_URL}/foundations/) · Model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles, and termination conditions.
    - **Agent Architectures:** [Section overview](${SITE_ORIGIN}${BASE_URL}/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
    - **Building Blocks:** [Section overview](${SITE_ORIGIN}${BASE_URL}/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
    - **Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
    - **End-to-End Workflows (Roadmap):** Reference production architectures.
 
 2. **Pass 2: Secure the System (Roadmap)**
-   - **Threat Model:** Entry points, adversaries, and comprehensive agent attack taxonomy.
+   - **Threat Model:** Planned coverage of entry points, adversaries, assets, and agent attack paths.
    - **Security by Component:** Indirect prompt injection defenses, credential scoping, memory isolation, execution sandboxing.
    - **Secure Reference Architectures:** Zero-trust agent gateways and dual-model verification.
    - **Testing & Assurance:** Automated red teaming, prompt fuzzing, invariant testing.

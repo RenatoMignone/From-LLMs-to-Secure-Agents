@@ -81,7 +81,12 @@ function checkFileExists(relPath, desc) {
 // 1. Check core static outputs
 console.log('  Checking critical endpoints...');
 checkFileExists('index.html', 'Homepage HTML');
-checkFileExists('404.html', '404 page');
+if (checkFileExists('404.html', '404 page')) {
+  const notFoundHtml = fs.readFileSync(path.join(DIST_DIR, '404.html'), 'utf8');
+  if (!notFoundHtml.includes('This page is not part of the published guide')) {
+    errors.push('404 page does not contain the project-specific recovery message');
+  }
+}
 checkFileExists('robots.txt', 'robots.txt');
 checkFileExists('.nojekyll', '.nojekyll (GitHub Pages Jekyll bypass)');
 checkFileExists('sitemap-index.xml', 'sitemap-index.xml (sitemap index)');

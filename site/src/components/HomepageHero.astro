@@ -19,13 +19,17 @@ const imageSrcset = image.variants
 <section class="hero-section not-content">
   <div class="hero-container">
     <div class="hero-copy">
+      <p class="hero-status">
+        <span aria-hidden="true"></span>
+        Early alpha · Architecture pass in progress
+      </p>
       <h1 id="_top" class="hero-heading">
         Understand the complete agentic system first.<br />
         <span class="hero-accent-text">Then learn how to secure it.</span>
       </h1>
 
       <p class="hero-lead">
-        Learn how AI agents work as complete software systems, then use that understanding to secure their data, tools, identities, and runtime behavior.
+        Start with the published architecture chapters. The threat modeling and security path will follow as reviewed material, not as finished guidance presented too early.
       </p>
 
       <div class="hero-actions">
@@ -100,6 +104,31 @@ const imageSrcset = image.variants
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 1rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-ink-muted);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  .hero-status span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-peach);
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-peach) 18%, transparent);
   }
 
   .hero-heading {

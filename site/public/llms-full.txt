@@ -1,17 +1,18 @@
 # From LLMs to Secure Agents
 
-> A visual, source-grounded engineering guide to understanding complete agentic AI architectures and learning how to threat-model, sandbox, and secure them.
+> An early-alpha, visual and source-grounded guide to agentic AI architecture and security.
 
 - **Author:** Renato Mignone (https://github.com/RenatoMignone)
 - **Site Origin:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/
 - **Structured Index API:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/guide-index.json
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
+- **Maturity:** Early alpha. The architecture pass is in progress; detailed security chapters remain on the roadmap.
 - **Current publication:** 27 chapters across 4 sections. The latest chapter is [Decomposition and plan-execute](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-decomposition-and-plan-execute/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
-- **What is an AI Agent?** An agent is a software architecture where a foundation model autonomously directs a runtime control loop, choosing tools and actions dynamically in response to environment feedback until a termination goal or invariant is reached.
+- **What is an AI Agent?** In this guide, an AI agent is a software system in which a model helps select actions inside a runtime loop. The runtime supplies context, tools, state, policy checks, and termination rules.
 - **Workflows vs Agents:** Workflows execute predefined, hardcoded DAGs where code directs control flow. Agents use model outputs to decide dynamic control paths and step-by-step tool dispatches.
 - **The 5-Step Agent Loop:** (1) Context Construction, (2) Model Inference, (3) Tool / Action Dispatch, (4) Environment Execution, (5) State & Memory Update.
 - **Trust Boundaries:** The separation line between untrusted data (user input, web pages, tool outputs) and the privileged execution plane (tool credentials, system prompts, host environment).
@@ -21,14 +22,14 @@
 
 1. **Pass 1: Understand the Complete System**
    - **Prerequisites:** [Section overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/prerequisites/) · Core distributed systems and software boundaries (Data vs Control Flow, Trust Boundaries, Requests/Events/State, Identity & Least Privilege).
-   - **Agent Foundations:** [Section overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/) · Autonomous model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles and termination guarantees.
+   - **Agent Foundations:** [Section overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/foundations/) · Model-directed control loops, the 5-step agent loop, workflows vs agents, goals and autonomy, run lifecycles, and termination conditions.
    - **Agent Architectures:** [Section overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/architectures/) · Single loops, plan-and-execute, reflection, state machines, supervisor and multi-agent topologies.
    - **Building Blocks:** [Section overview](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/) · Context construction, short-term and persistent memory, agentic RAG, tools and function calling, execution sandboxes, observability.
    - **Frameworks & Protocols (Roadmap):** Model Context Protocol (MCP), agent-to-agent protocols, human-agent interaction.
    - **End-to-End Workflows (Roadmap):** Reference production architectures.
 
 2. **Pass 2: Secure the System (Roadmap)**
-   - **Threat Model:** Entry points, adversaries, and comprehensive agent attack taxonomy.
+   - **Threat Model:** Planned coverage of entry points, adversaries, assets, and agent attack paths.
    - **Security by Component:** Indirect prompt injection defenses, credential scoping, memory isolation, execution sandboxing.
    - **Secure Reference Architectures:** Zero-trust agent gateways and dual-model verification.
    - **Testing & Assurance:** Automated red teaming, prompt fuzzing, invariant testing.
