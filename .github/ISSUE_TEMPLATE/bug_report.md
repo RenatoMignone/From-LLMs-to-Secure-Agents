@@ -27,4 +27,4 @@ If applicable, add screenshots, terminal output, or stack traces to help explain
 ## Environment
 - OS: [e.g. Ubuntu 24.04, macOS Sonoma, Windows 11]
 - Python Version: [e.g. 3.12.3]
-- Node.js Version: [e.g. 20.12.0]
+- Node.js Version: [e.g. 22.23.2]

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this guide, cite the repository or a versioned release."
+title: "From LLMs to Secure Agents"
+type: software
+authors:
+  - family-names: Mignone
+    given-names: Renato
+repository-code: "https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents"
+url: "https://renatomignone.github.io/From-LLMs-to-Secure-Agents/"
+license: MIT
+keywords:
+  - agentic AI
+  - AI agents
+  - AI security
+  - secure architecture
+  - technical education

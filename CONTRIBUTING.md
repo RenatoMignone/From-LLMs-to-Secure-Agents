@@ -1,92 +1,88 @@
 # Contributing to From LLMs to Secure Agents
 
-Thank you for your interest in contributing to **From LLMs to Secure Agents**. We welcome improvements to our explanations, corrections to technical inaccuracies, new grounded source records, and runnable code examples.
+Thank you for helping improve the guide. Useful contributions include corrections, clearer explanations, source updates, accessibility fixes, site improvements, and small runnable examples.
 
-Please read this document before opening an issue or submitting a pull request.
+For a substantial change, open an issue or start a discussion before investing significant time. Small corrections can go directly to a pull request. Please also read the [Code of Conduct](CODE_OF_CONDUCT.md), [governance model](GOVERNANCE.md), [editorial review guide](docs/editorial-review.md), and [AI assistance policy](docs/ai-assistance.md).
 
----
+## Project invariants
 
-## Core Engineering Invariants
+1. Markdown under `knowledge/` is the canonical chapter source. Do not edit generated site content.
+2. Important technical and security claims must resolve to records under `sources/`. Follow `docs/evidence-policy.md`.
+3. Do not use em dash characters. Prefer shorter sentences, commas, colons, or parentheses.
+4. Visuals must follow `docs/visuals-policy.md`. Store their prompts under the matching `assets/images/<chapter-path>/source/` directory. Do not add text-based diagrams to chapters.
+5. Runnable examples belong under the matching `examples/<chapter-path>/` directory. Each implemented example needs a short README and automated tests.
+6. Preserve the dependency order defined by the roadmap. Architecture is taught before detailed security.
 
-To keep the guide rigorous, consistent, and maintainable, all contributions must respect the following invariants:
-
-1. **Canonical Markdown**: The source of truth for all handbook chapters lives under `knowledge/`. Do not edit generated markdown or HTML in `site/` by hand. The website is automatically compiled from `knowledge/`.
-2. **Strict Source Grounding**: Every technical claim, protocol detail, and security assertion must cite an official source record in `sources/<chapter-path>/<source-id>.yml`. Read `docs/evidence-policy.md`.
-3. **No Em Dashes**: Do not use em dash characters (unicode U+2014) in prose. Use colons, semicolons, parentheses, or clear sentence structures instead.
-4. **Visual Style**: Illustrations must follow the project cartoon visual policy (`docs/visuals-policy.md`). Visual prompts must be archived in `assets/images/<chapter-path>/source/` alongside the generated artwork. Never use ASCII or text-based diagrams in markdown.
-5. **Runnable Examples**: Code samples belong in `examples/<chapter-path>/` and must include automated test coverage executed via `pytest`.
-
----
-
-## Development Setup
+## Development setup
 
 ### Prerequisites
 
-- **Python 3.11+** with virtual environment support
-- **Node.js 20+** and **npm**
+- Python 3.11 or later
+- Node.js 22.12 or later, with npm
+- Git
 
-### Quick Start
+The repository includes `.nvmrc` for Node version managers.
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents.git
 cd From-LLMs-to-Secure-Agents
 
-# 2. Set up Python environment
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements-dev.txt
+python -m pip install --requirement requirements-dev.txt
 
-# 3. Install site dependencies
-npm --prefix site install
-
-# 4. Run the validation test suite
-pytest
-
-# 5. Build and validate the documentation site
-npm --prefix site run build
-npm --prefix site run check
+npm --prefix site ci
 ```
 
----
+Run the same quality gates used in continuous integration:
 
-## Contribution Workflow
+```bash
+python scripts/main.py validate
+python -m pytest -q
+npm --prefix site run quality
+```
 
-### 1. Proposing Changes
+## Propose a change
 
-- For major additions, architectural changes, or new chapters, please open an **Issue** or **Discussion** first to align on scope.
-- For typo fixes, broken links, or small clarity improvements, feel free to open a Pull Request directly.
+- Use a bug report for broken behavior, links, layout, or tooling.
+- Use content feedback for a factual issue, unclear explanation, or accessibility concern.
+- Use a source proposal for authoritative material that supports or challenges a claim.
+- Use a discussion for questions, broad ideas, or changes to the information architecture.
+- Report sensitive defects privately according to `SECURITY.md`.
 
-### 2. Adding or Modifying Sources
+Issues should describe the reader or maintainer problem, the relevant path or URL, and the expected result. A proposed solution is welcome but not required.
 
-When adding a source citation:
-1. Create a YAML record under `sources/<chapter-path>/<source-id>.yml`.
-2. Populate all required fields according to `docs/evidence-policy.md`:
-   - `id`, `title`, `url`, `publisher`, `type`, `authors`, `publication_date`, `access_date`, `summary`, and `key_points`.
-3. Reference the source in the chapter front matter under `sources:`.
+## Add or update a source
 
-### 3. Writing Code Examples
+Do not write source YAML by hand. Open the canonical material, identify the exact claim it supports and its limitations, then use the source command:
 
-When providing a runnable example:
-1. Place code under `examples/<chapter-path>/`.
-2. Include a `README.md` explaining how to execute the harness.
-3. Add a test in `examples/<chapter-path>/tests/test_*.py` that passes under `pytest`.
+```bash
+python scripts/main.py source --help
+```
 
-### 4. Submitting a Pull Request
+The command records fields such as `canonical_url`, `authors_or_organization`, `source_type`, `date`, `accessed`, `claims_supported`, and `limitations` in the current schema. Add the resulting source identifier to the chapter front matter and cite it near the supported claim.
 
-- Create a feature branch from `main`: `git checkout -b fix/clearer-agent-loop`.
-- Follow clear, conventional commit messages: `docs: clarify tool execution step` or `feat: add boundary test for memory store`.
-- Ensure all tests pass:
-  ```bash
-  pytest
-  npm --prefix site run build
-  npm --prefix site run check
-  npm --prefix site test
-  ```
-- Fill out the PR template completely with a summary of changes and validation results.
+## Add or update an example
 
----
+An implemented example should include:
 
-## Community Guidelines
+- a focused module or harness that runs without external credentials;
+- a `README.md` with purpose, requirements, and execution instructions;
+- tests under `tests/test_*.py` that are discovered by the repository-wide pytest run;
+- safe defaults and explicit boundaries for side effects.
 
-This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold this code and treat fellow contributors with respect and professionalism.
+Directories containing only `.gitkeep` are roadmap mirrors, not incomplete implementations.
+
+## Use AI assistance responsibly
+
+AI-assisted contributions are welcome, but the contributor remains responsible for every submitted change. Review generated prose and code, open cited sources, run the quality gates, and disclose material AI assistance in the pull request. See `docs/ai-assistance.md` for the complete policy.
+
+## Submit a pull request
+
+1. Branch from current `main`.
+2. Keep the change focused and use clear conventional commits, such as `docs: clarify tool execution boundaries`.
+3. Add or update tests when behavior changes.
+4. Run all quality gates.
+5. Complete the pull request template and call out limitations or follow-up work.
+
+Maintainers may ask for revisions when a change is out of sequence, weakly sourced, inaccessible, too broad, or difficult to maintain. A closed proposal can be reconsidered when its prerequisites or evidence change.

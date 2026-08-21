@@ -16,6 +16,7 @@ Please provide a clear and concise summary of the changes introduced in this pul
 - [ ] 🌐 Documentation site feature or style tweak (under `site/`)
 - [ ] ⚙️ Tooling or publishing pipeline fix (under `scripts/`)
 - [ ] 🔒 Security fix or vulnerability mitigation
+- [ ] 🧭 Governance, maintenance, or contributor-experience update
 
 ---
 
@@ -30,3 +31,9 @@ Before requesting a review, please confirm the following:
 - [ ] Python test suite passes (`pytest`).
 - [ ] Site build and validation checks pass (`npm --prefix site run build && npm --prefix site run check`).
 - [ ] Node tests pass (`npm --prefix site test`).
+
+## Review Notes
+
+- **Known limitations or follow-up work:**
+- **Reader-visible changes:**
+- **Material AI assistance used:** none, or describe the research, drafting, code, tests, or visuals involved.

@@ -35,8 +35,12 @@ To help us triage and resolve the issue quickly, please provide:
 - Your assessment of potential impact or blast radius.
 - Any suggested remediations or mitigations.
 
-## Response Process and Timeline
+## Response Targets
 
-- **Initial Acknowledgement**: Within 48 hours of receipt.
-- **Triage & Assessment**: Within 5 business days, confirming vulnerability validity and severity.
-- **Fix & Disclosure**: We will collaborate on a fix and publish a coordinated disclosure notice with appropriate credit to the reporter.
+This is a maintainer-run project, so these are targets rather than guaranteed service levels:
+
+- **Initial acknowledgement**: within 3 business days.
+- **Initial triage**: within 7 business days, when enough information is available.
+- **Fix and disclosure**: timing depends on severity, affected users, and coordination needs. The maintainer will aim to keep the reporter informed and credit them unless they prefer anonymity.
+
+Do not include secrets, personal data, or unnecessary production data in a report. If a report concerns third-party software, the maintainer may coordinate with its upstream security contact before public disclosure.

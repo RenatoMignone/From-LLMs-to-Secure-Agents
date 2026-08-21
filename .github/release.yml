@@ -1,0 +1,20 @@
+changelog:
+  exclude:
+    labels:
+      - skip-changelog
+  categories:
+    - title: Reader experience
+      labels:
+        - site
+        - accessibility
+    - title: Guide and examples
+      labels:
+        - content
+        - examples
+    - title: Maintenance and tooling
+      labels:
+        - tooling
+        - dependencies
+    - title: Other changes
+      labels:
+        - "*"

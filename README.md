@@ -4,7 +4,7 @@
 
 <h1>From LLMs to Secure Agents</h1>
 
-<p><strong>A deep, visual, source-grounded guide to understanding complete agentic AI systems and learning how to secure them.</strong></p>
+<p><strong>A growing visual and source-grounded guide to understanding agentic AI systems and learning how to secure them.</strong></p>
 
 <p><a href="https://renatomignone.github.io/From-LLMs-to-Secure-Agents/"><img alt="Documentation website" src="https://img.shields.io/badge/docs-live_site-14a38b?style=flat-square"></a> <a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="ROADMAP.md"><img alt="209 ordered guide units" src="https://img.shields.io/badge/guide_units-209-14a38b?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
 
@@ -23,6 +23,12 @@ The guide assumes **working familiarity with large language models and prompts**
 The reader follows a concise **main path** through the complete system. Specialized mechanisms, framework details, emerging protocols, regulation, and research live in clearly labeled **deep-dive branches** that can remain collapsed until needed.
 
 The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels.
+
+## Current status
+
+The project is in **early alpha**. The first, architecture-focused learning pass is in progress. The detailed threat modeling and security chapters are planned but are not yet presented as complete production guidance.
+
+Published chapters, examples, and the website are usable now, but their depth and editorial maturity vary. Check [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the machine-maintained checkpoint and [`ROADMAP.md`](ROADMAP.md) for planned scope. See [`docs/ai-assistance.md`](docs/ai-assistance.md) for how AI-assisted work is reviewed and where its limits remain.
 
 ## Two learning passes
 
@@ -52,20 +58,20 @@ knowledge/
 
 Every guide directory has a local `AGENTS.md` and `chapter-plan.md`. Together they define scope, prerequisites, teaching order, sources, visuals, examples, and the boundary between the two passes.
 
-## Agent-first, token-optimized architecture
+## Maintainer workflow
 
 ![Agent-First, Token-Optimized Autonomous Workflow](assets/images/repo-images/autonomous-workflow-architecture.png)
 
-This repository is engineered from the ground up for **agentic authoring with extreme token efficiency**:
+The repository uses a scoped workflow so a maintainer or coding agent can work on one defined unit without loading or changing unrelated chapters:
 
-1. **Scoped Unit Resolution**: The agent resolves exactly one unit at a time via `python3 scripts/main.py state resolve`. The full roadmap is never loaded into working memory during authoring runs, protecting the context window.
-2. **Deterministic Web Ingestion**: Web specifications, RFCs, and primary documentation are parsed into clean Markdown using `markitdown` (`python3 scripts/main.py fetch <url> -o /tmp/source.md`). This eliminates up to 85% of raw token bloat (HTML tags, stylesheets, tracking scripts, and cookie banners) before LLM ingestion.
-3. **High-Grade LLM Authoring**: Language models focus purely on what they do best: authoring engaging, crystal-clear technical prose, intuitive analogies, and approachable visual prompts in simple English.
-4. **Automated Verification Gates**: Mechanical validators enforce schema correctness, local visual manifests, bidirectional citations, and instruction word budgets, guaranteeing deterministic quality without model drift.
+1. **Resolve one unit**: `python3 scripts/main.py state resolve` returns its scope, local instructions, and current state.
+2. **Prepare sources**: `python3 scripts/main.py fetch <url> -o /tmp/source.md` converts supported web material into cleaner Markdown for review. The maintainer still opens and evaluates the canonical source.
+3. **Write and build assets**: Chapters use simple English, explicit prerequisites, local illustrations, and small examples where they improve understanding.
+4. **Run consistency checks**: Validators check schemas, citations, visual manifests, navigation, tests, and the generated site. These checks catch mechanical defects but do not prove factual accuracy or security.
 
 ## Reproducible autonomous workflow
 
-A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, design and generate multiple visual cartoon diagrams across key concepts, validate both the repo and the static site, and stop at review. A separate continuation reviews and completes that unit before the guide advances.
+A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, prepare visual diagrams, validate the repository and static site, and stop for review. A separate review pass checks and completes the unit before the guide advances.
 
 ```text
 Read AGENTS.md and continue the guide from the last checkpoint. Proactively design and generate multiple visual cartoon illustrations per chapter (covering architecture flows, trust boundaries, state transitions, and attack paths) wherever visuals improve reader understanding.
@@ -77,7 +83,7 @@ Each completed unit includes:
 - multiple canonical 2D cartoon visual illustrations (strictly no text-based ASCII schemas);
 - smooth reading progression with next-unit navigation links;
 - small runnable examples when the plan requires them;
-- deterministic repository validation and static site build verification (`pytest` and `npm --prefix site run build`);
+- repository validation, automated tests, and static site build verification;
 - updated project state and a concise changelog entry.
 
 ## Modular CLI toolkit
@@ -130,6 +136,15 @@ See [`docs/site-policy.md`](docs/site-policy.md) and [`site/AGENTS.md`](site/AGE
 | `examples/` | Runnable examples and security labs mirroring the chapter hierarchy |
 | `site/` | Static documentation website (Astro & Starlight) |
 
+## Project stewardship
+
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) explains setup, quality gates, sources, and contribution expectations.
+- [`GOVERNANCE.md`](GOVERNANCE.md) explains how decisions and reviews work.
+- [`SUPPORT.md`](SUPPORT.md) routes questions, defects, and sensitive reports.
+- [`CITATION.cff`](CITATION.cff) provides citation metadata for the repository.
+- [`docs/editorial-review.md`](docs/editorial-review.md) separates human editorial judgment from automated checks.
+- [`docs/release-process.md`](docs/release-process.md) defines when a citable alpha release is ready.
+
 ## Author & Maintainer
 
 **Renato Mignone** ([GitHub](https://github.com/RenatoMignone))
@@ -137,7 +152,7 @@ AI Systems & Security Researcher.
 
 ## Contributing
 
-Contributions are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) before submitting issues or pull requests.
+Contributions are welcome. Please read [`CONTRIBUTING.md`](CONTRIBUTING.md), [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md), and [`docs/ai-assistance.md`](docs/ai-assistance.md) before submitting issues or pull requests.
 
 ## Security
 
