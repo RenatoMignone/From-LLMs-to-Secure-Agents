@@ -47,9 +47,13 @@ export default defineConfig({
         src: './src/assets/logo.png',
         alt: 'From LLMs to Secure Agents Robot Mascot',
       },
-      social: {
-        github: 'https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents',
+        },
+      ],
       customCss: [
         './src/styles/theme.css',
       ],
