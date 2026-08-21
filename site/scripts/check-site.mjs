@@ -13,6 +13,61 @@ const SITE_ORIGIN = 'https://renatomignone.github.io';
 console.log('🔍 Running site validation checks...');
 
 let errors = [];
+const htmlIdCache = new Map();
+
+function stripQueryAndFragment(value) {
+  return value.split(/[?#]/, 1)[0];
+}
+
+function htmlFileForSitePath(sitePath) {
+  let cleanPath = stripQueryAndFragment(sitePath);
+  if (cleanPath.startsWith(BASE_URL)) cleanPath = cleanPath.slice(BASE_URL.length);
+  cleanPath = cleanPath.replace(/^\/+/, '');
+  try {
+    cleanPath = decodeURIComponent(cleanPath);
+  } catch {
+    return null;
+  }
+  if (!cleanPath || cleanPath.endsWith('/')) cleanPath += 'index.html';
+  return path.join(DIST_DIR, cleanPath);
+}
+
+function idsForHtmlFile(htmlPath) {
+  if (htmlIdCache.has(htmlPath)) return htmlIdCache.get(htmlPath);
+  const content = fs.readFileSync(htmlPath, 'utf8');
+  const ids = new Set();
+  for (const match of content.matchAll(/\s(?:id|name)=["']([^"']+)["']/g)) {
+    ids.add(match[1]);
+  }
+  htmlIdCache.set(htmlPath, ids);
+  return ids;
+}
+
+function resolveInternalHref(href, sourceHtmlPath) {
+  const normalizedHref = href.replaceAll('&amp;', '&');
+  if (/^(?:mailto|tel|javascript|data):/i.test(normalizedHref)) return null;
+
+  let pathname;
+  let fragment = '';
+  if (/^https?:\/\//i.test(normalizedHref)) {
+    const url = new URL(normalizedHref);
+    if (url.origin !== SITE_ORIGIN || !url.pathname.startsWith(BASE_URL)) return null;
+    pathname = url.pathname;
+    fragment = url.hash.slice(1);
+  } else if (normalizedHref.startsWith('/')) {
+    pathname = normalizedHref;
+    fragment = normalizedHref.split('#')[1] || '';
+  } else {
+    const sourceRoute = `/${path.relative(DIST_DIR, sourceHtmlPath).split(path.sep).join('/')}`
+      .replace(/index\.html$/, '');
+    const url = new URL(normalizedHref, `${SITE_ORIGIN}${BASE_URL}${sourceRoute}`);
+    pathname = url.pathname;
+    fragment = url.hash.slice(1);
+  }
+
+  if (!pathname.startsWith(BASE_URL)) return null;
+  return { targetPath: htmlFileForSitePath(pathname), fragment };
+}
 
 function checkFileExists(relPath, desc) {
   const fullPath = path.join(DIST_DIR, relPath);
@@ -35,6 +90,19 @@ checkFileExists('llms.txt', 'llms.txt');
 checkFileExists('llms-full.txt', 'llms-full.txt');
 checkFileExists('guide-index.json', 'guide-index.json');
 checkFileExists('pagefind/pagefind.js', 'Pagefind search index');
+
+if (fs.existsSync(path.join(DIST_DIR, 'sitemap-0.xml'))) {
+  const sitemap = fs.readFileSync(path.join(DIST_DIR, 'sitemap-0.xml'), 'utf8');
+  const urls = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)];
+  if (urls.length === 0) {
+    errors.push('sitemap-0.xml does not contain any URLs');
+  }
+  for (const [, entry] of urls) {
+    if (!entry.includes('<lastmod>')) {
+      errors.push(`Sitemap URL is missing lastmod: ${entry.match(/<loc>(.*?)<\/loc>/)?.[1] || 'unknown URL'}`);
+    }
+  }
+}
 
 // Check published Section Hub endpoints
 console.log('  Checking section hub endpoints...');
@@ -108,7 +176,7 @@ if (fs.existsSync(path.join(DIST_DIR, 'guide-index.json'))) {
   }
 }
 
-// 5. Scan all HTML files for broken links and images
+// 5. Scan all HTML files for broken links, anchors, and images
 console.log('  Scanning HTML files for link & image validity...');
 function scanHtml(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -120,6 +188,36 @@ function scanHtml(dir) {
       const content = fs.readFileSync(fullPath, 'utf8');
       const relFile = path.relative(DIST_DIR, fullPath);
 
+      // Check navigational links and same-page fragments.
+      const anchorMatches = content.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi);
+      for (const match of anchorMatches) {
+        const href = match[1];
+        let resolved;
+        try {
+          resolved = resolveInternalHref(href, fullPath);
+        } catch (err) {
+          errors.push(`Invalid link in ${relFile}: ${href} (${err.message})`);
+          continue;
+        }
+        if (!resolved) continue;
+        const { targetPath, fragment } = resolved;
+        if (!targetPath || !fs.existsSync(targetPath)) {
+          errors.push(`Broken link in ${relFile}: ${href}`);
+          continue;
+        }
+        if (fragment) {
+          let decodedFragment = fragment;
+          try {
+            decodedFragment = decodeURIComponent(fragment);
+          } catch {
+            // Leave the original fragment for a useful validation error.
+          }
+          if (!idsForHtmlFile(targetPath).has(decodedFragment)) {
+            errors.push(`Broken anchor in ${relFile}: ${href}`);
+          }
+        }
+      }
+
       // Check image references
       const imgMatches = content.matchAll(/<img[^>]+src=["']([^"']+)["']/g);
       for (const m of imgMatches) {
@@ -128,7 +226,7 @@ function scanHtml(dir) {
           continue;
         }
         // Local asset
-        let cleanSrc = src;
+        let cleanSrc = stripQueryAndFragment(src);
         if (cleanSrc.startsWith(BASE_URL)) {
           cleanSrc = cleanSrc.substring(BASE_URL.length);
         }
@@ -147,7 +245,7 @@ function scanHtml(dir) {
         const fullTag = m[0];
         const href = m[1];
         if (fullTag.includes('rel="stylesheet"')) {
-          let cleanHref = href;
+          let cleanHref = stripQueryAndFragment(href);
           if (cleanHref.startsWith(BASE_URL)) {
             cleanHref = cleanHref.substring(BASE_URL.length);
           }
@@ -165,6 +263,33 @@ function scanHtml(dir) {
 }
 
 scanHtml(DIST_DIR);
+
+// 6. Markdown alternates must be portable and must not expose repository-relative links.
+console.log('  Scanning Markdown alternates for unresolved local links...');
+function scanMarkdown(dir) {
+  if (!fs.existsSync(dir)) return;
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      scanMarkdown(fullPath);
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      const content = fs.readFileSync(fullPath, 'utf8');
+      for (const match of content.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
+        const href = match[1].trim();
+        if (
+          !href.startsWith('#') &&
+          !href.startsWith('/') &&
+          !/^[a-z][a-z\d+.-]*:/i.test(href)
+        ) {
+          errors.push(`Unresolved local link in ${path.relative(DIST_DIR, fullPath)}: ${href}`);
+        }
+      }
+    }
+  }
+}
+
+scanMarkdown(path.join(DIST_DIR, 'markdown'));
 
 // Report results
 if (errors.length > 0) {
