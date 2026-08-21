@@ -257,7 +257,7 @@ html:not([data-has-sidebar]) main {
 .sl-markdown-content > p,
 .sl-markdown-content > ul,
 .sl-markdown-content > ol {
-  max-width: 100%;
+  max-width: 72ch;
 }
 
 /* Table of Contents (Right Sidebar) */

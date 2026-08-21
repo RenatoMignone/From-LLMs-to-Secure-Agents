@@ -11,10 +11,10 @@
       </div>
       <div class="narrative-content">
         <p class="lead-text">
-          Language models are no longer just text in, text out. We are embedding them into <strong>autonomous agentic systems</strong>: programs where models direct dynamic execution loops, plan multi-step strategies, read persistent memories, and dispatch tools that read databases, execute code, and send API requests.
+          A language model can do more than produce text. In an <strong>agentic system</strong>, the model helps choose the next action in a software loop. That loop may plan work, use stored context, query databases, run code, or call external services.
         </p>
         <p>
-          This shift completely breaks traditional software security assumptions. In a standard application, control flow is hardcoded in deterministic code and separated from user data. In an agentic system, <strong>untrusted data can hijack model control flow</strong> and turn the agent's own authorized tools against the host environment.
+          This changes the security model. Traditional applications try to keep data separate from program instructions. Language models process both as text, so untrusted content can influence decisions. Safe systems must limit what the agent can access and verify important actions outside the model.
         </p>
       </div>
     </div>
@@ -23,9 +23,9 @@
     <div class="realities-grid">
       <div class="reality-card">
         <div class="reality-num">01</div>
-        <h3 class="reality-heading">Prompt injection is an architectural flaw, not a typo</h3>
+        <h3 class="reality-heading">Prompt injection needs architectural controls</h3>
         <p class="reality-text">
-          You cannot fix prompt injection with prompt engineering or regex filters. Because language models process instructions and retrieved data in the exact same token stream, untrusted data can redirect the agent's intent. Security must be enforced at runtime boundaries, credential scopes, and tool execution gates.
+          Prompt wording and text filters can reduce some attacks, but they are not a complete security boundary. Stronger protection comes from scoped credentials, tool permissions, runtime isolation, validation, and approval gates for sensitive actions.
         </p>
       </div>
 
@@ -33,15 +33,15 @@
         <div class="reality-num">02</div>
         <h3 class="reality-heading">You cannot secure a system you cannot explain</h3>
         <p class="reality-text">
-          Memorizing generic vulnerability lists or OWASP Top 10 badges fails when engineers don't understand how the 5-step agent loop operates, how context windows get packed, how vector stores retrieve memories, or how tool schemas are dispatched. We construct the complete distributed architecture first before attacking it.
+          Vulnerability lists are hard to apply without a clear system model. This guide first explains the agent loop, context construction, memory retrieval, tool calls, and runtime state. Later chapters map threats and controls back to those components.
         </p>
       </div>
 
       <div class="reality-card">
         <div class="reality-num">03</div>
-        <h3 class="reality-heading">Zero hand-waving: grounded in verifiable evidence</h3>
+        <h3 class="reality-heading">Claims should be easy to verify</h3>
         <p class="reality-text">
-          Technical claims and diagrams are tied to traceable source records, prioritizing official standards, primary documentation, and peer-reviewed research. Canonical sources are linked directly, with small runnable examples where code improves the explanation.
+          Technical claims and diagrams link to traceable source records. The guide prioritizes standards, primary documentation, and peer-reviewed research, with small runnable examples when code makes the idea clearer.
         </p>
       </div>
     </div>
@@ -50,7 +50,7 @@
     <div class="method-banner">
       <div class="method-left">
         <span class="method-label">The Engineering Method</span>
-        <h3 class="method-title">Architecture First · Defense in Depth Second</h3>
+        <h3 class="method-title">Architecture first, defense in depth second</h3>
         <p class="method-desc">
           We teach in strict dependency order: from distributed systems boundaries and autonomous control loops to tool privilege isolation, sandboxed execution runtimes, and automated red team evaluation.
         </p>
@@ -59,22 +59,22 @@
         <div class="m-feat">
           <span class="m-dot teal"></span>
           <div>
-            <strong>Cartoon System Schemas</strong>
-            <span>Intuitive visual mental models that clarify where data flows and where trust boundaries lie.</span>
+            <strong>Visual system explanations</strong>
+            <span>Approachable diagrams show data flow, control flow, and trust boundaries.</span>
           </div>
         </div>
         <div class="m-feat">
           <span class="m-dot amber"></span>
           <div>
-            <strong>Runnable Code Examples</strong>
-            <span>Focused Python and TypeScript examples for concepts that benefit from executable demonstrations.</span>
+            <strong>Runnable code examples</strong>
+            <span>Focused Python and TypeScript examples demonstrate behavior that is easier to understand by running it.</span>
           </div>
         </div>
         <div class="m-feat">
           <span class="m-dot lavender"></span>
           <div>
-            <strong>Machine-Readable AEO &amp; LLMs.txt</strong>
-            <span>Structured endpoints so AI search engines and developer agents can cite and retrieve every chapter.</span>
+            <strong>Machine-readable access</strong>
+            <span>Structured indexes and plain-text editions help search systems and developer tools retrieve and cite each chapter.</span>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
 
   .idea-container {
     width: 100%;
-    max-width: 100%;
+    max-width: 88rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -191,7 +191,7 @@
   }
 
   :root[data-theme='dark'] .reality-card:hover {
-    border-color: var(--color-mauve);
+    border-color: var(--color-lavender);
     box-shadow: 0 12px 32px -4px rgba(203, 166, 247, 0.2);
   }
 
@@ -206,7 +206,7 @@
   }
 
   :root[data-theme='dark'] .reality-num {
-    color: var(--color-mauve);
+    color: var(--color-lavender);
   }
 
   .reality-heading {
@@ -256,7 +256,7 @@
   }
 
   :root[data-theme='dark'] .method-label {
-    color: var(--color-mauve);
+    color: var(--color-lavender);
   }
 
   .method-title {

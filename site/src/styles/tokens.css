@@ -17,8 +17,8 @@
   --color-ink-light: #899AA8;       /* Subtle slate gray */
 
   /* Pure Pastel Accents (Derived directly from cartoon guide illustrations) */
-  --color-teal: #42948E;            /* Soft pastel editorial teal */
-  --color-teal-hover: #337671;
+  --color-teal: #2F756F;            /* Accessible editorial teal */
+  --color-teal-hover: #245D58;
   --color-teal-subtle: #E5F3F1;
   --color-teal-border: #BCE2DE;
 
@@ -81,7 +81,7 @@
   /* Layout Widths */
   --sl-sidebar-width: 19rem;
   --sl-toc-width: 15rem;
-  --sl-content-width: 64rem;
+  --sl-content-width: 58rem;
   --sl-nav-height: 4.25rem;
   --sl-line-height: 1.75;
   --sl-menu-button-size: 2.25rem;

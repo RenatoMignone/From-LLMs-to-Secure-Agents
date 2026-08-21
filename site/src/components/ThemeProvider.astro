@@ -12,11 +12,13 @@ import { Icon } from '@astrojs/starlight/components';
 		document.documentElement.dataset.theme = theme === 'dark' ? 'dark' : 'light';
 		return {
 			updatePickers(t = storedTheme || 'light') {
-				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
-					const isDark = t === 'dark';
-					const btn = picker.querySelector('.theme-toggle-switch');
-					if (btn) {
-						btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+					document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+						const isDark = t === 'dark';
+						const btn = picker.querySelector('.theme-toggle-switch');
+						if (btn) {
+							btn.setAttribute('aria-checked', isDark ? 'true' : 'false');
+							btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+							btn.setAttribute('title', isDark ? 'Switch to light theme' : 'Switch to dark theme');
 					}
 					const select = picker.querySelector('select');
 					if (select) select.value = t;

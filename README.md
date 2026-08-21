@@ -101,6 +101,8 @@ python3 scripts/main.py validate
 
 🔗 **[renatomignone.github.io/From-LLMs-to-Secure-Agents](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/)**
 
+The reader-facing site uses chapter titles and section-based identifiers rather than internal workflow IDs. It also provides responsive WebP illustrations, a published-learning-path overview, and local Continue Reading progress without an account or tracking service.
+
 To develop or build the site locally:
 
 ```bash
@@ -144,4 +146,3 @@ Please report vulnerabilities confidentially according to [`SECURITY.md`](SECURI
 ## License
 
 This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
-
