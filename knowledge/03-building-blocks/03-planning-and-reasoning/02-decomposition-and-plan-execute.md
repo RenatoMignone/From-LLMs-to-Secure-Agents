@@ -2,26 +2,31 @@
 ---
 title: Decomposition and plan-execute
 unit_id: P1-03-03-02
-summary: Explains multi-step goal decomposition, the two-tier Planner-Executor pattern, subtask lifecycle management, and dynamic replanning protocols.
+summary: Explains multi-step goal decomposition, the two-tier Planner-Executor pattern,
+  subtask lifecycle management, and dynamic replanning protocols.
 prerequisites:
 - Read [Reactive and reason-act patterns](01-reactive-and-reason-act-patterns.md).
 learning_objectives:
-- Decompose complex high-level goals into directed subtask graphs with explicit dependency ordering.
-- Decouple strategic planning (Planner Model) from tool execution (Executor Model) in two-tier agent architectures.
+- Decompose complex high-level goals into directed subtask graphs with explicit dependency
+  ordering.
+- Decouple strategic planning (Planner Model) from tool execution (Executor Model)
+  in two-tier agent architectures.
 - Track subtask lifecycles across PENDING, IN_PROGRESS, COMPLETED, and FAILED states.
-- Implement replanning protocols that trigger plan adaptation when intermediate tool executions fail.
+- Implement replanning protocols that trigger plan adaptation when intermediate tool
+  executions fail.
 source_records:
 - p1-03-03-02-wang-plan-and-solve-2023
 - p1-03-03-02-microsoft-taskweaver-2024
 - p1-03-03-02-langchain-plan-execute-2024
 visual_assets:
 - assets/images/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/01-plan-and-execute-architecture.png
+- assets/images/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/02-subtask-state-transitions.png
 example_paths:
 - examples/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/plan_executor.py
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-19'
+last_reviewed: '2026-08-21'
 ---
 -->
 
@@ -29,18 +34,18 @@ last_reviewed: '2026-08-19'
 
 ## Why this matters
 
-When an autonomous agent receives an ambiguous or multifaceted objective (such as "Audit customer auth-service, patch any open vulnerabilities, and write a release note"), forcing a single model to interleave reasoning and execution in a greedy turn-by-turn loop often leads to focus drift. Step-by-step loops like ReAct can get distracted by intermediate tool outputs, forget the broader mission, or skip vital verification phases.
+Suppose an agent receives this goal: "Audit the customer authentication service, patch any open vulnerabilities, and write a release note." The agent must keep several dependent tasks on track. If one model chooses and performs each action turn by turn, intermediate tool results can pull it away from the larger goal. It may also skip an important check.
 
-The **Plan-and-Execute** pattern addresses this problem by separating strategic goal decomposition from tactical task execution (Wang et al., 2023; Qiao et al., 2024; LangChain, 2024). A high-capability Planner model breaks down the global goal into a structured sequence of discrete subtasks. A dedicated Executor worker then executes each subtask sequentially, maintaining a clean task board and triggering replanning only when execution results diverge from expected outcomes.
+The **plan-and-execute** pattern separates planning from execution (Wang et al., 2023; Qiao et al., 2024; LangChain, 2024). A **planner** turns the overall goal into explicit subtasks. An **executor** performs one ready subtask at a time. The runtime records progress and asks the planner for a revised plan when a result does not match expectations.
 
 ## Simple mental model
 
 Think of a commercial construction project:
 
-1. **The General Contractor (Planner)**: Drafts a structural blueprint with sequential milestones: 1. Excavate foundation, 2. Pour concrete, 3. Frame walls, 4. Install roof.
-2. **The Job Site Task Board (Execution Plan)**: Tracks active status badges: Milestone 1 (`COMPLETED`), Milestone 2 (`IN_PROGRESS`), Milestones 3 & 4 (`PENDING`).
-3. **The Specialized Tradesperson (Executor)**: Focuses exclusively on pouring concrete without needing to re-evaluate the entire architectural blueprint at every step.
-4. **Site Inspection & Change Order (Replanning)**: If an underground water pipe is discovered during excavation, the general contractor pauses work, modifies the remaining milestones, and issues an updated construction schedule.
+1. **General contractor, the planner:** creates an ordered set of milestones: excavate the foundation, pour concrete, frame the walls, and install the roof.
+2. **Job-site task board, the execution plan:** shows which milestones are `COMPLETED`, `IN_PROGRESS`, or `PENDING`.
+3. **Specialist, the executor:** works on the current milestone without redesigning the whole project.
+4. **Inspection and change order, replanning:** if excavation reveals a water pipe, the contractor pauses work and changes the remaining milestones.
 
 Separating global blueprint creation from trade execution keeps workers focused while ensuring the overall project stays aligned with its original scope.
 
@@ -52,7 +57,7 @@ The figure below illustrates the two-tier Planner-Executor agent architecture an
 
 *Figure 1. Two-Tier Planner-Executor Agent Architecture. The Planner model generates an ordered list of subtasks displayed on a central task board. The Executor model runs individual subtasks in a sandbox, returning execution telemetry or triggering a replan on unexpected errors.*
 
-Building upon [Reactive and reason-act patterns](01-reactive-and-reason-act-patterns.md), decomposition allows agents to maintain long-range coherence across extended multi-hour workflows.
+The planner, task board, executor, and runtime have different jobs. The planner decides what work should happen. The runtime decides what work may happen, dispatches it, checks results, and stores state. The executor receives only the information and tools needed for the current subtask. This separation helps an agent stay aligned with a long-running goal.
 
 ## How it works
 
@@ -60,7 +65,8 @@ The Plan-and-Execute workflow operates across four interconnected stages:
 
 ### 1. Goal decomposition into structured subtasks
 
-When given a prompt, the Planner produces a structured JSON or YAML execution graph rather than immediate tool calls (Wang et al., 2023):
+When given a goal, the planner produces a structured plan instead of making an immediate tool call (Wang et al., 2023). A plan can be a list for sequential work or a **directed acyclic graph (DAG)** when some subtasks depend on others. A DAG is a set of one-way dependency links with no circular path. Each subtask should include:
+
 - **`step_id`**: Integer indexing the execution order.
 - **`description`**: Clear, actionable objective for the individual step.
 - **`tool_required`**: Target tool or environment capability needed.
@@ -69,20 +75,26 @@ When given a prompt, the Planner produces a structured JSON or YAML execution gr
 
 ### 2. The subtask lifecycle state machine
 
-Each subtask in the plan transitions through a deterministic state machine (Qiao et al., 2024):
+Each subtask moves through a small set of explicit states (Qiao et al., 2024):
+
 - **`PENDING`**: Subtask is queued and waiting for upstream dependencies to resolve.
 - **`IN_PROGRESS`**: The Executor worker is actively invoking tools and processing observations.
 - **`COMPLETED`**: The step produced valid output matching expected criteria, and results are recorded in the plan state.
 - **`FAILED / BLOCKED`**: A tool error, timeout, or policy violation prevented step completion.
 
+![Figure 2: Subtask lifecycle and dynamic replanning](../../../assets/images/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/02-subtask-state-transitions.png)
+
+*Figure 2. A normal subtask moves from planned work to execution, verification, and final synthesis. A failed or blocked execution follows the coral branch. The runtime then asks the planner for an alternative step before execution resumes.*
+
 ### 3. Execution and state accumulation
 
-The Executor runs in a focused loop over pending steps. Unlike full ReAct agents that hold entire multi-turn reasoning logs in context, the Executor receives only:
+The executor runs a focused loop over ready steps. It receives only:
+
 1. The active subtask specification.
 2. Necessary output variables extracted from previously completed steps.
 3. The specific tool signatures needed for the active step.
 
-This partitioning drastically reduces token consumption and eliminates distracting context noise.
+This smaller working context can reduce token use and irrelevant context. It does not guarantee correct execution, so the runtime must still validate inputs, permissions, and outputs.
 
 ### 4. Dynamic replanning triggers
 
@@ -91,17 +103,17 @@ When a step transitions to `FAILED` or when an observation reveals new requireme
 - The list of completed steps and their extracted results.
 - The failed step description and the specific error observation.
 
-The Planner then synthesizes an updated subtask list, inserting remediation steps or skipping redundant operations before resuming execution (LangChain, 2024).
+The planner then returns an updated plan. It may add a recovery step, change a dependency, or remove work that is no longer useful before execution resumes (LangChain, 2024).
 
 ## Main variants
 
-1. **Static Linear Plan-and-Execute**: Generates all steps upfront and executes them strictly in order without dynamic replanning. Suitable for deterministic, low-entropy pipelines.
-2. **Dynamic Re-Evaluating Plan-and-Solve**: The Planner re-evaluates the remaining plan after *every* step completion, adjusting future subtasks based on newly acquired data.
-3. **Hierarchical DAG Planner**: Generates a Directed Acyclic Graph (DAG) of subtasks, allowing independent branches to be dispatched concurrently to parallel worker instances.
+1. **Static linear plan:** creates every step before execution and runs them in order. This works best when the environment is predictable.
+2. **Dynamic plan:** re-evaluates the remaining work after each completed step. This adapts more quickly but costs more time and model calls.
+3. **Dependency graph:** represents work as a DAG. Independent branches can run concurrently after their dependencies complete.
 
 ## Minimal implementation
 
-The following Python script implements a two-tier Planner-Executor agent with subtask status tracking and dynamic replanning on tool failures:
+The following Python excerpt shows the core planner-executor separation and subtask status tracking. The [full runnable example](../../../examples/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/plan_executor.py) adds a bounded replanning path and deliberately fails one mock tool so you can inspect the transition.
 
 <details>
 <summary>Expand minimal Python implementation</summary>
@@ -152,34 +164,34 @@ class PlanExecutor:
 
 </details>
 
-The full runnable implementation is available in [plan_executor.py](../../../examples/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/plan_executor.py).
+Run [plan_executor.py](../../../examples/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute/plan_executor.py) to see the initial plan, the failed step, its replacement, and the completed plan. All advisory names and tool results in the example are fictional.
 
 ## Data flow and state changes
 
-1. **Plan Generation**: The Planner receives the user request and outputs a structured list of `Subtask` objects.
-2. **Dispatch**: The execution engine selects the next `PENDING` subtask whose dependencies are satisfied.
-3. **Execution**: The Executor invokes the required tool and captures the return payload.
-4. **Validation**: Output is checked against expected criteria; the subtask status updates to `COMPLETED`.
-5. **State Update**: Output facts are merged into the shared plan context for downstream steps.
-6. **Termination**: When all subtasks reach `COMPLETED`, the agent synthesizes the final response.
+1. **Plan generation:** the planner receives the goal and returns structured `Subtask` objects.
+2. **Dispatch:** the runtime selects a `PENDING` subtask whose dependencies are complete.
+3. **Execution:** the executor calls the allowed tool and captures its result.
+4. **Validation:** the runtime compares that result with the step's expected output.
+5. **State update:** verified facts are added to plan state for later steps.
+6. **Termination:** when every required subtask is complete, the system creates the final response.
 
 ## Trust boundaries
 
-- **Planner-to-Executor Trust Boundary**: The plan structure generated by the Planner must be validated by the runtime control plane to prevent untrusted prompt injections from introducing unauthorized administrative subtasks.
-- **Inter-Step Data Propagation Boundary**: Outputs from untrusted tool steps (such as scraped web pages) must be sanitized and isolated before being passed as input arguments to downstream steps.
-- **Replan Rate Limiting**: The runtime must enforce a hard ceiling on total replan attempts per session to prevent adversarial tool responses from triggering infinite replanning loops.
+- **Planner to executor:** the runtime must validate the generated plan before dispatch. A plan is model output, not trusted authorization.
+- **Between steps:** content returned by a tool, such as text from a web page, remains untrusted when another step consumes it.
+- **Replanning loop:** the runtime needs a fixed attempt or cost limit so repeated failures cannot create an endless loop.
 
 ## Reliability failures
 
-- **Over-Decomposition (Plan Bloat)**: The Planner divides a simple two-second lookup into ten granular micro-steps, incurring unnecessary latency and token costs.
-- **Under-Specified Step Contracts**: Subtasks lack explicit parameter specifications, forcing the Executor to guess arguments and causing runtime tool validation errors.
-- **Replanning Churn**: The agent enters an oscillation cycle where it alternates between two conflicting plan formulations on successive step failures.
+- **Plan bloat:** the planner turns a simple lookup into many tiny steps, adding latency and model cost.
+- **Unclear step contracts:** a subtask omits inputs or success criteria, so the executor must guess.
+- **Replanning churn:** repeated failures make the planner alternate between incompatible plans without progress.
 
 ## Limitations and trade-offs
 
-- **Higher Initial Time-to-First-Action**: The agent must generate a complete multi-step plan before invoking its first tool, increasing initial latency compared to reactive loops.
-- **Plan Fragility in Dynamic Environments**: In environments where system state changes rapidly, static upfront plans become outdated before later steps can execute.
-- **Coordination Complexity**: Managing dependency graphs, variable binding between steps, and failure rollbacks requires significantly more orchestration logic than single-loop agents.
+- **Slower first action:** creating a plan delays the first tool call compared with a reactive loop.
+- **Stale plans:** a static plan can become outdated while the environment changes.
+- **More orchestration:** dependencies, data passed between steps, validation, and recovery add runtime complexity.
 
 ## Security preview
 
