@@ -17,6 +17,8 @@ const latestReview = chapters
 const lastModifiedByUrl = new Map([
   [`${SITE_ORIGIN}${BASE_URL}/`, latestReview],
   [`${SITE_ORIGIN}${BASE_URL}`, latestReview],
+  [`${SITE_ORIGIN}${BASE_URL}/curriculum/`, latestReview],
+  [`${SITE_ORIGIN}${BASE_URL}/curriculum`, latestReview],
   ...chapters.map((chapter) => [chapter.canonicalUrl, chapter.last_reviewed]),
   ...sections.map((section) => [
     section.canonicalUrl,

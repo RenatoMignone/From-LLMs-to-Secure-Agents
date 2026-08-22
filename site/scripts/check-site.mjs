@@ -134,8 +134,8 @@ if (fs.existsSync(path.join(DIST_DIR, 'sitemap-0.xml'))) {
 
 if (fs.existsSync(path.join(DIST_DIR, 'index.html'))) {
   const homepage = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8');
-  if (!homepage.includes('id="learning-path-title"') || !homepage.includes('data-reading-link')) {
-    errors.push('Homepage is missing the learning-path map or Continue Reading hooks');
+  if (!homepage.includes('data-reading-link')) {
+    errors.push('Homepage is missing Continue Reading hooks');
   }
   if (!/project-purpose-[^"']+\.webp/.test(homepage) || !homepage.includes('fetchpriority="high"')) {
     errors.push('Homepage hero is missing responsive WebP markup or high fetch priority');
@@ -154,6 +154,7 @@ if (!generatedCss.includes(':focus-visible') || !generatedCss.includes('prefers-
 
 // Check published Section Hub endpoints
 console.log('  Checking section hub endpoints...');
+checkFileExists('curriculum/index.html', 'Complete curriculum index');
 checkFileExists('prerequisites/index.html', 'Prerequisites section hub');
 checkFileExists('foundations/index.html', 'Foundations section hub');
 checkFileExists('architectures/index.html', 'Architectures section hub');

@@ -1,5 +1,9 @@
 [
   {
+    "label": "Index",
+    "link": "/curriculum/"
+  },
+  {
     "label": "Prerequisites",
     "collapsed": true,
     "items": [

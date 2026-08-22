@@ -858,11 +858,154 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
     });
   }
 
+  const finalSidebar = [
+    {
+      label: 'Index',
+      link: '/curriculum/',
+    },
+    ...sidebarSections,
+  ];
+
   fs.writeFileSync(
     path.join(GENERATED_DIR, 'sidebar.json'),
-    JSON.stringify(sidebarSections, null, 2),
+    JSON.stringify(finalSidebar, null, 2),
     'utf8'
   );
+
+  // 6b. Generate Dedicated Index Page (/curriculum/index.mdx)
+  console.log('📑 Generating dedicated index page...');
+  const curriculumDir = path.join(DOCS_DIR, 'curriculum');
+  fs.mkdirSync(curriculumDir, { recursive: true });
+
+  const curriculumFm = {
+    title: 'Index',
+    description: 'Sequential index of all sections, chapters, deep dives, and architectural specifications in From LLMs to Secure Agents.',
+    section_label: 'Index',
+    head: [
+      {
+        tag: 'title',
+        content: 'Index | From LLMs to Secure Agents',
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:title', content: 'Index | From LLMs to Secure Agents' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:description', content: 'Sequential index of all sections, chapters, deep dives, and architectural specifications in From LLMs to Secure Agents.' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:type', content: 'website' },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:url', content: `${SITE_ORIGIN}${BASE_URL}/curriculum/` },
+      },
+      {
+        tag: 'meta',
+        attrs: { property: 'og:image', content: `${SITE_ORIGIN}${BASE_URL}/assets/images/repo-images/banner.png` },
+      },
+    ],
+  };
+
+  const curriculumContent = `---
+${yaml.stringify(curriculumFm)}---
+
+<div class="section-hub-hero not-content">
+  <p class="section-hub-lead">Sequential index of all units across From LLMs to Secure Agents. Follow the main path in order or explore deep-dive architectural specifications.</p>
+</div>
+
+## Pass 1: Functional Agent Architecture
+
+${sections
+  .map(
+    (s) => `### [${s.label}](${s.route})
+
+<p class="index-section-desc">${s.plan?.purpose || `Core architectural concepts and specifications for ${s.label.toLowerCase()}.`}</p>
+
+<div class="index-items-stack not-content">
+${s.chapters
+  .map(
+    (c) => `  <a href="${c.route}" class="index-item-row">
+    <div class="index-item-left">
+      <span class="index-item-num">${c.chapterLabel}</span>
+      <div class="index-item-details">
+        <span class="index-item-title">${c.title}</span>
+        <span class="index-item-summary">${c.summary}</span>
+      </div>
+    </div>
+    <div class="index-item-right">
+      <span class="index-item-tag ${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'tag-deep' : 'tag-main'}">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep dive' : 'Main path'}</span>
+      <span class="index-item-arrow" aria-hidden="true">→</span>
+    </div>
+  </a>`
+  )
+  .join('\n')}
+</div>`
+  )
+  .join('\n\n')}
+
+## Pass 2: Threat Modeling & Security (Upcoming)
+
+Detailed threat modeling and defensive architectures build directly upon the functional components established in Pass 1.
+
+<div class="index-items-stack not-content">
+  <div class="index-item-row upcoming">
+    <div class="index-item-left">
+      <span class="index-item-num">06</span>
+      <div class="index-item-details">
+        <span class="index-item-title">Threat Model &amp; Attack Surface</span>
+        <span class="index-item-summary">Adversarial prompt injection, indirect context contamination, tool squatting, and privilege escalation.</span>
+      </div>
+    </div>
+    <div class="index-item-right">
+      <span class="index-item-tag tag-upcoming">Upcoming</span>
+    </div>
+  </div>
+
+  <div class="index-item-row upcoming">
+    <div class="index-item-left">
+      <span class="index-item-num">07</span>
+      <div class="index-item-details">
+        <span class="index-item-title">Component-Level Defenses</span>
+        <span class="index-item-summary">Context firewalls, credential isolation, tool token scoping, sandbox runtimes, and approval gates.</span>
+      </div>
+    </div>
+    <div class="index-item-right">
+      <span class="index-item-tag tag-upcoming">Upcoming</span>
+    </div>
+  </div>
+
+  <div class="index-item-row upcoming">
+    <div class="index-item-left">
+      <span class="index-item-num">08</span>
+      <div class="index-item-details">
+        <span class="index-item-title">Secure Reference Architectures</span>
+        <span class="index-item-summary">Hardened multi-agent topologies, supervisor-worker security boundaries, and gateway mediation.</span>
+      </div>
+    </div>
+    <div class="index-item-right">
+      <span class="index-item-tag tag-upcoming">Upcoming</span>
+    </div>
+  </div>
+
+  <div class="index-item-row upcoming">
+    <div class="index-item-left">
+      <span class="index-item-num">09</span>
+      <div class="index-item-details">
+        <span class="index-item-title">Security Testing &amp; Evaluation</span>
+        <span class="index-item-summary">Automated red-teaming harnesses, benchmark suites, perturbation testing, and formal verification gates.</span>
+      </div>
+    </div>
+    <div class="index-item-right">
+      <span class="index-item-tag tag-upcoming">Upcoming</span>
+    </div>
+  </div>
+</div>
+`;
+
+  fs.writeFileSync(path.join(curriculumDir, 'index.mdx'), curriculumContent, 'utf8');
 
   // 7. Generate Calm Editorial Homepage (index.mdx) with Stacked Schema
   console.log('🏠 Generating calm editorial homepage with full SEO/AEO/GEO metadata...');
@@ -1006,14 +1149,11 @@ ${yaml.stringify(homepageFm)}---
 
 import HomepageHero from '../../components/HomepageHero.astro';
 import HomepageIdea from '../../components/HomepageIdea.astro';
-import HomepageStart from '../../components/HomepageStart.astro';
 import HomepageFooter from '../../components/HomepageFooter.astro';
 
 <HomepageHero firstChapterRoute="${firstChapterRoute}" baseUrl="${BASE_URL}" image={${JSON.stringify(heroImage)}} />
 
 <HomepageIdea />
-
-<HomepageStart firstChapterRoute="${firstChapterRoute}" latestChapter="${escapeHtml(latestChapter?.title || 'the first chapter')}" totalChapters={${chapters.length}} sections={${JSON.stringify(homepageSections)}} />
 
 <HomepageFooter githubUrl="${GITHUB_REPO}" baseUrl="${BASE_URL}" />
 `;
