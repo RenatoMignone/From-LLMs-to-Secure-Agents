@@ -100,10 +100,12 @@
 
 .responsive-illustration {
   display: block;
+  width: 100%;
 }
 
 .sl-markdown-content img {
   display: block;
+  width: 100%;
   max-width: 100%;
   height: auto;
   margin: 0 auto;
@@ -121,13 +123,13 @@
   box-shadow: 0 8px 30px -2px rgba(0, 0, 0, 0.45);
 }
 
+.sl-markdown-content .responsive-illustration + p:has(> em:only-child),
+.sl-markdown-content figure + p:has(> em:only-child),
 .sl-markdown-content p:has(> img:only-child) + p:has(> em:only-child) {
-  max-width: 54rem;
-  margin: 0 auto 3.5rem;
+  margin: 0.85rem 0 3.25rem;
   color: var(--color-ink-muted);
   font-size: 0.94rem;
   line-height: 1.6;
-  text-align: center;
 }
 
 .sl-markdown-content figcaption {
@@ -135,7 +137,6 @@
   line-height: 1.6;
   color: var(--color-ink-muted);
   margin-top: 0.85rem;
-  text-align: center;
 }
 
 /* Code Blocks - Soft Pastel Styling */

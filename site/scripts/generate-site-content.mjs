@@ -93,7 +93,7 @@ async function publishResponsiveImages(srcRoot, destRoot) {
   }
 }
 
-function responsiveImageMarkup(relPath, alt, { eager = false, sizes = '(max-width: 56rem) calc(100vw - 2rem), 56rem' } = {}) {
+function responsiveImageMarkup(relPath, alt, { eager = false, sizes = '(max-width: 58rem) calc(100vw - 2rem), 58rem' } = {}) {
   const image = responsiveImages.get(relPath);
   if (!image) return `![${alt}](${BASE_URL}/assets/images/${relPath})`;
   const largest = image.variants.at(-1);
