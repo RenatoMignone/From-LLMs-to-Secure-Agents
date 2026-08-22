@@ -53,6 +53,22 @@
   --color-code-bg: #F3ECE0;
   --color-code-border: #E5DACB;
 
+  /* Lighting & Gradients - Light Theme */
+  --page-glow: transparent;
+  --page-glow-secondary: transparent;
+  --page-gradient-end: #FAF6EE;
+  --card-gradient-end: #F7F3EB;
+  --gradient-text-start: #2A6B65;
+  --gradient-text-mid: #D97706;
+  --gradient-text-end: #EA580C;
+  --gradient-button-start: #387B75;
+  --gradient-button-mid: #43808B;
+  --gradient-button-end: #4D849B;
+  --gradient-button-hover-start: #2D6B65;
+  --gradient-button-hover-end: #3D758B;
+  --control-gradient-start: rgba(255, 255, 255, 0.96);
+  --control-gradient-end: rgba(243, 236, 224, 0.85);
+
   /* Starlight Tokens Mapping - Light Theme */
   --sl-font: var(--font-body);
   --sl-font-mono: var(--font-mono);
@@ -79,9 +95,9 @@
   --sl-color-hairline-shade: var(--color-border);
 
   /* Layout Widths */
-  --sl-sidebar-width: 19rem;
-  --sl-toc-width: 15rem;
-  --sl-content-width: 58rem;
+  --sl-sidebar-width: 17.5rem;
+  --sl-toc-width: 18rem;
+  --sl-content-width: 54rem;
   --sl-nav-height: 4.25rem;
   --sl-line-height: 1.75;
   --sl-menu-button-size: 2.25rem;
@@ -138,6 +154,22 @@
 
   --color-code-bg: #1A222B;
   --color-code-border: #354454;
+
+  /* Lighting & Gradients - Dark Theme */
+  --page-glow: transparent;
+  --page-glow-secondary: transparent;
+  --page-gradient-end: #161D24;
+  --card-gradient-end: #16202A;
+  --gradient-text-start: #5EEAD4;
+  --gradient-text-mid: #FBBF24;
+  --gradient-text-end: #FB923C;
+  --gradient-button-start: #78C4BD;
+  --gradient-button-mid: #82AEDB;
+  --gradient-button-end: #8AC2E4;
+  --gradient-button-hover-start: #9BE0DA;
+  --gradient-button-hover-end: #AFDBF5;
+  --control-gradient-start: rgba(37, 49, 62, 0.94);
+  --control-gradient-end: rgba(24, 34, 44, 0.9);
 
   /* Starlight Tokens Mapping - Dark Theme */
   --sl-color-accent: var(--color-teal);

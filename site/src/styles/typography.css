@@ -11,10 +11,22 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--color-ink);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .gradient-heading,
+  .section-heading-gradient {
+    color: transparent;
+    overflow: visible;
+    background: linear-gradient(135deg, var(--color-ink) 0%, var(--color-teal) 45%, var(--color-peach) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 p,
