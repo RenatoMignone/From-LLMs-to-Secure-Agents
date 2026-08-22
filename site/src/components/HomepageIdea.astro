@@ -3,80 +3,23 @@
 
 <section class="idea-section not-content" id="the-idea">
   <div class="idea-container">
-    {/* Section 1: The Evolution */}
     <div class="idea-narrative-block">
       <div class="narrative-meta">
-        <span class="idea-eyebrow">The Problem &amp; Core Idea</span>
         <h2 class="idea-main-title">Why this engineering handbook is needed</h2>
       </div>
       <div class="narrative-content">
         <p class="lead-text">
-          A language model can do more than produce text. In an <strong>agentic system</strong>, the model helps choose the next action in a software loop. That loop may plan work, use stored context, query databases, run code, or call external services.
+          Agent security cannot be mastered from isolated vulnerability checklists. In an <strong>agentic system</strong>, language models no longer merely generate text; they make decisions in an iterative software loop, managing context, querying databases, running code, and triggering real-world side effects.
         </p>
         <p>
-          This changes the security model. Traditional applications try to keep data separate from program instructions. Language models process both as text, so untrusted content can influence decisions. Safe systems must limit what the agent can access and verify important actions outside the model.
+          Traditional software separates data from executable code. Because language models process both within a shared text stream, untrusted content can directly influence downstream control flow. Prompt engineering and content filters can mitigate simple failures, but they do not create a security boundary. Robust defense requires systemic architectural controls, credential scoping, sandbox isolation, and cryptographic provenance.
         </p>
-      </div>
-    </div>
-
-    {/* Section 2: The Three Core Realities */}
-    <div class="realities-grid">
-      <div class="reality-card">
-        <div class="reality-num">01</div>
-        <h3 class="reality-heading">Prompt injection needs architectural controls</h3>
-        <p class="reality-text">
-          Prompt wording and text filters can reduce some attacks, but they are not a complete security boundary. Stronger protection comes from scoped credentials, tool permissions, runtime isolation, validation, and approval gates for sensitive actions.
+        <p>
+          <strong>You cannot secure an architecture you cannot explain.</strong> This handbook teaches in strict dependency order through two sequential passes: first, building a complete, verified mental model of the agentic system (from context sources and memory hierarchies to supervisors and tool protocols); second, revisiting that exact architecture with formal threat modeling, attack trees, defense in depth, and automated evaluation.
         </p>
-      </div>
-
-      <div class="reality-card">
-        <div class="reality-num">02</div>
-        <h3 class="reality-heading">You cannot secure a system you cannot explain</h3>
-        <p class="reality-text">
-          Vulnerability lists are hard to apply without a clear system model. This guide first explains the agent loop, context construction, memory retrieval, tool calls, and runtime state. Later chapters map threats and controls back to those components.
+        <p>
+          Every chapter is grounded in official specifications, primary research, and minimal runnable examples, ensuring that engineering decisions rest on verifiable facts rather than hype.
         </p>
-      </div>
-
-      <div class="reality-card">
-        <div class="reality-num">03</div>
-        <h3 class="reality-heading">Claims should be easy to verify</h3>
-        <p class="reality-text">
-          Technical claims and diagrams link to traceable source records. The guide prioritizes standards, primary documentation, and peer-reviewed research, with small runnable examples when code makes the idea clearer.
-        </p>
-      </div>
-    </div>
-
-    {/* Section 3: The Handbook's Method */}
-    <div class="method-banner">
-      <div class="method-left">
-        <span class="method-label">The Engineering Method</span>
-        <h3 class="method-title">Architecture first, defense in depth second</h3>
-        <p class="method-desc">
-          We teach in strict dependency order: from distributed systems boundaries and autonomous control loops to tool privilege isolation, sandboxed execution runtimes, and automated red team evaluation.
-        </p>
-      </div>
-      <div class="method-features">
-        <div class="m-feat">
-          <span class="m-dot teal"></span>
-          <div>
-            <strong>Visual system explanations</strong>
-            <span>Approachable diagrams show data flow, control flow, and trust boundaries.</span>
-          </div>
-        </div>
-        <div class="m-feat">
-          <span class="m-dot amber"></span>
-          <div>
-            <strong>Runnable code examples</strong>
-            <span>Focused Python and TypeScript examples demonstrate behavior that is easier to understand by running it.</span>
-          </div>
-        </div>
-        <div class="m-feat">
-          <span class="m-dot lavender"></span>
-          <div>
-            <strong>Machine-readable access</strong>
-            <span>Structured indexes and plain-text editions help search systems and developer tools retrieve and cite each chapter.</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -85,10 +28,10 @@
 <style>
   .idea-section {
     width: 100%;
-    padding: clamp(4rem, 8vh, 6.5rem) clamp(1.5rem, 4vw, 4.5rem);
+    padding: clamp(4rem, 7vh, 6rem) clamp(1.5rem, 4vw, 4.5rem);
     border-top: 1px solid var(--color-border-subtle);
     border-bottom: 1px solid var(--color-border-subtle);
-    background-color: var(--color-canvas);
+    background-color: transparent;
     box-sizing: border-box;
   }
 
@@ -96,16 +39,13 @@
     width: 100%;
     max-width: 88rem;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(3rem, 6vh, 4.5rem);
   }
 
   /* Narrative Block */
   .idea-narrative-block {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
-    gap: clamp(2rem, 5vw, 5rem);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+    gap: clamp(2.5rem, 5vw, 6rem);
     align-items: flex-start;
   }
 
@@ -116,18 +56,31 @@
   }
 
   .idea-eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: var(--color-teal);
-    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
     font-weight: 750;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.85rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background-color: var(--color-teal-subtle);
+    border: 1px solid var(--color-teal-border);
+    margin-bottom: 1.15rem;
+  }
+
+  :global(:root[data-theme='dark']) .idea-eyebrow {
+    background-color: rgba(120, 196, 189, 0.12);
+    border-color: rgba(120, 196, 189, 0.3);
+    color: var(--color-teal);
   }
 
   .idea-main-title {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.2vw, 3.1rem);
+    font-size: clamp(2.1rem, 3.4vw, 3.2rem);
     font-weight: 800;
     line-height: 1.15;
     color: var(--color-ink);
@@ -138,19 +91,19 @@
   .narrative-content {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.4rem;
   }
 
   .narrative-content .lead-text {
     font-size: clamp(1.15rem, 1.6vw, 1.32rem);
-    line-height: 1.65;
+    line-height: 1.68;
     color: var(--color-ink);
     margin: 0;
   }
 
   .narrative-content p {
-    font-size: clamp(1rem, 1.3vw, 1.12rem);
-    line-height: 1.72;
+    font-size: clamp(1.02rem, 1.3vw, 1.14rem);
+    line-height: 1.74;
     color: var(--color-ink-muted);
     margin: 0;
   }
@@ -159,177 +112,8 @@
     color: var(--color-ink);
   }
 
-  /* Realities Grid */
-  .realities-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .reality-card {
-    background-color: var(--color-surface);
-    border: 1.5px solid var(--color-border);
-    border-radius: 18px;
-    padding: 2.25rem 2rem;
-    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.03);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  :root[data-theme='dark'] .reality-card {
-    background-color: var(--color-surface-card);
-    border-color: var(--color-border);
-    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25);
-  }
-
-  .reality-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-teal);
-    box-shadow: 0 12px 28px -4px var(--color-teal-subtle);
-  }
-
-  :root[data-theme='dark'] .reality-card:hover {
-    border-color: var(--color-lavender);
-    box-shadow: 0 12px 32px -4px rgba(203, 166, 247, 0.2);
-  }
-
-  .reality-num {
-    font-family: var(--font-mono);
-    font-size: 1.85rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--color-teal);
-    margin-bottom: 1.25rem;
-    opacity: 0.9;
-  }
-
-  :root[data-theme='dark'] .reality-num {
-    color: var(--color-lavender);
-  }
-
-  .reality-heading {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 750;
-    line-height: 1.35;
-    color: var(--color-ink);
-    margin: 0 0 0.85rem;
-    letter-spacing: -0.015em;
-  }
-
-  .reality-text {
-    font-size: 0.96rem;
-    line-height: 1.65;
-    color: var(--color-ink-muted);
-    margin: 0;
-  }
-
-  /* Method Banner */
-  .method-banner {
-    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-subtle) 100%);
-    border: 1.5px solid var(--color-border);
-    border-radius: 20px;
-    padding: clamp(2rem, 4vw, 3.25rem);
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: center;
-    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.04);
-  }
-
-  :root[data-theme='dark'] .method-banner {
-    background: linear-gradient(135deg, var(--color-surface-card) 0%, var(--color-surface-subtle) 100%);
-    border-color: var(--color-border);
-    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.35);
-  }
-
-  .method-label {
-    display: inline-block;
-    color: var(--color-teal);
-    font-size: 0.8rem;
-    font-weight: 750;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  :root[data-theme='dark'] .method-label {
-    color: var(--color-lavender);
-  }
-
-  .method-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
-    font-weight: 750;
-    color: var(--color-ink);
-    margin: 0 0 0.85rem;
-    letter-spacing: -0.02em;
-  }
-
-  .method-desc {
-    font-size: 1.02rem;
-    line-height: 1.65;
-    color: var(--color-ink-muted);
-    margin: 0;
-  }
-
-  .method-features {
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-  }
-
-  .m-feat {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-  }
-
-  .m-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    margin-top: 0.45rem;
-    flex-shrink: 0;
-  }
-
-  .m-dot.teal { background-color: var(--color-teal); box-shadow: 0 0 0 2px var(--color-teal-subtle); }
-  .m-dot.amber { background-color: var(--color-amber); box-shadow: 0 0 0 2px var(--color-amber-subtle); }
-  .m-dot.lavender { background-color: var(--color-lavender); box-shadow: 0 0 0 2px var(--color-lavender-subtle); }
-
-  .m-feat div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .m-feat strong {
-    font-family: var(--font-heading);
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: var(--color-ink);
-  }
-
-  .m-feat span {
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: var(--color-ink-muted);
-  }
-
   @media (max-width: 1024px) {
     .idea-narrative-block {
-      grid-template-columns: 1fr;
-      gap: 1.75rem;
-    }
-
-    .realities-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .method-banner {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
@@ -337,15 +121,7 @@
 
   @media (max-width: 640px) {
     .idea-section {
-      padding: 3rem 1rem 4rem;
-    }
-
-    .reality-card {
-      padding: 1.5rem;
-    }
-
-    .method-banner {
-      padding: 1.5rem;
+      padding: 3rem 1.15rem 4rem;
     }
   }
 </style>

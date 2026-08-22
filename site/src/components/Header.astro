@@ -20,15 +20,12 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     <SiteTitle />
   </div>
 
-  <nav class="publication-nav" aria-label="Publication Navigation">
+  <div class="publication-tools">
     <a href={firstChapterRoute} class="nav-link-guide" data-reading-link data-start-route={firstChapterRoute}>
-      <span class="nav-guide-dot" aria-hidden="true"></span>
-      <span data-reading-label>Read guide</span>
+      <span data-reading-label>Start Reading</span>
       <span class="nav-guide-arrow" aria-hidden="true">→</span>
     </a>
-  </nav>
 
-  <div class="publication-tools">
     <a
       href="https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents"
       target="_blank"
@@ -48,13 +45,8 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
 
     <ThemeSelect />
 
-    {/* Show Guide link on homepage mobile if no sidebar, otherwise show Hamburger menu button */}
-    {!hasSidebar ? (
-      <a href={firstChapterRoute} class="nav-mobile-guide-btn" data-reading-link data-start-route={firstChapterRoute}>
-        <span data-reading-label>Guide</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    ) : (
+    {/* Show Hamburger menu button when sidebar is present */}
+    {hasSidebar && (
       <button
         type="button"
         class="nav-mobile-menu-btn"
@@ -88,13 +80,13 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
       }
 
       const saved = JSON.parse(localStorage.getItem(readingProgressKey) || 'null');
-      if (!saved?.href || !saved?.title) return;
-
+      if (!saved?.href || !saved?.title) return;      
+      
       document.querySelectorAll<HTMLAnchorElement>('[data-reading-link]').forEach((link) => {
         link.href = saved.href;
-        link.setAttribute('aria-label', `Continue reading: ${saved.title}`);
+        link.setAttribute('aria-label', `Continue Reading: ${saved.title}`);
         const label = link.querySelector<HTMLElement>('[data-reading-label]');
-        if (label) label.textContent = 'Continue reading';
+        if (label) label.textContent = 'Continue Reading';
       });
     } catch {
       // The start links remain useful when storage is disabled.
@@ -149,6 +141,19 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
       }
     });
 
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (
+        document.body.hasAttribute('data-mobile-menu-expanded') &&
+        !target.closest('#custom-mobile-menu-toggle') &&
+        !target.closest('#starlight__sidebar')
+      ) {
+        document.body.removeAttribute('data-mobile-menu-expanded');
+        syncState();
+      }
+    });
+
     window.addEventListener('resize', () => {
       if (window.innerWidth > 800 && document.body.hasAttribute('data-mobile-menu-expanded')) {
         document.body.removeAttribute('data-mobile-menu-expanded');
@@ -168,7 +173,7 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
   }
 
   // Run on first load and on Starlight page transitions
-  if (typeof document !== 'undefined') {
+  if (typeof window !== 'undefined') {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
         setupReadingProgress();
@@ -203,42 +208,50 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     overflow: hidden;
   }
 
-  .publication-nav {
+  .publication-tools {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-right: auto;
-    margin-left: 1.5rem;
+    gap: 0.65rem;
+    margin-left: auto;
+    flex-shrink: 0;
   }
 
   .nav-link-guide {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    color: var(--color-teal);
-    font-size: 0.88rem;
+    gap: 0.45rem;
+    color: #FFFFFF !important;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
     font-weight: 700;
-    text-decoration: none;
-    padding: 0.35rem 0.85rem;
+    text-decoration: none !important;
+    padding: 0.35rem 0.95rem;
     border-radius: 9999px;
-    background-color: var(--color-teal-subtle);
-    border: 1.5px solid var(--color-teal-border);
-    box-shadow: 0 1px 3px rgba(66, 148, 142, 0.08);
+    background: linear-gradient(135deg, #387B75 0%, #4D849B 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(56, 123, 117, 0.25);
     transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
   }
 
   :global(:root[data-theme='dark']) .nav-link-guide {
-    background-color: rgba(120, 196, 189, 0.12);
-    border-color: rgba(120, 196, 189, 0.3);
-    color: var(--color-teal);
+    background: linear-gradient(135deg, #78C4BD 0%, #8AC2E4 100%);
+    color: #141E26 !important;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(120, 196, 189, 0.25);
   }
 
-  .nav-guide-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: var(--color-teal);
-    box-shadow: 0 0 0 2px var(--color-teal-subtle);
+  .nav-link-guide:hover {
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, #2D6B65 0%, #3D758B 100%);
+    box-shadow: 0 4px 14px rgba(56, 123, 117, 0.35);
+    color: #FFFFFF !important;
+  }
+
+  :global(:root[data-theme='dark']) .nav-link-guide:hover {
+    background: linear-gradient(135deg, #9BE0DA 0%, #AFDBF5 100%);
+    color: #141E26 !important;
+    box-shadow: 0 4px 16px rgba(120, 196, 189, 0.4);
   }
 
   .nav-guide-arrow {
@@ -246,30 +259,8 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     transition: transform 140ms ease;
   }
 
-  .nav-link-guide:hover {
-    color: var(--color-teal);
-    background-color: #D5ECE8;
-    border-color: var(--color-teal);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--color-teal-subtle);
-  }
-
-  :global(:root[data-theme='dark']) .nav-link-guide:hover {
-    background-color: rgba(120, 196, 189, 0.22);
-    border-color: var(--color-teal);
-    box-shadow: 0 4px 14px rgba(120, 196, 189, 0.25);
-  }
-
   .nav-link-guide:hover .nav-guide-arrow {
     transform: translateX(2px);
-  }
-
-  .publication-tools {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: auto;
-    flex-shrink: 0;
   }
 
   .search-wrap {
@@ -282,11 +273,11 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.85rem;
+    padding: 0.38rem 0.95rem;
     border-radius: 9999px;
     background: linear-gradient(135deg, #24292f 0%, #101418 100%);
     color: #FFFFFF !important;
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     font-weight: 650;
     text-decoration: none !important;
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -325,10 +316,6 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     transform: translateY(0);
   }
 
-  .github-icon {
-    flex-shrink: 0;
-  }
-
   /* Custom Mobile Menu Button */
   .nav-mobile-menu-btn {
     display: none;
@@ -337,9 +324,9 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     width: 2.15rem;
     height: 2.15rem;
     padding: 0.35rem;
-    border-radius: 8px;
-    border: 1.5px solid var(--color-border);
-    background-color: var(--color-surface);
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: linear-gradient(145deg, var(--control-gradient-start), var(--control-gradient-end));
     color: var(--color-ink);
     cursor: pointer;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -347,7 +334,6 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
   }
 
   :global(:root[data-theme='dark']) .nav-mobile-menu-btn {
-    background-color: var(--color-surface-card);
     border-color: var(--color-border);
     color: var(--color-ink);
   }
@@ -355,7 +341,8 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
   .nav-mobile-menu-btn:hover {
     border-color: var(--color-teal);
     color: var(--color-teal);
-    background-color: var(--color-teal-subtle);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--color-teal-subtle);
   }
 
   .nav-mobile-menu-btn .icon-close {
@@ -377,40 +364,12 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     display: block;
   }
 
-  .nav-mobile-guide-btn {
-    display: none;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.65rem;
-    border-radius: 9999px;
-    background-color: var(--color-teal-subtle);
-    border: 1px solid var(--color-teal-border);
-    color: var(--color-teal);
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  @media (max-width: 60rem) {
-    .publication-nav {
-      margin-left: 0.75rem;
-    }
-  }
-
   @media (max-width: 50rem) {
-    .publication-nav {
-      display: none;
-    }
-
     .search-wrap {
       display: none;
     }
 
     .nav-mobile-menu-btn {
-      display: inline-flex;
-    }
-
-    .nav-mobile-guide-btn {
       display: inline-flex;
     }
 
@@ -438,6 +397,11 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
 
     .publication-tools {
       gap: 0.35rem;
+    }
+
+    .nav-link-guide {
+      font-size: 0.76rem;
+      padding: 0.3rem 0.7rem;
     }
   }
 </style>
