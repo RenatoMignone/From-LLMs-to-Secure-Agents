@@ -1,0 +1,29 @@
+Create a clear, high-quality technical educational cartoon illustration distinguishing Context Window, Working State, and Long-Term Memory in agentic AI architectures.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "The Triad: Context Window vs. Execution State vs. Long-Term Memory".
+2. Three Side-by-Side Architectural Compartments:
+   - Left Column ("Context Window"):
+     - An open, glowing glass desk with a cute blue robot actively reading prompt tokens.
+     - Subtitle: "Transient Prompt Buffer (Forward Pass)".
+     - Key traits: Fixed token limit, strictly ephemeral, cleared when generation completes.
+   - Middle Column ("Execution State"):
+     - A structured filing cabinet with an organized green robot managing thread checkpoints and tool returns.
+     - Subtitle: "Run / Thread State (Session Scope)".
+     - Key traits: Mutable variables, event history, lasts for active run/thread lifetime.
+   - Right Column ("Long-Term Memory"):
+     - A vast, organized library archive with a friendly amber robot librarian shelving categorized books and scrolls.
+     - Subtitle: "Persistent Knowledge (Cross-Session)".
+     - Key traits: Durable storage, selective recall, episodic logs, user profiles, semantic knowledge.
+3. Connecting Dynamic Arrows:
+   - "Selective Recall / Prompt Injection" arrow from Long-Term Memory into Context Window.
+   - "State Checkpointing" arrow between Execution State and Checkpointer.
+   - "Consolidation / Extraction" arrow from State into Long-Term Memory.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

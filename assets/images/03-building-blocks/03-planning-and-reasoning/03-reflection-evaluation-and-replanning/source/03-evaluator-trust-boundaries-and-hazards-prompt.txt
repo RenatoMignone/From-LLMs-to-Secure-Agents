@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of Evaluator Trust Boundaries, Guardrails, and Failure Modes.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Evaluator Trust Boundaries & Safety Guardrails".
+2. Left Box: "Generator Model" producing unverified solution drafts.
+3. Center Boundary: "Evaluator Boundary Wall / Shield" with an independent Critic Model evaluating safety, schema, and correctness constraints.
+4. Three Illustrated Hazards & Defenses:
+   - Hazard 1 (Top): "Sycophancy / Evaluator Drift" - Illustrated as an ungrounded critic rubber-stamping flawed output vs. Grounded Objective Test Harness defense.
+   - Hazard 2 (Middle): "Infinite Refinement Spin" - Illustrated as a spinning hamster wheel stopped by a solid "Iteration Budget Gate (Max N=3)".
+   - Hazard 3 (Bottom): "Feedback Injection" - Illustrated as untrusted tool text trying to trick the evaluator, blocked by an input sanitation shield.
+5. Right Output: "Deterministic Stop & Validated Artifact".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

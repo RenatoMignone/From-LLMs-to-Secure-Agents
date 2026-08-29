@@ -1,0 +1,24 @@
+id: p1-03-04-04-temporal-cancellation-compensation-2024
+title: Workflow Cancellation, Scope Cleanup, and Compensating Actions
+authors_or_organization: Temporal Technologies
+date: 2024-06
+source_type: documentation
+canonical_url: https://docs.temporal.io/workflows#cancellation-scopes
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Establishes hierarchical cancellation propagation across child activities, asynchronous
+  cleanup scopes, and automated compensation triggers.
+limitations:
+- Compensating actions must themselves be idempotent and resilient to partial failure.
+related_topics:
+- cancellation propagation and compensating workflows
+unit_ids:
+- P1-03-04-04
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md
+local_copy: null
+sha256: null

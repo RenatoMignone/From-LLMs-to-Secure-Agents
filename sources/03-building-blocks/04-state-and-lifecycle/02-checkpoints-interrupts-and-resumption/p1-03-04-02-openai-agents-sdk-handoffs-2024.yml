@@ -1,0 +1,24 @@
+id: p1-03-04-02-openai-agents-sdk-handoffs-2024
+title: Agent Checkpoints, State Resumption, and Human Approvals
+authors_or_organization: OpenAI
+date: 2024-11
+source_type: documentation
+canonical_url: https://openai.github.io/openai-agents-python/running_agents/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Specifies runtime patterns for suspending active agent runs on critical tool calls,
+  persisting thread state snapshots, and resuming with user approvals or updated arguments.
+limitations:
+- Requires external state storage and polling or webhook mechanisms for approval notification.
+related_topics:
+- suspension and approval handoffs
+unit_ids:
+- P1-03-04-02
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md
+local_copy: null
+sha256: null

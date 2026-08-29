@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of Optimistic Concurrency Control and Version Vectors in agentic state management.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Optimistic Concurrency Control (OCC) & Conflict Resolution".
+2. Left: Two Concurrent Worker Robots ("Worker A" and "Worker B") reading shared State at Version 5.
+3. Center: "State Checkpoint Storage":
+   - Worker A commits first: "Update (Version 5 -> 6) [COMMITTED]".
+   - Worker B attempts commit with old Version 5: "409 Conflict - Stale Version Detected [REJECTED]".
+4. Right (Conflict Recovery):
+   - Worker B re-reads State at Version 6, merges changes via state reducer, and commits Version 7 cleanly.
+5. High-contrast labels showing: "No Lost Updates: OCC guarantees data consistency under parallel agent execution."
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

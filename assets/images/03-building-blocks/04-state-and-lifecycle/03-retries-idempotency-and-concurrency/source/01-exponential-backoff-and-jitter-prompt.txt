@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of Exponential Backoff and Jitter in agentic AI.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Exponential Backoff & Jitter: Preventing Thundering Herds".
+2. Left Side: "Agent Worker Robot" encountering a transient API error: "HTTP 429 Too Many Requests (Rate Limited)".
+3. Center Timeline: Exponential Retry Steps with randomized Jitter:
+   - Attempt 1: Immediate failure
+   - Attempt 2 (Short clock): "Wait 1.2s (Base 1s + Jitter)"
+   - Attempt 3 (Medium clock): "Wait 2.8s (Base 2s + Jitter)"
+   - Attempt 4 (Long clock): "Wait 5.1s (Base 4s + Jitter)"
+4. Right Side: "API Server Gate" successfully receiving and fulfilling Attempt 4 smoothly: "HTTP 200 OK - Request Fulfilled".
+5. Friendly visual comparison showing: "Without Jitter = Spiky Traffic Jam" vs "With Jitter = Smooth Spread Traffic".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

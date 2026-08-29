@@ -1,0 +1,25 @@
+id: p1-03-05-01-microsoft-autogen-memory-2024
+title: 'AutoGen: Agent Memory and Context Management'
+authors_or_organization: Microsoft Research
+date: 2024-11
+source_type: documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines conversational memory layers and update hooks for multi-agent systems, differentiating
+  message history buffers from external factual memory stores.
+limitations:
+- Assumes collaborative multi-agent settings without adversarial memory contamination
+  across untrusted peers.
+related_topics:
+- agent memory abstractions
+unit_ids:
+- P1-03-05-01
+used_in:
+- knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md
+local_copy: null
+sha256: null

@@ -1,0 +1,21 @@
+Create a clear, high-quality technical educational cartoon illustration of Compensating Actions (Saga Pattern) and Resource Cleanup in agentic workflows.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Compensating Actions (Sagas) & Resource Cleanup".
+2. Forward Execution Lane (Top - Left to Right):
+   - Step 1 (Green check): "1. Reserve Compute Node [SUCCESS]"
+   - Step 2 (Green check): "2. Allocate Cloud Storage Volume [SUCCESS]"
+   - Step 3 (Red X): "3. Attach Database Instance [FAILED: Out of Quota]"
+3. Backward Compensation Lane (Bottom - Right to Left):
+   - Trigger: "Failure Detected -> Execute Compensating Rollback Steps"
+   - Comp Step 2 (Orange arrow): "Undo Step 2: Delete Allocated Storage Volume"
+   - Comp Step 1 (Orange arrow): "Undo Step 1: Release Reserved Compute Node"
+4. Final Cleanup Box: "Resource Finalizer Robot" sweeping away temp files, unlocking leases, and closing connections: "System Returned to Clean Consistent State".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

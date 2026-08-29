@@ -1,0 +1,25 @@
+id: p1-03-04-03-langgraph-concurrency-and-locks-2024
+title: Managing Concurrency and Parallel Branching in LangGraph
+authors_or_organization: LangChain
+date: 2024-10
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/concurrency
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines optimistic state locking, parallel graph branching, and state reducer conflict
+  resolution in concurrent agent execution environments.
+limitations:
+- Concurrent state updates require associative and commutative state reducers to avoid
+  non-deterministic state ordering.
+related_topics:
+- concurrency control and parallel branching
+unit_ids:
+- P1-03-04-03
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency.md
+local_copy: null
+sha256: null

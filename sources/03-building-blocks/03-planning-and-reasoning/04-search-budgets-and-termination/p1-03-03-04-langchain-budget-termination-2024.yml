@@ -1,0 +1,26 @@
+id: p1-03-03-04-langchain-budget-termination-2024
+title: Timeouts, Recursion Limits, and Termination in LangGraph Workflows
+authors_or_organization: LangChain
+date: 2024-10
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines deterministic termination protocols including max_recursion_limit, timeout
+  cancellation, loop detection counters, and human escalation in production state
+  graphs.
+limitations:
+- Improperly configured limits can abort valid long-running workflows prematurely
+  without state recovery.
+related_topics:
+- recursion limits and deterministic termination
+unit_ids:
+- P1-03-03-04
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination.md
+local_copy: null
+sha256: null

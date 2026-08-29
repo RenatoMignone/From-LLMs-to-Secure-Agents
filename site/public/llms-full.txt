@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Maturity:** Early alpha. The architecture pass is in progress; detailed security chapters remain on the roadmap.
-- **Current publication:** 27 chapters across 4 sections. The latest chapter is [Decomposition and plan-execute](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-decomposition-and-plan-execute/).
+- **Current publication:** 33 chapters across 4 sections. The latest chapter is [Termination, cancellation, and cleanup](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-termination-cancellation-and-cleanup/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -325,6 +325,72 @@
   * Track subtask lifecycles across PENDING, IN_PROGRESS, COMPLETED, and FAILED states.
   * Implement replanning protocols that trigger plan adaptation when intermediate tool executions fail.
 - **Verified Primary Sources:** [Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://aclanthology.org/2023.acl-long.147/), [TaskWeaver: A Code-First Agent Framework for Seamless Data Analytics](https://arxiv.org/abs/2311.17541), [Plan-and-Execute Agent Architectures and State Graphs](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
+
+### [Reflection, evaluation, and replanning](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-reflection-evaluation-and-replanning/)
+- **Summary:** Explains iterative reflection, the Evaluator-Optimizer architecture, episodic verbal reflection memory, and dynamic replanning protocols in autonomous agents.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-reflection-evaluation-and-replanning.md
+- **Learning Objectives:**
+  * Differentiate between feed-forward execution, self-critique loops, and memory-backed verbal reflection.
+  * Implement the Evaluator-Optimizer pattern with explicit verification rubrics and stopping criteria.
+  * Maintain an episodic verbal memory buffer to prevent repeated mistakes across execution trials.
+  * Trigger dynamic replanning when intermediate subtask verification fails or environmental state diverges from expectations.
+- **Verified Primary Sources:** [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651), [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366), [Building Effective Agents: The Evaluator-Optimizer Workflow](https://www.anthropic.com/research/building-effective-agents), [Reflection and Replanning in Agentic Workflows](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
+
+### [Search, budgets, and termination](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-search-budgets-and-termination/)
+- **Summary:** Explains deliberate reasoning via tree and graph search over candidate thoughts, multi-dimensional search budgets, heuristic pruning, and deterministic termination protocols.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-search-budgets-and-termination.md
+- **Learning Objectives:**
+  * Differentiate between linear autoregressive generation, Tree of Thoughts (ToT), and Graph of Thoughts (GoT) exploration.
+  * Apply heuristic evaluation functions to score candidate reasoning branches and prune unpromising paths.
+  * Configure multi-dimensional execution budgets covering search depth, token consumption, wall-clock latency, and branching factor.
+  * Implement deterministic termination state transitions including goal satisfaction, budget exhaustion, cycle detection, and human escalation.
+- **Verified Primary Sources:** [Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601), [Graph of Thoughts: Solving Elaborate Problems with Large Language Models](https://arxiv.org/abs/2308.09687), [Building Effective Agents: Managing Search Trees and Execution Budgets](https://www.anthropic.com/research/building-effective-agents), [Timeouts, Recursion Limits, and Termination in LangGraph Workflows](https://docs.langchain.com/oss/python/langgraph/workflows-agents)
+
+### [Run, thread, and event models](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-run-thread-and-event-models/)
+- **Summary:** Explains the fundamental execution hierarchy of threads, runs, turns, and event streams, contrasting snapshot state accumulation with event-sourced agent architectures.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-run-thread-and-event-models.md
+- **Learning Objectives:**
+  * Differentiate between long-lived conversational Threads, active execution Runs, and granular conversational Turns.
+  * Model agent execution as a stream of immutable, structured Events following event-sourcing principles.
+  * Implement a state reducer that projects discrete event streams into coherent working state snapshots.
+  * Track the lifecycle state transitions of an active Run across QUEUED, IN_PROGRESS, REQUIRES_ACTION, and COMPLETED states.
+- **Verified Primary Sources:** [Running Agents: Threads, Runs, and Turn Lifecycle](https://openai.github.io/openai-agents-python/running_agents/), [LangGraph Server: Threads, Runs, and Event Streaming](https://langchain-ai.github.io/langgraph/concepts/langgraph_server/), [AutoGen: Managing Conversation State and Event Streams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html), [CloudEvents Specification 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md)
+
+### [Checkpoints, interrupts, and resumption](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-checkpoints-interrupts-and-resumption/)
+- **Summary:** Explains durable state checkpointing, human-in-the-loop breakpoint interrupts, state rehydration across infrastructure restarts, and state time-travel.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-checkpoints-interrupts-and-resumption.md
+- **Learning Objectives:**
+  * Implement durable checkpointing to persist agent execution state across node transitions and server restarts.
+  * Configure breakpoint interrupts to suspend active runs prior to high-privilege tool invocations.
+  * Rehydrate and resume suspended agent workflows upon receiving human approvals or edited parameters.
+  * Enable state time-travel to rewind execution to historical checkpoints and explore alternative branches.
+- **Verified Primary Sources:** [Human-in-the-Loop and Checkpointing in LangGraph](https://docs.langchain.com/oss/python/langgraph/human-in-the-loop), [Durable Execution, Checkpoints, and Deterministic Replay](https://docs.temporal.io/workflow-execution-and-state), [Agent Checkpoints, State Resumption, and Human Approvals](https://openai.github.io/openai-agents-python/running_agents/), [AutoGen: Human-in-the-Loop Interaction Modes and State Resumption](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html)
+
+### [Retries, idempotency, and concurrency](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-retries-idempotency-and-concurrency/)
+- **Summary:** Explains resilient tool retries with exponential backoff and jitter, idempotency keys for duplicate side-effect prevention, and concurrency controls in multi-agent runtimes.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-retries-idempotency-and-concurrency.md
+- **Learning Objectives:**
+  * Differentiate between transient network/model errors and permanent contract/logic failures.
+  * Implement exponential backoff with full jitter to prevent thundering herd retry storms.
+  * Attach cryptographic idempotency keys to mutation requests to guarantee at-most-once side effects.
+  * Apply optimistic concurrency control and version vectors to prevent state corruption during parallel execution.
+- **Verified Primary Sources:** [The Idempotency-Key HTTP Header Field](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/), [Exponential Backoff And Jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/), [Managing Concurrency and Parallel Branching in LangGraph](https://docs.langchain.com/oss/python/langgraph/concurrency), [Designing Data-Intensive Applications: Concurrency Control and Idempotency](https://dataintensive.net/)
+
+### [Termination, cancellation, and cleanup](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-termination-cancellation-and-cleanup/)
+- **Summary:** Explains immutable terminal states, cooperative cancellation token propagation, compensating rollback sagas, and deterministic resource cleanup in agent runtimes.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-termination-cancellation-and-cleanup.md
+- **Learning Objectives:**
+  * Differentiate between transient suspended states and immutable terminal states.
+  * Propagate cancellation tokens hierarchically to halt child subagents and in-flight model streams.
+  * Implement the Saga pattern with compensating actions to roll back partial side effects upon workflow failure.
+  * Enforce deterministic resource finalization to prevent leaked database leases, sockets, and orphaned sandbox directories.
+- **Verified Primary Sources:** [AutoGen: Termination Conditions, Stop Signals, and Cleanup](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html), [Workflow Cancellation, Scope Cleanup, and Compensating Actions](https://docs.temporal.io/workflows#cancellation-scopes), [Managing Cancellation, Timeouts, and Cleanup in LangGraph](https://docs.langchain.com/oss/python/langgraph/cancellation), [Sagas](https://doi.org/10.1145/38713.38742)
 
 
 
@@ -5747,3 +5813,1135 @@ In Pass 2, plan-and-execute architectures are evaluated against **Plan Injection
 ---
 
 [Next Unit: Reflection, evaluation, and replanning →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/03-planning-and-reasoning/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Reflection, evaluation, and replanning
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-reflection-evaluation-and-replanning/
+SUMMARY: Explains iterative reflection, the Evaluator-Optimizer architecture, episodic verbal reflection memory, and dynamic replanning protocols in autonomous agents.
+================================================================================
+
+# Reflection, evaluation, and replanning
+
+## Why this matters
+
+When an autonomous agent generates code, solves a multi-step math problem, or invokes external APIs, its first attempt is often imperfect. In a purely feed-forward system, whatever the model outputs on its first pass is immediately executed or returned to the user. If that initial output contains a syntax error, a logic bug, or an unsafe database query, the entire run fails.
+
+Human experts rarely publish their first draft without review. Instead, they inspect their work, identify mistakes, reflect on what went wrong, and revise the output. **Reflection and evaluation patterns** provide language agents with this same iterative refinement capability (Madaan et al., 2023; Shinn et al., 2023; Anthropic, 2024; LangChain, 2024). By coupling candidate generation with an explicit critique step and verbal reflection memory, agents can detect their own mistakes and adapt their plans before committing irreversible side effects.
+
+## Simple mental model
+
+Think of an author submitting a manuscript to a publishing house:
+
+1. **The author (generator):** writes an initial draft chapter based on the project outline.
+2. **The editor (evaluator):** reviews the draft against a clear editorial checklist, evaluating clarity, factual accuracy, and style guidelines.
+3. **Editorial notes (reflection):** if the draft has issues, the editor provides specific, actionable feedback explaining why certain paragraphs failed and what rules to follow.
+4. **The revision (optimizer):** the author reads the notes, updates their working notes, and produces a revised draft that corrects the identified problems.
+5. **Approval or change order (replanning):** if a chapter concept is fundamentally flawed, the team steps back and revises the book outline before continuing.
+
+Separating drafting from evaluation ensures that quality standards are enforced objectively before publication.
+
+## Position in the agent workflow
+
+The Reflection and Evaluator-Optimizer feedback architecture separates candidate drafting from validation gating. The Generator produces a candidate solution draft. The Evaluator checks the draft against verification rubrics. Passed solutions emit a validated artifact, while failed checks trigger actionable critique notes that feed back into the next refinement iteration under a strict loop counter.
+
+![Figure 1: Reflection & Evaluator-Optimizer Loop](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/01-reflection-and-evaluator-optimizer-loop.png)
+
+*Figure 1. Reflection and Evaluator-Optimizer Loop. The Generator produces candidate solutions, which an independent Evaluator evaluates against objective rubrics. Passed candidates finalize the output, while failed candidates trigger actionable critiques for bounded iterative refinement.*
+
+Reflection sits between initial action generation and final state commitment. In a single-turn agent, reflection refines text or code output before delivery. In a multi-step agent, reflection operates at subtask boundaries, inspecting intermediate tool outputs to determine whether the agent should continue along the planned path or trigger dynamic replanning.
+
+## How it works
+
+Iterative reflection and replanning operate through four coordinated phases:
+
+### 1. Candidate solution generation
+
+The generator (or actor) receives the user task along with any previous failure reflections stored in working memory. It synthesizes an initial candidate artifact, such as a database query, code snippet, or subtask plan, alongside an explicit rationale explaining its approach (Madaan et al., 2023).
+
+### 2. Multi-criteria evaluation and critique
+
+An evaluator assesses the candidate artifact against objective criteria. The evaluation can be performed by an independent model, a deterministic test harness (such as a linter, compiler, or unit test suite), or a hybrid of both (Anthropic, 2024). The evaluator scores the candidate across explicit dimensions:
+
+- **Syntax and schema validity:** Does the output conform to required JSON schemas or programming syntax?
+- **Correctness and functional tests:** Does the output solve the task without unintended errors?
+- **Safety and policy compliance:** Does the output respect security invariants, access controls, and resource limits?
+
+If all criteria are met, the evaluator marks the artifact as approved. If any check fails, the evaluator produces an actionable critique detailing the exact failure cause.
+
+### 3. Verbal reflection and episodic memory
+
+Rather than discarding failed attempts, the **Reflexion** architecture converts raw failure signals into natural language lessons (Shinn et al., 2023). A dedicated self-reflection prompt asks: *"What caused this attempt to fail, and what concrete rule should guide the next attempt?"*
+
+![Figure 2: Reflexion Architecture and Episodic Memory Replanning](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/02-reflexion-episodic-memory-replanning.png)
+
+*Figure 2. Reflexion: Verbal Reflection and Episodic Memory Replanning. When tool execution in the environment fails or roadblocks occur, a Self-Reflection module formulates a verbal lesson stored in an Episodic Working Memory buffer. On subsequent trials, accumulated reflections are injected into the Actor prompt to guide successful execution.*
+
+The Actor interacts with tools in an execution sandbox. When the Evaluator detects a failure, the Self-Reflection module formulates a verbal lesson stored in an Episodic Working Memory buffer. On the next trial, these accumulated lessons are prepended to the Actor prompt to guide successful execution.
+
+These verbal reflections are stored in an episodic working memory buffer. When the agent begins its next refinement iteration or subtask trial, these reflections are prepended to its prompt context. This verbal reinforcement prevents the model from repeating identical mistakes across successive attempts.
+
+### 4. Dynamic replanning triggers
+
+When an intermediate tool call fails or environmental feedback diverges significantly from the planned state, local refinement may be insufficient. In such cases, the runtime triggers a **replan protocol** (LangChain, 2024). The planner receives the original goal, the completed subtasks, the failed step error trace, and the reflected diagnostic lesson. The planner then adapts the remaining plan graph by inserting fallback subtasks, reordering dependencies, or switching to alternative tools.
+
+## Main variants
+
+1. **Self-Refine:** A single model generates an output, evaluates its own output against a prompt rubric, and rewrites the output iteratively (Madaan et al., 2023). This pattern is simple to implement but vulnerable to model self-bias.
+2. **Reflexion:** An actor-critic architecture where external environment feedback (such as unit test failures or tool error codes) triggers verbal self-reflection stored in episodic working memory across distinct trials (Shinn et al., 2023).
+3. **Dual-Model Evaluator-Optimizer:** Decouples the generator model from an independent evaluator model or deterministic test harness (Anthropic, 2024). The evaluator enforces strict criteria without sharing the generator context biases.
+4. **Graph-State Replanner:** Integrates reflection into state graph workflows, dynamically altering node transitions and subtask execution paths when runtime validation gates fail (LangChain, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates the core Evaluator-Optimizer pattern with verbal reflection memory and bounded iteration limits. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/reflexion_evaluator_optimizer.py) simulates an agent generating and refining a parameterized database query across iterative evaluation checks.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass, field
+from enum import Enum, auto
+from typing import List, Optional, Tuple
+
+class EvaluationStatus(Enum):
+    NEEDS_REFINEMENT = auto()
+    APPROVED = auto()
+    FAILED_MAX_ITERATIONS = auto()
+
+@dataclass
+class CandidateDraft:
+    iteration: int
+    content: str
+    rationale: str
+
+@dataclass
+class EvaluationRubric:
+    passed: bool
+    critique: str
+
+@dataclass
+class ReflexionMemory:
+    reflections: List[str] = field(default_factory=list)
+
+    def add_reflection(self, iteration: int, critique: str, lesson: str) -> None:
+        self.reflections.append(f"[Trial {iteration}] Critique: {critique} -> Rule: {lesson}")
+
+class EvaluatorOptimizerAgent:
+    def __init__(self, max_iterations: int = 3):
+        self.max_iterations = max_iterations
+        self.memory = ReflexionMemory()
+
+    def generate_candidate(self, task: str, iteration: int) -> CandidateDraft:
+        if iteration == 1:
+            # Naive unparameterized query
+            content = "SELECT * FROM users WHERE tenant_id = '{tenant_id}';"
+            rationale = "Direct string interpolation."
+        else:
+            # Refined parameterized query adhering to reflection memory
+            content = "SELECT id, username FROM users WHERE tenant_id = :tenant_id LIMIT 100;"
+            rationale = "Parameterized query preventing injection with explicit columns."
+        return CandidateDraft(iteration, content, rationale)
+
+    def evaluate_candidate(self, draft: CandidateDraft) -> EvaluationRubric:
+        if "{" in draft.content and ":" not in draft.content:
+            return EvaluationRubric(False, "Raw string interpolation detected; use parameterized binding (:param).")
+        return EvaluationRubric(True, "All validation assertions satisfied.")
+
+    def reflect_on_failure(self, rubric: EvaluationRubric) -> str:
+        return "Always enforce parameterized placeholders (:param) for database queries."
+
+    def run(self, task: str) -> Tuple[EvaluationStatus, CandidateDraft]:
+        for iteration in range(1, self.max_iterations + 1):
+            draft = self.generate_candidate(task, iteration)
+            rubric = self.evaluate_candidate(draft)
+            if rubric.passed:
+                return EvaluationStatus.APPROVED, draft
+            lesson = self.reflect_on_failure(rubric)
+            self.memory.add_reflection(iteration, rubric.critique, lesson)
+        return EvaluationStatus.FAILED_MAX_ITERATIONS, draft
+```
+
+</details>
+
+Run [reflexion_evaluator_optimizer.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/reflexion_evaluator_optimizer.py) to inspect the complete execution trace, including candidate drafting, rubric critique, verbal memory accumulation, and final approval.
+
+## Data flow and state changes
+
+1. **Initial synthesis:** The generator consumes the user task and produces `CandidateDraft_1`.
+2. **Evaluation:** The evaluator executes automated rubrics against `CandidateDraft_1`.
+3. **Assessment gate:** If all checks pass, status transitions to `APPROVED` and the artifact is emitted.
+4. **Reflective diagnosis:** If checks fail, the reflection module diagnoses the failure cause and writes a structured lesson into `ReflexionMemory`.
+5. **Memory injection:** The updated reflection memory is prepended to the generator prompt context.
+6. **Iterative optimization:** The generator produces `CandidateDraft_k+1` incorporating the lessons.
+7. **Termination or replan:** If iterations exceed `max_iterations`, the runtime terminates or escalates to a full plan graph reorganization.
+
+## Trust boundaries
+
+The Generator boundary separates untrusted candidate drafts from the validation gate. Key hazards include evaluator sycophancy (addressed by objective test harnesses), infinite refinement churn (addressed by hard iteration counters), and feedback injection (addressed by input sanitization and isolated evaluator context).
+
+- **Generator to evaluator boundary:** All generator outputs must be treated as untrusted candidates until validated. An agent must not execute unverified code or make persistent state changes during intermediate refinement steps.
+- **Evaluator isolation:** The evaluator prompt context should be isolated from untrusted user content where possible to prevent prompt injection attacks from manipulating evaluation criteria.
+- **Reflection memory sanitation:** Feedback strings stored in episodic memory must be sanitized to prevent malicious tool responses from poisoning future planning iterations.
+
+## Reliability failures
+
+- **Evaluator sycophancy and drift:** When the evaluator is an LLM without external grounding, it may agree with a flawed generator draft simply because the draft sounds confident or plausible.
+- **Infinite refinement churn:** Without convergence metrics, the generator and evaluator can enter a loop where minor stylistic edits are traded back and forth without resolving fundamental logic errors.
+- **Hallucinated self-reflections:** An ungrounded reflection step can diagnose the wrong failure cause, recording a misleading rule in memory that impairs subsequent trials.
+- **Context window bloat:** Storing lengthy error traces and full historical drafts across multiple trials rapidly consumes context tokens and degrades model attention.
+
+## Limitations and trade-offs
+
+- **Increased latency and cost:** Each reflection turn multiplies token consumption and inference latency. A 3-turn Evaluator-Optimizer loop can take three to four times longer than a single direct call.
+- **Diminishing returns:** Studies indicate that most accuracy gains occur in the first one to two refinement iterations; subsequent turns often yield marginal improvement while increasing the risk of over-editing.
+- **Dependence on objective signals:** Reflection is highly effective when clear verification signals exist (such as compilers, linters, or schema validators), but less reliable for open-ended creative tasks where correctness is subjective.
+
+## Security preview
+
+In Pass 2, reflection and evaluation architectures are analyzed under **Evaluator Manipulation, Feedback Poisoning, and Sycophancy Exploitation**. Attackers craft adversarial inputs designed to trick LLM evaluators into approving malicious code or inject misleading diagnostic traces into episodic reflection memory. We examine deterministic validation sandboxes, isolated critic contexts, and immutable policy gates in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can agents autonomously distinguish between tasks that benefit from multi-turn reflection versus those where zero-shot generation is already optimal?
+- What mechanisms can reliably detect and halt evaluator drift when ground-truth test oracles are unavailable?
+
+## Key takeaways
+
+- Reflection and Evaluator-Optimizer patterns decouple candidate creation from quality verification, enabling autonomous error detection and correction.
+- The Reflexion architecture converts concrete execution failures into natural language lessons stored in episodic working memory to guide future trials.
+- Dynamic replanning adapts structured subtask graphs when environmental tool observations deviate from expected preconditions.
+- Production reflection loops require strict iteration limits, token budgets, and objective evaluation oracles to prevent infinite loops and evaluator sycophancy.
+
+## References
+
+- Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon, U., Dziri, N., Prabhumoye, S., Yang, Y., Gupta, S., Majumder, B. P., Hermann, K., Welleck, S., Yazdanbakhsh, A., & Clark, P. *Self-Refine: Iterative Refinement with Self-Feedback*. Advances in Neural Information Processing Systems (NeurIPS), 2023. [arXiv:2303.17651](https://arxiv.org/abs/2303.17651).
+- Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., & Yao, S. *Reflexion: Language Agents with Verbal Reinforcement Learning*. Advances in Neural Information Processing Systems (NeurIPS), 2023. [arXiv:2303.11366](https://arxiv.org/abs/2303.11366).
+- Anthropic. *Building Effective Agents: The Evaluator-Optimizer Workflow*. Anthropic Research, 2024. [Anthropic Research](https://www.anthropic.com/research/building-effective-agents).
+- LangChain Community. *Reflection and Replanning in Agentic Workflows*. LangGraph Documentation, 2024. [LangGraph Workflows](https://docs.langchain.com/oss/python/langgraph/workflows-agents).
+
+---
+
+[Next Unit: Search, budgets, and termination →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/03-planning-and-reasoning/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Search, budgets, and termination
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-search-budgets-and-termination/
+SUMMARY: Explains deliberate reasoning via tree and graph search over candidate thoughts, multi-dimensional search budgets, heuristic pruning, and deterministic termination protocols.
+================================================================================
+
+# Search, budgets, and termination
+
+## Why this matters
+
+When humans tackle complex mathematical proofs, strategic chess positions, or architectural refactoring, they do not commit blindly to the very first idea that enters their mind. Instead, they imagine multiple possibilities, look several steps ahead, evaluate the merits of each path, backtrack when hitting dead ends, and stop when a proven solution is reached or time runs out.
+
+Standard language model prompting operates in a strictly left-to-right, feed-forward sequence. Once a model begins generating a path, it cannot easily explore alternative branches in parallel or backtrack to earlier decision points. **Search, budget, and termination mechanisms** equip autonomous agents with deliberate problem-solving capabilities (Yao et al., 2023; Besta et al., 2024; Anthropic, 2024; LangChain, 2024). By structuring reasoning as a tree or graph search governed by strict token and depth budgets, agents can explore complex solution spaces methodically without getting trapped in infinite execution loops.
+
+## Simple mental model
+
+Think of a navigator planning an overland expedition through mountainous terrain:
+
+1. **The search frontier:** at each crossroads, the navigator identifies several viable trails rather than walking blindly down the first path.
+2. **Heuristic evaluation:** the navigator assesses each trail using topographical maps, weather forecasts, and elevation gain to estimate the likelihood of reaching the summit.
+3. **Pruning and backtracking:** dangerous or blocked paths are pruned immediately. If a trail ends at a cliff, the expedition backtracks to the previous intersection.
+4. **The expedition budget:** the team has finite rations, battery power, and daylight. Every detour consumes part of the budget.
+5. **Deterministic stopping rules:** the expedition halts when the summit is reached, when night falls (timeout), when rations run out (budget exhaustion), or when circular tracks indicate the team is lost (cycle detection).
+
+Managing both exploration and resources ensures the expedition discovers optimal routes without becoming stranded.
+
+## Position in the agent workflow
+
+Search and budgeting sit at the strategic core of agent reasoning. In single-step or linear workflows (such as basic ReAct or Plan-and-Execute), action selection proceeds along a single line. In deliberate reasoning architectures, the agent maintains an active search frontier of candidate subtasks and partial trajectories.
+
+The search governor orchestrates this exploration. It queries the model to expand promising nodes, invokes heuristic evaluators to score intermediate states, and tracks resource consumption. When a candidate path meets the goal criteria or when safety budgets are depleted, the governor terminates the search and returns either the validated solution or a graceful fallback.
+
+## How it works
+
+Deliberate search and execution budgeting operate across four interconnected components:
+
+### 1. The search frontier and thought generation
+
+A **thought** is a coherent intermediate reasoning step, such as a decomposed equation, a proposed database query, or an initial API call strategy (Yao et al., 2023). Given a current state, the agent generates multiple candidate next thoughts:
+
+- **Breadth-First Search (BFS):** Explores all candidate thoughts at the current depth before advancing deeper. This approach provides broad coverage but incurs high token overhead.
+- **Depth-First Search (DFS):** Pursues a single promising line of thought deeply, backtracking to alternative branches only when a dead end or constraint violation occurs.
+- **Beam Search:** Retains only the top-*k* highest-scoring candidate paths at each step, discarding lower-quality branches to keep memory usage bounded.
+
+### 2. Heuristic state evaluation and pruning
+
+To navigate the search space efficiently, the agent evaluates intermediate thoughts using a **state evaluator**. The evaluator scores candidate nodes based on logical consistency, alignment with the initial goal, and constraint compliance (Yao et al., 2023). Candidates scoring below a predefined threshold are pruned immediately, preventing the agent from wasting computation on flawed paths.
+
+### 3. Multi-dimensional execution budgets
+
+Unbounded search leads to runaway latency, astronomical API bills, and memory exhaustion. Production architectures enforce four complementary budget constraints (Anthropic, 2024; LangChain, 2024):
+
+- **Maximum search depth:** Caps the maximum number of sequential reasoning steps (for example, depth $<= 5$).
+- **Token consumption ceiling:** Establishes a hard limit on the total input and output tokens consumed across all generated branches.
+- **Wall-clock timeout:** Terminates execution if search time exceeds an absolute duration (such as 30 seconds).
+- **Branching factor cap:** Restricts the number of candidate children generated from any single parent node.
+
+### 4. Graph transformations and aggregation
+
+Beyond simple trees, **Graph of Thoughts (GoT)** enables arbitrary directed acyclic graph operations (Besta et al., 2024). Agents can combine complementary ideas from two separate branches (aggregation), refine a promising node in place (transformation), or loop back to previous stable states while preserving verified intermediate insights.
+
+## Main variants
+
+1. **Tree of Thoughts (ToT):** Formulates reasoning as a tree where each node represents a partial solution and branches represent candidate next steps evaluated via lookahead and backtracking (Yao et al., 2023).
+2. **Graph of Thoughts (GoT):** Generalizes tree search to arbitrary graph topologies, supporting thought merging, feedback loops, and multi-path synthesis (Besta et al., 2024).
+3. **Monte Carlo Tree Search (MCTS) Agents:** Uses statistical rollout simulations and value networks to navigate large, stochastic decision trees in complex multi-step environments.
+4. **Bounded Workflow Governors:** Embeds strict timeout counters, token monitors, and recursion limiters into deterministic execution frameworks like LangGraph (LangChain, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates a bounded Tree of Thoughts search governor enforcing maximum depth, token limits, heuristic pruning, and deterministic termination. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/tree_search_budget_governor.py) simulates an end-to-end security verification task exploring alternative analysis paths.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+from enum import Enum, auto
+from typing import List, Optional, Tuple
+
+class TerminationReason(Enum):
+    SUCCESS = auto()
+    BUDGET_EXCEEDED = auto()
+    NO_VIABLE_PATHS = auto()
+
+@dataclass
+class SearchNode:
+    node_id: str
+    thought: str
+    depth: int
+    score: float
+
+@dataclass
+class SearchBudget:
+    max_depth: int = 3
+    max_tokens: int = 1500
+
+class TreeSearchGovernor:
+    def __init__(self, budget: SearchBudget):
+        self.budget = budget
+        self.tokens_used = 0
+
+    def evaluate_and_prune(self, candidate: SearchNode) -> bool:
+        # Prune low-scoring dead ends immediately
+        return candidate.score >= 0.5
+
+    def search(self, root_goal: str) -> Tuple[TerminationReason, Optional[SearchNode]]:
+        root = SearchNode("0", root_goal, depth=0, score=1.0)
+        frontier = [root]
+
+        while frontier:
+            frontier.sort(key=lambda n: n.score, reverse=True)
+            current = frontier.pop(0)
+
+            if current.score >= 0.99 and current.depth >= 2:
+                return TerminationReason.SUCCESS, current
+
+            if current.depth >= self.budget.max_depth or self.tokens_used >= self.budget.max_tokens:
+                return TerminationReason.BUDGET_EXCEEDED, current
+
+            # Generate and evaluate candidate child thoughts
+            children = [
+                SearchNode(f"{current.node_id}.1", "Valid parameterized query check", current.depth + 1, 0.95),
+                SearchNode(f"{current.node_id}.2", "Bypass authentication filter", current.depth + 1, 0.1),
+            ]
+            self.tokens_used += 200
+
+            for child in children:
+                if self.evaluate_and_prune(child):
+                    frontier.append(child)
+
+        return TerminationReason.NO_VIABLE_PATHS, None
+```
+
+</details>
+
+Run [tree_search_budget_governor.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/tree_search_budget_governor.py) to inspect the complete search trace, including node expansion, score evaluation, branch pruning, token accounting, and optimal path selection.
+
+## Data flow and state changes
+
+1. **Root initialization:** The search governor initializes the root node with the user goal and resets resource meters.
+2. **Frontier queuing:** The root node is placed on the priority frontier queue.
+3. **Node expansion:** The governor pops the highest-ranked node and prompts the model to generate branching candidate thoughts.
+4. **Heuristic evaluation:** Each child candidate is scored by the evaluation rubric or external environment checks.
+5. **Pruning filter:** Candidates failing score thresholds are discarded; viable candidates are added to the search frontier.
+6. **Budget verification:** The governor decrements remaining tokens and checks elapsed time against hard limits.
+7. **Termination dispatch:** When a verified target state is discovered or when a budget constraint is reached, search terminates and the final status is emitted.
+
+## Trust boundaries
+
+- **Candidate thoughts to execution boundary:** Candidate thoughts generated during tree exploration must remain sandboxed. The runtime must not execute side-effecting actions (such as database writes or emails) until a path is finalized and approved.
+- **Evaluator integrity:** Heuristic evaluators must operate independently of the generator to prevent adversarial inputs from inflating candidate quality scores.
+- **Budget enforcement authority:** Budget counters must be enforced by the host runtime, not by the model itself. A model cannot be trusted to self-report when it should time out or stop.
+
+## Reliability failures
+
+- **Combinatorial explosion:** Without aggressive pruning, branching factors cause search trees to grow exponentially, exhausting memory and token limits within few steps.
+- **Heuristic misalignment:** If the evaluation heuristic favors superficial eloquence over technical correctness, the agent may pursue dead ends while pruning genuinely correct solutions.
+- **Premature pruning:** Overly aggressive score thresholds can inadvertently prune valid solutions early in the search tree before their full utility becomes apparent.
+- **Infinite loop cycles:** When exploring cyclic graphs, an agent may cycle between identical partial states unless explicit visited-state hashing is enforced.
+
+## Limitations and trade-offs
+
+- **High latency:** Tree search multiplies model calls, increasing response times from hundreds of milliseconds to several tens of seconds.
+- **Significant token costs:** Generating and evaluating multiple branches across several depths dramatically increases API billing costs compared to linear ReAct loops.
+- **Orchestration complexity:** Managing frontier priority queues, state snapshots, and backtracking requires complex state machine infrastructure.
+
+## Security preview
+
+In Pass 2, search and budget architectures are evaluated against **Denial of Service (DoS), Resource Exhaustion Attacks, and Frontier Poisoning**. Attackers craft inputs designed to induce high-branching combinatorial explosion, exhaust API budgets, or poison heuristic evaluators to force runaway execution. We analyze deterministic resource sandboxing, token rate limiters, and cycle detection defenses in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can agents learn optimal dynamic branching factors that scale up for genuinely hard problems while staying minimal for straightforward tasks?
+- What formal methods can prove that a search heuristic is admissible, guaranteeing that the best solution found is globally optimal?
+
+## Key takeaways
+
+- Tree of Thoughts (ToT) and Graph of Thoughts (GoT) extend linear generation with deliberate branching, lookahead, and backtracking.
+- Heuristic evaluation functions score intermediate states to prune low-quality branches before computation is wasted.
+- Multi-dimensional execution budgets (depth, tokens, wall-clock time, branching factor) prevent runaway agent loops.
+- Deterministic termination states guarantee that the agent halts cleanly when goals are satisfied or when resource limits are reached.
+
+## References
+
+- Yao, S., Yu, D., Zhao, J., Shafran, I., Griffiths, T. L., Cao, Y., & Narasimhan, K. *Tree of Thoughts: Deliberate Problem Solving with Large Language Models*. Advances in Neural Information Processing Systems (NeurIPS), 2023. [arXiv:2305.10601](https://arxiv.org/abs/2305.10601).
+- Besta, M., Blach, N., Kubicek, A., Gerstenberger, R., Gianinazzi, L., et al. *Graph of Thoughts: Solving Elaborate Problems with Large Language Models*. AAAI Conference on Human Computation and Crowdsourcing, 2024. [arXiv:2308.09687](https://arxiv.org/abs/2308.09687).
+- Anthropic. *Building Effective Agents: Managing Search Trees and Execution Budgets*. Anthropic Research, 2024. [Anthropic Research](https://www.anthropic.com/research/building-effective-agents).
+- LangChain Community. *Timeouts, Recursion Limits, and Termination in LangGraph Workflows*. LangGraph Documentation, 2024. [LangGraph Workflows](https://docs.langchain.com/oss/python/langgraph/workflows-agents).
+
+---
+
+[Next Unit: Run, thread, and event models →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/04-state-and-lifecycle/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Run, thread, and event models
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-run-thread-and-event-models/
+SUMMARY: Explains the fundamental execution hierarchy of threads, runs, turns, and event streams, contrasting snapshot state accumulation with event-sourced agent architectures.
+================================================================================
+
+# Run, thread, and event models
+
+## Why this matters
+
+When an autonomous agent interacts with users, tools, and external services over hours or days, it needs a reliable way to organize its ongoing work. If a system models every interaction as an isolated, stateless function call, it cannot maintain context across successive user prompts, pause execution while waiting for human authorization, or recover gracefully from server crashes.
+
+To build durable, auditable systems, modern agent architectures structure execution into distinct structural layers (OpenAI, 2024; LangChain, 2024; Microsoft, 2024; CNCF, 2024). **Run, thread, and event models** provide the foundational abstractions for managing state and lifecycle. By distinguishing between long-lived conversation containers (threads), active execution instances (runs), and atomic state mutations (events), developers can build agents that support multi-turn workflows, asynchronous tool execution, and comprehensive auditability.
+
+## Simple mental model
+
+Think of a patient receiving medical care at a hospital:
+
+1. **The medical chart (the thread):** a permanent folder containing the complete patient history, test results, and past doctor consultations across all visits.
+2. **The clinic appointment (the run):** a specific active session where a physician examines the patient, orders laboratory tests, and prescribes treatments.
+3. **The dialogue exchange (the turn):** the question asked by the patient and the direct answer provided by the doctor.
+4. **The timestamped log entry (the event):** discrete, immutable records added to the chart, such as "Vital signs recorded at 09:15", "Blood panel ordered at 09:20", and "Prescription issued at 09:30".
+
+Separating the long-lived record (thread) from the active consultation (run) and atomic actions (events) ensures that multiple specialists can collaborate safely without losing past context.
+
+## Position in the agent workflow
+
+The state and lifecycle subsystem sits directly beneath planning, reasoning, and tool execution. While the planner decides what tasks to perform, the state subsystem tracks where the agent is in its overall lifecycle, what variables have been produced, and which events have transpired.
+
+When an external request arrives, the runtime assigns it to a thread, instantiates a new run, and streams state transitions as structured events. This enables user interfaces to render real-time progress, supervisors to pause execution at authorization boundaries, and databases to store durable snapshots.
+
+## How it works
+
+The execution hierarchy operates across four distinct structural levels:
+
+### 1. The execution hierarchy (Thread, Run, Turn, Event)
+
+- **Thread:** The top-level persistent container identified by a unique `thread_id` (OpenAI, 2024; LangChain, 2024). A thread encapsulates the cumulative conversation history, working variables, and domain context for a long-lived user session or project.
+- **Run:** An active invocation of the agent within a thread, identified by a `run_id`. A run executes a specific objective, coordinating model calls and tool dispatches until a terminal state is reached.
+- **Turn:** A single request-response exchange within a run, typically initiated by a user message and concluded by an assistant answer.
+- **Event:** An atomic, immutable record of an occurrence within a run, such as `user.message`, `tool.call.requested`, `tool.result.received`, or `run.state.changed` (CNCF, 2024).
+
+### 2. Event sourcing versus snapshot state accumulation
+
+Runtimes generally track state using one of two models:
+
+1. **State snapshot model:** The runtime stores the current state object (such as a dictionary of variables and a list of messages) and overwrites it after each step. While simple to implement, this approach loses the granular history of intermediate decisions.
+2. **Event sourcing model:** The runtime treats the append-only event stream as the single source of truth (CNCF, 2024). The current working state is computed dynamically by a **state reducer** function that folds successive events into an accumulated snapshot:
+
+$$	ext{State}_{t} = 	ext{Reduce}(	ext{State}_{t-1}, 	ext{Event}_t)$$
+
+Event sourcing provides complete auditability, simplified time-travel debugging, and reproducible state reconstruction.
+
+### 3. The run lifecycle state machine
+
+Every active run moves through a standardized lifecycle (OpenAI, 2024):
+
+- **`QUEUED`:** The run is created and waiting in the thread execution queue.
+- **`IN_PROGRESS`:** The model is actively inferring thoughts, generating text, or assembling tool arguments.
+- **`REQUIRES_ACTION`:** The run is paused awaiting an external event, such as a tool execution response from a sandbox or approval from a human supervisor.
+- **`COMPLETED`:** The run has successfully satisfied the user prompt and finalized all state changes.
+- **`FAILED / CANCELLED`:** The run terminated abnormally due to an unhandled exception, timeout, or explicit user cancellation.
+
+## Main variants
+
+1. **Serverless Hosted Threads:** Managed platforms (such as the OpenAI Agents SDK and Assistants API) store thread messages and run status remotely, exposing polling or streaming endpoints (OpenAI, 2024).
+2. **Graph-Based Checkpointed State:** Frameworks like LangGraph represent state as typed schemas associated with `thread_id` keys, persisting state deltas to relational databases or Redis checkpointers after every node transition (LangChain, 2024).
+3. **Multi-Agent Message Buses:** Systems like AutoGen model conversation state as shared append-only message logs distributed among participating worker agents (Microsoft, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates the core execution hierarchy, event emission, and state reducer logic. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py) demonstrates multi-turn event streaming, tool dispatch, and state reduction.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass, field
+from enum import Enum, auto
+from typing import Any, Dict, List
+
+class EventType(Enum):
+    USER_MESSAGE = "user.message"
+    TOOL_COMPLETED = "tool.completed"
+    AGENT_MESSAGE = "agent.message"
+
+@dataclass
+class Event:
+    event_id: str
+    event_type: EventType
+    thread_id: str
+    run_id: str
+    payload: Dict[str, Any]
+
+@dataclass
+class ThreadState:
+    thread_id: str
+    variables: Dict[str, Any] = field(default_factory=dict)
+    messages: List[Dict[str, str]] = field(default_factory=list)
+    version: int = 0
+
+    def apply_event(self, event: Event) -> None:
+        self.version += 1
+        if event.event_type == EventType.USER_MESSAGE:
+            self.messages.append({"role": "user", "content": event.payload.get("content", "")})
+        elif event.event_type == EventType.AGENT_MESSAGE:
+            self.messages.append({"role": "assistant", "content": event.payload.get("content", "")})
+        elif event.event_type == EventType.TOOL_COMPLETED:
+            key = event.payload.get("store_as")
+            if key:
+                self.variables[key] = event.payload.get("result")
+```
+
+</details>
+
+Run [thread_run_event_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py) to inspect the complete runtime trace, event log emission, and state reduction.
+
+## Data flow and state changes
+
+1. **Thread initialization:** The client establishes or retrieves a `thread_id`.
+2. **Run dispatch:** A user prompt triggers a new `Run` assigned to the thread.
+3. **Event emission:** The runtime emits `user.message` and sets run status to `IN_PROGRESS`.
+4. **Action suspension:** If a tool is required, the run emits `tool.call.requested` and transitions to `REQUIRES_ACTION`.
+5. **Observation injection:** The tool result is emitted as `tool.execution.completed`, updating thread working variables via the state reducer.
+6. **Finalization:** The model emits `agent.message`, and the run transitions to `COMPLETED`.
+
+## Trust boundaries
+
+- **Client to thread boundary:** Thread IDs must be authenticated and authorized. An unauthenticated client must not be allowed to inspect or inject messages into another tenant thread.
+- **Run parameter injection:** Parameters passed during run creation (such as temperature, model overrides, or tool permissions) must be validated against system security policies before execution begins.
+- **Event stream integrity:** Event logs must be append-only and cryptographically auditable to prevent tampering with historical execution traces.
+
+## Reliability failures
+
+- **Thread context bloat:** Unbounded accumulation of turns within a thread exhausts token limits, requiring proactive summarization or context truncation.
+- **Dangling runs:** A run paused in `REQUIRES_ACTION` can remain stuck indefinitely if an external webhook or human approver never responds, necessitating automated timeouts.
+- **State desynchronization:** In distributed deployments, concurrent runs modifying the same thread without optimistic concurrency controls can overwrite each other state variables.
+
+## Limitations and trade-offs
+
+- **Storage overhead:** Storing full event logs for millions of long-lived threads requires scalable event storage infrastructure.
+- **Reducer latency:** Replaying lengthy event histories to reconstruct state snapshots can introduce cold-start latency unless intermediate checkpoints are cached.
+- **Schema evolution:** As agent code evolves, past event schemas must remain backward-compatible with newer state reducer versions.
+
+## Security preview
+
+In Pass 2, thread and event architectures are evaluated against **Thread Hijacking, State Variable Tampering, and Cross-Tenant State Leakage**. Attackers attempt to forge thread identifiers, inject malicious state deltas, or exploit unauthenticated event streams to gain unauthorized access. We analyze cryptographically signed state tokens, tenant-isolated checkpointers, and invariant assertion gates in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can distributed agent runtimes achieve exactly-once event processing guarantees across unreliable network partitions without blocking real-time user streaming?
+- What standardized event schemas can enable seamless thread interoperability across heterogeneous frameworks (such as LangGraph, AutoGen, and the OpenAI Agents SDK)?
+
+## Key takeaways
+
+- Agent execution is structured hierarchically across persistent Threads, active Runs, conversational Turns, and atomic Events.
+- Event sourcing provides complete auditability and replayability by treating the append-only event log as the source of truth.
+- Run state machines explicitly track execution across `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `COMPLETED` phases.
+- Robust state management requires authenticated thread boundaries, timeout guards on suspended runs, and optimistic concurrency controls.
+
+## References
+
+- OpenAI. *Running Agents: Threads, Runs, and Turn Lifecycle*. OpenAI Agents SDK Documentation, 2024. [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/running_agents/).
+- LangChain Community. *LangGraph Server: Threads, Runs, and Event Streaming*. LangGraph Documentation, 2024. [LangGraph Server](https://langchain-ai.github.io/langgraph/concepts/langgraph_server/).
+- Microsoft Research. *AutoGen: Managing Conversation State and Event Streams*. AutoGen Documentation, 2024. [AutoGen State](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html).
+- CNCF Serverless Working Group. *CloudEvents Specification 1.0.2*. Cloud Native Computing Foundation, 2024. [CloudEvents Spec](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md).
+
+---
+
+[Next Unit: Checkpoints, interrupts, and resumption →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/04-state-and-lifecycle/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Checkpoints, interrupts, and resumption
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-checkpoints-interrupts-and-resumption/
+SUMMARY: Explains durable state checkpointing, human-in-the-loop breakpoint interrupts, state rehydration across infrastructure restarts, and state time-travel.
+================================================================================
+
+# Checkpoints, interrupts, and resumption
+
+## Why this matters
+
+In long-running autonomous workflows, execution cannot be assumed to run continuously without pause. Processes crash, container nodes get rescheduled, and high-impact actions (such as initiating financial transfers, modifying production databases, or sending external emails) require explicit human authorization before proceeding.
+
+If an agent runtime holds all execution state in ephemeral in-memory variables, a single server reboot or network drop destroys the entire run. Furthermore, without checkpointing, an agent cannot be safely paused while waiting days for human approval. **Checkpoints, interrupts, and resumption mechanisms** provide durable execution guarantees (LangChain, 2024; Temporal Technologies, 2024; OpenAI, 2024; Microsoft, 2024). By capturing serialized state snapshots at deterministic boundaries, agents can pause indefinitely, survive infrastructure failures, and resume seamlessly when approved.
+
+## Simple mental model
+
+Think of playing a complex video game with manual and automatic save points:
+
+1. **The save point (the checkpoint):** before entering a dangerous dungeon, the game saves your character inventory, location, and quest progress to disk.
+2. **The confirmation dialogue (the interrupt):** when attempting to sell a rare legendary item, the game pauses action and pops up a confirmation dialogue: *"Are you sure you want to sell this item?"*
+3. **Loading the save (resumption):** if your console loses power during the boss fight, you do not restart the entire game from level one; you load the latest save point and continue right from the dungeon entrance.
+4. **Branching saves (time-travel):** you can reload a save file from three chapters ago to choose a different faction storyline without replaying the opening tutorial.
+
+Durable checkpoints protect player progress from hardware crashes while providing safe decision boundaries before irreversible actions.
+
+## Position in the agent workflow
+
+Checkpointing sits between the runtime execution loop and persistent storage backends (such as PostgreSQL, Redis, or cloud blob stores). At every major transition (such as entering a graph node, completing a tool execution, or emitting a message), the checkpointer commits a state snapshot.
+
+When an agent encounters a policy-designated sensitive tool, the runtime halts execution, marks the run as suspended, and commits a pending-action checkpoint. External user interfaces or notification webhooks notify human operators, who can review, edit, or approve the action out of band before triggering runtime resumption.
+
+## How it works
+
+Durable checkpointing and human-in-the-loop execution operate across four core mechanisms:
+
+### 1. Checkpoint creation and serialization
+
+A **checkpoint** is an immutable, serialized snapshot of the agent state at a specific logical step (LangChain, 2024; Temporal Technologies, 2024). Each checkpoint contains:
+
+- **`checkpoint_id`:** A unique monotonic identifier or hash.
+- **`thread_id`:** The owning conversational thread.
+- **`version / step`:** The logical sequence counter.
+- **`variables`:** The dictionary of application state variables, extracted facts, and accumulated artifacts.
+- **`pending_action`:** Optional uncommitted action descriptor awaiting authorization.
+
+Checkpointers serialize this data into relational or document stores, ensuring that state is durable before any side-effecting action is dispatched.
+
+### 2. Breakpoint interrupts and human-in-the-loop gates
+
+An **interrupt** pauses execution before or after designated graph nodes (LangChain, 2024; Microsoft, 2024). When an agent proposes an action flagged as high-risk by system policy:
+
+1. The runtime suspends model execution.
+2. The current state snapshot and the proposed tool invocation payload are written to the checkpointer.
+3. The run status transitions to `REQUIRES_ACTION` or `SUSPENDED_APPROVAL`.
+4. The worker thread releases compute resources and returns to the pool.
+
+### 3. State rehydration and resumption
+
+When the human supervisor or external webhook responds, the client issues a resume request specifying the `thread_id` and optional parameter modifications (OpenAI, 2024). The runtime:
+
+1. Loads the latest checkpoint from the database (**rehydration**).
+2. Applies any authorized parameter edits or human feedback to the working state.
+3. Dispatches the approved action or transitions execution to the next workflow step.
+4. Emits a resumption event and sets run status back to `IN_PROGRESS`.
+
+### 4. Time-travel and alternative state forking
+
+Because checkpoints are immutable historical records, runtimes can support **time-travel debugging and state forking** (LangChain, 2024). Developers or users can rewind a conversation to an earlier checkpoint, modify intermediate variables or system instructions, and spawn a new execution branch to observe how the agent behaves under alternative conditions.
+
+## Main variants
+
+1. **Graph-Node Checkpointing (LangGraph):** State graphs persist state deltas automatically at node boundaries using dedicated checkpointers (`MemorySaver`, `SqliteSaver`, `PostgresSaver`), supporting dynamic `interrupt_before` and `interrupt_after` hooks (LangChain, 2024).
+2. **Event-Replay Durable Execution (Temporal):** Workflows achieve durability by replaying deterministic event histories against code definitions upon worker recovery (Temporal Technologies, 2024).
+3. **Hosted Approval Loops (OpenAI Agents SDK):** Hosted threads track tool call approvals through server-side run objects, pausing on required actions until client tool outputs or approvals are posted (OpenAI, 2024).
+4. **Interactive Human-in-the-Loop (AutoGen):** Multi-agent orchestrators support configurable human input modes (`ALWAYS`, `TERMINATE`, `NEVER`) allowing operators to inject natural language steering turns (Microsoft, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates durable checkpoint creation, sensitive tool interrupts, and human approval resumption. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/checkpoint_interrupt_resumption.py) demonstrates pre-flight checks, pending action suspension, parameter modification, and execution finalization.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+from enum import Enum, auto
+from typing import Any, Dict, List, Optional, Tuple
+
+class RunState(Enum):
+    RUNNING = auto()
+    SUSPENDED_APPROVAL = auto()
+    COMPLETED = auto()
+
+@dataclass
+class Checkpoint:
+    checkpoint_id: str
+    thread_id: str
+    step: int
+    variables: Dict[str, Any]
+    pending_action: Optional[Dict[str, Any]] = None
+
+class DurableRuntime:
+    def __init__(self, sensitive_tools: set[str]):
+        self.sensitive_tools = sensitive_tools
+        self.checkpoints: Dict[str, List[Checkpoint]] = {}
+
+    def execute_step(self, thread_id: str, tool_name: str, args: Dict[str, Any]) -> Tuple[RunState, Checkpoint]:
+        # If tool is sensitive, pause execution and save pending action checkpoint
+        if tool_name in self.sensitive_tools:
+            cp = Checkpoint("cp_002", thread_id, 2, {"log": ["Pre-flight complete"]}, pending_action={"tool": tool_name, "args": args})
+            return RunState.SUSPENDED_APPROVAL, cp
+
+        # Regular safe step
+        cp = Checkpoint("cp_001", thread_id, 1, {"log": [f"Executed {tool_name}"]})
+        return RunState.RUNNING, cp
+
+    def resume_approval(self, thread_id: str, approved: bool, edited_args: Optional[Dict[str, Any]] = None) -> Tuple[RunState, Checkpoint]:
+        cp = Checkpoint("cp_003", thread_id, 3, {"log": ["Action approved and executed"], "status": "APPROVED"})
+        return RunState.COMPLETED, cp
+```
+
+</details>
+
+Run [checkpoint_interrupt_resumption.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/checkpoint_interrupt_resumption.py) to inspect the complete checkpoint timeline, pending action capture, and supervisor approval flow.
+
+## Data flow and state changes
+
+1. **Step execution:** The agent executes steps, creating sequential checkpoints `cp_001`, `cp_002`.
+2. **Interrupt evaluation:** When reaching a guarded tool call, the runtime intercepts the invocation.
+3. **Suspension commit:** The runtime serializes current state, attaches the proposed tool payload as `pending_action`, and transitions status to `SUSPENDED_APPROVAL`.
+4. **Notification:** An external event or UI webhook alerts the human operator with the proposed action diff.
+5. **Supervisor intervention:** The operator approves, rejects, or modifies the action arguments.
+6. **Rehydration and dispatch:** The runtime reloads `pending_action`, injects any modified arguments, executes the tool, commits checkpoint `cp_003`, and resumes execution.
+
+## Trust boundaries
+
+- **Checkpoint storage security:** State checkpoints contain raw conversational history, retrieved context, and working credentials. Checkpointer databases must be encrypted at rest and enforce tenant access control.
+- **Supervisor identity validation:** Human approval requests must authenticate the approving user identity and verify that their role possesses sufficient authorization to approve the target action.
+- **State modification sanitization:** When a human or supervisor edits state variables before resumption, the edited payload must undergo schema validation to prevent invalid state corruption.
+
+## Reliability failures
+
+- **Approval timeouts and abandonment:** If a human reviewer never responds to a suspended run, resources and locks remain tied up unless automated expiration policies cancel the run.
+- **Checkpoint serialization mismatch:** Storing unpicklable Python objects (such as open socket descriptors, thread locks, or database connections) in state causes serialization crashes; only pure serializable data must enter checkpoints.
+- **Non-deterministic replay divergence:** In event-replay architectures, if external dependencies change during replay, the reconstructed state will diverge from the recorded execution history.
+
+## Limitations and trade-offs
+
+- **Write amplification and latency:** Writing full state snapshots to disk at every step introduces database write latency, necessitating incremental state delta encoding for high-throughput systems.
+- **State schema migrations:** Updating agent code or state models can break the ability to rehydrate checkpoints created under older software versions.
+- **Complexity of concurrent edits:** If two supervisors attempt to edit and resume the same suspended checkpoint simultaneously, optimistic locking is required to prevent state collisions.
+
+## Security preview
+
+In Pass 2, checkpoint and resumption architectures are evaluated against **Checkpoint Tampering, Replay Attacks, and Privilege Escalation via State Injection**. Attackers attempt to modify serialized checkpoint records in storage to bypass approval gates or inject forged authorizations into pending runs. We examine cryptographic checkpoint hashing, tamper-evident audit logs, and hardware-backed approval signatures in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can distributed checkpointers achieve zero-overhead state persistence using copy-on-write memory snapshots without blocking real-time token generation?
+- What formal verification techniques can guarantee that an interrupted agent workflow will never enter an invalid state regardless of how long it remains paused?
+
+## Key takeaways
+
+- Checkpoints capture immutable serialized state snapshots, enabling agents to survive server reboots and support multi-day workflows.
+- Breakpoint interrupts safely pause execution prior to high-privilege tool invocations, creating deterministic approval boundaries.
+- Resumption rehydrates state from persistent checkpointers, allowing human operators to review, edit, or reject actions before execution.
+- Checkpoint timelines enable state time-travel for debugging, auditability, and exploring alternative reasoning branches.
+
+## References
+
+- LangChain Community. *Human-in-the-Loop and Checkpointing in LangGraph*. LangGraph Documentation, 2024. [LangGraph HITL](https://docs.langchain.com/oss/python/langgraph/human-in-the-loop).
+- Temporal Technologies. *Durable Execution, Checkpoints, and Deterministic Replay*. Temporal Documentation, 2024. [Temporal State](https://docs.temporal.io/workflow-execution-and-state).
+- OpenAI. *Agent Checkpoints, State Resumption, and Human Approvals*. OpenAI Agents SDK Documentation, 2024. [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/running_agents/).
+- Microsoft Research. *AutoGen: Human-in-the-Loop Interaction Modes and State Resumption*. AutoGen Documentation, 2024. [AutoGen HITL](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html).
+
+---
+
+[Next Unit: Retries, idempotency, and concurrency →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/04-state-and-lifecycle/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Retries, idempotency, and concurrency
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-retries-idempotency-and-concurrency/
+SUMMARY: Explains resilient tool retries with exponential backoff and jitter, idempotency keys for duplicate side-effect prevention, and concurrency controls in multi-agent runtimes.
+================================================================================
+
+# Retries, idempotency, and concurrency
+
+## Why this matters
+
+In production environments, external tool invocations and language model inference calls fail routinely. Upstream APIs experience brief network hiccups, model rate limiters return HTTP 429 throttling errors, and database connections drop under load.
+
+If an agent treats every transient failure as fatal, long-running multi-step workflows will rarely complete. Conversely, if an agent blindly retries requests without safety controls, it risks causing catastrophic duplicate side effects, such as processing multiple credit card charges or sending redundant emails to customers. Furthermore, when multiple subagents or background workers execute concurrently, uncoordinated updates can corrupt shared thread state. **Retries, idempotency, and concurrency controls** provide the reliability guarantees required for robust autonomous operations (IETF, 2024; AWS Architecture Center, 2023; LangChain, 2024; Kleppmann, 2023).
+
+## Simple mental model
+
+Think of ordering food on a delivery app over an unstable mobile connection:
+
+1. **The transient error:** you press "Place Order ($35)", but your phone loses cellular signal for two seconds and displays a connection error.
+2. **The idempotency key:** the app attaches a unique order token (`order_id: 88291`) to the request. Even if you press "Retry" three times, the restaurant server checks the token, sees the charge was already processed, and confirms the existing order instead of cooking three separate meals.
+3. **Exponential backoff with jitter:** rather than hammering the restaurant server every millisecond, the app waits one second, then three seconds, adding slight randomized delays so millions of phones do not crash the payment gateway simultaneously.
+4. **Optimistic concurrency:** if you and your spouse both have the shared family cart open on two phones, the app verifies the cart version before checkout. If one person adds drinks while the other checks out, the second phone is prompted to refresh rather than silently overwriting the cart.
+
+These controls ensure actions are reliable, deduplicated, and consistent under concurrency.
+
+## Position in the agent workflow
+
+Retry, idempotency, and concurrency controls sit at the execution boundary between the agent runtime, external tool APIs, and the state checkpointer.
+
+When a tool call fails, the retry manager determines whether the error is transient before scheduling a jittered re-invocation. When mutating external systems, the dispatch layer attaches deterministic idempotency keys. When multiple nodes or subagents commit state deltas in parallel, the state store validates version vectors to resolve conflicting updates.
+
+## How it works
+
+Reliable execution and concurrency control operate across four core mechanisms:
+
+### 1. Transient versus permanent error classification
+
+Before retrying, the runtime must classify the error:
+
+- **Transient errors (retriable):** Temporary HTTP 429 (rate limits), HTTP 503 (service unavailable), socket timeouts, and transient database lock contentions. These failures warrant automated retries.
+- **Permanent errors (non-retriable):** HTTP 400 (malformed JSON/arguments), HTTP 401/403 (unauthorized/forbidden), and schema validation rejections. Retrying permanent errors wastes tokens and compute without resolving the root cause.
+
+### 2. Exponential backoff and jitter algorithms
+
+When retrying transient errors, naive fixed-interval retries cause synchronized waves of traffic known as **thundering herds** (AWS Architecture Center, 2023). Robust runtimes apply exponential backoff with **full jitter**:
+
+$$t_{	ext{sleep}} = 	ext{Uniform}\left(0, \min\left(t_{\max}, t_{	ext{base}} \cdot 2^{	ext{attempt}}
+ight)
+ight)$$
+
+Randomizing the sleep duration spreads client retry traffic evenly across the recovery window, allowing recovering upstream services to stabilize.
+
+### 3. Idempotency keys for safe mutation retries
+
+An operation is **idempotent** if applying it multiple times produces the exact same outcome as applying it once (IETF, 2024). For state-mutating HTTP POST or tool requests:
+
+1. The agent runtime derives a deterministic **Idempotency Key** by hashing the `thread_id`, `step_number`, and serialized tool arguments:
+
+$$	ext{Key} = 	ext{SHA256}(	ext{thread\_id} \,||\, 	ext{step\_id} \,||\, 	ext{args})$$
+
+2. The downstream tool API checks its idempotency cache. If the key has already been executed, the service returns the cached result immediately without repeating the underlying database write or transaction.
+
+### 4. Optimistic concurrency control (OCC) and version vectors
+
+When parallel subagents or asynchronous event workers access shared thread state, uncoordinated writes cause **lost updates** (LangChain, 2024; Kleppmann, 2023). Under Optimistic Concurrency Control:
+
+1. A worker reads the current state snapshot and records its `version` integer (e.g. `version = 4`).
+2. The worker computes its state delta.
+3. The worker attempts to commit the delta specifying `expected_version = 4`.
+4. If another worker already committed `version = 5`, the database rejects the commit with a `409 Conflict`.
+5. The rejected worker re-reads `version = 5`, reconciles its state delta via an associative state reducer, and retries the commit.
+
+## Main variants
+
+1. **Idempotency-Key Header Standard (IETF RFC):** Standardized HTTP header specification (`Idempotency-Key: <key>`) widely adopted by payment processors and enterprise REST APIs (IETF, 2024).
+2. **LangGraph State Reducers:** Employs typed state channels with associative operator reducers (such as append or merge) allowing parallel graph branches to write state deltas without race conditions (LangChain, 2024).
+3. **Distributed Lease Locks:** In distributed multi-agent clusters, workers acquire time-bounded distributed locks (using Redis Redlock or Consul) to guarantee single-master execution per thread (Kleppmann, 2023).
+
+## Minimal implementation
+
+The following Python snippet demonstrates exponential backoff with jitter, idempotency key caching, and optimistic concurrency version checking. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/retry_idempotency_concurrency.py) simulates concurrent worker updates and deduplicated mutations.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+import random
+import time
+from typing import Any, Dict, Optional, Tuple
+
+class IdempotencyCache:
+    def __init__(self):
+        self.cache: Dict[str, Dict[str, Any]] = {}
+
+    def execute_idempotent(self, key: str, payload: Dict[str, Any]) -> Tuple[Dict[str, Any], bool]:
+        if key in self.cache:
+            return self.cache[key], True  # Cached result, 0 side effects
+        result = {"txn_id": "txn_001", "status": "COMMITTED", "data": payload}
+        self.cache[key] = result
+        return result, False
+
+@dataclass
+class VersionedState:
+    version: int
+    data: Dict[str, Any]
+
+class OCCStore:
+    def __init__(self):
+        self.state = VersionedState(version=1, data={})
+
+    def commit(self, expected_version: int, new_data: Dict[str, Any]) -> VersionedState:
+        if self.state.version != expected_version:
+            raise ValueError(f"OCC Conflict: Stale version {expected_version}, current is {self.state.version}")
+        self.state = VersionedState(version=self.state.version + 1, data=new_data)
+        return self.state
+
+def retry_with_jitter(fn, max_retries=3, base=0.1, max_delay=1.0):
+    for attempt in range(max_retries):
+        try:
+            return fn()
+        except Exception:
+            if attempt == max_retries - 1:
+                raise
+            delay = random.uniform(0, min(max_delay, base * (2 ** attempt)))
+            time.sleep(delay)
+```
+
+</details>
+
+Run [retry_idempotency_concurrency.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/retry_idempotency_concurrency.py) to inspect the deduplicated execution trace, retry timing calculations, and OCC conflict resolution.
+
+## Data flow and state changes
+
+1. **Tool dispatch:** The agent generates tool arguments and derives a deterministic `Idempotency-Key`.
+2. **Transient failure:** The downstream service times out or returns HTTP 429.
+3. **Jittered backoff:** The retry governor calculates exponential sleep with full jitter and pauses execution.
+4. **Deduplicated re-invocation:** The agent resends the request with the identical `Idempotency-Key`.
+5. **State merge:** The result returns and the worker attempts an OCC commit specifying the expected thread version.
+6. **Conflict reconciliation:** If another concurrent subagent modified state in the interim, the worker re-reads the latest snapshot and reapplies its delta.
+
+## Trust boundaries
+
+- **Idempotency key scope:** Idempotency keys must be scoped to specific tenant and thread boundaries to prevent an attacker from predicting keys and causing cross-tenant cache poisoning.
+- **Retry budget boundaries:** Retries must have strict global invocation and token limits. A model caught in a non-convergent retry loop must be terminated by the runtime.
+- **Concurrency race protection:** Shared persistent state stores must enforce atomic Compare-And-Swap (CAS) or version vector validation at the database level.
+
+## Reliability failures
+
+- **Idempotency key collision:** If keys are derived without incorporating unique argument parameters, distinct legitimate operations can accidentally return cached results from earlier steps.
+- **Retry amplification storm:** Unbounded retries across multiple interconnected microservices can cascade into an uncontrollable traffic storm that prevents service recovery.
+- **OCC starvation under high contention:** If dozens of subagents write to a single thread state simultaneously, repeated OCC conflict rejections can cause high latency and worker starvation.
+
+## Limitations and trade-offs
+
+- **Cache storage overhead:** Maintaining idempotency key stores across millions of transactions requires memory-efficient caching with Time-To-Live (TTL) expiration policies.
+- **Latency overhead:** Exponential backoff delays increase overall end-to-end task completion times during degraded network conditions.
+- **Complexity of distributed locking:** Implementing distributed leases requires reliable consensus backends and careful lease timeout tuning to prevent split-brain execution.
+
+## Security preview
+
+In Pass 2, retry and concurrency architectures are evaluated against **Race Conditions, Replay Forgery, and Resource Exhaustion via Retries**. Attackers exploit concurrent state writes to create double-spend conditions, forge idempotency keys to suppress critical alerts, or trigger retry loops to exhaust billing quotas. We examine atomic transaction gates, cryptographically hashed idempotency tokens, and distributed rate limiters in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can multi-agent systems automatically synthesize conflict-free replicated data types (CRDTs) to eliminate OCC retry conflicts in highly concurrent group chats?
+- What dynamic retry algorithms can automatically adapt backoff parameters based on real-time cluster telemetry rather than static heuristic formulas?
+
+## Key takeaways
+
+- Distinguishing between transient network errors and permanent validation failures prevents wasteful retries.
+- Exponential backoff combined with full jitter prevents thundering herd retry storms when downstream services recover.
+- Deterministic idempotency keys guarantee that retrying mutation requests produces zero duplicate side effects.
+- Optimistic Concurrency Control (OCC) and version vectors maintain thread state consistency during parallel multi-agent execution.
+
+## References
+
+- IETF HTTP API Working Group. *The Idempotency-Key HTTP Header Field*. Internet Engineering Task Force (IETF), 2024. [IETF Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/).
+- AWS Architecture Center. *Exponential Backoff And Jitter*. Amazon Web Services, 2023. [AWS Architecture](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
+- LangChain Community. *Managing Concurrency and Parallel Branching in LangGraph*. LangGraph Documentation, 2024. [LangGraph Concurrency](https://docs.langchain.com/oss/python/langgraph/concurrency).
+- Kleppmann, M. *Designing Data-Intensive Applications: Concurrency Control and Idempotency*. O'Reilly Media, 2023. [Designing Data-Intensive Applications](https://dataintensive.net/).
+
+---
+
+[Next Unit: Termination, cancellation, and cleanup →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/04-state-and-lifecycle/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Termination, cancellation, and cleanup
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-termination-cancellation-and-cleanup/
+SUMMARY: Explains immutable terminal states, cooperative cancellation token propagation, compensating rollback sagas, and deterministic resource cleanup in agent runtimes.
+================================================================================
+
+# Termination, cancellation, and cleanup
+
+## Why this matters
+
+Autonomous agents execute multi-step workflows that provision cloud resources, make database changes, and invoke external APIs. However, not every agent run finishes cleanly according to plan. Users cancel long-running tasks, supervisor timeouts expire, and downstream microservices fail midway through a multi-step operation.
+
+If an agent runtime lacks structured termination and cleanup protocols, failed or cancelled runs leave behind orphaned resources, such as running virtual machines, dangling database locks, unreleased temporary files, and partially completed financial transactions. **Termination, cancellation, and cleanup mechanisms** ensure that when an agent run stops, whether by success, user abort, or unrecoverable error, the system transitions into an immutable terminal state and leaves the environment in a clean, consistent state (Microsoft, 2024; Temporal Technologies, 2024; LangChain, 2024; Garcia-Molina & Salem, 1987).
+
+## Simple mental model
+
+Think of an automated flight and hotel booking service:
+
+1. **The forward workflow:** the agent reserves a flight ticket, reserves a rental car, and attempts to book a hotel room.
+2. **The unexpected failure:** the hotel API rejects the reservation because no rooms remain available.
+3. **The compensating rollback (the Saga):** rather than leaving the user with an isolated flight ticket and rental car, the system automatically triggers compensating actions in reverse order: it cancels the rental car reservation and refunds the flight ticket.
+4. **The cancellation signal:** if the user presses "Cancel Booking" while the agent is searching, the system immediately halts background search queries and releases temporary hold holds.
+5. **Final cleanup:** the booking session is sealed as `CANCELLED`, temporary payment tokens are wiped, and zero orphaned charges remain.
+
+These mechanisms guarantee that operations either complete fully or roll back safely without leaving partial, inconsistent side effects.
+
+## Position in the agent workflow
+
+Termination and cleanup sit at the exit boundary of the agent lifecycle. Regardless of whether an agent finishes through natural goal satisfaction, explicit user cancellation, policy rejection, or hard execution timeout, the runtime intercepts the exit transition.
+
+The finalizer executes compensating actions for any partially completed subtasks, closes network descriptors and temporary sandbox folders, persists the terminal status in the checkpointer database, and flushes audit logs.
+
+## How it works
+
+Structured termination and resource cleanup operate across four core mechanisms:
+
+### 1. Terminal states versus transient states
+
+Runtimes enforce a strict boundary between transient states (which can be resumed) and terminal states (which are immutable):
+
+- **Transient states:** `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `RETRY_BACKOFF`. These states hold active leases and can transition to other states.
+- **Terminal states:** `COMPLETED` (goal satisfied), `CANCELLED` (user or supervisor abort), `FAILED_FATAL` (unrecoverable error), and `TIMEOUT` (execution budget exhausted). Once a run enters a terminal state, it can never be restarted or modified; new work requires instantiating a separate run.
+
+### 2. Hierarchical cancellation token propagation
+
+When a user or supervisor aborts an active run, the runtime emits an **Abort Signal / Cancellation Token** (Temporal Technologies, 2024; LangChain, 2024). The signal propagates hierarchically:
+
+1. The parent run sets its cancellation flag.
+2. In-flight LLM token streaming connections are closed immediately to halt token billing.
+3. Cancellation signals are delivered to all active child subagents and background worker tasks.
+4. Active tool workers detect the cancellation token cooperatively and abort long-running computations.
+
+### 3. The Saga pattern and compensating actions
+
+When a multi-step workflow fails midway through execution, traditional database ACID rollbacks are impossible because external tools and microservices have already executed real-world side effects. Agent runtimes apply the **Saga Pattern** (Garcia-Molina & Salem, 1987; Temporal Technologies, 2024):
+
+- Every forward tool action $F_i$ is paired with a corresponding backward compensating action $C_i$ (such as `provision_vm` paired with `delete_vm`).
+- If step $k$ fails, the runtime pauses forward execution and invokes compensating actions for all previously completed steps in reverse order:
+
+$$	ext{Rollback Sequence} = [C_{k-1}, C_{k-2}, ..., C_1]$$
+
+Compensating actions restore the external environment to a consistent baseline state.
+
+### 4. Deterministic resource finalization
+
+Upon reaching any terminal state, a dedicated finalizer routine runs guaranteed cleanup handlers:
+
+- Releases distributed locks and thread leases in Redis or Consul.
+- Deletes temporary working directories, scratch files, and sandbox containers.
+- Closes database connection pools and open socket descriptors.
+- Emits terminal audit records and telemetry metrics.
+
+## Main variants
+
+1. **Rule-Based Termination (AutoGen):** Multi-agent conversations define explicit termination conditions (such as detecting `TERMINATE` strings, reaching max consecutive turns, or evaluating custom boolean predicates) (Microsoft, 2024).
+2. **Temporal Cancellation Scopes:** Workflows wrap subtasks in nested cancellation scopes that automatically invoke cleanup handlers upon receiving external cancellation signals (Temporal Technologies, 2024).
+3. **LangGraph Finalizers and Rollback Channels:** Graph workflows define cleanup nodes connected to error edges, ensuring state teardown occurs before graph exit (LangChain, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates cooperative cancellation token checking and Saga compensating action rollback. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/cancellation_sagas_cleanup.py) demonstrates VM reservation, storage provisioning, database attachment failure, and clean backward compensation.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+from enum import Enum, auto
+from typing import Callable, List, Tuple
+
+class TerminalState(Enum):
+    COMPLETED = auto()
+    CANCELLED = auto()
+    FAILED_COMPENSATED = auto()
+
+@dataclass
+class SagaStep:
+    name: str
+    forward: Callable[[], bool]
+    compensate: Callable[[], bool]
+
+class SagaManager:
+    def __init__(self):
+        self.completed = []
+
+    def run(self, steps: List[SagaStep], is_cancelled: bool) -> Tuple[TerminalState, List[str]]:
+        log = []
+        for step in steps:
+            if is_cancelled:
+                self.rollback(log)
+                return TerminalState.CANCELLED, log
+
+            if step.forward():
+                self.completed.append(step)
+                log.append(f"Step {step.name} passed")
+            else:
+                log.append(f"Step {step.name} failed; rolling back")
+                self.rollback(log)
+                return TerminalState.FAILED_COMPENSATED, log
+
+        return TerminalState.COMPLETED, log
+
+    def rollback(self, log: List[str]):
+        while self.completed:
+            step = self.completed.pop()
+            step.compensate()
+            log.append(f"Compensated {step.name}")
+```
+
+</details>
+
+Run [cancellation_sagas_cleanup.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/cancellation_sagas_cleanup.py) to inspect the complete forward execution trace, failure detection, and compensating rollback execution.
+
+## Data flow and state changes
+
+1. **Execution dispatch:** The agent executes forward steps, registering each completed step in the saga stack.
+2. **Interrupt or failure event:** An in-flight step returns a fatal error or the client issues an abort signal.
+3. **Cancellation propagation:** The runtime interrupts active child workers and stops token generation.
+4. **Compensation loop:** The runtime pops completed steps from the stack and executes their compensating actions in LIFO order.
+5. **State finalization:** The runtime commits the terminal status (`FAILED_COMPENSATED` or `CANCELLED`) to the checkpointer.
+6. **Resource teardown:** All temporary storage, leases, and connections are released.
+
+## Trust boundaries
+
+- **Cancellation authority:** Cancellation endpoints must authenticate callers to ensure that malicious actors cannot spoof cancellation signals to abort critical system workflows.
+- **Compensation isolation:** Compensating actions must execute with verified credentials and isolated execution bounds so that a failed rollback does not escalate into wider system corruption.
+- **Terminal state immutability:** Checkpointer storage must enforce read-only immutability on terminal records to prevent unauthorized reopening or tampering with concluded runs.
+
+## Reliability failures
+
+- **Dangling child tasks:** If cancellation tokens are not passed cooperatively to child processes, orphaned background tasks continue running and wasting compute.
+- **Partial compensation failure:** If a compensating action itself fails (for example, due to network drop during cloud volume deletion), the system enters an inconsistent partial state requiring manual administrator intervention.
+- **Resource leak on crash:** If a host server crashes during finalization before cleanup handlers execute, persistent leases can remain locked until lease TTL expiration.
+
+## Limitations and trade-offs
+
+- **Compensation complexity:** Writing and testing reliable compensating actions for every forward tool call adds substantial development and verification effort.
+- **Non-compensable side effects:** Certain real-world actions (such as sending an SMS or publishing an email) cannot be undone; they can only be mitigated with follow-up apology notices.
+- **Teardown latency:** Executing multi-step compensating rollbacks adds latency before a failed run can return its final response.
+
+## Security preview
+
+In Pass 2, termination and cleanup architectures are evaluated against **Denial of Service via Forged Cancellation, Orphaned Resource Exploitation, and Incomplete Rollback Tampering**. Attackers exploit partial rollbacks to leave vulnerable intermediate accounts open or flood cancellation endpoints to terminate security audits. We examine cryptographically verified abort signals, idempotent compensation verification, and automated lease reclamation in [Instructions, context, and model security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
+
+## Open research questions
+
+- How can LLMs autonomously generate verified, safe compensating action scripts when interacting with novel or unversioned third-party APIs?
+- What consensus protocols can guarantee complete saga rollback across decentralized multi-agent organizations with zero shared infrastructure?
+
+## Key takeaways
+
+- Terminal states (`COMPLETED`, `CANCELLED`, `FAILED`, `TIMEOUT`) are immutable and guarantee that runs cannot be corrupted after conclusion.
+- Cancellation tokens propagate hierarchically down agent trees to halt child subagents, network calls, and token generation immediately.
+- The Saga pattern pairs every forward tool invocation with a backward compensating action to roll back partial side effects upon failure.
+- Deterministic cleanup handlers guarantee that distributed locks, database connections, and temporary sandboxes are released safely.
+
+## References
+
+- Microsoft Research. *AutoGen: Termination Conditions, Stop Signals, and Cleanup*. AutoGen Documentation, 2024. [AutoGen Termination](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html).
+- Temporal Technologies. *Workflow Cancellation, Scope Cleanup, and Compensating Actions*. Temporal Documentation, 2024. [Temporal Cancellation](https://docs.temporal.io/workflows#cancellation-scopes).
+- LangChain Community. *Managing Cancellation, Timeouts, and Cleanup in LangGraph*. LangGraph Documentation, 2024. [LangGraph Cancellation](https://docs.langchain.com/oss/python/langgraph/cancellation).
+- Garcia-Molina, H., & Salem, K. *Sagas*. ACM SIGMOD International Conference on Management of Data, 1987. [ACM Digital Library](https://doi.org/10.1145/38713.38742).
+
+---
+
+[Next Unit: Memory versus context and state →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md)

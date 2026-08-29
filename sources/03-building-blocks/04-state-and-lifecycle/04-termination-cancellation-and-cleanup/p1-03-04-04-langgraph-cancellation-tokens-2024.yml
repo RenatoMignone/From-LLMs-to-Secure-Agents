@@ -1,0 +1,25 @@
+id: p1-03-04-04-langgraph-cancellation-tokens-2024
+title: Managing Cancellation, Timeouts, and Cleanup in LangGraph
+authors_or_organization: LangChain
+date: 2024-10
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/cancellation
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines cancellation signal passing, task timeout aborts, state rollback channels,
+  and resource finalizers in graph workflows.
+limitations:
+- Requires cooperative cancellation checking inside long-running custom Python tool
+  execution blocks.
+related_topics:
+- cooperative cancellation and graph finalizers
+unit_ids:
+- P1-03-04-04
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md
+local_copy: null
+sha256: null

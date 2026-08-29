@@ -1,0 +1,25 @@
+id: p1-03-05-01-langgraph-store-memory-2024
+title: 'LangGraph: Memory and Key-Value Store Across Threads'
+authors_or_organization: LangChain Community
+date: 2024-10
+source_type: documentation
+canonical_url: https://langchain-ai.github.io/langgraph/concepts/memory/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Formalizes the distinction between short-term thread-scoped working state (checkpointers)
+  and cross-thread long-term persistent memory (BaseStore key-value and semantic namespaces).
+limitations:
+- Framework-specific API contracts and namespace conventions require custom indexing
+  adapters for production vector engines.
+related_topics:
+- short-term state vs cross-thread persistent memory
+unit_ids:
+- P1-03-05-01
+used_in:
+- knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md
+local_copy: null
+sha256: null

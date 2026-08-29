@@ -1,0 +1,25 @@
+id: p1-03-04-04-garcia-molina-sagas-1987
+title: Sagas
+authors_or_organization: ACM SIGMOD
+date: 1987-05
+source_type: peer-reviewed paper
+canonical_url: https://doi.org/10.1145/38713.38742
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Introduces the Saga pattern for long-lived distributed transactions, where each
+  completed forward step is paired with a backward compensating transaction to safely
+  unwind partial state upon failure.
+limitations:
+- Requires domain-specific compensating logic for every forward side effect.
+related_topics:
+- sagas and compensating transactions
+unit_ids:
+- P1-03-04-04
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md
+local_copy: null
+sha256: null

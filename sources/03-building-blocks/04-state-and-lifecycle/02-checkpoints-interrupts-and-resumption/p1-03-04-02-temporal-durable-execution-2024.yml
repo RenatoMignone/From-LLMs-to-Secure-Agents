@@ -1,0 +1,25 @@
+id: p1-03-04-02-temporal-durable-execution-2024
+title: Durable Execution, Checkpoints, and Deterministic Replay
+authors_or_organization: Temporal Technologies
+date: 2024-06
+source_type: documentation
+canonical_url: https://docs.temporal.io/workflow-execution-and-state
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines durable execution principles where workflow execution state is checkpointed
+  to survive infrastructure crashes, network failures, and unbounded pause durations.
+limitations:
+- Workflow definitions must remain deterministic during event history replay to prevent
+  divergent execution state.
+related_topics:
+- durable execution and state replay
+unit_ids:
+- P1-03-04-02
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md
+local_copy: null
+sha256: null

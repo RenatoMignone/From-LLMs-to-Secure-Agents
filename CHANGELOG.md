@@ -243,3 +243,41 @@
 - Files or sections: `knowledge/03-building-blocks/03-planning-and-reasoning/02-decomposition-and-plan-execute.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Decomposition and plan-execute.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-24
+
+### P1-03-03-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Reflection, evaluation, and replanning.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-03-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Search, budgets, and termination.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-04-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Run, thread, and event models.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-04-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Checkpoints, interrupts, and resumption.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-04-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Retries, idempotency, and concurrency.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-04-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Termination, cancellation, and cleanup.
+- Validation: Passed repository validation and the unit review checklist.

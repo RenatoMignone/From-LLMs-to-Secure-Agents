@@ -1,0 +1,25 @@
+id: p1-03-04-04-autogen-termination-2024
+title: 'AutoGen: Termination Conditions, Stop Signals, and Cleanup'
+authors_or_organization: Microsoft
+date: 2024-10
+source_type: documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Specifies programmatic termination criteria, stop message triggers, token exhaustion
+  limits, and resource cleanup in multi-agent conversations.
+limitations:
+- Relies on string matching or boolean stop heuristics that may misfire on ambiguous
+  model outputs.
+related_topics:
+- termination conditions and stop signals
+unit_ids:
+- P1-03-04-04
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md
+local_copy: null
+sha256: null

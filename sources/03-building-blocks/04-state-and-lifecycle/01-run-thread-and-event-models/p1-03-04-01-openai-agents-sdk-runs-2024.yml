@@ -1,0 +1,25 @@
+id: p1-03-04-01-openai-agents-sdk-runs-2024
+title: 'Running Agents: Threads, Runs, and Turn Lifecycle'
+authors_or_organization: OpenAI
+date: 2024-11
+source_type: documentation
+canonical_url: https://openai.github.io/openai-agents-python/running_agents/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines the canonical operational relationship between long-lived conversation Threads,
+  active execution Runs, and granular conversational Turns in agent runtime architectures.
+limitations:
+- API-specific abstractions assume hosted thread storage rather than self-managed
+  distributed databases.
+related_topics:
+- thread and run execution lifecycle
+unit_ids:
+- P1-03-04-01
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md
+local_copy: null
+sha256: null

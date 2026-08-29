@@ -1,0 +1,27 @@
+id: p1-03-03-04-yao-tree-of-thoughts-2023
+title: 'Tree of Thoughts: Deliberate Problem Solving with Large Language Models'
+authors_or_organization: Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas
+  L. Griffiths, Yuan Cao, Karthik Narasimhan
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.10601
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Introduces deliberate tree search where models generate multiple coherent thought
+  paths, evaluate candidate branches, and use lookahead or backtracking to explore
+  the search frontier.
+limitations:
+- High computational and token overhead; requires explicit state evaluation heuristics
+  to prune unpromising branches.
+related_topics:
+- tree search and thought exploration
+unit_ids:
+- P1-03-03-04
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination.md
+local_copy: null
+sha256: null

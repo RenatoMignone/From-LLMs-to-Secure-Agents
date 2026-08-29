@@ -1,0 +1,27 @@
+id: p1-03-05-01-packer-memgpt-2023
+title: 'MemGPT: Towards LLMs as Operating Systems'
+authors_or_organization: Charles Packer, Vivian Fang, Shishir G. Patil, Kevin Lin,
+  Sarah Wooders, Joseph E. Gonzalez (UC Berkeley)
+date: 2023-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2310.08560
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Introduces tiered memory management for LLM agents inspired by operating systems,
+  separating in-context working memory (main memory) from out-of-context persistent
+  storage (disk) with explicit memory read/write/edit operations.
+limitations:
+- Relies on LLM tool-calling function calls to initiate memory pagination and editing,
+  introducing token latency overhead.
+related_topics:
+- tiered memory architecture in agents
+unit_ids:
+- P1-03-05-01
+used_in:
+- knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md
+local_copy: null
+sha256: null

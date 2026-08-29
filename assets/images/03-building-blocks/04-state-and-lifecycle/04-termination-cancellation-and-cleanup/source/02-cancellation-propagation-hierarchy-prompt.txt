@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of Hierarchical Cancellation Token Propagation in multi-agent systems.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Hierarchical Cancellation Propagation & Abort Signals".
+2. Top: "Supervisor Robot / User" pressing a red "Cancel Run" button emitting an `AbortSignal (Token: CANCEL_SIG)`.
+3. Middle Tier: "Parent Agent Dispatcher" intercepting the signal, marking run as CANCELLED.
+4. Downward Propagation Arrows: Red dashed lines carrying the cancellation signal simultaneously to 3 Child Tasks:
+   - Subagent A (Data Collector): "Halting active web scraper thread"
+   - Subagent B (Code Generator): "Aborting in-flight model token stream"
+   - Subagent C (Database Worker): "Closing uncommitted SQL transaction"
+5. Bottom Output: "Coordinated Graceful Teardown - Zero Orphaned Compute Threads".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

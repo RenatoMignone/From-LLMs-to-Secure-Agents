@@ -1,0 +1,24 @@
+id: p1-03-04-01-cloudevents-specification-1-0
+title: CloudEvents Specification 1.0.2
+authors_or_organization: CNCF Serverless Working Group
+date: 2024-05
+source_type: standard
+canonical_url: https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Specifies standard structured metadata attributes for describing discrete system
+  events in a common, interoperable format across distributed runtimes.
+limitations:
+- Defines envelope format without enforcing specific payload validation schemas.
+related_topics:
+- standard event models and message envelopes
+unit_ids:
+- P1-03-04-01
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md
+local_copy: null
+sha256: null

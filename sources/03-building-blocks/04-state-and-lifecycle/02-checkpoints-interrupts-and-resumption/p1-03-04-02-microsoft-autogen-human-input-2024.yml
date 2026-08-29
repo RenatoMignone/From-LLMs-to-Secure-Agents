@@ -1,0 +1,25 @@
+id: p1-03-04-02-microsoft-autogen-human-input-2024
+title: 'AutoGen: Human-in-the-Loop Interaction Modes and State Resumption'
+authors_or_organization: Microsoft
+date: 2024-10
+source_type: documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Demonstrates human input modes (ALWAYS, TERMINATE, NEVER) and conversation state
+  persistence for interactive agent-human collaboration.
+limitations:
+- Synchronous input blocking can exhaust network connection timeouts in stateless
+  web tiers.
+related_topics:
+- human input modes and interactive resumption
+unit_ids:
+- P1-03-04-02
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md
+local_copy: null
+sha256: null

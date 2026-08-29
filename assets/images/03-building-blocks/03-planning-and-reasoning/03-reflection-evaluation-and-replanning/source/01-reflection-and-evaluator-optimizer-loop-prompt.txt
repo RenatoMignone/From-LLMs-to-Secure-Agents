@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of the Reflection and Evaluator-Optimizer Feedback Loop in agentic AI.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Reflection & Evaluator-Optimizer Loop".
+2. Left Box: "Generator (Optimizer)" - A friendly blue robot holding a draft document with a pencil, generating an initial candidate solution.
+3. Center Box: "Evaluator / Critic" - A thoughtful sage-green inspector robot with magnifying glass and a checklist board comparing the candidate against rubric criteria (e.g., accuracy, safety, constraints).
+4. Branching Decision Gate:
+   - Green Arrow (Pass): "Passed Criteria -> Emit Final Validated Solution" (leading to a finished neat document with a green ribbon).
+   - Coral/Orange Arrow (Fail): "Failed Criteria -> Generate Actionable Critique" (feeding into the Reflection Stage).
+5. Bottom Feedback Channel: A curved dashed loop labeled "Iterative Refinement: Feedback + Previous Draft -> New Candidate (Bounded by Max Iteration Counter)".
+6. A cute small iteration gauge showing "Attempt: 2 / 3".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

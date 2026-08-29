@@ -1,19 +1,20 @@
 ---
 schema_version: 1
 current_phase: pass-1-architecture
-current_unit: null
-current_unit_path: null
-current_unit_state: idle
+current_unit: P1-03-05-01
+current_unit_path: knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md
+current_unit_state: review
 blocked_from: null
-completed_through: P1-03-03-02
-units_in_review: []
-next_recommended_unit: P1-03-03-03
+completed_through: P1-03-04-04
+units_in_review:
+- P1-03-05-01
+next_recommended_unit: P1-03-05-01
 blockers: []
 unresolved_research_questions:
 - Reference workflow domain
 - Protocol version churn
 - Cross-framework artifact metadata
-last_validation_date: '2026-08-21'
+last_validation_date: '2026-08-24'
 ---
 
 # Project Status

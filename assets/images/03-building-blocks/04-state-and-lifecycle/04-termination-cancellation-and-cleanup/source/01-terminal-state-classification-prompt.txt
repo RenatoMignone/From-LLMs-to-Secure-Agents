@@ -1,0 +1,24 @@
+Create a clear, high-quality technical educational cartoon illustration of Terminal States vs. Transient States in agentic lifecycle management.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Terminal States vs. Transient Suspended States".
+2. Left Column (Transient / Resumable States):
+   - Blue Card: "IN_PROGRESS (Model Inferring)"
+   - Amber Card: "REQUIRES_ACTION (Suspended for Human Approval)"
+   - Yellow Card: "RETRY_BACKOFF (Waiting for Jittered Retry)"
+   - Label: "Can be resumed, rehydrated, or interrupted."
+3. Right Column (Immutable Terminal States):
+   - Green Card: "COMPLETED (Goal Satisfied & Sealed)"
+   - Red Card: "CANCELLED (User / Supervisor Aborted)"
+   - Coral Card: "FAILED_FATAL (Unrecoverable Error / Policy Violation)"
+   - Purple Card: "TIMEOUT_EXHAUSTED (Hard Budget Reached)"
+   - Label: "Final, immutable state. Cannot be re-executed."
+4. Transition Arrow leading from Left to Right through a strict "One-Way Terminal Gate".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

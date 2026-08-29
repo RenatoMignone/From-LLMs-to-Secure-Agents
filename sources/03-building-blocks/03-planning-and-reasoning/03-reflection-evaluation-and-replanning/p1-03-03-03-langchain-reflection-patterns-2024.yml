@@ -1,0 +1,25 @@
+id: p1-03-03-03-langchain-reflection-patterns-2024
+title: Reflection and Replanning in Agentic Workflows
+authors_or_organization: LangChain
+date: 2024-09
+source_type: documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/workflows-agents
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Details practical state-graph implementations of reflection loops, subtask replanning
+  triggers, and memory-backed self-correction in production agent frameworks.
+limitations:
+- Framework abstractions must explicitly manage loop budgets, state rollback, and
+  evaluator error propagation.
+related_topics:
+- agentic reflection and replanning workflows
+unit_ids:
+- P1-03-03-03
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning.md
+local_copy: null
+sha256: null

@@ -1,0 +1,25 @@
+id: p1-03-04-03-ietf-httpapi-idempotency-key-2024
+title: The Idempotency-Key HTTP Header Field
+authors_or_organization: IETF HTTP API Working Group
+date: 2024-03
+source_type: standard
+canonical_url: https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines the standard Idempotency-Key mechanism allowing clients to safely retry
+  mutation requests without causing duplicate side effects in distributed APIs.
+limitations:
+- Requires stateful server-side caching of idempotency keys and responses within a
+  defined time-to-live window.
+related_topics:
+- idempotency keys and safe retries
+unit_ids:
+- P1-03-04-03
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency.md
+local_copy: null
+sha256: null

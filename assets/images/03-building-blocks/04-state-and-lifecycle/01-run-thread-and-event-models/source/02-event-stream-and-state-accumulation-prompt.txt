@@ -1,0 +1,23 @@
+Create a clear, high-quality technical educational cartoon illustration of Event Sourcing and State Accumulation in agentic runtimes.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Event Streaming & State Accumulation (Event Sourcing)".
+2. Left Side: "Append-Only Event Stream" - A conveyor belt carrying structured event blocks (e.g. CloudEvents format):
+   - Block 1: "user.input"
+   - Block 2: "tool.call.database_query"
+   - Block 3: "tool.result.success"
+   - Block 4: "agent.response"
+3. Center: "State Reducer / Accumulator Robot" folding discrete event deltas into consolidated state.
+4. Right Side: "Durable State Snapshot" - Clean digital dashboard displaying accumulated variables:
+   - `thread_id`: "auth_migration_task"
+   - `status`: "AWAITING_USER_INPUT"
+   - `artifacts_created`: ["patch.diff", "audit.log"]
+   - `version_vector`: 4
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

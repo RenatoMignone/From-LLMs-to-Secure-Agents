@@ -1,0 +1,24 @@
+id: p1-03-03-04-anthropic-agent-budgets-2024
+title: 'Building Effective Agents: Managing Search Trees and Execution Budgets'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Establishes practical engineering rules for bounding agent search spaces through
+  token limits, wall-clock timeouts, branch pruning, and deterministic stopping criteria.
+limitations:
+- Search efficiency depends heavily on the accuracy of intermediate heuristic evaluations.
+related_topics:
+- execution budgets and search pruning
+unit_ids:
+- P1-03-03-04
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination.md
+local_copy: null
+sha256: null

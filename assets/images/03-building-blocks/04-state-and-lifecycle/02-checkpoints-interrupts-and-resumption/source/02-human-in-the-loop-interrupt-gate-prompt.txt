@@ -1,0 +1,21 @@
+Create a clear, high-quality technical educational cartoon illustration of Human-in-the-Loop (HITL) Interrupts and Approval Gates.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Human-in-the-Loop Interrupt & Resumption Architecture".
+2. Left Side: "Agent Worker Robot" proposing high-impact tool action: "deploy_production_database_patch()".
+3. Center Barrier: "Approval Gate & Breakpoint Interrupt" - A physical railway-style safety barrier with a glowing pause sign:
+   - Run transitions to `REQUIRES_ACTION (Suspended)`.
+   - Full State snapshot saved to database.
+4. Right Side: "Human Supervisor Dashboard" - A friendly human operator with a tablet reviewing proposed parameters with 3 buttons:
+   - [Approve]: "Resume execution with original args"
+   - [Edit]: "Inject sanitized parameters before resume"
+   - [Reject]: "Abort run with failure explanation"
+5. Green Resumption Arrow carrying the approved decision back into the agent runtime to resume execution.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

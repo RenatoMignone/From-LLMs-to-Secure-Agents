@@ -1,0 +1,26 @@
+id: p1-03-03-03-anthropic-evaluator-optimizer-2024
+title: 'Building Effective Agents: The Evaluator-Optimizer Workflow'
+authors_or_organization: Anthropic
+date: 2024-12
+source_type: documentation
+canonical_url: https://www.anthropic.com/research/building-effective-agents
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Defines the Evaluator-Optimizer pattern where one LLM call generates a solution
+  and another evaluates and critiques it against explicit criteria, looping until
+  criteria are met or bounds are reached.
+limitations:
+- Risk of infinite refinement loops and diminishing returns without strict iteration
+  caps and deterministic stopping rules.
+related_topics:
+- evaluator optimizer pattern
+unit_ids:
+- P1-03-03-03
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning.md
+local_copy: null
+sha256: null

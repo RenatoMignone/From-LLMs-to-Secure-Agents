@@ -1,0 +1,25 @@
+Create a clear, high-quality technical educational cartoon illustration of Agent Memory Taxonomy and Architectural Tiers.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Agent Memory Taxonomy & Architectural Tiers".
+2. Four Tiered Cards / Sections:
+   - Tier 1: "Working Memory (In-Context Scratchpad)"
+     - Blue robot holding a clipboard with scratchpad notes, active subgoals, and current tool call arguments.
+     - Scope: Single run / prompt cycle.
+   - Tier 2: "Episodic Memory (Autobiographical Log)"
+     - Green robot with a film strip / chronologically ordered timeline of past user conversations and tool interaction episodes.
+     - Scored by: Recency, Salience (Importance), Relevance.
+   - Tier 3: "Semantic Memory (Facts & User Profile)"
+     - Amber robot holding fact cards: "User prefers concise Python", "Project uses Postgres", "API key role is read-only".
+     - Storage: Vector database / key-value store.
+   - Tier 4: "Procedural Memory (Skills & Playbooks)"
+     - Purple/Teal robot with an open recipe book of multi-step tool procedures and execution workflows.
+3. Bottom Annotation: "Tiered access enables unbounded agent operation without blowing the context window."
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

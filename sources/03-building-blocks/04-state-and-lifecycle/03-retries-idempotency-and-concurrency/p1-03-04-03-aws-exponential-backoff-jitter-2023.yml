@@ -1,0 +1,24 @@
+id: p1-03-04-03-aws-exponential-backoff-jitter-2023
+title: Exponential Backoff And Jitter
+authors_or_organization: AWS Architecture Center
+date: 2023-08
+source_type: documentation
+canonical_url: https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Establishes algorithms for full jitter and decorrelated jitter combined with exponential
+  backoff to prevent thundering herds during service retries.
+limitations:
+- Retries without upper bounds or circuit breakers can worsen downstream service outages.
+related_topics:
+- exponential backoff and jitter algorithms
+unit_ids:
+- P1-03-04-03
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency.md
+local_copy: null
+sha256: null

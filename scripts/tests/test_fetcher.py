@@ -1,6 +1,7 @@
-"""Tests for safe fallback HTML text extraction."""
-
-from scripts.fetch.fetcher import fallback_html_to_text
+try:
+    from fetch.fetcher import fallback_html_to_text
+except ImportError:
+    from scripts.fetch.fetcher import fallback_html_to_text
 
 
 def test_fallback_ignores_non_content_elements_and_irregular_end_tags() -> None:

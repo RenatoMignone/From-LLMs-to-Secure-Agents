@@ -1,0 +1,21 @@
+Create a clear, high-quality technical educational cartoon illustration of the Agent Run Lifecycle State Machine.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Agent Run Lifecycle State Machine".
+2. Flow of States (Left to Right / Circular):
+   - State 1 (Gray/Blue): "QUEUED / PENDING" (Waiting in thread dispatch queue)
+   - State 2 (Blue): "IN_PROGRESS" (Model generating reasoning or tool invocations)
+   - State 3 (Amber Branch): "REQUIRES_ACTION" (Paused awaiting external tool result or human approval)
+   - State 4 (Green): "COMPLETED" (Goal achieved, final message committed)
+   - State 5 (Coral): "FAILED / CANCELLED" (Error occurred or execution cancelled by supervisor)
+3. Transition arrows showing:
+   - Tool dispatch & response loops between IN_PROGRESS and REQUIRES_ACTION.
+   - Clean terminal transitions to COMPLETED or FAILED.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

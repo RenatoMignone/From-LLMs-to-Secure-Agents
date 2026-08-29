@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of the Deterministic Termination State Machine for Agent Search.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Deterministic Termination State Transitions".
+2. Center Active State: "SEARCH_ACTIVE" - A thoughtful robot evaluating candidate thoughts on the search frontier.
+3. Four Clean Termination Outlets:
+   - Green Outlet: "SUCCESS_GOAL_SATISFIED -> Emit Verified Solution"
+   - Amber Outlet: "BUDGET_EXHAUSTED -> Return Best-Effort Result or Escalation"
+   - Coral Outlet: "LOOP_CYCLE_DETECTED -> Abort Runaway Repetition"
+   - Purple Outlet: "UNRECOVERABLE_ERROR -> Safe Cleanup & Logging"
+4. Visual state badges with distinct soft colored borders and friendly explanatory icons.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

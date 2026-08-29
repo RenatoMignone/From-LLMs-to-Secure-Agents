@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of the Reflexion Architecture and Episodic Memory Replanning.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Reflexion: Verbal Reflection & Episodic Memory Replanning".
+2. Left Side: "Actor Robot (Agent)" - Executing actions in an environment with tools and receiving environmental feedback.
+3. Center Top: "Evaluator Module" - Scoring intermediate trajectory and detecting a task failure or subtask roadblock.
+4. Center Bottom: "Self-Reflection Module" - A thinking robot with a lightbulb summarizing: "Why did the previous plan fail? What should I do differently next trial?".
+5. Right Side: "Episodic Reflection Memory Buffer" - A neat notebook or memory stack storing past verbal lessons:
+   - Trial 1: "API timeout on endpoint A; must switch to fallback endpoint B."
+   - Trial 2: "Payload schema rejected missing tenant_id; add parameter."
+6. Context Injection Arrow: A bright dashed arrow carrying the accumulated verbal reflections from the Memory Buffer back into the Actor Robot prompt for Trial 3 (Successful Execution).
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of the Agent Memory Lifecycle Pipeline.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "The Agent Memory Lifecycle Pipeline".
+2. Horizontal Step-by-Step Flow (Left-to-Right):
+   - Stage 1: "1. Extraction & Ingestion" (Robot filtering key facts and user preferences from conversation messages).
+   - Stage 2: "2. Storage & Indexing" (Robot assigning metadata: User ID, Timestamp, Importance Score, TTL, and Vector Embedding).
+   - Stage 3: "3. Selective Recall" (Robot querying memory index using hybrid semantic + recency search to inject into context).
+   - Stage 4: "4. Consolidation & Reflection" (Robot synthesizing raw episode logs into higher-level insights and profile summaries).
+   - Stage 5: "5. Forgetting & Pruning" (Robot archiving stale records, applying exponential decay, and enforcing GDPR deletion).
+3. Trust and Privacy Shield Icon indicating tenant isolation and namespace separation.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

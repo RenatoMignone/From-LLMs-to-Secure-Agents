@@ -1,0 +1,16 @@
+Create a clear, high-quality technical educational cartoon illustration of Crash Recovery and Deterministic Replay in agentic runtimes.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Crash Recovery & Deterministic State Replay".
+2. Top Box (Failure Scenario): "Worker A (Crashed mid-turn)" with a cartoon bandaid and dizzy eyes, showing server crash symbol.
+3. Center: "Durable Checkpointer Storage" (PostgreSQL / Redis) holding intact snapshot `cp_04 (State at Turn 4)`.
+4. Bottom Box (Recovery Worker): "Worker B (Standby)" claiming thread lease, rehydrating snapshot `cp_04`, replaying uncommitted events deterministically, and continuing execution seamlessly.
+5. High-contrast labels: "Zero State Loss: Durable Checkpointing preserves full execution state across infrastructure failures."
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

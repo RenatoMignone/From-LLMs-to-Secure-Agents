@@ -164,6 +164,36 @@
           {
             "label": "Decomposition and plan-execute",
             "link": "/building-blocks/02-decomposition-and-plan-execute/"
+          },
+          {
+            "label": "Reflection, evaluation, and replanning",
+            "link": "/building-blocks/03-reflection-evaluation-and-replanning/"
+          },
+          {
+            "label": "Search, budgets, and termination",
+            "link": "/building-blocks/04-search-budgets-and-termination/"
+          }
+        ]
+      },
+      {
+        "label": "State and lifecycle",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "Run, thread, and event models",
+            "link": "/building-blocks/01-run-thread-and-event-models/"
+          },
+          {
+            "label": "Checkpoints, interrupts, and resumption",
+            "link": "/building-blocks/02-checkpoints-interrupts-and-resumption/"
+          },
+          {
+            "label": "Retries, idempotency, and concurrency",
+            "link": "/building-blocks/03-retries-idempotency-and-concurrency/"
+          },
+          {
+            "label": "Termination, cancellation, and cleanup",
+            "link": "/building-blocks/04-termination-cancellation-and-cleanup/"
           }
         ]
       }

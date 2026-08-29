@@ -1,0 +1,26 @@
+id: p1-03-03-03-madaan-self-refine-2023
+title: 'Self-Refine: Iterative Refinement with Self-Feedback'
+authors_or_organization: Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan,
+  Peter Clark et al.
+date: 2023-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2303.17651
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Establishes the generator-evaluator-refiner loop where models generate initial outputs,
+  critique them with actionable feedback, and refine them iteratively.
+limitations:
+- Evaluator model can fail to detect subtle semantic bugs or become biased towards
+  its own outputs.
+related_topics:
+- reflection and iterative refinement
+unit_ids:
+- P1-03-03-03
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning.md
+local_copy: null
+sha256: null

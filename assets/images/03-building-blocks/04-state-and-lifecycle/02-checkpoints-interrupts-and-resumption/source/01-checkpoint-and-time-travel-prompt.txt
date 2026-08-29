@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration of Checkpoints and State Time-Travel in agentic AI.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Durable Checkpointing & State Time-Travel".
+2. Horizontal Timeline (Left to Right):
+   - Checkpoint 1 (Green badge): "cp_01: User Ingestion"
+   - Checkpoint 2 (Blue badge): "cp_02: Tool Plan Prepared"
+   - Checkpoint 3 (Amber badge): "cp_03: Verification Failure"
+3. Forking / Rewind Branch:
+   - A curved rewind arrow from Checkpoint 3 back to Checkpoint 2 labeled "Rewind State to Checkpoint 2 (Edit State & Fork New Execution)".
+   - New Green Branch from Checkpoint 2: "cp_02_fork: Alternative Verified Path -> Success".
+4. Friendly archivist robot storing serialized state snapshots into a durable safe box.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

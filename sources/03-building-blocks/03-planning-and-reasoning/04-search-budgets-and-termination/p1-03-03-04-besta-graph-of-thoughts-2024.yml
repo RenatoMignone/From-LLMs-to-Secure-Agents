@@ -1,0 +1,26 @@
+id: p1-03-03-04-besta-graph-of-thoughts-2024
+title: 'Graph of Thoughts: Solving Elaborate Problems with Large Language Models'
+authors_or_organization: Maciej Besta, Nils Blach, Ales Kubicek, Robert Gerstenberger,
+  Lukas Gianinazzi, et al.
+date: 2024-02
+source_type: paper
+canonical_url: https://arxiv.org/abs/2308.09687
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Models deliberate reasoning as arbitrary graph structures, enabling thought combining,
+  transformations, and graph search operations beyond linear or tree structures.
+limitations:
+- Increased orchestration complexity and potential for state explosion in dense cyclic
+  graph transformations.
+related_topics:
+- graph search and thought aggregation
+unit_ids:
+- P1-03-03-04
+used_in:
+- knowledge/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination.md
+local_copy: null
+sha256: null

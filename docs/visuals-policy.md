@@ -62,9 +62,9 @@ Keep the complete chapter directory hierarchy, tracking empty folders with `.git
 
 ## Generated visuals
 
-- Use image generation for raster assets and follow its rules. Create the prompt file in `source/` before generating.
-- Save selected output in its chapter folder.
-- If image generation is unavailable, record a blocker, not an untracked placeholder.
+- Use the image generation skill for raster assets and follow its rules. Create prompt files in `source/` before generating.
+- Never create programmatic/scripted drawing schemes, ASCII schemas, or placeholder sketches.
+- If image generation endpoint quota is temporarily exhausted, save prompts in `source/` and record a pending entry in `AGENTS.md` so the subsequent agent session generates them when quotas reset.
 
 ## Authoritative guidance
 

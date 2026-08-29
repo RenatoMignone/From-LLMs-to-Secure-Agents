@@ -1,0 +1,24 @@
+id: p1-03-04-01-microsoft-autogen-state-2024
+title: 'AutoGen: Managing Conversation State and Event Streams'
+authors_or_organization: Microsoft
+date: 2024-10
+source_type: documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Demonstrates message history serialization, multi-agent event dispatching, and turn-taking
+  state management in multi-agent group chats.
+limitations:
+- Message history unbounded growth requires proactive summarization or context truncation.
+related_topics:
+- multi-agent conversation state and event dispatch
+unit_ids:
+- P1-03-04-01
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md
+local_copy: null
+sha256: null

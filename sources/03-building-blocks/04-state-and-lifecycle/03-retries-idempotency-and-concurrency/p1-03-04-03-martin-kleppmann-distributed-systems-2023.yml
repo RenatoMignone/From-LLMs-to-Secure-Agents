@@ -1,0 +1,25 @@
+id: p1-03-04-03-martin-kleppmann-distributed-systems-2023
+title: 'Designing Data-Intensive Applications: Concurrency Control and Idempotency'
+authors_or_organization: O'Reilly Media
+date: 2023-01
+source_type: book
+canonical_url: https://dataintensive.net/
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Analyzes atomic execution, optimistic concurrency control via version numbers, distributed
+  leases, and idempotent side-effect management in distributed architectures.
+limitations:
+- Addresses general distributed data systems rather than LLM-specific autonomous reasoning
+  loops.
+related_topics:
+- distributed concurrency and state consistency
+unit_ids:
+- P1-03-04-03
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency.md
+local_copy: null
+sha256: null

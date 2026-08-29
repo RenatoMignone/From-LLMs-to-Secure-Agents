@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration of Search Budgets and Governor Guardrails in agentic AI.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral (#FF6B6B).
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Search Budgets & Execution Governor Guardrails".
+2. Center: "Governor Robot" in a smart control center managing 4 physical safety meters:
+   - Meter 1: "Max Search Depth Gate (e.g., Depth <= 4)"
+   - Meter 2: "Token Consumption Gauge (Remaining: 45k / 100k tokens)"
+   - Meter 3: "Wall-Clock Timeout Clock (Elapsed: 12s / Max: 30s)"
+   - Meter 4: "Branching Factor Limiter (Max 3 candidates per node)"
+3. Safety Tripping Wire: A red circuit breaker labeled "Hard Limit Tripped -> Halt Search & Trigger Fallback / Escalation".
+4. Safe Execution Lane (Green): "Bounded Execution within Budget -> Verified Solution Output".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
