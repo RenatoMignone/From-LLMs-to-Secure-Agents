@@ -41,5 +41,4 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
   - `P1-03-04-02`: `assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/source/`
   - `P1-03-04-03`: `assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/source/`
   - `P1-03-04-04`: `assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/source/`
-  - `P1-03-05-01`: `assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/source/`
   Link the generated images into their chapters, validate the site, and remove this entry.

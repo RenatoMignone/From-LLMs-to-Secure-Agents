@@ -281,3 +281,11 @@
 - Files or sections: `knowledge/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Termination, cancellation, and cleanup.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-29
+
+### P1-03-05-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Memory versus context and state.
+- Validation: Passed repository validation and the unit review checklist.

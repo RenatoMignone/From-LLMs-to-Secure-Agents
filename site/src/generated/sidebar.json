@@ -196,6 +196,16 @@
             "link": "/building-blocks/04-termination-cancellation-and-cleanup/"
           }
         ]
+      },
+      {
+        "label": "Memory",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "Memory versus context and state",
+            "link": "/building-blocks/01-memory-versus-context-and-state/"
+          }
+        ]
       }
     ]
   }

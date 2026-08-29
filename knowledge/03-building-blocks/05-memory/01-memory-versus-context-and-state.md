@@ -19,13 +19,16 @@ source_records:
 - p1-03-05-01-park-generative-agents-2023
 - p1-03-05-01-langgraph-store-memory-2024
 - p1-03-05-01-microsoft-autogen-memory-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/01-context-state-memory-triad.png
+- assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/02-memory-taxonomy-and-tiers.png
+- assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/03-memory-lifecycle-pipeline.png
 example_paths:
 - examples/03-building-blocks/05-memory/01-memory-versus-context-and-state/memory_context_state_runtime.py
 pass: architecture
 learning_path: main
-status: review
-last_reviewed: '2026-08-24'
+status: complete
+last_reviewed: '2026-08-29'
 ---
 -->
 
@@ -55,6 +58,10 @@ The memory subsystem bridges the gap between active model execution and long-ter
 
 When a new user request or thread begins, the memory manager performs selective recall. It queries the persistent store for relevant facts and user profile entries, formatting the top results into the prompt context alongside current instructions.
 
+![Figure 1: Context window, execution state, and long-term memory as three distinct architectural compartments](../../../assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/01-context-state-memory-triad.png)
+
+*Figure 1. The context window holds the prompt for one model call, execution state tracks the active run or thread, and long-term memory persists selected knowledge across sessions. Recall moves selected records into context, while extraction and consolidation move durable information out of execution state.*
+
 ## How it works
 
 Modern agent architectures structure information retention across three core dimensions: architectural scope, cognitive taxonomy, and lifecycle phases.
@@ -78,6 +85,10 @@ Drawing inspiration from cognitive science and operating system architecture (Pa
 - **Episodic memory (autobiographical log):** A time-ordered sequence of past interactions, events, and task executions (Park et al., 2023). For example: "On Monday, the user asked to refactor the database connector to use asyncpg."
 - **Semantic memory (facts and concepts):** Distilled, non-temporal facts, user profiles, and domain rules extracted from past experiences (LangChain, 2024). For example: "User Alice prefers type-annotated Python code" or "Production database uses port 5432."
 - **Procedural memory (skills and playbooks):** Reusable instructions, tool calling patterns, and operational scripts that define how the agent performs multi-step workflows.
+
+![Figure 2: Four agent memory types and their architectural roles](../../../assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/02-memory-taxonomy-and-tiers.png)
+
+*Figure 2. Working memory supports the current prompt cycle. Episodic memory preserves ordered experiences, semantic memory preserves facts and profiles, and procedural memory preserves reusable ways of working. A runtime should retrieve only the tier and records needed for the current task.*
 
 ### 3. Memory record structure
 
@@ -104,6 +115,10 @@ $$\text{Score}(m, q) = \alpha \cdot \text{Sim}(m, q) + \beta \cdot \text{Salienc
 
 4. **Consolidation and reflection:** Background processes periodically synthesize raw episodic traces into generalized semantic facts and higher-level user insights (Park et al., 2023).
 5. **Forgetting and pruning:** Stale records undergo time-decay pruning, expired TTL items are evicted, and explicit user deletion requests are executed.
+
+![Figure 3: Five-stage agent memory lifecycle with tenant isolation and namespace separation](../../../assets/images/03-building-blocks/05-memory/01-memory-versus-context-and-state/03-memory-lifecycle-pipeline.png)
+
+*Figure 3. A candidate memory moves from extraction through storage, selective recall, consolidation, and eventual pruning. Tenant and namespace boundaries apply throughout the lifecycle, including when records are selected for prompt context or deleted.*
 
 ## Main variants
 
