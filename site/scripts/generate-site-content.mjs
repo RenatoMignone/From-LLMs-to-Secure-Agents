@@ -125,6 +125,49 @@ export function renderInlineMarkdown(str) {
   return s;
 }
 
+function sectionSequenceLabel(index) {
+  return String(index + 1).padStart(2, '0');
+}
+
+function chapterSequenceLabel(chapter) {
+  return String(chapter.chapterNumber).padStart(2, '0');
+}
+
+function subsectionLabel(subsectionKey) {
+  const label = subsectionKey.split('/').at(-1).replace(/^\d+-/, '').replaceAll('-', ' ');
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function groupSectionChapters(section) {
+  const groups = [];
+  const topLevel = section.chapters.filter((chapter) => chapter.relPath.split(path.sep).length === 2);
+
+  if (topLevel.length > 0) {
+    groups.push({
+      key: 'core-sequence',
+      label: section.chapters.some((chapter) => chapter.relPath.split(path.sep).length > 2)
+        ? 'Core sequence'
+        : section.label,
+      chapters: topLevel,
+    });
+  }
+
+  const nestedGroups = new Map();
+  for (const chapter of section.chapters) {
+    const parts = chapter.relPath.split(path.sep);
+    if (parts.length <= 2) continue;
+    const key = parts.slice(1, -1).join('/');
+    if (!nestedGroups.has(key)) nestedGroups.set(key, []);
+    nestedGroups.get(key).push(chapter);
+  }
+
+  for (const [key, chapters] of nestedGroups) {
+    groups.push({ key, label: subsectionLabel(key), chapters });
+  }
+
+  return groups;
+}
+
 export function rewriteChapterLinks(markdown, currentRelPath, allChapters, { responsive = false } = {}) {
   // 1. Rewrite images
   let text = markdown.replace(
@@ -536,6 +579,8 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     const s = sections[sIdx];
     const prevSection = sIdx > 0 ? sections[sIdx - 1] : null;
     const nextSection = sIdx < sections.length - 1 ? sections[sIdx + 1] : null;
+    const chapterGroups = groupSectionChapters(s);
+    const firstChapter = s.chapters[0];
 
     const sectionOutDir = path.join(DOCS_DIR, s.routeDir);
     fs.mkdirSync(sectionOutDir, { recursive: true });
@@ -702,62 +747,73 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     let sectionContent = `---
 ${yaml.stringify(sectionFm)}---
 
-<div class="section-hub-hero not-content">
-  <div class="section-pill-badge">${s.pass} · ${s.chapters.length} published ${s.chapters.length === 1 ? 'chapter' : 'chapters'}</div>
-  <p class="section-hub-lead">Follow the chapters in order. Each one combines a clear explanation, local illustrations, traceable sources, and runnable examples where code helps.</p>
+<div class="section-entry not-content">
+  <div class="section-entry-status">
+    <span>Section ${sectionSequenceLabel(sIdx)}</span>
+    <span>${s.chapters.length} published ${s.chapters.length === 1 ? 'chapter' : 'chapters'}</span>
+  </div>
+  <p class="section-entry-copy">Read this section in order. The sequence moves from the shared mental model to the details you need for later security analysis.</p>
+  <div class="section-entry-actions">
+    <a href="${firstChapter.route}" class="section-start-link">
+      <span>Start with chapter ${chapterSequenceLabel(firstChapter)}</span>
+      <strong>${escapeHtml(firstChapter.title)}</strong>
+    </a>
+    <a href="#learning-path" class="section-map-link">View the full path <span aria-hidden="true">↓</span></a>
+  </div>
 </div>
 
-## Module Overview & Outcomes
+## What this section gives you
 
-<div class="chapter-goals-grid not-content">
-  <div class="goals-card">
-    <div class="goals-heading">Prerequisites</div>
+<div class="section-orientation not-content">
+  <div class="orientation-item orientation-prerequisite">
+    <div class="orientation-label">Before you begin</div>
     <p>${formattedSectionPrereqs}</p>
   </div>
-  <div class="goals-card">
-    <div class="goals-heading">Learning outcomes</div>
+  <div class="orientation-item orientation-outcome">
+    <div class="orientation-label">By the end</div>
     <p>${formattedSectionOutcomes}</p>
   </div>
 </div>
 
-${s.plan?.concepts ? `## Required Concepts & Scope\n\n${renderInlineMarkdown(s.plan.concepts)}\n` : ''}
+${s.plan?.concepts ? `<aside class="section-scope-note not-content">\n  <strong>Scope note</strong>\n  <p>${renderInlineMarkdown(s.plan.concepts)}</p>\n</aside>\n` : ''}
 
-## Published chapters in this section
+## Learning path
 
-<div class="section-units-grid not-content">
-${s.chapters
+<div class="learning-path not-content">
+${chapterGroups
   .map(
-    (c) => `  <div class="section-unit-card">
-    <div class="unit-card-header">
-      <span class="unit-card-id">${c.chapterLabel}</span>
-      <span class="unit-card-path">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep dive' : 'Main path'}</span>
-    </div>
-    <h3 class="unit-card-title"><a href="${c.route}">${c.title}</a></h3>
-    <p class="unit-card-summary">${c.summary}</p>
-    ${
-      c.learning_objectives && c.learning_objectives.length > 0
-        ? `    <div class="unit-card-objectives">
-      <strong>Key Topics:</strong>
-      <ul>
-${c.learning_objectives.slice(0, 3).map((o) => `        <li>${renderInlineMarkdown(formatStringOrObject(o))}</li>`).join('\n')}
-      </ul>
-    </div>`
-        : ''
-    }
-    <div class="unit-card-footer">
-      <a href="${c.route}" class="unit-card-cta">
-        <span>Read chapter</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  </div>`
+    (group, groupIndex) => `  <section class="path-group" aria-labelledby="path-group-${sIdx + 1}-${groupIndex + 1}">
+    <header class="path-group-header">
+      <span class="path-group-number">${String(groupIndex + 1).padStart(2, '0')}</span>
+      <div>
+        <h3 id="path-group-${sIdx + 1}-${groupIndex + 1}">${escapeHtml(group.label)}</h3>
+        <p>${group.chapters.length} ${group.chapters.length === 1 ? 'chapter' : 'chapters'} in this part</p>
+      </div>
+    </header>
+    <ol class="learning-path-list">
+${group.chapters
+  .map(
+    (c) => `      <li class="learning-path-item">
+        <a href="${c.route}">
+          <span class="path-chapter-number">${chapterSequenceLabel(c)}</span>
+          <span class="path-chapter-copy">
+            <strong>${escapeHtml(c.title)}</strong>
+            <span>${escapeHtml(c.summary)}</span>
+          </span>
+${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? '          <span class="path-chapter-type">Deep dive</span>\n' : ''}          <span class="path-chapter-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>`
+  )
+  .join('\n')}
+    </ol>
+  </section>`
   )
   .join('\n')}
 </div>
 
 ${
   s.plan?.securityConnection
-    ? `## Security & Threat Model Connections (Pass 2 Preview)\n\n${renderInlineMarkdown(rewriteChapterLinks(s.plan.securityConnection, path.join(s.sectionKey, 'chapter-plan.md'), chapters))}\n`
+    ? `## How this supports security work\n\n<div class="security-connection not-content">${renderInlineMarkdown(rewriteChapterLinks(s.plan.securityConnection, path.join(s.sectionKey, 'chapter-plan.md'), chapters))}</div>\n`
     : ''
 }
 
@@ -765,23 +821,23 @@ ${
 ${
   prevSection
     ? `  <a href="${prevSection.route}" class="pagination-link pagination-prev">
-    <span class="pagination-sub">← Previous Module</span>
+    <span class="pagination-sub">← Previous section</span>
     <span class="pagination-name">${prevSection.label}</span>
   </a>\n`
     : `  <a href="${BASE_URL}/" class="pagination-link pagination-prev">
-    <span class="pagination-sub">← Overview</span>
-    <span class="pagination-name">Handbook Introduction</span>
+    <span class="pagination-sub">← Guide home</span>
+    <span class="pagination-name">From LLMs to Secure Agents</span>
   </a>\n`
 }
 ${
   nextSection
     ? `  <a href="${nextSection.route}" class="pagination-link pagination-next">
-    <span class="pagination-sub">Next Module →</span>
+    <span class="pagination-sub">Next section →</span>
     <span class="pagination-name">${nextSection.label}</span>
   </a>\n`
     : `  <div class="pagination-link pagination-next pagination-end">
-    <span class="pagination-sub">Curriculum status</span>
-    <span class="pagination-name">End of Published Modules</span>
+    <span class="pagination-sub">Published path</span>
+    <span class="pagination-name">You reached the current end</span>
   </div>\n`
 }
 </div>
@@ -818,49 +874,36 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
   console.log('📑 Generating dynamic sidebar configuration...');
   const sidebarSections = [];
 
-  for (const s of sections) {
-    const topLevelChapters = s.chapters.filter(
-      (chapter) => chapter.relPath.split(path.sep).length === 2
-    );
-    const subsectionGroups = new Map();
-    for (const chapter of s.chapters) {
-      const parts = chapter.relPath.split(path.sep);
-      if (parts.length <= 2) continue;
-      const subsectionKey = parts.slice(1, -1).join('/');
-      if (!subsectionGroups.has(subsectionKey)) subsectionGroups.set(subsectionKey, []);
-      subsectionGroups.get(subsectionKey).push(chapter);
-    }
-
+  for (const [sectionIndex, s] of sections.entries()) {
+    const chapterGroups = groupSectionChapters(s);
     sidebarSections.push({
-      label: s.label,
+      label: `${sectionSequenceLabel(sectionIndex)} ${s.label}`,
       collapsed: true,
       items: [
         {
-          label: 'Section Overview',
+          label: 'Overview and learning path',
           link: `/${s.routeDir}/`,
         },
-        ...topLevelChapters.map((c) => ({
-          label: `${c.title}`,
-          link: `${c.route.replace(BASE_URL, '')}`,
-        })),
-        ...Array.from(subsectionGroups.entries()).map(([subsectionKey, subsectionChapters]) => ({
-          label: (() => {
-            const label = subsectionKey.split('/').at(-1).replace(/^\d+-/, '').replaceAll('-', ' ');
-            return label.charAt(0).toUpperCase() + label.slice(1);
-          })(),
-          collapsed: true,
-          items: subsectionChapters.map((chapter) => ({
-            label: chapter.title,
-            link: chapter.route.replace(BASE_URL, ''),
-          })),
-        })),
+        ...(chapterGroups.length === 1
+          ? chapterGroups[0].chapters.map((chapter) => ({
+              label: `${chapterSequenceLabel(chapter)} ${chapter.title}`,
+              link: chapter.route.replace(BASE_URL, ''),
+            }))
+          : chapterGroups.map((group) => ({
+              label: group.label,
+              collapsed: true,
+              items: group.chapters.map((chapter) => ({
+                label: `${chapterSequenceLabel(chapter)} ${chapter.title}`,
+                link: chapter.route.replace(BASE_URL, ''),
+              })),
+            }))),
       ],
     });
   }
 
   const finalSidebar = [
     {
-      label: 'Index',
+      label: 'Guide map',
       link: '/curriculum/',
     },
     ...sidebarSections,
@@ -878,21 +921,21 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
   fs.mkdirSync(curriculumDir, { recursive: true });
 
   const curriculumFm = {
-    title: 'Index',
-    description: 'Sequential index of all sections, chapters, deep dives, and architectural specifications in From LLMs to Secure Agents.',
-    section_label: 'Index',
+    title: 'Guide map',
+    description: 'A structured map of the published learning path from agent foundations to secure agent design.',
+    section_label: 'Guide map',
     head: [
       {
         tag: 'title',
-        content: 'Index | From LLMs to Secure Agents',
+        content: 'Guide map | From LLMs to Secure Agents',
       },
       {
         tag: 'meta',
-        attrs: { property: 'og:title', content: 'Index | From LLMs to Secure Agents' },
+        attrs: { property: 'og:title', content: 'Guide map | From LLMs to Secure Agents' },
       },
       {
         tag: 'meta',
-        attrs: { property: 'og:description', content: 'Sequential index of all sections, chapters, deep dives, and architectural specifications in From LLMs to Secure Agents.' },
+        attrs: { property: 'og:description', content: 'A structured map of the published learning path from agent foundations to secure agent design.' },
       },
       {
         tag: 'meta',
@@ -913,96 +956,77 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
 ${yaml.stringify(curriculumFm)}---
 
 <div class="section-hub-hero not-content">
-  <p class="section-hub-lead">Sequential index of all units across From LLMs to Secure Agents. Follow the main path in order or explore deep-dive architectural specifications.</p>
+  <p class="section-hub-lead">Build the functional system model first. Security sections will map threats and controls back to the same components and workflows.</p>
+  <div class="guide-map-summary">
+    <div><strong>${sections.length}</strong><span>published sections</span></div>
+    <div><strong>${chapters.length}</strong><span>published chapters</span></div>
+    <a href="${chapters[0].route}">Start the guide <span aria-hidden="true">→</span></a>
+  </div>
 </div>
 
-## Pass 1: Functional Agent Architecture
+## Published learning path
 
+<div class="curriculum-map not-content">
 ${sections
-  .map(
-    (s) => `### [${s.label}](${s.route})
-
-<p class="index-section-desc">${s.plan?.purpose || `Core architectural concepts and specifications for ${s.label.toLowerCase()}.`}</p>
-
-<div class="index-items-stack not-content">
-${s.chapters
-  .map(
-    (c) => `  <a href="${c.route}" class="index-item-row">
-    <div class="index-item-left">
-      <span class="index-item-num">${c.chapterLabel}</span>
-      <div class="index-item-details">
-        <span class="index-item-title">${c.title}</span>
-        <span class="index-item-summary">${c.summary}</span>
+  .map((s, sectionIndex) => {
+    const groups = groupSectionChapters(s);
+    const first = s.chapters[0];
+    const last = s.chapters.at(-1);
+    return `  <section class="curriculum-section" aria-labelledby="curriculum-section-${sectionIndex + 1}">
+    <div class="curriculum-section-heading">
+      <span class="curriculum-section-number">${sectionSequenceLabel(sectionIndex)}</span>
+      <div class="curriculum-section-copy">
+        <h3 id="curriculum-section-${sectionIndex + 1}"><a href="${s.route}">${escapeHtml(s.label)}</a></h3>
+        <p>${renderInlineMarkdown(s.plan?.purpose || `Core architectural concepts and specifications for ${s.label.toLowerCase()}.`)}</p>
+      </div>
+      <div class="curriculum-section-meta">
+        <strong>${s.chapters.length}</strong>
+        <span>${s.chapters.length === 1 ? 'chapter' : 'chapters'}</span>
       </div>
     </div>
-    <div class="index-item-right">
-      <span class="index-item-tag ${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'tag-deep' : 'tag-main'}">${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? 'Deep dive' : 'Main path'}</span>
-      <span class="index-item-arrow" aria-hidden="true">→</span>
+    <div class="curriculum-section-range">
+      <span>Starts with <strong>${escapeHtml(first.title)}</strong></span>
+      ${first !== last ? `<span>Ends with <strong>${escapeHtml(last.title)}</strong></span>` : ''}
     </div>
-  </a>`
+    <details class="curriculum-section-details">
+      <summary>Show the chapter path <span aria-hidden="true">+</span></summary>
+      <div class="curriculum-section-chapters">
+${groups
+  .map(
+    (group) => `        <div class="curriculum-chapter-group">
+${groups.length > 1 ? `          <h4>${escapeHtml(group.label)}</h4>\n` : ''}          <ol>
+${group.chapters
+  .map(
+    (chapter) => `            <li>
+              <a href="${chapter.route}">
+                <span>${chapterSequenceLabel(chapter)}</span>
+                <strong>${escapeHtml(chapter.title)}</strong>
+                <span aria-hidden="true">→</span>
+              </a>
+            </li>`
   )
   .join('\n')}
-</div>`
+          </ol>
+        </div>`
   )
-  .join('\n\n')}
-
-## Pass 2: Threat Modeling & Security (Upcoming)
-
-Detailed threat modeling and defensive architectures build directly upon the functional components established in Pass 1.
-
-<div class="index-items-stack not-content">
-  <div class="index-item-row upcoming">
-    <div class="index-item-left">
-      <span class="index-item-num">06</span>
-      <div class="index-item-details">
-        <span class="index-item-title">Threat Model &amp; Attack Surface</span>
-        <span class="index-item-summary">Adversarial prompt injection, indirect context contamination, tool squatting, and privilege escalation.</span>
+  .join('\n')}
       </div>
-    </div>
-    <div class="index-item-right">
-      <span class="index-item-tag tag-upcoming">Upcoming</span>
-    </div>
-  </div>
-
-  <div class="index-item-row upcoming">
-    <div class="index-item-left">
-      <span class="index-item-num">07</span>
-      <div class="index-item-details">
-        <span class="index-item-title">Component-Level Defenses</span>
-        <span class="index-item-summary">Context firewalls, credential isolation, tool token scoping, sandbox runtimes, and approval gates.</span>
-      </div>
-    </div>
-    <div class="index-item-right">
-      <span class="index-item-tag tag-upcoming">Upcoming</span>
-    </div>
-  </div>
-
-  <div class="index-item-row upcoming">
-    <div class="index-item-left">
-      <span class="index-item-num">08</span>
-      <div class="index-item-details">
-        <span class="index-item-title">Secure Reference Architectures</span>
-        <span class="index-item-summary">Hardened multi-agent topologies, supervisor-worker security boundaries, and gateway mediation.</span>
-      </div>
-    </div>
-    <div class="index-item-right">
-      <span class="index-item-tag tag-upcoming">Upcoming</span>
-    </div>
-  </div>
-
-  <div class="index-item-row upcoming">
-    <div class="index-item-left">
-      <span class="index-item-num">09</span>
-      <div class="index-item-details">
-        <span class="index-item-title">Security Testing &amp; Evaluation</span>
-        <span class="index-item-summary">Automated red-teaming harnesses, benchmark suites, perturbation testing, and formal verification gates.</span>
-      </div>
-    </div>
-    <div class="index-item-right">
-      <span class="index-item-tag tag-upcoming">Upcoming</span>
-    </div>
-  </div>
+    </details>
+  </section>`;
+  })
+  .join('\n')}
 </div>
+
+## Next: threat modeling and security
+
+These upcoming sections reuse the published functional model. Each risk and control will point back to a concrete component, boundary, or workflow stage.
+
+<ol class="roadmap-list not-content">
+  <li><span>06</span><div><strong>Threat model and attack surface</strong><p>Map adversarial inputs and privilege escalation paths to the system model.</p></div></li>
+  <li><span>07</span><div><strong>Security by component</strong><p>Apply controls at context, tool, identity, runtime, and approval boundaries.</p></div></li>
+  <li><span>08</span><div><strong>Secure reference architectures</strong><p>Compose those controls into hardened end-to-end designs.</p></div></li>
+  <li><span>09</span><div><strong>Testing and assurance</strong><p>Test the full system with repeatable evaluation and red-team workflows.</p></div></li>
+</ol>
 `;
 
   fs.writeFileSync(path.join(curriculumDir, 'index.mdx'), curriculumContent, 'utf8');

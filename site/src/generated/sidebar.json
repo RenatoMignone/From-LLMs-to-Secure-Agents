@@ -1,112 +1,112 @@
 [
   {
-    "label": "Index",
+    "label": "Guide map",
     "link": "/curriculum/"
   },
   {
-    "label": "Prerequisites",
+    "label": "01 Prerequisites",
     "collapsed": true,
     "items": [
       {
-        "label": "Section Overview",
+        "label": "Overview and learning path",
         "link": "/prerequisites/"
       },
       {
-        "label": "Reader contract and system map",
+        "label": "01 Reader contract and system map",
         "link": "/prerequisites/01-reader-contract-and-system-map/"
       },
       {
-        "label": "Data, control, and trust boundaries",
+        "label": "02 Data, control, and trust boundaries",
         "link": "/prerequisites/02-data-control-and-trust-boundaries/"
       },
       {
-        "label": "Requests, events, state, and side effects",
+        "label": "03 Requests, events, state, and side effects",
         "link": "/prerequisites/03-requests-events-state-and-side-effects/"
       },
       {
-        "label": "Identity, authority, and least privilege primer",
+        "label": "04 Identity, authority, and least privilege primer",
         "link": "/prerequisites/04-identity-authority-and-least-privilege-primer/"
       }
     ]
   },
   {
-    "label": "Agent foundations",
+    "label": "02 Agent foundations",
     "collapsed": true,
     "items": [
       {
-        "label": "Section Overview",
+        "label": "Overview and learning path",
         "link": "/foundations/"
       },
       {
-        "label": "What is an agent",
+        "label": "01 What is an agent",
         "link": "/foundations/01-what-is-an-agent/"
       },
       {
-        "label": "The agent loop",
+        "label": "02 The agent loop",
         "link": "/foundations/02-the-agent-loop/"
       },
       {
-        "label": "Workflows versus agents",
+        "label": "03 Workflows versus agents",
         "link": "/foundations/03-workflows-versus-agents/"
       },
       {
-        "label": "Goals, policies, environments, and autonomy",
+        "label": "04 Goals, policies, environments, and autonomy",
         "link": "/foundations/04-goals-policies-environments-and-autonomy/"
       },
       {
-        "label": "Run lifecycle and termination",
+        "label": "05 Run lifecycle and termination",
         "link": "/foundations/05-run-lifecycle-and-termination/"
       }
     ]
   },
   {
-    "label": "Agent architectures",
+    "label": "03 Agent architectures",
     "collapsed": true,
     "items": [
       {
-        "label": "Section Overview",
+        "label": "Overview and learning path",
         "link": "/architectures/"
       },
       {
-        "label": "Architecture selection criteria",
+        "label": "01 Architecture selection criteria",
         "link": "/architectures/01-architecture-selection-criteria/"
       },
       {
-        "label": "Single-agent and reactive loops",
+        "label": "02 Single-agent and reactive loops",
         "link": "/architectures/02-single-agent-and-reactive-loops/"
       },
       {
-        "label": "Sequential, routing, and parallel workflows",
+        "label": "03 Sequential, routing, and parallel workflows",
         "link": "/architectures/03-sequential-routing-and-parallel-workflows/"
       },
       {
-        "label": "Plan and execute",
+        "label": "04 Plan and execute",
         "link": "/architectures/04-plan-and-execute/"
       },
       {
-        "label": "Evaluator-optimizer and reflection",
+        "label": "05 Evaluator-optimizer and reflection",
         "link": "/architectures/05-evaluator-optimizer-and-reflection/"
       },
       {
-        "label": "State machines and event-driven graphs",
+        "label": "06 State machines and event-driven graphs",
         "link": "/architectures/06-state-machines-and-event-driven-graphs/"
       },
       {
-        "label": "Supervisors, handoffs, and agent-as-tool",
+        "label": "07 Supervisors, handoffs, and agent-as-tool",
         "link": "/architectures/07-supervisors-handoffs-and-agent-as-tool/"
       },
       {
-        "label": "Architecture trade-offs",
+        "label": "08 Architecture trade-offs",
         "link": "/architectures/08-architecture-trade-offs/"
       }
     ]
   },
   {
-    "label": "Building blocks",
+    "label": "04 Building blocks",
     "collapsed": true,
     "items": [
       {
-        "label": "Section Overview",
+        "label": "Overview and learning path",
         "link": "/building-blocks/"
       },
       {
@@ -114,19 +114,19 @@
         "collapsed": true,
         "items": [
           {
-            "label": "Model roles and selection",
+            "label": "01 Model roles and selection",
             "link": "/building-blocks/01-model-roles-and-selection/"
           },
           {
-            "label": "Routing, cascades, and fallbacks",
+            "label": "02 Routing, cascades, and fallbacks",
             "link": "/building-blocks/02-routing-cascades-and-fallbacks/"
           },
           {
-            "label": "Capability, cost, latency, and reliability",
+            "label": "03 Capability, cost, latency, and reliability",
             "link": "/building-blocks/03-capability-cost-latency-and-reliability/"
           },
           {
-            "label": "Routing evaluation",
+            "label": "04 Routing evaluation",
             "link": "/building-blocks/04-routing-evaluation/"
           }
         ]
@@ -136,19 +136,19 @@
         "collapsed": true,
         "items": [
           {
-            "label": "Context sources and precedence",
+            "label": "05 Context sources and precedence",
             "link": "/building-blocks/01-context-sources-and-precedence/"
           },
           {
-            "label": "Context budgets, selection, and ordering",
+            "label": "06 Context budgets, selection, and ordering",
             "link": "/building-blocks/02-context-budgets-selection-and-ordering/"
           },
           {
-            "label": "History, summaries, and compression",
+            "label": "07 History, summaries, and compression",
             "link": "/building-blocks/03-history-summaries-and-compression/"
           },
           {
-            "label": "Provenance and context debugging",
+            "label": "08 Provenance and context debugging",
             "link": "/building-blocks/04-provenance-and-context-debugging/"
           }
         ]
@@ -158,19 +158,19 @@
         "collapsed": true,
         "items": [
           {
-            "label": "Reactive and reason-act patterns",
+            "label": "09 Reactive and reason-act patterns",
             "link": "/building-blocks/01-reactive-and-reason-act-patterns/"
           },
           {
-            "label": "Decomposition and plan-execute",
+            "label": "10 Decomposition and plan-execute",
             "link": "/building-blocks/02-decomposition-and-plan-execute/"
           },
           {
-            "label": "Reflection, evaluation, and replanning",
+            "label": "11 Reflection, evaluation, and replanning",
             "link": "/building-blocks/03-reflection-evaluation-and-replanning/"
           },
           {
-            "label": "Search, budgets, and termination",
+            "label": "12 Search, budgets, and termination",
             "link": "/building-blocks/04-search-budgets-and-termination/"
           }
         ]
@@ -180,19 +180,19 @@
         "collapsed": true,
         "items": [
           {
-            "label": "Run, thread, and event models",
+            "label": "13 Run, thread, and event models",
             "link": "/building-blocks/01-run-thread-and-event-models/"
           },
           {
-            "label": "Checkpoints, interrupts, and resumption",
+            "label": "14 Checkpoints, interrupts, and resumption",
             "link": "/building-blocks/02-checkpoints-interrupts-and-resumption/"
           },
           {
-            "label": "Retries, idempotency, and concurrency",
+            "label": "15 Retries, idempotency, and concurrency",
             "link": "/building-blocks/03-retries-idempotency-and-concurrency/"
           },
           {
-            "label": "Termination, cancellation, and cleanup",
+            "label": "16 Termination, cancellation, and cleanup",
             "link": "/building-blocks/04-termination-cancellation-and-cleanup/"
           }
         ]
@@ -202,7 +202,7 @@
         "collapsed": true,
         "items": [
           {
-            "label": "Memory versus context and state",
+            "label": "17 Memory versus context and state",
             "link": "/building-blocks/01-memory-versus-context-and-state/"
           }
         ]
