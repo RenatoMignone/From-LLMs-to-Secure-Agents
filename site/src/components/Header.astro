@@ -21,8 +21,9 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
   </div>
 
   <div class="publication-tools">
-    <a href={firstChapterRoute} class="nav-link-guide" data-reading-link data-start-route={firstChapterRoute}>
-      <span data-reading-label>Start Reading</span>
+    <a href={firstChapterRoute} class="nav-link-guide" data-reading-link data-start-route={firstChapterRoute} aria-label="Start Reading">
+      <span class="nav-guide-label-full" data-reading-label>Start Reading</span>
+      <span class="nav-guide-label-short" data-reading-label-short aria-hidden="true">Start</span>
       <span class="nav-guide-arrow" aria-hidden="true">→</span>
     </a>
 
@@ -87,6 +88,8 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
         link.setAttribute('aria-label', `Continue Reading: ${saved.title}`);
         const label = link.querySelector<HTMLElement>('[data-reading-label]');
         if (label) label.textContent = 'Continue Reading';
+        const shortLabel = link.querySelector<HTMLElement>('[data-reading-label-short]');
+        if (shortLabel) shortLabel.textContent = 'Continue';
       });
     } catch {
       // The start links remain useful when storage is disabled.
@@ -259,6 +262,10 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     transition: transform 140ms ease;
   }
 
+  .nav-guide-label-short {
+    display: none;
+  }
+
   .nav-link-guide:hover .nav-guide-arrow {
     transform: translateX(2px);
   }
@@ -387,6 +394,35 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
       width: 2rem;
       height: 2rem;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .publication-header,
+    .publication-tools {
+      gap: 0.4rem;
+    }
+
+    .nav-guide-label-full {
+      display: none;
+    }
+
+    .nav-guide-label-short {
+      display: inline;
+    }
+
+    .nav-link-guide {
+      padding-inline: 0.72rem;
+    }
+
+    .publication-header:has(.nav-mobile-menu-btn) :global(.site-title span) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 23.75rem) {
+    :global(.site-title span) {
+      display: none;
     }
   }
 

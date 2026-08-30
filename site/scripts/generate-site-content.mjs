@@ -935,7 +935,7 @@ ${yaml.stringify(curriculumFm)}---
   <a href="${chapters[0].route}">Start at the beginning <span aria-hidden="true">→</span></a>
 </div>
 
-## Browse by section
+<h2 class="sr-only">Published sections</h2>
 
 <nav class="guide-index not-content" aria-label="Published guide sections">
 ${sections
@@ -983,13 +983,6 @@ ${group.chapters
   const firstChapterRoute = entryChapter ? entryChapter.route : `${BASE_URL}/prerequisites/01-reader-contract-and-system-map/`;
   const latestChapter = chapters.at(-1);
   const heroImage = responsiveImages.get('repo-images/project-purpose.png');
-  const homepageSections = sections.map((section) => ({
-    title: section.label,
-    href: section.route,
-    count: section.chapters.length,
-    firstChapter: section.chapters[0]?.title || '',
-    latestChapter: section.chapters.at(-1)?.title || '',
-  }));
 
   const homepageJsonLd = {
     '@context': 'https://schema.org',
@@ -999,7 +992,7 @@ ${group.chapters
         '@id': `${SITE_ORIGIN}${BASE_URL}/#website`,
         url: `${SITE_ORIGIN}${BASE_URL}/`,
         name: 'From LLMs to Secure Agents',
-        description: 'An early-alpha, visual and source-grounded guide to agentic AI architecture and security.',
+        description: 'A comprehensive, sequential, source-grounded guide to agentic AI architecture and security.',
         inLanguage: 'en-US',
         author: {
           '@type': 'Person',
@@ -1016,7 +1009,7 @@ ${group.chapters
         '@type': 'Book',
         '@id': `${SITE_ORIGIN}${BASE_URL}/#handbook`,
         name: 'From LLMs to Secure Agents',
-        description: 'A sequential engineering guide covering autonomous agent architecture, runtime execution loops, tools, and defensive threat modeling.',
+        description: 'A comprehensive guide covering agentic AI foundations, architecture, runtime systems, threat modeling, defensive controls, and assurance.',
         bookFormat: 'https://schema.org/EBook',
         author: {
           '@type': 'Person',
@@ -1048,7 +1041,7 @@ ${group.chapters
 
   const homepageFm = {
     title: 'From LLMs to Secure Agents',
-    description: 'An early-alpha, visual and source-grounded guide to agentic AI architecture and security by Renato Mignone.',
+    description: 'A comprehensive, sequential, source-grounded guide to agentic AI architecture and security by Renato Mignone.',
     template: 'splash',
     tableOfContents: false,
     prev: false,
@@ -1069,11 +1062,11 @@ ${group.chapters
       },
       {
         tag: 'meta',
-        attrs: { property: 'og:title', content: 'From LLMs to Secure Agents | Visual Engineering Guide' },
+        attrs: { property: 'og:title', content: 'From LLMs to Secure Agents | Comprehensive Guide' },
       },
       {
         tag: 'meta',
-        attrs: { property: 'og:description', content: 'Understand the complete agentic system first. Then learn how to secure it. By Renato Mignone.' },
+        attrs: { property: 'og:description', content: 'A comprehensive, sequential guide to agentic AI architecture, operation, risks, and defenses. By Renato Mignone.' },
       },
       {
         tag: 'meta',
@@ -1097,7 +1090,7 @@ ${group.chapters
       },
       {
         tag: 'meta',
-        attrs: { name: 'twitter:description', content: 'Understand the complete agentic system first. Then learn how to secure it. By Renato Mignone.' },
+        attrs: { name: 'twitter:description', content: 'A comprehensive, sequential guide to agentic AI architecture, operation, risks, and defenses. By Renato Mignone.' },
       },
       {
         tag: 'meta',
@@ -1198,14 +1191,14 @@ The address may be outdated, or the chapter may still be on the roadmap. Use the
   console.log('📄 Generating 2026 llms.txt & llms-full.txt...');
   const llmsTxtContent = `# From LLMs to Secure Agents
 
-> An early-alpha, visual and source-grounded guide to agentic AI architecture and security.
+> A comprehensive, visual and source-grounded guide to agentic AI architecture and security.
 
 - **Author:** Renato Mignone (https://github.com/RenatoMignone)
 - **Site Origin:** ${SITE_ORIGIN}${BASE_URL}/
 - **Structured Index API:** ${SITE_ORIGIN}${BASE_URL}/guide-index.json
 - **Full Text AI Dump:** ${SITE_ORIGIN}${BASE_URL}/llms-full.txt
 - **Source Repository:** ${GITHUB_REPO}
-- **Maturity:** Early alpha. The architecture pass is in progress; detailed security chapters remain on the roadmap.
+- **Publication status:** Updated incrementally as chapters complete review.
 - **Current publication:** ${chapters.length} chapters across ${sections.length} sections. The latest chapter is [${latestChapter?.title || 'the opening chapter'}](${latestChapter?.canonicalUrl || `${SITE_ORIGIN}${firstChapterRoute}`}).
 
 ## Executive Summary & Core Definitions (AEO Grounding)

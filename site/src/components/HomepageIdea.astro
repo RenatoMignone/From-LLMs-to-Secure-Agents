@@ -1,127 +1,128 @@
 ---
 ---
 
-<section class="idea-section not-content" id="the-idea">
+<section class="idea-section not-content" aria-labelledby="guide-structure-title">
   <div class="idea-container">
-    <div class="idea-narrative-block">
-      <div class="narrative-meta">
-        <h2 class="idea-main-title">Why this engineering handbook is needed</h2>
-      </div>
-      <div class="narrative-content">
-        <p class="lead-text">
-          Agent security cannot be mastered from isolated vulnerability checklists. In an <strong>agentic system</strong>, language models no longer merely generate text; they make decisions in an iterative software loop, managing context, querying databases, running code, and triggering real-world side effects.
-        </p>
-        <p>
-          Traditional software separates data from executable code. Because language models process both within a shared text stream, untrusted content can directly influence downstream control flow. Prompt engineering and content filters can mitigate simple failures, but they do not create a security boundary. Robust defense requires systemic architectural controls, credential scoping, sandbox isolation, and cryptographic provenance.
-        </p>
-        <p>
-          <strong>You cannot secure an architecture you cannot explain.</strong> This handbook teaches in strict dependency order through two sequential passes: first, building a complete, verified mental model of the agentic system (from context sources and memory hierarchies to supervisors and tool protocols); second, revisiting that exact architecture with formal threat modeling, attack trees, defense in depth, and automated evaluation.
-        </p>
-        <p>
-          Every chapter is grounded in official specifications, primary research, and minimal runnable examples, ensuring that engineering decisions rest on verifiable facts rather than hype.
-        </p>
-      </div>
+    <header class="idea-intro">
+      <h2 id="guide-structure-title">One system, studied in order</h2>
+      <p>
+        Agentic AI combines models with software components that hold context, call tools, preserve state, and produce side effects. The guide treats that whole system as the subject.
+      </p>
+    </header>
+
+    <div class="guide-passes">
+      <section>
+        <h3>Build the functional model</h3>
+        <p>Begin with software foundations, agent behavior, orchestration patterns, and the components used in complete agentic systems.</p>
+      </section>
+      <section>
+        <h3>Study security in context</h3>
+        <p>Map threats, boundaries, controls, and tests back to the same components and workflows instead of learning them as an isolated checklist.</p>
+      </section>
     </div>
+
+    <p class="evidence-note">
+      Chapters are grounded in official specifications and primary research, with local diagrams and minimal runnable examples where they help.
+    </p>
   </div>
 </section>
 
 <style>
   .idea-section {
+    box-sizing: border-box;
     width: 100%;
     padding: clamp(4rem, 7vh, 6rem) clamp(1.5rem, 4vw, 4.5rem);
     border-top: 1px solid var(--color-border-subtle);
     border-bottom: 1px solid var(--color-border-subtle);
-    background-color: transparent;
-    box-sizing: border-box;
   }
 
   .idea-container {
     width: 100%;
-    max-width: 88rem;
+    max-width: 76rem;
     margin: 0 auto;
   }
 
-  /* Narrative Block */
-  .idea-narrative-block {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
-    gap: clamp(2.5rem, 5vw, 6rem);
-    align-items: flex-start;
+  .idea-intro {
+    max-width: 51rem;
   }
 
-  .narrative-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .idea-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--color-teal);
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    font-weight: 750;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.85rem;
-    border-radius: 9999px;
-    background-color: var(--color-teal-subtle);
-    border: 1px solid var(--color-teal-border);
-    margin-bottom: 1.15rem;
-  }
-
-  :global(:root[data-theme='dark']) .idea-eyebrow {
-    background-color: rgba(120, 196, 189, 0.12);
-    border-color: rgba(120, 196, 189, 0.3);
-    color: var(--color-teal);
-  }
-
-  .idea-main-title {
+  .idea-intro h2 {
+    margin: 0 0 1rem;
+    color: var(--color-ink);
     font-family: var(--font-heading);
-    font-size: clamp(2.1rem, 3.4vw, 3.2rem);
+    font-size: clamp(2rem, 3.5vw, 3.25rem);
     font-weight: 800;
-    line-height: 1.15;
-    color: var(--color-ink);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+  }
+
+  .idea-intro p {
     margin: 0;
-    letter-spacing: -0.03em;
-  }
-
-  .narrative-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-  }
-
-  .narrative-content .lead-text {
-    font-size: clamp(1.15rem, 1.6vw, 1.32rem);
-    line-height: 1.68;
-    color: var(--color-ink);
-    margin: 0;
-  }
-
-  .narrative-content p {
-    font-size: clamp(1.02rem, 1.3vw, 1.14rem);
-    line-height: 1.74;
     color: var(--color-ink-muted);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.68;
+  }
+
+  .guide-passes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 5rem);
+    margin-top: clamp(2.75rem, 6vw, 4.5rem);
+  }
+
+  .guide-passes section {
+    padding-top: 1.25rem;
+    border-top: 3px solid var(--color-border);
+  }
+
+  .guide-passes section:first-child {
+    border-color: var(--color-teal);
+  }
+
+  .guide-passes section:last-child {
+    border-color: var(--color-peach);
+  }
+
+  .guide-passes h3 {
+    margin: 0 0 0.7rem;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+  }
+
+  .guide-passes p,
+  .evidence-note {
+    color: var(--color-ink-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .guide-passes p {
     margin: 0;
   }
 
-  .narrative-content strong {
-    color: var(--color-ink);
+  .evidence-note {
+    max-width: 51rem;
+    margin: clamp(2.75rem, 6vw, 4.5rem) 0 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-border);
   }
 
-  @media (max-width: 1024px) {
-    .idea-narrative-block {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-
-  @media (max-width: 640px) {
+  @media (max-width: 700px) {
     .idea-section {
-      padding: 3rem 1.15rem 4rem;
+      padding: 3.5rem 1rem;
+    }
+
+    .guide-passes {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+      margin-top: 2.75rem;
+    }
+
+    .evidence-note {
+      margin-top: 2.75rem;
     }
   }
 </style>

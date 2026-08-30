@@ -137,8 +137,30 @@ if (fs.existsSync(path.join(DIST_DIR, 'index.html'))) {
   if (!homepage.includes('data-reading-link')) {
     errors.push('Homepage is missing Continue Reading hooks');
   }
+  if (!homepage.includes('Agentic AI and its security') || !homepage.includes('Browse the index')) {
+    errors.push('Homepage is missing its guide-first title or index entry point');
+  }
+  const retiredHomepageCopy = [
+    'Early alpha',
+    'Architecture pass in progress',
+    'Understand the complete agentic system first',
+    'Why this engineering handbook is needed',
+    'Crafted by',
+  ];
+  for (const retiredCopy of retiredHomepageCopy) {
+    if (homepage.includes(retiredCopy)) {
+      errors.push(`Homepage still contains retired marketing copy: ${retiredCopy}`);
+    }
+  }
   if (!/project-purpose-[^"']+\.webp/.test(homepage) || !homepage.includes('fetchpriority="high"')) {
     errors.push('Homepage hero is missing responsive WebP markup or high fetch priority');
+  }
+}
+
+if (fs.existsSync(path.join(DIST_DIR, 'llms.txt'))) {
+  const llmsTxt = fs.readFileSync(path.join(DIST_DIR, 'llms.txt'), 'utf8');
+  if (llmsTxt.includes('Early alpha') || !llmsTxt.includes('comprehensive, visual and source-grounded guide')) {
+    errors.push('llms.txt contains stale maturity copy or is missing the guide-first description');
   }
 }
 
