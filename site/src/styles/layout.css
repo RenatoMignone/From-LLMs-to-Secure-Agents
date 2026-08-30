@@ -297,13 +297,18 @@ starlight-toc a[aria-current='true'] {
   align-items: center !important;
 }
 
+.main-frame,
+.main-pane,
 main {
   width: 100% !important;
   max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 .content-panel {
   width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
   padding: 2.25rem clamp(1.5rem, 3.5vw, 3rem) 3.5rem !important;
   display: flex !important;
   justify-content: center !important;
@@ -312,6 +317,7 @@ main {
 .content-panel .sl-container {
   width: 100% !important;
   max-width: var(--sl-content-width) !important;
+  min-width: 0 !important;
   margin: 0 auto !important;
 }
 
@@ -355,6 +361,8 @@ html:not([data-has-sidebar]) .main-frame {
   font-size: 1.08rem;
   line-height: 1.76;
   width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 /* Search Button & Modal */
@@ -501,7 +509,7 @@ body[data-mobile-menu-expanded] .top-level,
 
 @media (max-width: 640px) {
   .site-title {
-    font-size: 0.88rem !important;
+    font-size: 0.82rem !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
