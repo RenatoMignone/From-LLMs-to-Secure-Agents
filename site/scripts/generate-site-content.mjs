@@ -101,8 +101,8 @@ function responsiveImageMarkup(relPath, alt, { eager = false, sizes = '(max-widt
     .map((variant) => `${BASE_URL}/assets/images/${variant.path} ${variant.width}w`)
     .join(', ');
   return `<picture class="responsive-illustration">
-  <source type="image/webp" srcset="${srcset}" sizes="${sizes}">
-  <img src="${BASE_URL}/assets/images/${largest.path}" alt="${escapeHtml(alt)}" width="${image.width}" height="${image.height}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>
+  <source type="image/webp" srcset="${srcset}" sizes="${sizes}" />
+  <img src="${BASE_URL}/assets/images/${largest.path}" alt="${escapeHtml(alt)}" width="${image.width}" height="${image.height}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''} />
 </picture>`;
 }
 
@@ -581,7 +581,6 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     const nextSection = sIdx < sections.length - 1 ? sections[sIdx + 1] : null;
     const chapterGroups = groupSectionChapters(s);
     const firstChapter = s.chapters[0];
-
     const sectionOutDir = path.join(DOCS_DIR, s.routeDir);
     fs.mkdirSync(sectionOutDir, { recursive: true });
     const sectionDocPath = path.join(DOCS_DIR, s.docPath);
@@ -747,75 +746,51 @@ ${ch.source_records.map((s) => `- [${s.title}](${s.canonical_url}) (${s.authors_
     let sectionContent = `---
 ${yaml.stringify(sectionFm)}---
 
-<div class="section-entry not-content">
-  <div class="section-entry-status">
-    <span>Section ${sectionSequenceLabel(sIdx)}</span>
-    <span>${s.chapters.length} published ${s.chapters.length === 1 ? 'chapter' : 'chapters'}</span>
-  </div>
-  <p class="section-entry-copy">Read this section in order. The sequence moves from the shared mental model to the details you need for later security analysis.</p>
-  <div class="section-entry-actions">
-    <a href="${firstChapter.route}" class="section-start-link">
-      <span>Start with chapter ${chapterSequenceLabel(firstChapter)}</span>
-      <strong>${escapeHtml(firstChapter.title)}</strong>
-    </a>
-    <a href="#learning-path" class="section-map-link">View the full path <span aria-hidden="true">↓</span></a>
-  </div>
+<div class="section-overview not-content">
+<a href="${firstChapter.route}" class="section-start-link">
+<span>Start with</span>
+<strong>${chapterSequenceLabel(firstChapter)}. ${escapeHtml(firstChapter.title)} <span aria-hidden="true">→</span></strong>
+</a>
 </div>
 
-## What this section gives you
-
-<div class="section-orientation not-content">
-  <div class="orientation-item orientation-prerequisite">
-    <div class="orientation-label">Before you begin</div>
-    <p>${formattedSectionPrereqs}</p>
-  </div>
-  <div class="orientation-item orientation-outcome">
-    <div class="orientation-label">By the end</div>
-    <p>${formattedSectionOutcomes}</p>
-  </div>
+<div class="section-essentials not-content">
+<div>
+<strong>Before you begin</strong>
+<p>${formattedSectionPrereqs}</p>
+</div>
+<div>
+<strong>By the end</strong>
+<p>${formattedSectionOutcomes}</p>
+</div>
 </div>
 
-${s.plan?.concepts ? `<aside class="section-scope-note not-content">\n  <strong>Scope note</strong>\n  <p>${renderInlineMarkdown(s.plan.concepts)}</p>\n</aside>\n` : ''}
+## Chapters
 
-## Learning path
-
-<div class="learning-path not-content">
+<div class="section-chapter-index not-content">
 ${chapterGroups
   .map(
-    (group, groupIndex) => `  <section class="path-group" aria-labelledby="path-group-${sIdx + 1}-${groupIndex + 1}">
-    <header class="path-group-header">
-      <span class="path-group-number">${String(groupIndex + 1).padStart(2, '0')}</span>
-      <div>
-        <h3 id="path-group-${sIdx + 1}-${groupIndex + 1}">${escapeHtml(group.label)}</h3>
-        <p>${group.chapters.length} ${group.chapters.length === 1 ? 'chapter' : 'chapters'} in this part</p>
-      </div>
-    </header>
-    <ol class="learning-path-list">
+    (group, groupIndex) => `<section class="chapter-index-group" aria-labelledby="chapter-index-group-${sIdx + 1}-${groupIndex + 1}">
+${chapterGroups.length > 1 ? `<h3 id="chapter-index-group-${sIdx + 1}-${groupIndex + 1}">${escapeHtml(group.label)}</h3>` : ''}
+<ol class="section-chapter-list">
 ${group.chapters
   .map(
-    (c) => `      <li class="learning-path-item">
-        <a href="${c.route}">
-          <span class="path-chapter-number">${chapterSequenceLabel(c)}</span>
-          <span class="path-chapter-copy">
-            <strong>${escapeHtml(c.title)}</strong>
-            <span>${escapeHtml(c.summary)}</span>
-          </span>
-${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? '          <span class="path-chapter-type">Deep dive</span>\n' : ''}          <span class="path-chapter-arrow" aria-hidden="true">→</span>
-        </a>
-      </li>`
+    (c) => `<li>
+<a href="${c.route}">
+<span class="chapter-index-number">${chapterSequenceLabel(c)}</span>
+<span class="chapter-index-copy">
+<strong>${escapeHtml(c.title)}</strong>
+<span>${escapeHtml(c.summary)}</span>
+</span>
+${c.learning_path === 'deep_dive' || c.learning_path === 'deep-dive' ? '<span class="chapter-index-type">Deep dive</span>\n' : ''}<span class="chapter-index-arrow" aria-hidden="true">→</span>
+</a>
+</li>`
   )
   .join('\n')}
-    </ol>
-  </section>`
+</ol>
+</section>`
   )
   .join('\n')}
 </div>
-
-${
-  s.plan?.securityConnection
-    ? `## How this supports security work\n\n<div class="security-connection not-content">${renderInlineMarkdown(rewriteChapterLinks(s.plan.securityConnection, path.join(s.sectionKey, 'chapter-plan.md'), chapters))}</div>\n`
-    : ''
-}
 
 <div class="unit-pagination not-content">
 ${
@@ -955,78 +930,49 @@ ${s.chapters.map((c) => `- [${c.title}](${c.canonicalUrl}) - ${c.summary}`).join
   const curriculumContent = `---
 ${yaml.stringify(curriculumFm)}---
 
-<div class="section-hub-hero not-content">
-  <p class="section-hub-lead">Build the functional system model first. Security sections will map threats and controls back to the same components and workflows.</p>
-  <div class="guide-map-summary">
-    <div><strong>${sections.length}</strong><span>published sections</span></div>
-    <div><strong>${chapters.length}</strong><span>published chapters</span></div>
-    <a href="${chapters[0].route}">Start the guide <span aria-hidden="true">→</span></a>
-  </div>
+<div class="guide-index-intro not-content">
+  <p>Choose a section, then open a chapter. The full published path is visible below.</p>
+  <a href="${chapters[0].route}">Start at the beginning <span aria-hidden="true">→</span></a>
 </div>
 
-## Published learning path
+## Browse by section
 
-<div class="curriculum-map not-content">
+<nav class="guide-index not-content" aria-label="Published guide sections">
 ${sections
   .map((s, sectionIndex) => {
     const groups = groupSectionChapters(s);
-    const first = s.chapters[0];
-    const last = s.chapters.at(-1);
-    return `  <section class="curriculum-section" aria-labelledby="curriculum-section-${sectionIndex + 1}">
-    <div class="curriculum-section-heading">
-      <span class="curriculum-section-number">${sectionSequenceLabel(sectionIndex)}</span>
-      <div class="curriculum-section-copy">
-        <h3 id="curriculum-section-${sectionIndex + 1}"><a href="${s.route}">${escapeHtml(s.label)}</a></h3>
-        <p>${renderInlineMarkdown(s.plan?.purpose || `Core architectural concepts and specifications for ${s.label.toLowerCase()}.`)}</p>
-      </div>
-      <div class="curriculum-section-meta">
-        <strong>${s.chapters.length}</strong>
-        <span>${s.chapters.length === 1 ? 'chapter' : 'chapters'}</span>
-      </div>
-    </div>
-    <div class="curriculum-section-range">
-      <span>Starts with <strong>${escapeHtml(first.title)}</strong></span>
-      ${first !== last ? `<span>Ends with <strong>${escapeHtml(last.title)}</strong></span>` : ''}
-    </div>
-    <details class="curriculum-section-details">
-      <summary>Show the chapter path <span aria-hidden="true">+</span></summary>
-      <div class="curriculum-section-chapters">
+    return `<section class="guide-index-section" aria-labelledby="guide-index-section-${sectionIndex + 1}">
+<header class="guide-index-section-header">
+<div class="guide-index-section-copy">
+<h3 id="guide-index-section-${sectionIndex + 1}"><a href="${s.route}">${escapeHtml(s.label)}</a></h3>
+<p>${renderInlineMarkdown(s.plan?.purpose || `Core architectural concepts and specifications for ${s.label.toLowerCase()}.`)}</p>
+</div>
+</header>
+<div class="guide-index-chapters">
 ${groups
   .map(
-    (group) => `        <div class="curriculum-chapter-group">
-${groups.length > 1 ? `          <h4>${escapeHtml(group.label)}</h4>\n` : ''}          <ol>
+    (group) => `<div class="guide-index-group">
+${groups.length > 1 ? `<h4>${escapeHtml(group.label)}</h4>\n` : ''}<ol>
 ${group.chapters
   .map(
-    (chapter) => `            <li>
-              <a href="${chapter.route}">
-                <span>${chapterSequenceLabel(chapter)}</span>
-                <strong>${escapeHtml(chapter.title)}</strong>
-                <span aria-hidden="true">→</span>
-              </a>
-            </li>`
+    (chapter) => `<li>
+<a href="${chapter.route}">
+<span>${chapterSequenceLabel(chapter)}</span>
+<strong>${escapeHtml(chapter.title)}</strong>
+<span aria-hidden="true">→</span>
+</a>
+</li>`
   )
   .join('\n')}
-          </ol>
-        </div>`
+</ol>
+</div>`
   )
-  .join('\n')}
-      </div>
-    </details>
-  </section>`;
-  })
   .join('\n')}
 </div>
-
-## Next: threat modeling and security
-
-These upcoming sections reuse the published functional model. Each risk and control will point back to a concrete component, boundary, or workflow stage.
-
-<ol class="roadmap-list not-content">
-  <li><span>06</span><div><strong>Threat model and attack surface</strong><p>Map adversarial inputs and privilege escalation paths to the system model.</p></div></li>
-  <li><span>07</span><div><strong>Security by component</strong><p>Apply controls at context, tool, identity, runtime, and approval boundaries.</p></div></li>
-  <li><span>08</span><div><strong>Secure reference architectures</strong><p>Compose those controls into hardened end-to-end designs.</p></div></li>
-  <li><span>09</span><div><strong>Testing and assurance</strong><p>Test the full system with repeatable evaluation and red-team workflows.</p></div></li>
-</ol>
+</section>`;
+  })
+  .join('\n')}
+</nav>
 `;
 
   fs.writeFileSync(path.join(curriculumDir, 'index.mdx'), curriculumContent, 'utf8');

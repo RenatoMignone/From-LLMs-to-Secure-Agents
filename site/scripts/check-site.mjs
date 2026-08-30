@@ -154,11 +154,23 @@ if (!generatedCss.includes(':focus-visible') || !generatedCss.includes('prefers-
 
 // Check published Section Hub endpoints
 console.log('  Checking section hub endpoints...');
-checkFileExists('curriculum/index.html', 'Complete curriculum index');
-checkFileExists('prerequisites/index.html', 'Prerequisites section hub');
-checkFileExists('foundations/index.html', 'Foundations section hub');
-checkFileExists('architectures/index.html', 'Architectures section hub');
-checkFileExists('building-blocks/index.html', 'Building blocks section hub');
+const sectionHubFiles = [
+  ['curriculum/index.html', 'Complete curriculum index'],
+  ['prerequisites/index.html', 'Prerequisites section hub'],
+  ['foundations/index.html', 'Foundations section hub'],
+  ['architectures/index.html', 'Architectures section hub'],
+  ['building-blocks/index.html', 'Building blocks section hub'],
+];
+for (const [relPath, description] of sectionHubFiles) {
+  if (!checkFileExists(relPath, description)) continue;
+  const html = fs.readFileSync(path.join(DIST_DIR, relPath), 'utf8');
+  if (/<pre\b[^>]*>[\s\S]*?&lt;(?:ol|li|a|span)\b/i.test(html)) {
+    errors.push(`${description} renders generated navigation markup as a code block`);
+  }
+  if (html.includes('section-index-illustration')) {
+    errors.push(`${description} contains an overview illustration`);
+  }
+}
 
 // 2. Validate robots.txt
 if (fs.existsSync(path.join(DIST_DIR, 'robots.txt'))) {

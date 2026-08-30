@@ -6,7 +6,6 @@ const title = entry?.data?.title;
 const summary = entry?.data?.summary;
 const chapterLabel = entry?.data?.chapter_label;
 const sectionLabel = entry?.data?.section_label;
-const pass = entry?.data?.pass;
 const learningPath = entry?.data?.learning_path;
 const reviewedLabel = entry?.data?.reviewed_label;
 
@@ -23,12 +22,6 @@ const pathLabel = learningPath === 'deep_dive' || learningPath === 'deep-dive' ?
           <span class="meta-sep" aria-hidden="true">·</span>
           <span class="meta-badge">{pathLabel}</span>
           {reviewedLabel && <><span class="meta-sep" aria-hidden="true">·</span><span class="meta-date">Reviewed {reviewedLabel}</span></>}
-        </div>
-      ) : pass ? (
-        <div class="chapter-meta-line">
-          <span class="meta-unit">Section overview</span>
-          <span class="meta-sep" aria-hidden="true">·</span>
-          <span class="meta-badge">{pass}</span>
         </div>
       ) : null}
       <h1 id={PAGE_TITLE_ID} class="chapter-page-title">{title}</h1>
