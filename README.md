@@ -58,46 +58,15 @@ knowledge/
 
 Every guide directory has a local `AGENTS.md` and `chapter-plan.md`. Together they define scope, prerequisites, teaching order, sources, visuals, examples, and the boundary between the two passes.
 
-## Maintainer workflow
+## Maintaining the guide
 
-![Agent-First, Token-Optimized Autonomous Workflow](assets/images/repo-images/autonomous-workflow-architecture.png)
-
-The repository uses a scoped workflow so a maintainer or coding agent can work on one defined unit without loading or changing unrelated chapters:
-
-1. **Resolve one unit**: `python3 scripts/main.py state resolve` returns its scope, local instructions, and current state.
-2. **Prepare sources**: `python3 scripts/main.py fetch <url> -o /tmp/source.md` converts supported web material into cleaner Markdown for review. The maintainer still opens and evaluates the canonical source.
-3. **Write and build assets**: Chapters use simple English, explicit prerequisites, local illustrations, and small examples where they improve understanding.
-4. **Run consistency checks**: Validators check schemas, citations, visual manifests, navigation, tests, and the generated site. These checks catch mechanical defects but do not prove factual accuracy or security.
-
-## Reproducible autonomous workflow
-
-A coding agent can resume from machine-readable project state, resolve the next unit, research and write **only that unit**, prepare visual diagrams, validate the repository and static site, and stop for review. A separate review pass checks and completes the unit before the guide advances.
-
-```text
-Read AGENTS.md and continue the guide from the last checkpoint. Proactively design and generate multiple visual cartoon illustrations per chapter (covering architecture flows, trust boundaries, state transitions, and attack paths) wherever visuals improve reader understanding.
-```
-
-Each completed unit includes:
-
-- checked source records with exact claims and canonical links;
-- multiple canonical 2D cartoon visual illustrations (strictly no text-based ASCII schemas);
-- smooth reading progression with next-unit navigation links;
-- small runnable examples when the plan requires them;
-- repository validation, automated tests, and static site build verification;
-- updated project state and a concise changelog entry.
-
-## Modular CLI toolkit
-
-All repository operations are unified through the modular CLI in [`scripts/main.py`](scripts/main.py):
+Repository work is scoped to one guide unit at a time. Machine-readable state identifies the current unit, while local plans define its sources, visuals, examples, and review criteria. See [`AGENTS.md`](AGENTS.md) for the workflow and [`CONTRIBUTING.md`](CONTRIBUTING.md) for setup and review requirements.
 
 ```bash
-# Resolve current unit and operational state
+# Resolve the current unit
 python3 scripts/main.py state resolve
 
-# Fetch clean, token-efficient Markdown from an external specification
-python3 scripts/main.py fetch "https://www.rfc-editor.org/rfc/rfc8693.html" -o /tmp/rfc8693.md
-
-# Run repository validation
+# Check repository consistency
 python3 scripts/main.py validate
 ```
 
