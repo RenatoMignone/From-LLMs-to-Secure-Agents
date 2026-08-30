@@ -34,11 +34,10 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 
 ## Temporary Pending Tasks
 
-- [ ] **Generate Visual Assets**: When image generation quota resets (next reset window around 14:45 CEST / 12:45 UTC), generate PNG illustrations from saved `source/` prompts for:
-  - `P1-03-03-03`: `assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/source/` (image 3 pending)
-  - `P1-03-03-04`: `assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/source/`
-  - `P1-03-04-01`: `assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/source/`
-  - `P1-03-04-02`: `assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/source/`
-  - `P1-03-04-03`: `assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/source/`
-  - `P1-03-04-04`: `assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/source/`
+- [ ] **Generate Visual Assets**: When image generation quota resets (next reset window around 17:25 CEST / 15:25 UTC), generate PNG illustrations from saved `source/` prompts for:
+  - `P1-03-03-04`: `assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/source/` (image 3 pending: `03-termination-state-machine`)
+  - `P1-03-04-01`: `assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/source/` (3 prompts)
+  - `P1-03-04-02`: `assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/source/` (3 prompts)
+  - `P1-03-04-03`: `assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/source/` (3 prompts)
+  - `P1-03-04-04`: `assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/source/` (3 prompts)
   Link the generated images into their chapters, validate the site, and remove this entry.

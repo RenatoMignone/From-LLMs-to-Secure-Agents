@@ -23,6 +23,7 @@ source_records:
 visual_assets:
 - assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/01-reflection-and-evaluator-optimizer-loop.png
 - assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/02-reflexion-episodic-memory-replanning.png
+- assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/03-evaluator-trust-boundaries-and-hazards.png
 example_paths:
 - examples/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/reflexion_evaluator_optimizer.py
 pass: architecture
@@ -190,6 +191,10 @@ Run [reflexion_evaluator_optimizer.py](../../../examples/03-building-blocks/03-p
 ## Trust boundaries
 
 The Generator boundary separates untrusted candidate drafts from the validation gate. Key hazards include evaluator sycophancy (addressed by objective test harnesses), infinite refinement churn (addressed by hard iteration counters), and feedback injection (addressed by input sanitization and isolated evaluator context).
+
+![Figure 3: Evaluator Trust Boundaries & Safety Guardrails](../../../assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/03-evaluator-trust-boundaries-and-hazards.png)
+
+*Figure 3. Evaluator Trust Boundaries and Safety Guardrails. An independent Critic Model verifies candidate drafts against safety, schema, and correctness constraints behind a secure boundary, mitigating sycophancy drift, infinite refinement spin, and feedback injection hazards.*
 
 - **Generator to evaluator boundary:** All generator outputs must be treated as untrusted candidates until validated. An agent must not execute unverified code or make persistent state changes during intermediate refinement steps.
 - **Evaluator isolation:** The evaluator prompt context should be isolated from untrusted user content where possible to prevent prompt injection attacks from manipulating evaluation criteria.

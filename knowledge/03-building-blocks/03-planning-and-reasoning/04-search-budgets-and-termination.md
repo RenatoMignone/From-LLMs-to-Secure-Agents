@@ -21,7 +21,9 @@ source_records:
 - p1-03-03-04-besta-graph-of-thoughts-2024
 - p1-03-03-04-anthropic-agent-budgets-2024
 - p1-03-03-04-langchain-budget-termination-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/01-tree-of-thoughts-search-frontier.png
+- assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/02-search-budget-governor-guardrails.png
 example_paths:
 - examples/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/tree_search_budget_governor.py
 pass: architecture
@@ -55,6 +57,10 @@ Managing both exploration and resources ensures the expedition discovers optimal
 
 Search and budgeting sit at the strategic core of agent reasoning. In single-step or linear workflows (such as basic ReAct or Plan-and-Execute), action selection proceeds along a single line. In deliberate reasoning architectures, the agent maintains an active search frontier of candidate subtasks and partial trajectories.
 
+![Figure 1: Tree of Thoughts Search Frontier & Deliberate Reasoning](../../../assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/01-tree-of-thoughts-search-frontier.png)
+
+*Figure 1. Tree of Thoughts Search Frontier and Deliberate Reasoning. The agent expands candidate thought paths from a root goal, scoring and pruning flawed branches while backtracking when hitting dead ends to navigate toward verified solutions.*
+
 The search governor orchestrates this exploration. It queries the model to expand promising nodes, invokes heuristic evaluators to score intermediate states, and tracks resource consumption. When a candidate path meets the goal criteria or when safety budgets are depleted, the governor terminates the search and returns either the validated solution or a graceful fallback.
 
 ## How it works
@@ -76,6 +82,10 @@ To navigate the search space efficiently, the agent evaluates intermediate thoug
 ### 3. Multi-dimensional execution budgets
 
 Unbounded search leads to runaway latency, astronomical API bills, and memory exhaustion. Production architectures enforce four complementary budget constraints (Anthropic, 2024; LangChain, 2024):
+
+![Figure 2: Search Budgets & Execution Governor Guardrails](../../../assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/02-search-budget-governor-guardrails.png)
+
+*Figure 2. Search Budgets and Execution Governor Guardrails. A central governor monitors search depth, token consumption gauges, wall-clock timeouts, and branching factors, tripping safety circuit breakers when limits are reached.*
 
 - **Maximum search depth:** Caps the maximum number of sequential reasoning steps (for example, depth $<= 5$).
 - **Token consumption ceiling:** Establishes a hard limit on the total input and output tokens consumed across all generated branches.

@@ -5991,6 +5991,10 @@ Run [reflexion_evaluator_optimizer.py](https://github.com/RenatoMignone/From-LLM
 
 The Generator boundary separates untrusted candidate drafts from the validation gate. Key hazards include evaluator sycophancy (addressed by objective test harnesses), infinite refinement churn (addressed by hard iteration counters), and feedback injection (addressed by input sanitization and isolated evaluator context).
 
+![Figure 3: Evaluator Trust Boundaries & Safety Guardrails](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/03-evaluator-trust-boundaries-and-hazards.png)
+
+*Figure 3. Evaluator Trust Boundaries and Safety Guardrails. An independent Critic Model verifies candidate drafts against safety, schema, and correctness constraints behind a secure boundary, mitigating sycophancy drift, infinite refinement spin, and feedback injection hazards.*
+
 - **Generator to evaluator boundary:** All generator outputs must be treated as untrusted candidates until validated. An agent must not execute unverified code or make persistent state changes during intermediate refinement steps.
 - **Evaluator isolation:** The evaluator prompt context should be isolated from untrusted user content where possible to prevent prompt injection attacks from manipulating evaluation criteria.
 - **Reflection memory sanitation:** Feedback strings stored in episodic memory must be sanitized to prevent malicious tool responses from poisoning future planning iterations.
@@ -6066,6 +6070,10 @@ Managing both exploration and resources ensures the expedition discovers optimal
 
 Search and budgeting sit at the strategic core of agent reasoning. In single-step or linear workflows (such as basic ReAct or Plan-and-Execute), action selection proceeds along a single line. In deliberate reasoning architectures, the agent maintains an active search frontier of candidate subtasks and partial trajectories.
 
+![Figure 1: Tree of Thoughts Search Frontier & Deliberate Reasoning](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/01-tree-of-thoughts-search-frontier.png)
+
+*Figure 1. Tree of Thoughts Search Frontier and Deliberate Reasoning. The agent expands candidate thought paths from a root goal, scoring and pruning flawed branches while backtracking when hitting dead ends to navigate toward verified solutions.*
+
 The search governor orchestrates this exploration. It queries the model to expand promising nodes, invokes heuristic evaluators to score intermediate states, and tracks resource consumption. When a candidate path meets the goal criteria or when safety budgets are depleted, the governor terminates the search and returns either the validated solution or a graceful fallback.
 
 ## How it works
@@ -6087,6 +6095,10 @@ To navigate the search space efficiently, the agent evaluates intermediate thoug
 ### 3. Multi-dimensional execution budgets
 
 Unbounded search leads to runaway latency, astronomical API bills, and memory exhaustion. Production architectures enforce four complementary budget constraints (Anthropic, 2024; LangChain, 2024):
+
+![Figure 2: Search Budgets & Execution Governor Guardrails](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/02-search-budget-governor-guardrails.png)
+
+*Figure 2. Search Budgets and Execution Governor Guardrails. A central governor monitors search depth, token consumption gauges, wall-clock timeouts, and branching factors, tripping safety circuit breakers when limits are reached.*
 
 - **Maximum search depth:** Caps the maximum number of sequential reasoning steps (for example, depth $<= 5$).
 - **Token consumption ceiling:** Establishes a hard limit on the total input and output tokens consumed across all generated branches.
