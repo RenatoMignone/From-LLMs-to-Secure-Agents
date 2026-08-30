@@ -6109,6 +6109,10 @@ Unbounded search leads to runaway latency, astronomical API bills, and memory ex
 
 Beyond simple trees, **Graph of Thoughts (GoT)** enables arbitrary directed acyclic graph operations (Besta et al., 2024). Agents can combine complementary ideas from two separate branches (aggregation), refine a promising node in place (transformation), or loop back to previous stable states while preserving verified intermediate insights.
 
+![A search-active robot routes to one of four terminal outcomes: success, budget exhausted, loop detected, or unrecoverable error.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/03-termination-state-machine.png)
+
+*Figure 3. Deterministic termination state transitions. The search stops through an explicit terminal path, ensuring that successful, constrained, repetitive, and failed runs each produce a clear outcome.*
+
 ## Main variants
 
 1. **Tree of Thoughts (ToT):** Formulates reasoning as a tree where each node represents a partial solution and branches represent candidate next steps evaluated via lookahead and backtracking (Yao et al., 2023).
@@ -6285,6 +6289,10 @@ The execution hierarchy operates across four distinct structural levels:
 - **Turn:** A single request-response exchange within a run, typically initiated by a user message and concluded by an assistant answer.
 - **Event:** An atomic, immutable record of an occurrence within a run, such as `user.message`, `tool.call.requested`, `tool.result.received`, or `run.state.changed` (CNCF, 2024).
 
+![A nested agent-execution hierarchy shows a thread containing a run, a turn, and its event stream.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png)
+
+*Figure 1. Execution hierarchy. A persistent thread owns individual runs; each run contains turns and the atomic events emitted while it works.*
+
 ### 2. Event sourcing versus snapshot state accumulation
 
 Runtimes generally track state using one of two models:
@@ -6296,6 +6304,10 @@ $$	ext{State}_{t} = 	ext{Reduce}(	ext{State}_{t-1}, 	ext{Event}_t)$$
 
 Event sourcing provides complete auditability, simplified time-travel debugging, and reproducible state reconstruction.
 
+![Event cards flow through a robot state reducer into a durable state snapshot.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png)
+
+*Figure 2. Event accumulation. The reducer applies an ordered stream of events to form the current durable state snapshot.*
+
 ### 3. The run lifecycle state machine
 
 Every active run moves through a standardized lifecycle (OpenAI, 2024):
@@ -6305,6 +6317,10 @@ Every active run moves through a standardized lifecycle (OpenAI, 2024):
 - **`REQUIRES_ACTION`:** The run is paused awaiting an external event, such as a tool execution response from a sandbox or approval from a human supervisor.
 - **`COMPLETED`:** The run has successfully satisfied the user prompt and finalized all state changes.
 - **`FAILED / CANCELLED`:** The run terminated abnormally due to an unhandled exception, timeout, or explicit user cancellation.
+
+![An agent run moves through queued, in progress, requires action, completed, and failed or cancelled states.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/03-run-lifecycle-state-machine.png)
+
+*Figure 3. Run lifecycle. A run can pause for an action or approval, but ends through a completed or failed terminal state.*
 
 ## Main variants
 
@@ -6462,6 +6478,10 @@ A **checkpoint** is an immutable, serialized snapshot of the agent state at a sp
 
 Checkpointers serialize this data into relational or document stores, ensuring that state is durable before any side-effecting action is dispatched.
 
+![A checkpoint timeline rewinds from a verification failure and forks to an alternative successful path.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/01-checkpoint-and-time-travel.png)
+
+*Figure 1. Checkpoint time travel. Immutable snapshots let a developer resume from a prior safe point and explore a new branch without overwriting history.*
+
 ### 2. Breakpoint interrupts and human-in-the-loop gates
 
 An **interrupt** pauses execution before or after designated graph nodes (LangChain, 2024; Microsoft, 2024). When an agent proposes an action flagged as high-risk by system policy:
@@ -6470,6 +6490,10 @@ An **interrupt** pauses execution before or after designated graph nodes (LangCh
 2. The current state snapshot and the proposed tool invocation payload are written to the checkpointer.
 3. The run status transitions to `REQUIRES_ACTION` or `SUSPENDED_APPROVAL`.
 4. The worker thread releases compute resources and returns to the pool.
+
+![A proposed tool action pauses at an approval gate while a human supervisor can approve, edit, or reject it.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/02-human-in-the-loop-interrupt-gate.png)
+
+*Figure 2. Human-in-the-loop interrupt. The runtime saves state and suspends the run before a high-impact action, then resumes only with the reviewed decision.*
 
 ### 3. State rehydration and resumption
 
@@ -6483,6 +6507,10 @@ When the human supervisor or external webhook responds, the client issues a resu
 ### 4. Time-travel and alternative state forking
 
 Because checkpoints are immutable historical records, runtimes can support **time-travel debugging and state forking** (LangChain, 2024). Developers or users can rewind a conversation to an earlier checkpoint, modify intermediate variables or system instructions, and spawn a new execution branch to observe how the agent behaves under alternative conditions.
+
+![A crashed worker is replaced by a standby worker that reloads a durable checkpoint and replays pending events.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/03-crash-recovery-and-replay.png)
+
+*Figure 3. Recovery and replay. A new worker rehydrates the last committed checkpoint and continues the interrupted run without losing saved state.*
 
 ## Main variants
 
@@ -6647,6 +6675,10 @@ ight)$$
 
 Randomizing the sleep duration spreads client retry traffic evenly across the recovery window, allowing recovering upstream services to stabilize.
 
+![An agent uses spaced, jittered retries after rate limiting, avoiding the simultaneous traffic jam caused by fixed retry intervals.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/01-exponential-backoff-and-jitter.png)
+
+*Figure 1. Exponential backoff with jitter. Randomized delays distribute retries while the upstream service recovers.*
+
 ### 3. Idempotency keys for safe mutation retries
 
 An operation is **idempotent** if applying it multiple times produces the exact same outcome as applying it once (IETF, 2024). For state-mutating HTTP POST or tool requests:
@@ -6657,6 +6689,10 @@ $$	ext{Key} = 	ext{SHA256}(	ext{thread\_id} \,||\, 	ext{step\_id} \,||\, 	ext{ar
 
 2. The downstream tool API checks its idempotency cache. If the key has already been executed, the service returns the cached result immediately without repeating the underlying database write or transaction.
 
+![A transfer retry carries the same request key, allowing the service to return a cached result and charge only once.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/02-idempotency-keys-and-duplicate-prevention.png)
+
+*Figure 2. Idempotent retry. Reusing the request key turns an uncertain network retry into a safe cached response rather than a duplicate side effect.*
+
 ### 4. Optimistic concurrency control (OCC) and version vectors
 
 When parallel subagents or asynchronous event workers access shared thread state, uncoordinated writes cause **lost updates** (LangChain, 2024; Kleppmann, 2023). Under Optimistic Concurrency Control:
@@ -6666,6 +6702,10 @@ When parallel subagents or asynchronous event workers access shared thread state
 3. The worker attempts to commit the delta specifying `expected_version = 4`.
 4. If another worker already committed `version = 5`, the database rejects the commit with a `409 Conflict`.
 5. The rejected worker re-reads `version = 5`, reconciles its state delta via an associative state reducer, and retries the commit.
+
+![Two workers read the same state version; one commit succeeds while the stale write is rejected and retried from the new version.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/03-optimistic-locking-and-concurrency-control.png)
+
+*Figure 3. Optimistic concurrency control. Version checking rejects stale writes so parallel workers do not silently lose one another's updates.*
 
 ## Main variants
 
@@ -6825,6 +6865,10 @@ Runtimes enforce a strict boundary between transient states (which can be resume
 - **Transient states:** `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `RETRY_BACKOFF`. These states hold active leases and can transition to other states.
 - **Terminal states:** `COMPLETED` (goal satisfied), `CANCELLED` (user or supervisor abort), `FAILED_FATAL` (unrecoverable error), and `TIMEOUT` (execution budget exhausted). Once a run enters a terminal state, it can never be restarted or modified; new work requires instantiating a separate run.
 
+![Resumable agent states pass through a one-way gate to terminal completed, cancelled, failed, or timeout states.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/01-terminal-state-classification.png)
+
+*Figure 1. State classification. A transient state can resume or change, while a terminal state is sealed and requires a new run for new work.*
+
 ### 2. Hierarchical cancellation token propagation
 
 When a user or supervisor aborts an active run, the runtime emits an **Abort Signal / Cancellation Token** (Temporal Technologies, 2024; LangChain, 2024). The signal propagates hierarchically:
@@ -6833,6 +6877,10 @@ When a user or supervisor aborts an active run, the runtime emits an **Abort Sig
 2. In-flight LLM token streaming connections are closed immediately to halt token billing.
 3. Cancellation signals are delivered to all active child subagents and background worker tasks.
 4. Active tool workers detect the cancellation token cooperatively and abort long-running computations.
+
+![A supervisor cancellation signal propagates from a parent dispatcher to three child agent tasks for coordinated shutdown.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/02-cancellation-propagation-hierarchy.png)
+
+*Figure 2. Cancellation propagation. The same cancellation signal reaches every active child task so that no orphaned work continues after a run is aborted.*
 
 ### 3. The Saga pattern and compensating actions
 
@@ -6844,6 +6892,10 @@ When a multi-step workflow fails midway through execution, traditional database 
 $$	ext{Rollback Sequence} = [C_{k-1}, C_{k-2}, ..., C_1]$$
 
 Compensating actions restore the external environment to a consistent baseline state.
+
+![A failed third workflow step triggers reverse-order rollback of the two successful resource-allocation steps, followed by cleanup.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/03-compensating-actions-saga-rollback.png)
+
+*Figure 3. Saga compensation. After a later action fails, the runtime reverses earlier completed actions in the opposite order before finalizing resources.*
 
 ### 4. Deterministic resource finalization
 

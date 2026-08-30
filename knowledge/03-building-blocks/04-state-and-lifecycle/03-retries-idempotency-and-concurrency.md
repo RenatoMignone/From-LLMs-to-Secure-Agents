@@ -21,7 +21,10 @@ source_records:
 - p1-03-04-03-aws-exponential-backoff-jitter-2023
 - p1-03-04-03-langgraph-concurrency-and-locks-2024
 - p1-03-04-03-martin-kleppmann-distributed-systems-2023
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/01-exponential-backoff-and-jitter.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/02-idempotency-keys-and-duplicate-prevention.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/03-optimistic-locking-and-concurrency-control.png
 example_paths:
 - examples/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/retry_idempotency_concurrency.py
 pass: architecture
@@ -77,6 +80,10 @@ ight)$$
 
 Randomizing the sleep duration spreads client retry traffic evenly across the recovery window, allowing recovering upstream services to stabilize.
 
+![An agent uses spaced, jittered retries after rate limiting, avoiding the simultaneous traffic jam caused by fixed retry intervals.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/01-exponential-backoff-and-jitter.png)
+
+*Figure 1. Exponential backoff with jitter. Randomized delays distribute retries while the upstream service recovers.*
+
 ### 3. Idempotency keys for safe mutation retries
 
 An operation is **idempotent** if applying it multiple times produces the exact same outcome as applying it once (IETF, 2024). For state-mutating HTTP POST or tool requests:
@@ -87,6 +94,10 @@ $$	ext{Key} = 	ext{SHA256}(	ext{thread\_id} \,||\, 	ext{step\_id} \,||\, 	ext{ar
 
 2. The downstream tool API checks its idempotency cache. If the key has already been executed, the service returns the cached result immediately without repeating the underlying database write or transaction.
 
+![A transfer retry carries the same request key, allowing the service to return a cached result and charge only once.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/02-idempotency-keys-and-duplicate-prevention.png)
+
+*Figure 2. Idempotent retry. Reusing the request key turns an uncertain network retry into a safe cached response rather than a duplicate side effect.*
+
 ### 4. Optimistic concurrency control (OCC) and version vectors
 
 When parallel subagents or asynchronous event workers access shared thread state, uncoordinated writes cause **lost updates** (LangChain, 2024; Kleppmann, 2023). Under Optimistic Concurrency Control:
@@ -96,6 +107,10 @@ When parallel subagents or asynchronous event workers access shared thread state
 3. The worker attempts to commit the delta specifying `expected_version = 4`.
 4. If another worker already committed `version = 5`, the database rejects the commit with a `409 Conflict`.
 5. The rejected worker re-reads `version = 5`, reconciles its state delta via an associative state reducer, and retries the commit.
+
+![Two workers read the same state version; one commit succeeds while the stale write is rejected and retried from the new version.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/03-optimistic-locking-and-concurrency-control.png)
+
+*Figure 3. Optimistic concurrency control. Version checking rejects stale writes so parallel workers do not silently lose one another's updates.*
 
 ## Main variants
 

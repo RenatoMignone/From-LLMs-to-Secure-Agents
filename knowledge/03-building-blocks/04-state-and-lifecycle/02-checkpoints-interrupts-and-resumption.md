@@ -20,7 +20,10 @@ source_records:
 - p1-03-04-02-temporal-durable-execution-2024
 - p1-03-04-02-openai-agents-sdk-handoffs-2024
 - p1-03-04-02-microsoft-autogen-human-input-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/01-checkpoint-and-time-travel.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/02-human-in-the-loop-interrupt-gate.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/03-crash-recovery-and-replay.png
 example_paths:
 - examples/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/checkpoint_interrupt_resumption.py
 pass: architecture
@@ -71,6 +74,10 @@ A **checkpoint** is an immutable, serialized snapshot of the agent state at a sp
 
 Checkpointers serialize this data into relational or document stores, ensuring that state is durable before any side-effecting action is dispatched.
 
+![A checkpoint timeline rewinds from a verification failure and forks to an alternative successful path.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/01-checkpoint-and-time-travel.png)
+
+*Figure 1. Checkpoint time travel. Immutable snapshots let a developer resume from a prior safe point and explore a new branch without overwriting history.*
+
 ### 2. Breakpoint interrupts and human-in-the-loop gates
 
 An **interrupt** pauses execution before or after designated graph nodes (LangChain, 2024; Microsoft, 2024). When an agent proposes an action flagged as high-risk by system policy:
@@ -79,6 +86,10 @@ An **interrupt** pauses execution before or after designated graph nodes (LangCh
 2. The current state snapshot and the proposed tool invocation payload are written to the checkpointer.
 3. The run status transitions to `REQUIRES_ACTION` or `SUSPENDED_APPROVAL`.
 4. The worker thread releases compute resources and returns to the pool.
+
+![A proposed tool action pauses at an approval gate while a human supervisor can approve, edit, or reject it.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/02-human-in-the-loop-interrupt-gate.png)
+
+*Figure 2. Human-in-the-loop interrupt. The runtime saves state and suspends the run before a high-impact action, then resumes only with the reviewed decision.*
 
 ### 3. State rehydration and resumption
 
@@ -92,6 +103,10 @@ When the human supervisor or external webhook responds, the client issues a resu
 ### 4. Time-travel and alternative state forking
 
 Because checkpoints are immutable historical records, runtimes can support **time-travel debugging and state forking** (LangChain, 2024). Developers or users can rewind a conversation to an earlier checkpoint, modify intermediate variables or system instructions, and spawn a new execution branch to observe how the agent behaves under alternative conditions.
+
+![A crashed worker is replaced by a standby worker that reloads a durable checkpoint and replays pending events.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/03-crash-recovery-and-replay.png)
+
+*Figure 3. Recovery and replay. A new worker rehydrates the last committed checkpoint and continues the interrupted run without losing saved state.*
 
 ## Main variants
 

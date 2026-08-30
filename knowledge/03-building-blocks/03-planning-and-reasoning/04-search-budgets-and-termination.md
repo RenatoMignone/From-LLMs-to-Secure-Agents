@@ -24,6 +24,7 @@ source_records:
 visual_assets:
 - assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/01-tree-of-thoughts-search-frontier.png
 - assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/02-search-budget-governor-guardrails.png
+- assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/03-termination-state-machine.png
 example_paths:
 - examples/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/tree_search_budget_governor.py
 pass: architecture
@@ -95,6 +96,10 @@ Unbounded search leads to runaway latency, astronomical API bills, and memory ex
 ### 4. Graph transformations and aggregation
 
 Beyond simple trees, **Graph of Thoughts (GoT)** enables arbitrary directed acyclic graph operations (Besta et al., 2024). Agents can combine complementary ideas from two separate branches (aggregation), refine a promising node in place (transformation), or loop back to previous stable states while preserving verified intermediate insights.
+
+![A search-active robot routes to one of four terminal outcomes: success, budget exhausted, loop detected, or unrecoverable error.](../../../assets/images/03-building-blocks/03-planning-and-reasoning/04-search-budgets-and-termination/03-termination-state-machine.png)
+
+*Figure 3. Deterministic termination state transitions. The search stops through an explicit terminal path, ensuring that successful, constrained, repetitive, and failed runs each produce a clear outcome.*
 
 ## Main variants
 

@@ -21,7 +21,10 @@ source_records:
 - p1-03-04-01-langgraph-server-threads-2024
 - p1-03-04-01-microsoft-autogen-state-2024
 - p1-03-04-01-cloudevents-specification-1-0
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/03-run-lifecycle-state-machine.png
 example_paths:
 - examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py
 pass: architecture
@@ -67,6 +70,10 @@ The execution hierarchy operates across four distinct structural levels:
 - **Turn:** A single request-response exchange within a run, typically initiated by a user message and concluded by an assistant answer.
 - **Event:** An atomic, immutable record of an occurrence within a run, such as `user.message`, `tool.call.requested`, `tool.result.received`, or `run.state.changed` (CNCF, 2024).
 
+![A nested agent-execution hierarchy shows a thread containing a run, a turn, and its event stream.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png)
+
+*Figure 1. Execution hierarchy. A persistent thread owns individual runs; each run contains turns and the atomic events emitted while it works.*
+
 ### 2. Event sourcing versus snapshot state accumulation
 
 Runtimes generally track state using one of two models:
@@ -78,6 +85,10 @@ $$	ext{State}_{t} = 	ext{Reduce}(	ext{State}_{t-1}, 	ext{Event}_t)$$
 
 Event sourcing provides complete auditability, simplified time-travel debugging, and reproducible state reconstruction.
 
+![Event cards flow through a robot state reducer into a durable state snapshot.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png)
+
+*Figure 2. Event accumulation. The reducer applies an ordered stream of events to form the current durable state snapshot.*
+
 ### 3. The run lifecycle state machine
 
 Every active run moves through a standardized lifecycle (OpenAI, 2024):
@@ -87,6 +98,10 @@ Every active run moves through a standardized lifecycle (OpenAI, 2024):
 - **`REQUIRES_ACTION`:** The run is paused awaiting an external event, such as a tool execution response from a sandbox or approval from a human supervisor.
 - **`COMPLETED`:** The run has successfully satisfied the user prompt and finalized all state changes.
 - **`FAILED / CANCELLED`:** The run terminated abnormally due to an unhandled exception, timeout, or explicit user cancellation.
+
+![An agent run moves through queued, in progress, requires action, completed, and failed or cancelled states.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/03-run-lifecycle-state-machine.png)
+
+*Figure 3. Run lifecycle. A run can pause for an action or approval, but ends through a completed or failed terminal state.*
 
 ## Main variants
 

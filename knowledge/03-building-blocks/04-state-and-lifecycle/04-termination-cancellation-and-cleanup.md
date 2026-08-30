@@ -19,7 +19,10 @@ source_records:
 - p1-03-04-04-temporal-cancellation-compensation-2024
 - p1-03-04-04-langgraph-cancellation-tokens-2024
 - p1-03-04-04-garcia-molina-sagas-1987
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/01-terminal-state-classification.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/02-cancellation-propagation-hierarchy.png
+- assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/03-compensating-actions-saga-rollback.png
 example_paths:
 - examples/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/cancellation_sagas_cleanup.py
 pass: architecture
@@ -66,6 +69,10 @@ Runtimes enforce a strict boundary between transient states (which can be resume
 - **Transient states:** `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `RETRY_BACKOFF`. These states hold active leases and can transition to other states.
 - **Terminal states:** `COMPLETED` (goal satisfied), `CANCELLED` (user or supervisor abort), `FAILED_FATAL` (unrecoverable error), and `TIMEOUT` (execution budget exhausted). Once a run enters a terminal state, it can never be restarted or modified; new work requires instantiating a separate run.
 
+![Resumable agent states pass through a one-way gate to terminal completed, cancelled, failed, or timeout states.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/01-terminal-state-classification.png)
+
+*Figure 1. State classification. A transient state can resume or change, while a terminal state is sealed and requires a new run for new work.*
+
 ### 2. Hierarchical cancellation token propagation
 
 When a user or supervisor aborts an active run, the runtime emits an **Abort Signal / Cancellation Token** (Temporal Technologies, 2024; LangChain, 2024). The signal propagates hierarchically:
@@ -74,6 +81,10 @@ When a user or supervisor aborts an active run, the runtime emits an **Abort Sig
 2. In-flight LLM token streaming connections are closed immediately to halt token billing.
 3. Cancellation signals are delivered to all active child subagents and background worker tasks.
 4. Active tool workers detect the cancellation token cooperatively and abort long-running computations.
+
+![A supervisor cancellation signal propagates from a parent dispatcher to three child agent tasks for coordinated shutdown.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/02-cancellation-propagation-hierarchy.png)
+
+*Figure 2. Cancellation propagation. The same cancellation signal reaches every active child task so that no orphaned work continues after a run is aborted.*
 
 ### 3. The Saga pattern and compensating actions
 
@@ -85,6 +96,10 @@ When a multi-step workflow fails midway through execution, traditional database 
 $$	ext{Rollback Sequence} = [C_{k-1}, C_{k-2}, ..., C_1]$$
 
 Compensating actions restore the external environment to a consistent baseline state.
+
+![A failed third workflow step triggers reverse-order rollback of the two successful resource-allocation steps, followed by cleanup.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/03-compensating-actions-saga-rollback.png)
+
+*Figure 3. Saga compensation. After a later action fails, the runtime reverses earlier completed actions in the opposite order before finalizing resources.*
 
 ### 4. Deterministic resource finalization
 
