@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Publication status:** Updated incrementally as chapters complete review.
-- **Current publication:** 34 chapters across 4 sections. The latest chapter is [Memory versus context and state](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-memory-versus-context-and-state/).
+- **Current publication:** 38 chapters across 4 sections. The latest chapter is [RAG system and ingestion](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-rag-system-and-ingestion/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -402,6 +402,50 @@
   * Understand the core memory lifecycle across ingestion, storage, selective recall, reflection, and forgetting.
   * Evaluate the trade-offs between context window pressure, retrieval noise, memory staleness, and storage overhead.
 - **Verified Primary Sources:** [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560), [Generative Agents: Interactive Simulacra of Human Behavior](https://doi.org/10.1145/3586183.3606763), [LangGraph: Memory and Key-Value Store Across Threads](https://langchain-ai.github.io/langgraph/concepts/memory/), [AutoGen: Agent Memory and Context Management](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html)
+
+### [Short-term and working memory](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-short-term-and-working-memory/)
+- **Summary:** Explores short-term and working memory mechanisms in AI agents, including in-context scratchpads, conversation buffers, token budgeting, and eviction strategies.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-short-term-and-working-memory.md
+- **Learning Objectives:**
+  * Define the operational role of working memory and short-term conversation buffers during active agent execution.
+  * Implement structured in-context scratchpads to preserve active goals, intermediate variables, and subtask progress.
+  * Compare memory eviction and compaction strategies including sliding windows, progressive rolling summarization, and salience pruning.
+  * Manage token budgets across system instructions, working state, and ephemeral tool outputs without exceeding context window limits.
+- **Verified Primary Sources:** [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560), [LangChain: Memory Types and Conversation Window Management](https://python.langchain.com/v0.2/docs/concepts/#memory), [AutoGen: Managing Agent Context and Short-Term Conversation History](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html)
+
+### [Persistent memory types and lifecycle](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-persistent-memory-types-and-lifecycle/)
+- **Summary:** Explores persistent agent memory architectures across episodic, semantic, and procedural tiers, including hierarchical namespacing, multi-factor retrieval, and record mutation.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-persistent-memory-types-and-lifecycle.md
+- **Learning Objectives:**
+  * Classify persistent agent memory into episodic experience streams, semantic fact/profile stores, and procedural skill playbooks.
+  * Implement hierarchical namespacing to isolate memory records across organizations, teams, and individual users.
+  * Apply a three-factor retrieval ranking engine balancing semantic relevance, recency decay, and intrinsic salience.
+  * Manage the end-to-end persistent memory lifecycle across ingestion, indexed recall, state mutation, and right-to-be-forgotten deletion.
+- **Verified Primary Sources:** [Generative Agents: Interactive Simulacra of Human Behavior](https://doi.org/10.1145/3586183.3606763), [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560), [LangGraph Store: Hierarchical Namespaced Persistence Across Threads](https://langchain-ai.github.io/langgraph/concepts/memory/)
+
+### [Consolidation, forgetting, and evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-consolidation-forgetting-and-evaluation/)
+- **Summary:** Explores how autonomous agents synthesize episodic memories into higher-level semantic insights, prune obsolete or decaying records, and evaluate memory performance.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-consolidation-forgetting-and-evaluation.md
+- **Learning Objectives:**
+  * Design background reflection and consolidation pipelines to synthesize raw episodic events into structured semantic knowledge trees.
+  * Implement principled forgetting and eviction mechanisms using time-decay functions, TTL expiration, and contradiction resolution.
+  * Enforce right-to-be-forgotten privacy compliance across vector indexes and persistent relational databases.
+  * Measure long-term memory effectiveness using quantitative benchmarks including Recall@K, contradiction rate, reflection fidelity, and query latency.
+- **Verified Primary Sources:** [Generative Agents: Interactive Simulacra of Human Behavior](https://doi.org/10.1145/3586183.3606763), [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560), [MemoryBank: Enhancing Large Language Models with Long-Term Memory and Forgetting Mechanisms](https://arxiv.org/abs/2305.10250)
+
+### [RAG system and ingestion](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-rag-system-and-ingestion/)
+- **Summary:** Explores the foundational architecture of Retrieval-Augmented Generation (RAG) systems, comparing offline document ingestion pipelines with online query and grounded generation flows.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-rag-system-and-ingestion.md
+- **Learning Objectives:**
+  * Explain the dual-pipeline architecture separating offline document ingestion from online retrieval and generation.
+  * Implement text extraction, semantic chunking strategies, and metadata enrichment for document corpora.
+  * Build dense vector embedding indices with approximate nearest neighbor retrieval.
+  * Assemble grounded context prompts that enforce verifiable inline citations and eliminate parametric hallucinations.
+- **Verified Primary Sources:** [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401), [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906), [LangChain: Document Loading, Chunking, and Vector Ingestion Pipelines](https://python.langchain.com/v0.2/docs/concepts/#retrieval)
 
 
 
@@ -7227,3 +7271,821 @@ In Pass 2, memory systems are evaluated against **Memory Poisoning, Indirect Pro
 ---
 
 [Next Unit: Short-term and working memory →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Short-term and working memory
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-short-term-and-working-memory/
+SUMMARY: Explores short-term and working memory mechanisms in AI agents, including in-context scratchpads, conversation buffers, token budgeting, and eviction strategies.
+================================================================================
+
+# Short-term and working memory
+
+## Why this matters
+
+When an autonomous agent executes a multi-step workflow, such as debugging a test suite or conducting market research, it generates a stream of intermediate observations, user clarifications, and tool call results. If the agent dumps every raw message and tool payload into an unmanaged context window, two failure modes immediately emerge: rapid exhaustion of the model token budget and loss of reasoning focus due to context distraction.
+
+In human cognition, working memory acts as the mental workbench that holds and manipulates the limited pieces of information necessary for immediate reasoning. In agentic AI systems, **working memory** is the structured, run-scoped portion of the context window dedicated to holding active goals, subtask progress, and intermediate variables (Packer et al., 2023; LangChain, 2024).
+
+Without disciplined short-term and working memory management, an agent risks discarding critical user constraints when the conversation grows long, or hallucinating false assumptions when intermediate tool outputs overwhelm its attention. Mastering working memory design allows developers to build agents that maintain rock-solid task focus across dozens of execution steps while strictly bounding compute and token costs.
+
+## Simple mental model
+
+Think of a surgeon performing a complex procedure in an operating theater:
+
+1. **The surgical whiteboard (the in-context scratchpad):** A prominent board listing the patient name, surgical objective, vital signs, completed incisions, and next anatomical target. It is continuously updated and never erased until the operation finishes.
+2. **The instrument tray (ephemeral tool buffer):** A small tray holding only the instruments and sample vials needed for the current step. Once a biopsy specimen is logged on the whiteboard, the used tray is cleared to make room for suture needles.
+3. **The ongoing scrub nurse dialogue (sliding dialogue buffer):** The recent spoken dialogue between the surgeon and assistants ("Clamp applied", "Suction active"). While the team remembers the overall surgical plan, earlier routine verbal exchanges from two hours ago are not repeated word for word.
+
+If the surgical team filled the whiteboard with verbatim transcripts of every casual phrase uttered during the operation, they would quickly run out of room for critical vital signs.
+
+## Position in the agent workflow
+
+Working memory operates at the immediate interface between the planning loop, tool execution engine, and model context window. At every execution cycle, the agent reads its active scratchpad, inspects the latest user turn or tool observation, and formulates its next reasoning step.
+
+Before invoking the foundation model, the context manager allocates token budgets across system instructions, structured scratchpad state, progressive summaries, and raw dialogue history. As tools return data, the memory manager extracts salient facts into the scratchpad and compacts or trims raw observation payloads before they can bloat future prompts.
+
+![Figure 1: Anatomy of an agent context window with structured working memory allocation](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/02-short-term-and-working-memory/01-working-memory-anatomy.png)
+
+*Figure 1. The context window is partitioned into deterministic token budgets: immutable system instructions, structured in-context working scratchpad, ephemeral tool observation slots, and sliding conversation history.*
+
+## How it works
+
+Managing short-term and working memory requires four foundational architectural mechanisms: context window budgeting, scratchpad state structuring, eviction and compaction strategies, and the dynamic update lifecycle.
+
+### 1. Context window token budgeting
+
+An agent context window is a finite resource. To prevent prompt overflow, production systems divide available context capacity ($C_{\text{total}}$) into dedicated, bounded compartments (Packer et al., 2023; Microsoft, 2024):
+
+$$C_{\text{total}} = C_{\text{system}} + C_{\text{scratchpad}} + C_{\text{tools}} + C_{\text{dialogue}} + C_{\text{reserve}}$$
+
+- **System budget ($C_{\text{system}}$):** Fixed token allocation reserved for the core agent persona, safety rules, output schemas, and tool definitions.
+- **Working scratchpad budget ($C_{\text{scratchpad}}$):** Dedicated token space for active goals, subtask checklists, and extracted key-value state variables.
+- **Ephemeral tool buffer ($C_{\text{tools}}$):** Temporary token capacity for the inputs and outputs of the most recent tool invocations.
+- **Dialogue history budget ($C_{\text{dialogue}}$):** Elastic token window reserved for recent user and assistant interaction turns.
+- **Completion reserve ($C_{\text{reserve}}$):** Reserved output capacity ensuring the model can generate a full, unclipped response.
+
+### 2. The in-context working scratchpad
+
+Unlike raw dialogue history, which is an unstructured log of conversational turns, the **working scratchpad** is an explicitly structured, model-readable data block placed high in the context window (Packer et al., 2023). It tracks:
+
+- **Primary task goal:** The high-level objective requested by the user.
+- **Active subtasks:** The remaining sequence of actionable steps.
+- **Completed milestones:** A verifiable log of finished sub-goals to prevent duplicate execution.
+- **Working variables:** Key entities, file paths, database identifiers, or intermediate calculation results required across multiple steps.
+
+```text
+=== ACTIVE WORKING SCRATCHPAD ===
+Goal: Ingest and clean daily customer telemetry data
+Active Subgoals: Deduplicate records, Upload to warehouse
+Completed Subgoals: Download S3 payload, Schema validation
+Working Variables:
+  - records_ingested: 14500
+  - s3_checksum: a8f9c1b
+  - null_email_policy: warning
+```
+
+### 3. Eviction and compaction strategies
+
+When conversation turns or tool outputs exceed the allocated dialogue budget ($C_{\text{dialogue}}$), the memory manager must apply one or more compaction strategies (LangChain, 2024):
+
+1. **Fixed FIFO sliding window:** Retains only the most recent $K$ message turns, evicting older turns entirely. While simple and zero-cost, it risks dropping initial user constraints.
+2. **Progressive rolling summarization:** Periodically takes batches of older conversation turns, synthesizes them into a dense natural language summary paragraph using a fast utility model, and prepends this summary to the active dialogue window (LangChain, 2024).
+3. **Tool observation trimming and truncation:** Aggressively strips raw verbose payloads (such as 500 lines of JSON or raw HTML) once the salient variables have been committed to the scratchpad, replacing them with a lightweight acknowledgment token (Microsoft, 2024).
+
+![Figure 2: Three primary eviction and compaction strategies for short-term conversation history](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/02-short-term-and-working-memory/02-eviction-and-compaction-strategies.png)
+
+*Figure 2. A comparison of short-term memory management strategies: fixed FIFO sliding windows drop old turns, progressive summarization condenses old dialogue into a rolling brief, and structured scratchpads isolate key variables from raw logs.*
+
+### 4. The dynamic scratchpad execution cycle
+
+During multi-step execution, working memory undergoes a continuous four-stage state transition cycle:
+
+1. **Inspect:** The agent inspects the working scratchpad to identify the next active subgoal and relevant variables.
+2. **Execute:** The agent invokes external tools to gather information or enact changes in the environment.
+3. **Extract and mutate:** The agent extracts new findings from raw tool observations and updates its working variables and subgoal checklists.
+4. **Prune:** The memory manager cleans raw tool payloads and evicts out-of-budget dialogue turns, preparing a clean context window for the next reasoning cycle.
+
+![Figure 3: Four-stage read-execute-extract-prune lifecycle of working memory](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/02-short-term-and-working-memory/03-dynamic-scratchpad-lifecycle.png)
+
+*Figure 3. The continuous working memory lifecycle. The runtime reads the scratchpad, executes tool actions, extracts salient variables, and immediately prunes ephemeral payloads to preserve token budget.*
+
+## Main variants
+
+1. **Explicit core-memory paging (MemGPT):** Treats working memory as an operating system main memory with dedicated functions (`core_memory_append`, `core_memory_replace`) that the model invokes autonomously to update its own scratchpad (Packer et al., 2023).
+2. **Deterministic framework reducers (LangGraph):** Treats working memory as a typed dictionary state schema that is updated deterministically by graph node transition functions rather than relying on unstructured model edits.
+3. **Transform-based message pipelines (AutoGen):** Implements context transforms that run before every model call, truncating tool messages and trimming dialogue length dynamically based on token counting (Microsoft, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates an in-context working scratchpad combined with a token-constrained dialogue manager and ephemeral tool observation pruning. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/02-short-term-and-working-memory/working_memory_runtime.py) demonstrates multi-turn context assembly and rolling summarization.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
+
+@dataclass
+class WorkingScratchpad:
+    task_goal: str
+    active_subgoals: List[str] = field(default_factory=list)
+    completed_subgoals: List[str] = field(default_factory=list)
+    variables: Dict[str, Any] = field(default_factory=dict)
+
+    def update_variable(self, key: str, value: Any) -> None:
+        self.variables[key] = value
+
+    def complete_subgoal(self, subgoal: str) -> None:
+        if subgoal in self.active_subgoals:
+            self.active_subgoals.remove(subgoal)
+        if subgoal not in self.completed_subgoals:
+            self.completed_subgoals.append(subgoal)
+
+    def render(self) -> str:
+        lines = [
+            "=== ACTIVE WORKING SCRATCHPAD ===",
+            f"Goal: {self.task_goal}",
+            f"Active Subgoals: {', '.join(self.active_subgoals) or 'None'}",
+            f"Completed Subgoals: {', '.join(self.completed_subgoals) or 'None'}",
+            "Working Variables:",
+        ]
+        for k, v in self.variables.items():
+            lines.append(f"  - {k}: {v}")
+        return "\n".join(lines)
+
+class ShortTermMemoryManager:
+    def __init__(self, system_prompt: str, max_dialogue_tokens: int = 500) -> None:
+        self.system_prompt = system_prompt
+        self.max_dialogue_tokens = max_dialogue_tokens
+        self.scratchpad: Optional[WorkingScratchpad] = None
+        self.dialogue: List[Dict[str, Any]] = []
+
+    def prune_tool_observations(self) -> None:
+        for msg in self.dialogue:
+            if msg.get("is_tool") and len(msg["content"]) > 80:
+                msg["content"] = f"[Compacted: {msg['content'][:50]}...]"
+```
+
+</details>
+
+Run [working_memory_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/02-short-term-and-working-memory/working_memory_runtime.py) to inspect working scratchpad rendering, progressive rolling summarization, and observation pruning.
+
+## Data flow and state changes
+
+1. **User instruction arrival:** The user submits a multi-step task prompt to the agent runtime.
+2. **Scratchpad initialization:** The agent populates the working scratchpad with the overall goal and initial subtasks.
+3. **Step execution:** The agent issues tool calls; raw execution outputs land in the ephemeral tool buffer.
+4. **Scratchpad mutation:** Key results (e.g., entity IDs, status codes) are committed to the scratchpad variables.
+5. **Payload compaction:** The memory manager prunes raw tool outputs and checks dialogue token count against budget limits.
+6. **Rolling summarization:** If dialogue history exceeds threshold, the oldest turns are condensed into the progressive summary block.
+7. **Task conclusion:** When all subgoals are completed, the scratchpad state is archived or cleared.
+
+## Trust boundaries
+
+- **Untrusted tool output containment:** Ephemeral tool buffers often ingest untrusted third-party data (such as web search responses or external API payloads). The memory manager must ensure that raw tool output is treated strictly as data, preventing prompt injection attacks from overwriting system instructions.
+- **Scratchpad integrity boundary:** Working variables should be validated against expected schemas before being referenced in sensitive downstream tool calls (such as file paths or database queries).
+- **Session boundary isolation:** Working scratchpads are strictly run-scoped. Memory contents from one user session must never leak into concurrent or subsequent sessions without explicit persistence authorization.
+
+## Reliability failures
+
+- **Context amnesia via over-aggressive pruning:** If a sliding window or summarizer drops critical initial user constraints, the agent may revert to default behaviors or violate user preferences midway through a task.
+- **Summary drift and hallucination:** Successive rounds of rolling summarization can introduce subtle factual drift, where repeated summarizations distort original figures or conditions.
+- **Scratchpad desynchronization:** If an agent fails to update its completed subgoals checklist after a tool failure, it may become trapped in an infinite execution loop repeating the same action.
+
+## Limitations and trade-offs
+
+- **Token overhead of explicit scratchpads:** Maintaining a detailed scratchpad consumes a portion of the context budget on every single LLM call.
+- **Summarization latency and cost:** Running secondary LLM passes to summarize older dialogue turns introduces latency and increases API costs.
+- **Lossy vs. lossless retention:** Sliding windows and summarizers are lossy techniques that sacrifice fine-grained conversational nuances in exchange for token sustainability.
+
+## Security preview
+
+In Pass 2, short-term and working memory architectures are analyzed under **Prompt Injection and Working State Tampering**. Attackers craft adversarial tool outputs designed to trick the agent into writing malicious payloads directly into its working scratchpad, corrupting subsequent reasoning steps. We explore defenses including structured schema enforcement, output sanitization, and isolated parsing contexts in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can agents autonomously decide the optimal boundary between lossless verbatim retention and semantic summarization during dynamic execution?
+- Can attention-masking techniques allow foundation models to ignore compacted tool observations without requiring explicit string pruning?
+
+## Key takeaways
+
+- Working memory is the run-scoped, structured scratchpad in the context window that holds active goals, subtasks, and variables.
+- Context window budgeting requires deterministic token boundaries across system rules, scratchpad state, tool buffers, and dialogue.
+- Compaction techniques include sliding windows, rolling summarization, and raw tool observation pruning.
+- Working memory operates on an inspect-execute-extract-prune lifecycle to prevent token exhaustion and reasoning distraction.
+
+## References
+
+- Packer, C., Fang, V., Patil, S. G., Lin, K., Wooders, S., & Gonzalez, J. E. (2023). *MemGPT: Towards LLMs as Operating Systems*. arXiv preprint arXiv:2310.08560. [MemGPT Paper](https://arxiv.org/abs/2310.08560).
+- LangChain Community. (2024). *LangChain: Memory Types and Conversation Window Management*. LangChain Documentation. [LangChain Memory Concepts](https://python.langchain.com/v0.2/docs/concepts/#memory).
+- Microsoft Research. (2024). *AutoGen: Managing Agent Context and Short-Term Conversation History*. AutoGen Documentation. [AutoGen Context Guide](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html).
+
+---
+
+[Next Unit: Persistent memory types and lifecycle →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Persistent memory types and lifecycle
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-persistent-memory-types-and-lifecycle/
+SUMMARY: Explores persistent agent memory architectures across episodic, semantic, and procedural tiers, including hierarchical namespacing, multi-factor retrieval, and record mutation.
+================================================================================
+
+# Persistent memory types and lifecycle
+
+## Why this matters
+
+When an AI agent assists human teams across days, weeks, or quarters, it must retain knowledge beyond the lifespan of any single session or thread. If an agent forgets a user established coding style, team architecture guidelines, or past debugging resolutions between conversations, users waste significant time re-establishing basic context.
+
+Unlike short-term working memory, which is cleared when a run completes, **persistent memory** provides durable, cross-thread knowledge retention (Packer et al., 2023; Park et al., 2023). However, building a scalable persistent memory subsystem involves far more than simply appending conversation logs to an external database.
+
+An unmanaged persistent store quickly degrades due to three fundamental challenges: semantic noise from thousands of low-value interaction logs, memory staleness when user preferences change, and privacy violations when sensitive data is retained without deletion governance. Understanding persistent memory taxonomy, multi-factor retrieval scoring, and mutation lifecycles enables developers to construct agents that maintain high-quality, long-term intelligence across sessions.
+
+## Simple mental model
+
+Think of a senior software consultant working with a long-term enterprise client:
+
+1. **The consultant project log (episodic memory):** A dated journal recording past meetings, incident post-mortems, and milestone deployments ("On March 12th, migrated the auth service to OAuth2").
+2. **The client profile dossier (semantic memory):** A distilled cheat sheet of permanent facts and preferences ("Client uses strict TypeScript", "Production deployments require two approvals").
+3. **The consultant engineering playbook (procedural memory):** Standardized, repeatable scripts, checklists, and debugging procedures that the consultant applies to solve recurring technical problems.
+4. **The secure filing cabinet (hierarchical namespacing):** Dedicated client drawers with strict locks. Notes from Client A are never placed in Client B drawer, and expired data is shredded upon request.
+
+By maintaining separate logs, profile sheets, and playbooks, the consultant quickly recalls relevant insights without confusing different clients or digging through thousands of pages of raw meeting notes.
+
+## Position in the agent workflow
+
+Persistent memory operates externally to the active model context window and thread execution state. During an active run, the memory extractor detects salient facts, preferences, and action outcomes from the event stream, creating structured records in persistent storage.
+
+When a user initiates a new thread or submits a complex query, the memory manager queries the persistent store using hierarchical namespace filters and multi-factor ranking. The top-ranked records are injected into the initial system context, allowing the agent to begin the task with full awareness of relevant history and user constraints.
+
+## How it works
+
+Architecting a durable memory subsystem requires four foundational components: cognitive memory taxonomy, hierarchical namespacing, three-factor retrieval ranking, and the CRUD (create, read, update, delete) lifecycle.
+
+### 1. The three persistent memory tiers
+
+Drawing upon cognitive science models of memory retention (Packer et al., 2023; Park et al., 2023), persistent storage is categorized into three functional tiers:
+
+- **Episodic memory (autobiographical experience stream):** A time-ordered, immutable log of past events, tool invocations, and conversation turns. Each record retains exact creation timestamps, dialogue snippets, and execution outcomes.
+- **Semantic memory (facts, concepts, and profiles):** Generalized, non-temporal knowledge extracted from past episodes. Examples include user preferences ("User prefers concise replies"), environment configurations ("API endpoint is api.acme.corp"), and domain concepts.
+- **Procedural memory (skills and playbooks):** Reusable operational workflows, tool calling templates, and step-by-step algorithms that guide the agent in executing complex tasks reliably.
+
+### 2. Hierarchical namespacing and metadata schema
+
+To prevent cross-tenant data leaks and allow targeted recall, persistent records are partitioned using hierarchical path namespaces (LangChain, 2024):
+
+```text
+/orgs/{org_id}/teams/{team_id}/users/{user_id}/{memory_tier}
+```
+
+Every persistent record contains standardized governance metadata:
+
+- **Memory ID:** Unique UUID for indexing, updates, and targeted deletion.
+- **Namespace:** Hierarchical isolation path (e.g., `/users/alice/preferences`).
+- **Memory Tier:** Enum classification (`episodic`, `semantic`, or `procedural`).
+- **Content:** The text payload or structured JSON representation.
+- **Salience Score ($S \in [0, 1]$):** Intrinsic importance score assigned during extraction.
+- **Creation and Access Timestamps:** $t_c$ (creation) and $t_a$ (last access), used for decay calculation.
+- **Access Count:** Integer tracking how frequently this memory has been recalled.
+- **Provenance Reference:** Originating `thread_id` or `run_id` establishing evidence traceability.
+- **Time-to-Live (TTL):** Optional expiration timestamp for temporary persistent items.
+
+![Persistent Memory Architecture shows episodic, semantic, and procedural vaults organized under hierarchical namespace paths.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle/01-persistent-memory-taxonomy-and-namespaces.png)
+
+*Figure 1. Persistent memory architecture. Episodic event logs, semantic user profiles, and procedural playbooks are partitioned across tenant namespaces.*
+
+### 3. Three-factor retrieval scoring engine
+
+When querying persistent memory, vector similarity alone is insufficient because it ignores recency and intrinsic importance. A foundational scoring formula combines three distinct factors (Park et al., 2023):
+
+$$\text{Score}(m, q) = \alpha \cdot \text{Relevance}(m, q) + \beta \cdot \text{Recency}(m) + \gamma \cdot \text{Salience}(m)$$
+
+- **Semantic relevance ($\text{Relevance}(m, q)$):** Cosine similarity between the embedding vector of the search query $q$ and the memory text $m$.
+- **Recency decay ($\text{Recency}(m)$):** An exponential decay function based on the elapsed time $\Delta t$ since the memory was last accessed:
+
+$$\text{Recency}(m) = \lambda^{\Delta t}$$
+
+where $\lambda \in (0, 1]$ represents the decay parameter and $\Delta t$ is measured in hours or days.
+- **Intrinsic salience ($\text{Salience}(m)$):** An importance score $S \in [0, 1]$ evaluated by an extraction model during initial ingestion, ensuring critical instructions (such as "Never deploy on Friday") are not forgotten merely because they are old.
+
+![Three-factor memory retrieval scoring engine balances semantic relevance, recency decay, and intrinsic salience.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle/02-three-factor-retrieval-scoring.png)
+
+*Figure 2. Three-factor retrieval scoring engine. Vector similarity, exponential time decay, and intrinsic importance combine to select the most relevant memories.*
+
+### 4. The persistent memory CRUD lifecycle
+
+Persistent memory transitions through four key operational phases (Packer et al., 2023; LangChain, 2024):
+
+1. **Ingest and Write:** The extraction engine parses completed conversation turns, extracts persistent facts, computes vector embeddings, and stores the record under the appropriate tenant namespace.
+2. **Multi-factor Recall:** Incoming user prompts trigger a filtered vector and metadata search, ranking top candidate records for prompt context injection.
+3. **Reconciliation and Update:** When a user expresses a revised preference ("I switched from PostgreSQL to ClickHouse"), the memory manager locates the existing record and updates its content and salience in-place.
+4. **Invalidation and Deletion:** Expired TTL entries are pruned automatically, and user deletion requests purge records across all vector indexes and relational stores.
+
+![The persistent memory lifecycle shows write and ingest, multi-factor recall, update and reconcile, and expire and invalidate stages.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle/03-persistent-memory-crud-lifecycle.png)
+
+*Figure 3. Persistent memory lifecycle. Memory transitions through ingestion, indexed recall, state reconciliation, and expiration or deletion.*
+
+## Main variants
+
+1. **Autonomous archival storage (MemGPT):** Provides agents with explicit database querying tools (`archival_memory_search`, `archival_memory_insert`), allowing the model to perform autonomous retrieval and storage when in-context information is insufficient (Packer et al., 2023).
+2. **Generative memory streams and reflection trees:** Maintains an append-only stream of natural language observations, using periodic background agents to generate synthetic reflections and store them as higher-level memory nodes (Park et al., 2023).
+3. **Cross-thread key-value stores (LangGraph Store):** Provides structured persistence where memories are stored as JSON documents indexed by hierarchical namespaces and semantic embeddings (LangChain, 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates a multi-tier persistent memory store with three-factor retrieval ranking, record updates, and right-to-be-forgotten deletion. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle/persistent_memory_runtime.py) demonstrates namespace filtering and decay calculation.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from enum import Enum
+import math
+from typing import Dict, List, Optional, Tuple
+import uuid
+
+class MemoryTier(Enum):
+    EPISODIC = "episodic"
+    SEMANTIC = "semantic"
+    PROCEDURAL = "procedural"
+
+@dataclass
+class MemoryRecord:
+    id: str
+    tier: MemoryTier
+    namespace: str
+    content: str
+    salience: float
+    created_at: datetime
+    last_accessed: datetime
+
+class PersistentMemoryStore:
+    def __init__(self, decay_rate: float = 0.95) -> None:
+        self.records: Dict[str, MemoryRecord] = {}
+        self.decay_rate = decay_rate
+
+    def write(self, tier: MemoryTier, namespace: str, content: str, salience: float) -> MemoryRecord:
+        now = datetime.now(timezone.utc)
+        rec = MemoryRecord(
+            id=str(uuid.uuid4()), tier=tier, namespace=namespace,
+            content=content, salience=salience, created_at=now, last_accessed=now
+        )
+        self.records[rec.id] = rec
+        return rec
+
+    def retrieve(self, namespace_prefix: str, query: str, top_k: int = 2) -> List[Tuple[MemoryRecord, float]]:
+        now = datetime.now(timezone.utc)
+        q_words = set(query.lower().split())
+        scored = []
+        for rec in self.records.values():
+            if not rec.namespace.startswith(namespace_prefix):
+                continue
+            # Relevance: word overlap
+            r_words = set(rec.content.lower().split())
+            rel = len(q_words.intersection(r_words)) / max(1, len(q_words.union(r_words)))
+            # Recency: exponential decay
+            hrs = max(0.0, (now - rec.last_accessed).total_seconds() / 3600.0)
+            recency = math.pow(self.decay_rate, hrs)
+            score = 0.5 * rel + 0.3 * recency + 0.2 * rec.salience
+            scored.append((rec, score))
+        scored.sort(key=lambda x: x[1], reverse=True)
+        return scored[:top_k]
+
+    def delete(self, memory_id: str) -> bool:
+        return self.records.pop(memory_id, None) is not None
+```
+
+</details>
+
+Run [persistent_memory_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle/persistent_memory_runtime.py) to inspect multi-tier storage, three-factor ranking, and record mutation.
+
+## Data flow and state changes
+
+1. **Session completion:** A conversation thread finishes; raw event logs are delivered to the memory extraction worker.
+2. **Fact extraction:** The extractor identifies generalized semantic facts and assigns salience ratings.
+3. **Embedding and storage:** Vector embeddings are generated, and records are committed to persistent storage under `/users/{user_id}/semantic`.
+4. **New query arrival:** In a subsequent session, a user submits a prompt.
+5. **Namespaced 3-factor search:** The store computes composite scores and returns the top-k relevant records.
+6. **Prompt injection:** Selected memories are formatted into the system prompt.
+7. **Record reconciliation:** When new interactions contradict old facts, the existing record is updated or marked deprecated.
+
+## Trust boundaries
+
+- **Tenant namespace isolation:** Memory storage must strictly enforce namespace boundaries. A user querying an agent must never receive records partitioned under another user or organization namespace.
+- **Ingestion sanitization boundary:** Memory extraction must sanitize input to prevent indirect prompt injection payloads from being permanently stored in semantic memory.
+- **Cryptographic provenance verification:** Memory records should retain verified cryptographic hashes of the originating run and author identity to ensure auditability.
+- **Right-to-be-forgotten compliance:** Systems must provide verifiable hard deletion mechanisms that purge records from both primary stores and downstream vector caches.
+
+## Reliability failures
+
+- **Stale memory retention:** If an agent fails to update or invalidate outdated memories, it will continue to apply obsolete preferences in future tasks.
+- **Retrieval interference:** Injecting loosely related historical memories can bias the foundation model away from the user current explicit instructions.
+- **Over-generalized semantic extraction:** If an extraction model makes an unjustified generalization from a single unique incident, it may corrupt the user profile with false rules.
+
+## Limitations and trade-offs
+
+- **Search latency and compute cost:** Computing vector similarity, recency decay, and salience ranking across large memory databases introduces additional query latency before prompt generation.
+- **Storage and indexing costs:** Maintaining dense vector embeddings, metadata indexes, and audit logs across millions of user sessions incurs non-trivial infrastructure expenses.
+- **Lossy reflection:** Automated memory synthesis can inadvertently omit edge-case constraints present in the original episodic dialogue.
+
+## Security preview
+
+In Pass 2, persistent memory systems are evaluated against **Persistent Indirect Prompt Injection, Cross-Tenant Memory Exfiltration, and Memory Poisoning**. Attackers seek to inject malicious behavioral instructions into persistent stores to achieve permanent persistence across sessions. We explore defensive architectures including cryptographically signed memory provenance, taint tracking, and isolated memory verification agents in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can autonomous memory systems reliably resolve multi-hop contradictions across hundreds of historical records without human oversight?
+- What scalable indexing architectures enable real-time 3-factor ranking across billions of persistent memory records?
+
+## Key takeaways
+
+- Persistent memory spans episodic experience streams, semantic fact/profile stores, and procedural skill playbooks.
+- Hierarchical namespacing enforces tenant and user isolation across durable storage.
+- Three-factor retrieval ranking balances semantic relevance, exponential recency decay, and intrinsic salience.
+- A complete persistent memory lifecycle requires structured write, multi-factor recall, in-place reconciliation, and right-to-be-forgotten deletion.
+
+## References
+
+- Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). *Generative Agents: Interactive Simulacra of Human Behavior*. In Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23), pp. 1-22. [DOI: 10.1145/3586183.3606763](https://doi.org/10.1145/3586183.3606763).
+- Packer, C., Fang, V., Patil, S. G., Lin, K., Wooders, S., & Gonzalez, J. E. (2023). *MemGPT: Towards LLMs as Operating Systems*. arXiv preprint arXiv:2310.08560. [MemGPT Paper](https://arxiv.org/abs/2310.08560).
+- LangChain Community. (2024). *LangGraph Store: Hierarchical Namespaced Persistence Across Threads*. LangGraph Documentation. [LangGraph Store Concepts](https://langchain-ai.github.io/langgraph/concepts/memory/).
+
+---
+
+[Next Unit: Consolidation, forgetting, and evaluation →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Consolidation, forgetting, and evaluation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-consolidation-forgetting-and-evaluation/
+SUMMARY: Explores how autonomous agents synthesize episodic memories into higher-level semantic insights, prune obsolete or decaying records, and evaluate memory performance.
+================================================================================
+
+# Consolidation, forgetting, and evaluation
+
+## Why this matters
+
+As autonomous agents operate over extended time horizons, their persistent storage accumulates thousands of granular, timestamped interaction logs. If an agent simply appends every new event to a raw database without maintenance, memory quality rapidly degrades. The system suffers from three core compounding problems: knowledge fragmentation, catastrophic contradiction, and unbounded storage bloat.
+
+Without **memory consolidation**, an agent treats twenty separate conversations about Python type errors as isolated incidents rather than generalizing them into a coherent understanding of user preferences (Park et al., 2023). Without **systematic forgetting**, obsolete decisions remain in storage, causing the agent to act on conflicting instructions. Finally, without **rigorous evaluation**, developers cannot detect whether memory updates actually improve task performance or quietly introduce subtle hallucinations (Packer et al., 2023; Zhong et al., 2024).
+
+Mastering consolidation, pruning, and evaluation allows engineering teams to build self-maintaining memory subsystems that stay accurate, compact, and aligned with user goals over months of continuous production operation.
+
+## Simple mental model
+
+Think of an apprentice scientist keeping a laboratory research notebook:
+
+1. **Daily raw observations (episodic stream):** Detailed, messy notes recorded every hour ("At 2 PM, heated mixture to 80C; slight discoloration observed").
+2. **Weekly synthesis and summary reviews (reflection and consolidation):** Every Friday, the scientist reviews thirty pages of notes and writes a single clean conclusion: "Reagent B degrades above 75C; adjust reaction temperature to 70C for future experiments."
+3. **Disposal of obsolete drafts (forgetting and pruning):** Outdated initial hypotheses and temporary scratch calculations are archived or shredded to keep the lab bench organized and avoid testing disproven formulas.
+4. **Independent peer review and replication tests (evaluation benchmarks):** A senior researcher periodically tests the scientist by asking complex problem-solving questions to verify that the distilled conclusions are accurate and quickly accessible.
+
+If the scientist never distilled the raw notes, they would spend hours searching through dozens of notebooks for a single temperature limit.
+
+## Position in the agent workflow
+
+Consolidation, forgetting, and evaluation operate as background asynchronous control loops alongside real-time agent execution. While the runtime serves user queries and updates short-term working memory, background workers continuously maintain persistent stores.
+
+During idle periods or scheduled maintenance windows, the consolidation engine clusters recent episodic traces, generates high-level reflections, and updates the semantic knowledge base. Concurrently, the pruning manager evaluates time-decay curves, evicts expired items, and resolves detected contradictions. The evaluation framework runs automated benchmark suites against memory checkpoints to ensure retrieval accuracy and temporal stability before deploying updates.
+
+## How it works
+
+A production memory lifecycle relies on four foundational systems: reflection consolidation pipelines, mathematical forgetting models, contradiction resolution, and quantitative evaluation benchmarks.
+
+### 1. The reflection and consolidation pipeline
+
+Raw interaction logs contain excessive noise and specific circumstantial details. The **reflection mechanism** transforms concrete episodic observations into generalized semantic insights through a three-level hierarchy (Park et al., 2023):
+
+1. **Level 0 (Raw episodic records):** Individual timestamped actions and user exchanges (e.g., "User requested adding retry logic to S3 downloader", "User asked to catch socket timeouts").
+2. **Level 1 (Synthesis question generation):** A background evaluation agent inspects recent high-salience episodic records and prompts an LLM with synthesis questions: *"What high-level architectural patterns or recurring user preferences emerge from these recent events?"*
+3. **Level 2 (Abstract semantic insights):** The model synthesizes answers into concise rules and profiles (e.g., *"User prefers resilient network operations with exponential backoff"*), indexing them with direct provenance pointers to the underlying Level 0 records.
+
+### 2. Principled forgetting and pruning mechanisms
+
+An agent memory store cannot grow indefinitely. Sustainable memory architectures apply four distinct pruning mechanisms (Packer et al., 2023; Zhong et al., 2024):
+
+- **Time-decay eviction (Ebbinghaus forgetting curve):** Memory retention strength decays as a function of idle time since last access ($\Delta t$):
+
+$$R(t) = S \cdot e^{-\frac{\Delta t}{\tau}}$$
+
+where $S$ is the initial salience score, $\Delta t$ is elapsed time, and $\tau$ is the memory stability half-life parameter. When $R(t)$ drops below a configured retention threshold, low-value episodic details are evicted.
+- **Time-to-Live (TTL) expiration:** Short-lived tokens, intermediate tool outputs, and ephemeral working buffers are tagged with strict expiration timestamps and purged by automated sweeping jobs.
+- **Contradiction reconciliation:** When a newly observed fact directly conflicts with an existing memory record, the memory manager deprecates the older record, updates the current active belief, and logs an audit delta.
+- **Right-to-be-forgotten deletion:** When a user or tenant requests data removal, the system executes atomic hard deletions across primary document stores, relational databases, and vector search indices.
+
+### 3. Quantitative memory evaluation metrics
+
+Evaluating agent memory requires moving beyond manual observation to automated, reproducible benchmarks (Packer et al., 2023; Zhong et al., 2024):
+
+| Metric | Target | Description |
+| :--- | :--- | :--- |
+| **Retrieval Recall@K** | $> 90\%$ | Proportion of test cases where the relevant historical fact is present in the top-$K$ recalled items |
+| **Contradiction Rate** | $< 1\%$ | Frequency of retrieved contexts containing mutually contradictory statements |
+| **Reflection Fidelity** | $> 95\%$ | Accuracy of synthesized semantic insights when evaluated against ground truth episodic logs |
+| **Query Latency (P99)** | $< 50\text{ ms}$ | Time required to perform namespaced vector search, decay computation, and reranking |
+| **Storage Footprint** | Bounded | Total token and byte consumption per active user profile over time |
+
+## Main variants
+
+1. **Recursive reflection trees (Generative Agents):** Maintains a multi-layered directed acyclic graph (DAG) of memories where high-level abstract nodes point downward to supporting lower-level episodic observations (Park et al., 2023).
+2. **Ebbinghaus memory banks (MemoryBank):** Models human biological memory retention with continuous decay curves and spaced repetition reinforcement, strengthening memory nodes every time they are recalled (Zhong et al., 2024).
+3. **Conversational search benchmarking (MemGPT / LoCoMo):** Evaluates agent memory systems against challenging long-range question answering datasets that require multi-session cross-thread reasoning (Packer et al., 2023).
+
+## Minimal implementation
+
+The following Python snippet demonstrates memory reflection synthesis, contradiction resolution, decay pruning, and automated evaluation benchmarking. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/consolidation_evaluation_runtime.py) demonstrates multi-step benchmark scoring.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass, field
+from datetime import datetime, timezone, timedelta
+import math
+from typing import Dict, List, Optional
+
+@dataclass
+class MemoryNode:
+    id: str
+    content: str
+    salience: float
+    created_at: datetime
+    last_accessed: datetime
+    tier: str  # "episodic" or "semantic"
+    source_ids: List[str] = field(default_factory=list)
+    is_deprecated: bool = False
+
+class MemorySystem:
+    def __init__(self, decay_rate: float = 0.90) -> None:
+        self.memories: Dict[str, MemoryNode] = {}
+        self.decay_rate = decay_rate
+
+    def consolidate_reflection(self, query_topic: str, synthesis_text: str, salience: float) -> MemoryNode:
+        matching_ids = [
+            m.id for m in self.memories.values()
+            if m.tier == "episodic" and not m.is_deprecated and query_topic.lower() in m.content.lower()
+        ]
+        now = datetime.now(timezone.utc)
+        insight = MemoryNode(
+            id=f"insight-{len(self.memories)}", content=synthesis_text, salience=salience,
+            created_at=now, last_accessed=now, tier="semantic", source_ids=matching_ids
+        )
+        self.memories[insight.id] = insight
+        return insight
+
+    def prune_decayed(self, threshold: float = 0.3, current_time: Optional[datetime] = None) -> int:
+        now = current_time or datetime.now(timezone.utc)
+        evicted = []
+        for mid, mem in list(self.memories.items()):
+            if mem.is_deprecated:
+                evicted.append(mid)
+                continue
+            days = max(0.0, (now - mem.last_accessed).total_seconds() / 86400.0)
+            score = mem.salience * math.pow(self.decay_rate, days)
+            if score < threshold and mem.tier == "episodic":
+                evicted.append(mid)
+        for mid in evicted:
+            del self.memories[mid]
+        return len(evicted)
+```
+
+</details>
+
+Run [consolidation_evaluation_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/consolidation_evaluation_runtime.py) to inspect episodic consolidation, contradiction deprecation, decay pruning, and benchmark evaluation.
+
+## Data flow and state changes
+
+1. **Episodic recording:** Live dialogue events and tool execution traces are written to the Level 0 episodic stream.
+2. **Periodic trigger:** The reflection worker triggers when episodic records exceed a threshold or on a scheduled cron schedule.
+3. **Clustering and synthesis:** An LLM groups related events, generates synthesis questions, and derives high-level semantic rules.
+4. **Provenance tagging:** New semantic nodes are linked to their originating Level 0 episodic record IDs.
+5. **Decay evaluation:** The pruning worker calculates current retention scores $R(t)$ for unaccessed memories.
+6. **Prune execution:** Expired TTL entries and decayed low-salience records are permanently purged from vector and document storage.
+7. **Regression benchmarking:** Automated evaluation suites query the updated store, verifying recall precision and consistency.
+
+## Trust boundaries
+
+- **Reflection validation boundary:** Synthetic memories generated during reflection must not inherit or amplify unverified claims from untrusted external tool outputs.
+- **Contradiction validation:** In-place preference updates must be verified against authentic user session authority to prevent unauthorized actors from overwriting profile settings.
+- **Complete deletion guarantee:** Right-to-be-forgotten deletion must cascade across all secondary indices, vector caches, and replica stores, ensuring zero residual data retention.
+
+## Reliability failures
+
+- **Hallucinatory reflection synthesis:** A background reflection model may summarize unrelated events into a flawed causal rule (e.g., assuming a single failed database query means the entire database is decommissioned).
+- **Over-pruning critical rare instructions:** A pure time-decay forgetting curve without intrinsic salience weighting will accidentally delete rarely accessed but vital safety guidelines.
+- **Cascade corruption:** If a flawed reflection node is written to semantic memory, subsequent reflection cycles will build upon this false foundation, compounding errors across the memory graph.
+
+## Limitations and trade-offs
+
+- **Compute and token overhead:** Continuous background reflection and periodic benchmark evaluations require recurring LLM compute resources.
+- **Reconciliation ambiguity:** Automatically resolving contradictory statements without human clarification risks discarding valid context nuances.
+- **Evaluation coverage:** Synthetic benchmark queries may not fully anticipate edge-case queries encountered in live user interactions.
+
+## Security preview
+
+In Pass 2, memory consolidation and evaluation systems are analyzed under **Reflection Poisoning and Invalidation Bypass Attacks**. Attackers attempt to seed subtle episodic traces across multiple separate sessions that, when processed by background reflection models, synthesize backdoors into semantic memory. We examine multi-stage provenance verification, anomaly detection, and sanitization pipelines in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can reflection models autonomously assess their own confidence before committing synthesized insights to long-term memory?
+- What mathematical criteria can differentiate between an evolving user preference and a transient situational exception?
+
+## Key takeaways
+
+- Memory consolidation synthesizes granular episodic events into durable, high-level semantic insight trees.
+- Principled forgetting models combine Ebbinghaus exponential decay, TTL expiration, contradiction invalidation, and compliance deletion.
+- Provenance links must connect abstract reflections back to original episodic sources for auditability.
+- Quantitative benchmarks evaluate memory quality across Recall@K, temporal consistency, reflection fidelity, and query latency.
+
+## References
+
+- Park, J. S., O'Brien, J. C., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023). *Generative Agents: Interactive Simulacra of Human Behavior*. In Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST '23), pp. 1-22. [DOI: 10.1145/3586183.3606763](https://doi.org/10.1145/3586183.3606763).
+- Packer, C., Fang, V., Patil, S. G., Lin, K., Wooders, S., & Gonzalez, J. E. (2023). *MemGPT: Towards LLMs as Operating Systems*. arXiv preprint arXiv:2310.08560. [MemGPT Paper](https://arxiv.org/abs/2310.08560).
+- Zhong, W., Guo, L., Gao, Q., Ye, H., & Wang, Y. (2024). *MemoryBank: Enhancing Large Language Models with Long-Term Memory and Forgetting Mechanisms*. arXiv preprint arXiv:2305.10250. [MemoryBank Paper](https://arxiv.org/abs/2305.10250).
+
+---
+
+[Next Unit: RAG system and ingestion →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/06-retrieval-and-rag/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: RAG system and ingestion
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-rag-system-and-ingestion/
+SUMMARY: Explores the foundational architecture of Retrieval-Augmented Generation (RAG) systems, comparing offline document ingestion pipelines with online query and grounded generation flows.
+================================================================================
+
+# RAG system and ingestion
+
+## Why this matters
+
+Pre-trained foundation models possess vast general knowledge encoded in their parametric weights. However, this parametric memory suffers from three fundamental constraints in real-world software engineering and enterprise applications: knowledge staleness (inability to reflect events after training cutoff), absence of private domain data (internal engineering wikis, private code repositories, or customer databases), and hallucination (confidently asserting plausible but fictitious facts).
+
+To overcome these constraints, modern AI architectures employ **Retrieval-Augmented Generation (RAG)** (Lewis et al., 2020). Rather than relying entirely on internal model weights, a RAG system dynamically retrieves relevant external document passages and injects them into the model prompt context before generating a response.
+
+Connecting external document knowledge to agent reasoning bridges the gap between static model weights and dynamic enterprise reality. While [Memory](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md) tracks user interactions across sessions and [Tools](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md) execute actions in external environments, RAG provides the foundational knowledge grounding layer that ensures agent responses are accurate, current, and verifiably attributed to source documents.
+
+## Simple mental model
+
+Think of an open-book final examination taken by a university student:
+
+1. **The closed-book exam (pure foundation model):** The student must answer complex domain questions solely from memory. If a question asks about a company updated 2026 security policy, the student can only guess or hallucinate based on general patterns learned years ago.
+2. **The open-book reference library (the RAG corpus):** The student sits in a well-organized library containing verified textbooks, policy manuals, and research papers.
+3. **The research index (the ingestion pipeline):** Before the exam begins, a librarian indexes every book by topic, chapter, and keyword, creating a detailed catalog.
+4. **The retrieval and citation answer (the online RAG flow):** When asked a specific policy question, the student checks the catalog, pulls the exact two relevant pages from the shelf, places them on the desk, and writes an answer citing the exact paragraph numbers.
+
+By consulting the library index and citing specific passages, the student guarantees 100% factual accuracy without memorizing every word in the building.
+
+## Position in the agent workflow
+
+RAG functions as the primary evidence retrieval mechanism within the agentic architecture. When an agent planner identifies that answering a user request requires external factual domain knowledge, it queries the RAG retrieval subsystem.
+
+The RAG architecture operates through two decoupled pipelines: an **offline ingestion pipeline** that prepares and indexes documents, and an **online query pipeline** that handles real-time user prompts, searches the vector index, and generates citation-grounded completions.
+
+## How it works
+
+A production RAG system is built upon four architectural pillars: the ingestion lifecycle, chunking strategies, vector embedding indexing, and grounded citation generation.
+
+### 1. The offline ingestion lifecycle
+
+The offline ingestion pipeline prepares raw unstructured documents for sub-second retrieval through five sequential stages (Karpukhin et al., 2020; LangChain, 2024):
+
+1. **Document extraction:** Ingests raw data formats (PDFs, Markdown, HTML, API schemas, and source code files) and extracts clean plain text.
+2. **Text normalization:** Strips boilerplate, converts non-standard encodings, and normalizes whitespace while preserving logical layout.
+3. **Chunking:** Divides long documents into bounded text passages that fit within retrieval and attention limits.
+4. **Metadata enrichment:** Attaches structural attributes (source URL, document ID, header hierarchy, author, and security access tags) to each chunk.
+5. **Dense embedding & indexing:** Passes chunks through an embedding model to produce dense vector representations, storing them in an Approximate Nearest Neighbor (ANN) vector database.
+
+### 2. Document chunking strategies
+
+Chunking determines the granularity of retrieved evidence. Choosing the right chunking strategy balances semantic completeness with retrieval precision (LangChain, 2024):
+
+- **Fixed-size sliding window:** Splits text into chunks of fixed character or token length with a small overlap (e.g., 500 characters with 50-character overlap) to prevent cutting sentences in half.
+- **Structural / Markdown-aware chunking:** Respects document syntax by splitting along headers (`#`, `##`, `###`), list items, or code block boundaries, ensuring related paragraphs stay grouped together.
+- **Semantic boundary chunking:** Uses embedding distance spikes between consecutive sentences to identify natural topic transitions.
+
+### 3. Dense vector embeddings and similarity search
+
+Dense retrieval maps queries and document chunks into a shared high-dimensional vector space $\mathbb{R}^d$ (Karpukhin et al., 2020):
+
+$$\vec{v}_{\text{doc}} = \text{Embed}(c), \quad \vec{v}_{\text{query}} = \text{Embed}(q)$$
+
+When a user query $q$ arrives, the vector database computes the cosine similarity between the query vector and candidate chunk vectors:
+
+$$\text{Sim}(\vec{v}_{\text{query}}, \vec{v}_{\text{doc}}) = \frac{\vec{v}_{\text{query}} \cdot \vec{v}_{\text{doc}}}{\|\vec{v}_{\text{query}}\| \|\vec{v}_{\text{doc}}\|}$$
+
+Top-$K$ nearest neighbors are returned, filtered by security access metadata tags (such as tenant ID or permission level).
+
+### 4. Context grounding and verified citations
+
+Once the top-$K$ passages are retrieved, the context assembler formats them into a structured prompt with explicit numbered document tags `[Doc 1]`, `[Doc 2]`. The system prompt instructs the foundation model to base its reasoning strictly on the retrieved passages and cite source tags inline (Lewis et al., 2020).
+
+## Main variants
+
+1. **RAG-Sequence (Lewis et al., 2020):** Retrieves a single top-$K$ document set and conditions the generation of the entire output sequence on that evidence.
+2. **RAG-Token (Lewis et al., 2020):** Evaluates retrieved document distributions at every individual token generation step, blending evidence dynamically.
+3. **Modular agentic RAG:** Uses an autonomous agent planner to formulate dynamic multi-step search queries, evaluate retrieval relevance, and iteratively refine queries before generating a final answer.
+
+## Minimal implementation
+
+The following Python snippet demonstrates document chunking, metadata tagging, dense similarity retrieval, and grounded citation prompt assembly. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/rag_ingestion_runtime.py) demonstrates multi-document indexing and access-tier filtering.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+from typing import Dict, List, Tuple
+
+@dataclass
+class DocumentChunk:
+    chunk_id: str
+    doc_id: str
+    content: str
+    source_url: str
+    embedding: List[float]
+
+def cosine_similarity(v1: List[float], v2: List[float]) -> float:
+    return sum(a * b for a, b in zip(v1, v2)) if len(v1) == len(v2) else 0.0
+
+class SimpleVectorStore:
+    def __init__(self) -> None:
+        self.chunks: Dict[str, DocumentChunk] = {}
+
+    def add_chunk(self, chunk: DocumentChunk) -> None:
+        self.chunks[chunk.chunk_id] = chunk
+
+    def search(self, query_vec: List[float], top_k: int = 2) -> List[Tuple[DocumentChunk, float]]:
+        scored = [(c, cosine_similarity(query_vec, c.embedding)) for c in self.chunks.values()]
+        scored.sort(key=lambda x: x[1], reverse=True)
+        return scored[:top_k]
+
+def build_grounded_prompt(query: str, results: List[Tuple[DocumentChunk, float]]) -> str:
+    lines = ["=== RETRIEVED EVIDENCE ==="]
+    for idx, (chunk, _) in enumerate(results, 1):
+        lines.append(f"[Doc {idx}] ({chunk.source_url}):\n{chunk.content}\n")
+    lines.append(f"=== USER QUERY ===\n{query}\n\nInstructions: Answer strictly using evidence above with [Doc N] citations.")
+    return "\n".join(lines)
+```
+
+</details>
+
+Run [rag_ingestion_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/rag_ingestion_runtime.py) to inspect sliding chunking, mock dense vector indexing, similarity retrieval, and grounded citation generation.
+
+## Data flow and state changes
+
+1. **Document publishing:** Raw documentation files are ingested by the offline pipeline worker.
+2. **Chunking and embedding:** Documents are partitioned into passages, transformed into embedding vectors, and indexed in the vector database.
+3. **User query submission:** An online user query is received by the agent runtime.
+4. **Query embedding:** The query string is embedded into a dense vector using the same embedding model.
+5. **Similarity search & filtering:** The vector database finds the top-$K$ matching chunks matching the user security access tier.
+6. **Prompt assembly:** Chunks are formatted into a structured prompt with `[Doc N]` references.
+7. **Grounded completion:** The LLM generates an answer with verifiable citations referencing the retrieved passages.
+
+## Trust boundaries
+
+- **Document ingestion trust boundary:** Ingested documents may originate from untrusted external sources (such as public websites or third-party submissions). The ingestion parser must sanitize raw HTML/scripts to prevent prompt injection payloads from entering the vector store.
+- **Access control metadata filtering:** Retrieval queries must strictly enforce user permission filters at the database level so unauthorized users cannot retrieve confidential internal documents.
+- **Parametric hallucination boundary:** The model generation prompt must enforce strict instructions prohibiting the model from inventing claims unsupported by retrieved chunks.
+
+## Reliability failures
+
+- **Chunk boundary information loss:** If a critical formula or table is sliced in half across two separate chunks, neither chunk may contain enough context to answer queries accurately.
+- **Retrieval of irrelevant distractors:** High vector similarity does not guarantee semantic relevance; retrieving misleading distractors can cause the generator to produce flawed answers.
+- **Citation fabrication:** Without automated post-generation citation checking, models may hallucinate plausible-looking `[Doc N]` citations for claims that are not actually supported by the source text.
+
+## Limitations and trade-offs
+
+- **Embedding and indexing latency:** Processing millions of documents through embedding models requires significant compute and storage infrastructure.
+- **Fixed vs. dynamic chunk sizes:** Small chunks offer precise retrieval but lack contextual depth; large chunks preserve context but consume more prompt tokens and increase noise.
+- **Dual-encoder semantic blind spots:** Dense embedding models can overlook exact keyword matches, serial numbers, and specialized code identifiers that traditional lexical search handles easily.
+
+## Security preview
+
+In Pass 2, RAG systems are evaluated against **Corpus Poisoning, Access-Filter Bypass, and Indirect Prompt Injection via Retrieved Documents**. Attackers insert malicious instructions into public documentation pages designed to hijack the agent context upon retrieval. We analyze defensive mechanisms including pre-ingestion content sanitization, cryptographic corpus signatures, and isolated citation verification gates in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can ingestion pipelines dynamically determine optimal chunk boundaries without human-tuned heuristic rules?
+- What verification algorithms can validate citation faithfulness in real time with sub-10ms overhead?
+
+## Key takeaways
+
+- RAG combines parametric model reasoning with non-parametric external document retrieval to eliminate hallucinations and staleness.
+- The RAG system operates via two decoupled pipelines: offline document ingestion and online query retrieval/generation.
+- Ingestion involves text extraction, semantic chunking, metadata enrichment, and dense vector embedding.
+- Grounded prompt assembly injects numbered document evidence and requires verified inline citations.
+
+## References
+
+- Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks*. Advances in Neural Information Processing Systems (NeurIPS 2020). [arXiv:2005.11401](https://arxiv.org/abs/2005.11401).
+- Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., Chen, D., & Yih, W. (2020). *Dense Passage Retrieval for Open-Domain Question Answering*. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP 2020), pp. 6769-6781. [arXiv:2004.04906](https://arxiv.org/abs/2004.04906).
+- LangChain Community. (2024). *LangChain: Document Loading, Chunking, and Vector Ingestion Pipelines*. LangChain Documentation. [LangChain Retrieval Concepts](https://python.langchain.com/v0.2/docs/concepts/#retrieval).
+
+---
+
+[Next Unit: Sparse, dense, and hybrid retrieval →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/06-retrieval-and-rag/chapter-plan.md)

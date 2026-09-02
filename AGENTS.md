@@ -31,3 +31,7 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Store small runnable examples under `examples/<chapter-path>/`.
 - Make minimal implementation code blocks expandable by default using `<details><summary>Expand minimal Python implementation</summary>...</details>`.
 - Do not use em dashes.
+
+## Pending visual tasks
+
+- Generate visuals for `04-consolidation-forgetting-and-evaluation` and `01-rag-system-and-ingestion` when image generation quota resets (reset window at ~00:17 UTC / 02:17 CEST).

@@ -5,15 +5,15 @@ current_unit: null
 current_unit_path: null
 current_unit_state: idle
 blocked_from: null
-completed_through: P1-03-05-01
+completed_through: P1-03-06-01
 units_in_review: []
-next_recommended_unit: P1-03-05-02
+next_recommended_unit: P1-03-06-02
 blockers: []
 unresolved_research_questions:
 - Reference workflow domain
 - Protocol version churn
 - Cross-framework artifact metadata
-last_validation_date: '2026-08-29'
+last_validation_date: '2026-08-31'
 ---
 
 # Project Status

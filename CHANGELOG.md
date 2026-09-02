@@ -289,3 +289,29 @@
 - Files or sections: `knowledge/03-building-blocks/05-memory/01-memory-versus-context-and-state.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Memory versus context and state.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-08-31
+
+### P1-03-05-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/05-memory/02-short-term-and-working-memory.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Short-term and working memory.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-05-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Persistent memory types and lifecycle.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-05-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Consolidation, forgetting, and evaluation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-06-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed RAG system and ingestion.
+- Validation: Passed repository validation and the unit review checklist.

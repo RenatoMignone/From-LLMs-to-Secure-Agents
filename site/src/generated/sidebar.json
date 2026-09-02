@@ -204,6 +204,28 @@
           {
             "label": "17 Memory versus context and state",
             "link": "/building-blocks/01-memory-versus-context-and-state/"
+          },
+          {
+            "label": "18 Short-term and working memory",
+            "link": "/building-blocks/02-short-term-and-working-memory/"
+          },
+          {
+            "label": "19 Persistent memory types and lifecycle",
+            "link": "/building-blocks/03-persistent-memory-types-and-lifecycle/"
+          },
+          {
+            "label": "20 Consolidation, forgetting, and evaluation",
+            "link": "/building-blocks/04-consolidation-forgetting-and-evaluation/"
+          }
+        ]
+      },
+      {
+        "label": "Retrieval and rag",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "21 RAG system and ingestion",
+            "link": "/building-blocks/01-rag-system-and-ingestion/"
           }
         ]
       }
