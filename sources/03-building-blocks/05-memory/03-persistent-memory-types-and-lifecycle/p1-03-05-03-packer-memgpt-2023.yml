@@ -1,0 +1,24 @@
+id: p1-03-05-03-packer-memgpt-2023
+title: 'MemGPT: Towards LLMs as Operating Systems'
+authors_or_organization: Charles Packer, Vivian Fang, Shishir G. Patil, Kevin Lin, Sarah Wooders, Joseph E. Gonzalez (UC Berkeley)
+date: 2023-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2310.08560
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Separates out-of-context storage into recall memory (searchable conversation event history) and archival memory (unbounded vector-indexed semantic database), accessed via function calls.
+limitations:
+- Multi-step pagination across archival memory requires sequential LLM tool calls.
+related_topics:
+- archival memory stores
+- recall memory index
+unit_ids:
+- P1-03-05-03
+used_in:
+- knowledge/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle.md
+local_copy: null
+sha256: null

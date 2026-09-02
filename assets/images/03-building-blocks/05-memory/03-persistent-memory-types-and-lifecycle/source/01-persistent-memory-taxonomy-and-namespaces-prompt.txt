@@ -1,0 +1,19 @@
+Create a clear, high-quality technical educational cartoon illustration depicting Persistent Memory Architecture across Episodic, Semantic, and Procedural memory types with Hierarchical Namespaces.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Persistent Memory Architecture: Types and Hierarchical Namespaces".
+2. Three Categorized Storage Vaults:
+   - Vault 1 (Soft Blue, Left): "Episodic Memory (Experience Logs)" - A chronological reel of past interaction events, timestamps, and execution traces. Cute blue robot archiving past dialogue logs.
+   - Vault 2 (Sage Green, Middle): "Semantic Memory (Facts & User Profiles)" - Distilled user preferences, entity knowledge, and environmental facts. Cute green robot managing profile cards like "Alice prefers Python with type hints".
+   - Vault 3 (Soft Amber, Right): "Procedural Memory (Skills & Playbooks)" - Standard operating procedures, tool scripts, and multi-step workflows. Cute amber robot holding tool recipes and execution runbooks.
+3. Bottom Namespace Partitioning Bar:
+   - Showing hierarchical namespace paths: `/orgs/{org_id}/`, `/teams/{team_id}/`, `/users/{user_id}/`.
+   - Clear tenant isolation barrier preventing unauthorized cross-tenant access.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration explaining the Three-Factor Memory Retrieval Scoring Engine for AI agents.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Three-Factor Memory Retrieval Scoring Engine".
+2. Central Scoring Balancer / Formula:
+   - Visual balance scale or mathematical mixer showing:
+     $\text{Score} = \alpha \cdot \text{Relevance} + \beta \cdot \text{Recency} + \gamma \cdot \text{Importance}$
+3. Three Factor Pillars:
+   - Factor 1 (Soft Blue): "1. Semantic Relevance" - Vector embedding cosine similarity between query and memory content.
+   - Factor 2 (Sage Green): "2. Recency Decay" - Exponential time decay curve ($\lambda^{\Delta t}$) prioritizing recently accessed or created memories.
+   - Factor 3 (Soft Amber): "3. Salience / Importance" - Intrinsic weight score assigned during ingestion reflecting critical facts.
+4. Output: Cute robot ranking top candidate memory cards for prompt injection.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

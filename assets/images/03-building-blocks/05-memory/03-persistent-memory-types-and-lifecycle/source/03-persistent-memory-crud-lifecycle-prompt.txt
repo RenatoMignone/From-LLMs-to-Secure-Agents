@@ -1,0 +1,18 @@
+Create a clear, high-quality technical educational cartoon illustration showing the complete Persistent Memory Lifecycle across Ingestion, Recall, Mutation, and Deletion.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Persistent Memory Lifecycle: Write, Recall, Update, and Invalidate".
+2. Four-Stage Horizontal Flow:
+   - Stage 1 (Write & Ingest): Extract facts from event stream, compute embedding, tag with provenance and namespace.
+   - Stage 2 (Multi-Factor Recall): Query vector store + metadata filters, rank top-k records, inject into prompt.
+   - Stage 3 (Update & Reconcile): Overwrite outdated user preferences with revised values when new observations contradict old data.
+   - Stage 4 (Expire & Invalidate): Remove expired TTL entries and execute right-to-be-forgotten user deletion requests.
+3. Cute friendly robots managing each stage with clear icons and security shields.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

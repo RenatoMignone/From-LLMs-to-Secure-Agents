@@ -1,0 +1,24 @@
+id: p1-03-05-03-langgraph-store-2024
+title: 'LangGraph Store: Hierarchical Namespaced Persistence Across Threads'
+authors_or_organization: LangChain Community
+date: 2024-08
+source_type: documentation
+canonical_url: https://langchain-ai.github.io/langgraph/concepts/memory/
+doi: null
+version: 0.2
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Provides hierarchical key-value and vector persistence across separate agent threads using namespaced scopes (e.g., /users/{user_id}/preferences) for profile and semantic memory.
+limitations:
+- Cross-tenant data isolation depends strictly on application-layer namespace enforcement.
+related_topics:
+- namespaced persistent storage
+- cross-thread state stores
+unit_ids:
+- P1-03-05-03
+used_in:
+- knowledge/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle.md
+local_copy: null
+sha256: null
