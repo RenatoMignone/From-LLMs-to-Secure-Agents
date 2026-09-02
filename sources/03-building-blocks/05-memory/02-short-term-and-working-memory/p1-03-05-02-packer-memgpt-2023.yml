@@ -1,0 +1,24 @@
+id: p1-03-05-02-packer-memgpt-2023
+title: 'MemGPT: Towards LLMs as Operating Systems'
+authors_or_organization: Charles Packer, Vivian Fang, Shishir G. Patil, Kevin Lin, Sarah Wooders, Joseph E. Gonzalez (UC Berkeley)
+date: 2023-10
+source_type: paper
+canonical_url: https://arxiv.org/abs/2310.08560
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Designs in-context working memory as an OS-like virtual context divided into fixed system instructions, editable working scratchpads (core memory), and a FIFO message queue that triggers eviction and consolidation routines when token thresholds are exceeded.
+limitations:
+- Requires active LLM function calling to edit working memory scratchpads, which adds per-step token overhead and latency.
+related_topics:
+- working memory scratchpads
+- virtual context window management
+unit_ids:
+- P1-03-05-02
+used_in:
+- knowledge/03-building-blocks/05-memory/02-short-term-and-working-memory.md
+local_copy: null
+sha256: null

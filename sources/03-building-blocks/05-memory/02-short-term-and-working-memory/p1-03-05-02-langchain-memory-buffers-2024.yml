@@ -1,0 +1,24 @@
+id: p1-03-05-02-langchain-memory-buffers-2024
+title: 'LangChain: Memory Types and Conversation Window Management'
+authors_or_organization: LangChain Community
+date: 2024-05
+source_type: documentation
+canonical_url: https://python.langchain.com/v0.2/docs/concepts/#memory
+doi: null
+version: 0.2
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Details short-term memory abstractions including conversation buffer window memory, summary memory, and token-constrained message pruning to prevent context overflow.
+limitations:
+- Summarization can drop subtle details or prompt instructions over long interaction chains.
+related_topics:
+- message trimming
+- rolling summarization
+unit_ids:
+- P1-03-05-02
+used_in:
+- knowledge/03-building-blocks/05-memory/02-short-term-and-working-memory.md
+local_copy: null
+sha256: null

@@ -1,0 +1,24 @@
+id: p1-03-05-02-microsoft-autogen-context-2024
+title: 'AutoGen: Managing Agent Context and Short-Term Conversation History'
+authors_or_organization: Microsoft Research
+date: 2024-06
+source_type: documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html
+doi: null
+version: 0.4
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Explains agent session context handling, tool call result truncation, and message transforms for controlling token usage in multi-turn multi-agent conversations.
+limitations:
+- Context pruning without semantic weighting may evict early instructions that are still relevant to current steps.
+related_topics:
+- session context handling
+- tool result truncation
+unit_ids:
+- P1-03-05-02
+used_in:
+- knowledge/03-building-blocks/05-memory/02-short-term-and-working-memory.md
+local_copy: null
+sha256: null

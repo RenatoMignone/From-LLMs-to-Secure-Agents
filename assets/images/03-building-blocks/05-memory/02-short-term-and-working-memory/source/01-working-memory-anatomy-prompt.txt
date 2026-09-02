@@ -1,0 +1,20 @@
+Create a clear, high-quality technical educational cartoon illustration depicting the internal anatomy and token budgeting of an agent's Working Memory and Context Window.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Working Memory Anatomy: In-Context Scratchpad and Token Budgeting".
+2. Central Diagram: A structured rectangular context window divided into four distinct color-coded modular compartments:
+   - Section 1 (Top, Soft Blue): "System Core & Immutable Rules" - A cute robot anchoring the permanent agent persona, safety guardrails, and role definitions.
+   - Section 2 (Middle-Upper, Sage Green): "In-Context Scratchpad (Core Working Memory)" - An active chalkboard/notepad showing current task goal, active subtasks, intermediate variables, and entity tracking. A focused green robot writing and updating key facts.
+   - Section 3 (Middle-Lower, Soft Amber): "Ephemeral Tool Call & Observation Buffer" - Temporary slots holding raw tool inputs and JSON outputs before compaction.
+   - Section 4 (Bottom, Soft Coral): "Sliding Dialogue History" - Recent user turns and assistant responses.
+3. Annotations and Metrics:
+   - Visual token capacity meter showing budget distribution across sections.
+   - Clear high-contrast labels and callouts highlighting "Run-Scoped", "Fast Direct Attention", and "Deterministic Budget Limits".
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.

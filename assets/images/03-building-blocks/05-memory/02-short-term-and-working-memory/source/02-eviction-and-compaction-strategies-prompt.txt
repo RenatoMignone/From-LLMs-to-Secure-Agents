@@ -1,0 +1,25 @@
+Create a clear, high-quality technical educational cartoon illustration comparing three Short-Term Memory Eviction and Compaction Strategies for AI agents.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "Short-Term Memory Eviction and Compaction Strategies".
+2. Three Comparison Columns:
+   - Column 1 ("A. FIFO Sliding Window"):
+     - A sliding frame dropping older messages into an archive bin while keeping only the last K messages.
+     - Label: "Simple but loses early context and initial user instructions".
+     - Cute blue robot sliding the window.
+   - Column 2 ("B. Rolling Progressive Summarization"):
+     - An assistant robot synthesizing old dialogue batches into a compact summary card pinned at the top of conversation history.
+     - Label: "Preserves key narrative facts but can compress away fine details".
+     - Cute green robot holding a magnifying glass and concise summary sheet.
+   - Column 3 ("C. Structured Scratchpad + Salience Trimming"):
+     - An organized dashboard where key facts are extracted into fixed key-value slots and ephemeral tool outputs are aggressively pruned.
+     - Label: "High density and structured state with minimal token waste".
+     - Cute amber robot filing facts into tidy labeled drawers.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
