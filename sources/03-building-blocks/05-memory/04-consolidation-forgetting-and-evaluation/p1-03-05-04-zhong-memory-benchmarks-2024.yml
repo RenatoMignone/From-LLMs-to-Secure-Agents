@@ -1,0 +1,24 @@
+id: p1-03-05-04-zhong-memory-benchmarks-2024
+title: 'MemoryBank: Enhancing Large Language Models with Long-Term Memory and Forgetting Mechanisms'
+authors_or_organization: Wanjun Zhong, Lianghong Guo, Qingsong Gao, He Ye, Yanlin Wang (Tencent & Tsinghua University)
+date: 2024-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2305.10250
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Proposes Ebbinghaus forgetting curve implementations for agent memory decay, along with evaluation methodologies measuring memory update accuracy, contradiction resolution, and long-range dialogue consistency.
+limitations:
+- Decay parameters must be recalibrated across different agent domains and user interaction frequencies.
+related_topics:
+- Ebbinghaus memory decay
+- contradiction resolution evaluation
+unit_ids:
+- P1-03-05-04
+used_in:
+- knowledge/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation.md
+local_copy: null
+sha256: null
