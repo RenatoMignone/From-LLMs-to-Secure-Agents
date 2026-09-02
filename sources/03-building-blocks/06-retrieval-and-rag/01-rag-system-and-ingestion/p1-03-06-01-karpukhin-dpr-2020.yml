@@ -1,0 +1,24 @@
+id: p1-03-06-01-karpukhin-dpr-2020
+title: 'Dense Passage Retrieval for Open-Domain Question Answering'
+authors_or_organization: Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, Wen-tau Yih (Facebook AI Research & Princeton University)
+date: 2020-04
+source_type: paper
+canonical_url: https://arxiv.org/abs/2004.04906
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Establishes dense vector representations and dual-encoder architectures for passage retrieval, outperforming traditional sparse BM25 indexing in open-domain question answering.
+limitations:
+- Dense retrieval can miss exact keyword or code identifier matches compared to sparse lexical indexes.
+related_topics:
+- dense passage retrieval
+- dual-encoder embeddings
+unit_ids:
+- P1-03-06-01
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion.md
+local_copy: null
+sha256: null

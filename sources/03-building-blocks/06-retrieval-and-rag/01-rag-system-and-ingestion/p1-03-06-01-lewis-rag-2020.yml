@@ -1,0 +1,24 @@
+id: p1-03-06-01-lewis-rag-2020
+title: 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks'
+authors_or_organization: Patrick Lewis, Ethan Perez, Aleksandara Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, Sebastian Riedel, Douwe Kiela (Facebook AI Research, UCL, NYU)
+date: 2020-05
+source_type: paper
+canonical_url: https://arxiv.org/abs/2005.11401
+doi: null
+version: null
+accessed: '2026-08-24'
+last_verified: '2026-08-24'
+status: checked
+claims_supported:
+- Introduces Retrieval-Augmented Generation (RAG) architectures combining pre-trained parametric generator models with non-parametric neural retrieval over dense vector indexes to condition text generation on external factual documents.
+limitations:
+- Focuses on initial seq2seq architectures rather than multi-turn agentic workflows.
+related_topics:
+- retrieval-augmented generation
+- non-parametric memory
+unit_ids:
+- P1-03-06-01
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion.md
+local_copy: null
+sha256: null

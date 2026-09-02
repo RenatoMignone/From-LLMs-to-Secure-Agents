@@ -1,0 +1,25 @@
+Create a clear, high-quality technical educational cartoon illustration depicting the Dual-Pipeline Architecture of a Retrieval-Augmented Generation (RAG) system.
+
+Follow the canonical cartoon style:
+- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
+- Warm light cream background (#FDFBF7).
+- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
+
+Layout and Elements:
+1. Title Banner at top: "The Dual-Pipeline RAG Architecture: Ingestion vs. Query & Generation".
+2. Two Parallel Horizontal Pipelines:
+   - Pipeline 1 (Top, Sage Green): "Offline Ingestion Pipeline"
+     - Step 1: Raw Documents (PDFs, Markdown, Web pages) loaded by a cute green robot.
+     - Step 2: Text Cleaning & Semantic Chunking into bounded passages.
+     - Step 3: Dense Vector Embedding model converting text to numerical vectors.
+     - Step 4: Storage in a Vector Database with metadata indexes.
+   - Pipeline 2 (Bottom, Soft Blue): "Online Query & Generation Pipeline"
+     - Step 1: User asks a question to a cute blue assistant robot.
+     - Step 2: Query Embedding converted to dense vector.
+     - Step 3: Approximate Nearest Neighbor (ANN) Vector Search matching top-k chunks.
+     - Step 4: Prompt Context Assembly combining query + retrieved passages.
+     - Step 5: Foundation Model generates grounded answer with verified citations.
+3. Connecting bridge arrow linking the Vector Database between both pipelines.
+
+Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
