@@ -14,13 +14,14 @@ All [component and workflow security](../07-security-by-component-and-workflow-s
 
 ## Planned child chapters
 
-1. `01-reference-architecture-method.md`
-2. `02-read-only-knowledge-agent.md`
-3. `03-human-approved-action-agent.md`
-4. `04-sandboxed-code-and-browser-agent.md`
-5. `05-multi-agent-and-cross-domain-system.md`
-6. `06-high-assurance-control-plane.md`
-7. `07-recovery-and-incident-ready-architecture.md`
+Main path:
+
+1. `01-method-and-read-only-knowledge-agent.md`
+2. `02-human-approved-action-and-sandboxed-execution.md`
+
+Deep dive:
+
+3. `03-multi-agent-high-assurance-and-recovery.md`
 
 ## Required concepts
 

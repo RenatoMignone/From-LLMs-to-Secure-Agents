@@ -14,11 +14,8 @@ Model command and code injection, sandbox escape, file and network abuse, server
 
 ## Planned child chapters
 
-1. `01-code-command-browser-and-file-attacks.md`
-2. `02-isolation-network-and-resource-boundaries.md`
-3. `03-tools-plugins-mcp-servers-and-dependencies.md`
-4. `04-artifacts-images-provenance-and-updates.md`
-5. `05-controls-detection-recovery-and-advisories.md`
+1. `01-execution-and-supply-chain-attacks.md`
+2. `02-isolation-provenance-detection-and-recovery.md`
 
 ## Required concepts
 

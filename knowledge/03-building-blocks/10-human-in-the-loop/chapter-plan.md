@@ -14,10 +14,8 @@ Design clarification, review, approval, intervention, escalation, takeover, time
 
 ## Planned child chapters
 
-1. `01-human-control-patterns.md`
-2. `02-approval-and-escalation-design.md`
-3. `03-pause-resume-timeouts-and-rejection.md`
-4. `04-human-feedback-and-operator-experience.md`
+1. `01-human-control-approval-and-escalation.md`
+2. `02-interrupts-steering-feedback-and-operator-experience.md`
 
 ## Required concepts
 

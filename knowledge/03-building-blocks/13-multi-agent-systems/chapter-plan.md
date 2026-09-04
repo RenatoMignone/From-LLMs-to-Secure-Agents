@@ -14,11 +14,13 @@ Single-agent building blocks and [evaluation](../12-evaluation-and-benchmarks/ch
 
 ## Planned child chapters
 
-1. `01-when-and-why-multiple-agents.md`
-2. `02-roles-delegation-and-handoffs.md`
-3. `03-supervisors-teams-and-peer-coordination.md`
-4. `04-messages-shared-state-and-artifacts.md`
-5. `05-termination-failure-and-evaluation.md`
+Main path:
+
+1. `01-multi-agent-roles-delegation-and-coordination.md`
+
+Deep dive:
+
+2. `02-shared-state-failures-termination-and-evaluation.md`
 
 ## Required concepts
 

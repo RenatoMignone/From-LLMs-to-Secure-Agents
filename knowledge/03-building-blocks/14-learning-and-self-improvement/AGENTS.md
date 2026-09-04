@@ -7,5 +7,5 @@
 - Terminology: Distinguish in-context adaptation, memory update, prompt optimization, skill acquisition, and weight update.
 - Required links: [multi-agent systems](../13-multi-agent-systems/chapter-plan.md) and [reliability](../15-reliability-and-operations/chapter-plan.md).
 - Security scope: Only a short preview of feedback poisoning and unsafe optimization.
-- Learning path: chapters 01, 02, and 06 are main path; chapters 03 through 05 are deep dives.
+- Learning path: chapter 01 is main path; chapter 02 is a deep dive.
 - Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

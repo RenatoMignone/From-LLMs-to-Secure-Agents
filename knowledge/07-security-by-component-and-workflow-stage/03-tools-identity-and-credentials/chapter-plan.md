@@ -14,11 +14,8 @@ Model excessive agency, unsafe tool selection, parameter manipulation, authoriza
 
 ## Planned child chapters
 
-1. `01-tool-misuse-excessive-agency-and-parameters.md`
-2. `02-authentication-authorization-and-policy-enforcement.md`
-3. `03-delegation-confused-deputy-and-impersonation.md`
-4. `04-credentials-secrets-tokens-and-revocation.md`
-5. `05-controls-tests-and-recovery.md`
+1. `01-tool-identity-and-credential-attacks.md`
+2. `02-authorization-controls-tests-and-recovery.md`
 
 ## Required concepts
 

@@ -14,11 +14,13 @@ Define tasks, datasets, simulators, oracles, metrics, repeated trials, pass rate
 
 ## Planned child chapters
 
-1. `01-evaluation-levels-and-test-design.md`
-2. `02-component-and-trajectory-metrics.md`
-3. `03-end-to-end-task-and-reliability-evaluation.md`
-4. `04-agent-benchmarks-and-limitations.md`
-5. `05-regression-and-release-evaluation.md`
+Main path:
+
+1. `01-evaluation-levels-test-design-and-metrics.md`
+
+Deep dive:
+
+2. `02-benchmarks-regression-and-release-evaluation.md`
 
 ## Required concepts
 

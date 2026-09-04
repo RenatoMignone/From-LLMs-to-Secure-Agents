@@ -30,7 +30,7 @@ Pass 2 revisits every Pass 1 component. It separates preventive, detective, and 
 
 The main path follows every top-level section and the chapters labeled "Main path" in nested plans. It teaches the minimum complete system, threat model, controls, reference designs, and assurance process.
 
-Deep dives are optional branches for advanced retrieval variants, continual learning, framework-specific implementations, advanced multimodality, protocol details, generative interfaces, optimization, regulation, sector profiles, and open research. Their local plans identify exact chapters. They link back to a main-path entry point and may be skipped without breaking later core chapters. The generated site keeps these branches collapsed by default.
+Deep dives are optional branches for advanced retrieval variants, continual learning, framework implementation patterns, advanced multimodality, protocol details, generative interfaces, optimization, and open research. Their local plans identify exact chapters. They link back to a main-path entry point and may be skipped without breaking later core chapters. The generated site keeps these branches collapsed by default. Vendor-by-vendor, jurisdiction-by-jurisdiction, and sector-by-sector coverage is deferred unless it changes the stable architecture or security model.
 
 ## Required concepts
 
@@ -73,7 +73,7 @@ The reference workflow domain, protocol version churn, and cross-framework artif
 
 ## Completion criteria
 
-All roadmap units are complete, the pass boundary remains intact, every architecture component has a security treatment, and all claims, visuals, and examples meet project policy.
+All committed roadmap units are complete, the pass boundary remains intact, every architecture component has a security treatment, and all claims, necessary visuals, and examples meet project policy. Deferred topics do not block completion.
 
 ## Operating rule
 

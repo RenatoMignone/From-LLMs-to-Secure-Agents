@@ -4,7 +4,7 @@
 
 Visuals must clarify architecture, flows, trust boundaries, state, attacks, defenses, comparisons, or multi-step execution. Do not create ASCII or text-based .md schemas. Whenever a schema, workflow, state flow, or architecture map is needed, generate a visual cartoon illustration instead.
 
-Chapters should incorporate multiple visual illustrations (typically 2 to 4 diagrams per unit, covering system topology, sequence flows, boundary crossings, state machines, and threat scenarios). The authoring agent should proactively identify every concept that benefits from visual depiction rather than relying on a single overview image. Visuals are a primary learning mechanism for readers.
+Use 1 to 3 visual illustrations when they materially clarify a chapter. One strong visual is sufficient for a focused concept. Use additional visuals for system topology, sequence flows, boundary crossings, state machines, or threat scenarios only when those views teach distinct information. Do not create visuals to satisfy a quota. Visuals remain a primary learning mechanism for readers.
 
 ## Preference order
 
@@ -39,7 +39,7 @@ assets/images/
       source/               Diagram, plot script, prompt, or data
 ```
 
-Keep the complete chapter directory hierarchy, tracking empty folders with `.gitkeep`. Keep final visuals and prompt files in the owning folder; Markdown references local files. Never hotlink content visuals. README badges may be remote.
+Create the chapter image directory when its chapter starts, tracking it with `.gitkeep` while empty. Do not pre-create image directories for the complete roadmap. Keep final visuals and prompt files in the owning folder; Markdown references local files. Never hotlink content visuals. README badges may be remote.
 
 ## Rules
 

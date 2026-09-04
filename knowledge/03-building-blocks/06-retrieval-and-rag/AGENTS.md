@@ -7,5 +7,5 @@
 - Terminology: Expand Retrieval-Augmented Generation (RAG) on first use; distinguish sparse, dense, hybrid, graph, agentic, and multimodal retrieval.
 - Required links: [memory](../05-memory/chapter-plan.md) and [tools](../07-tools-and-function-calling/chapter-plan.md).
 - Security scope: Only a short preview of poisoning, provenance, and access-filter risk.
-- Learning path: chapters 01 through 03, 07, and 08 are main path; chapters 04 through 06 are deep dives.
+- Learning path: chapters 01, 02, and 04 are main path; chapter 03 is a deep dive.
 - Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

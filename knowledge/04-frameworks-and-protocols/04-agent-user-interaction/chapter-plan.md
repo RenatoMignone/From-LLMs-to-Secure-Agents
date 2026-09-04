@@ -14,16 +14,7 @@ The reader can design a bidirectional interface for long-running, streaming, int
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-agent-user-interface-architecture.md`
-2. `02-events-streaming-and-shared-state.md`
-3. `03-interrupts-approvals-and-user-steering.md`
-
-Deep dives:
-
-4. `04-generative-interfaces-and-safe-rendering.md`
-5. `05-ag-ui-and-the-interface-protocol-landscape.md`
+1. `01-interface-events-steering-and-safe-rendering.md`
 
 ## Required concepts
 

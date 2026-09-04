@@ -93,7 +93,7 @@ examples/
   <chapter-path-without-md>/
 ```
 
-Mirror each path below `knowledge/` in `assets/images/`, `sources/`, and `examples/`, replacing the chapter's `.md` file with a directory of the same name. Keep empty folders tracked with `.gitkeep`. Repository-wide source records belong in `sources/project/`. The agent loads only unit-scoped artifacts into context during execution.
+When a chapter is started, mirror its path below `knowledge/` in `assets/images/`, `sources/`, and `examples/`, replacing the chapter's `.md` file with a directory of the same name. Do not pre-create artifact folders for the complete roadmap. Keep an empty folder for an active or existing chapter tracked with `.gitkeep` when necessary. Repository-wide source records belong in `sources/project/`. The agent loads only unit-scoped artifacts into context during execution.
 
 Each image folder owns its visual metadata. `assets/attribution.yml` indexes those local manifests.
 

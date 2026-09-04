@@ -14,11 +14,8 @@ Design schemas, descriptions, selection, argument validation, dispatch, results,
 
 ## Planned child chapters
 
-1. `01-tools-actions-and-capabilities.md`
-2. `02-schemas-selection-and-dispatch.md`
-3. `03-results-errors-parallelism-and-retries.md`
-4. `04-side-effects-idempotency-and-confirmation.md`
-5. `05-tool-discovery-and-large-toolsets.md`
+1. `01-tool-capabilities-schemas-selection-and-dispatch.md`
+2. `02-results-failures-side-effects-and-confirmation.md`
 
 ## Required concepts
 

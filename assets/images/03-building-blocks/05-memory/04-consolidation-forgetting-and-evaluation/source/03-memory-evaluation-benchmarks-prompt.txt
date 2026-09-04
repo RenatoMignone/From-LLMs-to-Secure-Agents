@@ -1,18 +1,9 @@
-Create a clear, high-quality technical educational cartoon illustration depicting the Memory Evaluation Metrics and Benchmarks Dashboard for autonomous agents.
-
-Follow the canonical cartoon style:
-- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
-- Warm light cream background (#FDFBF7).
-- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
-- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
-
-Layout and Elements:
-1. Title Banner at top: "Long-Term Memory Evaluation & Benchmark Metrics".
-2. Four Metric Scorecards / Dials:
-   - Metric 1: "Recall Accuracy & Precision@K" - Measuring precision of retrieved historical facts for complex user queries.
-   - Metric 2: "Temporal Consistency Score" - Absence of hallucinations or contradictory answers across extended dialogue sessions.
-   - Metric 3: "Consolidation Fidelity" - Accuracy of synthetic reflections compared to ground truth episodic logs.
-   - Metric 4: "Latency & Storage Footprint" - Sub-100ms vector search latency and bounded token context budget.
-3. Cute robot evaluator holding a benchmark clipboard with checkmarks.
-
-Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Show the four major dimensions used to evaluate a long-term AI agent memory system.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide landscape dashboard with four large scorecards in a 2-by-2 grid and a cute robot evaluator holding a clipboard at one edge. Recall uses a target and retrieved cards. Consistency uses matching statements across a timeline. Fidelity compares source events with a distilled insight. Efficiency combines a clock and bounded storage gauge. Use simple gauges and icons, not prose.
+Text (verbatim): "Long-Term Memory Evaluation", "Recall@K", "Temporal Consistency", "Reflection Fidelity", "Latency and Storage", "TEST", "PASS"
+Constraints: Render every listed label exactly once and no other words; bold readable sans-serif labels; high contrast; generous spacing; no invented benchmark values; no watermark.
+Avoid: misspellings, explanatory paragraphs, dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism.

@@ -1,19 +1,9 @@
-Create a clear, high-quality technical educational cartoon illustration demonstrating Context Grounding and Grounded Citation Generation in AI agents.
-
-Follow the canonical cartoon style:
-- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
-- Warm light cream background (#FDFBF7).
-- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
-- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
-
-Layout and Elements:
-1. Title Banner at top: "Context Grounding and Verified Citation Generation".
-2. Left Box ("Retrieved Evidence Context"):
-   - Labeled passages: `[Doc 1: Security Policy §3.2]` and `[Doc 2: API Architecture Guide]`.
-3. Middle Arrow ("Prompt Injection with Explicit Grounding Instructions"):
-   - "Answer ONLY using retrieved facts. Cite sources with bracketed document references."
-4. Right Box ("Grounded Output Generation"):
-   - Cute robot presenting a clean answer with highlighted citations `[Doc 1]` directly backing up every factual claim.
-   - Provenance verification checkmarks ensuring zero hallucinations.
-
-Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational cartoon illustration demonstrating context grounding and citation-backed answer generation in an AI agent.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide landscape three-stage flow. Left panel contains two retrieved evidence cards. Center shows an explicit grounding instruction traveling with the evidence. Right panel shows a cute robot presenting a short answer whose factual lines connect visibly to [Doc 1] and [Doc 2], with provenance checkmarks. Make support relationships visible through colored connector lines.
+Text (verbatim): "Context Grounding and Verified Citation Generation", "Retrieved Evidence Context", "[Doc 1: Security Policy §3.2]", "[Doc 2: API Architecture Guide]", "Answer ONLY using retrieved facts.", "Cite sources with bracketed document references.", "Grounded Output Generation", "[Doc 1]", "[Doc 2]", "Provenance Verified"
+Constraints: Do not claim that grounding guarantees zero hallucinations; depict verification as a check step, not a guarantee; bold readable sans-serif labels; high contrast; balanced spacing; technically correct left-to-right flow; no additional text; no watermark.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.

@@ -301,6 +301,8 @@ def check_status(units: list[Unit]) -> None:
 def check_sources(units: list[Unit]) -> dict[str, dict[str, Any]]:
     records: dict[str, dict[str, Any]] = {}
     for unit in units:
+        if not (ROOT / unit.chapter_path).is_file():
+            continue
         source_folder = chapter_source_folder(unit)
         if not source_folder.is_dir():
             fail(f"missing chapter source folder: {relative(source_folder)}")
@@ -347,6 +349,8 @@ def check_sources(units: list[Unit]) -> dict[str, dict[str, Any]]:
 
 def check_examples(units: list[Unit]) -> None:
     for unit in units:
+        if not (ROOT / unit.chapter_path).is_file():
+            continue
         example_folder = chapter_example_folder(unit)
         if not example_folder.is_dir():
             fail(f"missing chapter example folder: {relative(example_folder)}")
@@ -355,6 +359,8 @@ def check_examples(units: list[Unit]) -> None:
 def check_visuals(units: list[Unit]) -> set[str]:
     visual_files: set[str] = set()
     for unit in units:
+        if not (ROOT / unit.chapter_path).is_file():
+            continue
         image_folder = chapter_image_folder(unit)
         if not image_folder.is_dir():
             fail(f"missing chapter image folder: {relative(image_folder)}")

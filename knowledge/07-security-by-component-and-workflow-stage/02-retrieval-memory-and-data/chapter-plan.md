@@ -14,11 +14,8 @@ Model ingestion and corpus poisoning, embedding and index manipulation, access-f
 
 ## Planned child chapters
 
-1. `01-ingestion-corpus-and-index-attacks.md`
-2. `02-retrieval-manipulation-and-access-control.md`
-3. `03-memory-poisoning-persistence-and-forgetting.md`
-4. `04-data-privacy-provenance-and-lifecycle.md`
-5. `05-controls-tests-and-recovery.md`
+1. `01-retrieval-memory-and-data-attacks.md`
+2. `02-controls-privacy-provenance-tests-and-recovery.md`
 
 ## Required concepts
 

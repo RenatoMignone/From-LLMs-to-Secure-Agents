@@ -1,19 +1,9 @@
-Create a clear, high-quality technical educational cartoon illustration showing Document Chunking Strategies and Metadata Enrichment in RAG systems.
-
-Follow the canonical cartoon style:
-- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
-- Warm light cream background (#FDFBF7).
-- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
-- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
-
-Layout and Elements:
-1. Title Banner at top: "Document Chunking Strategies and Metadata Enrichment".
-2. Left Side: Three Chunking Strategies Compared:
-   - Strategy A: "Fixed-Size with Overlap" (Sliding window preventing sentence slicing).
-   - Strategy B: "Structural / Markdown Aware" (Splitting cleanly on headers and code blocks).
-   - Strategy C: "Semantic Boundary" (Splitting on conceptual topic transitions).
-3. Right Side: "Metadata Enrichment Envelope":
-   - A structured memory card showing attached metadata: `document_id`, `chunk_index`, `source_url`, `section_path`, `access_tier: "internal"`, `timestamp`.
-   - Cute robot stamping verified metadata badges onto chunk cards.
-
-Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational cartoon illustration comparing document chunking strategies and showing metadata enrichment in a Retrieval-Augmented Generation system.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide landscape educational diagram. Title at top. Left two-thirds compare three distinct chunking methods using document strips: fixed windows visibly overlap, structural chunks split at a heading and code-block boundary, semantic chunks split where topic color changes. Right third is a "Metadata Enrichment Envelope" where a cute robot stamps metadata badges onto a chunk card.
+Text (verbatim): "Document Chunking Strategies and Metadata Enrichment", "Fixed-Size with Overlap", "Structural / Markdown Aware", "Semantic Boundary", "Metadata Enrichment Envelope", "document_id", "chunk_index", "source_url", "section_path", "access_tier: internal", "timestamp"
+Constraints: Make the conceptual differences visible, not merely listed; bold readable sans-serif labels; high contrast; generous spacing; no additional text; no watermark.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.

@@ -14,20 +14,9 @@ Explain discovery, capability cards, tasks, messages, parts, artifacts, streamin
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-agent-to-tool-versus-agent-to-agent.md`
-2. `02-a2a-data-model-and-discovery.md`
-3. `03-task-lifecycle-messages-and-artifacts.md`
-
 Deep dive:
 
-4. `04-streaming-push-and-long-running-work.md`
-
-Main path resumes:
-
-5. `05-bindings-identity-and-interoperability.md`
-6. `06-protocol-landscape-and-selection.md`
+1. `01-agent-to-agent-architecture-lifecycle-and-interoperability.md`
 
 ## Required concepts
 

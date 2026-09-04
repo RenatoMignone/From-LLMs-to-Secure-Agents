@@ -14,9 +14,17 @@ Model run and thread state, events, checkpoints, durable execution, idempotency,
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-run-thread-and-event-models.md`
 2. `02-checkpoints-interrupts-and-resumption.md`
+
+Deep dive:
+
 3. `03-retries-idempotency-and-concurrency.md`
+
+Main path resumes:
+
 4. `04-termination-cancellation-and-cleanup.md`
 
 ## Required concepts

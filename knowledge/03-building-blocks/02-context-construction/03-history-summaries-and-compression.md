@@ -26,7 +26,7 @@ visual_assets:
 example_paths:
 - examples/03-building-blocks/02-context-construction/03-history-summaries-and-compression/history_compressor.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-18'
 ---

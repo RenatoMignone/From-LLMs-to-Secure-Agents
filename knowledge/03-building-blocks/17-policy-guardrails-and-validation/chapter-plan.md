@@ -14,17 +14,8 @@ The reader can place policy decisions, enforcement points, validators, guardrail
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-policy-constraints-and-the-control-plane.md`
-2. `02-input-and-context-validation.md`
-3. `03-intent-action-and-tool-call-validation.md`
-4. `04-output-schemas-validation-and-safe-rendering.md`
-5. `05-guardrails-moderation-and-failure-behavior.md`
-
-Deep dive:
-
-6. `06-agent-registry-configuration-and-versioning.md`
+1. `01-policy-control-plane-and-input-validation.md`
+2. `02-action-output-guardrail-and-configuration-validation.md`
 
 ## Required concepts
 

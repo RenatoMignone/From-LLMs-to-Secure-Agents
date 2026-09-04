@@ -14,11 +14,8 @@ The reader can trace input, context, planning, retrieval, state, authority, poli
 
 ## Planned child chapters
 
-1. `01-workflow-requirements-and-system-boundary.md`
-2. `02-single-agent-research-and-action-workflow.md`
-3. `03-durable-human-approved-workflow.md`
-4. `04-multi-agent-delegation-workflow.md`
-5. `05-trace-replay-and-functional-evaluation.md`
+1. `01-reference-workflow-requirements-and-system-boundary.md`
+2. `02-durable-research-action-delegation-and-evaluation.md`
 
 ## Required concepts
 

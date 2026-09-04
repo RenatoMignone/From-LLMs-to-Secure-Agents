@@ -27,7 +27,7 @@ visual_assets:
 example_paths:
 - examples/03-building-blocks/03-planning-and-reasoning/03-reflection-evaluation-and-replanning/reflexion_evaluator_optimizer.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-24'
 ---

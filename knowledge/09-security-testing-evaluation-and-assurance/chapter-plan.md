@@ -14,14 +14,9 @@ The reader can design security unit, integration, adversarial, regression, and r
 
 ## Planned child chapters
 
-1. `01-security-properties-and-test-oracles.md`
-2. `02-component-and-policy-tests.md`
-3. `03-adversarial-scenarios-and-red-teaming.md`
-4. `04-agent-security-benchmarks.md`
-5. `05-control-effectiveness-and-utility.md`
-6. `06-recovery-resilience-and-chaos-tests.md`
-7. `07-continuous-assurance-and-release-gates.md`
-8. `08-reporting-evidence-and-limitations.md`
+1. `01-security-properties-oracles-and-component-tests.md`
+2. `02-adversarial-benchmarks-and-control-effectiveness.md`
+3. `03-recovery-continuous-assurance-and-reporting.md`
 
 ## Required concepts
 

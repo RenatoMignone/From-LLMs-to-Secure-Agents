@@ -14,11 +14,8 @@ Model approval fatigue, deceptive or incomplete summaries, spoofed confirmations
 
 ## Planned child chapters
 
-1. `01-human-trust-approval-and-interface-failures.md`
-2. `02-notifications-escalation-and-takeover.md`
-3. `03-telemetry-leakage-integrity-and-retention.md`
-4. `04-detection-alerting-investigation-and-replay.md`
-5. `05-controls-tests-and-recovery.md`
+1. `01-human-interface-and-observability-failures.md`
+2. `02-controls-detection-investigation-and-recovery.md`
 
 ## Required concepts
 

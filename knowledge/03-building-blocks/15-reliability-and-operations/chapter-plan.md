@@ -14,11 +14,13 @@ Design queues, workers, leases, retries, backoff, rate limits, timeouts, budgets
 
 ## Planned child chapters
 
-1. `01-service-boundaries-queues-and-workers.md`
-2. `02-timeouts-retries-backoff-and-idempotency.md`
-3. `03-budgets-rate-limits-and-circuit-breakers.md`
-4. `04-caching-versioning-deployment-and-rollback.md`
-5. `05-service-level-objectives-and-capacity.md`
+Main path:
+
+1. `01-service-boundaries-queues-retries-and-budgets.md`
+
+Deep dive:
+
+2. `02-caching-deployment-service-objectives-and-capacity.md`
 
 ## Required concepts
 

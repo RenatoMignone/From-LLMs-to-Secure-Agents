@@ -14,11 +14,8 @@ Trace authentication, authorization, policy decisions, delegation, impersonation
 
 ## Planned child chapters
 
-1. `01-principals-identities-and-authentication.md`
-2. `02-authorization-policies-and-capabilities.md`
-3. `03-delegation-impersonation-and-token-exchange.md`
-4. `04-workload-identity.md`
-5. `05-credentials-secrets-rotation-and-revocation.md`
+1. `01-identity-authentication-authorization-and-delegation.md`
+2. `02-workload-identity-credentials-and-revocation.md`
 
 ## Required concepts
 

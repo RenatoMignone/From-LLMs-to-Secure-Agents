@@ -16,14 +16,11 @@ Design structured events, logs, metrics, traces, spans, correlation, lineage, sa
 
 Main path:
 
-1. `01-observability-model-and-events.md`
-2. `02-traces-spans-and-correlation.md`
-3. `03-metrics-cost-quality-and-latency.md`
-4. `04-lineage-replay-redaction-and-retention.md`
+1. `01-events-traces-metrics-and-correlation.md`
 
 Deep dive:
 
-5. `05-opentelemetry-langfuse-langsmith-and-phoenix-integrations.md`
+2. `02-lineage-replay-redaction-retention-and-integrations.md`
 
 ## Required concepts
 

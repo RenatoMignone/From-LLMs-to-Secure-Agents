@@ -14,13 +14,16 @@ source_records:
 - p1-03-05-04-park-generative-agents-2023
 - p1-03-05-04-packer-memgpt-2023
 - p1-03-05-04-zhong-memory-benchmarks-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/01-reflection-and-consolidation-pipeline.png
+- assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/02-forgetting-and-pruning-mechanisms.png
+- assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/03-memory-evaluation-benchmarks.png
 example_paths:
 - examples/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/consolidation_evaluation_runtime.py
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-31'
+last_reviewed: '2026-09-04'
 ---
 -->
 
@@ -63,6 +66,10 @@ Raw interaction logs contain excessive noise and specific circumstantial details
 2. **Level 1 (Synthesis question generation):** A background evaluation agent inspects recent high-salience episodic records and prompts an LLM with synthesis questions: *"What high-level architectural patterns or recurring user preferences emerge from these recent events?"*
 3. **Level 2 (Abstract semantic insights):** The model synthesizes answers into concise rules and profiles (e.g., *"User prefers resilient network operations with exponential backoff"*), indexing them with direct provenance pointers to the underlying Level 0 records.
 
+![Memory Reflection and Consolidation Pipeline shows raw episodic stream events consolidating through a reflection engine into hierarchical semantic insights.](../../../assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/01-reflection-and-consolidation-pipeline.png)
+
+*Figure 1. Memory reflection and consolidation pipeline. An asynchronous reflection engine queries concrete episodic events to synthesize high-level semantic rules.*
+
 ### 2. Principled forgetting and pruning mechanisms
 
 An agent memory store cannot grow indefinitely. Sustainable memory architectures apply four distinct pruning mechanisms (Packer et al., 2023; Zhong et al., 2024):
@@ -76,6 +83,10 @@ where $S$ is the initial salience score, $\Delta t$ is elapsed time, and $\tau$ 
 - **Contradiction reconciliation:** When a newly observed fact directly conflicts with an existing memory record, the memory manager deprecates the older record, updates the current active belief, and logs an audit delta.
 - **Right-to-be-forgotten deletion:** When a user or tenant requests data removal, the system executes atomic hard deletions across primary document stores, relational databases, and vector search indices.
 
+![Memory Forgetting and Pruning Mechanisms illustrates time-decay eviction, TTL expiration, contradiction invalidation, and right-to-be-forgotten deletion.](../../../assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/02-forgetting-and-pruning-mechanisms.png)
+
+*Figure 2. Memory forgetting and pruning mechanisms. Four distinct retention strategies prevent unbounded storage growth and resolve factual contradictions.*
+
 ### 3. Quantitative memory evaluation metrics
 
 Evaluating agent memory requires moving beyond manual observation to automated, reproducible benchmarks (Packer et al., 2023; Zhong et al., 2024):
@@ -87,6 +98,10 @@ Evaluating agent memory requires moving beyond manual observation to automated, 
 | **Reflection Fidelity** | $> 95\%$ | Accuracy of synthesized semantic insights when evaluated against ground truth episodic logs |
 | **Query Latency (P99)** | $< 50\text{ ms}$ | Time required to perform namespaced vector search, decay computation, and reranking |
 | **Storage Footprint** | Bounded | Total token and byte consumption per active user profile over time |
+
+![Long-Term Memory Evaluation and Benchmark Metrics dashboard showing recall accuracy, temporal consistency, consolidation fidelity, and storage latency.](../../../assets/images/03-building-blocks/05-memory/04-consolidation-forgetting-and-evaluation/03-memory-evaluation-benchmarks.png)
+
+*Figure 3. Quantitative memory evaluation dashboard. Core metrics monitor retrieval precision, temporal stability, synthesis fidelity, and search latency.*
 
 ## Main variants
 

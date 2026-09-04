@@ -204,6 +204,12 @@ def command_start(data: dict[str, Any], body: str, units: list[dict[str, str]]) 
     if not chapter.exists():
         chapter.parent.mkdir(parents=True, exist_ok=True)
         chapter.write_text(chapter_template(unit), encoding="utf-8")
+    relative_chapter = chapter.relative_to(ROOT / "knowledge").with_suffix("")
+    for artifact_root in (ROOT / "sources", ROOT / "examples", ROOT / "assets" / "images"):
+        artifact_folder = artifact_root / relative_chapter
+        artifact_folder.mkdir(parents=True, exist_ok=True)
+        if not any(artifact_folder.iterdir()):
+            (artifact_folder / ".gitkeep").touch()
     data.update({
         "current_phase": "pass-1-architecture" if unit["pass"] == "architecture" else "pass-2-security",
         "current_unit": unit["id"],

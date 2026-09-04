@@ -14,13 +14,21 @@ The reader can choose and diagram single-agent loops, routers, pipelines, parall
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-architecture-selection-criteria.md`
 2. `02-single-agent-and-reactive-loops.md`
 3. `03-sequential-routing-and-parallel-workflows.md`
+
+Deep dives:
+
 4. `04-plan-and-execute.md`
 5. `05-evaluator-optimizer-and-reflection.md`
 6. `06-state-machines-and-event-driven-graphs.md`
 7. `07-supervisors-handoffs-and-agent-as-tool.md`
+
+Main path resumes:
+
 8. `08-architecture-trade-offs.md`
 
 ## Required concepts

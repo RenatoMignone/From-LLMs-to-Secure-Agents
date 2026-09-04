@@ -14,13 +14,16 @@ source_records:
 - p1-03-06-01-lewis-rag-2020
 - p1-03-06-01-karpukhin-dpr-2020
 - p1-03-06-01-langchain-rag-ingestion-2024
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/01-rag-dual-pipeline-architecture.png
+- assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/02-chunking-and-metadata-enrichment.png
+- assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/03-context-grounding-and-citation.png
 example_paths:
 - examples/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/rag_ingestion_runtime.py
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-31'
+last_reviewed: '2026-09-04'
 ---
 -->
 
@@ -51,6 +54,10 @@ RAG functions as the primary evidence retrieval mechanism within the agentic arc
 
 The RAG architecture operates through two decoupled pipelines: an **offline ingestion pipeline** that prepares and indexes documents, and an **online query pipeline** that handles real-time user prompts, searches the vector index, and generates citation-grounded completions.
 
+![The dual-pipeline RAG architecture separates offline document cleaning, chunking, embedding, and indexing from online query embedding, vector search, context assembly, and grounded answer generation.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/01-rag-dual-pipeline-architecture.png)
+
+*Figure 1. The shared vector database connects the offline ingestion pipeline to the online query and generation pipeline without coupling their execution schedules.*
+
 ## How it works
 
 A production RAG system is built upon four architectural pillars: the ingestion lifecycle, chunking strategies, vector embedding indexing, and grounded citation generation.
@@ -73,6 +80,10 @@ Chunking determines the granularity of retrieved evidence. Choosing the right ch
 - **Structural / Markdown-aware chunking:** Respects document syntax by splitting along headers (`#`, `##`, `###`), list items, or code block boundaries, ensuring related paragraphs stay grouped together.
 - **Semantic boundary chunking:** Uses embedding distance spikes between consecutive sentences to identify natural topic transitions.
 
+![Three document chunking strategies compare overlapping fixed-size windows, structure-aware boundaries, and semantic topic boundaries before metadata is attached to each chunk.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/02-chunking-and-metadata-enrichment.png)
+
+*Figure 2. Chunk boundaries control what evidence can be retrieved, while metadata preserves origin, structure, access tier, and freshness for filtering and attribution.*
+
 ### 3. Dense vector embeddings and similarity search
 
 Dense retrieval maps queries and document chunks into a shared high-dimensional vector space $\mathbb{R}^d$ (Karpukhin et al., 2020):
@@ -88,6 +99,10 @@ Top-$K$ nearest neighbors are returned, filtered by security access metadata tag
 ### 4. Context grounding and verified citations
 
 Once the top-$K$ passages are retrieved, the context assembler formats them into a structured prompt with explicit numbered document tags `[Doc 1]`, `[Doc 2]`. The system prompt instructs the foundation model to base its reasoning strictly on the retrieved passages and cite source tags inline (Lewis et al., 2020).
+
+![Retrieved evidence cards and explicit grounding instructions flow into an answer whose claims link back to numbered document citations and a provenance verification step.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion/03-context-grounding-and-citation.png)
+
+*Figure 3. Grounding keeps evidence and instructions together, while citation verification checks whether each factual claim is supported. It reduces unsupported answers but does not guarantee correctness.*
 
 ## Main variants
 

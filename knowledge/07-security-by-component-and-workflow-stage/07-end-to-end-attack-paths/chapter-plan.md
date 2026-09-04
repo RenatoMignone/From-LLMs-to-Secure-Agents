@@ -14,12 +14,8 @@ All earlier [component security sections](../chapter-plan.md).
 
 ## Planned child chapters
 
-1. `01-attack-path-method-and-workflow-crosswalk.md`
-2. `02-retrieved-instruction-to-unauthorized-action.md`
-3. `03-memory-poisoning-to-persistent-control.md`
-4. `04-compromised-tool-or-server-to-host-impact.md`
-5. `05-cross-agent-delegation-and-credential-cascade.md`
-6. `06-containment-eradication-recovery-and-lessons.md`
+1. `01-attack-path-method-and-indirect-instruction-scenario.md`
+2. `02-memory-tool-protocol-and-credential-cascades.md`
 
 ## Required concepts
 

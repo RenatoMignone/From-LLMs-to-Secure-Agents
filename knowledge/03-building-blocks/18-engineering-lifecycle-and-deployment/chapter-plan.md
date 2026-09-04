@@ -14,17 +14,8 @@ All earlier [building blocks](../chapter-plan.md), especially evaluation, reliab
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-requirements-and-use-case-suitability.md`
-2. `02-agent-definitions-inventory-and-ownership.md`
-3. `03-development-test-and-staging-environments.md`
-4. `04-deployment-topologies-and-multi-tenancy.md`
-5. `05-release-change-rollback-and-decommissioning.md`
-
-Deep dive:
-
-6. `06-economics-sustainability-and-capacity-planning.md`
+1. `01-requirements-inventory-ownership-and-environments.md`
+2. `02-deployment-change-rollback-and-retirement.md`
 
 ## Required concepts
 

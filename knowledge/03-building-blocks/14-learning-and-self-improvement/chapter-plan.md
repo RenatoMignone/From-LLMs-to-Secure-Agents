@@ -16,18 +16,11 @@ Explain reflection, feedback-based refinement, experience storage, skill librari
 
 Main path:
 
-1. `01-adaptation-taxonomy.md`
-2. `02-reflection-feedback-and-self-refinement.md`
+1. `01-adaptation-reflection-feedback-and-skills.md`
 
-Deep dives:
+Deep dive:
 
-3. `03-experience-memory-and-skill-libraries.md`
-4. `04-prompt-and-policy-optimization.md`
-5. `05-continual-learning-weight-updates-and-forgetting.md`
-
-Main path resumes:
-
-6. `06-evaluating-improvement.md`
+2. `02-optimization-continual-learning-forgetting-and-evaluation.md`
 
 ## Required concepts
 

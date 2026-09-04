@@ -14,10 +14,8 @@ Compare in-process functions, subprocesses, containers, user-space kernels, micr
 
 ## Planned child chapters
 
-1. `01-execution-boundaries-and-threat-independent-requirements.md`
-2. `02-process-container-and-sandbox-models.md`
-3. `03-virtual-machines-browsers-and-remote-workers.md`
-4. `04-files-network-resources-and-cleanup.md`
+1. `01-execution-boundaries-isolation-and-sandboxes.md`
+2. `02-browsers-files-networks-resources-and-cleanup.md`
 
 ## Required concepts
 

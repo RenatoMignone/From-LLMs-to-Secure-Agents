@@ -18,18 +18,14 @@ Main path:
 
 1. `01-rag-system-and-ingestion.md`
 2. `02-sparse-dense-and-hybrid-retrieval.md`
-3. `03-chunking-metadata-reranking-and-grounding.md`
 
-Deep dives:
+Deep dive:
 
-4. `04-graphrag-and-hierarchical-retrieval.md`
-5. `05-agentic-and-multi-hop-rag.md`
-6. `06-multimodal-rag.md`
+3. `03-chunking-ranking-and-advanced-retrieval.md`
 
 Main path resumes:
 
-7. `07-long-context-versus-retrieval.md`
-8. `08-retrieval-and-answer-evaluation.md`
+4. `04-grounding-long-context-and-retrieval-evaluation.md`
 
 ## Required concepts
 

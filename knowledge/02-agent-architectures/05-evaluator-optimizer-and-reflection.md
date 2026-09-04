@@ -25,7 +25,7 @@ visual_assets:
 - assets/images/02-agent-architectures/05-evaluator-optimizer-and-reflection/01-evaluator-optimizer-loop.png
 example_paths: []
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-17'
 ---

@@ -1,17 +1,9 @@
-Create a clear, high-quality technical educational cartoon illustration showing the Memory Reflection and Consolidation Pipeline for AI agents.
-
-Follow the canonical cartoon style:
-- Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel.
-- Warm light cream background (#FDFBF7).
-- Calm pastel color palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
-- No dark backgrounds, no neon or cyberpunk or hacker themes, no sterile corporate flowchart boxes, no 3D photorealism.
-
-Layout and Elements:
-1. Title Banner at top: "Memory Reflection and Consolidation Pipeline".
-2. Three-Stage Upward Synthesis Tree:
-   - Bottom Layer (Soft Blue): "Raw Episodic Stream" - Multiple individual event cards showing concrete observations and timestamps. Cute blue robot logging turns.
-   - Middle Layer (Sage Green): "Reflection & Synthesis Engine" - An analytical robot generating high-level reflection questions ("What patterns emerge from recent tool errors?") and clustering related events.
-   - Top Layer (Soft Amber): "Hierarchical Semantic Insights" - High-level distilled knowledge nodes and user profile rules ("User is migrating infrastructure from REST to gRPC").
-3. Connecting upward synthesis arrows showing concrete memories consolidating into abstract insights.
-
-Clear, bold, legible labels in sans-serif typography. High-contrast, balanced spacing, and friendly visual storytelling.
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Show how an AI agent consolidates concrete episodic memories into higher-level semantic insights.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide landscape diagram with three large horizontal layers connected by upward arrows. Bottom blue layer contains several simple event cards and a robot recording them. Middle green layer contains a robot grouping related cards and forming one concise reflection. Top amber layer contains a small tree of distilled insight nodes linked back to supporting events. Prefer icons and short visual samples over paragraphs.
+Text (verbatim): "Memory Reflection and Consolidation Pipeline", "Raw Episodic Stream", "Reflection and Synthesis", "Semantic Insights", "tool error", "retry succeeded", "Prefer resilient retries"
+Constraints: Render every listed label exactly once and no other words; bold readable sans-serif labels; high contrast; generous spacing; clear upward progression; no watermark.
+Avoid: garbled text, repeated phrases, small sentences, dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism.

@@ -14,14 +14,9 @@ The complete [end-to-end workflows](../05-end-to-end-workflows/chapter-plan.md).
 
 ## Planned child chapters
 
-1. `01-system-scope-assets-and-security-properties.md`
-2. `02-actors-identities-and-trust-boundaries.md`
-3. `03-attacker-goals-capabilities-and-access.md`
-4. `04-traditional-software-cloud-and-api-threat-baseline.md`
-5. `05-threat-modeling-method.md`
-6. `06-security-privacy-and-safety-modeling-methods.md`
-7. `07-agentic-threat-taxonomies-and-crosswalks.md`
-8. `08-reference-workflow-threat-model.md`
+1. `01-system-scope-assets-properties-and-trust-boundaries.md`
+2. `02-attackers-baselines-and-modeling-methods.md`
+3. `03-agentic-taxonomies-and-reference-workflow-threat-model.md`
 
 ## Required concepts
 

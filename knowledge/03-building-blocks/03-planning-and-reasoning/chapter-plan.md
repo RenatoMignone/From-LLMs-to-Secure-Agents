@@ -14,8 +14,13 @@ Compare reactive, plan-first, interleaved reason-act, planner-executor, reflecti
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-reactive-and-reason-act-patterns.md`
 2. `02-decomposition-and-plan-execute.md`
+
+Deep dives:
+
 3. `03-reflection-evaluation-and-replanning.md`
 4. `04-search-budgets-and-termination.md`
 

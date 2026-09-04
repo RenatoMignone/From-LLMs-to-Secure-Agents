@@ -14,9 +14,17 @@ Choose models by capability, modality, latency, cost, context, tool support, pri
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-model-roles-and-selection.md`
 2. `02-routing-cascades-and-fallbacks.md`
+
+Deep dive:
+
 3. `03-capability-cost-latency-and-reliability.md`
+
+Main path resumes:
+
 4. `04-routing-evaluation.md`
 
 ## Required concepts

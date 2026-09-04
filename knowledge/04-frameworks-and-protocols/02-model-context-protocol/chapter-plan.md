@@ -14,23 +14,10 @@ Explain host, client, and server roles; JSON-RPC lifecycle; capability negotiati
 
 ## Planned child chapters
 
-Main path:
+Deep dives:
 
-1. `01-purpose-architecture-and-lifecycle.md`
-2. `02-capabilities-tools-resources-and-prompts.md`
-3. `03-transports-sessions-and-versioning.md`
-
-Deep dive:
-
-4. `04-sampling-elicitation-and-roots.md`
-
-Main path resumes:
-
-5. `05-authorization-and-deployment-models.md`
-
-Deep dive:
-
-6. `06-framework-integration.md`
+1. `01-architecture-capabilities-transports-and-lifecycle.md`
+2. `02-authorization-deployment-and-extension-features.md`
 
 ## Required concepts
 

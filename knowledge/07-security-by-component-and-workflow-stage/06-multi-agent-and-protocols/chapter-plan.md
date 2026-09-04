@@ -14,11 +14,8 @@ Model malicious or compromised agents, agent impersonation, capability-card pois
 
 ## Planned child chapters
 
-1. `01-agent-identity-trust-and-impersonation.md`
-2. `02-delegation-messages-shared-state-and-cascades.md`
-3. `03-mcp-trust-authorization-and-server-risk.md`
-4. `04-a2a-discovery-tasks-artifacts-and-bindings.md`
-5. `05-controls-tests-recovery-and-residual-risk.md`
+1. `01-multi-agent-and-protocol-threats.md`
+2. `02-controls-tests-recovery-and-residual-risk.md`
 
 ## Required concepts
 

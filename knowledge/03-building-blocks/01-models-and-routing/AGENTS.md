@@ -7,4 +7,5 @@
 - Terminology: model, router, cascade, fallback, and ensemble.
 - Required links: [parent plan](../chapter-plan.md) and [context construction](../02-context-construction/chapter-plan.md).
 - Security scope: Only a short preview of routing and provider risk.
+- Learning path: chapters 01, 02, and 04 are main path; chapter 03 is a cost and performance deep dive.
 - Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

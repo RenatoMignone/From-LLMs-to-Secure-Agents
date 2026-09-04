@@ -71,7 +71,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertIn("next_recommended_unit must be", result.stdout)
 
     def test_roadmap_plan_drift_fails(self) -> None:
-        self.replace("ROADMAP.md", "Execution boundaries and threat-independent requirements", "Execution boundaries and requirements")
+        self.replace("ROADMAP.md", "Execution boundaries, isolation, and sandboxes", "Execution boundaries and sandboxes")
         result = self.run_validator()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("roadmap and plan filename drift", result.stdout)
@@ -165,11 +165,11 @@ class ValidatorTests(unittest.TestCase):
         self.reset_to_idle()
         status_path = self.repo / "PROJECT_STATUS.md"
         status = status_path.read_text(encoding="utf-8")
-        status = re.sub(r"completed_through: .*", "completed_through: P1-03-06-03", status)
+        status = re.sub(r"completed_through: .*", "completed_through: P1-03-06-02", status)
         status_path.write_text(status, encoding="utf-8")
         result = self.run_state("resolve")
         self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertIn("unit_id: P1-03-06-04", result.stdout)
+        self.assertIn("unit_id: P1-03-06-03", result.stdout)
         self.assertIn("learning_path: deep-dive", result.stdout)
 
     def test_state_resolve_reports_review_mode(self) -> None:

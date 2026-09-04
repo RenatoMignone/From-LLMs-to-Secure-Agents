@@ -14,12 +14,8 @@ Model direct and indirect prompt injection, goal hijacking, instruction conflict
 
 ## Planned child chapters
 
-1. `01-instruction-hierarchy-and-prompt-injection.md`
-2. `02-indirect-injection-and-untrusted-context.md`
-3. `03-goal-plan-routing-and-output-manipulation.md`
-4. `04-model-abuse-leakage-and-resource-consumption.md`
-5. `05-misalignment-specification-gaming-and-rogue-behavior.md`
-6. `06-controls-tests-and-residual-risk.md`
+1. `01-instruction-context-and-model-attacks.md`
+2. `02-controls-tests-and-residual-risk.md`
 
 ## Required concepts
 

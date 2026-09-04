@@ -16,11 +16,7 @@ The complete [security assurance](../09-security-testing-evaluation-and-assuranc
 
 This complete section is an optional deep-dive branch after the main guide.
 
-1. `01-definitions-autonomy-and-measurement.md`
-2. `02-robust-planning-memory-and-continual-learning.md`
-3. `03-composable-security-and-protocol-trust.md`
-4. `04-evaluation-validity-and-assurance-limits.md`
-5. `05-human-agent-and-societal-boundaries.md`
+1. `01-open-research-map.md`
 
 ## Required concepts
 

@@ -7,5 +7,5 @@
 - Terminology: Artifact is a persistent output; message is conversational; event records a state transition.
 - Required links: [reliability](../15-reliability-and-operations/chapter-plan.md) and [frameworks](../../04-frameworks-and-protocols/chapter-plan.md).
 - Security scope: Only a short preview of untrusted media, active content, and provenance risk.
-- Learning path: chapters 01, 02, and 04 are main path; chapters 03 and 05 are deep dives.
+- Learning path: chapter 01 is main path; chapter 02 is a deep dive.
 - Always read [style](../../../docs/style-guide.md) and [evidence](../../../docs/evidence-policy.md). The scaffold and validator enforce [chapter templates](../../../docs/chapter-template.md); open it only for structural repair. Read [visuals](../../../docs/visuals-policy.md) only when the plan requires visuals and [examples](../../../docs/examples-policy.md) only when it requires examples.

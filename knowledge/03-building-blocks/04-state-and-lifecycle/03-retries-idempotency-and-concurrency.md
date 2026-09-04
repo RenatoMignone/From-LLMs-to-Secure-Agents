@@ -28,7 +28,7 @@ visual_assets:
 example_paths:
 - examples/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/retry_idempotency_concurrency.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-24'
 ---

@@ -12,10 +12,10 @@ A continuation prompt advances one controlled unit.
 
 Use when mode is `author`.
 
-1. If state is `idle`, run `python3 scripts/main.py state start`.
+1. If state is `idle`, run `python3 scripts/main.py state start`. This scaffolds the chapter and its mirrored source, example, and image folders only when the unit begins.
 2. Turn scope into research questions. Check official material. Use `python3 scripts/main.py fetch <url> -o /tmp/<id>.md` for clean Markdown. Register claims with `python3 scripts/main.py source` under mirrored `sources/<chapter-path>/`. Load only active sources.
 3. Advance to `drafting`; personalize structure to the plan. Keep core sections, omit empty placeholders. Use simple English; define technical terms. Do not create ASCII schemas. End with a next-unit navigation button.
-4. Advance to `building-assets`; add visuals. Mirror paths under `assets/images/`. Proactively design multiple canonical cartoon illustrations per chapter (2 to 4 diagrams) using the image generation skill. Save prompts in `source/<image-name>-prompt.txt` before generating. Never use scripted drawing schemes. If endpoint quota is exhausted, save prompts in `source/` and record a temporary pending visual task in `AGENTS.md` to be generated when quotas reset.
+4. Advance to `building-assets`; add 1 to 3 visuals when they materially improve comprehension. Mirror paths under `assets/images/`. One strong illustration is enough for a focused chapter; add more only when architecture, sequence, state, boundary, or threat views teach distinct information. Use the image generation skill, save prompts in `source/<image-name>-prompt.txt` before generating, and never use scripted drawing schemes. If endpoint quota is exhausted, save prompts in `source/` and record a temporary pending visual task in `AGENTS.md` to be generated when quotas reset.
 5. Advance to `validating`; unwrap Markdown prose paragraphs to one line. Run examples, `python3 scripts/main.py validate`, and verify site generation with `npm --prefix site run build && npm --prefix site run check`.
 6. Run `python3 scripts/main.py state review` and stop.
 
@@ -25,7 +25,7 @@ Resume recorded state; do not repeat finished work.
 
 Use when mode is `review`.
 
-1. Review against plan, evidence, artifacts, template, and prerequisites. Reject jargon, compressed background, or unexplained diagrams. Verify that multiple visual opportunities were evaluated and illustrated.
+1. Review against plan, evidence, artifacts, template, and prerequisites. Reject jargon, compressed background, or unexplained diagrams. Verify that each visual has a distinct teaching purpose and that no necessary visual explanation is missing.
 2. Reopen sources. Rerun examples, tests, repository validation, and site build check.
 3. Fix findings, unwrap Markdown prose paragraphs, and revalidate with `python3 scripts/main.py validate` and `npm --prefix site run check`.
 4. Run `python3 scripts/main.py state complete`. Stop without starting the next unit.

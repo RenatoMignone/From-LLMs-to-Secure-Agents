@@ -6,7 +6,7 @@
 
 <p><strong>A growing visual and source-grounded guide to understanding agentic AI systems and learning how to secure them.</strong></p>
 
-<p><a href="https://renatomignone.github.io/From-LLMs-to-Secure-Agents/"><img alt="Documentation website" src="https://img.shields.io/badge/docs-live_site-14a38b?style=flat-square"></a> <a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="ROADMAP.md"><img alt="209 ordered guide units" src="https://img.shields.io/badge/guide_units-209-14a38b?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
+<p><a href="https://renatomignone.github.io/From-LLMs-to-Secure-Agents/"><img alt="Documentation website" src="https://img.shields.io/badge/docs-live_site-14a38b?style=flat-square"></a> <a href="ROADMAP.md"><img alt="Guide organized in two passes" src="https://img.shields.io/badge/guide-2_passes-2f80ed?style=flat-square"></a> <a href="docs/evidence-policy.md"><img alt="Source-grounded content" src="https://img.shields.io/badge/evidence-source_grounded-6c63b5?style=flat-square"></a> <a href="docs/visuals-policy.md"><img alt="Local and attributed visuals" src="https://img.shields.io/badge/visuals-local_%26_attributed-e5a93d?style=flat-square"></a></p>
 
 <p>Architecture first · Security second · Sources and visuals traced</p>
 
@@ -20,7 +20,7 @@ Agent security is difficult to learn from isolated vulnerability lists. This pro
 
 The guide assumes **working familiarity with large language models and prompts**. It gives only short refreshers when an agentic concept needs them. API and Python experience helps, but is not required. The focus is the agentic system, not model internals or prompt engineering.
 
-The reader follows a concise **main path** through the complete system. Specialized mechanisms, framework details, emerging protocols, regulation, and research live in clearly labeled **deep-dive branches** that can remain collapsed until needed.
+The reader follows a focused **main path** through the complete system. Specialized mechanisms and implementation detail live in clearly labeled **deep-dive branches** that can remain collapsed until needed. Additional vendor, protocol, regulatory, sector, and research topics are deferred unless they materially improve the stable system model.
 
 The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels.
 

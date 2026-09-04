@@ -14,9 +14,17 @@ Classify context sources, apply precedence and budgets, serialize messages and t
 
 ## Planned child chapters
 
+Main path:
+
 1. `01-context-sources-and-precedence.md`
 2. `02-context-budgets-selection-and-ordering.md`
+
+Deep dive:
+
 3. `03-history-summaries-and-compression.md`
+
+Main path resumes:
+
 4. `04-provenance-and-context-debugging.md`
 
 ## Required concepts

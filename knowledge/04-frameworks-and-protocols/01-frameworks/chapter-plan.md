@@ -14,22 +14,10 @@ Identify runtime ownership, graph and loop abstractions, tools, state, memory, h
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-comparison-method-and-versioning.md`
-
 Deep dives:
 
-2. `02-openai-agents-sdk.md`
-3. `03-langchain-and-langgraph.md`
-4. `04-autogen.md`
-5. `05-semantic-kernel.md`
-6. `06-google-agent-development-kit.md`
-7. `07-crewai-and-llamaindex.md`
-
-Main path resumes:
-
-8. `08-cross-framework-translation.md`
+1. `01-framework-comparison-and-versioning.md`
+2. `02-cross-framework-translation-and-implementation.md`
 
 ## Required concepts
 

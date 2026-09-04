@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-09-04
+
+### Curriculum scope reduction
+
+- Files or sections: roadmap, local chapter plans and instructions, visual and artifact policies, validator, tests, and README
+- Summary: Reduced the committed guide from 209 to 99 units while preserving the 38 existing chapters, the two-pass architecture-to-security model, and complete component coverage. Consolidated future chapters, moved specialized material into 23 deep dives, deferred volatile surveys, and replaced the fixed visual quota with purpose-driven illustrations.
+- Validation: Passed repository validation for 99 roadmap units and checked state resolution at the unchanged next unit. Removed obsolete planned-unit artifact placeholders and limited mirrored folders to started chapters.
+
+### Pending chapter visuals completed
+
+- Files or sections: memory consolidation chapter, RAG ingestion chapter, image prompts, and generated site content
+- Summary: Added and reviewed three purpose-driven visuals to each of the two existing chapters that had pending image tasks, then removed the resolved quota note.
+- Validation: Inspected all six illustrations for labels and technical meaning, replaced three flawed memory drafts, ran the chapter examples, passed repository validation, and rebuilt and checked the site.
+
 ## 2026-08-05
 
 ### Curriculum checkpoint

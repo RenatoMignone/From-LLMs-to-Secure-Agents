@@ -26,7 +26,7 @@ visual_assets:
 example_paths:
 - examples/02-agent-architectures/07-supervisors-handoffs-and-agent-as-tool/multi_agent_coordination.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-17'
 ---

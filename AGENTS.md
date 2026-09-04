@@ -21,7 +21,7 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 
 - Use simple English; define technical terms on first use. Omit empty placeholders.
 - Never create ASCII/text-based schemas or scripted/programmatic drawing schemes. Use the image generation skill for PNG/WebP cartoon illustrations matching `assets/images/repo-images/source/prompt.txt`.
-- Include 2 to 4 cartoon visuals per chapter whenever visual illustration improves comprehension.
+- Use 1 to 3 cartoon visuals when they materially improve comprehension. One strong visual is enough for a focused chapter; reserve multiple visuals for architecture, workflow, state, and threat scenarios that need them.
 - If image generation quota is temporarily exhausted, save prompts in `source/` and record a pending entry in `AGENTS.md` for the next session to generate.
 - Include a next-unit navigation button at the end of each chapter.
 - Teach in dependency order: functional architecture before detailed security.
@@ -31,7 +31,3 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Store small runnable examples under `examples/<chapter-path>/`.
 - Make minimal implementation code blocks expandable by default using `<details><summary>Expand minimal Python implementation</summary>...</details>`.
 - Do not use em dashes.
-
-## Pending visual tasks
-
-- Generate visuals for `04-consolidation-forgetting-and-evaluation` and `01-rag-system-and-ingestion` when image generation quota resets (reset window at ~00:17 UTC / 02:17 CEST).

@@ -14,19 +14,8 @@ All earlier [component and workflow security](../chapter-plan.md) and the Pass 1
 
 ## Planned child chapters
 
-Main path:
-
-1. `01-risk-governance-inventory-and-accountability.md`
-2. `02-secure-design-and-development-lifecycle.md`
-3. `03-secure-deployment-multi-tenancy-and-change.md`
-4. `04-privacy-data-governance-transparency-and-recourse.md`
-5. `05-operations-vulnerability-management-and-monitoring.md`
-6. `06-incident-response-evidence-and-disclosure.md`
-7. `07-retirement-decommissioning-and-post-incident-learning.md`
-
-Deep dive:
-
-8. `08-standards-regulation-and-sector-profiles.md`
+1. `01-governance-lifecycle-privacy-and-accountability.md`
+2. `02-operations-incidents-evidence-and-retirement.md`
 
 ## Required concepts
 
@@ -34,7 +23,7 @@ Governance, owner, inventory, risk tolerance, risk acceptance, accountability, s
 
 ## Recommended teaching order
 
-Establish ownership and risk decisions first. Follow the product lifecycle, then treat standards and regulation as a versioned mapping rather than the guide's architecture.
+Establish ownership and risk decisions first, then follow the product lifecycle through operations, incidents, evidence, and retirement. Defer jurisdiction-specific standards, regulation, and sector profiles unless they change the stable architecture or control model.
 
 ## Concepts explicitly out of scope
 

@@ -25,7 +25,7 @@ visual_assets:
 example_paths:
 - examples/02-agent-architectures/06-state-machines-and-event-driven-graphs/state_graph_runtime.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-17'
 ---

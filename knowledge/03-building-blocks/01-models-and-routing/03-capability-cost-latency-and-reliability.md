@@ -26,7 +26,7 @@ visual_assets:
 example_paths:
 - examples/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability/cost_latency_profiler.py
 pass: architecture
-learning_path: main
+learning_path: deep-dive
 status: complete
 last_reviewed: '2026-08-18'
 ---
