@@ -329,3 +329,25 @@
 - Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/01-rag-system-and-ingestion.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed RAG system and ingestion.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-09-12
+
+### P1-03-06-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Sparse, dense, and hybrid retrieval.
+- Validation: Passed repository validation and the unit review checklist.
+
+## 2026-09-13
+
+### P1-03-06-03 complete
+
+- Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Chunking, ranking, and advanced retrieval.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-06-04 complete
+
+- Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Grounding, long context, and retrieval evaluation.
+- Validation: Passed repository validation and the unit review checklist.

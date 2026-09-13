@@ -226,6 +226,18 @@
           {
             "label": "21 RAG system and ingestion",
             "link": "/building-blocks/01-rag-system-and-ingestion/"
+          },
+          {
+            "label": "22 Sparse, dense, and hybrid retrieval",
+            "link": "/building-blocks/02-sparse-dense-and-hybrid-retrieval/"
+          },
+          {
+            "label": "23 Chunking, ranking, and advanced retrieval",
+            "link": "/building-blocks/03-chunking-ranking-and-advanced-retrieval/"
+          },
+          {
+            "label": "24 Grounding, long context, and retrieval evaluation",
+            "link": "/building-blocks/04-grounding-long-context-and-retrieval-evaluation/"
           }
         ]
       }

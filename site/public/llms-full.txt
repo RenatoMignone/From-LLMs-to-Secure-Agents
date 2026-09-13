@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Publication status:** Updated incrementally as chapters complete review.
-- **Current publication:** 38 chapters across 4 sections. The latest chapter is [RAG system and ingestion](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-rag-system-and-ingestion/).
+- **Current publication:** 41 chapters across 4 sections. The latest chapter is [Grounding, long context, and retrieval evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-grounding-long-context-and-retrieval-evaluation/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -446,6 +446,39 @@
   * Build dense vector embedding indices with approximate nearest neighbor retrieval.
   * Assemble grounded context prompts that enforce verifiable inline citations and eliminate parametric hallucinations.
 - **Verified Primary Sources:** [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401), [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906), [LangChain: Document Loading, Chunking, and Vector Ingestion Pipelines](https://python.langchain.com/v0.2/docs/concepts/#retrieval)
+
+### [Sparse, dense, and hybrid retrieval](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-sparse-dense-and-hybrid-retrieval/)
+- **Summary:** Examines lexical, vector, and hybrid search methods, demonstrating how combining BM25 exact-token matching with dense semantic embeddings via Reciprocal Rank Fusion overcomes vocabulary mismatch and semantic drift.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-sparse-dense-and-hybrid-retrieval.md
+- **Learning Objectives:**
+  * Compare the mathematical foundations and retrieval characteristics of sparse lexical indexing (BM25) and dense embedding retrieval (dual encoders).
+  * Analyze the complementary failure modes of pure sparse retrieval (vocabulary mismatch) and pure dense retrieval (identifier blindness and semantic drift).
+  * Implement Reciprocal Rank Fusion (RRF) and distribution-based score normalization to merge multiple candidate rankings without manual score calibration.
+  * Evaluate storage, compute, and latency trade-offs when operating dual-index hybrid search architectures in production agent systems.
+- **Verified Primary Sources:** [The Probabilistic Relevance Framework: BM25 and Beyond](https://doi.org/10.1561/1500000019), [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906), [Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods](https://doi.org/10.1145/1571941.1572114), [Hybrid Search in Qdrant](https://qdrant.tech/articles/hybrid-search/)
+
+### [Chunking, ranking, and advanced retrieval](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-chunking-ranking-and-advanced-retrieval/)
+- **Summary:** Explores advanced retrieval architectures beyond flat passage matching, including contextual chunking, cross-encoder neural reranking, hierarchical tree indexing with RAPTOR, and community-summarized knowledge graphs with GraphRAG.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/03-chunking-ranking-and-advanced-retrieval.md
+- **Learning Objectives:**
+  * Explain why traditional naive chunking causes context loss and how contextual chunking and parent-child hierarchies preserve document-level background.
+  * Implement two-stage retrieval pipelines combining fast bi-encoder first-stage prefetch with computationally intensive cross-encoder neural rerankers.
+  * Analyze recursive abstractive tree processing (RAPTOR) for multi-scale summarization and global theme extraction across large document collections.
+  * Contrast dense vector passage search with entity-relationship knowledge graph retrieval (GraphRAG) for global sensemaking and complex multi-hop queries.
+- **Verified Primary Sources:** [RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval](https://arxiv.org/abs/2401.18059), [Passage Re-ranking with BERT](https://arxiv.org/abs/1901.04085), [From Local to Global: A Graph RAG Approach to Query-Focused Summarization](https://arxiv.org/abs/2404.16130), [Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval)
+
+### [Grounding, long context, and retrieval evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-grounding-long-context-and-retrieval-evaluation/)
+- **Summary:** Analyzes context grounding, verifiable citations, the architectural trade-offs between massive context windows and focused RAG retrieval, and quantitative evaluation frameworks for retrieval precision and answer faithfulness.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/04-grounding-long-context-and-retrieval-evaluation.md
+- **Learning Objectives:**
+  * Evaluate the architectural trade-offs between long-context foundation models and focused retrieval pipelines across latency, inference cost, and position-dependent attention degradation.
+  * Explain the 'Lost in the Middle' effect and analyze how context rot and distractor interference degrade reasoning over long prompt contexts.
+  * Apply classical information retrieval metrics (Recall@K, Precision@K, MRR, and NDCG@K) to measure candidate ranking performance.
+  * Implement reference-free RAG Triad evaluations measuring context relevance, groundedness (faithfulness), and answer relevance to detect parametric hallucinations.
+- **Verified Primary Sources:** [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172), [Ragas: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/abs/2309.15217), [Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context](https://arxiv.org/abs/2403.05530), [BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models](https://arxiv.org/abs/2104.08663)
 
 
 
@@ -8112,4 +8145,654 @@ In Pass 2, RAG systems are evaluated against **Corpus Poisoning, Access-Filter B
 
 ---
 
-[Next Unit: Sparse, dense, and hybrid retrieval →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/06-retrieval-and-rag/chapter-plan.md)
+[Next Unit: Sparse, dense, and hybrid retrieval →](/From-LLMs-to-Secure-Agents/building-blocks/02-sparse-dense-and-hybrid-retrieval/)
+
+
+================================================================================
+CHAPTER: Sparse, dense, and hybrid retrieval
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-sparse-dense-and-hybrid-retrieval/
+SUMMARY: Examines lexical, vector, and hybrid search methods, demonstrating how combining BM25 exact-token matching with dense semantic embeddings via Reciprocal Rank Fusion overcomes vocabulary mismatch and semantic drift.
+================================================================================
+
+# Sparse, dense, and hybrid retrieval
+
+## Why this matters
+
+In Retrieval-Augmented Generation (RAG), the quality of an agent response depends entirely on whether the retrieval subsystem provides relevant, precise evidence. If the retriever returns irrelevant documents, the model hallucinates or fails to execute its assigned task. In production systems, relying on a single retrieval paradigm frequently leads to silent failures.
+
+Pure dense vector retrieval excels at conceptual similarity. It easily links paraphrases such as "fault-tolerant routing" to "resilient microservice proxies" (Karpukhin et al., 2020). However, dense embeddings struggle with exact identifiers, specific error codes (such as `ERR-4039`), product serial numbers, and specialized function signatures. Conversely, classic sparse lexical retrieval (such as Okapi BM25) finds exact keywords instantly through inverted indexes, but fails when users express concepts using synonyms or natural conversational language (Robertson & Zaragoza, 2009).
+
+Hybrid retrieval bridges this divide by executing both sparse lexical search and dense semantic search across the same query, then merging the resulting candidate lists through rank fusion algorithms (Cormack et al., 2009; Couzon, 2026). While [Memory](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md) maintains user context across sessions and [Tools](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md) allow agents to take external actions, hybrid retrieval ensures that knowledge grounding is resilient to both keyword mismatches and semantic ambiguity.
+
+## Simple mental model
+
+Think of an investigator solving a case in a large city records archive:
+
+1. **The exact index clerk (sparse retrieval):** The clerk checks a physical alphabetical catalog. When given a specific driver license number or vehicle VIN, the clerk pulls the exact folder in two seconds. But if asked for "records about someone feeling sad and leaving town," the clerk finds nothing because the cards do not record abstract feelings or synonyms.
+2. **The conceptual detective (dense retrieval):** The detective grasps the emotional and thematic essence of the request. The detective navigates directly to the missing persons and mental health support archives. But if given an alphanumeric serial number like `XJ-904-B`, the detective cannot locate the file because all serial numbers look conceptually similar.
+3. **The collaborative team (hybrid fusion):** Both the clerk and the detective conduct their searches simultaneously. A coordinator takes the top five folders from each, compares where documents placed across both searches, and hands the investigator a single combined stack.
+
+Combining exact keyword indexing with semantic meaning ensures that whether a user provides a strict error code or a vague conceptual description, the right evidence reaches the agent.
+
+## Position in the agent workflow
+
+Hybrid retrieval operates at the core of the RAG evidence extraction step. When an agent planner determines that an incoming task requires external domain knowledge, it formulates a retrieval query.
+
+Rather than committing to either an inverted index or a vector database, the query coordinator dispatches parallel prefetch requests to both engines. Once both candidate lists arrive, a fusion layer reconciles their differing score distributions and produces a unified top-$K$ evidence bundle that is injected into the model context window.
+
+![A three-panel educational cartoon contrasts sparse lexical retrieval matching exact keywords in an index box, dense vector retrieval clustering semantic concepts across a geometric coordinate space, and hybrid retrieval merging both streams into a unified ranked results tray.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval/01-sparse-dense-and-hybrid-retrieval-landscape.png)
+
+*Figure 1. Sparse retrieval prioritizes exact lexical tokens, dense retrieval captures semantic proximity, and hybrid fusion combines both strengths to maximize precision and recall.*
+
+## How it works
+
+A production retrieval subsystem relies on understanding the distinct mechanics of sparse lexical scoring, dense vector similarity, and score fusion algorithms.
+
+### 1. Sparse lexical retrieval and Okapi BM25
+
+Sparse retrieval represents documents and queries as high-dimensional, sparse vectors where each dimension corresponds to a unique word or token in the vocabulary. The vast majority of dimensions contain zeros.
+
+The standard algorithm for sparse lexical search is **Okapi BM25** (Robertson & Zaragoza, 2009). BM25 calculates the relevance score of a document $D$ given a query $Q$ containing search tokens $q_1, q_2, \dots, q_n$:
+
+$$\text{Score}_{\text{BM25}}(D, Q) = \sum_{i=1}^{n} \text{IDF}(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot \left(1 - b + b \cdot \frac{|D|}{\text{avgdl}}\right)}$$
+
+Here, $f(q_i, D)$ is the term frequency of token $q_i$ in document $D$, $|D|$ is the document length, and $\text{avgdl}$ is the average document length across the entire corpus. The constant $k_1$ (typically 1.2 to 2.0) calibrates term frequency saturation, preventing repetitive keyword stuffing from artificially inflating scores. The parameter $b$ (typically 0.75) controls document length normalization.
+
+The inverse document frequency $\text{IDF}(q_i)$ penalizes common words and boosts rare, informative terms:
+
+$$\text{IDF}(q_i) = \ln\left(1 + \frac{N - n(q_i) + 0.5}{n(q_i) + 0.5}\right)$$
+
+Where $N$ is the total number of documents and $n(q_i)$ is the number of documents containing token $q_i$. Sparse search uses inverted indexes, enabling sub-millisecond lookups over millions of documents without requiring GPU acceleration.
+
+### 2. Dense semantic retrieval and dual encoders
+
+Dense retrieval projects both queries and passages into a shared continuous vector space $\mathbb{R}^d$ (typically 384 to 1536 dimensions) using deep neural networks (Karpukhin et al., 2020). Unlike sparse vectors, dense embeddings are dense: every dimension contains a non-zero continuous floating-point number representing latent semantic features.
+
+In a **dual-encoder architecture**, two separate transformer encoders (or two parameter-shared heads) process queries and documents independently:
+
+$$\vec{e}_{\text{query}} = E_Q(q), \quad \vec{e}_{\text{doc}} = E_D(d)$$
+
+Relevance is measured using cosine similarity or inner product:
+
+$$\text{Sim}(q, d) = \frac{\vec{e}_{\text{query}} \cdot \vec{e}_{\text{doc}}}{\|\vec{e}_{\text{query}}\| \|\vec{e}_{\text{doc}}\|}$$
+
+Because document vectors are precomputed offline and indexed in Approximate Nearest Neighbor (ANN) structures (such as HNSW or IVF), query execution requires only a single forward pass through the query encoder followed by fast vector graph traversal.
+
+### 3. Complementary failure modes
+
+Neither retrieval paradigm is sufficient on its own:
+
+- **Vocabulary mismatch (Sparse failure):** If a user asks "How do I make my application fault-tolerant?" and the documentation describes "building resilient systems with automated failover," BM25 scores the document near zero because the exact words "fault-tolerant" do not appear.
+- **Identifier blindness and semantic drift (Dense failure):** If a user asks for "patch notes for CVE-2024-38077" or "issue with component SKU-402," dense models often map these unique tokens to general security or hardware clusters, returning unrelated CVEs or nearby product models that share high semantic proximity but lack the exact identifier.
+
+| Retrieval dimension | Sparse retrieval (BM25) | Dense retrieval (Dual encoders) | Hybrid retrieval (Fusion) |
+| --- | --- | --- | --- |
+| **Representation** | High-dimensional sparse bag-of-words | Low-dimensional continuous dense vector | Dual representation (inverted index + vector index) |
+| **Primary strength** | Exact keyword matching, codes, part numbers | Semantic understanding, synonyms, paraphrasing | High precision on identifiers and high recall on concepts |
+| **Primary weakness** | Vocabulary mismatch, zero semantic awareness | Identifier blindness, out-of-domain degradation | Increased storage, dual indexing, query overhead |
+| **Compute cost** | Low (CPU inverted index) | Medium-high (GPU/CPU neural embeddings) | Combined cost of both pipelines |
+| **Tuning requirements** | Minimal ($k_1, b$ heuristics) | High (model selection, fine-tuning, embedding dimension) | Moderate (fusion algorithm and candidate depth) |
+
+### 4. Hybrid rank fusion algorithms
+
+To merge results from disparate retrievers, systems cannot simply add raw BM25 scores to cosine similarity values. Dense cosine similarity is bounded between $-1.0$ and $+1.0$, whereas BM25 produces unbounded positive numbers whose scale shifts drastically depending on query length and term rarity (Couzon, 2026).
+
+Two primary fusion strategies address this challenge:
+
+#### Reciprocal Rank Fusion (RRF)
+
+Reciprocal Rank Fusion bypasses score scale discrepancies by operating purely on the rank positions of candidates across result sets (Cormack et al., 2009). For a set of queries or retrievers $M$, the RRF score of document $d$ is:
+
+$$\text{Score}_{\text{RRF}}(d) = \sum_{m \in M} \frac{1}{k + \text{rank}_m(d)}$$
+
+Where $\text{rank}_m(d)$ is the position of document $d$ in the result list of retriever $m$ (starting at 1), and $k$ is a smoothing constant (standardized at 60). The constant $k$ ensures that high-ranking candidates are rewarded without allowing an extreme top rank from one list to completely overpower consistent top-10 appearances across multiple lists.
+
+![An architecture diagram traces a user query branching into parallel sparse BM25 and dense vector searches, converging into an RRF fusion processor calculating reciprocal ranks, and outputting deduplicated top-K results to the agent context window.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval/02-reciprocal-rank-fusion-workflow.png)
+
+*Figure 2. Parallel prefetch queries feed candidate lists into the Reciprocal Rank Fusion stage, which merges rankings based on positional reciprocity rather than uncalibrated raw scores.*
+
+#### Distribution-Based Score Fusion (DBSF) and linear combination
+
+When score margins contain valuable confidence information that pure ranks discard, systems apply score normalization before linear weighting. Min-max normalization scales scores to a standard $[0, 1]$ interval:
+
+$$S_{\text{norm}}(d) = \frac{S(d) - S_{\min}}{S_{\max} - S_{\min}}$$
+
+The unified score combines normalized scores with configurable weights $\alpha \in [0, 1]$:
+
+$$\text{Score}_{\text{Hybrid}}(d) = \alpha \cdot S_{\text{norm, sparse}}(d) + (1 - \alpha) \cdot S_{\text{norm, dense}}(d)$$
+
+While linear combination allows operators to prioritize exact matches ($\alpha > 0.5$) or semantic meaning ($\alpha < 0.5$), it remains sensitive to outliers in individual result distributions. Consequently, RRF serves as the robust production default.
+
+## Main variants
+
+1. **Classic lexical + dense hybrid:** Runs BM25 on an inverted index engine (such as Lucene or Elasticsearch) alongside dense vector search (such as Qdrant, Pinecone, or Milvus), combining candidates via RRF (Cormack et al., 2009; Couzon, 2026).
+2. **Learned sparse representations (SPLADE):** Uses neural language models to predict sparse term expansion vectors directly in vocabulary space (Formal et al., 2021). SPLADE retains inverted index efficiency while automatically injecting synonyms into document weights.
+3. **Late interaction multi-vector retrieval (ColBERT):** Preserves token-level embeddings for both queries and passages, computing token-to-token maximum similarity (MaxSim) at retrieval time. This captures fine-grained term interactions while retaining semantic vector representations.
+4. **Graph and agentic retrieval:** Extends retrieval beyond passage similarity by traversing knowledge graphs (GraphRAG) or using autonomous agent loops to iteratively formulate multi-hop queries across structured databases and vector indices.
+
+## Minimal implementation
+
+The following Python snippet demonstrates dual-index construction (Okapi BM25 and dense vector similarity) and merges search candidates using Reciprocal Rank Fusion. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval/hybrid_retrieval_runtime.py) demonstrates comparative tests across exact code queries, semantic paraphrases, and composite prompts.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+import math
+from typing import Dict, List, Set, Tuple
+
+@dataclass
+class Document:
+    doc_id: str
+    content: str
+    tokens: List[str]
+    vector: List[float]
+
+class BM25Index:
+    def __init__(self, k1: float = 1.5, b: float = 0.75) -> None:
+        self.k1, self.b = k1, b
+        self.docs: Dict[str, Document] = {}
+        self.inverted_index: Dict[str, Set[str]] = {}
+        self.doc_lens: Dict[str, int] = {}
+        self.avg_dl: float = 0.0
+
+    def add_documents(self, documents: List[Document]) -> None:
+        total_len = 0
+        for doc in documents:
+            self.docs[doc.doc_id] = doc
+            self.doc_lens[doc.doc_id] = len(doc.tokens)
+            total_len += len(doc.tokens)
+            for token in doc.tokens:
+                self.inverted_index.setdefault(token, set()).add(doc.doc_id)
+        self.avg_dl = total_len / max(len(documents), 1)
+
+    def search(self, query_tokens: List[str]) -> List[Tuple[str, float]]:
+        scores: Dict[str, float] = {}
+        n_docs = len(self.docs)
+        for t in query_tokens:
+            matching = self.inverted_index.get(t, set())
+            idf = math.log(1.0 + (n_docs - len(matching) + 0.5) / (len(matching) + 0.5))
+            for d_id in matching:
+                tf = self.docs[d_id].tokens.count(t)
+                denom = tf + self.k1 * (1.0 - self.b + self.b * (self.doc_lens[d_id] / self.avg_dl))
+                scores[d_id] = scores.get(d_id, 0.0) + idf * (tf * (self.k1 + 1.0) / denom)
+        return sorted(scores.items(), key=lambda x: x[1], reverse=True)
+
+def reciprocal_rank_fusion(
+    sparse_hits: List[Tuple[str, float]],
+    dense_hits: List[Tuple[str, float]],
+    k_rrf: int = 60,
+    top_k: int = 3
+) -> List[Tuple[str, float]]:
+    rrf_scores: Dict[str, float] = {}
+    for rank, (doc_id, _) in enumerate(sparse_hits, start=1):
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0.0) + (1.0 / (k_rrf + rank))
+    for rank, (doc_id, _) in enumerate(dense_hits, start=1):
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0.0) + (1.0 / (k_rrf + rank))
+    return sorted(rrf_scores.items(), key=lambda x: x[1], reverse=True)[:top_k]
+```
+
+</details>
+
+Run [hybrid_retrieval_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval/hybrid_retrieval_runtime.py) to inspect exact identifier lookups, conceptual paraphrase queries, and RRF rank fusion behavior.
+
+## Data flow and state changes
+
+1. **Dual indexing:** During ingestion, raw documents are parsed into text chunks. Each chunk is indexed into an inverted index (recording token frequencies and document lengths) and passed to an embedding model to generate a dense vector stored in an ANN index.
+2. **Query dispatch:** When a user prompt arrives, the retrieval coordinator sends the raw text to the sparse engine and computes the query embedding before querying the vector store.
+3. **Prefetch candidate retrieval:** Both retrievers return candidate lists (typically top-50 or top-100 items) with their respective raw scores.
+4. **Rank fusion calculation:** The fusion processor computes the RRF score for each unique document ID across both candidate lists.
+5. **Candidate union pruning:** The merged list is sorted in descending order and truncated to the final retrieval limit $K$ (e.g., top-5).
+6. **Prompt injection:** The selected passages are formatted into structured grounding context for the agent language model.
+
+## Trust boundaries
+
+- **Index synchronization boundary:** In dual-index architectures, document insertions, updates, and deletions must execute atomically across both the inverted index and vector store. If a revoked document is deleted from the vector store but remains in the sparse index, unauthorized records can leak through hybrid search.
+- **Tenant and permission filter enforcement:** Security access filters (such as organization ID or user access role) must be evaluated within both prefetch queries before fusion occurs. Filtering only after fusion can cause unauthorized documents to displace authorized candidates from the top-$K$ window.
+- **Input sanitization:** Lexical queries must sanitize boolean operators, regex characters, and escape syntax to prevent query injection attacks against underlying search engines.
+
+## Reliability failures
+
+- **Prefetch cutoff truncation:** Fusion operates strictly on the union of candidates returned by the prefetch queries. If a relevant document ranks 101st in both sparse and dense prefetch lists, and the prefetch cutoff is 100, fusion cannot recover the document regardless of the fusion algorithm used (Couzon, 2026).
+- **Dominance by noisy lexical matches:** Queries containing high-frequency common words alongside domain jargon can lead to sparse result sets flooded with irrelevant documents that happen to share repeated common words, degrading the fused ranking.
+- **Score distortion under linear weighting:** When using linear score combination instead of RRF, sudden score spikes from BM25 on short documents can overshadow high-confidence dense semantic matches, distorting the final ordering.
+
+## Limitations and trade-offs
+
+- **Infrastructure and storage overhead:** Operating both an inverted index and a vector database doubles document storage requirements and increases memory consumption for in-memory graphs.
+- **Query latency:** Executing two retrieval queries in parallel and merging candidates adds latency compared to single-index search. In high-concurrency systems, network transit and lock contention can impact throughput.
+- **Cold start and term tuning:** BM25 parameters ($k_1, b$) and embedding models must be evaluated against representative domain workloads. Generic out-of-the-box embeddings often degrade on specialized proprietary terminology without domain adaptation.
+
+## Security preview
+
+In Pass 2, hybrid retrieval systems are analyzed against **Adversarial Keyword Stuffing, Dual-Index Inconsistency Exploits, and Indirect Prompt Injection**. Attackers exploit sparse and dense blind spots by crafting documents that fool semantic vector similarity while concealing malicious instructions in unindexed text regions, or manipulating lexical frequencies to hijack top RRF ranks. We examine index isolation, cryptographic corpus provenance, and multi-stage reranking gates in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can hybrid systems dynamically adjust prefetch depth and fusion weights based on query intent classification without adding runtime latency?
+- Can learned sparse models (such as SPLADE) fully replace dual-index architectures across highly technical enterprise domains with high lexical precision?
+
+## Key takeaways
+
+- Sparse retrieval (BM25) provides fast, exact-match keyword lookups, but fails when queries and documents use different terminology.
+- Dense retrieval (dual encoders) captures semantic meaning and handles paraphrases, but is prone to identifier blindness and semantic drift on specific codes and numbers.
+- Hybrid retrieval runs both engines in parallel and merges candidates using Reciprocal Rank Fusion (RRF) or distribution-based score normalization.
+- Reciprocal Rank Fusion scores candidates based on their reciprocal rank positions ($1 / (k + \text{rank})$), avoiding uncalibrated score scale mismatches.
+- Hybrid search requires careful prefetch depth tuning to ensure relevant evidence is not excluded before the fusion stage.
+
+## References
+
+- Robertson, S., & Zaragoza, H. (2009). *The Probabilistic Relevance Framework: BM25 and Beyond*. Foundations and Trends in Information Retrieval, 3(4), 333-389. [DOI:10.1561/1500000019](https://doi.org/10.1561/1500000019).
+- Karpukhin, V., Oğuz, B., Min, S., Lewis, P., Wu, L., Edunov, S., Chen, D., & Yih, W. (2020). *Dense Passage Retrieval for Open-Domain Question Answering*. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP 2020), pp. 6769-6781. [arXiv:2004.04906](https://arxiv.org/abs/2004.04906).
+- Cormack, G. V., Clarke, C. L. A., & Buettcher, S. (2009). *Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods*. In Proceedings of the 32nd International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR '09), pp. 758-759. [DOI:10.1145/1571941.1572114](https://doi.org/10.1145/1571941.1572114).
+- Couzon, D. (2026). *Hybrid Search in Qdrant*. Qdrant Technical Documentation. [Qdrant Hybrid Search](https://qdrant.tech/articles/hybrid-search/).
+- Formal, T., Piwowarski, B., & Clinchant, S. (2021). *SPLADE: Sparse Lexical and Expansion Model for First Stage Ranking*. In Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR '21), pp. 2288-2292. [arXiv:2107.05720](https://arxiv.org/abs/2107.05720).
+
+---
+
+[Next Unit: Chunking, ranking, and advanced retrieval →](/From-LLMs-to-Secure-Agents/building-blocks/03-chunking-ranking-and-advanced-retrieval/)
+
+
+================================================================================
+CHAPTER: Chunking, ranking, and advanced retrieval
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/03-chunking-ranking-and-advanced-retrieval/
+SUMMARY: Explores advanced retrieval architectures beyond flat passage matching, including contextual chunking, cross-encoder neural reranking, hierarchical tree indexing with RAPTOR, and community-summarized knowledge graphs with GraphRAG.
+================================================================================
+
+# Chunking, ranking, and advanced retrieval
+
+## Why this matters
+
+Basic Retrieval-Augmented Generation (RAG) pipelines break documents into arbitrary text chunks and index them using approximate nearest neighbor vector similarity. While this flat approach works for simple factual lookups, production systems quickly run into fundamental structural barriers: context destruction, semantic distractor ranking, and the inability to answer global synthesis questions.
+
+When documents are chopped into short passages, critical context vanishes. A chunk stating "the service revenue grew by 14%" becomes uninterpretable if the document title, fiscal quarter, and company name were located on a preceding page (Anthropic, 2024). Furthermore, vector similarity models frequently assign high scores to irrelevant passages that share superficial vocabulary while ranking genuinely authoritative paragraphs further down the list.
+
+Answering complex questions requires architectures beyond flat passage matching. Advanced retrieval introduces contextual chunking to preserve background, two-stage pipelines with cross-encoder neural rerankers to eliminate distractors (Nogueira & Cho, 2019), recursive tree structures like RAPTOR to navigate different levels of abstraction (Sarthi et al., 2024), and entity-relationship knowledge graphs like GraphRAG to synthesize global corpus themes (Edge et al., 2024). Alongside [Memory](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md) and [Tools](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md), these advanced retrieval structures allow agents to reason across thousands of interrelated documents without losing either granular precision or global perspective.
+
+## Simple mental model
+
+Think of a researcher investigating a complex corporate fraud case across twenty filing cabinets:
+
+1. **Naive flat chunking (shredded pages):** The investigator cuts every report into two-paragraph strips and piles them into one giant box. One strip says "He approved the $5M wire transfer without board consent." The investigator has no idea who "he" was, which company transferred the money, or what year it happened.
+2. **Contextual chunking (stamped index cards):** Before filing, the archivist stamps the top of every strip with its source metadata: `[Acme Corp 2023 Audit Report > Subsidiary Transfer Section]`. Every strip now retains its organizational identity regardless of where it is filed.
+3. **Two-stage reranking (the intern and the senior partner):** An intern quickly scans the entire library and pulls the top 100 candidate folders (fast first-stage retrieval). Then, the senior partner carefully reads each of the 100 folders side by side with the specific legal brief, scoring each folder for actual evidentiary weight (thorough cross-encoder reranking).
+4. **Hierarchical summaries (the executive briefing tree):** The archive organizes files into a pyramid. Individual transaction slips sit at the bottom, chapter summaries form the middle tier, and overarching annual executive briefs sit at the top. The researcher can zoom in for transaction receipts or zoom out for high-level corporate structure.
+
+By stamping context on chunks, applying two-stage reranking, and building hierarchical trees, researchers navigate vast libraries without missing critical details or losing the overarching narrative.
+
+## Position in the agent workflow
+
+Advanced retrieval operates as the intelligence layer inside the RAG retrieval subsystem. Instead of executing a single vector search that feeds directly into the generator, the agent engine uses a multi-phase extraction and filtering pipeline.
+
+When an agent query arrives, the system queries structured indexes (vector stores, hierarchical summary trees, or knowledge graphs). The resulting candidates are funneled through a high-precision cross-encoder reranker, ensuring that only the most contextually relevant, verified passages enter the agent context window.
+
+![A two-stage retrieval architecture diagram traces a user query through Stage 1 bi-encoder vector prefetch yielding 100 candidates, followed by Stage 2 cross-encoder neural reranking using full joint cross-attention to output 5 refined passages to the agent context window.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval/01-two-stage-retrieval-and-reranking-pipeline.png)
+
+*Figure 1. Two-stage retrieval pairs fast vector search over the entire corpus with compute-intensive cross-encoder reranking over candidate subsets to maximize retrieval precision.*
+
+## How it works
+
+Modern advanced retrieval pipelines combine four structural innovations: contextual chunking, cross-encoder reranking, recursive tree indexing, and graph-based community summarization.
+
+### 1. Contextual chunking and parent-child relationships
+
+In traditional naive chunking, documents are partitioned purely by token counts. This destroys pronoun references, section context, and organizational scope.
+
+**Contextual retrieval** addresses this limitation by prepending a concise, document-level explanatory context to every chunk prior to vector embedding and BM25 indexing (Anthropic, 2024). During offline ingestion, a lightweight language model processes the whole document alongside the candidate chunk and generates a 50-to-100 token context string:
+
+$$\text{Chunk}_{\text{contextual}} = [\text{Contextual Description}] \mathbin{\Vert} \text{Chunk}_{\text{raw}}$$
+
+For example, a raw chunk reading *"Operating margins fell 3% due to higher server amortization"* is prepended with: *"[Source: Acme Corp Q3 2024 Form 10-Q > Segment Performance > Cloud Infrastructure]"*. This ensures that both dense embeddings and sparse BM25 tokens reflect the true origin and scope of the chunk, cutting retrieval failure rates by nearly half (Anthropic, 2024).
+
+In **parent-child chunking**, documents are indexed at two granularities simultaneously: small child chunks (e.g., 200 tokens) are embedded for precise vector matching, but when a child chunk matches a query, the system retrieves its encompassing parent passage (e.g., 1000 tokens) or complete section for the agent prompt. This provides the generator with complete narrative coherence while preserving high retrieval sensitivity.
+
+### 2. Two-stage retrieval and cross-encoder neural reranking
+
+Vector databases use **bi-encoder** models where queries and documents are embedded into vectors independently ($E_Q(q)$ and $E_D(d)$). Because query and document tokens never interact directly in the neural network, bi-encoders miss complex token interactions, negation, syntactic dependencies, and fine-grained phrase ordering (Nogueira & Cho, 2019).
+
+To resolve this without sacrificing speed, production architectures deploy a **two-stage retrieval pipeline**:
+
+- **Stage 1 (Fast prefetch):** A bi-encoder or hybrid retriever scans millions of passages in milliseconds, returning a candidate pool (typically top-50 to top-100).
+- **Stage 2 (Cross-encoder reranking):** A cross-encoder model evaluates the query and each candidate passage jointly. Both strings are concatenated and passed through transformer self-attention layers:
+
+$$\text{Input} = \text{[CLS]} \circ q \circ \text{[SEP]} \circ d \circ \text{[SEP]}$$
+
+$$\text{Score}_{\text{CrossEncoder}}(q, d) = \sigma\left(W \cdot \text{Transformer}(\text{Input})_{[\text{CLS}]}\right)$$
+
+Because all tokens in the query attend to all tokens in the candidate passage across every transformer layer, the cross-encoder detects subtle nuances, negations, and exact terminology matches that vector similarity overlooked. The candidate pool is then resorted by cross-encoder score, and only the top 3 to 5 passages are injected into the agent prompt context.
+
+### 3. Hierarchical tree retrieval (RAPTOR)
+
+Standard RAG systems struggle with holistic questions such as *"What are the overarching themes of the 2024 engineering post-mortems?"* Answering this requires information scattered across dozens of individual incident reports.
+
+**RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval)** builds a multi-layer tree index through recursive clustering and summarization (Sarthi et al., 2024):
+
+1. **Leaf indexing:** Raw text chunks form the leaf nodes of the tree.
+2. **Semantic clustering:** Chunks with high embedding similarity are grouped into clusters using Gaussian Mixture Models (allowing chunks to belong to multiple clusters).
+3. **Abstractive summarization:** A language model summarizes each cluster into a higher-level summary node.
+4. **Recursive elevation:** The resulting summary nodes are clustered and summarized again, repeating until a root summary node covers the entire corpus.
+
+During query execution, RAPTOR retrieves across all layers of the tree simultaneously (flattened tree search) or traverses from root summaries down to leaf details. This allows the agent to extract high-level thematic conclusions without reading every leaf passage individually.
+
+![An educational diagram compares hierarchical tree retrieval (RAPTOR) using leaf chunks, clustered summaries, and multi-scale search against graph-based retrieval (GraphRAG) using entity nodes, relationship edges, and community summaries for global sensemaking.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval/02-hierarchical-and-graph-retrieval-structures.png)
+
+*Figure 2. Hierarchical trees cluster text chunks into multi-scale summaries, while knowledge graphs map entities and relationships into community clusters to support global sensemaking.*
+
+### 4. Graph-based retrieval and community summarization (GraphRAG)
+
+While vector indices treat text as unstructured bags of tokens, many enterprise domains are inherently relational. **GraphRAG** combines knowledge graphs with language models to structure corpus information into an explicit network of entities and relationships (Edge et al., 2024):
+
+1. **Entity and relationship extraction:** An LLM extracts named entities (people, systems, protocols, vulnerabilities) and directed claims ("Service A authenticates to Service B via mTLS") from each text chunk.
+2. **Hierarchical community detection:** Graph algorithms (such as the Leiden algorithm) partition the entity network into modular communities of closely connected concepts at multiple levels of granularity.
+3. **Community report generation:** The model precomputes detailed narrative summaries for each detected community.
+4. **Global and local query routing:**
+   - **Local search:** Answers entity-specific questions by finding neighboring nodes and extracting related incident claims.
+   - **Global search:** Answers thematic, corpus-wide questions by aggregating community reports across the graph, generating partial summaries, and synthesizing a final response.
+
+## Main variants
+
+1. **Parent-child and contextual RAG:** Retains hierarchical document structure during chunking and embeds contextual headers to prevent semantic isolation (Anthropic, 2024).
+2. **Late chunking:** Embeds the entire document through long-context transformer layers first, and pools token embeddings into chunk representations only at the final layer. This preserves bidirectional cross-chunk attention across passage boundaries.
+3. **Two-stage cross-encoder rerankers:** Couples bi-encoder vector indices with cross-encoders (such as Cohere Rerank, BGE-Reranker, or ColBERT late interaction) to refine candidate relevance (Nogueira & Cho, 2019).
+4. **Recursive summary trees (RAPTOR):** Clusters and summarizes chunks recursively to construct multi-scale indexes for both fine-grained facts and high-level themes (Sarthi et al., 2024).
+5. **Knowledge graph augmented RAG (GraphRAG):** Extracts entities and claims into graph databases (e.g., Neo4j) and uses community detection for global sensemaking (Edge et al., 2024).
+
+## Minimal implementation
+
+The following Python snippet demonstrates two-stage retrieval: fast bi-encoder first-stage search followed by cross-encoder neural reranking with token alignment scoring. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval/advanced_retrieval_runtime.py) demonstrates contextual chunking, cross-encoder scoring, and hierarchical summary retrieval.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+from dataclasses import dataclass
+from typing import List, Tuple
+
+@dataclass
+class Passage:
+    passage_id: str
+    text: str
+    vector: List[float]
+
+def cosine_similarity(v1: List[float], v2: List[float]) -> float:
+    return sum(a * b for a, b in zip(v1, v2)) if len(v1) == len(v2) else 0.0
+
+class TwoStageRetriever:
+    def __init__(self, passages: List[Passage]) -> None:
+        self.passages = passages
+
+    def stage_1_prefetch(self, query_vec: List[float], top_k: int = 5) -> List[Tuple[Passage, float]]:
+        # Fast bi-encoder approximate vector similarity
+        scored = [(p, cosine_similarity(query_vec, p.vector)) for p in self.passages]
+        scored.sort(key=lambda x: x[1], reverse=True)
+        return scored[:top_k]
+
+    def stage_2_rerank(self, query: str, candidates: List[Tuple[Passage, float]], top_n: int = 2) -> List[Tuple[Passage, float]]:
+        # Cross-encoder joint scoring over [Query; Passage]
+        reranked = []
+        q_tokens = set(query.lower().split())
+        for passage, bi_score in candidates:
+            p_tokens = set(passage.text.lower().split())
+            token_overlap = len(q_tokens.intersection(p_tokens)) / max(len(q_tokens), 1)
+            # Joint score combines bi-encoder semantic affinity with exact cross-attention token alignment
+            cross_score = (0.6 * token_overlap) + (0.4 * bi_score)
+            reranked.append((passage, cross_score))
+
+        reranked.sort(key=lambda x: x[1], reverse=True)
+        return reranked[:top_n]
+```
+
+</details>
+
+Run [advanced_retrieval_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval/advanced_retrieval_runtime.py) to inspect contextual chunk prefixes, bi-encoder candidate pools, cross-encoder reranking, and RAPTOR summary node execution.
+
+## Data flow and state changes
+
+1. **Document ingestion & contextualization:** Documents are chunked into passages. Contextual prefixes or parent metadata are generated and attached to each chunk.
+2. **Multi-scale indexing:** Chunks are embedded into vector indices. Concurrently, clusters are summarized into RAPTOR tree nodes or extracted into GraphRAG entity networks.
+3. **Stage 1 candidate prefetch:** The incoming user query triggers a broad vector or hybrid search across the index, retrieving 50 to 100 candidate passages.
+4. **Stage 2 cross-encoder scoring:** Candidate pairs are evaluated by the cross-encoder, calculating joint attention scores.
+5. **Score thresholding & deduplication:** Candidates scoring below a minimum confidence threshold are discarded; near-duplicate passages are pruned.
+6. **Prompt assembly:** The top-ranked passages (or higher-level community summaries) are formatted into the agent context window with source citations.
+
+## Trust boundaries
+
+- **Ingestion LLM extraction boundary:** Hierarchical summary trees (RAPTOR) and knowledge graphs (GraphRAG) rely on language models during indexing to summarize text and extract relationships. If an ingested document contains indirect prompt injection payloads, the indexing model could be hijacked during summarization, poisoning community summaries and downstream graph nodes.
+- **Reranker boundary:** Cross-encoder models evaluate untrusted document passages directly alongside trusted user queries. Rerankers must output strictly numeric relevance scores and never execute or interpret instructions embedded within candidate text.
+- **Access control propagation:** In hierarchical trees and knowledge graphs, community summaries blend information from multiple child chunks. If Child Chunk A is restricted to Admin users and Child Chunk B is public, the parent summary node must inherit the strictest access label (Admin only) to prevent unauthorized information leakage across tenant boundaries.
+
+## Reliability failures
+
+- **Contextual prefix hallucination:** When generating contextual prefixes for thousands of chunks, an automated ingestion LLM may hallucinate incorrect document titles, dates, or product versions, permanently indexing distorted metadata.
+- **Cross-encoder computational bottleneck:** Cross-encoder latency scales linearly with candidate pool size ($O(K \cdot L^2)$ attention complexity). If the first-stage prefetch retrieves too many candidates, reranking latency can exceed interactive agent response deadlines.
+- **Graph entity resolution fragmentation:** In GraphRAG, if the extraction model fails to resolve entity synonyms (e.g., treating "Postgres", "PostgreSQL", and "pg_database" as three separate entities), the resulting graph becomes fragmented, leading to failed relationship traversals.
+
+## Limitations and trade-offs
+
+- **Indexing cost and compute:** Building RAPTOR trees or GraphRAG entity graphs requires hundreds or thousands of LLM inference calls during ingestion, significantly increasing offline pipeline cost compared to simple vector embedding.
+- **Query latency overhead:** Adding a cross-encoder reranking step adds 50 to 200 milliseconds of inference latency per query compared to direct vector lookups.
+- **Index update complexity:** In flat vector databases, adding or deleting a document requires updating only that document vectors. In hierarchical trees and knowledge graphs, updating a document requires re-clustering, re-summarizing parent nodes, and updating graph edges.
+
+## Security preview
+
+In Pass 2, advanced retrieval systems are evaluated against **Graph Extraction Poisoning, Cross-Encoder Evasion Attacks, and Multi-Scale Context Injection**. Adversaries craft poisoned passages designed to manipulate hierarchical clustering algorithms, forcing malicious summaries to the root of RAPTOR trees or injecting false claims into GraphRAG communities. We analyze cryptographic provenance tracking, access-label inheritance, and isolated sanitization gates in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- How can hierarchical summary trees efficiently support streaming, real-time document updates without rebuilding entire tree clusters?
+- Can late-interaction models (such as ColBERT) provide the full accuracy of cross-encoder reranking while retaining the sub-millisecond retrieval speeds of bi-encoder vector indices?
+
+## Key takeaways
+
+- Naive chunking destroys critical document context; contextual chunking prepends source and section background to preserve retrieval accuracy.
+- Two-stage retrieval combines fast bi-encoder prefetch with deep cross-encoder neural reranking, eliminating false-positive distractors.
+- RAPTOR builds recursive summary trees through semantic clustering, enabling agents to query both granular leaf details and high-level corpus themes.
+- GraphRAG extracts entities, relationships, and community summaries, supporting global sensemaking across entire document collections.
+- Hierarchical and graph indices increase offline ingestion cost and complexity, requiring strict access-control propagation across summary nodes.
+
+## References
+
+- Sarthi, P., Abdullah, S., Tuli, A., Khanna, S., Goldie, A., & Manning, C. D. (2024). *RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval*. International Conference on Learning Representations (ICLR 2024). [arXiv:2401.18059](https://arxiv.org/abs/2401.18059).
+- Nogueira, R., & Cho, K. (2019). *Passage Re-ranking with BERT*. arXiv preprint. [arXiv:1901.04085](https://arxiv.org/abs/1901.04085).
+- Edge, D., Trinh, H., Cheng, N., Bradley, J., Chao, A., Mody, A., Truitt, S., Metropolitansky, D., Ness, R. O., & Larson, J. (2024). *From Local to Global: A Graph RAG Approach to Query-Focused Summarization*. Microsoft Research. [arXiv:2404.16130](https://arxiv.org/abs/2404.16130).
+- Anthropic. (2024). *Contextual Retrieval: Improving RAG Accuracy with Contextual Embeddings and BM25*. Anthropic Research & Engineering. [Anthropic Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval).
+
+---
+
+[Next Unit: Grounding, long context, and retrieval evaluation →](/From-LLMs-to-Secure-Agents/building-blocks/04-grounding-long-context-and-retrieval-evaluation/)
+
+
+================================================================================
+CHAPTER: Grounding, long context, and retrieval evaluation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-grounding-long-context-and-retrieval-evaluation/
+SUMMARY: Analyzes context grounding, verifiable citations, the architectural trade-offs between massive context windows and focused RAG retrieval, and quantitative evaluation frameworks for retrieval precision and answer faithfulness.
+================================================================================
+
+# Grounding, long context, and retrieval evaluation
+
+## Why this matters
+
+The rapid expansion of foundation model context windows (reaching one to two million tokens) has prompted a common architectural question: why maintain complex ingestion, chunking, and retrieval pipelines when an entire repository or document archive can be dumped directly into a prompt?
+
+While long-context models excel at single-turn multi-document analysis and needle-in-a-haystack retrieval (Gemini Team, 2024), relying entirely on massive prompts introduces severe operational and cognitive penalties. Processing hundreds of thousands of prompt tokens incurs substantial time-to-first-token latency, compounds financial costs on every interaction, and suffers from **position-dependent attention degradation** ("Lost in the Middle"), where models reliably recall information placed at the start or end of the context but overlook facts placed in the middle (Liu et al., 2023).
+
+Furthermore, without continuous measurement, retrieval systems silently degrade. A system might report high API success rates while returning irrelevant documents or generating convincing hallucinations that cite phantom sources. Ensuring that agent actions remain reliable requires a rigorous evaluation framework: measuring both **retrieval quality** (whether the right evidence was found) and **generation faithfulness** (whether claims are verifiably grounded in retrieved text) (Es et al., 2023; Thakur et al., 2021). Alongside [Memory](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/05-memory/chapter-plan.md) and [Tools](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md), grounding and continuous evaluation transform experimental prototypes into dependable enterprise agent systems.
+
+## Simple mental model
+
+Think of an attorney preparing for an urgent courtroom hearing:
+
+1. **The dump truck approach (long context):** An assistant dumps forty cardboard boxes containing 50,000 unorganized loose papers onto the courtroom table. The attorney has access to everything, but finding a single contract clause takes minutes, and reading through irrelevant depositions causes fatigue, increasing the likelihood of missing crucial evidence buried in box twenty-four.
+2. **The curated briefing binder (focused RAG retrieval):** A skilled paralegal searches the firm archives, extracts the exact three pertinent contracts, highlights the relevant paragraphs, and places a five-page indexed binder on the attorney desk. The attorney answers the judge immediately with precise citations.
+3. **The independent fact-checker (RAG evaluation):** Before the attorney speaks, a second paralegal verifies every claim in the brief: Did we pull the right contracts? Does the contract actually say what we claim it says? Does our argument directly answer the judge question?
+
+Long context provides an expansive workspace, but focused retrieval and continuous verification ensure that agents act on sharp, accurate, and cost-effective evidence.
+
+## Position in the agent workflow
+
+Grounding and retrieval evaluation operate at the boundary between external knowledge retrieval and downstream agent reasoning. Once the retrieval engine extracts candidate passages, the grounding layer formats them into structured context containers with tamper-evident metadata tags.
+
+During and after execution, automated evaluators inspect the interaction trace across three distinct checkpoints: evaluating the search query against retrieved passages (retrieval recall and context precision), evaluating retrieved passages against the generated completion (groundedness and faithfulness), and evaluating the generated answer against the user goal (task relevance).
+
+## How it works
+
+A production grounding subsystem balances the architectural trade-offs between long-context processing and focused retrieval, while implementing systematic quantitative evaluations across the entire RAG pipeline.
+
+### 1. Long-context versus focused retrieval trade-offs
+
+Modern foundation models support context windows exceeding one million tokens (Gemini Team, 2024). However, choosing between long-context brute-force prompting and focused Retrieval-Augmented Generation (RAG) involves distinct trade-offs:
+
+- **Inference latency:** In standard transformer architectures, self-attention scales quadratically or chunk-wise linearly with sequence length. Processing a 500,000-token prompt requires multiple seconds before the model generates its first output token, making it unsuitable for real-time conversational agents. In contrast, querying an indexed vector database takes 10 to 50 milliseconds, and generating against a 2,000-token context begins in milliseconds.
+- **Cost compounding:** In interactive agent loops where the agent takes dozens of consecutive tool steps, resending a massive 500,000-token document history on every turn results in unsustainable token costs unless aggressive prompt caching is supported and cache hits remain uninterrupted.
+- **Lost in the Middle and context rot:** Empirical studies demonstrate that language model retrieval accuracy follows a U-shaped curve: accuracy is highest when relevant information appears at the beginning (primacy effect) or end (recency effect) of the context window, and drops significantly when the evidence resides in the middle (Liu et al., 2023). Flooding the prompt with thousands of distractor passages degrades reasoning precision even when models achieve high scores on synthetic needle-in-a-haystack benchmarks.
+
+| Dimension | Massive long-context window (1M+ tokens) | Focused RAG retrieval (Top-K passages) |
+| --- | --- | --- |
+| **Setup complexity** | Minimal (paste documents into prompt) | Moderate (ingestion, chunking, indexing, fusion) |
+| **Query latency** | High (several seconds time-to-first-token) | Low (sub-second retrieval and generation) |
+| **Token cost** | High per query (unless heavily cached) | Low per query (only top passages sent) |
+| **Contextual degradation** | Susceptible to "Lost in the Middle" and distractors | High focus; minimal irrelevant noise |
+| **Freshness** | Must re-upload documents to update | Real-time index updates without altering prompts |
+| **Global sensemaking** | Strong for single documents (within window limit) | Requires hierarchical trees (RAPTOR) or GraphRAG |
+
+### 2. Grounded context assembly and provenance
+
+Grounding ensures that the generator relies on retrieved external evidence rather than internal parametric memory. When candidate chunks are selected, the context assembler formats them into structured, isolated evidence blocks:
+
+```text
+=== BEGIN RETRIEVED EVIDENCE ===
+[Doc 1] (source: https://wiki.corp/policy/auth, id: auth-chunk-4):
+All internal microservices must enforce mutual TLS (mTLS) with certificates rotated every 90 days.
+
+[Doc 2] (source: https://wiki.corp/policy/tokens, id: tok-chunk-1):
+OAuth2 JWT bearer tokens must enforce a maximum lifespan of 15 minutes.
+=== END RETRIEVED EVIDENCE ===
+```
+
+System instructions mandate that the model cite `[Doc N]` references inline for every factual assertion and explicitly state when the evidence is insufficient to answer the query.
+
+### 3. Classical retrieval evaluation metrics
+
+Evaluating retrieval performance requires comparing retrieved passages against known ground-truth relevant passages across standard benchmark datasets (such as BEIR) (Thakur et al., 2021):
+
+- **Precision@K:** The proportion of retrieved documents in the top-$K$ list that are genuinely relevant:
+  $$\text{Precision@K} = \frac{|\text{Retrieved}_K \cap \text{Relevant}|}{K}$$
+- **Recall@K:** The proportion of all relevant documents in the corpus that appear in the top-$K$ list:
+  $$\text{Recall@K} = \frac{|\text{Retrieved}_K \cap \text{Relevant}|}{|\text{Relevant}|}$$
+- **Mean Reciprocal Rank (MRR):** Evaluates how high the first relevant document ranks:
+  $$\text{MRR} = \frac{1}{|Q|} \sum_{i=1}^{|Q|} \frac{1}{\text{rank}_i}$$
+- **Normalized Discounted Cumulative Gain (NDCG@K):** Evaluates graded relevance, penalizing systems when highly relevant documents appear lower in the ranking:
+  $$\text{DCG@K} = \sum_{i=1}^{K} \frac{2^{\text{rel}_i} - 1}{\log_2(i + 1)}, \quad \text{NDCG@K} = \frac{\text{DCG@K}}{\text{IDCG@K}}$$
+
+### 4. Generation evaluation: The RAG Triad
+
+While classical metrics evaluate the search index, they cannot assess whether the generated text is truthful or hallucinatory. The **RAG Triad** framework decomposes end-to-end RAG quality into three reference-free metrics evaluated using automated LLM evaluators (Es et al., 2023):
+
+1. **Context Relevance:** Measures whether the retrieved passages are focused and relevant to the user query, penalizing noisy distractor chunks.
+2. **Groundedness (Faithfulness):** Measures whether every factual claim made in the generated answer can be mathematically or logically derived from the retrieved context. A faithfulness score below 1.0 flags parametric hallucinations.
+3. **Answer Relevance:** Measures whether the generated completion directly addresses the user intent and query requirements, penalizing evasive or off-topic responses.
+
+## Main variants
+
+1. **Synthetic needle-in-a-haystack testing:** Tests long-context resilience by inserting distinct factoids at varying depth percentiles (0% to 100%) within massive background text collections (Gemini Team, 2024).
+2. **Reference-free LLM-as-a-judge (Ragas):** Evaluates production RAG logs without manual ground-truth labels by decomposing answers into atomic statements and verifying each against retrieved context (Es et al., 2023).
+3. **Isolated citation verification gates:** A lightweight deterministic parser extracts all inline `[Doc N]` citations and runs token-level NLI (Natural Language Inference) models to verify claim support before streaming answers to the user.
+4. **Hybrid long-context RAG:** Uses fast vector retrieval to identify the top three relevant documents, but passes the complete documents (rather than fragmented passages) into a long-context model, combining high-level retrieval filtering with full passage context.
+
+## Minimal implementation
+
+The following Python snippet demonstrates the calculation of classical retrieval metrics (Recall@K, MRR, NDCG@K) alongside automated faithfulness verification to catch unsupported claims. The [full runnable example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/retrieval_evaluation_runtime.py) demonstrates simulated position-bias attention curves and complete RAG Triad scoring.
+
+<details>
+<summary>Expand minimal Python implementation</summary>
+
+```python
+import math
+from typing import Dict, List, Set
+
+def evaluate_retrieval_ranking(retrieved: List[str], relevant: Set[str], k: int = 3) -> Dict[str, float]:
+    top_k = retrieved[:k]
+    hits = sum(1 for doc_id in top_k if doc_id in relevant)
+    precision = hits / max(len(top_k), 1)
+    recall = hits / max(len(relevant), 1)
+
+    mrr = 0.0
+    for rank, doc_id in enumerate(retrieved, start=1):
+        if doc_id in relevant:
+            mrr = 1.0 / rank
+            break
+
+    return {"precision@k": precision, "recall@k": recall, "mrr": mrr}
+
+def verify_claim_faithfulness(claims: List[str], retrieved_context: str) -> Dict[str, object]:
+    context_tokens = set(retrieved_context.lower().split())
+    unsupported = []
+    for claim in claims:
+        claim_tokens = set(claim.lower().split())
+        overlap = len(claim_tokens.intersection(context_tokens)) / max(len(claim_tokens), 1)
+        if overlap < 0.65:
+            unsupported.append(claim)
+
+    faithfulness_score = (len(claims) - len(unsupported)) / max(len(claims), 1)
+    return {"faithfulness": faithfulness_score, "unsupported_claims": unsupported}
+```
+
+</details>
+
+Run [retrieval_evaluation_runtime.py](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/retrieval_evaluation_runtime.py) to inspect precision, recall, MRR, NDCG calculations, and simulated U-shaped position-bias attention degradation.
+
+## Data flow and state changes
+
+1. **Query submission & retrieval:** A user prompt triggers retrieval across the indexed knowledge base.
+2. **First-stage evaluation logging:** The retrieval coordinator logs the query, candidate document IDs, and ranking positions into an observability trace.
+3. **Context formatting & grounding:** Chunks are formatted into structured `[Doc N]` blocks and injected into the prompt alongside strict grounding instructions.
+4. **Model completion generation:** The model generates an answer containing inline citation markers.
+5. **Post-generation verification:** The evaluation engine extracts individual sentences and verifies whether each assertion is supported by the corresponding cited chunk.
+6. **Metric telemetry aggregation:** Faithfulness, context precision, and latency metrics are exported to monitoring dashboards to detect index degradation or drift over time.
+
+## Trust boundaries
+
+- **Grounded context boundary:** The generator must treat retrieved external evidence as untrusted third-party input. Formatting must prevent indirect prompt injection payloads embedded in retrieved chunks from breaking out of document fences.
+- **Citation integrity boundary:** Inline citation tags generated by the LLM cannot be trusted unconditionally. The application runtime must verify that cited document IDs actually exist in the retrieved set and contain text supporting the asserted claim.
+- **Evaluator isolation:** When using LLM-as-a-judge evaluation pipelines, evaluator prompts must be strictly isolated from user execution sessions so that an adversarial prompt cannot manipulate its own evaluation scores.
+
+## Reliability failures
+
+- **Hallucinated citation tags:** Language models frequently fabricate citations, generating confident claims followed by `[Doc 1]` even when Document 1 discusses an entirely unrelated topic.
+- **Position-dependent context neglect:** When prompts contain twenty or more retrieved passages, facts located between the 30th and 70th percentile of the prompt are frequently ignored due to middle-context attention attenuation (Liu et al., 2023).
+- **Evaluator judge bias:** Automated LLM judges often exhibit length bias (preferring longer, wordy answers over concise answers) and position bias, requiring careful calibration against human evaluation baselines.
+
+## Limitations and trade-offs
+
+- **Evaluation latency:** Running automated LLM evaluators on every production request doubles inference costs and adds latency, restricting online evaluation to asynchronous sampling or lightweight heuristic checks.
+- **Synthetic benchmark divergence:** Near-perfect scores on synthetic needle-in-a-haystack tests often fail to predict performance on real-world reasoning tasks where evidence is ambiguous, contradictory, or spread across multiple passages.
+- **Prompt caching fragility:** Long-context cost advantages depend heavily on prompt caching. Any dynamic modification to early prompt prefixes invalidates the cache, triggering full-price re-ingestion.
+
+## Security preview
+
+In Pass 2, grounding and evaluation systems are analyzed against **Evaluation Evasion, Citation Spoofing, and Indirect Prompt Injection via Context Distractors**. Attackers inject adversarial text into documentation pages designed to pass automated faithfulness filters while leading downstream reasoning models into unauthorized tool invocations. We evaluate cryptographic provenance signatures, isolated judge sandboxes, and policy guardrails in [Retrieval, memory, and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md).
+
+## Open research questions
+
+- Can transformer architectures eliminate the "Lost in the Middle" attention degradation without requiring quadratic attention computation?
+- What lightweight, sub-10-millisecond verification algorithms can reliably detect factual hallucination without invoking secondary LLM judge calls?
+
+## Key takeaways
+
+- Massive context windows allow multi-document analysis, but suffer from high latency, compounding token costs, and position-dependent attention degradation ("Lost in the Middle").
+- Focused RAG retrieval provides sub-second latencies, lower token expenditures, and sharp context focus for real-time agent loops.
+- Classical information retrieval metrics (Recall@K, Precision@K, MRR, NDCG@K) evaluate search ranking performance against known relevance benchmarks.
+- The RAG Triad framework evaluates generation quality reference-free across context relevance, groundedness (faithfulness), and answer relevance.
+- Factual grounding requires automated post-generation verification to prevent models from generating plausible but unsupported inline citations.
+
+## References
+
+- Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2023). *Lost in the Middle: How Language Models Use Long Contexts*. Transactions of the Association for Computational Linguistics (TACL), 12, 157-173. [arXiv:2307.03172](https://arxiv.org/abs/2307.03172).
+- Es, S., James, J., Espinosa-Anke, L., & Schockaert, S. (2023). *Ragas: Automated Evaluation of Retrieval Augmented Generation*. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024). [arXiv:2309.15217](https://arxiv.org/abs/2309.15217).
+- Gemini Team, Google. (2024). *Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context*. arXiv preprint. [arXiv:2403.05530](https://arxiv.org/abs/2403.05530).
+- Thakur, N., Reimers, N., Rücklé, A., Srivastava, A., & Gurevych, I. (2021). *BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models*. In Thirty-fifth Conference on Neural Information Processing Systems (NeurIPS 2021) Datasets and Benchmarks Track. [arXiv:2104.08663](https://arxiv.org/abs/2104.08663).
+
+---
+
+[Next Unit: Tools and function calling plan →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md)
