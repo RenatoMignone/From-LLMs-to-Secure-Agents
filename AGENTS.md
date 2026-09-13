@@ -31,3 +31,9 @@ Build a sequential, source-grounded, visual guide to agentic AI and its security
 - Store small runnable examples under `examples/<chapter-path>/`.
 - Make minimal implementation code blocks expandable by default using `<details><summary>Expand minimal Python implementation</summary>...</details>`.
 - Do not use em dashes.
+
+## Temporary Pending Tasks
+
+- [ ] **Generate Visual Assets**: When quota resets (~00:18 CEST), generate PNGs from `source/` for:
+  - `P1-03-06-04`: `assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/source/` (2 prompts)
+  Link generated images into chapter 04, update `visual_assets`, validate site, and remove this entry.

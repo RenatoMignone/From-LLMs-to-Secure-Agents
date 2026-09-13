@@ -1,0 +1,26 @@
+id: p1-03-06-04-es-ragas-2023
+title: 'Ragas: Automated Evaluation of Retrieval Augmented Generation'
+authors_or_organization: Cardiff University & Exploding Gradients
+date: 2023-09
+source_type: paper
+canonical_url: https://arxiv.org/abs/2309.15217
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Defines reference-free metrics for RAG systems including faithfulness, answer relevance,
+  context precision, and context recall using automated LLM evaluators.
+limitations:
+- LLM-as-a-judge evaluation can inherit the underlying judge model biases, calibration
+  limits, and sensitivity to prompt formulation.
+related_topics:
+- rag evaluation
+- faithfulness
+unit_ids:
+- P1-03-06-04
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md
+local_copy: null
+sha256: null

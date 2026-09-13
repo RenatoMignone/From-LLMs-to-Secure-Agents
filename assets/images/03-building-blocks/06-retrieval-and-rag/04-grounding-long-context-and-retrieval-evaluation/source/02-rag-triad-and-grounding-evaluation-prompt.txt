@@ -1,0 +1,16 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational 2D cartoon diagram titled 'The RAG Triad Evaluation Framework'.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm amber (#F5A623), and soft coral.
+Composition/framing: A clear triangular relationship diagram connecting three core nodes with evaluation arrows:
+1. Top Node (soft blue circle): 'User Query' operated by a friendly user robot.
+2. Bottom-Left Node (sage green box): 'Retrieved Context' with evidence cards.
+3. Bottom-Right Node (warm amber box): 'Generated Answer' with citation badges.
+Three evaluation links form the triangle:
+- Link 1 (between Query and Retrieved Context): 'Context Relevance (Is retrieved context focused and noise-free?)'
+- Link 2 (between Retrieved Context and Generated Answer): 'Groundedness / Faithfulness (Is every claim supported? No hallucinations!)'
+- Link 3 (between Query and Generated Answer): 'Answer Relevance (Does the answer address the question?)'
+Text (verbatim): "The RAG Triad Evaluation Framework", "User Query", "Retrieved Context", "Generated Answer", "1. Context Relevance", "2. Groundedness / Faithfulness", "3. Answer Relevance"
+Constraints: Clear triangular layout; cute robot inspector characters; bold readable sans-serif labels; balanced spacing; high contrast; clean educational textbook aesthetic; no dark theme.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.

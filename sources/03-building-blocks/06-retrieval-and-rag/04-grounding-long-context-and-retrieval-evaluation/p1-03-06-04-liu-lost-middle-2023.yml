@@ -1,0 +1,26 @@
+id: p1-03-06-04-liu-lost-middle-2023
+title: 'Lost in the Middle: How Language Models Use Long Contexts'
+authors_or_organization: Stanford University, UC Berkeley & Samaya AI
+date: 2023-07
+source_type: paper
+canonical_url: https://arxiv.org/abs/2307.03172
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Language model retrieval accuracy degrades significantly when relevant information
+  is located in the middle of long input contexts compared to the beginning or end.
+limitations:
+- Focused on multi-document QA and key-value retrieval up to dozens of documents rather
+  than million-token architectural needle tests.
+related_topics:
+- long context
+- context position bias
+unit_ids:
+- P1-03-06-04
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md
+local_copy: null
+sha256: null

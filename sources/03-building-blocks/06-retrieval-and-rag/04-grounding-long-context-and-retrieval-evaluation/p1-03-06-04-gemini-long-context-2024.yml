@@ -1,0 +1,28 @@
+id: p1-03-06-04-gemini-long-context-2024
+title: 'Gemini 1.5: Unlocking multimodal understanding across millions of tokens of
+  context'
+authors_or_organization: Google DeepMind
+date: 2024-03
+source_type: paper
+canonical_url: https://arxiv.org/abs/2403.05530
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Demonstrates million-token context capabilities with near-perfect needle-in-a-haystack
+  retrieval, while highlighting latency and compute trade-offs compared to focused
+  retrieval.
+limitations:
+- Full context processing incurs quadratic or linear-attention inference costs that
+  scale with document size, making retrieval essential for low-latency queries.
+related_topics:
+- long context
+- needle in a haystack
+unit_ids:
+- P1-03-06-04
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md
+local_copy: null
+sha256: null

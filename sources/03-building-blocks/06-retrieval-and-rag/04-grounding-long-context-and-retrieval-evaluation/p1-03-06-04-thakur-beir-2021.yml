@@ -1,0 +1,27 @@
+id: p1-03-06-04-thakur-beir-2021
+title: 'BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval
+  Models'
+authors_or_organization: TU Darmstadt & Waterloo University
+date: 2021-04
+source_type: paper
+canonical_url: https://arxiv.org/abs/2104.08663
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Standardizes zero-shot evaluation metrics for retrieval models including nDCG@10,
+  Recall@K, and MRR across diverse domain datasets.
+limitations:
+- Focuses on first-stage ranking and lexical/dense retrieval benchmarks rather than
+  end-to-end generative RAG faithfulness.
+related_topics:
+- retrieval evaluation
+- BEIR benchmark
+unit_ids:
+- P1-03-06-04
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md
+local_copy: null
+sha256: null

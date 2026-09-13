@@ -1,0 +1,11 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational 2D cartoon diagram titled 'Long Context vs Focused Retrieval Trade-Offs'.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm amber (#F5A623), and soft coral.
+Composition/framing: Two balanced side-by-side comparison panels:
+1. Left Panel labeled 'Massive Long-Context Window (1M+ Tokens)': A cute blue robot overwhelmed under a huge towering pile of paper documents. Key callouts: 'High Token Cost', 'Multi-Second Latency', and a U-shaped graph labeled 'Lost in the Middle (Attention Dip)'.
+2. Right Panel labeled 'Focused RAG Retrieval': A cheerful green robot holding a clean folder with three neatly tagged evidence cards ('Doc 1', 'Doc 2', 'Doc 3'). Key callouts: 'Low Token Cost', 'Sub-Second Latency', and 'Sharp Focused Attention'.
+Text (verbatim): "Long Context vs Focused Retrieval Trade-Offs", "Massive Long-Context Window", "High Token Cost & Latency", "Lost in the Middle Effect", "Focused RAG Retrieval", "Low Cost & Sub-Second Latency", "Sharp Focused Grounding"
+Constraints: Cute robot characters; bold readable sans-serif labels; balanced spacing; high contrast; clean educational textbook layout; no dark backgrounds, no neon, no cyberpunk.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.
