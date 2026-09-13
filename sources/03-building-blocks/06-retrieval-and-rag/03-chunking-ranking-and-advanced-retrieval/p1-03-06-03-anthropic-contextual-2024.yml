@@ -1,0 +1,27 @@
+id: p1-03-06-03-anthropic-contextual-2024
+title: Contextual Retrieval
+authors_or_organization: Anthropic
+date: 2024-09
+source_type: documentation
+canonical_url: https://www.anthropic.com/news/contextual-retrieval
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Prepending chunk-specific explanatory context before embedding and indexing reduces
+  context loss and retrieval failure rates by preserving global document background
+  within isolated passages.
+limitations:
+- Generating contextual descriptions for every chunk adds upfront token usage during
+  ingestion and slightly increases chunk token length.
+related_topics:
+- contextual retrieval
+- chunking
+unit_ids:
+- P1-03-06-03
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval.md
+local_copy: null
+sha256: null

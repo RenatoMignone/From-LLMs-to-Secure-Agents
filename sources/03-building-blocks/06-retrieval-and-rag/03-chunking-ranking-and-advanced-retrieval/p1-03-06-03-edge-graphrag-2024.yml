@@ -1,0 +1,27 @@
+id: p1-03-06-03-edge-graphrag-2024
+title: 'From Local to Global: A Graph RAG Approach to Query-Focused Summarization'
+authors_or_organization: Microsoft Research
+date: 2024-04
+source_type: paper
+canonical_url: https://arxiv.org/abs/2404.16130
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- GraphRAG extracts entity-relationship graphs and community summaries to support
+  global sensemaking queries that span entire document collections, overcoming passage-level
+  retrieval limitations.
+limitations:
+- Graph construction and community detection require substantial LLM inference during
+  indexing and can introduce hallucinated relationships if entities are misidentified.
+related_topics:
+- graphrag
+- knowledge graphs
+unit_ids:
+- P1-03-06-03
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval.md
+local_copy: null
+sha256: null

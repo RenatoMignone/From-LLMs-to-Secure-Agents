@@ -1,0 +1,27 @@
+id: p1-03-06-03-nogueira-monobert-2019
+title: Passage Re-ranking with BERT
+authors_or_organization: New York University
+date: 2019-01
+source_type: paper
+canonical_url: https://arxiv.org/abs/1901.04085
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- Cross-encoder neural rerankers jointly attend over query and candidate text tokens
+  to capture deep cross-attention interactions, outperforming bi-encoder first-stage
+  retrieval.
+limitations:
+- Joint cross-attention is computationally expensive and cannot be precomputed into
+  vector indices, limiting reranking to a small top-K candidate set.
+related_topics:
+- cross-encoders
+- passage reranking
+unit_ids:
+- P1-03-06-03
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval.md
+local_copy: null
+sha256: null

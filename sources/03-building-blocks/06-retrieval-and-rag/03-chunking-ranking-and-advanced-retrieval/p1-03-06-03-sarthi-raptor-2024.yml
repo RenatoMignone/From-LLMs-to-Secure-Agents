@@ -1,0 +1,27 @@
+id: p1-03-06-03-sarthi-raptor-2024
+title: 'RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval'
+authors_or_organization: Stanford University
+date: 2024-01
+source_type: paper
+canonical_url: https://arxiv.org/abs/2401.18059
+doi: null
+version: null
+accessed: '2026-09-13'
+last_verified: '2026-09-13'
+status: checked
+claims_supported:
+- RAPTOR recursively clusters and summarizes text chunks to build a multi-layer tree
+  index, enabling retrieval across varying levels of abstraction for holistic document
+  understanding.
+limitations:
+- Building recursive summary trees introduces substantial preprocessing compute and
+  requires LLM calls at ingestion time.
+related_topics:
+- hierarchical retrieval
+- tree-based retrieval
+unit_ids:
+- P1-03-06-03
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval.md
+local_copy: null
+sha256: null

@@ -1,0 +1,11 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational 2D cartoon diagram comparing two advanced retrieval structures: Hierarchical Tree Retrieval (RAPTOR) and Graph-Based Retrieval (GraphRAG).
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide landscape educational diagram divided into two balanced panels:
+1. Left Panel labeled "Hierarchical Tree Retrieval (RAPTOR)": A cute green robot inspects a multi-layer tree structure. At the bottom are small leaf text chunks. In the middle layer are clustered summary nodes. At the top is a root corpus overview. An arrow labeled "Multi-Scale Retrieval" shows queries accessing both detailed facts and higher-level summaries.
+2. Right Panel labeled "Graph-Based Retrieval (GraphRAG)": A cute purple robot explores an interconnected entity-relationship knowledge graph with circular nodes (Entities like "Users", "APIs", "Databases") connected by labeled edges ("authenticates", "queries"). Grouped clusters show community summaries for global sensemaking queries.
+Text (verbatim): "Advanced Retrieval Structures", "Hierarchical Tree Retrieval (RAPTOR)", "Leaf Chunks", "Clustered Summaries", "Multi-Scale Search", "Graph-Based Retrieval (GraphRAG)", "Entity Nodes", "Relationship Edges", "Community Summaries", "Global Sensemaking"
+Constraints: Cute rounded robot characters; bold readable sans-serif labels; balanced spacing; high contrast; clean educational textbook layout; no dark backgrounds, no neon, no cyberpunk.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.

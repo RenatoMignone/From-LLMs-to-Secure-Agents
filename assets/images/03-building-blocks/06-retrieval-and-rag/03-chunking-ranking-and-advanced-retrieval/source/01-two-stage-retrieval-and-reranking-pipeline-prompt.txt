@@ -1,0 +1,13 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational 2D cartoon architecture diagram illustrating the two-stage retrieval pipeline: Bi-Encoder fast prefetch search followed by Cross-Encoder neural reranking.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Clear left-to-right multi-stage pipeline:
+1. On the left: A user question arrives at an agent assistant robot labeled "User Query".
+2. Stage 1 (center-left, soft blue panel labeled "Stage 1: Bi-Encoder First-Stage Search"): Fast vector similarity over millions of corpus documents. A blue robot quickly retrieves a broad candidate list labeled "Top 100 Candidates".
+3. Stage 2 (center-right, soft orange panel labeled "Stage 2: Cross-Encoder Neural Reranking"): The top candidates pass into a deep neural reranker. An orange robot inspects paired [Query + Passage] tokens with full cross-attention, assessing exact alignment and eliminating distractors.
+4. On the right: A narrow refined tray labeled "Refined Top 5 Passages" feeds directly into the "Agent Context Window".
+Text (verbatim): "Two-Stage Retrieval & Reranking Pipeline", "User Query", "Stage 1: Bi-Encoder Fast Search", "Top 100 Candidates", "Stage 2: Cross-Encoder Neural Reranking", "Full Cross-Attention [Query + Passage]", "Refined Top 5 Passages", "Agent Context Window"
+Constraints: Clear directional arrows left-to-right; cute robot characters; bold readable sans-serif labels; high contrast; balanced spacing; no dark backgrounds, no neon, no cyberpunk.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.
