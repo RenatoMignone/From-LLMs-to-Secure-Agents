@@ -1,0 +1,12 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational cartoon illustration comparing sparse lexical retrieval, dense vector retrieval, and hybrid retrieval for AI agents.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Wide horizontal educational diagram divided into three balanced panels comparing three retrieval paradigms:
+1. Left Panel labeled "Sparse Lexical Retrieval (BM25)": A cute green robot inspects an organized card catalog / inverted index box matching exact keywords and error codes ("ERR-4039", "SKU-99"). Strong keyword precision, but blind to synonyms.
+2. Center Panel labeled "Dense Vector Retrieval (Embeddings)": A cute blue robot floats across a geometric constellation map where semantic concepts cluster together ("fault-tolerant" near "resilient", "database" near "storage"). Strong conceptual recall, but misses exact identifiers.
+3. Right Panel labeled "Hybrid Retrieval (Fusion)": A friendly purple robot combines both streams into a single ranked results tray, achieving both exact identifier precision and semantic recall.
+Text (verbatim): "Sparse, Dense, and Hybrid Retrieval", "Sparse Lexical Retrieval (BM25)", "Exact Keyword Matching", "Dense Vector Retrieval (Embeddings)", "Semantic Meaning & Paraphrases", "Hybrid Retrieval (Fusion)", "Combined Precision & Recall"
+Constraints: Cute rounded robot characters; bold readable sans-serif labels; high contrast; balanced spacing; clean educational textbook layout; no additional text; no watermark.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny unreadable text.

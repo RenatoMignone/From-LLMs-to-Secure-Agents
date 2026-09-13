@@ -1,0 +1,27 @@
+id: p1-03-06-02-cormack-rrf-2009
+title: Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods
+authors_or_organization: University of Waterloo
+date: 2009-07
+source_type: paper
+canonical_url: https://doi.org/10.1145/1571941.1572114
+doi: null
+version: null
+accessed: '2026-09-12'
+last_verified: '2026-09-12'
+status: checked
+claims_supported:
+- Reciprocal Rank Fusion (RRF) scores documents across multiple ranked result lists
+  by summing 1 / (k + rank), providing effective rank combination without score calibration
+  or parameter tuning.
+limitations:
+- RRF uses only rank positions, ignoring the actual score distances or relative margin
+  of confidence between adjacent candidates.
+related_topics:
+- reciprocal rank fusion
+- hybrid search
+unit_ids:
+- P1-03-06-02
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval.md
+local_copy: null
+sha256: null

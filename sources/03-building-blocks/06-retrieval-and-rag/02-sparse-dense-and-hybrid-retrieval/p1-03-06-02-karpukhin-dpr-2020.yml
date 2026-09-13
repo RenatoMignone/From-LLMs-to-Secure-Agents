@@ -1,0 +1,26 @@
+id: p1-03-06-02-karpukhin-dpr-2020
+title: Dense Passage Retrieval for Open-Domain Question Answering
+authors_or_organization: Facebook AI Research & Princeton University
+date: 2020-04
+source_type: paper
+canonical_url: https://arxiv.org/abs/2004.04906
+doi: null
+version: null
+accessed: '2026-09-12'
+last_verified: '2026-09-12'
+status: checked
+claims_supported:
+- Dense retrieval uses dual-encoders to map queries and passages into a shared vector
+  space, capturing semantic similarity and outperforming sparse BM25 on general questions.
+limitations:
+- Dense retrieval can fail on exact lexical matches, unusual codes, product identifiers,
+  and rare terms not well represented in training data.
+related_topics:
+- dense retrieval
+- dual-encoders
+unit_ids:
+- P1-03-06-02
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval.md
+local_copy: null
+sha256: null

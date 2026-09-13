@@ -1,0 +1,27 @@
+id: p1-03-06-02-qdrant-hybrid-2026
+title: Hybrid Search in Qdrant
+authors_or_organization: Qdrant
+date: 2026-08
+source_type: documentation
+canonical_url: https://qdrant.tech/articles/hybrid-search/
+doi: null
+version: null
+accessed: '2026-09-12'
+last_verified: '2026-09-12'
+status: checked
+claims_supported:
+- Hybrid retrieval merges candidate rankings from sparse lexical and dense embedding
+  retrievers using Reciprocal Rank Fusion or score distribution normalization, combining
+  keyword precision with semantic recall.
+limitations:
+- Running dual retrievers doubles index storage and adds query overhead, and fusion
+  cannot recover relevant items excluded by both prefetch cutoffs.
+related_topics:
+- hybrid search
+- vector search engines
+unit_ids:
+- P1-03-06-02
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval.md
+local_copy: null
+sha256: null

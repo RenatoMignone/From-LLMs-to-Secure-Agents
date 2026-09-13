@@ -1,0 +1,15 @@
+Use case: scientific-educational
+Asset type: chapter illustration for a technical learning guide
+Primary request: Create a clear educational cartoon illustration showing the end-to-end Reciprocal Rank Fusion (RRF) pipeline for hybrid search in an AI agent system.
+Scene/backdrop: Warm light cream background (#FDFBF7).
+Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm cream (#FFF9E6), soft amber/orange (#F5A623), and soft coral.
+Composition/framing: Clear left-to-right architecture workflow diagram:
+1. On the left: A user question ("User Query") arrives at an agent assistant robot.
+2. In the center: The query branches into two parallel prefetch retrieval lanes:
+   - Upper lane (sage green): "Sparse BM25 Search" producing a ranked list of lexical matches with raw scores.
+   - Lower lane (soft blue): "Dense Vector Search" producing a ranked list of semantic vector neighbors with cosine scores.
+3. In the center-right: The two ranked lists converge into a rounded fusion processor labeled "Reciprocal Rank Fusion (RRF)". Cute assistant robot calculates ranks with the formula: "Score = Σ 1 / (k + rank)".
+4. On the right: A final deduplicated "Unified Top-K Ranking" tray of evidence cards feeding directly into "Agent Context Window".
+Text (verbatim): "Reciprocal Rank Fusion (RRF) Hybrid Pipeline", "User Query", "Sparse BM25 Search", "Ranked Lexical Matches", "Dense Vector Search", "Ranked Semantic Vectors", "Reciprocal Rank Fusion (RRF)", "Score = Σ 1 / (k + rank)", "Unified Top-K Results", "Agent Context Window"
+Constraints: Clear flow arrows left-to-right; cute robot characters operating the stages; bold high-contrast sans-serif labels; balanced spacing; clean visual hierarchy; no watermark.
+Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.

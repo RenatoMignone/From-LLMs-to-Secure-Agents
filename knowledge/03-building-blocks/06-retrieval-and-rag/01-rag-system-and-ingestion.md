@@ -208,4 +208,4 @@ In Pass 2, RAG systems are evaluated against **Corpus Poisoning, Access-Filter B
 
 ---
 
-[Next Unit: Sparse, dense, and hybrid retrieval →](chapter-plan.md)
+[Next Unit: Sparse, dense, and hybrid retrieval →](02-sparse-dense-and-hybrid-retrieval.md)

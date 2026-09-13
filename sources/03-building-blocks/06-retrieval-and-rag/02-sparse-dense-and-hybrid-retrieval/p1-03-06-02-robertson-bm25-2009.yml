@@ -1,0 +1,27 @@
+id: p1-03-06-02-robertson-bm25-2009
+title: 'The Probabilistic Relevance Framework: BM25 and Beyond'
+authors_or_organization: Microsoft Research & City University London
+date: 2009-04
+source_type: paper
+canonical_url: https://doi.org/10.1561/1500000019
+doi: null
+version: null
+accessed: '2026-09-12'
+last_verified: '2026-09-12'
+status: checked
+claims_supported:
+- BM25 weights terms using inverse document frequency and saturated term frequency
+  normalized by document length, providing an exact-match lexical baseline for inverted
+  index search.
+limitations:
+- BM25 fails on semantic mismatch, synonyms, and paraphrasing where query words do
+  not match document tokens literally.
+related_topics:
+- sparse retrieval
+- BM25
+unit_ids:
+- P1-03-06-02
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval.md
+local_copy: null
+sha256: null
