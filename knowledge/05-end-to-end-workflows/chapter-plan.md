@@ -39,6 +39,12 @@ New component theory, exploit walkthroughs, defensive control detail, and securi
 
 Use the examples and framework translations listed above. Keep them small and subordinate to the concepts.
 
+## Reference scenario and continuity
+
+Use Lee's shop as the shared domain, extending stock and price reads to a mocked delivery reservation. State success criteria before implementation and give each operation a stable identifier. Compare one-session completion with work resumed from a progress artifact after context or worker loss. Include managed and self-hosted ownership maps, package loading, human steering, stale observations, ambiguous results and failed compensation. Verify the reservation artifact and observed external state, not just the final answer. Keep any performance numbers explicitly illustrative until measured.
+
+Use structured progress, a bounded next action and independently checkable results to explain long-running work. A skill package is a reusable input, not proof of learned competence. Sources: [Agent Skills](https://agentskills.io/specification), [long-running harnesses](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) and [harness design](https://www.anthropic.com/engineering/harness-design-long-running-apps).
+
 ## Sources
 
 Categories: official runtime documentation and primary agent evaluation research.
@@ -61,7 +67,7 @@ The exact workflows become the assets and attack paths for the [threat model](..
 
 ## Open questions
 
-Select a domain that permits realistic authorization and side effects while remaining safe and easy to mock. Treat harness engineering and loop engineering as evolving labels, and state where definitions overlap or conflict.
+Treat harness engineering and loop engineering as evolving labels, and state where definitions overlap or conflict.
 
 ## Completion criteria
 

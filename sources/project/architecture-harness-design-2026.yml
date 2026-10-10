@@ -1,0 +1,23 @@
+id: architecture-harness-design-2026
+title: Harness design for long-running apps
+authors_or_organization: Anthropic
+date: '2026-03-24'
+source_type: official-documentation
+canonical_url: https://www.anthropic.com/engineering/harness-design-long-running-apps
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Discusses harness design and evaluation for long-running application-building agents.
+limitations:
+- Engineering observations concern tested configurations; no universal architecture
+  superiority is implied.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md
+- knowledge/05-end-to-end-workflows/chapter-plan.md
+local_copy: null
+sha256: null

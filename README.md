@@ -20,6 +20,8 @@ Agent security is difficult to learn from isolated vulnerability lists. This pro
 
 The guide assumes **working familiarity with large language models and prompts**. It gives only short refreshers when an agentic concept needs them. API and Python experience helps, but is not required. The focus is the agentic system, not model internals or prompt engineering.
 
+Examples increasingly reuse **Lee's shop** to connect stock, pricing, retrieval and actions. Each published chapter includes a short question with an expandable answer. Code remains optional: the prose explains the behavior and the runnable example exposes implementation limits.
+
 The reader follows a focused **main path** through the complete system. Specialized mechanisms and implementation detail live in clearly labeled **deep-dive branches** that can remain collapsed until needed. Additional vendor, protocol, regulatory, sector, and research topics are deferred unless they materially improve the stable system model.
 
 The presentation combines **precise technical writing** with clear diagrams, reproducible plots, and approachable illustrations. It also maps current engineering vocabulary to stable system concepts, so terms such as context engineering, harness engineering, and loop engineering remain useful instead of becoming detached trend labels.
@@ -28,7 +30,7 @@ The presentation combines **precise technical writing** with clear diagrams, rep
 
 The project is in **early alpha**. The first, architecture-focused learning pass is in progress. The detailed threat modeling and security chapters are planned but are not yet presented as complete production guidance.
 
-Published chapters, examples, and the website are usable now, but their depth and editorial maturity vary. Check [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the machine-maintained checkpoint and [`ROADMAP.md`](ROADMAP.md) for planned scope. See [`docs/ai-assistance.md`](docs/ai-assistance.md) for how AI-assisted work is reviewed and where its limits remain.
+Published chapters, examples, and the website are usable now, but their depth and editorial maturity vary. The [October 10, 2026 editorial review](docs/editorial-review-2026-10-10.md) records readability fixes, checked architecture updates and validation scope. Check [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the machine-maintained checkpoint and [`ROADMAP.md`](ROADMAP.md) for planned scope. See [`docs/ai-assistance.md`](docs/ai-assistance.md) for how AI-assisted work is reviewed and where its limits remain.
 
 ## Two learning passes
 

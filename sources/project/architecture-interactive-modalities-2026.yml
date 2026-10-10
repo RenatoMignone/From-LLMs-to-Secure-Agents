@@ -1,0 +1,21 @@
+id: architecture-interactive-modalities-2026
+title: Voice agents
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/voice-agents
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Describes voice-agent architecture and turn-taking considerations.
+limitations:
+- Provider capabilities are model and transport specific.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/chapter-plan.md
+local_copy: null
+sha256: null

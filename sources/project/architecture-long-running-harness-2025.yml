@@ -1,0 +1,23 @@
+id: architecture-long-running-harness-2025
+title: Effective harnesses for long-running agents
+authors_or_organization: Anthropic
+date: '2025-11-26'
+source_type: official-documentation
+canonical_url: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Discusses progress artifacts and continuity across context windows in long-running
+  work.
+limitations:
+- An engineering design report, not a guarantee that every resumed task succeeds.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md
+- knowledge/05-end-to-end-workflows/chapter-plan.md
+local_copy: null
+sha256: null

@@ -42,6 +42,10 @@ Adaptation taxonomy and feedback-data lifecycle.
 
 A mocked refinement loop and versioned skill record; no self-modifying production system.
 
+## Skills as authored packages
+
+Distinguish a skill learned from experience, an authored instruction package, and a model weight update. Include `SKILL.md` metadata, optional scripts/references/assets, versioning and progressive disclosure: load descriptions first and task-relevant content when needed. Reading a package neither trains a model nor grants tools permission to act. Evaluate whether package changes improve held-out tasks and preserve earlier behavior. Source: [Agent Skills specification](https://agentskills.io/specification).
+
 ## Sources
 
 Authoritative source categories: Peer-reviewed primary research and reproducible benchmark work.

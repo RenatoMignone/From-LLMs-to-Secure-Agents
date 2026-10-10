@@ -1,0 +1,23 @@
+id: architecture-skills-2026
+title: Agent Skills specification
+authors_or_organization: Agent Skills contributors
+date: null
+source_type: official-documentation
+canonical_url: https://agentskills.io/specification
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Defines authored SKILL.md packages, optional supporting directories and progressive
+  disclosure.
+limitations:
+- Package loading is not model training or permission to execute tools.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md
+- knowledge/05-end-to-end-workflows/chapter-plan.md
+local_copy: null
+sha256: null

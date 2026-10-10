@@ -42,6 +42,10 @@ Artifact lifecycle and multimodal data-flow diagram.
 
 A typed artifact manifest with mocked file and image references; compare Google Agent Development Kit artifacts and A2A parts.
 
+## Interactive modalities
+
+Treat computer use and voice interaction as observe, act and verify loops, alongside static file inputs. Follow partial output, user interruption, tool completion and final acknowledgement separately. State what each modality can observe, how freshness is measured and how task success is checked. Keep streaming latency and correctness distinct; a rendered screen or spoken sentence is not proof that an operation completed. Sources: [computer use](https://developers.openai.com/api/docs/guides/tools-computer-use) and [voice agents](https://developers.openai.com/api/docs/guides/voice-agents).
+
 ## Sources
 
 Authoritative source categories: Official framework and protocol documentation plus multimodal benchmark research.

@@ -1,0 +1,22 @@
+id: architecture-computer-use-2026
+title: Computer use
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/tools-computer-use
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Describes a loop that receives computer actions and returns updated observations.
+limitations:
+- Computer actions need task-specific verification; a screenshot is not evidence of
+  external transaction completion.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/chapter-plan.md
+local_copy: null
+sha256: null

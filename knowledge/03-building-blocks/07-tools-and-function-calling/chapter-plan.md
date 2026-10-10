@@ -37,6 +37,10 @@ Tool-call sequence and side-effect classification matrix.
 
 Two typed mocked functions with validation, error results, and idempotency keys; translate to OpenAI Agents SDK.
 
+## Orchestration variants
+
+Compare direct model-selected calls with code that coordinates calls through the same dispatcher. Keep schema validation, identity, call correlation, errors and side-effect contracts visible in both variants. Aggregate only task-relevant results and measure complete task outcomes before claiming savings. Source: [programmatic tool calling](https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling).
+
 ## Sources
 
 Authoritative source categories: Official tool-calling documentation and primary tool-use research.

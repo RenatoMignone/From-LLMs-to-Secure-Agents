@@ -3,7 +3,7 @@
 ## Language
 
 - Use simple, active English. Avoid overly complex sentences and marketing language.
-- Define exact technical terms on first use. Do not use em dashes.
+- Define technical terms on first use. Do not use em dashes.
 
 ## Reader level
 
@@ -14,6 +14,11 @@
 
 - Start with a concrete situation before giving technical names.
 - Introduce one concept at a time and reuse it in examples.
+- Reuse Lee's shop where it helps connect chapters.
+- Explain concepts without requiring Python; keep implementation detail expandable.
+- Distinguish a teaching convention, a formal standard, a provider contract and a research result. Avoid presenting local taxonomies as mandatory system components.
+- Qualify measured numbers; label illustrative ones. Fixed routes do not imply identical model outputs.
+- Add one discriminating comprehension question with an expandable answer near the end. Test a distinction or failure case rather than vocabulary recall.
 - Make a connected story, not disconnected definitions. Explain how to read every visual nearby.
 
 ## Chapter structure

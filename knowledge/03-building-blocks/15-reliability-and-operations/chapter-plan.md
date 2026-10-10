@@ -42,6 +42,12 @@ Queue-worker lifecycle and layered budget diagram.
 
 A mocked scheduler configuration with retry and budget policies; compare durable framework runtime behavior.
 
+## Runtime ownership and recovery cases
+
+Assign harness, environment and application responsibilities for both self-hosted and managed runtimes. Include admission control, backpressure, stale-worker fencing, ambiguous remote outcomes and reconciliation. Demonstrate that cancellation can leave an external operation running and compensation can fail. Follow a crash through checkpoint recovery, outstanding tool reconciliation and resource cleanup. Measure queue delay, completion rate, costs and recovery outcomes against stated acceptance criteria.
+
+Compare the same task across one-session and multiple-session execution. Persist a small progress artifact with completed work, unresolved questions, next steps and verification results rather than assuming a larger context window solves continuity. Sources: [managed architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture) and [long-running harnesses](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+
 ## Sources
 
 Authoritative source categories: Official runtime, framework, and distributed-systems documentation.

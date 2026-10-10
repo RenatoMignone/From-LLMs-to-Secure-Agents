@@ -42,6 +42,10 @@ Evaluation stack and metric-to-component map.
 
 A deterministic mocked environment and trajectory grader; no live benchmark run.
 
+## Evaluate the full configuration
+
+Report model version together with harness, tools, instruction or skill versions, environment and budgets. Compare direct tool loops with code orchestration on the same cases. Change one mechanism at a time, repeat trials and check actual artifacts or external outcomes. Include missing evidence, failed tools, interrupted work and recovery. A judge score supplements a stated acceptance rule; it does not define truth by itself. Source: [Harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps).
+
 ## Sources
 
 Authoritative source categories: Peer-reviewed benchmarks and official framework evaluation docs.

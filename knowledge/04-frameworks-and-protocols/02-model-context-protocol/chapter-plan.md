@@ -6,7 +6,7 @@ Teach the protocol that connects artificial intelligence applications to externa
 
 ## Learning outcomes
 
-Explain host, client, and server roles; JSON-RPC lifecycle; capability negotiation; tools, resources, prompts, sampling, elicitation, transports, sessions, and authorization.
+Explain host, client, and server roles; JSON-RPC requests; per-request capabilities and optional discovery; tools, resources, prompts, sampling, elicitation, transports, subscriptions, application state, compatibility, and authorization.
 
 ## Prerequisites
 
@@ -33,11 +33,17 @@ Start with roles and lifecycle, teach primitives, add transports and optional ca
 
 ## Required diagrams or visuals
 
-Host-client-server diagram, initialization sequence, and primitive/data-direction matrix.
+Host-client-server diagram, request and discovery sequence, and primitive/data-direction matrix.
 
 ## Recommended examples and framework use
 
 Mock protocol messages and one minimal tool contract. Do not implement a server yet.
+
+## Version baseline and compatibility
+
+Use the 2026-07-28 specification as the review baseline. Teach self-contained requests carrying protocol version and capabilities, optional `server/discover`, and server requests for client input through `InputRequiredResult`. Separate stateless protocol requests from application state and notification subscriptions. Earlier initialization and session-wide capability negotiation belong in an explicitly versioned compatibility comparison, not the current core model.
+
+Distinguish tools, resources and prompts from optional extension features. Verify Tasks, Skills over MCP and MCP Apps status and opt-in requirements before writing. Replace an initialization sequence with a request/discovery/input-return sequence for this baseline. Sources: [MCP architecture](https://modelcontextprotocol.io/specification/2026-07-28/architecture) and [versioned specification](https://modelcontextprotocol.io/specification/2026-07-28).
 
 ## Sources
 
@@ -60,4 +66,4 @@ The protocol evolves quickly. Confirm the latest stable specification and featur
 
 ## Completion criteria
 
-The reader can trace lifecycle, capabilities, data direction, transport, session, and authorization without relying on one SDK.
+The reader can trace lifecycle, capabilities, data direction, transport, application state, and authorization without relying on one SDK.

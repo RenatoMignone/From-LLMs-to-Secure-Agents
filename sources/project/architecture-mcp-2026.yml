@@ -1,0 +1,22 @@
+id: architecture-mcp-2026
+title: Model Context Protocol architecture
+authors_or_organization: MCP contributors
+date: null
+source_type: official-documentation
+canonical_url: https://modelcontextprotocol.io/specification/2026-07-28/architecture
+doi: null
+version: '2026-07-28'
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- The 2026-07-28 architecture uses self-contained requests with per-request version
+  and capabilities.
+limitations:
+- Earlier versions use different initialization and session contracts.
+related_topics: []
+unit_ids: []
+used_in:
+- knowledge/04-frameworks-and-protocols/02-model-context-protocol/chapter-plan.md
+local_copy: null
+sha256: null

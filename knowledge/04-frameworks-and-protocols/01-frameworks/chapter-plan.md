@@ -39,6 +39,10 @@ Framework abstraction matrix and equivalent workflow diagrams.
 
 Small pseudocode translations only. Full runnable implementations wait for later example tasks.
 
+## Ownership comparison
+
+Separate an application SDK, a framework runtime and a managed agent service. Map who operates the harness, supplies the environment, stores state, dispatches tools and handles recovery. Compare direct and programmatic tool orchestration against the same task. Mark removed or deprecated APIs as historical and pin example versions. Source: [managed architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture).
+
 ## Sources
 
 Authoritative source categories: Official versioned framework documentation.

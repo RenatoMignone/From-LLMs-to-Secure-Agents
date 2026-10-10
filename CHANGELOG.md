@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-10
+
+### Readability and architecture review
+
+- Files or sections: 51 published chapters, eight section plans, source records, four example folders, two replacement illustrations, editorial policies and README.
+- Summary: Added concrete introductions and comprehension checks, rewrote memory/state/RAG explanations, corrected unsupported guarantees and source attribution, and documented managed harnesses, programmatic tools and mid-turn steering. Updated planned coverage for current MCP, skills, multi-session continuity, interactive modalities and harness evaluation without changing the 99-unit curriculum.
+- Validation: Passed 38 published Python examples, 21 repository regression tests and two site pipeline tests. Repository validation checked 51 chapters, 107 visuals and 177 source records; built and checked the site. Review scope and limitations are recorded in `docs/editorial-review-2026-10-10.md`.
+
 ## 2026-09-04
 
 ### Curriculum scope reduction

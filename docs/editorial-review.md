@@ -24,6 +24,10 @@ A reader from the intended audience checks whether the chapter can be followed i
 - Architecture, control flow, data flow, and trust boundaries are not conflated.
 - Important claims have nearby citations whose source records state exact support and limitations.
 - Time-sensitive claims include versions or dates and were rechecked.
+- Citation titles, publication dates and supported claims match the actual source, even when a historical record ID contains an earlier year.
+- Quantitative comparisons identify the tested configuration and avoid universal cost, latency or correctness promises.
+- SDK objects, managed services and removed APIs are distinguished; protocol lifecycle descriptions name the specification version.
+- Self-check answers follow from the prose and do not imply stronger guarantees than the example.
 - Examples teach the claimed behavior, run without secrets, and expose their limitations.
 - Visual labels are legible, technically consistent with the prose, and explained in text.
 - Alternative text communicates the instructional purpose, not every decorative detail.
