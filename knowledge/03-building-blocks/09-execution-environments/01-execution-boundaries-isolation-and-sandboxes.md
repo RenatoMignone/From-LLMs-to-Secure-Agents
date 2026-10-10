@@ -14,6 +14,7 @@ source_records:
 - p1-03-09-01-docker
 - p1-03-09-01-gvisor
 - p1-03-09-01-firecracker
+- p1-03-09-01-managed-architecture-2026
 visual_assets:
 - assets/images/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes/01-concept.webp
 example_paths:
@@ -75,6 +76,18 @@ A **remote worker** executes outside the calling application's local environment
 
 The caller sends a job request and receives a result or job identifier. Network delivery, scheduling and remote failure handling are additional concerns. The caller's timeout does not necessarily stop the remote worker.
 
+### Identify who owns each part
+
+A **harness** is the runtime that coordinates model turns, tools and execution limits. It may run in your application or in a managed service. An **environment** supplies execution resources, such as files, a shell or a browser. A managed harness can use a provider-hosted environment or connect to one you operate. Application tool handlers may still run in your own service.
+
+| Part | Question to answer |
+| --- | --- |
+| Harness | Who schedules turns, records progress and applies runtime limits? |
+| Environment | Who configures files, networks, processes and resource cleanup? |
+| Application | Who validates business operations, credentials and external results? |
+
+Record these responsibilities for the actual deployment. A service managing the loop does not automatically own every tool or external transaction. [Managed architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture).
+
 ## Minimal implementation
 
 The [offline executor interface](../../../examples/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes/main.py) accepts a named operation, input identifier and environment label. Its mock supports two labels with one result contract. The example verifies unsupported jobs and environment names and never runs model-generated code.
@@ -107,11 +120,19 @@ Pass 2 revisits escape, network and resource-abuse risks in [execution and suppl
 - Remote execution describes location; its isolation mechanism needs a separate description.
 - An executor contract can stay stable while the environment implementation changes.
 
+<details><summary>Check your understanding</summary>
+
+Is remote execution itself an isolation guarantee? No. Location and the configured execution boundary are separate choices.
+
+</details>
+
 ## References
 
 - Docker. [Docker Engine security](https://docs.docker.com/engine/security/).
 - gVisor. [Introduction to gVisor security](https://gvisor.dev/docs/architecture_guide/intro/).
 - Firecracker maintainers. [Firecracker design](https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/design.md). Living implementation documents, verified for this run.
+
+- OpenAI. [Agents API architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture). Living documentation, verified October 10, 2026.
 
 ---
 
