@@ -27,7 +27,7 @@ example_paths: []
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -35,9 +35,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-Single-pass generation often fails when tasks demand high precision, strict stylistic adherence, or complex logic. When a language model produces an artifact (such as a database query, translation, or legal contract) in a single turn, it lacks the opportunity to inspect its own work, identify subtle edge cases, or fix syntax mistakes. Simply asking the model to try harder in a single prompt rarely fixes structural errors.
+The assistant drafts a comparison but omits delivery time. A check identifies the missing field, and the draft is revised. The value comes from the quality of that check, not from asking for another draft alone.
 
-The **evaluator-optimizer pattern** solves this by establishing an iterative feedback loop between two distinct roles: a *generator* that drafts candidate artifacts and an *evaluator* that critiques them against explicit rubrics or test suites. By separating generation from critical assessment, systems achieve substantial accuracy gains without requiring fine-tuning. Understanding this pattern is essential before building durable multi-agent graphs and specialized [Building blocks](../03-building-blocks/chapter-plan.md).
+An **evaluator** judges a result against criteria; an **optimizer** revises it using feedback. This optional chapter separates verifiable checks from model judgments and explains why repeated revision needs limits.
 
 ## Simple mental model
 
@@ -192,6 +192,12 @@ In evaluator-optimizer systems, the evaluator acts as a critical security gate. 
 - **Deterministic evaluators** (compilers, linters, unit tests) provide fast, objective, zero-token validation gates that should always precede model-as-a-judge reviews.
 - **Verbal reflection (Reflexion)** converts execution errors into structured textual memories, preventing agents from repeating past failure trajectories.
 - Production systems must enforce hard iteration caps (typically 2 to 4 rounds) to prevent infinite loops, oscillation, and diminishing returns.
+
+<details><summary>Check your understanding</summary>
+
+Does an evaluator approving a draft prove it correct? No. The result is limited by the criteria, evidence and evaluator behavior.
+
+</details>
 
 ## References
 
