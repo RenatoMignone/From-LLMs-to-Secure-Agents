@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-A common misconception in AI development is that an agent is simply a single language model wrapped in a while loop. In production systems, however, relying on a single model configuration for all tasks creates severe bottlenecks. Using a frontier reasoning model to perform basic classification wastes money and adds hundreds of milliseconds of latency; conversely, using a lightweight model for complex multi-step planning leads to hallucinated tool parameters and corrupted state.
+The shop needs to classify a request, draft a reply and perhaps judge whether the reply meets its requirements. These are different jobs even when one model performs all of them.
 
-**Model role differentiation and selection** structures an agentic system by assigning specialized model tiers to distinct operational responsibilities (Chen et al., 2023; Ong et al., 2024). By pairing fast small models for routing with frontier reasoning models for strategic decomposition, architectures achieve significant cost reductions while improving overall task reliability. Mastering model selection is the first essential step in assembling the complete [Building blocks](../chapter-plan.md) of agentic systems.
+A **model role** states the job assigned to a model call. Select models using task-specific evidence, cost and latency rather than assuming every system needs either one model or several.
 
 ## Simple mental model
 
@@ -169,7 +169,7 @@ Trace the progression of a multi-tier agent request:
 ## Trust boundaries
 
 1. **Provider Egress Boundary**: Transmitting user context to third-party commercial model APIs crosses an organizational boundary. Workflows handling regulated data (such as HIPAA or GDPR) must verify zero-data-retention agreements or utilize self-hosted local models.
-2. **Model Version Drift Boundary**: Cloud providers periodically update underlying model weights behind unversioned endpoints. Production agents must pin explicit model snapshot versions to guarantee determinism.
+2. **Model version changes:** Record an available version identifier and rerun regression checks when it changes. Pinning reduces one source of variation; it does not guarantee deterministic outputs.
 3. **Telemetry & Credential Boundary**: API keys for external model providers must be managed in secure vaults and never exposed to model prompts or client-side code.
 
 ## Reliability failures
@@ -206,6 +206,12 @@ Model selection directly affects vulnerability susceptibility. Smaller models ar
 - Model selection requires balancing **reasoning depth, latency (TTFT), token economics, context recall, and tool schema adherence**.
 - **Provider adapters** isolate application code from vendor-specific SDK APIs and prevent platform lock-in.
 - Always pin exact **model snapshot versions** in production to prevent silent performance regressions caused by upstream provider model updates.
+
+<details><summary>Check your understanding</summary>
+
+Must every model role use a different model? No. Roles name jobs; model allocation is a design choice to evaluate.
+
+</details>
 
 ## References
 
