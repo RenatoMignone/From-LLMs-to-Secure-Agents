@@ -2,18 +2,16 @@
 ---
 title: Termination, cancellation, and cleanup
 unit_id: P1-03-04-04
-summary: Explains immutable terminal states, cooperative cancellation token propagation,
-  compensating rollback sagas, and deterministic resource cleanup in agent runtimes.
+summary: Distinguish stopping from successful completion; explain cooperative cancellation,
+  compensating actions and resource cleanup limits.
 prerequisites:
 - Read [Retries, idempotency, and concurrency](03-retries-idempotency-and-concurrency.md).
 learning_objectives:
-- Differentiate between transient suspended states and immutable terminal states.
-- Propagate cancellation tokens hierarchically to halt child subagents and in-flight
-  model streams.
-- Implement the Saga pattern with compensating actions to roll back partial side effects
-  upon workflow failure.
-- Enforce deterministic resource finalization to prevent leaked database leases, sockets,
-  and orphaned sandbox directories.
+- Distinguish transient and terminal states in a stated runtime contract.
+- Explain why cancellation requests need acknowledgement and may leave external work
+  running.
+- Use compensating actions while recognizing that they can fail or differ from rollback.
+- Plan resource finalization and recovery for process crashes.
 source_records:
 - p1-03-04-04-autogen-termination-2024
 - p1-03-04-04-temporal-cancellation-compensation-2024
@@ -28,7 +26,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +34,9 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-Autonomous agents execute multi-step workflows that provision cloud resources, make database changes, and invoke external APIs. However, not every agent run finishes cleanly according to plan. Users cancel long-running tasks, supervisor timeouts expire, and downstream microservices fail midway through a multi-step operation.
+Lee cancels while a remote reservation is processing. The local worker can stop waiting while the service still finishes. The application needs to report that uncertainty and reconcile the outcome.
 
-If an agent runtime lacks structured termination and cleanup protocols, failed or cancelled runs leave behind orphaned resources, such as running virtual machines, dangling database locks, unreleased temporary files, and partially completed financial transactions. **Termination, cancellation, and cleanup mechanisms** ensure that when an agent run stops, whether by success, user abort, or unrecoverable error, the system transitions into an immutable terminal state and leaves the environment in a clean, consistent state (Microsoft, 2024; Temporal Technologies, 2024; LangChain, 2024; Garcia-Molina & Salem, 1987).
+**Termination** ends a run, **cancellation** requests that work stop and **cleanup** releases resources. An undo operation, when available, is a separate effect that can also fail.
 
 ## Simple mental model
 
@@ -50,7 +48,7 @@ Think of an automated flight and hotel booking service:
 4. **The cancellation signal:** if the user presses "Cancel Booking" while the agent is searching, the system immediately halts background search queries and releases temporary hold holds.
 5. **Final cleanup:** the booking session is sealed as `CANCELLED`, temporary payment tokens are wiped, and zero orphaned charges remain.
 
-These mechanisms guarantee that operations either complete fully or roll back safely without leaving partial, inconsistent side effects.
+Cancellation, cleanup and compensation have separate outcomes. A compensating action can fail or only partially reverse an effect; record unresolved work for reconciliation.
 
 ## Position in the agent workflow
 
@@ -64,10 +62,10 @@ Structured termination and resource cleanup operate across four core mechanisms:
 
 ### 1. Terminal states versus transient states
 
-Runtimes enforce a strict boundary between transient states (which can be resumed) and terminal states (which are immutable):
+Our example distinguishes transient states from terminal states. The names and allowed transitions are runtime-specific:
 
 - **Transient states:** `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `RETRY_BACKOFF`. These states hold active leases and can transition to other states.
-- **Terminal states:** `COMPLETED` (goal satisfied), `CANCELLED` (user or supervisor abort), `FAILED_FATAL` (unrecoverable error), and `TIMEOUT` (execution budget exhausted). Once a run enters a terminal state, it can never be restarted or modified; new work requires instantiating a separate run.
+- **Terminal states:** `COMPLETED` (execution finished), `CANCELLED` (user or supervisor abort), `FAILED_FATAL` (unrecoverable error), and `TIMEOUT` (execution budget exhausted). In this example, new work after termination uses a new run ID. Other runtimes support different continuation and correction mechanisms.
 
 ![Resumable agent states pass through a one-way gate to terminal completed, cancelled, failed, or timeout states.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/04-termination-cancellation-and-cleanup/01-terminal-state-classification.png)
 
@@ -103,7 +101,7 @@ Compensating actions restore the external environment to a consistent baseline s
 
 ### 4. Deterministic resource finalization
 
-Upon reaching any terminal state, a dedicated finalizer routine runs guaranteed cleanup handlers:
+When the runtime observes a terminal state, it attempts its finalizers. A crashed or disconnected process may not run them, so durable resources need an independent lifecycle owner.
 
 - Releases distributed locks and thread leases in Redis or Consul.
 - Deletes temporary working directories, scratch files, and sandbox containers.
@@ -205,14 +203,20 @@ In Pass 2, termination and cleanup architectures are evaluated against **Denial 
 ## Open research questions
 
 - How can LLMs autonomously generate verified, safe compensating action scripts when interacting with novel or unversioned third-party APIs?
-- What consensus protocols can guarantee complete saga rollback across decentralized multi-agent organizations with zero shared infrastructure?
+- How should a workflow report and reconcile a failed compensation when the external system cannot undo the original operation?
 
 ## Key takeaways
 
-- Terminal states (`COMPLETED`, `CANCELLED`, `FAILED`, `TIMEOUT`) are immutable and guarantee that runs cannot be corrupted after conclusion.
+- Terminal labels express lifecycle outcomes under the application contract. Storage must still enforce the intended transition and mutation rules.
 - Cancellation tokens propagate hierarchically down agent trees to halt child subagents, network calls, and token generation immediately.
 - The Saga pattern pairs every forward tool invocation with a backward compensating action to roll back partial side effects upon failure.
-- Deterministic cleanup handlers guarantee that distributed locks, database connections, and temporary sandboxes are released safely.
+- Cleanup handlers attempt release; interrupted or failed cleanup requires reconciliation of remaining resources.
+
+<details><summary>Check your understanding</summary>
+
+Is cancellation equivalent to rollback? No. Cancellation asks work to stop; reversing a completed effect needs a separate supported operation.
+
+</details>
 
 ## References
 
