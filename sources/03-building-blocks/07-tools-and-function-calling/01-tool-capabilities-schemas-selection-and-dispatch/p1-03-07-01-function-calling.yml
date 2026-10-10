@@ -1,0 +1,25 @@
+id: p1-03-07-01-function-calling
+title: Function calling
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/function-calling
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Tool definitions describe names, descriptions and arguments; the application executes
+  requested functions and returns outputs associated with call identifiers. Strict
+  schemas constrain argument structure; tool choice controls request selection.
+limitations:
+- Provider-specific schema subset and selection options; valid arguments do not establish
+  task correctness.
+related_topics: []
+unit_ids:
+- P1-03-07-01
+used_in:
+- knowledge/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch.md
+local_copy: null
+sha256: null

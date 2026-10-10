@@ -1,0 +1,6 @@
+Use case: scientific-educational
+Asset type: wide chapter illustration
+Canonical From LLMs to Secure Agents banner cartoon style: polished 2D, cute rounded robot assistants, friendly simple shapes, soft outlines, warm light cream background, calm pastel blue teal sage green and amber. Bold readable high-contrast sans-serif labels, strong spacing and visual hierarchy. No dark background, neon, cyberpunk, sterile corporate flowchart, UML, Visio, 3D or photorealism.
+Show a left-to-right tool request sequence: cute robot with capability menu sends a request slip to runtime clerk, clerk checks arguments then selects named handler, shop shelf returns receipt via return arrow to robot. Exact title "A tool request is not execution". Exact labels "Model: select", "Runtime: validate", "Runtime: dispatch", "Tool: execute", "Result: call c1". Show call c1 on request and receipt. Clearly separate model from runtime, no suggestion robot directly changes shelf.
+
+Revision after inspection: call c1 is an identifier, not a tool name. Tool menu must contain only lookup_stock and quote_price; dispatcher must select lookup_stock; executed handler must read lookup_stock; call c1 appears only on request slip and returned receipt. Keep style, sequence and labels. No call_c1 tool entry.
