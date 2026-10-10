@@ -12,8 +12,7 @@ learning_objectives:
   failures.
 - Implement exponential backoff with full jitter to prevent thundering herd retry
   storms.
-- Attach cryptographic idempotency keys to mutation requests to guarantee at-most-once
-  side effects.
+- Explain the service contract needed to deduplicate mutation retries.
 - Apply optimistic concurrency control and version vectors to prevent state corruption
   during parallel execution.
 source_records:
@@ -30,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -38,9 +37,9 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-In production environments, external tool invocations and language model inference calls fail routinely. Upstream APIs experience brief network hiccups, model rate limiters return HTTP 429 throttling errors, and database connections drop under load.
+The order service receives a reservation request, but its reply is lost. The assistant cannot infer from a timeout whether the reservation exists. A retry must preserve the operation's intended identity.
 
-If an agent treats every transient failure as fatal, long-running multi-step workflows will rarely complete. Conversely, if an agent blindly retries requests without safety controls, it risks causing catastrophic duplicate side effects, such as processing multiple credit card charges or sending redundant emails to customers. Furthermore, when multiple subagents or background workers execute concurrently, uncoordinated updates can corrupt shared thread state. **Retries, idempotency, and concurrency controls** provide the reliability guarantees required for robust autonomous operations (IETF, 2024; AWS Architecture Center, 2023; LangChain, 2024; Kleppmann, 2023).
+**Idempotency** gives repeated requests a defined effect under the service contract. **Concurrency** concerns operations that overlap. Keys, storage and conflict checks work together; a key alone does not prevent duplicates.
 
 ## Simple mental model
 
@@ -51,13 +50,13 @@ Think of ordering food on a delivery app over an unstable mobile connection:
 3. **Exponential backoff with jitter:** rather than hammering the restaurant server every millisecond, the app waits one second, then three seconds, adding slight randomized delays so millions of phones do not crash the payment gateway simultaneously.
 4. **Optimistic concurrency:** if you and your spouse both have the shared family cart open on two phones, the app verifies the cart version before checkout. If one person adds drinks while the other checks out, the second phone is prompted to refresh rather than silently overwriting the cart.
 
-These controls ensure actions are reliable, deduplicated, and consistent under concurrency.
+Retry, deduplication and conflict handling need coordinated service contracts. They reduce particular failure modes without promising exactly-once execution across all systems.
 
 ## Position in the agent workflow
 
 Retry, idempotency, and concurrency controls sit at the execution boundary between the agent runtime, external tool APIs, and the state checkpointer.
 
-When a tool call fails, the retry manager determines whether the error is transient before scheduling a jittered re-invocation. When mutating external systems, the dispatch layer attaches deterministic idempotency keys. When multiple nodes or subagents commit state deltas in parallel, the state store validates version vectors to resolve conflicting updates.
+When a tool call fails, the retry manager determines whether the error is transient before scheduling a jittered re-invocation. When mutating external systems, the dispatch layer attaches deterministic idempotency keys. When multiple nodes or subagents commit state deltas in parallel, the example state store checks an expected version to detect conflicting updates.
 
 ## How it works
 
@@ -86,26 +85,26 @@ Randomizing the sleep duration spreads client retry traffic evenly across the re
 
 ### 3. Idempotency keys for safe mutation retries
 
-An operation is **idempotent** if applying it multiple times produces the exact same outcome as applying it once (IETF, 2024). For state-mutating HTTP POST or tool requests:
+An operation is **idempotent** if repeating it has the same intended effect as applying it once. Responses and timestamps may differ. A mutation API can offer a deduplication contract for retries; a header alone does not create that contract. For state-mutating HTTP POST or tool requests:
 
-1. The agent runtime derives a deterministic **Idempotency Key** by hashing the `thread_id`, `step_number`, and serialized tool arguments:
+1. Our example derives an **idempotency key** from a logical step and canonical arguments. Reuse the same key for retries of the same operation, and a new key for a genuinely new operation. The hash formula is a local convention:
 
 $$	ext{Key} = 	ext{SHA256}(	ext{thread\_id} \,||\, 	ext{step\_id} \,||\, 	ext{args})$$
 
-2. The downstream tool API checks its idempotency cache. If the key has already been executed, the service returns the cached result immediately without repeating the underlying database write or transaction.
+2. A supporting service checks a key within its stated scope and retention period. It must reject reuse with different arguments and coordinate deduplication with the mutation. An ambiguous network result still needs reconciliation when the service cannot establish what happened.
 
 ![A transfer retry carries the same request key, allowing the service to return a cached result and charge only once.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/02-idempotency-keys-and-duplicate-prevention.png)
 
-*Figure 2. Idempotent retry. Reusing the request key turns an uncertain network retry into a safe cached response rather than a duplicate side effect.*
+*Figure 2. Idempotent retry. A supporting service can return a recorded result for the same logical request. This requires server-side deduplication and a valid retention window.*
 
-### 4. Optimistic concurrency control (OCC) and version vectors
+### 4. Optimistic concurrency control (OCC)
 
 When parallel subagents or asynchronous event workers access shared thread state, uncoordinated writes cause **lost updates** (LangChain, 2024; Kleppmann, 2023). Under Optimistic Concurrency Control:
 
 1. A worker reads the current state snapshot and records its `version` integer (e.g. `version = 4`).
 2. The worker computes its state delta.
 3. The worker attempts to commit the delta specifying `expected_version = 4`.
-4. If another worker already committed `version = 5`, the database rejects the commit with a `409 Conflict`.
+4. If another worker already committed `version = 5`, the store rejects the stale commit; an HTTP wrapper may represent that as `409 Conflict`.
 5. The rejected worker re-reads `version = 5`, reconciles its state delta via an associative state reducer, and retries the commit.
 
 ![Two workers read the same state version; one commit succeeds while the stale write is rejected and retried from the new version.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/03-retries-idempotency-and-concurrency/03-optimistic-locking-and-concurrency-control.png)
@@ -114,9 +113,9 @@ When parallel subagents or asynchronous event workers access shared thread state
 
 ## Main variants
 
-1. **Idempotency-Key Header Standard (IETF RFC):** Standardized HTTP header specification (`Idempotency-Key: <key>`) widely adopted by payment processors and enterprise REST APIs (IETF, 2024).
+1. **Idempotency-Key proposal:** The linked document is an expired Internet-Draft, not an RFC, as checked on 2026-10-10. Services can support their own documented idempotency contract. [IETF record](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/).
 2. **LangGraph State Reducers:** Employs typed state channels with associative operator reducers (such as append or merge) allowing parallel graph branches to write state deltas without race conditions (LangChain, 2024).
-3. **Distributed Lease Locks:** In distributed multi-agent clusters, workers acquire time-bounded distributed locks (using Redis Redlock or Consul) to guarantee single-master execution per thread (Kleppmann, 2023).
+3. **Distributed lease locks:** A lease grants a worker a time-limited claim. A paused worker can continue after its lease expires. Use a fencing token, an increasing generation number checked by the resource being changed, to reject stale writes. A lease alone does not guarantee exclusive execution.
 
 ## Minimal implementation
 
@@ -212,12 +211,18 @@ In Pass 2, retry and concurrency architectures are evaluated against **Race Cond
 
 - Distinguishing between transient network errors and permanent validation failures prevents wasteful retries.
 - Exponential backoff combined with full jitter prevents thundering herd retry storms when downstream services recover.
-- Deterministic idempotency keys guarantee that retrying mutation requests produces zero duplicate side effects.
+- Idempotency depends on the service-side operation identity, retained records, request comparison and atomic effect handling.
 - Optimistic Concurrency Control (OCC) and version vectors maintain thread state consistency during parallel multi-agent execution.
+
+<details><summary>Check your understanding</summary>
+
+Is an idempotency key enough without service-side handling? No. The service must define storage, comparison, atomicity and the relevant lifetime.
+
+</details>
 
 ## References
 
-- IETF HTTP API Working Group. *The Idempotency-Key HTTP Header Field*. Internet Engineering Task Force (IETF), 2024. [IETF Draft](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/).
+- IETF HTTPAPI Working Group. [The Idempotency-Key HTTP Header Field](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/). Revision 07, October 15, 2025; expired April 18, 2026. Not an RFC.
 - AWS Architecture Center. *Exponential Backoff And Jitter*. Amazon Web Services, 2023. [AWS Architecture](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
 - LangChain Community. *Managing Concurrency and Parallel Branching in LangGraph*. LangGraph Documentation, 2024. [LangGraph Concurrency](https://docs.langchain.com/oss/python/langgraph/concurrency).
 - Kleppmann, M. *Designing Data-Intensive Applications: Concurrency Control and Idempotency*. O'Reilly Media, 2023. [Designing Data-Intensive Applications](https://dataintensive.net/).

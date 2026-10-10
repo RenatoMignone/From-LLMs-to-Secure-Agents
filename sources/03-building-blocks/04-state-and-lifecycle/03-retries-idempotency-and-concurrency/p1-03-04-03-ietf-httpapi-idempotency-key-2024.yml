@@ -1,22 +1,21 @@
 id: p1-03-04-03-ietf-httpapi-idempotency-key-2024
-title: The Idempotency-Key HTTP Header Field
-authors_or_organization: IETF HTTP API Working Group
-date: 2024-03
-source_type: standard
+title: The Idempotency-Key HTTP Header Field (expired Internet-Draft)
+authors_or_organization: IETF HTTPAPI Working Group
+date: '2025-10-15'
+source_type: official-documentation
 canonical_url: https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/
 doi: null
-version: null
-accessed: '2026-08-24'
-last_verified: '2026-08-24'
+version: draft-ietf-httpapi-idempotency-key-header-07, expired
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
 status: checked
 claims_supported:
-- Defines the standard Idempotency-Key mechanism allowing clients to safely retry
-  mutation requests without causing duplicate side effects in distributed APIs.
+- Proposes server handling, uniqueness and expiry semantics for an Idempotency-Key
+  request header.
 limitations:
-- Requires stateful server-side caching of idempotency keys and responses within a
-  defined time-to-live window.
-related_topics:
-- idempotency keys and safe retries
+- Revision 07 expired on 2026-04-18. It is not an RFC; actual guarantees depend on
+  the service contract.
+related_topics: []
 unit_ids:
 - P1-03-04-03
 used_in:
