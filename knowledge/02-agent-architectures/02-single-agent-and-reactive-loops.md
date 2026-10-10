@@ -28,7 +28,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-A single language model call can generate text, summarize documents, or classify sentiment. However, solving problems that require discovering facts, interacting with APIs, and recovering from errors requires an iterative execution harness. The **single-agent reactive loop** is the fundamental engine that transforms a static language model into an active problem solver.
+Lee asks for an available lamp in a particular size. The assistant searches, reads the result and may search again with a revised constraint. One agent can perform these repeated decisions without a separate team of agents.
 
-Unlike a hardcoded script where every step is locked in code, a reactive agent inspects its environment at every turn, decides which action to take next, observes the result, and adjusts its strategy. While this pattern offers immense flexibility, it also introduces non-deterministic execution paths, rapid context window consumption, and the danger of infinite loops. Mastering the mechanics and guardrails of the reactive loop is a prerequisite before building complex [Building blocks](../03-building-blocks/chapter-plan.md) and multi-agent systems.
+A **reactive loop** chooses the next action from current observations. Its runtime still owns dispatch, state and stopping rules. This chapter follows those responsibilities around a single model-directed loop.
 
 ## Simple mental model
 
@@ -216,6 +216,12 @@ Because a reactive agent loop grants the model runtime discretion over tool para
 - The host runtime must remain the authoritative controller, enforcing turn limits, schema validation, and tool timeouts.
 - Extended agent runs suffer from **context accumulation** and **semantic drift**, requiring active observation summarization and filtering.
 - Pure reactive agents are ideal for single-domain exploratory tasks with compact toolsets, but require supervision or decomposition for large, multi-domain problems.
+
+<details><summary>Check your understanding</summary>
+
+Does a single-agent loop need stopping rules? Yes. One agent can still retry indefinitely or consume its budget without succeeding.
+
+</details>
 
 ## References
 
