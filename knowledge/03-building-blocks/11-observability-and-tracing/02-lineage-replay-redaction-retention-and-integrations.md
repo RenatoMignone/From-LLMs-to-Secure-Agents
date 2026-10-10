@@ -116,6 +116,12 @@ A live rerun can create fresh side effects. Apply current [human oversight](../1
 - Redaction and delivery must follow the same intended content policy.
 - Retention determines which reconstruction questions remain answerable.
 
+<details><summary>Check your understanding</summary>
+
+Can trace playback recreate a deleted tool fixture? No. Playback shows retained telemetry; mocked replay needs suitable retained inputs and results.
+
+</details>
+
 ## References
 
 - OpenTelemetry. [Handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/) and [Collector configuration](https://opentelemetry.io/docs/collector/configuration/).
