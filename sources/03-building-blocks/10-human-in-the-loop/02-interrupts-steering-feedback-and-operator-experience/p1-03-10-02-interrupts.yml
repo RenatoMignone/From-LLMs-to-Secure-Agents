@@ -1,0 +1,24 @@
+id: p1-03-10-02-interrupts
+title: Interrupts
+authors_or_organization: LangChain
+date: null
+source_type: official-documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/interrupts
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- LangGraph persists interrupted state using a checkpointer and thread ID, resumes
+  with Command, and restarts the interrupted node, rerunning code before the interrupt.
+limitations:
+- Framework-specific restart semantics; checkpoints do not automatically reverse or
+  deduplicate external effects.
+related_topics: []
+unit_ids:
+- P1-03-10-02
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience.md
+local_copy: null
+sha256: null

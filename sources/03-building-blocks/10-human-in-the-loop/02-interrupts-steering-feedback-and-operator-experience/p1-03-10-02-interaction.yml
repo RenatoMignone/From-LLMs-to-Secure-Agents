@@ -1,0 +1,24 @@
+id: p1-03-10-02-interaction
+title: Guidelines for Human-AI Interaction
+authors_or_organization: Amershi et al., Microsoft Research
+date: null
+source_type: research-paper
+canonical_url: https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- The guidelines recommend communicating capabilities and limitations, supporting
+  dismissal and correction, and providing feedback and control over behavior.
+limitations:
+- General human-AI interaction research from CHI 2019, not proof of agent approval
+  effectiveness.
+related_topics: []
+unit_ids:
+- P1-03-10-02
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience.md
+local_copy: null
+sha256: null

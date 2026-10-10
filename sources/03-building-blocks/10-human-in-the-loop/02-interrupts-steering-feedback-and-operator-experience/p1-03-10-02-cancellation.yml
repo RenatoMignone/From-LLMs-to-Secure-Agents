@@ -1,0 +1,24 @@
+id: p1-03-10-02-cancellation
+title: 'Coroutines and tasks: cancellation'
+authors_or_organization: Python Software Foundation
+date: null
+source_type: official-documentation
+canonical_url: https://docs.python.org/3.12/library/asyncio-task.html
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Asyncio task cancellation raises CancelledError at a later opportunity; cleanup
+  should use try/finally.
+limitations:
+- Python 3.12 cooperative task behavior; does not describe cancellation of arbitrary
+  remote services.
+related_topics: []
+unit_ids:
+- P1-03-10-02
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience.md
+local_copy: null
+sha256: null
