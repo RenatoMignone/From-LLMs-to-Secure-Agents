@@ -30,7 +30,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -38,9 +38,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-Building an AI-enabled system requires choosing how control flow is managed. System designers often jump directly to complex multi-agent architectures when a simpler, deterministic pipeline would achieve higher accuracy at a fraction of the latency and cost. Conversely, applying a rigid sequential workflow to an open-ended discovery task produces brittle software that breaks as soon as input variations emerge.
+The shop receives routine order lookups and open-ended product questions. A fixed lookup sequence may cover the first task, while the second may need repeated search. Choosing the same architecture for both can add work or limit useful behavior.
 
-Architecture selection is not a matter of style; it defines your system's operational stability, cost ceiling, and security boundary. Every time you grant a language model runtime authority over execution paths, you trade determinism for flexibility. A disciplined architecture selection framework ensures that you add dynamic autonomy only where necessary while keeping critical control paths predictable, auditable, and grounded in [Agent foundations](../01-agent-foundations/chapter-plan.md) before implementing individual [Building blocks](../03-building-blocks/chapter-plan.md).
+Start with the task, available operations and acceptance criteria. Compare a simpler design with more flexible patterns using complete outcomes, cost, latency and failure behavior. [Foundations](../01-agent-foundations/chapter-plan.md) supplies the loop vocabulary; [building blocks](../03-building-blocks/chapter-plan.md) explains its components.
 
 ## Simple mental model
 
@@ -211,7 +211,7 @@ Consider a customer request: *"I was billed twice for my order last Tuesday."*
   2. Code calls `fetch_transactions(user_id, date="last Tuesday")`.
   3. Code checks if duplicate charges exist. If found, code calls `create_refund_ticket(charge_id)`.
   4. A final model drafts the customer response using the ticket details.
-  *Result*: Fast, 100% predictable, easily audited.
+  *Result*: Code-selected steps that are easier to inspect; model outputs and external results can still vary.
 
 - **Agent Approach**:
   1. Agent receives the request and decides to call `search_knowledge_base("refund policies")`.
@@ -258,6 +258,12 @@ The architecture you choose directly determines your system's attack surface. Wh
 - **Autonomous agent loops** enable open-ended problem solving and dynamic tool orchestration, but introduce non-deterministic execution, variable latency, and expanded security attack surfaces.
 - **Multi-agent architectures** are justified only when tasks require distinct domain isolation, segregated tool catalogs, or separate permission boundaries.
 - Choose your architecture based on four diagnostic dimensions: path predictability, input categorizability, verification rigor, and environment exploration depth.
+
+<details><summary>Check your understanding</summary>
+
+When should a more complex pattern replace a simpler workflow? When measured task requirements expose a limitation that the added mechanism resolves.
+
+</details>
 
 ## References
 
