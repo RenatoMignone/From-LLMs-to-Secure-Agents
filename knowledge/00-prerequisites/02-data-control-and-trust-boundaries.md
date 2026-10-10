@@ -21,7 +21,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-10'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -177,6 +177,12 @@ Where should a later reliability chapter introduce retries: immediately after th
 - One message can carry both, plus facts used to decide whether the request is allowed.
 - A message format such as JSON gives structure, not meaning, truth, or authority.
 - A trust boundary marks where an assumption must be reconsidered. Label what crosses it and who decides what happens next.
+
+<details><summary>Check your understanding</summary>
+
+Can one message contain both data and control? Yes. A destination describes data, while a request to save the itinerary asks for an action.
+
+</details>
 
 ## References
 
