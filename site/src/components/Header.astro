@@ -55,6 +55,7 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="starlight__sidebar"
+        popovertarget="starlight__sidebar"
       >
         <svg class="icon-bars" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
           <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path>
@@ -98,20 +99,19 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
 
   function setupMobileMenu() {
     const toggleBtn = document.getElementById('custom-mobile-menu-toggle');
-    if (!toggleBtn) return;
+    const sidebar = document.getElementById('starlight__sidebar');
+    if (!toggleBtn || !sidebar) return;
 
+    // Starlight owns the native popover; keep our header state in sync with it.
     function syncState() {
-      const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
+      const isExpanded = sidebar?.matches(':popover-open') ?? false;
+      document.body.toggleAttribute('data-mobile-menu-expanded', isExpanded);
       toggleBtn?.setAttribute('aria-expanded', String(isExpanded));
       toggleBtn?.setAttribute('aria-label', isExpanded ? 'Close navigation menu' : 'Open navigation menu');
+      toggleBtn?.classList.toggle('is-active', isExpanded);
       document.querySelectorAll<HTMLElement>('.main-frame, .sl-skip-link').forEach((element) => {
         element.toggleAttribute('inert', isExpanded);
       });
-      if (isExpanded) {
-        toggleBtn?.classList.add('is-active');
-      } else {
-        toggleBtn?.classList.remove('is-active');
-      }
     }
 
     if (toggleBtn.dataset.menuReady === 'true') {
@@ -120,58 +120,25 @@ const firstChapterRoute = `${base}/prerequisites/01-reader-contract-and-system-m
     }
     toggleBtn.dataset.menuReady = 'true';
 
-    // Toggle menu
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = document.body.hasAttribute('data-mobile-menu-expanded');
-      if (isExpanded) {
-        document.body.removeAttribute('data-mobile-menu-expanded');
-      } else {
-        document.body.setAttribute('data-mobile-menu-expanded', 'true');
-      }
+    sidebar.addEventListener('toggle', () => {
       syncState();
-      if (!isExpanded) {
-        document.querySelector<HTMLAnchorElement>('#starlight__sidebar a')?.focus();
+      if (sidebar.matches(':popover-open')) {
+        sidebar.querySelector<HTMLAnchorElement>('a')?.focus();
       }
     });
 
-    // Close on escape
-    window.addEventListener('keyup', (e) => {
-      if (e.key === 'Escape' && document.body.hasAttribute('data-mobile-menu-expanded')) {
-        document.body.removeAttribute('data-mobile-menu-expanded');
-        syncState();
-        toggleBtn.focus();
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (
-        document.body.hasAttribute('data-mobile-menu-expanded') &&
-        !target.closest('#custom-mobile-menu-toggle') &&
-        !target.closest('#starlight__sidebar')
-      ) {
-        document.body.removeAttribute('data-mobile-menu-expanded');
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'Escape' && !sidebar.matches(':popover-open')) {
         syncState();
       }
     });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 800 && document.body.hasAttribute('data-mobile-menu-expanded')) {
-        document.body.removeAttribute('data-mobile-menu-expanded');
-        syncState();
-      }
-    });
-
-    // Close when navigating in mobile menu
-    document.querySelectorAll('#starlight__sidebar a').forEach((a) => {
-      a.addEventListener('click', () => {
-        document.body.removeAttribute('data-mobile-menu-expanded');
+    window.addEventListener('resize', syncState);
+    sidebar.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (sidebar.matches(':popover-open')) sidebar.hidePopover();
         syncState();
       });
     });
-
     syncState();
   }
 

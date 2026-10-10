@@ -410,7 +410,8 @@ button[data-open-modal] kbd {
 }
 
 /* Starlight Default Floating Menu Button is replaced by integrated button in Header */
-starlight-menu-button {
+starlight-menu-button,
+.sl-menu-button {
   display: none !important;
 }
 
