@@ -25,7 +25,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -33,9 +33,9 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
-When building AI-powered applications, engineering teams face a fundamental architectural choice: should software code control the execution flow, or should the language model dynamically decide its own steps?
+For an order lookup, the shop can always authenticate the request, fetch the order and format the answer in a fixed sequence. Finding an alternative lamp may need a variable number of searches. These tasks need different amounts of freedom in their control flow.
 
-Choosing an autonomous agent when a predictable workflow suffices introduces unnecessary cost, latency, non-determinism, and expanded security attack surfaces. Conversely, forcing an open-ended, exploratory problem into a rigid workflow leads to fragile code that fails whenever user inputs deviate from pre-programmed assumptions. Understanding the precise boundary between workflows and agents enables engineers to build reliable, cost-effective, and defensible architectures.
+A **workflow** uses application code to choose the steps. A model-directed agent can choose steps during execution. Either can call a model, and either can fail. Choose based on measured task outcomes, latency, cost and operational limits.
 
 ## Simple mental model
 
@@ -72,7 +72,7 @@ As covered in [What is an agent](01-what-is-an-agent.md) and [The agent loop](02
 
 To choose between a workflow and an agent, evaluate four key questions:
 1. **Is the sequence of steps known in advance?** If yes, build a workflow. If the path depends on unpredictable intermediate findings, consider an agent.
-2. **What is the acceptable tolerance for latency and cost?** If the system requires fast (sub-second) responses and bounded token usage, workflows are strictly superior.
+2. **What latency and cost does the task allow?** Fixed control flow can make the number of steps easier to bound. Measure complete response time, including model calls and external services.
 3. **Is human auditing required before every state change?** Workflows make deterministic logging and auditing straightforward.
 4. **Does the task require open-ended tool discovery?** If the model must search, test, and iterate across an unknown number of resources, an agent loop is necessary.
 
@@ -172,7 +172,7 @@ Consider a customer support request: *"I was billed twice for my order last Tues
   2. Code automatically calls `fetch_transactions(user_id, date="last Tuesday")`.
   3. Code checks if duplicate charges exist. If found, code calls `create_refund_ticket(charge_id)`.
   4. A final model drafts the customer response using the ticket details.
-  *Result*: Fast, 100% predictable, easily audited.
+  *Result*: Code-selected steps that are easier to inspect; model outputs and external service results can still vary.
 
 - **Agent Approach**:
   1. Agent receives the request and decides to call `search_knowledge_base("refund policies")`.
@@ -183,7 +183,7 @@ Consider a customer support request: *"I was billed twice for my order last Tues
 
 ## Limitations and trade-offs
 
-- **Workflows**: Offer superior speed, lower cost, deterministic guarantees, and straightforward unit testing. However, they lack the ability to adapt to novel situations without code updates.
+- **Workflows**: Make step selection explicit in code. Cost and latency depend on the operations, while adaptation requires defined branches or code changes.
 - **Agents**: Excel at handling complex, messy, and open-ended problems requiring dynamic tool orchestration. However, they are non-deterministic, costlier, slower, and harder to secure.
 
 ## Security preview
@@ -199,7 +199,13 @@ Because autonomous agents possess runtime discretion over which tools to call, t
 
 - **Workflows** orchestrate LLMs through hardcoded code paths; **agents** allow LLMs to dynamically direct their own control flow and tool usage.
 - Always prefer the simplest deterministic workflow that solves the problem; introduce agentic loops only when task ambiguity demands dynamic discovery.
-- Workflows provide deterministic security and performance guarantees, whereas agents require continuous runtime guardrails and permission checks.
+- Code-selected workflows and model-directed agents both need explicit permissions, validation and resource limits.
+
+<details><summary>Check your understanding</summary>
+
+Is a code-selected workflow guaranteed to return the same model text? No. Its control flow can be fixed while model outputs and external results vary.
+
+</details>
 
 ## References
 
