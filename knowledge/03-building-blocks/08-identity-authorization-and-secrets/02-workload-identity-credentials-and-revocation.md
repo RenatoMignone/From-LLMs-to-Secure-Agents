@@ -111,6 +111,12 @@ Pass 2 examines token misuse, secret exposure and delegated authority in [tools,
 - Renewal, rotation, expiration and revocation describe distinct lifecycle changes.
 - Revocation can take time to reach a recipient and does not undo prior effects.
 
+<details><summary>Check your understanding</summary>
+
+Does revoking credentials reverse an already completed reservation? No. Revocation affects future access under the service contract.
+
+</details>
+
 ## References
 
 - SPIFFE. [SPIFFE concepts](https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/). Living documentation, verified for this run.
