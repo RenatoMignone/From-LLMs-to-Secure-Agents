@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-29'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,11 +36,9 @@ last_reviewed: '2026-08-29'
 
 ## Why this matters
 
-When humans collaborate with an assistant over multiple weeks or projects, they expect the assistant to remember key facts, user preferences, and past decisions. If an agent treats every conversation as an isolated blank slate, the user must repeatedly explain their preferred coding style, project constraints, and organizational context.
+The assistant has a stock result for the current request and a saved preference from Lee's earlier conversation. Both may influence its answer, but they have different lifetimes and purposes.
 
-In production AI systems, developers frequently conflate three distinct mechanisms: the **context window**, the **execution state**, and **long-term memory** (Packer et al., 2023; LangChain, 2024; Microsoft, 2024). Treating these mechanisms as interchangeable leads to fragile architectures. Relying solely on the context window causes prompt bloat, high latency, and catastrophic forgetting when conversation histories exceed token limits. Conversely, relying only on session state discards critical learnings the moment an execution run completes.
-
-Building capable autonomous agents requires an explicit memory subsystem that operates alongside execution state (covered in [State and lifecycle](../04-state-and-lifecycle/chapter-plan.md)) and external retrieval (covered in [Retrieval and RAG](../06-retrieval-and-rag/chapter-plan.md)). By establishing clear boundaries between what is held in active memory, what is tracked in session state, and what is persisted for cross-session recall, developers can create agents that learn continuously without exceeding token budgets or leaking confidential data.
+**Context** is current model input, **state** tracks execution and **memory** stores reusable information. Data becomes useful to the model only when the application selects it for context.
 
 ## Simple mental model
 
@@ -220,6 +218,12 @@ In Pass 2, memory systems are evaluated against **Memory Poisoning, Indirect Pro
 - Cognitive agent memory is organized into working, episodic, semantic, and procedural tiers.
 - Memory management follows an end-to-end lifecycle of extraction, indexing, selective recall, reflection, and pruning.
 - Production memory architectures require strict tenant namespace isolation, provenance tracking, and explicit deletion policies.
+
+<details><summary>Check your understanding</summary>
+
+Does saving a memory automatically put it into the next prompt? No. The application must select and assemble it into model context.
+
+</details>
 
 ## References
 
