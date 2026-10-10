@@ -1,0 +1,24 @@
+id: p1-03-10-02-mid-turn-steering-2026
+title: Mid-turn steering
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/steering
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Compatible GPT-6 Responses API WebSocket requests accept queued user steering and
+  create continuations.
+limitations:
+- Acceptance is not application; steering does not undo prior output or cancel tools
+  that already started.
+related_topics: []
+unit_ids:
+- P1-03-10-02
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience.md
+local_copy: null
+sha256: null

@@ -14,6 +14,7 @@ source_records:
 - p1-03-10-02-interrupts
 - p1-03-10-02-cancellation
 - p1-03-10-02-interaction
+- p1-03-10-02-mid-turn-steering-2026
 visual_assets:
 - assets/images/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience/01-concept.webp
 example_paths:
@@ -59,6 +60,12 @@ LangGraph interruptions use a checkpointer and thread ID to preserve the run's s
 
 Our mock uses explicit methods rather than framework nodes. It demonstrates a chosen application contract, not LangGraph's exact execution mechanism. A different runtime may resume at a different boundary or require restarting an operation.
 
+### Some runtimes accept updates while work is running
+
+Steering need not always start with an explicit pause. Compatible runtimes can queue a new user instruction during a response. Show whether the update was received, queued or applied. Previously emitted output and started tools may remain in effect.
+
+For example, OpenAI documents mid-turn steering for the GPT-6 family over Responses API WebSockets. A queued update can produce a continuation after current output and hosted tool work finish. This differs from the pause-and-resume contract of our offline example. Verify model and transport support; do not infer that steering cancels an external action. [Mid-turn steering](https://developers.openai.com/api/docs/guides/steering).
+
 ### Make operator state understandable
 
 An **operator** is a person responsible for observing or managing the workflow. The interface should show the active task, latest known step, pending human decisions, completed effects, uncertain outcomes and available interventions. “Working” is too vague when the system is actually waiting for a reviewer.
@@ -102,11 +109,19 @@ Pass 2 examines misleading state displays and approval fatigue in [human interfa
 - Know the framework's restart boundary before resuming work with side effects.
 - Show observed state and measure intervention delays and workload.
 
+<details><summary>Check your understanding</summary>
+
+Does requesting pause mean the run is already paused? No. The runtime acknowledges pause at its defined intervention point.
+
+</details>
+
 ## References
 
 - LangChain. [LangGraph interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts). Living documentation, verified for this run.
 - Python Software Foundation. [Python 3.12 coroutines and tasks](https://docs.python.org/3.12/library/asyncio-task.html).
 - Amershi et al. [Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf). CHI 2019. DOI: 10.1145/3290605.3300233.
+
+- OpenAI. [Mid-turn steering](https://developers.openai.com/api/docs/guides/steering). Living documentation, verified October 10, 2026.
 
 ---
 
