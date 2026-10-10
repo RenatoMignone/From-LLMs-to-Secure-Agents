@@ -23,7 +23,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -31,9 +31,9 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
-An agent does not operate in a vacuum. To perform useful work, an agent requires an objective to achieve (**goal**), boundaries that constrain its behavior (**policy**), a software context to interact with (**environment**), and a defined level of independent authority (**autonomy**).
+Lee asks the assistant to reserve two lamps, but only permits a reservation under a stated budget. The desired result and the permission to act are different parts of the request.
 
-If any of these four pillars is misconfigured, agent systems degrade quickly. A vague goal causes wandering reasoning loops. A weak policy permits dangerous actions like unconfirmed database drops. An unmodeled environment leads to unexpected tool failures. Excessive autonomy without oversight exposes organizations to uncontained financial and operational damage. Formalizing these four concepts is essential for building safe and capable agentic systems.
+A **goal** describes the desired result. A **policy** states rules, an **environment** supplies observations and operations, and **autonomy** describes which decisions the system may make without another intervention. Follow those distinctions through the request.
 
 ## Simple mental model
 
@@ -217,6 +217,12 @@ The interaction between goals, policies, and environments is the central battleg
 - **Environments** vary across observability, determinism, and dynamism; agents must be designed specifically for their environment characteristics.
 - **Autonomy** is not binary; systems should be calibrated from human-in-the-loop to supervised autonomy based on risk and blast radius.
 - System safety policies must be enforced by deterministic code, never by prompt instructions alone.
+
+<details><summary>Check your understanding</summary>
+
+Does a requested goal grant permission to perform every useful action? No. The goal and the permitted operations are separate parts of the system contract.
+
+</details>
 
 ## References
 
