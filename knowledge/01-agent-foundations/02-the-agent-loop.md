@@ -24,7 +24,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -32,9 +32,9 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
-A single call to a language model is a one-shot prediction: you send a prompt, and the model returns text. In real-world software engineering, complex problems can rarely be solved in a single attempt. Tasks like debugging a broken build, auditing cloud infrastructure, or researching across multiple databases require trial, feedback, and correction.
+The shop assistant checks stock and learns that only one lamp is available. It must use that result to decide whether to suggest another item, ask Lee a question or stop. One model response cannot stand in for those observed results.
 
-The agent loop provides the operational engine that transforms a static model into an interactive problem solver. By repeatedly sending tool outputs and environmental feedback back to the model, the loop enables iterative problem-solving. Understanding the mechanics of this loop allows engineers to design robust runtime safeguards, prevent runaway token consumption, and prepare for security challenges such as prompt injection and unauthorized tool execution.
+An **agent loop** repeats a decision, an operation and an observation. This chapter follows that loop and names the runtime responsibilities around it.
 
 ## Simple mental model
 
@@ -245,6 +245,12 @@ The cyclic nature of the agent loop creates unique attack surfaces. In [threat m
 - **Inner loops** govern model reasoning over observations; **outer loops** enforce engineering guardrails, rate limits, and safety invariants.
 - Robust agent loops require explicit termination limits, including max turn counts, token budgets, and strict tool schema validation.
 - Observations from tools re-enter the model context as untrusted input that can influence subsequent loop decisions.
+
+<details><summary>Check your understanding</summary>
+
+What should the next decision use after a tool call? The observed result or recorded uncertainty, rather than assuming the intended effect happened.
+
+</details>
 
 ## References
 
