@@ -6,18 +6,16 @@ source_type: paper
 canonical_url: https://arxiv.org/abs/2307.03172
 doi: null
 version: null
-accessed: '2026-09-13'
-last_verified: '2026-09-13'
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
 status: checked
 claims_supported:
-- Language model retrieval accuracy degrades significantly when relevant information
-  is located in the middle of long input contexts compared to the beginning or end.
+- Reports position-dependent performance in the long-context question-answering and
+  key-value retrieval models tested.
 limitations:
-- Focused on multi-document QA and key-value retrieval up to dozens of documents rather
-  than million-token architectural needle tests.
-related_topics:
-- long context
-- context position bias
+- Model and task specific findings; they do not establish identical position effects
+  in all later models.
+related_topics: []
 unit_ids:
 - P1-03-06-04
 used_in:

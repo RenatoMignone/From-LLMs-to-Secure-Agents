@@ -1,0 +1,24 @@
+id: p1-03-06-04-ragas-faithfulness-2026
+title: Faithfulness
+authors_or_organization: Ragas
+date: null
+source_type: official-documentation
+canonical_url: https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Faithfulness estimates the fraction of response claims supported by retrieved context
+  using a configured evaluator.
+limitations:
+- A score is an evaluator result, not proof of truth or the origin of an unsupported
+  claim.
+related_topics: []
+unit_ids:
+- P1-03-06-04
+used_in:
+- knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md
+local_copy: null
+sha256: null

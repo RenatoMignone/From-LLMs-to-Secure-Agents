@@ -7,18 +7,16 @@ source_type: paper
 canonical_url: https://arxiv.org/abs/2104.08663
 doi: null
 version: null
-accessed: '2026-09-13'
-last_verified: '2026-09-13'
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
 status: checked
 claims_supported:
-- Standardizes zero-shot evaluation metrics for retrieval models including nDCG@10,
-  Recall@K, and MRR across diverse domain datasets.
+- Provides heterogeneous datasets and a zero-shot comparison of retrieval methods
+  across tasks.
 limitations:
-- Focuses on first-stage ranking and lexical/dense retrieval benchmarks rather than
-  end-to-end generative RAG faithfulness.
-related_topics:
-- retrieval evaluation
-- BEIR benchmark
+- Benchmark results do not certify answer faithfulness, current production latency
+  or a universally best retriever.
+related_topics: []
 unit_ids:
 - P1-03-06-04
 used_in:

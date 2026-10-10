@@ -6,18 +6,16 @@ source_type: paper
 canonical_url: https://arxiv.org/abs/2309.15217
 doi: null
 version: null
-accessed: '2026-09-13'
-last_verified: '2026-09-13'
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
 status: checked
 claims_supported:
-- Defines reference-free metrics for RAG systems including faithfulness, answer relevance,
-  context precision, and context recall using automated LLM evaluators.
+- Proposes automated reference-free evaluation of retrieval-augmented generation along
+  dimensions including faithfulness and relevance.
 limitations:
-- LLM-as-a-judge evaluation can inherit the underlying judge model biases, calibration
-  limits, and sensitivity to prompt formulation.
-related_topics:
-- rag evaluation
-- faithfulness
+- Judge-based metrics inherit evaluation-model limitations; individual metrics and
+  versions can require different inputs.
+related_topics: []
 unit_ids:
 - P1-03-06-04
 used_in:
