@@ -1,0 +1,24 @@
+id: p1-03-05-03-langgraph-stores-2026
+title: Stores
+authors_or_organization: LangChain
+date: null
+source_type: official-documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/stores
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- LangGraph stores organize cross-thread JSON data by namespace and key, with optional
+  semantic search and mutation methods.
+limitations:
+- Namespaces organize data; access policy, durable backend and deletion across replicas
+  remain application concerns.
+related_topics: []
+unit_ids:
+- P1-03-05-03
+used_in:
+- knowledge/03-building-blocks/05-memory/03-persistent-memory-types-and-lifecycle.md
+local_copy: null
+sha256: null

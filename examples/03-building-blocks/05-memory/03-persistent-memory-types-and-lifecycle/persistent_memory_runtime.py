@@ -5,7 +5,7 @@ Demonstrates:
 1. Multi-tier persistent memory storage: Episodic, Semantic, and Procedural.
 2. Hierarchical namespacing (/users/{user_id}, /orgs/{org_id}).
 3. Three-factor memory retrieval ranking (Relevance, Recency Decay, Salience).
-4. Provenance tracking, record mutation, and deletion (right-to-be-forgotten).
+4. Provenance tracking, record mutation, and deletion (local dictionary only).
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ class MemoryRecord:
     def is_expired(self, current_time: datetime) -> bool:
         if self.ttl_seconds is None:
             return False
-        return (current_time - self.created_at).total_seconds() > self.ttl_seconds
+        return (current_time - self.created_at).total_seconds() >= self.ttl_seconds
 
 
 class PersistentMemoryStore:
@@ -112,7 +112,8 @@ class PersistentMemoryStore:
         scored_records: List[tuple[MemoryRecord, float]] = []
 
         for record in self.records.values():
-            if not record.namespace.startswith(namespace_prefix):
+            prefix = namespace_prefix.rstrip("/")
+            if record.namespace != prefix and not record.namespace.startswith(prefix + "/"):
                 continue
             if record.is_expired(now):
                 continue
@@ -190,7 +191,7 @@ def run_demonstration() -> None:
         created_at=base_time - timedelta(days=30),
     )
 
-    # User Bob namespace (tenant isolation test)
+    # User Bob namespace (hierarchical filtering demonstration)
     store.write(
         tier=MemoryTier.SEMANTIC,
         namespace="/users/bob/preferences",
@@ -224,7 +225,7 @@ def run_demonstration() -> None:
     )
     print(f"    Updated content: {store.records[rec_alice_pref.id].content}")
 
-    # 4. Deletion (Right-to-be-Forgotten)
+    # 4. Local deletion (does not erase external copies)
     print(f"\n[-] Deleting episodic record {rec_alice_old_ep.id}...")
     deleted = store.delete(rec_alice_old_ep.id)
     print(f"    Deleted successfully: {deleted}")
@@ -234,4 +235,15 @@ def run_demonstration() -> None:
 
 
 if __name__ == "__main__":
+    # Namespace boundaries and expiry are functional checks, not authentication.
+    test_store = PersistentMemoryStore()
+    now = datetime(2026, 10, 10, tzinfo=timezone.utc)
+    target = test_store.write(MemoryTier.SEMANTIC, "/users/alice/preferences", "brief updates", 0.5, created_at=now, ttl_seconds=60)
+    test_store.write(MemoryTier.SEMANTIC, "/users/alice2/preferences", "brief updates", 0.5, created_at=now)
+    found = test_store.retrieve("/users/alice", "updates", current_time=now)
+    assert [record.id for record, _ in found] == [target.id]
+    assert not target.is_expired(now + timedelta(seconds=59))
+    assert target.is_expired(now + timedelta(seconds=60))
+    assert test_store.purge_expired(now + timedelta(seconds=60)) == 1
+    assert len(test_store.records) == 1
     run_demonstration()
