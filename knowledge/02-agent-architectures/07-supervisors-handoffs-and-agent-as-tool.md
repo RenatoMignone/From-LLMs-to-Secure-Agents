@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-A single monolithic agent equipped with dozens of tools and a sprawling system prompt quickly degrades in reliability. As prompt size grows, models suffer from distraction, hallucinated tool arguments, and degraded reasoning. Furthermore, granting one agent global access to every system credential violates the principle of least privilege.
+The shop assistant can ask a delivery specialist for an estimate while keeping responsibility for the answer, or transfer the task so that the specialist continues the conversation. Those arrangements have different owners.
 
-**Multi-agent coordination architectures** solve this by dividing complex responsibilities among specialized, focused agents (Anthropic, 2024; Microsoft, 2024). Rather than forcing one model to do everything, systems organize agents into distinct topologies: centralized supervisors that delegate tasks, peer meshes that hand off conversational control, or parent agents that invoke subagents through encapsulated tool interfaces. Understanding these three patterns is essential before studying low-level protocols in [Frameworks and protocols](../04-frameworks-and-protocols/chapter-plan.md).
+This optional chapter distinguishes a **supervisor**, a **handoff** and an **agent used as a tool**. More roles add coordination and state-management work; they do not automatically improve quality or isolation.
 
 ## Simple mental model
 
@@ -208,6 +208,12 @@ Multi-agent systems expand the attack surface through **delegation cascades** an
 - **Peer Handoffs (Swarm)** enable direct, flexible baton-passing between specialized domain agents without central bottlenecks.
 - **Agent-as-a-Tool** encapsulates complex subagent loops into standard callable functions, protecting parent context windows from token pollution.
 - Multi-agent systems require strict context isolation, least-privilege credential scoping, and cycle limits to prevent infinite handoff loops.
+
+<details><summary>Check your understanding</summary>
+
+How does a handoff differ from asking an agent-as-tool for a result? A handoff transfers continuing control; an agent-as-tool returns a result to its caller.
+
+</details>
 
 ## References
 
