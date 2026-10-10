@@ -22,7 +22,9 @@ source_records:
 - p1-03-06-04-es-ragas-2023
 - p1-03-06-04-gemini-long-context-2024
 - p1-03-06-04-thakur-beir-2021
-visual_assets: []
+visual_assets:
+- assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/01-long-context-versus-retrieval-tradeoffs.webp
+- assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/02-rag-triad-and-grounding-evaluation.webp
 example_paths:
 - examples/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/retrieval_evaluation_runtime.py
 pass: architecture
@@ -79,6 +81,10 @@ Modern foundation models support context windows exceeding one million tokens (G
 | **Freshness** | Must re-upload documents to update | Real-time index updates without altering prompts |
 | **Global sensemaking** | Strong for single documents (within window limit) | Requires hierarchical trees (RAPTOR) or GraphRAG |
 
+![Two robots compare broad document coverage with selected passages, with cost, latency and missing evidence to measure.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/01-long-context-versus-retrieval-tradeoffs.webp)
+
+*Figure 1. Compare both designs on the same tasks. Smaller prompts do not guarantee faster complete responses or better answers, and larger windows do not guarantee every fact is used.*
+
 ### 2. Grounded context assembly and provenance
 
 Grounding ensures that the generator relies on retrieved external evidence rather than internal parametric memory. When candidate chunks are selected, the context assembler formats them into structured, isolated evidence blocks:
@@ -115,6 +121,10 @@ While classical metrics evaluate the search index, they cannot assess whether th
 1. **Context Relevance:** Measures whether the retrieved passages are focused and relevant to the user query, penalizing noisy distractor chunks.
 2. **Groundedness (Faithfulness):** Measures whether every factual claim made in the generated answer can be mathematically or logically derived from the retrieved context. A faithfulness score below 1.0 flags parametric hallucinations.
 3. **Answer Relevance:** Measures whether the generated completion directly addresses the user intent and query requirements, penalizing evasive or off-topic responses.
+
+![Robot inspectors check whether evidence is relevant, claims are supported and the answer is useful.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/02-rag-triad-and-grounding-evaluation.webp)
+
+*Figure 2. Inspect the question, evidence and answer separately. Automated scores need calibration against human judgments and do not prove truth.*
 
 ## Main variants
 

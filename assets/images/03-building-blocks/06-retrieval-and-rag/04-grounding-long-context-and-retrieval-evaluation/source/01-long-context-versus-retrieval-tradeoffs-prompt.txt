@@ -1,11 +1,2 @@
 Use case: scientific-educational
-Asset type: chapter illustration for a technical learning guide
-Primary request: Create a clear educational 2D cartoon diagram titled 'Long Context vs Focused Retrieval Trade-Offs'.
-Scene/backdrop: Warm light cream background (#FDFBF7).
-Style/medium: Clean, polished 2D cartoon illustration with cute rounded robot assistant characters, friendly simple shapes, soft outlines, and an approachable technical textbook feel. Calm pastel palette: soft blue (#4A90E2), sage green (#50E3C2), warm amber (#F5A623), and soft coral.
-Composition/framing: Two balanced side-by-side comparison panels:
-1. Left Panel labeled 'Massive Long-Context Window (1M+ Tokens)': A cute blue robot overwhelmed under a huge towering pile of paper documents. Key callouts: 'High Token Cost', 'Multi-Second Latency', and a U-shaped graph labeled 'Lost in the Middle (Attention Dip)'.
-2. Right Panel labeled 'Focused RAG Retrieval': A cheerful green robot holding a clean folder with three neatly tagged evidence cards ('Doc 1', 'Doc 2', 'Doc 3'). Key callouts: 'Low Token Cost', 'Sub-Second Latency', and 'Sharp Focused Attention'.
-Text (verbatim): "Long Context vs Focused Retrieval Trade-Offs", "Massive Long-Context Window", "High Token Cost & Latency", "Lost in the Middle Effect", "Focused RAG Retrieval", "Low Cost & Sub-Second Latency", "Sharp Focused Grounding"
-Constraints: Cute robot characters; bold readable sans-serif labels; balanced spacing; high contrast; clean educational textbook layout; no dark backgrounds, no neon, no cyberpunk.
-Avoid: dark backgrounds, neon, cyberpunk, hacker themes, sterile corporate flowchart boxes, UML or Visio styling, 3D, photorealism, tiny text.
+Create a wide educational cartoon illustration in the canonical From LLMs to Secure Agents banner style: cute rounded robot assistants, polished 2D shapes, soft outlines, warm light cream background, pastel blue, teal, sage and amber. No dark themes, UML, sterile flowchart boxes or 3D. Two balanced panels compare a robot reading a large document stack and a robot receiving three selected evidence cards from a librarian. Show equal dignity for both options, not a guaranteed winner. Exact title: "Long context and focused retrieval". Exact left labels: "More documents in context", "Broad coverage", "Measure cost and latency". Exact right labels: "Selected passages", "Smaller prompt", "Measure missing evidence". Footer exact label: "Test both on your task". Bold readable sans-serif text, clear spacing. Do not assert fixed latency or universal accuracy advantages.
