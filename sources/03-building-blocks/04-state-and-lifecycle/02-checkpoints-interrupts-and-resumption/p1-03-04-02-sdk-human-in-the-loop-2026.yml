@@ -1,0 +1,24 @@
+id: p1-03-04-02-sdk-human-in-the-loop-2026
+title: Human-in-the-loop
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://openai.github.io/openai-agents-python/human_in_the_loop/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- The SDK returns interrupted tool approvals and RunState that applications can serialize
+  and resume.
+limitations:
+- SDK RunState is distinct from hosted Assistants API threads; application storage
+  and transport are separate concerns.
+related_topics: []
+unit_ids:
+- P1-03-04-02
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md
+local_copy: null
+sha256: null

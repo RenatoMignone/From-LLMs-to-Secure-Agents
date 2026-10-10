@@ -1,0 +1,24 @@
+id: p1-03-04-02-langgraph-interrupts-2026
+title: Interrupts
+authors_or_organization: LangChain
+date: null
+source_type: official-documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/interrupts
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Dynamic interrupt pauses graph work; resumption restarts the interrupted node, including
+  code before the interrupt.
+limitations:
+- Durability requires a suitable checkpointer. Side effects before an interrupt can
+  execute again.
+related_topics: []
+unit_ids:
+- P1-03-04-02
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption.md
+local_copy: null
+sha256: null

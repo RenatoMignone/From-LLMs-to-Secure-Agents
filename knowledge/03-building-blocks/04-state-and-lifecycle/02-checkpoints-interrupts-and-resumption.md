@@ -16,10 +16,9 @@ learning_objectives:
 - Enable state time-travel to rewind execution to historical checkpoints and explore
   alternative branches.
 source_records:
-- p1-03-04-02-langgraph-human-in-the-loop-2024
 - p1-03-04-02-temporal-durable-execution-2024
-- p1-03-04-02-openai-agents-sdk-handoffs-2024
-- p1-03-04-02-microsoft-autogen-human-input-2024
+- p1-03-04-02-langgraph-interrupts-2026
+- p1-03-04-02-sdk-human-in-the-loop-2026
 visual_assets:
 - assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/01-checkpoint-and-time-travel.png
 - assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/02-human-in-the-loop-interrupt-gate.png
@@ -29,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,9 +36,9 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-In long-running autonomous workflows, execution cannot be assumed to run continuously without pause. Processes crash, container nodes get rescheduled, and high-impact actions (such as initiating financial transfers, modifying production databases, or sending external emails) require explicit human authorization before proceeding.
+The reservation proposal is ready, but Lee will review it tomorrow. A process restart tonight should not require inventing the proposal again or pretending approval already arrived.
 
-If an agent runtime holds all execution state in ephemeral in-memory variables, a single server reboot or network drop destroys the entire run. Furthermore, without checkpointing, an agent cannot be safely paused while waiting days for human approval. **Checkpoints, interrupts, and resumption mechanisms** provide durable execution guarantees (LangChain, 2024; Temporal Technologies, 2024; OpenAI, 2024; Microsoft, 2024). By capturing serialized state snapshots at deterministic boundaries, agents can pause indefinitely, survive infrastructure failures, and resume seamlessly when approved.
+A **checkpoint** records selected execution state. An **interrupt** pauses at a defined point, and **resumption** continues according to the runtime's contract. Persistence, external effects and renewed permission need separate decisions.
 
 ## Simple mental model
 
@@ -60,11 +59,11 @@ When an agent encounters a policy-designated sensitive tool, the runtime halts e
 
 ## How it works
 
-Durable checkpointing and human-in-the-loop execution operate across four core mechanisms:
+The following four mechanisms describe our example design. Frameworks differ in their checkpoint formats and resumption contracts:
 
 ### 1. Checkpoint creation and serialization
 
-A **checkpoint** is an immutable, serialized snapshot of the agent state at a specific logical step (LangChain, 2024; Temporal Technologies, 2024). Each checkpoint contains:
+A **checkpoint** records state at a logical step. Our example stores snapshots with these fields; they are not mandatory fields of every framework:
 
 - **`checkpoint_id`:** A unique monotonic identifier or hash.
 - **`thread_id`:** The owning conversational thread.
@@ -72,7 +71,7 @@ A **checkpoint** is an immutable, serialized snapshot of the agent state at a sp
 - **`variables`:** The dictionary of application state variables, extracted facts, and accumulated artifacts.
 - **`pending_action`:** Optional uncommitted action descriptor awaiting authorization.
 
-Checkpointers serialize this data into relational or document stores, ensuring that state is durable before any side-effecting action is dispatched.
+A durable backend can store checkpoints across process restarts. An in-memory checkpointer cannot. Saving state before dispatch helps recovery, but does not make the state write and an external action one atomic transaction.
 
 ![A checkpoint timeline rewinds from a verification failure and forks to an alternative successful path.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/01-checkpoint-and-time-travel.png)
 
@@ -80,12 +79,12 @@ Checkpointers serialize this data into relational or document stores, ensuring t
 
 ### 2. Breakpoint interrupts and human-in-the-loop gates
 
-An **interrupt** pauses execution before or after designated graph nodes (LangChain, 2024; Microsoft, 2024). When an agent proposes an action flagged as high-risk by system policy:
+An **interrupt** pauses work for input. In our approval design, when an action requires review:
 
 1. The runtime suspends model execution.
 2. The current state snapshot and the proposed tool invocation payload are written to the checkpointer.
 3. The run status transitions to `REQUIRES_ACTION` or `SUSPENDED_APPROVAL`.
-4. The worker thread releases compute resources and returns to the pool.
+4. The runtime returns control to the caller; worker resource release depends on its deployment.
 
 ![A proposed tool action pauses at an approval gate while a human supervisor can approve, edit, or reject it.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/02-checkpoints-interrupts-and-resumption/02-human-in-the-loop-interrupt-gate.png)
 
@@ -93,7 +92,7 @@ An **interrupt** pauses execution before or after designated graph nodes (LangCh
 
 ### 3. State rehydration and resumption
 
-When the human supervisor or external webhook responds, the client issues a resume request specifying the `thread_id` and optional parameter modifications (OpenAI, 2024). The runtime:
+In our design, a reviewer response identifies the saved thread and pending action. The runtime:
 
 1. Loads the latest checkpoint from the database (**rehydration**).
 2. Applies any authorized parameter edits or human feedback to the working state.
@@ -110,9 +109,9 @@ Because checkpoints are immutable historical records, runtimes can support **tim
 
 ## Main variants
 
-1. **Graph-Node Checkpointing (LangGraph):** State graphs persist state deltas automatically at node boundaries using dedicated checkpointers (`MemorySaver`, `SqliteSaver`, `PostgresSaver`), supporting dynamic `interrupt_before` and `interrupt_after` hooks (LangChain, 2024).
+1. **Graph checkpoints (LangGraph):** A configured checkpointer records graph state. Dynamic `interrupt()` waits for input; `Command(resume=...)` supplies it with the same thread ID. The interrupted node starts again from its beginning, so code before the interrupt can run again. Static `interrupt_before` and `interrupt_after` breakpoints serve debugging and are distinct from dynamic human-input interrupts. [Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts).
 2. **Event-Replay Durable Execution (Temporal):** Workflows achieve durability by replaying deterministic event histories against code definitions upon worker recovery (Temporal Technologies, 2024).
-3. **Hosted Approval Loops (OpenAI Agents SDK):** Hosted threads track tool call approvals through server-side run objects, pausing on required actions until client tool outputs or approvals are posted (OpenAI, 2024).
+3. **SDK approval loops (OpenAI Agents SDK):** The SDK returns interruptions and a `RunState` that the application can serialize, approve or reject, and pass to the runner. This is distinct from the former hosted Assistants API thread/run model. [Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
 4. **Interactive Human-in-the-Loop (AutoGen):** Multi-agent orchestrators support configurable human input modes (`ALWAYS`, `TERMINATE`, `NEVER`) allowing operators to inject natural language steering turns (Microsoft, 2024).
 
 ## Minimal implementation
@@ -207,11 +206,19 @@ In Pass 2, checkpoint and resumption architectures are evaluated against **Check
 - Resumption rehydrates state from persistent checkpointers, allowing human operators to review, edit, or reject actions before execution.
 - Checkpoint timelines enable state time-travel for debugging, auditability, and exploring alternative reasoning branches.
 
+<details><summary>Check your understanding</summary>
+
+Does loading a checkpoint prove an external operation should run again? No. Inspect its recorded outcome and the operation retry contract first.
+
+</details>
+
 ## References
+
+- LangChain. [Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts). Living documentation, verified October 10, 2026.
+- OpenAI. [SDK human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/). Living documentation, verified October 10, 2026.
 
 - LangChain Community. *Human-in-the-Loop and Checkpointing in LangGraph*. LangGraph Documentation, 2024. [LangGraph HITL](https://docs.langchain.com/oss/python/langgraph/human-in-the-loop).
 - Temporal Technologies. *Durable Execution, Checkpoints, and Deterministic Replay*. Temporal Documentation, 2024. [Temporal State](https://docs.temporal.io/workflow-execution-and-state).
-- OpenAI. *Agent Checkpoints, State Resumption, and Human Approvals*. OpenAI Agents SDK Documentation, 2024. [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/running_agents/).
 - Microsoft Research. *AutoGen: Human-in-the-Loop Interaction Modes and State Resumption*. AutoGen Documentation, 2024. [AutoGen HITL](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html).
 
 ---
