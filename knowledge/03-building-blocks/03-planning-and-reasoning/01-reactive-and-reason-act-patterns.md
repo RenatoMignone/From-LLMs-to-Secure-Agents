@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-When building autonomous agents, the simplest approach to tool usage is **pure reactive execution**: the model receives a user prompt and immediately emits an API tool call without an explicit reasoning step. While fast for simple, single-turn lookups (such as checking current weather), pure reactive loops fail catastrophically on multi-step objectives. Without structured intermediate reasoning, models struggle to track intermediate variables, misinterpret subtle tool errors, and frequently enter infinite repetitive action loops.
+After a stock lookup, the assistant must choose whether to search again or answer Lee. It can use a model-generated plan or request an operation directly, but the runtime performs the call.
 
-The **ReAct (Reason + Act)** pattern solves this limitation by interleaving explicit verbal reasoning traces with concrete tool actions and empirical environment observations (Yao et al., 2022; Shinn et al., 2023; LangChain, 2024). By forcing the agent to formulate an explicit "Thought" before selecting an "Action", the runtime grounds decision-making in real-time observations, enables self-correction when tools return unexpected errors, and significantly increases multi-hop problem-solving accuracy.
+**Reason-act** patterns organize model decisions and tool observations. A written reasoning trace is one research technique; it is not required for every tool request and should not be confused with access to a model's internal reasoning.
 
 ## Simple mental model
 
@@ -186,6 +186,12 @@ In Pass 2, ReAct loops are evaluated against **Adversarial Tool Manipulation and
 - The ReAct loop cycles through Thought (problem decomposition), Action (tool invocation), Execution (sandbox run), and Observation (result assimilation).
 - Interleaving thoughts with observations enables autonomous recovery when tools return error codes.
 - Production ReAct systems require strict iteration counters and repetition detectors to prevent runaway tool loops.
+
+<details><summary>Check your understanding</summary>
+
+Must every tool request expose a written reasoning trace? No. Tool requests and recorded plans are distinct from hidden model reasoning.
+
+</details>
 
 ## References
 
