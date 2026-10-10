@@ -109,6 +109,12 @@ Pass 2 maps exposed files, sessions, networks and budgets to [execution and supp
 - Resource quotas, network policies and application deadlines have different scopes.
 - Retain selected outputs separately and tear down temporary state on every path.
 
+<details><summary>Check your understanding</summary>
+
+Does local teardown prove a remote tool stopped? No. Remote completion and cancellation need service-specific evidence.
+
+</details>
+
 ## References
 
 - Microsoft. [Playwright browser contexts](https://playwright.dev/python/docs/browser-contexts).
