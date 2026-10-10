@@ -1,21 +1,21 @@
 id: p1-03-02-04-anthropic-context-inspection-2024
-title: Context Inspection and Debugging Methodologies for Multi-Agent Workflows
+title: Effective context engineering for AI agents
 authors_or_organization: Anthropic
-date: 2024-09
-source_type: report
+date: '2025-09-29'
+source_type: official-documentation
 canonical_url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 doi: null
 version: null
-accessed: '2026-08-18'
-last_verified: '2026-08-18'
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
 status: checked
 claims_supported:
-- Details techniques for runtime context visualization, prompt token accounting, and
-  provenance tracing across agent reasoning steps.
+- Explains context selection, compaction and structured notes for agent work across
+  context windows.
 limitations:
-- Focuses on Claude API developer tooling and debugging workflows.
-related_topics:
-- context inspection and debugging
+- Engineering guidance and tested patterns, not a standard provenance schema or universal
+  compression guarantee.
+related_topics: []
 unit_ids:
 - P1-03-02-04
 used_in:

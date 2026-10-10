@@ -1,0 +1,23 @@
+id: p1-03-02-04-opentelemetry-genai-development-2026
+title: Semantic conventions for GenAI agent spans
+authors_or_organization: OpenTelemetry
+date: null
+source_type: official-documentation
+canonical_url: https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md
+doi: null
+version: Development, checked 2026-10-10
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Documents agent span conventions with development stability status.
+limitations:
+- Development conventions can change; exporter support and schema versions must be
+  checked.
+related_topics: []
+unit_ids:
+- P1-03-02-04
+used_in:
+- knowledge/03-building-blocks/02-context-construction/04-provenance-and-context-debugging.md
+local_copy: null
+sha256: null

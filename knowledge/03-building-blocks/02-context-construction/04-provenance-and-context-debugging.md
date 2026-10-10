@@ -13,14 +13,14 @@ learning_objectives:
   RAG chunks, and tool outputs.
 - Implement context debugging inspection consoles to audit token allocation, boundary
   integrity, and prompt transformations.
-- Standardize context telemetry using OpenTelemetry Generative AI semantic conventions
-  and W3C PROV-DM structures.
+- Map context telemetry to versioned OpenTelemetry GenAI conventions and identify
+  development status and W3C PROV-DM structures.
 - Detect instruction collisions, prompt injection markers, and silent context truncation
   before dispatching inference requests.
 source_records:
-- p1-03-02-04-opentelemetry-genai-2024
 - p1-03-02-04-w3c-prov-dm-2013
 - p1-03-02-04-anthropic-context-inspection-2024
+- p1-03-02-04-opentelemetry-genai-development-2026
 visual_assets:
 - assets/images/03-building-blocks/02-context-construction/04-provenance-and-context-debugging/01-context-provenance-tracking.png
 - assets/images/03-building-blocks/02-context-construction/04-provenance-and-context-debugging/02-context-debugging-inspector-console.png
@@ -29,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,9 +37,9 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-When an autonomous agent exhibits erratic behavior, makes an unauthorized tool call, or hallucinates an incorrect output, diagnosing root causes without deep context visibility is nearly impossible. In production systems, a model prompt is a dynamic composite of dozens of disparate data sources assembled on the fly. If developers cannot inspect the exact serialized payload, token budget allocations, and origin of each prompt segment, debugging becomes guesswork.
+The assistant cites an outdated shop rule. To investigate, the application needs to know which source version entered context, which transformation selected it and what result followed.
 
-**Context provenance and debugging** provides end-to-end visibility into the data lineage of every token fed into the model (OpenTelemetry, 2024; W3C, 2013; Anthropic, 2024). By attaching cryptographic fingerprints, source URIs, trust tags, and transformation histories to every context item, engineering teams can trace faulty decisions back to specific data sources, verify trust boundary enforcement, and maintain comprehensive audit trails for enterprise compliance.
+**Provenance** records where information came from. Context debugging uses those records to inspect input assembly. It supports investigation without proving that a source is true or exposing hidden model reasoning.
 
 ## Simple mental model
 
@@ -49,7 +49,7 @@ Think of an industrial food processing quality control lab:
 2. **Batch Inspection Station (Context Inspector Console)**: Quality control engineers scan each mixing vat before cooking, verifying exact weight ratios (Token Budget Allocation) and checking that no uncertified additives contaminated the batch (Boundary Integrity Audit).
 3. **Food Traceability Log (OpenTelemetry Spans)**: If a customer reports an issue three weeks later, inspectors use the batch barcode to instantly reconstruct the exact farm source and processing temperature of every ingredient.
 
-Context debugging ensures that every piece of data entering an agent prompt is certified, budgeted, and fully auditable from source to completion.
+Context records help inspect source selection, transformations and budgets. They do not certify content correctness or automatically provide a complete audit trail.
 
 ## Position in the agent workflow
 
@@ -71,7 +71,7 @@ Context provenance and debugging operate across three foundational pillars:
 
 ### 1. The provenance metadata record
 
-Every item ingested into the prompt assembly pipeline is wrapped in a standardized provenance schema aligned with W3C PROV-DM and OpenTelemetry conventions (W3C, 2013; OpenTelemetry, 2024):
+The following is an application-defined provenance record informed by source, transformation and trace concepts. It is not a standardized prompt-item schema required by W3C or OpenTelemetry.
 
 - **`item_id`**: Unique identifier for the context chunk within the session.
 - **`source_uri`**: Canonical URI pointing to the data origin (e.g., `s3://docs/hr-manual.pdf#page=4`, `postgres://users/alice`, `tool://sandbox/git-diff`).
@@ -86,21 +86,21 @@ Every item ingested into the prompt assembly pipeline is wrapped in a standardiz
 Runtime context debuggers provide four essential diagnostic views:
 - **Token Budget Allocation Flamegraph**: Visualizes the proportional consumption of the context window across system rules, RAG chunks, message history, and completion headroom.
 - **Turn-by-Turn Prompt Diff**: Compares the exact prompt payload between turn $T-1$ and turn $T$, highlighting newly injected tool results, evicted history turns, and modified summary sections.
-- **Pre-Dispatch Boundary Auditor**: Scans assembled prompts for unescaped delimiters (e.g., raw `<system>` tags embedded inside third-party RAG chunks) or prompt injection trigger phrases before the request is dispatched to the model API.
-- **Serialization Replay**: Allows engineers to export the exact prompt payload to replay problematic turns deterministically in isolated staging environments.
+- **Assembly checks:** Report missing source labels, unexpected role assignments and token-budget overruns. A delimiter scan cannot prove resistance to prompt injection; detailed security testing belongs in Pass 2.
+- **Recorded input inspection:** Retained payloads help compare requests. A live rerun can produce different results or new effects; distinguish it from playback and mocked replay.
 
 ### 3. OpenTelemetry semantic conventions for agent spans
 
-Standardizing context telemetry enables interoperability across distributed tracing platforms (such as Jaeger, LangSmith, Arize Phoenix, and Datadog). Modern agent systems emit structured OpenTelemetry spans containing standardized attributes (OpenTelemetry, 2024):
+Preserve trace relationships and record the telemetry schema version. OpenTelemetry GenAI agent conventions are in development; choose mappings for the actual exporter instead of assuming SDK fields are automatically interoperable. See [agent conventions](https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md).
+
+The following custom application attributes illustrate accounting. They are not claimed to be standard GenAI attributes:
 
 ```json
 {
-  "gen_ai.system": "anthropic",
-  "gen_ai.request.model": "claude-3-5-sonnet-20241022",
-  "gen_ai.prompt.tokens": 1420,
-  "gen_ai.context.items_count": 6,
-  "gen_ai.context.untrusted_tokens": 580,
-  "gen_ai.context.violations_detected": 0
+  "app.context.model_profile": "mock-profile",
+  "app.context.input_tokens": 1420,
+  "app.context.items_count": 6,
+  "app.context.external_tokens": 580
 }
 ```
 
@@ -163,7 +163,7 @@ The full runnable implementation is available in [provenance_debugger.py](../../
 
 ## Trust boundaries
 
-- **Provenance Immutability Boundary**: Provenance metadata must be generated and signed exclusively by the trusted runtime control plane; untrusted tools and user payloads must not be permitted to set their own trust tiers.
+- **Provenance ownership:** Distinguish application-assigned source metadata from assertions supplied by a tool. Cryptographic signatures are a possible mechanism, not a requirement of every provenance record.
 - **PII & Secret Scrubbing Boundary**: Before exporting prompt traces to external observability platforms, sensitive customer data and API secrets must be redacted to prevent secondary credential leakage.
 - **Trace Access Boundary**: Debugging consoles displaying full prompt payloads must enforce strict Role-Based Access Control (RBAC) so unauthorized developers cannot read confidential user sessions.
 
@@ -192,14 +192,20 @@ In Pass 2, context debugging and provenance serve as the primary foundation for 
 
 - Context provenance tracks the exact origin, timestamp, trust tier, and transformation history of every token in an agent prompt.
 - Debugging consoles provide critical visibility into token allocations, turn differentials, and pre-dispatch boundary violations.
-- OpenTelemetry Generative AI semantic conventions standardize prompt telemetry attributes across industry tracing tools.
-- Provenance metadata must remain strictly under runtime control plane authority to prevent spoofing by untrusted external data.
+- OpenTelemetry GenAI conventions provide evolving mappings for agent telemetry. Record the version and check exporter support before relying on interoperability.
+- Preserve who assigned each provenance field and which transformation produced it; a label alone does not establish that a claim is true.
+
+<details><summary>Check your understanding</summary>
+
+Does a matching content hash prove that a policy is true? No. It can identify unchanged bytes, not validate their factual correctness or authority.
+
+</details>
 
 ## References
 
-- OpenTelemetry Community. *OpenTelemetry Semantic Conventions for Generative AI and Agent Systems*. OpenTelemetry Specification, 2024. [OpenTelemetry Docs](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
+- OpenTelemetry. [GenAI agent span conventions](https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md). Development status, verified October 10, 2026.
 - World Wide Web Consortium (W3C). *PROV-DM: The PROV Data Model for Provenance Interchange*. W3C Recommendation, 2013. [W3C PROV-DM](https://www.w3.org/TR/prov-dm/).
-- Anthropic. *Context Inspection and Debugging Methodologies for Multi-Agent Workflows*. Anthropic Engineering Insights, 2024. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+- Anthropic. *Effective context engineering for AI agents*. September 29, 2025. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 
 ---
 
