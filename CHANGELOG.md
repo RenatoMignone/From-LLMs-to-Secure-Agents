@@ -351,3 +351,65 @@
 - Files or sections: `knowledge/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Grounding, long context, and retrieval evaluation.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-10-10
+
+### P1-03-07-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Tool capabilities, schemas, selection, and dispatch.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-07-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/07-tools-and-function-calling/02-results-failures-side-effects-and-confirmation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Results, failures, side effects, and confirmation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-08-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Identity, authentication, authorization, and delegation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-08-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/08-identity-authorization-and-secrets/02-workload-identity-credentials-and-revocation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Workload identity, credentials, and revocation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-09-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Execution boundaries, isolation, and sandboxes.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-09-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Browsers, files, networks, resources, and cleanup.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-10-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/10-human-in-the-loop/01-human-control-approval-and-escalation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Human control, approval, and escalation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-10-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Interrupts, steering, feedback, and operator experience.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-11-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Events, traces, metrics, and correlation.
+- Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-11-02 complete
+
+- Files or sections: `knowledge/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Lineage, replay, redaction, retention, and integrations.
+- Validation: Passed repository validation and the unit review checklist.

@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Publication status:** Updated incrementally as chapters complete review.
-- **Current publication:** 41 chapters across 4 sections. The latest chapter is [Grounding, long context, and retrieval evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/04-grounding-long-context-and-retrieval-evaluation/).
+- **Current publication:** 51 chapters across 4 sections. The latest chapter is [Lineage, replay, redaction, retention, and integrations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-lineage-replay-redaction-retention-and-integrations/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -479,6 +479,106 @@
   * Apply classical information retrieval metrics (Recall@K, Precision@K, MRR, and NDCG@K) to measure candidate ranking performance.
   * Implement reference-free RAG Triad evaluations measuring context relevance, groundedness (faithfulness), and answer relevance to detect parametric hallucinations.
 - **Verified Primary Sources:** [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172), [Ragas: Automated Evaluation of Retrieval Augmented Generation](https://arxiv.org/abs/2309.15217), [Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context](https://arxiv.org/abs/2403.05530), [BEIR: A Heterogeneous Benchmark for Zero-shot Evaluation of Information Retrieval Models](https://arxiv.org/abs/2104.08663)
+
+### [Tool capabilities, schemas, selection, and dispatch](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-tool-capabilities-schemas-selection-and-dispatch/)
+- **Summary:** Follow a proposed tool call from a capability description through argument validation, dispatch and a correlated result.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-tool-capabilities-schemas-selection-and-dispatch.md
+- **Learning Objectives:**
+  * Distinguish a tool capability from a function call and an action.
+  * Design clear descriptions and typed arguments.
+  * Explain selection, namespaces, discovery and dispatch.
+- **Verified Primary Sources:** [Function calling](https://developers.openai.com/api/docs/guides/function-calling), [Tools](https://openai.github.io/openai-agents-python/tools/)
+
+### [Results, failures, side effects, and confirmation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-results-failures-side-effects-and-confirmation/)
+- **Summary:** Explain tool outcomes, uncertain failures, side effects, confirmation and idempotent retries.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-results-failures-side-effects-and-confirmation.md
+- **Learning Objectives:**
+  * Classify tool effects and distinguish transport errors from action outcomes.
+  * Explain idempotency keys and their limits.
+  * Trace a proposed action through confirmation and execution.
+- **Verified Primary Sources:** [Idempotent requests](https://docs.stripe.com/api/idempotent_requests), [Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/), [Tools: timeouts and errors](https://openai.github.io/openai-agents-python/tools/)
+
+### [Identity, authentication, authorization, and delegation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-identity-authentication-authorization-and-delegation/)
+- **Summary:** Trace the represented subject, acting workload and authorization decision through a delegated tool action.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-identity-authentication-authorization-and-delegation.md
+- **Learning Objectives:**
+  * Distinguish identity, authentication and authorization.
+  * Trace subject and actor across a delegation.
+  * Locate policy decisions and enforcement at a resource boundary.
+- **Verified Primary Sources:** [The OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749.html), [OAuth 2.0 Token Exchange](https://www.rfc-editor.org/rfc/rfc8693.html), [OpenID Connect Core 1.0, errata set 2](https://openid.net/specs/openid-connect-core-1_0.html)
+
+### [Workload identity, credentials, and revocation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-workload-identity-credentials-and-revocation/)
+- **Summary:** Follow workload credentials through issuance, use, renewal, expiry and revocation without exposing them as model context.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-workload-identity-credentials-and-revocation.md
+- **Learning Objectives:**
+  * Explain workload identity and credential brokering.
+  * Distinguish rotation, renewal, expiration and revocation.
+  * Describe scope, audience and resource limits in a short-lived grant.
+- **Verified Primary Sources:** [SPIFFE Concepts](https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/), [OAuth 2.0 Token Revocation](https://www.rfc-editor.org/rfc/rfc7009.html)
+
+### [Execution boundaries, isolation, and sandboxes](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-execution-boundaries-isolation-and-sandboxes/)
+- **Summary:** Compare execution locations and isolation mechanisms, then describe their resources through an executor contract.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-execution-boundaries-isolation-and-sandboxes.md
+- **Learning Objectives:**
+  * Distinguish processes, containers, application kernels and virtual machines.
+  * Explain why remote execution is a location rather than an isolation guarantee.
+  * State an execution contract without assuming a sandbox label is sufficient.
+- **Verified Primary Sources:** [Docker Engine security](https://docs.docker.com/engine/security/), [Introduction to gVisor security](https://gvisor.dev/docs/architecture_guide/intro/), [Firecracker design](https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/design.md)
+
+### [Browsers, files, networks, resources, and cleanup](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-browsers-files-networks-resources-and-cleanup/)
+- **Summary:** Map the files, browser sessions, network destinations and budgets exposed to a job, then separate retained output from temporary execution state.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-browsers-files-networks-resources-and-cleanup.md
+- **Learning Objectives:**
+  * Describe an execution resource map and its lifetime.
+  * Distinguish browser contexts from host isolation.
+  * Trace output publication and teardown after success and failure.
+- **Verified Primary Sources:** [Isolation: browser contexts](https://playwright.dev/python/docs/browser-contexts), [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/), [Resource constraints](https://docs.docker.com/engine/containers/resource_constraints/), [None network driver](https://docs.docker.com/engine/network/drivers/none/)
+
+### [Human control, approval, and escalation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-human-control-approval-and-escalation/)
+- **Summary:** Place explicit human decisions in a run, bind approval to a concrete proposal and define escalation and resumption behavior.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-human-control-approval-and-escalation.md
+- **Learning Objectives:**
+  * Distinguish clarification, review, approval and escalation.
+  * Design a paused approval lifecycle with expiry and revalidation.
+  * Explain human-in-the-loop and human-on-the-loop roles.
+- **Verified Primary Sources:** [Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/), [Human-in-the-Loop](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html)
+
+### [Interrupts, steering, feedback, and operator experience](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-interrupts-steering-feedback-and-operator-experience/)
+- **Summary:** Distinguish interruption requests from acknowledged pauses, then apply steering, feedback and takeover to a recorded run state.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-interrupts-steering-feedback-and-operator-experience.md
+- **Learning Objectives:**
+  * Explain cooperative interruption and framework restart semantics.
+  * Separate task steering from approval and feedback from training.
+  * Describe an operator interface and measurable response objectives.
+- **Verified Primary Sources:** [Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts), [Coroutines and tasks: cancellation](https://docs.python.org/3.12/library/asyncio-task.html), [Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf)
+
+### [Events, traces, metrics, and correlation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-events-traces-metrics-and-correlation/)
+- **Summary:** Use structured events, span relationships and aggregate measurements to reconstruct and measure an agent run.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-events-traces-metrics-and-correlation.md
+- **Learning Objectives:**
+  * Distinguish logs, events, traces, spans and metrics.
+  * Correlate attempts, operations and runs across services.
+  * Interpret latency and error measurements without equating transport success with task quality.
+- **Verified Primary Sources:** [Traces](https://opentelemetry.io/docs/concepts/signals/traces/), [Metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/), [GenAI agent and framework spans](https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md), [Tracing](https://openai.github.io/openai-agents-python/tracing/)
+
+### [Lineage, replay, redaction, retention, and integrations](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-lineage-replay-redaction-retention-and-integrations/)
+- **Summary:** Connect versioned evidence to observed runs, distinguish replay from live execution, and design selective telemetry with explicit retention.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-lineage-replay-redaction-retention-and-integrations.md
+- **Learning Objectives:**
+  * Describe lineage without assuming raw prompts are retained.
+  * Distinguish trace playback, mocked replay and live reruns.
+  * Explain field selection, retention and telemetry integration boundaries.
+- **Verified Primary Sources:** [Handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/), [Collector configuration](https://opentelemetry.io/docs/collector/configuration/), [Tracing](https://openai.github.io/openai-agents-python/tracing/), [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)
 
 
 
@@ -8656,6 +8756,10 @@ Modern foundation models support context windows exceeding one million tokens (G
 | **Freshness** | Must re-upload documents to update | Real-time index updates without altering prompts |
 | **Global sensemaking** | Strong for single documents (within window limit) | Requires hierarchical trees (RAPTOR) or GraphRAG |
 
+![Two robots compare broad document coverage with selected passages, with cost, latency and missing evidence to measure.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/01-long-context-versus-retrieval-tradeoffs.webp)
+
+*Figure 1. Compare both designs on the same tasks. Smaller prompts do not guarantee faster complete responses or better answers, and larger windows do not guarantee every fact is used.*
+
 ### 2. Grounded context assembly and provenance
 
 Grounding ensures that the generator relies on retrieved external evidence rather than internal parametric memory. When candidate chunks are selected, the context assembler formats them into structured, isolated evidence blocks:
@@ -8692,6 +8796,10 @@ While classical metrics evaluate the search index, they cannot assess whether th
 1. **Context Relevance:** Measures whether the retrieved passages are focused and relevant to the user query, penalizing noisy distractor chunks.
 2. **Groundedness (Faithfulness):** Measures whether every factual claim made in the generated answer can be mathematically or logically derived from the retrieved context. A faithfulness score below 1.0 flags parametric hallucinations.
 3. **Answer Relevance:** Measures whether the generated completion directly addresses the user intent and query requirements, penalizing evasive or off-topic responses.
+
+![Robot inspectors check whether evidence is relevant, claims are supported and the answer is useful.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/06-retrieval-and-rag/04-grounding-long-context-and-retrieval-evaluation/02-rag-triad-and-grounding-evaluation.webp)
+
+*Figure 2. Inspect the question, evidence and answer separately. Automated scores need calibration against human judgments and do not prove truth.*
 
 ## Main variants
 
@@ -8796,3 +8904,1053 @@ In Pass 2, grounding and evaluation systems are analyzed against **Evaluation Ev
 ---
 
 [Next Unit: Tools and function calling plan →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md)
+
+
+================================================================================
+CHAPTER: Tool capabilities, schemas, selection, and dispatch
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-tool-capabilities-schemas-selection-and-dispatch/
+SUMMARY: Follow a proposed tool call from a capability description through argument validation, dispatch and a correlated result.
+================================================================================
+
+# Tool capabilities, schemas, selection, and dispatch
+
+## Why this matters
+
+A shop assistant can explain a lamp from memory, but it needs the shop inventory to answer “Are two lamps available, and what would they cost?” The application must give it a way to request those facts. A convincing sentence saying “I checked stock” is not evidence that any check happened.
+
+This chapter connects [retrieval](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/06-retrieval-and-rag/chapter-plan.md) to executable capabilities. Retrieval supplies evidence; tools also expose calculations and actions. The next chapter follows the result and any changes caused by execution.
+
+## Simple mental model
+
+Imagine a service counter with a short menu. Each menu entry says what the clerk can do and what information to supply. The assistant selects an entry and fills in a request slip. A separate clerk checks the slip, performs the operation and returns a receipt bearing the same request number.
+
+A **tool** exposes a capability the system can use. A **function** is a callable implementation with named inputs. A **function call** requests one invocation. An **action** is an operation in the environment, which may change something there. Looking up stock and reserving stock are different capabilities even if both mention the same product.
+
+## How it works
+
+### Describe the contract before selecting a tool
+
+A **schema** describes allowed input structure. An **argument** is a value supplied to one input. JSON Schema is a vocabulary for describing JSON values, such as objects containing a string product identifier and an integer quantity. Include the meaning of each field, its units and constraints. A quantity of two items should not be confused with two boxes.
+
+A useful capability menu for our shop is:
+
+| Tool name | Description | Arguments | Result meaning |
+| --- | --- | --- | --- |
+| `catalog.lookup_stock` | Read the current available count; does not reserve stock | `sku`: product identifier | Count observed at lookup time |
+| `catalog.quote_price` | Calculate a price in cents; does not place an order | `sku`, `quantity` from 1 to 10 | Quote for this quantity |
+
+Here **SKU** means the shop's product identifier. The shared `catalog` prefix is a **namespace**, a group of related capability names. These are our example names, not standardized API names.
+
+### A request becomes an execution
+
+The application sends tool definitions with model context. The model may return a tool request. The application executes the function and returns its output before the model continues. A call identifier ties each output to its request. OpenAI exposes selection options through `tool_choice`; strict mode constrains arguments to a supported schema. These API mechanisms do not decide whether a request makes sense for the user's goal. [Function calling](https://developers.openai.com/api/docs/guides/function-calling).
+
+A **dispatcher** is application code that maps a requested name to its handler, the implementation that performs the operation. In our design it first parses arguments, checks their structure, constructs a typed request and then invokes the handler. A **registry** stores those name-to-handler mappings. Unknown names produce an error rather than a guess at which function to run.
+
+![A robot proposes a request, a runtime clerk validates and dispatches it, and a shop returns a matching receipt.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/01-concept.webp)
+
+*Figure 1. Read left to right, then follow the return arrow. The robot selects a capability; the runtime performs the call. The matching call ID connects the receipt to the request.*
+
+### Selection and discovery are separate decisions
+
+**Selection** chooses which available capability to request now. **Capability discovery** finds descriptions that were not already loaded. A large menu consumes context and can contain overlapping descriptions. Our shop could first expose catalog and delivery groups, then load delivery details only when the user asks about shipping. Discovery still needs a way to say that no matching capability exists.
+
+The Agents SDK derives function-tool schemas from Python signatures and descriptions from docstrings. Its tool namespace and deferred-loading facilities can organize larger menus. These are SDK features, not a requirement that every agent discover tools dynamically. [SDK tools](https://openai.github.io/openai-agents-python/tools/).
+
+## Worked example
+
+For “Are two lamps available, and what would they cost?”, the assistant requests a stock lookup and a quote. Our mock returns four available items and a 5,000-cent quote. Neither call reserves lamps. The final answer should describe that observation, not announce an order.
+
+These reads have no dependency on each other's outputs and could run concurrently. By contrast, a call that needs an identifier returned by a previous call must wait. A model returning several requests in one response does not prove that concurrent execution is appropriate.
+
+## Minimal implementation
+
+The [runnable dispatcher](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/main.py) uses two typed request classes and standard-library validation. It intentionally checks types at runtime: Python annotations alone do not reject a string quantity, and a Boolean must not pass as an integer quantity. Its assertions exercise malformed JSON, extra fields, missing products and unknown tools.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+REGISTRY = {
+    "catalog.lookup_stock": (Lookup, lookup_stock),
+    "catalog.quote_price": (Quote, quote_price),
+}
+# After parsing and checking names, fields, types and ranges:
+request_type, handler = REGISTRY[call["name"]]
+request = request_type(**args)
+result = handler(**vars(request))
+```
+
+</details>
+
+This extract shows the dispatch step; the linked script contains validation and error handling. No model or external inventory is contacted.
+
+## Framework implementations
+
+To translate our mock to the Agents SDK, expose each handler with `function_tool`. This illustrative wrapper gives the SDK a typed input signature and a description. Keep validation of product existence inside the handler. See the [SDK tools documentation](https://openai.github.io/openai-agents-python/tools/) for integration with a runner.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+from agents import function_tool
+
+@function_tool
+def lookup_stock(sku: str) -> str:
+    """Read the available count for a product; do not reserve it."""
+    return str(CATALOG[sku]["stock"])
+```
+
+</details>
+
+This wrapper needs the SDK and the example's catalog. It is a mapping example, not the standard-library runnable artifact. The dispatcher script deliberately stays independent of a model provider.
+
+## Limitations and trade-offs
+
+A structurally valid SKU can name a nonexistent product. A correct tool can still be selected for the wrong task. Stock can change after a successful read. Describe these limits in the result contract and evaluate complete tasks, including cases where the assistant should answer without a tool.
+
+Small, distinct capabilities are easy to explain but may require more calls. A larger operation can reduce call count while hiding decisions inside its implementation. Choose the boundary based on what the caller needs to understand and what the runtime can report reliably.
+
+## Security preview
+
+Capability availability and a valid schema do not establish authority to act. [Identity](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/08-identity-authorization-and-secrets/chapter-plan.md) explains who a call acts for. Pass 2 revisits these components in [tools, identity and credentials](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/03-tools-identity-and-credentials/chapter-plan.md).
+
+## Key takeaways
+
+- A tool description exposes a capability; application code performs the invocation.
+- Names, arguments and result meanings form one contract.
+- Validate the request before dispatch and correlate the result with its call ID.
+- Discovery loads capability descriptions; selection chooses an available capability.
+
+## References
+
+- OpenAI. [Function calling](https://developers.openai.com/api/docs/guides/function-calling). Living API documentation, verified for this run.
+- OpenAI. [Agents SDK tools](https://openai.github.io/openai-agents-python/tools/). Living Python SDK documentation, verified for this run.
+
+---
+
+[Next unit: Results, failures, side effects, and confirmation →](/From-LLMs-to-Secure-Agents/building-blocks/02-results-failures-side-effects-and-confirmation/)
+
+
+================================================================================
+CHAPTER: Results, failures, side effects, and confirmation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-results-failures-side-effects-and-confirmation/
+SUMMARY: Explain tool outcomes, uncertain failures, side effects, confirmation and idempotent retries.
+================================================================================
+
+# Results, failures, side effects, and confirmation
+
+## Why this matters
+
+The shop assistant now offers to reserve two lamps. The inventory service accepts the reservation, but its reply never reaches the assistant. Should the assistant try again? A fresh request might reserve two more lamps. Saying “the reservation failed” would also be misleading: the caller has lost the receipt, not necessarily the reservation.
+
+Unlike [retrieval](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/06-retrieval-and-rag/chapter-plan.md), which primarily supplies evidence, actions can change the environment. Handling their results requires a clear account of what the runtime knows.
+
+## How it works
+
+### Return outcomes the next step can use
+
+A **result** is the output of an invocation. Our result contract distinguishes `succeeded`, `invalid_request`, `out_of_stock`, `pending_confirmation` and `unknown`. An ordinary negative business outcome, such as insufficient stock, can be delivered successfully. A network failure can leave the business outcome unknown.
+
+Return the observed data, operation identifier and relevant timing, rather than only “done.” A later lookup of stock cannot by itself identify whether our reservation caused the change. An operation-specific receipt is more useful.
+
+A **timeout** is a limit on how long the caller waits. It does not prove that remote work stopped. The Agents SDK supports timeout configuration for async function tools and can return error information to the model or raise an exception to the runtime. The surrounding application still needs to interpret the external outcome. [SDK tools](https://openai.github.io/openai-agents-python/tools/).
+
+### Classify effects before choosing recovery
+
+A **side effect** is an observable change beyond returning a value. For our shop, use this functional classification:
+
+| Capability | Business state changed? | Can repeating it add another effect? | Useful next step after an uncertain reply |
+| --- | --- | --- | --- |
+| Read stock | No reservation change | No new reservation | Repeat the read if still useful |
+| Set delivery preference | Yes | Same value may converge, notifications may repeat | Inspect the contract and current version |
+| Reserve two lamps | Yes | Yes, without duplicate handling | Query or retry the same logical operation |
+| Send a pickup message | Yes, externally visible | A second message may be sent | Inspect delivery record |
+
+A read can still create logs, incur charges or return a different value later. “Read-only” here describes the business resource, not the absence of every possible effect.
+
+![Robots compare reading stock, setting a preference and making a reservation, with different repeat effects.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/07-tools-and-function-calling/02-results-failures-side-effects-and-confirmation/01-concept.webp)
+
+*Figure 1. Read across each row. First ask what changes, then what a repeat would do. Recovery depends on this contract, not only on whether a response contains an error.*
+
+### Keep the identity of a retry stable
+
+**Idempotency** means repeated application has the same intended effect as one application. An **idempotency key** identifies repeated attempts at the same logical operation. It is different from a model call ID: separate call attempts can belong to one reservation.
+
+Stripe API v1 illustrates a service-side contract: it stores an executed response for a key, checks parameters on reuse and applies a retention period. The behavior is specific to that API. [Idempotent requests](https://docs.stripe.com/api/idempotent_requests).
+
+In our design, generate the key before the first reservation attempt, preserve it with the pending operation, and reuse it only with the same parameters. Changing the quantity means a different operation. A local dictionary teaches the idea but does not handle crashes, simultaneous callers or a remote service that ignores the key.
+
+### Confirmation precedes the effect
+
+**Confirmation** is a person's decision on a concrete proposed action. Show “Reserve two lamps at this shop” before executing. The runtime records a pending decision and resumes or cancels that proposal. A changed action needs a new decision; the old decision was about a different request.
+
+The SDK exposes pending tool approvals as interruptions and supports decisions and resumption through `RunState`. This packages pause and resume behavior; it does not turn confirmation into a successful reservation. [Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
+
+## Worked example
+
+The [offline reservation example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/07-tools-and-function-calling/02-results-failures-side-effects-and-confirmation/main.py) begins with four lamps. Before confirmation, stock stays at four. After approval, the service reserves two but simulates losing its reply. The caller sees a timeout while stock is already two. A retry using the original key returns the stored receipt without taking more stock. Reusing the key with a different quantity returns `key_conflict`.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+if key in receipts:
+    old_request, result = receipts[key]
+    if old_request != request:
+        return {"status": "key_conflict"}
+    return dict(result)
+```
+
+</details>
+
+This is one step in the example, not a complete production implementation. Durable storage, concurrency and atomic recording of the effect and receipt are outside this small mock.
+
+## Limitations and trade-offs
+
+Retries can improve recovery from temporary failures, but only when the operation contract permits them. Invalid arguments usually need correction, not repetition. Limit retry count and elapsed time; repeated attempts should not keep a run alive forever.
+
+Two independent reads may run in parallel. A reservation and a cancellation of that reservation have an ordering dependency. Two writes to the same stock count can also conflict even if the model requested them together.
+
+Tools have a lifecycle: their descriptions, handlers and result contracts may change. Keep enough version information to interpret a pending request when the runtime resumes later. An unavailable tool should produce an explicit outcome, not a silent substitute.
+
+## Security preview
+
+Confirmation, duplicate handling and authority are separate parts of the system. [Identity and authorization](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/08-identity-authorization-and-secrets/chapter-plan.md) develops the functional authority model. Pass 2 examines unsafe calls and excessive agency in [tools, identity and credentials](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/03-tools-identity-and-credentials/chapter-plan.md).
+
+## Key takeaways
+
+- A timeout may leave an action outcome unknown.
+- Classify side effects before choosing retries or parallel execution.
+- Preserve the same operation key across retries with unchanged arguments.
+- Confirmation decides whether to proceed; execution produces the receipt.
+
+## References
+
+- Stripe. [Idempotent requests](https://docs.stripe.com/api/idempotent_requests). API v1 semantics, verified for this run.
+- OpenAI. [Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
+- OpenAI. [Tools](https://openai.github.io/openai-agents-python/tools/). Living SDK documentation, verified for this run.
+
+---
+
+[Next unit: Identity, authentication, authorization, and delegation →](/From-LLMs-to-Secure-Agents/building-blocks/01-identity-authentication-authorization-and-delegation/)
+
+
+================================================================================
+CHAPTER: Identity, authentication, authorization, and delegation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-identity-authentication-authorization-and-delegation/
+SUMMARY: Trace the represented subject, acting workload and authorization decision through a delegated tool action.
+================================================================================
+
+# Identity, authentication, authorization, and delegation
+
+## Why this matters
+
+Lee asks a shop assistant to check an order. The same assistant also serves Pat. Its tool can read orders, but which order may it read for this request? A tool name describes an operation. It does not identify the customer or establish access to every order.
+
+This chapter adds authority to the [tool-call path](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md). The next chapter follows the credentials used by the workload that actually executes the call.
+
+## Simple mental model
+
+A courier carries a signed request on someone else's behalf. The building receptionist needs to know both whose request it is and which courier delivered it. Checking the courier's badge answers one question. Deciding whether this request may reach this room answers another.
+
+An **identity** names an entity. A **principal** is an entity that can be authenticated and considered in an access decision, such as a human user or service. **Authentication** verifies a claimed identity using evidence. **Authorization** decides whether a principal may perform a particular operation on a particular resource. A **resource** is the object or service being accessed.
+
+## How it works
+
+### Give each participant a clear role
+
+A **workload** is running software, such as the shop assistant's worker process. A named “agent” can describe a role within that software without being a separately authenticated principal. Our application records an agent-role name for diagnostics and a workload identity for service calls. It does not assume that naming a model makes it an authenticated entity.
+
+| Participant in our example | Role in the order request |
+| --- | --- |
+| Lee | Human asking for an order lookup |
+| Shop application | Receives the authenticated session and starts the run |
+| Assistant workload | Executes the requested tool |
+| Order service | Decides access and returns the order |
+
+OpenID Connect supplies authentication information through an identity layer over OAuth, including an ID token. OAuth access tokens serve resource access. An ID token for the application is not a substitute for an access token expected by the order service. [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html).
+
+### Preserve the represented person and the acting software
+
+A **subject** is the principal a request represents. An **actor** is the principal acting for that subject. **Delegation** gives another principal authority to act on someone's behalf while retaining that relationship. A **delegation chain** records successive actors when more than one service participates.
+
+RFC 8693 distinguishes delegation from **impersonation**, where the recipient sees the acting party as the represented subject rather than maintaining the same explicit actor relationship. It defines subject and actor inputs for token exchange, an operation that obtains a token using an existing token. [OAuth token exchange](https://www.rfc-editor.org/rfc/rfc8693.html).
+
+In our order lookup, Lee is the subject and the assistant workload is the actor. If the assistant delegates to a reporting worker, both steps matter to the action's history. Token exchange can express such relationships, but the authorization service still chooses what authority to issue. Exchange does not automatically make every downstream token narrower.
+
+### Make a decision, then enforce it
+
+A **policy decision point** evaluates an access request against policy. A **policy enforcement point** applies that decision before the resource operation. These are logical roles; one service can implement both.
+
+Our request contains the subject, actor, action and resource. The policy allows the shop workload to read Lee's order for Lee, but not cancel it or read Pat's order. The enforcement step returns data only after an allowed decision. A successful login alone does not replace this step.
+
+![Lee delegates an order lookup to a shop robot, while the order service checks policy before returning data.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation/01-concept.webp)
+
+*Figure 1. Follow the request toward the order service. The subject and actor stay distinct. Inside the service, the policy decision precedes the resource operation.*
+
+### Describe the bounds of authority
+
+A **token** is a value carried as evidence or access authority. A **scope** names a category of granted access. An **audience** identifies an intended recipient. A **capability** is an authority-bearing reference or credential for a bounded operation or resource; not every tool description is such a credential.
+
+OAuth defines access tokens with scope and duration and separates the client, authorization server and resource server roles. How the resource service maps a scope such as `orders.read` to Lee's particular order is an application policy decision. [OAuth 2.0 framework](https://www.rfc-editor.org/rfc/rfc6749.html).
+
+## Worked example
+
+The [offline policy example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation/main.py) evaluates four requests. Lee's order read succeeds. A cancellation, another customer's order and an unknown workload do not. Each decision carries a policy version, so the recorded outcome can be interpreted later.
+
+The script assumes identities have already been authenticated. Its strings are labels, not credentials. Passing a string such as `user:lee` from unverified input would not implement authentication.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+decision = decide(request)
+if not decision.allowed:
+    return {"status": "denied", "policy_version": decision.policy_version}
+# Only now perform the resource operation.
+```
+
+</details>
+
+## Limitations and trade-offs
+
+Delegated user access and a service acting on its own behalf are different designs. A scheduled stock report may use the workload's own authority. A customer order lookup needs the represented user's relationship to the order. Document which design applies rather than inferring it from the assistant's conversational role.
+
+A scope can be too coarse to describe individual resources. Detailed resource decisions may require current order ownership or organization membership. Keep those facts in the service's decision model; a model's explanation of why it needs access is not the decision itself.
+
+## Security preview
+
+The identities used by [execution environments](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/09-execution-environments/chapter-plan.md) determine which resource boundaries matter. Pass 2 examines confused-deputy, token and secret risks in [tools, identity and credentials](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/03-tools-identity-and-credentials/chapter-plan.md).
+
+## Key takeaways
+
+- Authentication verifies identity; authorization decides access to an operation and resource.
+- Separate the represented subject from the acting workload.
+- Preserve delegation relationships and record the policy decision.
+- Tool availability, login and access authority answer different questions.
+
+## References
+
+- IETF. [RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749.html), 2012. Foundational roles and concepts; later updates apply to deployment guidance.
+- IETF. [RFC 8693: Token exchange](https://www.rfc-editor.org/rfc/rfc8693.html), 2020.
+- OpenID Foundation. [OpenID Connect Core 1.0, errata set 2](https://openid.net/specs/openid-connect-core-1_0.html), 2023.
+
+---
+
+[Next unit: Workload identity, credentials, and revocation →](/From-LLMs-to-Secure-Agents/building-blocks/02-workload-identity-credentials-and-revocation/)
+
+
+================================================================================
+CHAPTER: Workload identity, credentials, and revocation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-workload-identity-credentials-and-revocation/
+SUMMARY: Follow workload credentials through issuance, use, renewal, expiry and revocation without exposing them as model context.
+================================================================================
+
+# Workload identity, credentials, and revocation
+
+## Why this matters
+
+Lee's order lookup is allowed, but the worker still needs to authenticate when it contacts the order service. The worker may restart, move to another machine or resume after an hour. A credential that worked when the run began may no longer work when the next tool call executes.
+
+This chapter follows the credential lifecycle behind [tools](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/07-tools-and-function-calling/chapter-plan.md). It keeps the model's request separate from the runtime's proof of identity and authority.
+
+## Simple mental model
+
+Think of a visitor badge with an expiry time and a named destination. The badge desk issues it after checking who the visitor represents. The receiving desk checks it again. Renewing the badge, replacing its proof material and canceling access are related operations with different meanings.
+
+A **credential** is evidence used to establish identity or authority. A **secret** is information that must remain confidential, such as a private signing key or a bearer access token. A public workload identifier is not necessarily a secret. A **bearer token** grants access based on possession, subject to the receiving service's checks.
+
+## How it works
+
+### Identify the running software
+
+**Workload identity** identifies running software independently of the assistant's display name. A service can have multiple worker instances with the same logical workload identity. Whether each instance also needs a distinct identifier depends on the application.
+
+SPIFFE defines workload identifiers, called SPIFFE IDs, and **SVIDs**, verifiable identity documents carrying those identifiers. The documents can use X.509 certificates or JWT tokens. Its Workload API supplies identity material, with short-lived credentials and rotation. These are authentication mechanisms; resource authorization still belongs to the receiving system. [SPIFFE concepts](https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/).
+
+An **X.509 certificate** binds an identity to a public key under an issuing authority. A **JWT**, or JSON Web Token, is a structured token format. Neither term means “permission to every tool.” SPIFFE also assumes adequate workload isolation, which we develop in [execution environments](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/09-execution-environments/chapter-plan.md).
+
+### Let a broker prepare the credential
+
+A **credential broker** obtains or issues credentials for the runtime. In our design, the model asks to read an order, while runtime code asks the broker for the corresponding bounded grant. The broker uses authenticated session and workload information; a model-supplied customer name is not proof of that customer's identity.
+
+The result returned to the model contains order data and an operation status, not the access credential. A **secret store** holds confidential material for authorized runtime components. A stored secret reference is different from the secret value it resolves to.
+
+| Credential information | Purpose in our mock |
+| --- | --- |
+| Subject and actor | Lee, represented by the shop workload |
+| Audience | Only the order service |
+| Resource | Only Lee's selected order |
+| Scope | Read, not cancel |
+| Expiry | End of a short validity interval |
+
+These names describe our application contract. Real token formats and services do not universally support this exact set of fields.
+
+### Follow the lifecycle precisely
+
+**Issuance** creates a credential. **Renewal** obtains a credential for another validity interval. **Rotation** replaces credential or key material. **Expiration** ends validity according to time. **Revocation** withdraws validity before its natural end. Renewing a credential should involve whatever current policy the broker requires; it is not simply extending a timestamp because the model wants to continue.
+
+![Robots obtain a bounded badge, use it at the order service and renew it, while expiry and revocation end its validity.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/08-identity-authorization-and-secrets/02-workload-identity-credentials-and-revocation/01-concept.webp)
+
+*Figure 1. The badge is runtime material. Follow issuance and use, then the separate renewal and ending paths. Revocation changes future acceptance; it does not undo an earlier order read.*
+
+OAuth's revocation specification describes an endpoint for invalidating tokens. It also discusses propagation delays and differences between token designs. A resource service checking a self-contained token locally may need another mechanism to learn that it has been revoked. [RFC 7009](https://www.rfc-editor.org/rfc/rfc7009.html).
+
+## Worked example
+
+The [offline broker](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/08-identity-authorization-and-secrets/02-workload-identity-credentials-and-revocation/main.py) issues a mock handle valid for 60 seconds, with order audience, read scope and a single resource. The example supplies a fake clock, so it checks the exact expiration boundary without waiting. At time 159 the first handle works; at 160 it does not. A newly issued handle works, then stops working after revocation. Wrong audiences and actions are rejected.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+grant = grants.get(handle)
+allowed = bool(
+    grant and now < grant.expires_at
+    and grant.audience == audience
+    and grant.resource == resource
+    and action in grant.scopes
+)
+```
+
+</details>
+
+The handles are predictable labels in a local dictionary. This is a lifecycle simulation, not token cryptography, remote authentication, SPIFFE implementation or a deployable broker.
+
+## Limitations and trade-offs
+
+Short validity intervals require renewal and create an availability dependency on the issuing service. Longer intervals reduce renewal traffic but delay expiration. A paused run may therefore need to obtain fresh authority before a later call.
+
+A secret reference is not a guarantee that a secret stays confidential: the resolving component still handles the value. Record which component issues, resolves, uses and disposes of each credential. Removing local copies and revoking remote authority are separate operations, and neither reverses completed side effects.
+
+## Security preview
+
+Pass 2 examines token misuse, secret exposure and delegated authority in [tools, identity and credentials](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/03-tools-identity-and-credentials/chapter-plan.md). Here the goal is to understand which runtime components hold the evidence and how its validity changes.
+
+## Key takeaways
+
+- A workload name and a credential serve different purposes.
+- Brokering prepares access material for the runtime, rather than model context.
+- Renewal, rotation, expiration and revocation describe distinct lifecycle changes.
+- Revocation can take time to reach a recipient and does not undo prior effects.
+
+## References
+
+- SPIFFE. [SPIFFE concepts](https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/). Living documentation, verified for this run.
+- IETF. [RFC 7009: OAuth 2.0 Token Revocation](https://www.rfc-editor.org/rfc/rfc7009.html), 2013.
+
+---
+
+[Next unit: Execution boundaries, isolation, and sandboxes →](/From-LLMs-to-Secure-Agents/building-blocks/01-execution-boundaries-isolation-and-sandboxes/)
+
+
+================================================================================
+CHAPTER: Execution boundaries, isolation, and sandboxes
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-execution-boundaries-isolation-and-sandboxes/
+SUMMARY: Compare execution locations and isolation mechanisms, then describe their resources through an executor contract.
+================================================================================
+
+# Execution boundaries, isolation, and sandboxes
+
+## Why this matters
+
+An assistant needs to summarize a sales file. Its tool might call a trusted Python function inside the application, launch a separate program or send work to a hosted execution service. All three can return the same total, yet they expose different files, credentials and machine resources.
+
+The [identity chapter](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/08-identity-authorization-and-secrets/chapter-plan.md) explained who acts. This chapter asks where that software runs and which boundary separates it from other work.
+
+## Simple mental model
+
+Think of workshops sharing a building. Different workbenches, separate rooms and separate buildings create different boundaries. A remote address tells you where the workshop is, but not what tools it can use or which other customers share it.
+
+A **host** is the machine or operating-system environment supporting execution. A **process** is a running program with its own execution state and address space. The **kernel** is the operating-system component managing processes, memory and access to devices. A **system call** requests a service from the kernel.
+
+## How it works
+
+### Start with what the job needs
+
+Our sales job needs one input file, a parser, temporary memory and an output summary. It does not need a browser session or order credentials. Before choosing an environment, describe the required interfaces, resource limits, persistent state and output contract.
+
+An **execution boundary** separates the job from other software or resources. **Isolation** limits what it can observe or affect across that boundary. A **sandbox** is a configured environment that restricts execution. The word alone does not specify the mechanism or the exposed resources.
+
+### Compare mechanisms rather than labels
+
+| Mechanism | Where the job runs | Main distinction to understand |
+| --- | --- | --- |
+| In-process function | Application process | Shares the application's process and available resources |
+| Subprocess | Separate process | Has a separate address space; can still inherit files and credentials |
+| Container | Isolated operating-system views | Typically shares the host kernel |
+| Application kernel | Workload behind an implemented kernel interface | Interposes a separate software layer on system calls |
+| Virtual machine | Guest operating system | Runs its own guest kernel with virtualized machine resources |
+
+A **namespace** gives processes a particular view of operating-system resources. A **container** packages a workload with such views and associated runtime settings. Docker uses namespaces and **control groups**, or cgroups, which account for and limit resources. Shared directories and runtime configuration change the resulting exposure. [Docker Engine security](https://docs.docker.com/engine/security/).
+
+An **image** packages the files and configuration used to create an environment. It is not the same as a running container: writable changes and runtime settings belong to the instance.
+
+gVisor supplies an application kernel in userspace, outside the host kernel. It handles workload system calls through its own implementations, so compatibility depends on the supported interfaces. [gVisor architecture](https://gvisor.dev/docs/architecture_guide/intro/).
+
+A **virtual machine**, or VM, runs a guest operating system through virtualization. A **hypervisor** manages its virtualized machine boundary. A **microVM** uses a smaller virtual-machine design. Firecracker uses Linux KVM virtualization with a guest kernel and a minimal device model. [Firecracker design](https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/design.md).
+
+![Three robot workshops show a shared-kernel container, an application-kernel sandbox and a virtual machine with a guest kernel.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes/01-concept.webp)
+
+*Figure 1. Compare the execution layers beneath each workload. The different layers change the boundary, but each environment still exposes selected files and interfaces. These are alternatives, not three mandatory layers in every agent.*
+
+### Location and mechanism are separate
+
+A **remote worker** executes outside the calling application's local environment. It might itself use a container, VM or ordinary process. A **hosted sandbox** is an execution service managed by another operator. Inspect its resource and lifecycle contract rather than treating “hosted” as an isolation mechanism.
+
+The caller sends a job request and receives a result or job identifier. Network delivery, scheduling and remote failure handling are additional concerns. The caller's timeout does not necessarily stop the remote worker.
+
+## Minimal implementation
+
+The [offline executor interface](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes/main.py) accepts a named operation, input identifier and environment label. Its mock supports two labels with one result contract. The example verifies unsupported jobs and environment names and never runs model-generated code.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+class Executor(Protocol):
+    def submit(self, job: Job) -> Result: ...
+```
+
+</details>
+
+The interface lets orchestration reason about a job without knowing container or VM implementation details. The mock's labels demonstrate routing only. They do not create actual isolation or measure its strength.
+
+## Limitations and trade-offs
+
+Isolation choices affect startup time, compatibility, operating effort and resource use. A trusted stock lookup and a general code-execution job may require different designs. Measure the actual workload; do not infer a universal performance ranking from the comparison table.
+
+An environment can be separated from the host while retaining access to mounted data or external services. Its authority also depends on the credentials supplied to it. The next chapter maps these resources and follows the environment through cleanup.
+
+## Security preview
+
+Pass 2 revisits escape, network and resource-abuse risks in [execution and supply-chain security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md). [Human oversight](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/10-human-in-the-loop/chapter-plan.md) later explains decisions about execution. An approval decision and an isolation boundary have different jobs.
+
+## Key takeaways
+
+- State the job's required resources before choosing an environment.
+- Processes, containers, application kernels and VMs create different boundaries.
+- Remote execution describes location; its isolation mechanism needs a separate description.
+- An executor contract can stay stable while the environment implementation changes.
+
+## References
+
+- Docker. [Docker Engine security](https://docs.docker.com/engine/security/).
+- gVisor. [Introduction to gVisor security](https://gvisor.dev/docs/architecture_guide/intro/).
+- Firecracker maintainers. [Firecracker design](https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/design.md). Living implementation documents, verified for this run.
+
+---
+
+[Next unit: Browsers, files, networks, resources, and cleanup →](/From-LLMs-to-Secure-Agents/building-blocks/02-browsers-files-networks-resources-and-cleanup/)
+
+
+================================================================================
+CHAPTER: Browsers, files, networks, resources, and cleanup
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-browsers-files-networks-resources-and-cleanup/
+SUMMARY: Map the files, browser sessions, network destinations and budgets exposed to a job, then separate retained output from temporary execution state.
+================================================================================
+
+# Browsers, files, networks, resources, and cleanup
+
+## Why this matters
+
+The sales job runs in a separate environment, but its input file lives on the host and its report must survive after the environment closes. A browser-assisted job may also carry a logged-in session. “The job finished” tells us little about which files, sessions or remote changes remain.
+
+This chapter maps resources around the execution boundary. [Identity](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/08-identity-authorization-and-secrets/chapter-plan.md) explains the credentials supplied to that environment; [human oversight](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/10-human-in-the-loop/chapter-plan.md) explains decisions about proposed actions.
+
+## How it works
+
+### Map each resource and its lifetime
+
+A **filesystem mount** makes a file tree available at a location inside an environment. A **bind mount** exposes a host path; a separate **volume** is runtime-managed storage. Docker bind mounts can allow writes to host files, or be read-only. Their host is the Docker daemon's host, which may differ from the calling machine. [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/).
+
+A **workspace** is the job's working file area. Our design separates immutable input, temporary scratch space and retained report artifacts. An **artifact** is an output kept for later use. Its ownership and lifetime need a separate decision from the temporary workspace.
+
+| Resource | What our sales job receives | What happens at completion |
+| --- | --- | --- |
+| Input | One versioned sales file, readable | Source file remains |
+| Scratch space | Temporary parse intermediates | Removed with the environment |
+| Report | Output summary selected for retention | Published to artifact storage |
+| Browser state | Fresh session if needed | Closed; retained state requires an explicit decision |
+| Network | Named destinations needed by the job | Connections end; remote effects may remain |
+| Budgets | Memory, time and output-size limits | Usage recorded |
+
+![A robot worker has separate input, scratch, output, browser, network and budget resources, with cleanup and retained output shown separately.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup/01-concept.webp)
+
+*Figure 1. Read the labels around the worker as a resource inventory. The retained report leaves the temporary environment before teardown. Closing the environment does not erase the input source or undo a remote action.*
+
+### Browser state has its own boundary
+
+A **browser context** is a browser session container with its own cookies and storage. A **cookie** is site-associated data the browser may send with requests. Browser storage holds other site data. Playwright uses separate contexts to isolate such state between tests or users within one browser. [Browser contexts](https://playwright.dev/python/docs/browser-contexts).
+
+This state boundary helps distinguish Lee's session from Pat's. It is not a separate operating-system kernel or virtual machine. A logged-in context can still perform actions the website accepts. Closing it does not cancel an order already placed there.
+
+### Network and resource policies are distinct
+
+A **network policy** describes which connections the job may make. Network separation and permitted outbound connections are different settings: a separate network view does not by itself mean “no internet.” Docker's `none` driver is one concrete design that provides only loopback networking, local to the container. [None network driver](https://docs.docker.com/engine/network/drivers/none/).
+
+A **quota** bounds a resource's consumption. CPU capacity, memory, disk space, elapsed time and output size measure different things. Docker documents that containers have no resource constraints by default and exposes settings for CPU and memory. Application deadlines and remote-service charges need their own accounting. [Resource constraints](https://docs.docker.com/engine/containers/resource_constraints/).
+
+Our mock describes destinations by service name. A real implementation must define the actual network enforcement semantics; a string comparison in a Python function is not network isolation.
+
+### Publish outputs, then tear down
+
+**Teardown** releases an execution environment and its temporary resources. Our lifecycle allocates the environment, supplies inputs, runs the job, records the outcome, publishes selected output and closes the environment. Failure paths also need teardown. Publication can fail even if calculation succeeded, so record these outcomes separately.
+
+A **persistent** resource survives an environment's end. An **ephemeral** resource is temporary. Mounted host files and retained artifacts may be persistent even when the worker is ephemeral. A cleanup operation should target resources owned by this job, rather than treating all reachable storage as temporary.
+
+## Minimal implementation
+
+The [offline resource-policy example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup/main.py) simulates an input allowlist, a destination set and an output-size quota. It records scratch and browser state in dictionaries. A `finally` block closes the environment after success or failure. Published report data remains in a separate artifact dictionary.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+try:
+    artifacts["report"] = env.run(input_id, destination, output)
+finally:
+    env.close()
+```
+
+</details>
+
+No browser, container or generated code runs. The example verifies lifecycle decisions, not enforcement by an operating system. It demonstrates cleanup after an output quota failure and a missing input as well as after success.
+
+## Limitations and trade-offs
+
+Fresh environments reduce dependence on previous state but add startup and setup work. Reusing them can preserve useful caches while retaining files and sessions that affect later jobs. Describe the intended reuse boundary, such as one run or one user, and which state crosses it.
+
+A caller disconnecting, a worker process stopping and a remote service finishing are separate events. Record uncertain remote outcomes and reconcile them using the operation contracts developed in the tools chapters. Teardown does not supply exactly-once semantics.
+
+## Security preview
+
+Pass 2 maps exposed files, sessions, networks and budgets to [execution and supply-chain security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md). Here the essential step is naming the resources, their owners and their lifetimes.
+
+## Key takeaways
+
+- Describe the resources exposed by an environment, not only its isolation label.
+- Browser contexts separate session state but do not create a VM boundary.
+- Resource quotas, network policies and application deadlines have different scopes.
+- Retain selected outputs separately and tear down temporary state on every path.
+
+## References
+
+- Microsoft. [Playwright browser contexts](https://playwright.dev/python/docs/browser-contexts).
+- Docker. [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/), [resource constraints](https://docs.docker.com/engine/containers/resource_constraints/), and [none networking](https://docs.docker.com/engine/network/drivers/none/). Living documentation, verified for this run.
+
+---
+
+[Next unit: Human control, approval, and escalation →](/From-LLMs-to-Secure-Agents/building-blocks/01-human-control-approval-and-escalation/)
+
+
+================================================================================
+CHAPTER: Human control, approval, and escalation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-human-control-approval-and-escalation/
+SUMMARY: Place explicit human decisions in a run, bind approval to a concrete proposal and define escalation and resumption behavior.
+================================================================================
+
+# Human control, approval, and escalation
+
+## Why this matters
+
+The assistant has enough information to reserve two lamps, but the shop's workflow asks Lee to confirm before stock changes. Lee may respond immediately, reject the proposal or return tomorrow. The runtime must know what decision is pending and whether the original proposal still makes sense.
+
+A human control point changes the workflow, not just the conversation. It connects a named decision to the [execution environment](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/09-execution-environments/chapter-plan.md) and the action that may follow.
+
+## How it works
+
+### Name the kind of human input
+
+**Clarification** supplies missing task information, such as which order Lee means. **Review** examines an output or proposal and may suggest changes. **Approval** grants permission to proceed with a specified action. **Confirmation** asks a person to verify intent or details; in our reservation workflow, it supplies the required approval decision. **Rejection** declines that proposal.
+
+**Escalation** transfers a decision or task to someone with appropriate authority or expertise. An assistant unable to resolve conflicting delivery instructions may send a case to an operator rather than repeatedly asking the customer the same question. This is a workflow outcome, not evidence of model failure alone.
+
+**Human-in-the-loop** means a defined step depends on human input before it proceeds. **Human-on-the-loop** means a person observes ongoing work and can intervene, without deciding every step. These roles can coexist: the assistant reads stock automatically, pauses for a reservation decision and remains visible to an operator.
+
+### Match autonomy to consequences
+
+**Autonomy** is the scope of decisions the system can make without new human input. For our shop, consider both consequence and reversibility:
+
+| Action class | Example | Human role in this illustrative design |
+| --- | --- | --- |
+| Observation | Read available stock | Monitor automatically executed reads |
+| Revisable local output | Draft a pickup note | Review or edit the draft |
+| Customer-visible effect | Send the pickup note | Approve the exact recipient and message |
+| Difficult-to-reverse commitment | Submit a custom manufacturing order | Escalate to an authorized specialist |
+
+This is a design example, not a universal rule that all messages require approval. Existing user instructions and application policy may already authorize an operation. A useful control point resolves a real decision and supplies the information needed to make it.
+
+### Pause with a concrete proposal
+
+Our pending reservation contains a proposal ID, item and quantity, target shop, current resource version, consequence summary and decision deadline. A **resource version** identifies the state used when preparing the action. The reviewer needs to see what would happen, who it affects and what remains uncertain.
+
+Record the trigger, required reviewer role, accepted decisions and outcome for no response. Our queue expires unattended proposals. Expiration is not approval. Other workflows might escalate an overdue case, but that outcome also needs to be defined.
+
+![A robot prepares a reservation, waits while a person reviews it, then revalidates before execution or ends after rejection or expiry.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/10-human-in-the-loop/01-human-control-approval-and-escalation/01-concept.webp)
+
+*Figure 1. The action stays pending while the reviewer decides. The approved path checks that the proposal is still current before execution. The rejection and expiry paths end without the proposed effect.*
+
+### Resume the decision that was made
+
+**Resumption** continues a paused workflow using recorded state. It should refer to the same proposal and decision, rather than interpreting an unrelated chat message as approval. Changed arguments or changed relevant resource state may require a new proposal.
+
+The runtime distinguishes decision received, decision accepted, action dispatched and action completed. [Observability](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/11-observability-and-tracing/chapter-plan.md) gives these transitions a common record. Approval does not establish that the external operation succeeded.
+
+The OpenAI Agents SDK exposes pending tool approvals as interruptions; `RunState` supports approval, rejection and resumption. It also supports serializing paused state for later decisions. These mechanisms package the lifecycle, while application policy determines reviewer authority and proposal freshness. [SDK human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
+
+## Minimal implementation
+
+The [mock approval queue](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/10-human-in-the-loop/01-human-control-approval-and-escalation/main.py) checks reviewer role, expiry and resource version. It rechecks expiry and version before executing. Its assertions cover execution before approval, a wrong reviewer, rejection, expiry, stale state, state changing after approval and repeated execution requests.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+if item["status"] != "approved":
+    return "not_ready"
+if now >= proposal.expires_at or version != proposal.resource_version:
+    item["status"] = "needs_new_review"
+    return item["status"]
+```
+
+</details>
+
+This mock uses an in-memory queue, fake clock and a list of effects. Real systems need authenticated reviewers, durable records and service-side concurrency semantics. A version check followed by a remote write is not automatically atomic.
+
+## Framework implementations
+
+AutoGen offers immediate feedback through `UserProxyAgent` and feedback between stopped runs, where application code can persist team state. The in-run proxy blocks the team and is intended for short interactions. `HandoffTermination` can stop a team when control transfers to a user. These options differ from keeping a durable approval queue outside an active call. [AutoGen human-in-the-loop](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html).
+
+## Limitations and trade-offs
+
+More approvals increase reviewer workload and waiting time. Fewer approvals give the runtime greater responsibility for interpreting existing authority. Measure whether reviewers understand the proposal and whether the workflow routes cases to someone able to decide.
+
+If the proposal has become stale, ask for a decision on the revised action. Do not silently apply an old approval to a new quantity or recipient. Separate acceptance of a decision from the eventual success or uncertainty of its external effect.
+
+## Security preview
+
+Human participation is not a guarantee of correctness. Pass 2 examines approval fatigue and deceptive interfaces in [human interfaces and observability security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/05-human-interfaces-and-observability/chapter-plan.md).
+
+## Key takeaways
+
+- Specify whether a person clarifies, reviews, approves, monitors or takes over.
+- Bind approval to a concrete, current proposal and an authorized reviewer.
+- Define rejection, expiration, escalation and resumption explicitly.
+- Record the decision separately from execution and its outcome.
+
+## References
+
+- OpenAI. [Agents SDK human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
+- Microsoft. [AutoGen human-in-the-loop](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html). Living framework documentation, verified for this run.
+
+---
+
+[Next unit: Interrupts, steering, feedback, and operator experience →](/From-LLMs-to-Secure-Agents/building-blocks/02-interrupts-steering-feedback-and-operator-experience/)
+
+
+================================================================================
+CHAPTER: Interrupts, steering, feedback, and operator experience
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-interrupts-steering-feedback-and-operator-experience/
+SUMMARY: Distinguish interruption requests from acknowledged pauses, then apply steering, feedback and takeover to a recorded run state.
+================================================================================
+
+# Interrupts, steering, feedback, and operator experience
+
+## Why this matters
+
+While the assistant drafts a pickup message, Lee says “Change this to a delivery request.” The application needs to know whether a message was already sent, whether the worker has paused and which draft belongs to the revised goal. Adding Lee's text to context does not by itself stop an operation already in progress.
+
+This chapter extends the approval lifecycle to intervention during work. It connects [execution](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/09-execution-environments/chapter-plan.md) with the state shown to a human operator.
+
+## How it works
+
+### A request to stop is not an acknowledged stop
+
+An **interruption** breaks the normal workflow so another event or decision can be handled. A **pause request** asks the runtime to reach a point where it can stop continuing the run. A **checkpoint** records state needed to continue later. A **cancellation request** asks for work to end; the runtime must report whether that happened and which effects remain.
+
+In a cooperative design, the worker notices an interruption at a defined execution boundary. A long synchronous operation may not notice immediately. Python's asyncio cancellation delivers `CancelledError` at a later opportunity, and cleanup belongs in `try/finally`. This describes local task behavior, not the state of an order service the task already contacted. [Python 3.12 task cancellation](https://docs.python.org/3.12/library/asyncio-task.html#task-cancellation).
+
+Our interface therefore distinguishes “Pause requested” from “Paused.” It does not announce that an external action stopped until its outcome is known. An uncertain send operation requires reconciliation with the messaging service.
+
+### Steering changes the task being pursued
+
+**Steering** changes the goal, constraints or next steps of an active task. **Feedback** supplies an assessment or correction, such as “the draft has the wrong address.” **Takeover** transfers task ownership to a human who performs the next steps directly. These inputs differ from approving an existing proposal.
+
+Our design pauses at a boundary, records a new goal version and invalidates drafts and pending proposals that depend on the previous goal. Work already completed remains in the record. Resumption uses the revised goal to choose future steps. Takeover leaves the task human-owned, so the automated worker does not also continue it.
+
+![A person asks a robot to pause, the robot acknowledges at a checkpoint, and the person then revises the goal or takes ownership.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience/01-concept.webp)
+
+*Figure 1. Follow the acknowledgement before steering. The revised goal creates a new draft, while takeover transfers ownership. Earlier completed actions remain part of the history.*
+
+### Understand what a framework resumes
+
+LangGraph interruptions use a checkpointer and thread ID to preserve the run's state. Resumption supplies a value through `Command`. The interrupted node restarts from its beginning, so code before the interruption runs again. Place externally visible effects with those restart semantics in mind; saving state is not the same as reversing an effect. [LangGraph interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts).
+
+Our mock uses explicit methods rather than framework nodes. It demonstrates a chosen application contract, not LangGraph's exact execution mechanism. A different runtime may resume at a different boundary or require restarting an operation.
+
+### Make operator state understandable
+
+An **operator** is a person responsible for observing or managing the workflow. The interface should show the active task, latest known step, pending human decisions, completed effects, uncertain outcomes and available interventions. “Working” is too vague when the system is actually waiting for a reviewer.
+
+Amershi and colleagues' human-AI interaction guidelines recommend communicating system capabilities and limits, supporting dismissal and correction, and allowing feedback and control. We apply those ideas to run state and interventions; their research does not establish that an approval button guarantees correct decisions. [Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf).
+
+For Lee's delivery change, show that the old note is unsent, the run is paused and the new delivery draft is being prepared. If the old note was sent, say so and explain what next step is available. The interface should describe observed effects, not the model's speculative account of them.
+
+## Minimal implementation
+
+The [offline interruption example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/10-human-in-the-loop/02-interrupts-steering-feedback-and-operator-experience/main.py) records a pause request, acknowledges it at a boundary, revises the goal and clears the dependent draft. It tests that steering before acknowledgement is refused. A later takeover records human ownership.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+run.request_pause()
+# The worker reaches a defined boundary:
+run.boundary()
+run.steer("Prepare a delivery note")
+run.resume()
+```
+
+</details>
+
+The script has no simultaneous workers, remote calls or saved database. It illustrates the transitions that a real implementation must coordinate. It also does not train a model. Recorded feedback can inform a future prompt or offline evaluation; updating model parameters is a separate process.
+
+## Limitations and trade-offs
+
+Frequent interruptions can prevent useful progress. Slow acknowledgement can make an interface feel unresponsive even when it has received the user's message. Define a **service-level objective**, a measurable target for service behavior, such as acknowledging 95% of pause requests within two seconds under a specified workload. This number is illustrative, not a recommended universal threshold.
+
+Measure acknowledgement delay, time waiting for human input, reviewer queue size and the fraction of tasks requiring takeover. [Observability](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/11-observability-and-tracing/chapter-plan.md) will show how those records relate to complete runs. Averages alone can hide a small number of very slow interventions.
+
+## Security preview
+
+Pass 2 examines misleading state displays and approval fatigue in [human interfaces and observability security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/05-human-interfaces-and-observability/chapter-plan.md). The architecture must first distinguish requested intervention, acknowledged state and completed effects.
+
+## Key takeaways
+
+- Record the request to intervene separately from acknowledgement.
+- Steering revises the goal; approval accepts a proposal; takeover changes task ownership.
+- Know the framework's restart boundary before resuming work with side effects.
+- Show observed state and measure intervention delays and workload.
+
+## References
+
+- LangChain. [LangGraph interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts). Living documentation, verified for this run.
+- Python Software Foundation. [Python 3.12 coroutines and tasks](https://docs.python.org/3.12/library/asyncio-task.html).
+- Amershi et al. [Guidelines for Human-AI Interaction](https://www.microsoft.com/en-us/research/wp-content/uploads/2019/01/Guidelines-for-Human-AI-Interaction-camera-ready.pdf). CHI 2019. DOI: 10.1145/3290605.3300233.
+
+---
+
+[Next unit: Events, traces, metrics, and correlation →](/From-LLMs-to-Secure-Agents/building-blocks/01-events-traces-metrics-and-correlation/)
+
+
+================================================================================
+CHAPTER: Events, traces, metrics, and correlation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-events-traces-metrics-and-correlation/
+SUMMARY: Use structured events, span relationships and aggregate measurements to reconstruct and measure an agent run.
+================================================================================
+
+# Events, traces, metrics, and correlation
+
+## Why this matters
+
+Lee says the assistant took too long to answer. A final response cannot tell us whether retrieval was slow, the model waited on a tool, an attempt failed or the workflow paused for human input. We need records from the components that performed the work.
+
+**Observability** is the ability to understand a system's behavior from its outputs and records. **Telemetry** is the measured or recorded data it emits. Begin with questions: Where did time go? Which action completed? What was retried? Was the system waiting for [human input](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/10-human-in-the-loop/chapter-plan.md)?
+
+## How it works
+
+### Give records different jobs
+
+An **event** describes something that happened, such as `approval_received`. A **log** is a timestamped record, often carrying an event and its fields. A **trace** follows an end-to-end operation across related steps. A **span** represents one timed operation within a trace. An **attribute** is a named value attached to a record, such as a tool name or attempt number.
+
+OpenTelemetry spans carry identifiers, parent relationships, time bounds and status; they can also contain events and links to other spans. Parent-child relationships describe operations within larger operations. Links can connect asynchronous work without forcing everything into one nested lifetime. [OpenTelemetry traces](https://opentelemetry.io/docs/concepts/signals/traces/).
+
+For our shop, a run span contains retrieval, a model request and tool attempts. A handoff records transfer to another worker, whose summary operation is related to that transfer. An approval request is a point event; time spent waiting for the decision can be measured separately. These are observable runtime operations, not a transcript of hidden model reasoning.
+
+![A run folder branches to retrieval, model, tool attempts and handoff records, all carrying the same trace identity.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation/01-concept.webp)
+
+*Figure 1. Start at the run, then inspect its child operations. The two tool attempts belong to one logical lookup. A shared trace ID joins the records; separate span IDs identify individual operations.*
+
+### Correlate the right identities
+
+A **correlation identifier** connects related records. Different identifiers answer different questions:
+
+| Identifier | Question it answers in our design |
+| --- | --- |
+| Session ID | Which continuing conversation contains this run? |
+| Run ID | Which attempt to fulfill a task is this? |
+| Trace ID | Which instrumented operation contains this span? |
+| Span ID and parent ID | Which timed step is this, and what contains it? |
+| Model call ID | Which model-requested call receives this output? |
+| Operation ID and attempt number | Which retries belong to the same logical action? |
+
+**Context propagation** transports trace context between components, allowing a receiving service to relate its work to the caller's span. It requires cooperation at the boundary. A trace header is correlation data, not proof that the caller is authorized. [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/).
+
+Use causal relationships and sequence numbers alongside timestamps. Machines can have different clock settings, so sorting logs by time alone may misrepresent distributed ordering. The mock uses one synthetic clock to make its timing checks deterministic.
+
+### Summarize runs with metrics
+
+A **metric** measures behavior numerically across observations. A **counter** accumulates occurrences, such as completed tool attempts. A **gauge** reports a current value, such as waiting tasks. A **histogram** groups measured values, such as durations, into a distribution. OpenTelemetry defines these instrument types and aggregation mechanisms. [Metrics](https://opentelemetry.io/docs/concepts/signals/metrics/).
+
+Our mock has one logical lookup, two attempts and one attempt error. The complete run succeeds. “Tool error rate” therefore needs a defined denominator: attempts and logical operations are different populations. User-visible task success is another measurement, requiring [evaluation](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md) against the goal.
+
+**Latency** measures elapsed time. Distinguish end-to-end response time from retrieval duration, tool duration and human wait time. Parallel span durations can overlap, so adding every child duration is not a general way to calculate total latency.
+
+**Cardinality** is the number of distinct attribute combinations. Aggregate metrics by bounded categories such as tool name and outcome. A separate metric series for every run ID or full prompt can create an unbounded set. Preserve individual identifiers in records intended for per-run inspection.
+
+### Keep the application contract stable
+
+OpenTelemetry's GenAI agent conventions describe operations such as agent invocation, workflows and tool execution. They are currently marked **Development**, so implementations should pin a version and map to a stable application schema. [GenAI agent spans](https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md).
+
+Record measured model usage when available, with units and provenance. Missing token usage is not zero usage. A cost estimate also depends on the applicable pricing and caching contract, not just a span duration. This guide does not embed a pricing assumption.
+
+## Minimal implementation
+
+The [OpenTelemetry-shaped offline example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation/main.py) creates a trace with a retrieval step, model step, two tool attempts and a handoff. Assertions check identifiers, parent links, time ranges and metric denominators. It prints JSON to the terminal and exports nothing.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+tools = [s for s in spans if s["name"] == "lookup_stock"]
+counts = Counter(s["status"] for s in tools)
+operations = {s["attributes"]["project.operation_id"] for s in tools}
+```
+
+</details>
+
+The simplified shape and `project.*` attributes are our teaching schema, not the exact OTLP wire format. **OTLP** is OpenTelemetry's protocol for transporting telemetry.
+
+## Framework implementations
+
+The OpenAI Agents SDK supplies tracing for model generations, tool calls and handoffs, with configuration and custom processors. Its identifiers and span data differ from OpenTelemetry's. Map the shared concepts and preserve required relationships when integrating the systems rather than renaming an SDK JSON object “OTLP.” [SDK tracing](https://openai.github.io/openai-agents-python/tracing/).
+
+## Limitations and trade-offs
+
+**Sampling** retains only selected telemetry, reducing volume while limiting what can be reconstructed. Missing spans can also reflect instrumentation gaps or export failures. A quiet dashboard does not establish that no operation happened.
+
+Record known outcomes at the component that observes them. A model's final statement that a reservation succeeded is different from the order service's receipt. Traces help locate a discrepancy, while evaluation determines whether the resulting answer fulfilled the task.
+
+## Security preview
+
+Telemetry can contain sensitive data. Pass 2 examines that exposure and detection needs in [human interfaces and observability security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/05-human-interfaces-and-observability/chapter-plan.md). Useful reconstruction does not require recording every raw prompt.
+
+## Key takeaways
+
+- Events describe changes, spans time operations, traces connect them and metrics summarize measurements.
+- Preserve run, span, call and operation identifiers for their different purposes.
+- Define denominators and units before interpreting error rates or latency.
+- Observable execution success and task quality require different evidence.
+
+## References
+
+- OpenTelemetry. [Traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), and [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/).
+- OpenTelemetry. [GenAI agent and framework spans](https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md). Development-stage conventions, verified for this run.
+- OpenAI. [Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/). Living documentation, verified for this run.
+
+The next chapter is an optional lineage and telemetry deep dive. Readers staying on the main path can continue to [evaluation and benchmarks](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md).
+
+---
+
+[Next unit: Lineage, replay, redaction, retention, and integrations →](/From-LLMs-to-Secure-Agents/building-blocks/02-lineage-replay-redaction-retention-and-integrations/)
+
+
+================================================================================
+CHAPTER: Lineage, replay, redaction, retention, and integrations
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-lineage-replay-redaction-retention-and-integrations/
+SUMMARY: Connect versioned evidence to observed runs, distinguish replay from live execution, and design selective telemetry with explicit retention.
+================================================================================
+
+# Lineage, replay, redaction, retention, and integrations
+
+## Why this matters
+
+This optional deep dive builds on [events, traces, metrics and correlation](/From-LLMs-to-Secure-Agents/building-blocks/01-events-traces-metrics-and-correlation/). It answers a practical question: after finding an unusual run, what evidence can you still inspect or replay? Readers staying on the main path can continue to [evaluation and benchmarks](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md).
+
+### Learning objectives
+
+- Link observed actions to versioned inputs and artifacts.
+- Separate inspection, mocked replay and new live execution.
+- Explain how content selection, storage and retention shape reconstruction.
+
+## How it works
+
+**Lineage** records where an artifact came from and which observed inputs or operations produced it. A shop answer might reference a catalog version, a retrieval result, the stock tool version and an output artifact. Attach those references to the run and span identifiers from the previous chapter.
+
+In this guide's design, lineage includes the application version, configured model identifier, prompt-template version and source snapshot reference. These fields help compare runs. A model name alone does not freeze a hosted service's behavior. A reference does not guarantee that the referenced content remains available, and a content digest identifies bytes without explaining why the model chose an answer.
+
+**Replay** needs a precise mode:
+
+| Mode | What happens | Evidence needed |
+| --- | --- | --- |
+| Trace playback | Display recorded events and timings | Retained telemetry |
+| Mocked replay | Recompute a chosen application step with recorded results replacing services | Step code, configuration and suitable fixtures |
+| Live rerun | Execute a fresh run with current services | New authorization and current execution conditions |
+
+These are design categories used in this chapter. A replay label should say which mode ran. Showing a timeline does not reproduce execution. Even identical visible inputs may yield different model outputs or encounter changed inventory on a live rerun.
+
+A **checkpoint** saves execution state so a runtime can continue. LangGraph uses checkpointers for thread state and stores for data across threads. A telemetry trace has a different purpose and may lack the state needed to resume. Consult the runtime's persistence contract before using saved state to continue work. [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
+
+## Data flow and state changes
+
+![Cartoon robot selecting telemetry fields before collection, with retained records feeding a dashboard and optional replay fixtures kept separately](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations/01-concept.webp)
+
+*Figure 1. Select content before delivery, then manage telemetry and replay fixtures as distinct stores.*
+
+Instrumentation emits records. An application selects allowed fields and removes unsuitable content. A **collector** receives telemetry, processes it and passes it to an **exporter**, which sends it to a destination. OpenTelemetry configures receivers, processors and exporters in enabled pipelines; processor order determines transformation order. [Collector configuration](https://opentelemetry.io/docs/collector/configuration/).
+
+The diagram's dashboard reads retained telemetry. Its offline replay reader also needs suitable fixtures, kept separately when the application chooses to retain them. Both paths preserve references, but neither assumes that every prompt exists in the telemetry store.
+
+**Redaction** removes or masks content. Prefer collecting only fields needed for a stated debugging question. Review nested attributes, errors and automatically captured library fields as well as top-level prompts. Hashing predictable user identifiers can still permit matching or guessing. [Handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/).
+
+**Retention** defines how long a store keeps data. Give telemetry and fixtures explicit lifetimes and deletion behavior. Expiring a reference does not delete its target; deleting an active record does not automatically remove exported copies or backups. In this example, a 60-second lifetime makes expiry easy to test. It is an illustrative value, not a recommended production period.
+
+## Worked example
+
+The shop run records `run-1`, a successful outcome, version labels and `fixture-1`. Its ordinary telemetry excludes the prompt, headers and nested error text. A separate synthetic fixture contains a stock count of four.
+
+The offline reader can reproduce the small summary step using that fixture. If the fixture is missing, it reports that replay is unavailable. It never silently substitutes a live stock lookup. Once the telemetry record expires, the local retained list no longer includes it.
+
+## Minimal implementation
+
+Run the [offline example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations/main.py). It uses the standard library, synthetic records and a local list instead of an exporter backend.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+def export_record(raw, destination):
+    selected = select_record(raw)
+    destination.append(selected)
+```
+
+</details>
+
+The full example checks unknown-field removal, rejection before delivery, available and missing replay fixtures, and the exact expiry boundary. The allowlist accepts only this demo's application-generated references. General systems need validation for every allowed field. The list filter models active-record expiry; it does not implement deletion across storage systems.
+
+## Framework implementations
+
+| Integration | Role | Check before connecting |
+| --- | --- | --- |
+| OpenTelemetry pipeline | Transport and transform cross-service signals | Enabled components, processor order and destination schema |
+| OpenAI Agents SDK tracing | Capture framework operations and notify processors | Content settings, processor destinations and field mapping |
+
+The SDK's `trace_include_sensitive_data` defaults to true in the referenced documentation. Set it explicitly for the intended content policy and inspect custom fields. `add_trace_processor()` adds another observer while retaining existing processors; `set_trace_processors()` replaces them. A redaction observer that fails does not stop independent exporters. When delivery depends on redaction, keep selection and delivery in one application-owned exporter, configured before traces are created. [SDK tracing](https://openai.github.io/openai-agents-python/tracing/).
+
+## Limitations and trade-offs
+
+Sampling, which retains only selected telemetry, reduces the available reconstruction evidence. So do missing instrumentation and expired fixtures. Mark such gaps instead of treating an incomplete trace as a complete account. Minimal content improves control over collection but can limit later debugging. Decide which question each retained field answers.
+
+## Security preview
+
+A live rerun can create fresh side effects. Apply current [human oversight](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/10-human-in-the-loop/chapter-plan.md), authorization and tool confirmation rules. Later [observability security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/05-human-interfaces-and-observability/chapter-plan.md) examines exposure and detection in more detail.
+
+## Key takeaways
+
+- Lineage connects observed operations, versions and artifacts.
+- Trace playback, mocked replay and live reruns need different evidence.
+- Redaction and delivery must follow the same intended content policy.
+- Retention determines which reconstruction questions remain answerable.
+
+## References
+
+- OpenTelemetry. [Handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/) and [Collector configuration](https://opentelemetry.io/docs/collector/configuration/).
+- OpenAI. [Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/).
+- LangChain. [LangGraph persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
+
+Return to [main-path tracing](/From-LLMs-to-Secure-Agents/building-blocks/01-events-traces-metrics-and-correlation/), or continue to [evaluation](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md).
+
+---
+
+[Next unit: Evaluation levels, test design, and metrics →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md)

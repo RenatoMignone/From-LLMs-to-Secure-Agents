@@ -240,6 +240,76 @@
             "link": "/building-blocks/04-grounding-long-context-and-retrieval-evaluation/"
           }
         ]
+      },
+      {
+        "label": "Tools and function calling",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "25 Tool capabilities, schemas, selection, and dispatch",
+            "link": "/building-blocks/01-tool-capabilities-schemas-selection-and-dispatch/"
+          },
+          {
+            "label": "26 Results, failures, side effects, and confirmation",
+            "link": "/building-blocks/02-results-failures-side-effects-and-confirmation/"
+          }
+        ]
+      },
+      {
+        "label": "Identity authorization and secrets",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "27 Identity, authentication, authorization, and delegation",
+            "link": "/building-blocks/01-identity-authentication-authorization-and-delegation/"
+          },
+          {
+            "label": "28 Workload identity, credentials, and revocation",
+            "link": "/building-blocks/02-workload-identity-credentials-and-revocation/"
+          }
+        ]
+      },
+      {
+        "label": "Execution environments",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "29 Execution boundaries, isolation, and sandboxes",
+            "link": "/building-blocks/01-execution-boundaries-isolation-and-sandboxes/"
+          },
+          {
+            "label": "30 Browsers, files, networks, resources, and cleanup",
+            "link": "/building-blocks/02-browsers-files-networks-resources-and-cleanup/"
+          }
+        ]
+      },
+      {
+        "label": "Human in the loop",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "31 Human control, approval, and escalation",
+            "link": "/building-blocks/01-human-control-approval-and-escalation/"
+          },
+          {
+            "label": "32 Interrupts, steering, feedback, and operator experience",
+            "link": "/building-blocks/02-interrupts-steering-feedback-and-operator-experience/"
+          }
+        ]
+      },
+      {
+        "label": "Observability and tracing",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "33 Events, traces, metrics, and correlation",
+            "link": "/building-blocks/01-events-traces-metrics-and-correlation/"
+          },
+          {
+            "label": "34 Lineage, replay, redaction, retention, and integrations",
+            "link": "/building-blocks/02-lineage-replay-redaction-retention-and-integrations/"
+          }
+        ]
       }
     ]
   }
