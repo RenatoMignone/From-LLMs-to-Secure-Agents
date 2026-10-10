@@ -29,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-09-12'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,11 +37,9 @@ last_reviewed: '2026-09-12'
 
 ## Why this matters
 
-In Retrieval-Augmented Generation (RAG), the quality of an agent response depends entirely on whether the retrieval subsystem provides relevant, precise evidence. If the retriever returns irrelevant documents, the model hallucinates or fails to execute its assigned task. In production systems, relying on a single retrieval paradigm frequently leads to silent failures.
+Lee supplies an exact product code in one request and a description in another. Matching literal terms and matching related meanings can find different evidence.
 
-Pure dense vector retrieval excels at conceptual similarity. It easily links paraphrases such as "fault-tolerant routing" to "resilient microservice proxies" (Karpukhin et al., 2020). However, dense embeddings struggle with exact identifiers, specific error codes (such as `ERR-4039`), product serial numbers, and specialized function signatures. Conversely, classic sparse lexical retrieval (such as Okapi BM25) finds exact keywords instantly through inverted indexes, but fails when users express concepts using synonyms or natural conversational language (Robertson & Zaragoza, 2009).
-
-Hybrid retrieval bridges this divide by executing both sparse lexical search and dense semantic search across the same query, then merging the resulting candidate lists through rank fusion algorithms (Cormack et al., 2009; Couzon, 2026). While [Memory](../05-memory/chapter-plan.md) maintains user context across sessions and [Tools](../07-tools-and-function-calling/chapter-plan.md) allow agents to take external actions, hybrid retrieval ensures that knowledge grounding is resilient to both keyword mismatches and semantic ambiguity.
+**Sparse retrieval** uses term-based signals, **dense retrieval** compares learned representations and **hybrid retrieval** combines candidate results. Evaluate each against the same queries rather than assuming one family always wins.
 
 ## Simple mental model
 
@@ -51,7 +49,7 @@ Think of an investigator solving a case in a large city records archive:
 2. **The conceptual detective (dense retrieval):** The detective grasps the emotional and thematic essence of the request. The detective navigates directly to the missing persons and mental health support archives. But if given an alphanumeric serial number like `XJ-904-B`, the detective cannot locate the file because all serial numbers look conceptually similar.
 3. **The collaborative team (hybrid fusion):** Both the clerk and the detective conduct their searches simultaneously. A coordinator takes the top five folders from each, compares where documents placed across both searches, and hands the investigator a single combined stack.
 
-Combining exact keyword indexing with semantic meaning ensures that whether a user provides a strict error code or a vague conceptual description, the right evidence reaches the agent.
+Combining term-based and learned signals can help different query types. Measure whether the fused results improve the evidence selected for the task.
 
 ## Position in the agent workflow
 
@@ -124,7 +122,7 @@ Reciprocal Rank Fusion bypasses score scale discrepancies by operating purely on
 
 $$\text{Score}_{\text{RRF}}(d) = \sum_{m \in M} \frac{1}{k + \text{rank}_m(d)}$$
 
-Where $\text{rank}_m(d)$ is the position of document $d$ in the result list of retriever $m$ (starting at 1), and $k$ is a smoothing constant (standardized at 60). The constant $k$ ensures that high-ranking candidates are rewarded without allowing an extreme top rank from one list to completely overpower consistent top-10 appearances across multiple lists.
+Here rank starts at one, and k is a smoothing parameter. The commonly used value 60 is an example setting, not a protocol standard or a universal optimum.
 
 ![An architecture diagram traces a user query branching into parallel sparse BM25 and dense vector searches, converging into an RRF fusion processor calculating reciprocal ranks, and outputting deduplicated top-K results to the agent context window.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/02-sparse-dense-and-hybrid-retrieval/02-reciprocal-rank-fusion-workflow.png)
 
@@ -259,6 +257,12 @@ In Pass 2, hybrid retrieval systems are analyzed against **Adversarial Keyword S
 - Hybrid retrieval runs both engines in parallel and merges candidates using Reciprocal Rank Fusion (RRF) or distribution-based score normalization.
 - Reciprocal Rank Fusion scores candidates based on their reciprocal rank positions ($1 / (k + \text{rank})$), avoiding uncalibrated score scale mismatches.
 - Hybrid search requires careful prefetch depth tuning to ensure relevant evidence is not excluded before the fusion stage.
+
+<details><summary>Check your understanding</summary>
+
+Does a high similarity score prove a passage answers the question? No. Similarity is a ranking signal, and relevance needs evaluation.
+
+</details>
 
 ## References
 
