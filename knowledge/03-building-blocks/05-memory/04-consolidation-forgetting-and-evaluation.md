@@ -2,14 +2,19 @@
 ---
 title: Consolidation, forgetting, and evaluation
 unit_id: P1-03-05-04
-summary: Explores how autonomous agents synthesize episodic memories into higher-level semantic insights, prune obsolete or decaying records, and evaluate memory performance.
+summary: Explores how autonomous agents synthesize episodic memories into higher-level
+  semantic insights, prune obsolete or decaying records, and evaluate memory performance.
 prerequisites:
 - Read [Persistent memory types and lifecycle](03-persistent-memory-types-and-lifecycle.md).
 learning_objectives:
-- Design background reflection and consolidation pipelines to synthesize raw episodic events into structured semantic knowledge trees.
-- Implement principled forgetting and eviction mechanisms using time-decay functions, TTL expiration, and contradiction resolution.
-- Enforce right-to-be-forgotten privacy compliance across vector indexes and persistent relational databases.
-- Measure long-term memory effectiveness using quantitative benchmarks including Recall@K, contradiction rate, reflection fidelity, and query latency.
+- Design background reflection and consolidation pipelines to synthesize raw episodic
+  events into structured semantic knowledge trees.
+- Implement principled forgetting and eviction mechanisms using time-decay functions,
+  TTL expiration, and contradiction resolution.
+- Enforce right-to-be-forgotten privacy compliance across vector indexes and persistent
+  relational databases.
+- Measure long-term memory effectiveness using quantitative benchmarks including Recall@K,
+  contradiction rate, reflection fidelity, and query latency.
 source_records:
 - p1-03-05-04-park-generative-agents-2023
 - p1-03-05-04-packer-memgpt-2023
@@ -23,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-09-04'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -31,11 +36,9 @@ last_reviewed: '2026-09-04'
 
 ## Why this matters
 
-As autonomous agents operate over extended time horizons, their persistent storage accumulates thousands of granular, timestamped interaction logs. If an agent simply appends every new event to a raw database without maintenance, memory quality rapidly degrades. The system suffers from three core compounding problems: knowledge fragmentation, catastrophic contradiction, and unbounded storage bloat.
+Lee changes a delivery preference. The original record is updated, but an older summary may still contain the previous value. The application must find and reconcile those derived records.
 
-Without **memory consolidation**, an agent treats twenty separate conversations about Python type errors as isolated incidents rather than generalizing them into a coherent understanding of user preferences (Park et al., 2023). Without **systematic forgetting**, obsolete decisions remain in storage, causing the agent to act on conflicting instructions. Finally, without **rigorous evaluation**, developers cannot detect whether memory updates actually improve task performance or quietly introduce subtle hallucinations (Packer et al., 2023; Zhong et al., 2024).
-
-Mastering consolidation, pruning, and evaluation allows engineering teams to build self-maintaining memory subsystems that stay accurate, compact, and aligned with user goals over months of continuous production operation.
+**Consolidation** combines selected information, while **forgetting** removes or stops recalling it. Summaries and repeated retrieval can reinforce mistakes, so evaluate these operations against known changes and task outcomes.
 
 ## Simple mental model
 
@@ -185,7 +188,7 @@ Run [consolidation_evaluation_runtime.py](../../../examples/03-building-blocks/0
 
 - **Reflection validation boundary:** Synthetic memories generated during reflection must not inherit or amplify unverified claims from untrusted external tool outputs.
 - **Contradiction validation:** In-place preference updates must be verified against authentic user session authority to prevent unauthorized actors from overwriting profile settings.
-- **Complete deletion guarantee:** Right-to-be-forgotten deletion must cascade across all secondary indices, vector caches, and replica stores, ensuring zero residual data retention.
+- **Deletion scope:** Track primary records, derived summaries, indexes, caches and replicas. Verify removal in each applicable store and document retention exceptions. Deleting one memory record does not prove that every copy has disappeared or establish legal compliance.
 
 ## Reliability failures
 
@@ -214,6 +217,12 @@ In Pass 2, memory consolidation and evaluation systems are analyzed under **Refl
 - Principled forgetting models combine Ebbinghaus exponential decay, TTL expiration, contradiction invalidation, and compliance deletion.
 - Provenance links must connect abstract reflections back to original episodic sources for auditability.
 - Quantitative benchmarks evaluate memory quality across Recall@K, temporal consistency, reflection fidelity, and query latency.
+
+<details><summary>Check your understanding</summary>
+
+Is deleting the original memory enough to remove it from a summary? No. Derived records need their own reconciliation or deletion handling.
+
+</details>
 
 ## References
 
