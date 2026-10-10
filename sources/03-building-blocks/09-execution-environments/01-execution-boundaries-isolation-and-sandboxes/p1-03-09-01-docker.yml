@@ -1,0 +1,23 @@
+id: p1-03-09-01-docker
+title: Docker Engine security
+authors_or_organization: Docker
+date: null
+source_type: official-documentation
+canonical_url: https://docs.docker.com/engine/security/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Docker uses kernel namespaces for isolated views and control groups for resource
+  accounting; shared mounts and configuration change exposure.
+limitations:
+- Containers share a host kernel; documentation is not a guarantee for arbitrary configuration.
+related_topics: []
+unit_ids:
+- P1-03-09-01
+used_in:
+- knowledge/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes.md
+local_copy: null
+sha256: null

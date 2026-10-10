@@ -1,0 +1,23 @@
+id: p1-03-09-01-firecracker
+title: Firecracker design
+authors_or_organization: Firecracker maintainers
+date: null
+source_type: official-documentation
+canonical_url: https://raw.githubusercontent.com/firecracker-microvm/firecracker/main/docs/design.md
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Firecracker runs microVMs using KVM, with guest kernels and a minimal virtual device
+  model.
+limitations:
+- Implementation-specific design, not a claim that a VM prevents every failure.
+related_topics: []
+unit_ids:
+- P1-03-09-01
+used_in:
+- knowledge/03-building-blocks/09-execution-environments/01-execution-boundaries-isolation-and-sandboxes.md
+local_copy: null
+sha256: null
