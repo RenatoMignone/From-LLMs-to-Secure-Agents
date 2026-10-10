@@ -23,7 +23,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -31,14 +31,9 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
-> [!NOTE]
-> **Curriculum Starting Point**: This chapter is the default entry point of the guide. It assumes working familiarity with software engineering and large language models. For readers who would like an optional background refresher on distributed systems foundations (data versus control flow, state transitions, trust boundaries, and least privilege), see the optional [Prerequisites](../00-prerequisites/chapter-plan.md) section.
+Lee asks a shop assistant to find a lamp and reserve two items. Writing a recommendation is different from checking stock and changing a reservation. To perform those actions, a model needs surrounding software that receives requests, calls tools and tracks results.
 
-In everyday conversations about artificial intelligence, the word "agent" is frequently applied to any chatbot, prompt template, or software script connected to a large language model. This loose labeling causes widespread confusion. A software team might build a simple two-step prompt pipeline and call it an agent, while another team builds an autonomous coding system that modifies hundreds of files, runs integration tests, and deploys cloud services. Treating these distinct architectures as identical makes it impossible to reason about system reliability, operational cost, or security risk.
-
-A standalone language model is a stateless text processor. It takes an input sequence of tokens and predicts the most plausible continuation. On its own, the model cannot see the outside world, cannot browse the web, cannot execute commands on a server, and cannot verify whether its answers are accurate in a changing environment. To turn a predictive model into an effective problem solver, engineers build a surrounding software harness that equips the model with tools, supplies live feedback from external systems, and runs a control loop that drives toward a user's objective.
-
-Tracing, designing, and securing modern AI systems requires a precise definition of what an agent is and where its boundaries lie. This chapter introduces the structural components of an agent, distinguishing autonomous model-directed systems from static prompt calls and hardcoded workflows before exploring complex patterns in [agent architectures](../02-agent-architectures/chapter-plan.md).
+This guide calls that goal-directed software system an **agent** when the model helps choose its next steps. You need familiarity with LLMs and prompts; programming experience is helpful but optional. Start with the [prerequisites](../00-prerequisites/chapter-plan.md) if requests, state or permissions are unfamiliar. Then follow [agent architectures](../02-agent-architectures/chapter-plan.md).
 
 ## Simple mental model
 
@@ -104,7 +99,7 @@ Modern applications use agentic concepts across several standard structural patt
 
 - **Single-Turn Tool-Augmented Model**: The model receives a user question, emits a single tool call (such as a database query), receives the tool response, and outputs the final answer in a single round trip.
 - **Sequential Prompt Chain**: A deterministic workflow where the output of one model call becomes the input to the next model call, following a fixed linear sequence.
-- **Routing Workflow**: A deterministic classifier evaluates user input and routes the request to specialized prompts or tools based on fixed rules.
+- **Routing Workflow**: A classifier or a rule evaluates user input and routes the request to specialized prompts or tools based on fixed rules.
 - **Autonomous Goal-Directed Agent**: A fully dynamic loop where the model selects arbitrary sequences of tools based on changing environment state until the goal is satisfied.
 - **Multi-Agent Network**: Multiple specialized agents collaborate, delegate sub-goals to each other, and reconcile results through structured communication protocols.
 
@@ -213,7 +208,7 @@ An agent spans three distinct trust boundaries:
 
 ## Reliability failures
 
-Because agents dynamically direct their own control flow, they exhibit failure modes not found in deterministic software:
+Model-directed control flow changes where errors arise and how they propagate. Some failures also occur in conventional software; an agent adds uncertainty to action selection:
 
 - **Infinite Action Loops**: The agent repeatedly takes the same unsuccessful action (such as searching the same query or opening the same file) without recognizing that it is making no progress.
 - **Hallucinated Tool Invocations**: The model requests a tool name that does not exist or passes malformed parameters that fail type validation.
@@ -252,6 +247,12 @@ Because autonomous agents possess agency (the ability to trigger state changes i
 - Agents operate via a **perception-reasoning-action loop**, interleaving model reasoning with live tool execution and environmental observations.
 - In **deterministic workflows**, application code dictates the execution sequence; in **autonomous agents**, the language model dynamically decides control flow and tool usage at runtime.
 - Multi-turn agent loops require explicit safeguards, including step limits, schema validation, and authorization boundaries, to prevent infinite loops and runaway execution.
+
+<details><summary>Check your understanding</summary>
+
+Does a generated reservation confirmation mean a reservation exists? No. The service outcome must be observed; generated text alone is not the effect.
+
+</details>
 
 ## References
 
