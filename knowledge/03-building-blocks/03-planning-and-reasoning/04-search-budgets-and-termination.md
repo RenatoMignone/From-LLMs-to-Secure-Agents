@@ -30,7 +30,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -38,9 +38,9 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-When humans tackle complex mathematical proofs, strategic chess positions, or architectural refactoring, they do not commit blindly to the very first idea that enters their mind. Instead, they imagine multiple possibilities, look several steps ahead, evaluate the merits of each path, backtrack when hitting dead ends, and stop when a proven solution is reached or time runs out.
+The assistant could investigate several alternative products, but each path consumes requests and time. It needs a rule for which candidate to explore and when enough work has been done.
 
-Standard language model prompting operates in a strictly left-to-right, feed-forward sequence. Once a model begins generating a path, it cannot easily explore alternative branches in parallel or backtrack to earlier decision points. **Search, budget, and termination mechanisms** equip autonomous agents with deliberate problem-solving capabilities (Yao et al., 2023; Besta et al., 2024; Anthropic, 2024; LangChain, 2024). By structuring reasoning as a tree or graph search governed by strict token and depth budgets, agents can explore complex solution spaces methodically without getting trapped in infinite execution loops.
+A **search strategy** explores alternatives. A **budget** bounds resource use. Reaching the budget ends exploration; it does not establish that the best possible result was found.
 
 ## Simple mental model
 
@@ -52,7 +52,7 @@ Think of a navigator planning an overland expedition through mountainous terrain
 4. **The expedition budget:** the team has finite rations, battery power, and daylight. Every detour consumes part of the budget.
 5. **Deterministic stopping rules:** the expedition halts when the summit is reached, when night falls (timeout), when rations run out (budget exhaustion), or when circular tracks indicate the team is lost (cycle detection).
 
-Managing both exploration and resources ensures the expedition discovers optimal routes without becoming stranded.
+Managing exploration and resources helps compare alternatives within a budget. It does not prove the route found is globally optimal.
 
 ## Position in the agent workflow
 
@@ -221,7 +221,13 @@ In Pass 2, search and budget architectures are evaluated against **Denial of Ser
 - Tree of Thoughts (ToT) and Graph of Thoughts (GoT) extend linear generation with deliberate branching, lookahead, and backtracking.
 - Heuristic evaluation functions score intermediate states to prune low-quality branches before computation is wasted.
 - Multi-dimensional execution budgets (depth, tokens, wall-clock time, branching factor) prevent runaway agent loops.
-- Deterministic termination states guarantee that the agent halts cleanly when goals are satisfied or when resource limits are reached.
+- Named stop conditions bound local exploration when implemented; remote operations and cleanup need their own termination contracts.
+
+<details><summary>Check your understanding</summary>
+
+Does exhausting the search budget establish an optimal answer? No. It reports the limit of exploration, not a proof of global optimality.
+
+</details>
 
 ## References
 
