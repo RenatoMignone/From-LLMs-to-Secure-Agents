@@ -2,6 +2,12 @@
 
 ## 2026-10-10
 
+### Dependency alerts and bot pull requests
+
+- Files or sections: site package manifest and lockfile, custom mobile navigation, Python development requirements and pinned GitHub Actions.
+- Summary: Applied the reviewed bot updates directly on main, refreshed additional vulnerable transitive dependencies, scoped a patched selector-parser override, and adapted the custom menu to Starlight's native popover. Details are recorded in `docs/dependency-review-2026-10-10.md`.
+- Validation: Clean install and npm/pip audits report zero known vulnerabilities. Passed Python and site tests, repository validation, site build/integrity checks and Chrome navigation checks.
+
 ### Readability and architecture review
 
 - Files or sections: 51 published chapters, eight section plans, source records, four example folders, two replacement illustrations, editorial policies and README.
