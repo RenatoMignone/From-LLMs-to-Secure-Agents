@@ -23,7 +23,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -97,7 +97,7 @@ The **Principle of Least Privilege**, first formulated by Jerome H. Saltzer and 
 
 ![A labeled cartoon architecture diagram titled 'The Principle of Least Privilege: Blast Radius Containment'. The top panel illustrates excessive privilege: a robot wielding a master admin key creates a massive uncontained blast radius across database, mailbox, and financials upon error. The bottom panel illustrates least privilege: a cute blue robot holds only a scoped calendar write key, keeping all other services safely protected behind security shields with a minimal contained blast radius.](../../assets/images/00-prerequisites/04-identity-authority-and-least-privilege-primer/03-least-privilege-blast-radius.png)
 
-*Figure 3. Principle of least privilege and blast radius containment. Restricting an agent to the minimal required capability ensures errors or malicious inputs cannot affect unrelated services.*
+*Figure 3. Principle of least privilege and blast radius containment. Bounded permissions can limit effects when the resource service enforces them; the diagram does not establish complete containment.*
 
 Saltzer and Schroeder demonstrated that limiting privileges achieves two vital safeguards:
 
@@ -186,7 +186,7 @@ assert authorize_tool_execution(blocked_request) is False
 Modern application and agent frameworks integrate these concepts into their communication protocols:
 
 - **OAuth 2.0 Token Scopes**: Systems use OAuth 2.0 authorization servers to issue tokens containing granular scope strings (such as `read:calendar` or `write:bookings`), preventing a token used by an assistant from accessing unauthorized endpoints.
-- **Model Context Protocol (MCP) and Tool Capabilities**: Standardized tool-calling protocols declare distinct tools with fixed schemas and explicit capability boundaries. An agent host selectively exposes only the tools registered for a specific session.
+- **Tool protocols:** Protocols describe available operations and message contracts. The host chooses which capabilities to expose; the resource service still enforces access. Later protocol chapters distinguish discovery from authorization.
 - **Workload Identity**: Cloud platforms assign distinct service identities to autonomous backend workers, ensuring that containerized agent instances authenticate using machine identities rather than shared static credentials.
 
 ## Data flow and state changes
@@ -262,8 +262,14 @@ This chapter introduces the structural mechanics of identity, delegation, and le
 
 - **Identity** names the actor, **authentication** proves the identity claim, and **authority** defines permitted actions.
 - **Delegation** allows an agent to act on behalf of a user while keeping both identities distinct and auditable in system logs.
-- **Least privilege** ensures an agent operates with only the minimum permissions necessary for its assigned task, limiting the potential damage of errors or malicious inputs.
+- **Least privilege** aims to grant only the permissions required for the assigned task, limiting the potential damage of errors or malicious inputs.
 - Authorization checks must take place at the resource boundary on every tool call, rather than relying solely on the agent's internal reasoning.
+
+<details><summary>Check your understanding</summary>
+
+Does knowing the user identity authorize every requested operation? No. Permission depends on the operation and resource as well as identity.
+
+</details>
 
 ## References
 
