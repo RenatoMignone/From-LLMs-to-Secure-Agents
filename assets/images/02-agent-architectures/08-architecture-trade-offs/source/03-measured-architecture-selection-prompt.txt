@@ -1,0 +1,11 @@
+Use case: scientific-educational
+Asset type: local cartoon chapter illustration, landscape 3:2.
+Create a clean, polished educational cartoon matching assets/images/repo-images/source/prompt.txt: cream background, calm soft blue, teal, sage and warm amber, friendly small robot, rounded shapes, generous spacing and legible English text.
+Title exactly: "Compare designs on the same task".
+Show three equal-sized design cards with no implied cost ranking:
+"Workflow": a small code controller routes between three steps.
+"Agent loop": one robot chooses a next tool after seeing a result.
+"Specialist team": a coordinator and two role robots share a task.
+Below, all three feed the same clipboard labelled "Task checks" with four short entries exactly "Correct outcome", "Time", "Total cost", "Recovery".
+Bottom caption exactly: "Choose the simplest design that passes".
+Do not include latency numbers, token multipliers, success percentages, guarantees, security shields or claims that extra roles automatically isolate permissions. Do not draw a trend axis or a superiority ranking. The instructional point is measuring competing designs on the same task.

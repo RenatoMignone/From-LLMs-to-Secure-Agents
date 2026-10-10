@@ -22,14 +22,13 @@ source_records:
 - p1-02-08-google-cloud-agent-design-patterns-2024
 - p1-02-08-microsoft-patterns-enterprise-agents-2024
 visual_assets:
-- assets/images/02-agent-architectures/08-architecture-trade-offs/01-architecture-tradeoffs-matrix.png
-- assets/images/02-agent-architectures/08-architecture-trade-offs/02-architecture-selection-flowchart.png
+- assets/images/02-agent-architectures/08-architecture-trade-offs/03-measured-architecture-selection.webp
 example_paths:
 - examples/02-agent-architectures/08-architecture-trade-offs/architecture_tradeoff_benchmarker.py
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,44 +36,38 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-When building AI systems, engineers frequently fall into the trap of over-engineering: deploying complex multi-agent swarms for tasks that could be reliably solved by a deterministic three-line script. Every increment in architectural autonomy introduces compounding points of failure, non-deterministic latency, and substantial token cost.
+The shop can answer the same question through a fixed workflow, an iterative agent or a group of specialists. Each design spends time and resources differently, and each can fail at different boundaries.
 
-Understanding **architecture trade-offs** empowers engineers to make deliberate, evidence-based design choices (Anthropic, 2024; Google Cloud, 2024). By systematically balancing determinism, latency, cost, debuggability, and failure containment, teams build resilient systems that perform consistently under production load. This synthesis concludes our exploration of orchestration patterns and prepares the foundation for detailed functional [Building blocks](../03-building-blocks/chapter-plan.md).
+Compare these patterns using the same tasks and operating conditions. Add complexity when it resolves a measured limitation. This synthesis connects [foundations](../01-agent-foundations/chapter-plan.md) to the detailed [building blocks](../03-building-blocks/chapter-plan.md).
 
 ## Simple mental model
 
 Think of selecting transportation for a delivery logistics network:
 
-1. **Conveyor Belt (Deterministic Pipeline)**: Inflexible and fixed to a track, but moves thousands of identical parcels per hour at minimal energy cost with zero navigation mistakes.
+1. **Conveyor Belt (Deterministic Pipeline)**: Inflexible and fixed to a track, and is useful for repeating a defined sequence.
 2. **Delivery Van with GPS Route (Evaluator-Optimizer / Router)**: Follows designated routes, rerouting when traffic reports (critique) indicate a road blockage. Highly predictable and moderately flexible.
 3. **Autonomous Delivery Drone (Reactive Agent Loop)**: Navigates open city airspace dynamically, sensing and dodging obstacles in real time, but consumes significantly more battery power and requires safety geofencing.
-4. **Fleet of Specialized Transport Vehicles (Multi-Agent Supervisor)**: Cargo planes, long-haul trucks, and last-mile couriers coordinated by a central logistics dispatcher. Solves massive global shipments, but requires extensive coordination protocols and carries the highest operational cost.
+4. **Fleet of Specialized Transport Vehicles (Multi-Agent Supervisor)**: Cargo planes, long-haul trucks, and last-mile couriers coordinated by a central logistics dispatcher. Solves massive global shipments, but requires extensive coordination protocols and adds coordination work that must be measured.
 
 In software architecture, you do not hire a cargo fleet when a conveyor belt solves the problem.
 
 ## Position in the agent workflow
 
-The figures below depict the trade-off matrix and the systematic selection flowchart across all orchestration patterns.
+The figure compares three designs using one shared set of checks. It does not rank their costs in advance.
 
-![Figure 1: Architecture Trade-Offs Matrix](../../assets/images/02-agent-architectures/08-architecture-trade-offs/01-architecture-tradeoffs-matrix.png)
+![A workflow, an agent loop and a specialist team are compared on the same task using outcome, time, total cost and recovery checks.](../../assets/images/02-agent-architectures/08-architecture-trade-offs/03-measured-architecture-selection.webp)
 
-*Figure 1. The architecture trade-off matrix. As systems move from deterministic pipelines to autonomous multi-agent graphs, flexibility and context isolation increase alongside token cost, latency, and coordination complexity.*
-
-![Figure 2: Architecture Selection Decision Flowchart](../../assets/images/02-agent-architectures/08-architecture-trade-offs/02-architecture-selection-flowchart.png)
-
-*Figure 2. The architecture selection decision flowchart. Always default to the simplest architecture that satisfies your performance, determinism, and safety requirements.*
-
-As established across [Agent architectures](chapter-plan.md), every pattern represents a specific point on the trade-off continuum between code-directed determinism and model-directed autonomy.
+*Figure 1. Follow each design down to the same task checks. Compare measured results before choosing a pattern; extra roles do not automatically improve quality or isolate permissions.*
 
 ## How it works
 
 Comparing agent architectures requires evaluating six fundamental engineering dimensions (Microsoft, 2024):
 
-1. **Determinism vs Flexibility**: Deterministic pipelines follow fixed code paths with 100% repeatability. Autonomous agent loops dynamically choose tool calls and branching logic, trading predictability for open-ended problem solving.
-2. **End-to-End Latency**: Pipelines deliver near-instantaneous responses (single model call or deterministic execution). Iterative reflection loops and multi-agent hierarchies introduce sequential turn delays, multiplying end-to-end response times.
-3. **Token & Infrastructure Cost**: Multi-agent systems invoke multiple model instances per user turn, resulting in a $5\times$ to $15\times$ token multiplier compared to single-turn completions.
+1. **Control flow versus flexibility:** Code-selected workflows constrain routes. Model-directed loops choose actions during execution. Neither implies identical model outputs or external observations.
+2. **End-to-end latency:** Count serial dependencies, parallel work, model calls, retries and human waiting time. A single call can still be slow.
+3. **Token and infrastructure cost:** Measure all model calls, tool work and execution environments. Additional roles can add cost, while selection and parallelism can change the balance.
 4. **Observability & Traceability**: Linear workflows produce simple linear traces. Dynamic multi-agent loops produce branching call trees requiring distributed tracing and message correlation IDs.
-5. **Failure Propagation & Blast Radius**: In monolithic agent loops, an erroneous tool output can pollute the entire conversation context. Multi-agent supervisors and state graphs isolate failures to specific sandboxed worker sub-nodes.
+5. **Failure propagation:** Examine shared context, state, credentials and execution environments. A worker role alone does not isolate these resources.
 6. **Termination Guarantees**: Unbounded agent loops risk infinite livelocks unless protected by hard step counters, time budgets, or deterministic graph exit guards.
 
 ### The simplicity principle
@@ -83,13 +76,13 @@ The overarching rule for production AI engineering is the **Simplicity Principle
 
 ## Main variants
 
-1. **Hybrid Tiered Orchestrator**: Fast deterministic code routes 80% of common requests to cached responses or static pipelines, while routing the remaining 20% of complex edge cases to a state graph or multi-agent supervisor.
+1. **Hybrid tiered orchestrator:** Route routine requests to a fixed workflow and other requests to an iterative design. Choose the split using evaluation, not a universal traffic ratio.
 2. **Static Plan with Dynamic Fallback**: A system attempts a rigid plan-and-execute sequence first; if a step fails validation twice, it falls back to an open-ended reactive loop to explore alternative solutions.
 3. **Speculative Parallel Routing**: Running a fast deterministic classifier and a small model router in parallel, canceling the model call if the rule engine matches with high confidence.
 
 ## Minimal implementation
 
-The following Python script benchmarks and quantifies token costs, execution turns, and failure blast radius across three core architectural archetypes:
+The following mock compares fixed arithmetic assumptions for three patterns. Its output is illustrative, not a benchmark of real models, latency or failure rates:
 
 <details>
 <summary>Expand minimal Python implementation</summary>
@@ -160,22 +153,21 @@ class ArchitectureBenchmark:
 
 The table below summarizes the trade-off profile across all major architectural patterns:
 
-| Architecture Pattern | Latency Profile | Token Multiplier | Determinism | Debuggability | Recommended Use Case |
+| Architecture pattern | Latency considerations | Work and cost | Control flow | Inspection | Suitable tasks |
 | --- | --- | --- | --- | --- | --- |
-| **Direct Generation** | Minimal (< 300ms) | $1\times$ | High | Very Simple | Summarization, simple translation |
-| **Deterministic Pipeline** | Fast (< 600ms) | $1\times - 2\times$ | 100% | Simple | Ingestion, ETL, linear extraction |
-| **Intent Router** | Fast (< 500ms) | $1\times$ | High | Simple | Customer support triage |
-| **Parallel Fan-Out** | Moderate (Parallel) | $N\times$ | High | Moderate | Multi-section document generation |
-| **Evaluator-Optimizer** | Moderate (Iterative) | $2\times - 4\times$ | Moderate | Moderate | Code synthesis, legal drafting |
-| **Reactive Agent Loop** | Variable (Dynamic) | $3\times - 8\times$ | Low | Complex | Exploratory research, debugging |
-| **State Machine Graph** | Controlled (Durable) | $2\times - 6\times$ | High | High (Checkpointed) | Enterprise workflows with HITL |
-| **Multi-Agent Supervisor** | High (Multi-turn) | $5\times - 15\times$ | Low-Mod | Very Complex | Cross-domain enterprise automation |
+| **Direct generation** | One model call; measure duration | Count tokens and provider work | No tool loop; variable outputs | Preserve input and output | Bounded text tasks |
+| **Code-selected pipeline** | Serial work on defined routes | Count actual model and tool calls | Explicit routes; variable outputs | Usually straightforward | Bounded lookup and extraction |
+| **Parallel fan-out** | Independent branches can overlap | Count all branch work | Explicit join behavior | Needs branch correlation | Independent subtasks |
+| **Evaluator-optimizer** | Revisions add serial work | Count drafts and evaluations | Criteria-dependent stop | Preserve feedback | Iterative artifact improvement |
+| **Reactive agent loop** | Depends on selected actions | Count complete trajectories | Model-directed routes | Preserve observations | Exploration |
+| **State graph** | Depends on nodes and waits | Count executed paths | Explicit transition contract | Requires state records | Pause and resume |
+| **Multi-agent supervisor** | Depends on delegation and joins | Count all participating roles | Coordination-dependent | Requires cross-role records | Tasks needing distinct roles |
 
 ## Trust boundaries
 
-1. **Architecture Complexity Boundary**: As system complexity increases from pipelines to multi-agent swarms, the attack surface expands proportionally to the number of inter-component boundaries.
-2. **Least Privilege by Topology**: Monolithic agents require global permissions, whereas supervisor-worker topologies allow fine-grained privilege isolation per worker sandbox.
-3. **Execution Enclave Boundary**: Any architecture executing dynamic code or external bash commands must isolate execution inside ephemeral containers regardless of orchestration topology.
+1. **Component boundaries:** Count connections and shared resources, then evaluate their actual failure behavior. Risk is not a simple multiplier of component count.
+2. **Authority allocation:** Both one-agent and multi-agent systems can use bounded authority. The deployment and resource-service policy determine the permissions.
+3. **Execution boundary:** Code execution needs a defined environment and resource contract. Compare the isolation mechanisms introduced in the execution chapter.
 
 ## Reliability failures
 
@@ -185,14 +177,14 @@ The table below summarizes the trade-off profile across all major architectural 
 
 ## Worked example
 
-Consider designing a customer support system for an e-commerce platform:
+Consider this synthetic customer-support redesign. Every dollar amount, percentage and timing below is an illustrative assumption, not a measured result:
 1. **Initial Assessment (Anti-Pattern)**: The team initially builds a fully autonomous multi-agent swarm where an AI agent freely issues refunds, changes shipping addresses, and edits database records.
 2. **Production Failures**: The swarm occasionally hallucinates order statuses, experiences ping-pong handoffs, and costs $0.45 per customer turn.
 3. **Architectural Redesign (Trade-Off Optimization)**:
    - **Step 1 (Deterministic Router)**: A lightweight classifier routes 70% of standard queries (FAQ, return policy) to static cached documents ($0.001 cost, 50ms latency).
    - **Step 2 (Deterministic Pipeline)**: Order status lookups run through a deterministic database API pipeline ($0.01 cost, 200ms latency).
    - **Step 3 (State Graph with HITL Gate)**: Refund requests over $50 trigger a state graph with a durable checkpointer, pausing for human agent approval before executing the payment tool.
-4. **Outcome**: 95% reduction in API costs, zero unauthorized refunds, and sub-second response times for standard queries.
+4. **Outcome to evaluate:** Measure cost, task success, authorization decisions and latency before and after the redesign. The scenario supplies no measured percentage improvement.
 
 ## Limitations and trade-offs
 
@@ -215,6 +207,12 @@ Architecture selection directly dictates system attack surface. A deterministic 
 - **Evaluator-Optimizer Loops** provide controlled iterative refinement for tasks requiring objective test verification.
 - **State Machine Graphs** deliver essential durability, fault tolerance, and human-in-the-loop control for mission-critical operations.
 - **Multi-Agent Supervisors** are justified when tasks demand strict context window isolation or separated credential boundaries.
+
+<details><summary>Check your understanding</summary>
+
+Is the most flexible architecture necessarily the best choice? No. Compare accepted outcomes and operating costs under the same conditions.
+
+</details>
 
 ## References
 
