@@ -22,7 +22,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-12'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -179,6 +179,12 @@ Where should retry semantics first become part of the main learning path? The an
 - A state transition changes what one component remembers from an old state to a next state.
 - An event record and a side effect are separate from the state change they follow.
 - “Requested,” “recorded,” and “completed” are different facts, especially when systems communicate across a network.
+
+<details><summary>Check your understanding</summary>
+
+Does receiving a request mean its side effect completed? No. Record the requested action, local state change and remote outcome separately.
+
+</details>
 
 ## References
 
