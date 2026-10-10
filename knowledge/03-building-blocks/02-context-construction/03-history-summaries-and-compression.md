@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-In long-running autonomous agent workflows (such as code refactoring, iterative research, or multi-day customer support), the execution history expands monotonically with every user interaction, tool invocation, and error recovery step. If left unmanaged, history accumulation rapidly consumes the available context budget, drives up per-turn latency and inference costs, and dilutes the model's focus on immediate objectives.
+Lee's conversation now contains many stock lookups and revised preferences. Keeping every message makes the next request larger; summarizing can lose an exception or unresolved action.
 
-Context compression is the engineering discipline of shrinking past execution traces while preserving the essential semantic state needed for upcoming reasoning steps (Packer et al., 2023; Anthropic, 2024; Chase & Askaryan, 2024). Without systematic compression, agents either crash against hard context limits or suffer catastrophic amnesia when older conversation turns are naively dropped.
+**History compression** reduces the material carried forward. This optional chapter distinguishes trimming, summaries and selective retention, and checks which information must survive each transformation.
 
 ## Simple mental model
 
@@ -63,7 +63,7 @@ The figures below illustrate history compression strategies and the operational 
 
 *Figure 2. Summary Buffer Memory Lifecycle. When history crosses saturation thresholds, a background compaction step condenses older turns into structured state blocks and archives raw transcripts to secondary storage.*
 
-Building upon the token budget allocations defined in [Context budgets, selection, and ordering](02-context-budgets-selection-and-ordering.md), history compression ensures long-running agent loops operate indefinitely within bounded context constraints.
+History management uses the [context budget](02-context-budgets-selection-and-ordering.md) to choose what to carry forward. It can extend useful operation, but summaries can lose information and do not guarantee indefinite progress.
 
 ## How it works
 
@@ -72,7 +72,7 @@ History compression combines structural compaction, algorithmic trimming, and mo
 ### 1. The three primary compression strategies
 
 - **Sliding-Window Truncation (FIFO)**: The simplest approach, retaining the last $K$ message turns or the most recent $N$ tokens of dialogue while discarding older messages. While computationally free, it discards foundational constraints established in early turns.
-- **Lossless Tool Output Compaction**: Tool outputs (such as database query results, file listings, or API responses) frequently contain massive JSON envelopes, verbose headers, and redundant debug traces. Runtimes filter raw JSON payloads to retain only requested fields (e.g., extracting `{"status": "active", "balance": 450}` from a 2,000-token payload), reducing token volume by 80% to 95% with zero semantic loss (Anthropic, 2024).
+- **Tool output filtering:** Retain the fields needed for the current task, such as a price and its currency. Filtering can reduce context size, but omitted fields may matter to later questions. Keep a reference to the original result when it can be retrieved, and measure whether filtering changes task outcomes.
 - **Incremental Rolling Summaries (Summary Buffer)**: An intermediate model (often a fast, cost-effective SLM) periodically condenses historical conversation turns into a structured `<state_summary>` section. The runtime injects this summary at the top of the context window while keeping only the most recent $M$ turns uncompressed (Packer et al., 2023; Chase & Askaryan, 2024).
 
 ### 2. Structured state condensation schema
@@ -189,14 +189,20 @@ In Pass 2, history compression is analyzed under **Memory Poisoning and Injectio
 ## Key takeaways
 
 - Unmanaged execution history causes token bloat, high inference latency, and cognitive focus dilution in multi-step agents.
-- Lossless tool output compaction strips unneeded JSON payload fields, reducing tool token footprint by up to 90%.
+- Tool output filtering reduces carried fields, but omitted information may matter to later questions. Measure task outcomes rather than assuming losslessness or a fixed saving.
 - Summary buffer memory combines a compact structured state summary of older interactions with a sliding window of recent turns.
 - Critical technical entities, active goals, and confirmed error states must be explicitly structured to prevent loss during recursive summarization.
+
+<details><summary>Check your understanding</summary>
+
+What should a summary preserve when a reservation is unresolved? Its pending status and references needed to reconcile it, rather than an assumed success.
+
+</details>
 
 ## References
 
 - Packer, C., Fang, V., Patil, S. G., Lin, K., Wooders, S., & Gonzalez, J. E. *MemGPT: Towards LLMs as Operating Systems*. arXiv preprint arXiv:2310.08560, 2023. [arXiv:2310.08560](https://arxiv.org/abs/2310.08560).
-- Anthropic. *Context Compression and History Condensation Patterns for AI Agents*. Anthropic Engineering Insights, 2024. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+- Anthropic. *Effective context engineering for AI agents*. September 29, 2025. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 - Chase, H., & Askaryan, B. *Conversation History Trimming and Summary Buffer Architectures*. LangChain Documentation, 2024. [LangChain Concepts](https://python.langchain.com/docs/concepts/memory/).
 
 ---
