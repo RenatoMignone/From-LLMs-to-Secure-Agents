@@ -112,6 +112,12 @@ Human participation is not a guarantee of correctness. Pass 2 examines approval 
 - Define rejection, expiration, escalation and resumption explicitly.
 - Record the decision separately from execution and its outcome.
 
+<details><summary>Check your understanding</summary>
+
+Can approval of proposal version one authorize changed arguments in version two? The example binds approval to the reviewed version and requires another decision after changes.
+
+</details>
+
 ## References
 
 - OpenAI. [Agents SDK human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/).
