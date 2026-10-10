@@ -1,0 +1,24 @@
+id: p1-03-08-02-spiffe
+title: SPIFFE Concepts
+authors_or_organization: SPIFFE
+date: null
+source_type: official-documentation
+canonical_url: https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- SPIFFE identifies workloads with SPIFFE IDs and verifiable identity documents; the
+  Workload API delivers identity material and supports short-lived rotated credentials.
+limitations:
+- Workload authentication does not grant resource access or represent a human; isolation
+  is an external assumption.
+related_topics: []
+unit_ids:
+- P1-03-08-02
+used_in:
+- knowledge/03-building-blocks/08-identity-authorization-and-secrets/02-workload-identity-credentials-and-revocation.md
+local_copy: null
+sha256: null
