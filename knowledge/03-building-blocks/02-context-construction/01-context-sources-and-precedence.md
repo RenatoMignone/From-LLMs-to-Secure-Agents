@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-In single-turn chat applications, prompt engineering focuses on crafting a static text string that guides model behavior. In multi-step autonomous agents, however, the input seen by the model on each iteration is dynamic, multi-faceted, and rapidly evolving. An agent runtime must continuously synthesize disparate information streams (system policies, conversation history, retrieved documents, tool schemas, and third-party execution outputs) into a coherent, bounded token window.
+To answer Lee, the assistant receives the current request, shop rules, earlier messages and tool results. The application must decide what to include and how to represent each source.
 
-This runtime discipline is called **context engineering** (Anthropic, 2024; OpenAI, 2024). Poor context construction causes catastrophic agent failures: runaway token costs from bloated histories, reasoning confusion from colliding instructions, and severe vulnerabilities where unverified external data overrides system safety rules. Mastering context sources and their explicit precedence hierarchy ensures that agents remain reliable, predictable, and secure across complex multi-step workflows.
+**Context** is the input available to a model request. **Context engineering** is the work of selecting and assembling that input. Distinguish application rules from retrieved evidence and state; placing text earlier does not enforce permission.
 
 ## Simple mental model
 
@@ -71,7 +71,7 @@ Context engineering operates as a structured ingestion, prioritization, and seri
 
 ### 1. The six fundamental context sources
 
-Every token presented to an LLM during an agent turn originates from one of six source categories (Anthropic, 2024; OpenAI, 2024):
+For this guide, group context into six practical categories. Providers expose different message roles and input formats, so these categories are a teaching model rather than a universal API taxonomy:
 
 - **System Instructions**: Immutable base directives defining the agent role, output schema constraints, core tool execution policies, and refusal boundaries.
 - **Developer Policies**: Operational guardrails injected by the hosting platform (such as privacy scrubbers, tenant isolation boundaries, and formatting rules).
@@ -207,9 +207,15 @@ In Pass 2, context construction is examined as the primary battleground against 
 - Transformer attention exhibits a U-shaped curve where tokens in the middle suffer higher retrieval loss than tokens at the beginning or end.
 - All retrieved evidence and tool outputs must be encapsulated in explicit containment tags to maintain clear trust boundaries.
 
+<details><summary>Check your understanding</summary>
+
+Does placing a policy first in context enforce authorization? No. Input organization and resource-service permission enforcement have different roles.
+
+</details>
+
 ## References
 
-- Anthropic. *Effective Context Engineering for AI Agents*. Anthropic Engineering Insights, 2024. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+- Anthropic. *Effective context engineering for AI agents*. September 29, 2025. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 - Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. *Lost in the Middle: How Language Models Use Long Contexts*. Transactions of the Association for Computational Linguistics (TACL), 2023. [arXiv:2307.03172](https://arxiv.org/abs/2307.03172).
 - OpenAI. *Agent Instructions and Context Management Architecture*. OpenAI Platform Documentation, 2024. [OpenAI Platform](https://platform.openai.com/docs/guides/agents).
 
