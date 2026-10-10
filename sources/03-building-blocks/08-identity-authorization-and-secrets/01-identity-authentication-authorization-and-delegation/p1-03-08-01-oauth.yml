@@ -1,0 +1,24 @@
+id: p1-03-08-01-oauth
+title: The OAuth 2.0 Authorization Framework
+authors_or_organization: IETF
+date: null
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc6749.html
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- OAuth distinguishes resource owners, clients, authorization servers and resource
+  servers; access tokens represent access with scope and duration.
+limitations:
+- Foundational 2012 specification with later updates; no recommendation of legacy
+  grant flows.
+related_topics: []
+unit_ids:
+- P1-03-08-01
+used_in:
+- knowledge/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation.md
+local_copy: null
+sha256: null

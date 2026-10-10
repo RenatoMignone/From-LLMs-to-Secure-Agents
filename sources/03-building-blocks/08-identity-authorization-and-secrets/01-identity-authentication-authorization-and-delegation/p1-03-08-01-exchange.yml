@@ -1,0 +1,24 @@
+id: p1-03-08-01-exchange
+title: OAuth 2.0 Token Exchange
+authors_or_organization: IETF
+date: null
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc8693.html
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Token exchange distinguishes subject and actor tokens and delegation from impersonation;
+  audience and scope can be requested and actor information represented.
+limitations:
+- Defines an exchange protocol, not a universal authorization policy or guaranteed
+  narrowing.
+related_topics: []
+unit_ids:
+- P1-03-08-01
+used_in:
+- knowledge/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation.md
+local_copy: null
+sha256: null

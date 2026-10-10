@@ -1,0 +1,23 @@
+id: p1-03-08-01-oidc
+title: OpenID Connect Core 1.0, errata set 2
+authors_or_organization: OpenID Foundation
+date: null
+source_type: standard
+canonical_url: https://openid.net/specs/openid-connect-core-1_0.html
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- OpenID Connect adds an identity layer over OAuth 2.0 and defines ID tokens representing
+  authentication information.
+limitations:
+- ID tokens are not interchangeable with resource access tokens.
+related_topics: []
+unit_ids:
+- P1-03-08-01
+used_in:
+- knowledge/03-building-blocks/08-identity-authorization-and-secrets/01-identity-authentication-authorization-and-delegation.md
+local_copy: null
+sha256: null
