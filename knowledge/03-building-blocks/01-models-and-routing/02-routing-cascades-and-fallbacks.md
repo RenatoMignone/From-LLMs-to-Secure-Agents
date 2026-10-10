@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-In production systems, model APIs do not operate in a vacuum. Cloud providers suffer outages, enforce strict rate limits (HTTP 429), and experience unpredictable latency spikes. Furthermore, routing every incoming prompt directly to a top-tier frontier model is financially unsustainable when 70% of user queries require only basic reasoning.
+A model request fails, or a first answer does not meet the shop's criteria. The runtime must decide whether to try another configuration, another provider or stop with a clear limitation.
 
-**Routing, cascades, and fallbacks** transform fragile single-endpoint setups into resilient, cost-effective inference pipelines (Chen et al., 2023; Ong et al., 2024). By dynamically classifying task complexity, progressively escalating across model tiers upon validation failures, and switching to backup providers during upstream outages, systems maintain 99.99% availability while keeping inference costs minimal. Mastering these patterns is crucial as we advance through [Context construction](../02-context-construction/chapter-plan.md) and tool execution.
+A **router** chooses a model, a **cascade** escalates through stages and a **fallback** handles an unavailable or unsuitable path. These choices add work and can change behavior; they do not guarantee availability. They also affect later [context construction](../02-context-construction/chapter-plan.md).
 
 ## Simple mental model
 
@@ -48,7 +48,7 @@ Think of an emergency response dispatch network:
 2. **Escalation Ladder (Progressive Cascade)**: When a patrol officer arrives at a minor dispute and discovers an active armed robbery, the officer immediately radios for SWAT backup. The system begins with standard resources and escalates dynamically only when necessary.
 3. **Backup Power Generator (Circuit Breaker & Fallback)**: When the municipal power grid suffers a blackout, the hospital's automatic transfer switch trips open and engages on-site diesel generators within milliseconds, preventing power loss to operating rooms.
 
-In agent engineering, routing dispatches the appropriate model tier, cascades escalate upon failure, and circuit breakers guarantee uptime when providers fail.
+Routing chooses a model, cascades add stages and circuit breakers stop repeated calls to a failing path. None guarantees uptime; each needs failure and budget handling.
 
 ## Position in the agent workflow
 
@@ -70,7 +70,7 @@ Building a resilient model gateway involves three complementary mechanisms (Ong 
 
 ### 1. Dynamic routing topologies
 
-- **Rule-Based Routers**: Fast deterministic checks (regex patterns, input token count, keyword triggers) routing simple queries to specific models with zero added latency.
+- **Rule-based routers:** Code checks such as input length or task labels choose a route. Measure their overhead and classification errors.
 - **Embedding Similarity Routers**: Converts incoming queries into dense vectors and calculates cosine similarity against representative task clusters (e.g., coding, translation, math).
 - **Learned Threshold Routers (RouteLLM)**: A lightweight neural classifier or small language model trained on preference data that predicts a complexity score $\theta \in [0, 1]$. Queries with $\theta \ge \text{threshold}$ route to frontier models; otherwise, they route to small SLMs.
 
@@ -208,6 +208,12 @@ Routing mechanisms introduce **router manipulation** risks. Attackers can embed 
 - **Progressive cascades (FrugalGPT)** attempt generation on fast SLMs first and escalate to frontier models only when verification checks fail.
 - **Circuit breakers** protect agent availability by automatically failing over to secondary providers during upstream HTTP 429 rate limits and 500 outages.
 - Enterprise gateways must enforce strict schema normalization and data compliance agreements across all configured fallback endpoints.
+
+<details><summary>Check your understanding</summary>
+
+Does a fallback guarantee service availability? No. It can fail too, and it may change behavior or exceed the remaining budget.
+
+</details>
 
 ## References
 
