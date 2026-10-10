@@ -120,6 +120,12 @@ Telemetry can contain sensitive data. Pass 2 examines that exposure and detectio
 - Define denominators and units before interpreting error rates or latency.
 - Observable execution success and task quality require different evidence.
 
+<details><summary>Check your understanding</summary>
+
+Can a successful run contain a failed tool attempt? Yes. A later attempt may succeed; attempt errors and operation outcomes use different denominators.
+
+</details>
+
 ## References
 
 - OpenTelemetry. [Traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), and [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/).
