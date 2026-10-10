@@ -27,7 +27,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -35,9 +35,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-Open-ended agent loops can wander unpredictably when tasks grow complex. When an agent manages multi-turn customer dialogues, complex financial transactions, or multi-day software migrations, relying on a loose while-loop risks unrecoverable failures, unbounded token consumption, and lost execution context if the process crashes.
+A reservation pauses while Lee reviews it. The application needs to remember the proposal and continue from a permitted point when a decision arrives.
 
-A **state machine** structures agent execution as a set of discrete states connected by explicit transitions and guarded rules (Harel, 1987). When extended into **event-driven graphs**, agent architectures gain the ability to support cyclic loops, manage shared typed state schemas, pause cleanly for external human approval events, and persist progress durably to disk. Mastering state machines and event graphs provides the architectural bedrock for durable multi-agent coordination and production [Building blocks](../03-building-blocks/chapter-plan.md).
+A **state machine** names states and allowed transitions. A graph connects processing steps and their routes. Either needs an actual persistence backend to survive a process restart; a diagram alone does not provide durability.
 
 ## Simple mental model
 
@@ -204,7 +204,7 @@ class StateGraphEngine:
 ## Framework implementations
 
 - **LangGraph**: Implements Pregel-based state graphs where nodes are Python callables and state is managed via Pydantic or TypedDict schemas. Offers built-in memory checkpointers (SqliteSaver, PostgresSaver) and `interrupt()` hooks for human review.
-- **Temporal & AWS Step Functions**: Provides durable execution engines where workflow code is guaranteed to complete despite server restarts, using event-sourced journals to replay state.
+- **Durable workflow engines** persist progress and provide runtime-specific recovery behavior. Inspect their retry, cancellation and external-side-effect contracts before assuming a run can resume correctly.
 - **Google Agent Development Kit (ADK)**: Uses workflow graphs to structure deterministic multi-step verification and human escalation policies around model agents.
 
 ## Data flow and state changes
@@ -261,6 +261,12 @@ State graphs centralize system state into a unified schema, making state integri
 - **Cyclic event-driven graphs** enable iterative agent reasoning and tool usage while preserving deterministic termination bounds.
 - **Durable checkpointers** record immutable state snapshots at each superstep, enabling crash recovery, auditability, and time-travel inspection.
 - **Interruption gates** provide clean, asynchronous human-in-the-loop controls without holding compute resources while waiting for external events.
+
+<details><summary>Check your understanding</summary>
+
+Does drawing a state graph make it durable? No. Persistence and recovery behavior require an implementation and storage backend.
+
+</details>
 
 ## References
 
