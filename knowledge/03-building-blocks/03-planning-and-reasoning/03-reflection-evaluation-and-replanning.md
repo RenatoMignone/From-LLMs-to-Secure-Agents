@@ -29,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,9 +37,9 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-When an autonomous agent generates code, solves a multi-step math problem, or invokes external APIs, its first attempt is often imperfect. In a purely feed-forward system, whatever the model outputs on its first pass is immediately executed or returned to the user. If that initial output contains a syntax error, a logic bug, or an unsafe database query, the entire run fails.
+A stock lookup invalidates part of the assistant's plan. Separately, a checker finds that its draft omitted the delivery estimate. Revising the plan and revising the answer solve different problems.
 
-Human experts rarely publish their first draft without review. Instead, they inspect their work, identify mistakes, reflect on what went wrong, and revise the output. **Reflection and evaluation patterns** provide language agents with this same iterative refinement capability (Madaan et al., 2023; Shinn et al., 2023; Anthropic, 2024; LangChain, 2024). By coupling candidate generation with an explicit critique step and verbal reflection memory, agents can detect their own mistakes and adapt their plans before committing irreversible side effects.
+**Reflection** reviews prior work, **evaluation** checks criteria and **replanning** changes intended steps. Define the feedback source and stop conditions before treating another iteration as improvement.
 
 ## Simple mental model
 
@@ -51,7 +51,7 @@ Think of an author submitting a manuscript to a publishing house:
 4. **The revision (optimizer):** the author reads the notes, updates their working notes, and produces a revised draft that corrects the identified problems.
 5. **Approval or change order (replanning):** if a chapter concept is fundamentally flawed, the team steps back and revises the book outline before continuing.
 
-Separating drafting from evaluation ensures that quality standards are enforced objectively before publication.
+Separating drafting from evaluation makes the criteria and feedback explicit. Evaluation can still be wrong, so calibrate it against independently checked outcomes.
 
 ## Position in the agent workflow
 
@@ -228,6 +228,12 @@ In Pass 2, reflection and evaluation architectures are analyzed under **Evaluato
 - The Reflexion architecture converts concrete execution failures into natural language lessons stored in episodic working memory to guide future trials.
 - Dynamic replanning adapts structured subtask graphs when environmental tool observations deviate from expected preconditions.
 - Production reflection loops require strict iteration limits, token budgets, and objective evaluation oracles to prevent infinite loops and evaluator sycophancy.
+
+<details><summary>Check your understanding</summary>
+
+What makes a revision useful? Evidence that it improves declared criteria; another iteration alone is insufficient.
+
+</details>
 
 ## References
 
