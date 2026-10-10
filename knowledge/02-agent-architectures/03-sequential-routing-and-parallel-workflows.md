@@ -29,7 +29,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,9 +37,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-When enterprise systems integrate generative AI, deterministic reliability is often the primary engineering constraint. While autonomous agent loops provide great flexibility for open-ended research, they introduce non-deterministic execution paths, unbounded latencies, and complex failure modes. For the majority of production use cases, such as document processing, data extraction, and customer support triage, **deterministic workflows** provide superior performance, lower costs, and straightforward auditability.
+The shop needs to check a request, choose a service and fetch stock and price. Some steps depend on earlier results; stock and price reads may be independent. Application code can express those relationships.
 
-Deterministic workflows maintain control flow entirely within application code. The language model acts as an intelligent data transformer at designated nodes rather than as the autonomous navigator of the entire execution path. Understanding how to compose prompt chains, conditional routers, and parallel pipelines allows engineers to construct high-throughput systems that scale reliably before integrating more dynamic [Building blocks](../03-building-blocks/chapter-plan.md).
+**Sequential** steps run in order, **routing** chooses a branch and **parallel** work starts independent operations together. Code-selected control flow does not make model outputs deterministic or network latency fixed.
 
 ## Simple mental model
 
@@ -58,7 +58,7 @@ The visual below illustrates the three primary deterministic workflow topologies
 
 ![A wide educational cartoon illustration showing three workflow topologies: Top shows Prompt Chaining with linear robot assembly stations; Middle shows Routing with a classifier robot directing requests to specialized paths; Bottom shows Parallelization with three worker robots fanning out and merging into an aggregator robot.](../../assets/images/02-agent-architectures/03-sequential-routing-and-parallel-workflows/01-workflow-patterns-topology.png)
 
-*Figure 1. Core deterministic workflow topologies. Application code controls graph edges, ensuring bounded execution paths, fixed latency guarantees, and clear failure containment.*
+*Figure 1. Code-selected workflow topologies make dependencies and branches explicit. Their latency still depends on model requests, services and failure paths.*
 
 As taught in [Agent foundations](../01-agent-foundations/chapter-plan.md) and [Architecture selection criteria](01-architecture-selection-criteria.md), these topologies represent the foundation of the Principle of Least Agency.
 
@@ -210,6 +210,12 @@ Because deterministic workflows lock execution paths in software code, they offe
 - **Routing workflows** direct incoming requests to specialized prompts, tools, or pipelines using deterministic classifiers or lightweight models.
 - **Parallel workflows** accelerate throughput via sectioning (Map-Reduce) or boost reasoning accuracy via consensus voting (Self-Consistency).
 - Enforcing **validation gates**, **dead-letter queues**, and **per-node timeouts** is essential to prevent cascading errors and straggler latency in production pipelines.
+
+<details><summary>Check your understanding</summary>
+
+When can stock and price checks run in parallel? When neither depends on the other result and their operation contracts permit concurrent execution.
+
+</details>
 
 ## References
 
