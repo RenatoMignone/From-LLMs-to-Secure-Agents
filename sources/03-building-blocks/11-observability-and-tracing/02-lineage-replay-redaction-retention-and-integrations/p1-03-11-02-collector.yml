@@ -1,0 +1,23 @@
+id: p1-03-11-02-collector
+title: Collector configuration
+authors_or_organization: OpenTelemetry
+date: null
+source_type: official-documentation
+canonical_url: https://opentelemetry.io/docs/collector/configuration/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Collector pipelines connect receivers, ordered processors and exporters; components
+  must be enabled in service pipelines.
+limitations:
+- Configuration alone does not implement application retention or deterministic replay.
+related_topics: []
+unit_ids:
+- P1-03-11-02
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations.md
+local_copy: null
+sha256: null

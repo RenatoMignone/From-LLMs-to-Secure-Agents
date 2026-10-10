@@ -1,0 +1,24 @@
+id: p1-03-11-02-sdk
+title: Tracing
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://openai.github.io/openai-agents-python/tracing/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- SDK sensitive-data capture is configurable; adding a processor leaves existing exporters
+  enabled, while replacement changes the destinations.
+limitations:
+- Custom fields still require application review; a failing redaction observer does
+  not gate independent exporters.
+related_topics: []
+unit_ids:
+- P1-03-11-02
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations.md
+local_copy: null
+sha256: null
