@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,18 +36,18 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-Building production agent systems requires balancing competing operational forces. While frontier reasoning models achieve high accuracy on complex benchmarks, calling a frontier model on every iteration of a multi-step agent loop leads to prohibitive inference costs, high end-to-end latency, and vulnerability to provider rate limits.
+Two model configurations answer Lee's request correctly, but one is slower and costs more. A third is faster yet fails on return-policy exceptions. A deployment decision needs all of those observations.
 
-Production agent engineering is the discipline of navigating the **Pareto frontier** across four interdependent dimensions: capability, cost, latency, and reliability (Kwon et al., 2023; OpenAI, 2024; Anthropic, 2024). An agent that takes 45 seconds to generate an answer will frustrate human users, while an agent that costs $0.50 per turn will bankrupt automated enterprise workflows. Understanding the precise mechanics of token pricing, prompt caching, prefill latency, and model version stability allows architects to deliver responsive, deterministic, and cost-effective autonomous systems.
+This optional chapter separates capability, price, measured latency and reliability. Its numeric examples are illustrative inputs to a comparison, not current provider prices or performance guarantees.
 
 ## Simple mental model
 
 Think of assembling a commercial logistics fleet:
 
-1. **Heavy Cargo Aircraft (Frontier Reasoning Model)**: Can carry massive payloads across continents (high capability, huge context window), but consumes immense fuel ($5.00+ per million tokens) and requires long loading and runway clearance times (high TTFT and latency).
-2. **Delivery Van (Fast SLM)**: Rapidly navigates urban streets with low fuel consumption ($0.10 to $0.80 per million tokens) and near-instant acceleration (low latency), but cannot transport a 20-ton industrial generator (limited deep multi-hop reasoning).
-3. **Dedicated Express Lane (Prompt Caching & Paged KV Attention)**: Pre-inspects standard shipping containers so recurring cargo bypasses security inspection checkpoints, cutting transit time by 80% and shipping toll fees by up to 90%.
-4. **Maintenance Schedule & Vehicle VIN Pinning (Version Pinning & Rate Limits)**: Guarantees that every vehicle deployed has exact verified mechanical specifications (pinned model snapshots) and enforces strict highway weight limits (TPM/RPM limits) to prevent traffic gridlock.
+1. **Cargo aircraft:** A vehicle suited to large loads may be unnecessary for a small local delivery. Likewise, test model capability against the specific task.
+2. **Delivery van:** A smaller vehicle can serve a bounded route efficiently, but capacity still matters. A smaller model is useful only if it meets the acceptance criteria.
+3. **Reusable loading work:** Reusing a prepared manifest can save work. Prompt caching similarly reuses eligible input processing; savings depend on whether the request actually hits the cache.
+4. **Vehicle version and traffic limits:** Recording a model version helps track changes, while request and token limits bound traffic. Neither promises identical outputs or absence of congestion.
 
 Agent architects do not choose a single universal vehicle. They route packages to the right vehicle tier and optimize transit lanes to ensure timely delivery within budget.
 
@@ -57,11 +57,11 @@ The figures below illustrate the multi-dimensional trade-off balancing console a
 
 ![Figure 1: Capability, cost, latency, and reliability trade-off Pareto frontier](../../../assets/images/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability/01-tradeoff-pareto-frontier.png)
 
-*Figure 1. Capability, cost, latency, and reliability trade-off Pareto frontier. Production systems position distinct agent tasks along the optimal trade-off curve rather than defaulting all steps to high-cost frontier endpoints.*
+*Figure 1. Capability, cost, latency, and reliability trade-off Pareto frontier. This illustrates competing dimensions. Locate feasible configurations using measured task outcomes, not model size alone.*
 
 ![Figure 2: LLM inference latency anatomy and prompt caching acceleration](../../../assets/images/03-building-blocks/01-models-and-routing/03-capability-cost-latency-and-reliability/02-latency-anatomy-and-caching.png)
 
-*Figure 2. LLM inference latency anatomy and prompt caching acceleration. Prompt caching dramatically reduces the prefill phase (TTFT), while generation latency scales linearly with output token count.*
+*Figure 2. LLM inference latency anatomy and prompt caching acceleration. The diagram separates prompt work from output generation. Its savings and timing values are illustrative; client TTFT also includes waiting and transport.*
 
 As shown in [Routing, cascades, and fallbacks](02-routing-cascades-and-fallbacks.md), understanding these profiles enables gateways to dynamically match each subtask to its optimal execution tier.
 
@@ -79,32 +79,32 @@ Model capability is not a monolithic score. In agentic workflows, capability bre
 
 ### 2. Latency anatomy: TTFT vs TPOT
 
-Total completion latency is governed by two distinct computational phases in modern transformer serving engines (Kwon et al., 2023):
-$$\text{Total Latency} = \text{Network Delay} + \text{Queue Delay} + \text{TTFT} + (N_{\text{output}} \times \text{TPOT})$$
+Serving commonly separates prompt processing from token generation. For a response with at least one output token, define timing boundaries before estimating time to the last token. Final processing can add further delay:
+$$\text{Time to last token} \approx \text{TTFT}_{\text{client}} + (N_{\text{output}} - 1) \times \text{TPOT}_{\text{mean}}$$
 
-- **Time to First Token (TTFT)**: The duration from request dispatch until the model emits its first token. This corresponds to the **prefill phase**, where the model processes the entire prompt in parallel and builds the initial Key-Value (KV) cache. TTFT scales with prompt length ($N_{\text{input}}$).
-- **Time Per Output Token (TPOT)**: The duration required to generate each subsequent token during the auto-regressive **decode phase**. In decode, tokens are generated sequentially (memory-bandwidth bound). Typical cloud TPOT ranges from 10ms to 40ms per token.
-- **Streaming vs Non-Streaming**: In interactive user interfaces, streaming output masks decode latency because human reading speed (~5 tokens/sec) is lower than model generation speed (~30-100 tokens/sec). However, in programmatic agent tool loops, the agent runtime cannot execute a tool call until the full JSON payload is completely generated and parsed.
+- **Time to First Token (TTFT)**: The duration from request dispatch until the client receives the first token. Client-observed TTFT includes transport and waiting as well as **prefill**, the initial prompt processing. Prompt length, batching and caching can affect it. Do not add network and queue delay again if they are already included in TTFT.
+- **Time Per Output Token (TPOT)**: The duration required to generate each subsequent token during the auto-regressive **decode phase**. In decode, tokens are generated sequentially (memory-bandwidth bound). Measure the interval for the actual model, serving configuration and load; it need not remain constant during a response.
+- **Streaming:** Partial output can make progress visible before completion. Readiness to execute a tool depends on a complete, validated request or a documented incremental protocol; a partial JSON fragment is insufficient.
 
 ### 3. Token economics and context caching
 
 Inference costs are calculated per million tokens, with asymmetric pricing between input prompts, cached prompts, and output completions:
-- **Output Token Multiplier**: Output tokens are typically 3x to 5x more expensive than uncached input tokens due to sequential GPU decode overhead and KV cache memory retention.
-- **Prompt Caching Economics**: Modern providers (Anthropic, OpenAI, Google) allow prompt prefixes exceeding 1,024 tokens (such as static system instructions, API schemas, and few-shot examples) to be cached in GPU memory (Anthropic, 2024; OpenAI, 2024). Cache reads provide a 50% to 90% cost discount and reduce TTFT by up to 80%.
-- **Reasoning / Thinking Token Overhead**: Frontier reasoning models generate hidden "chain-of-thought" tokens before outputting the final response. These internal tokens are billed as output tokens, often multiplying total per-turn costs by 3x to 10x.
+- **Input and output pricing:** Read the current model price table. Input, cached input and output can have different rates; there is no universal multiplier.
+- **Prompt caching:** Eligibility, retention, discounts and latency effects depend on provider, model and request structure. Check the current provider contract and measure hit rates rather than assuming a shared threshold or percentage saving.
+- **Reasoning-token accounting:** Some models use internal reasoning tokens. Their visibility, limits and billing are provider-specific. Include reported billable usage rather than inferring it from visible answer length.
 
 ### 4. Reliability, version pinning, and rate limits
 
 Operational stability depends on predictable execution environments:
-- **Snapshot Version Pinning**: Production systems must reference specific immutable snapshot identifiers (e.g., `gpt-4o-2024-08-06` or `claude-3-5-sonnet-20241022`) rather than floating alias pointers (e.g., `gpt-4o` or `claude-3-5-sonnet-latest`). Floating aliases introduce silent prompt drift, subtle behavioral changes, and unexpected tool signature parsing failures when providers deploy backend updates.
+- **Version tracking:** Prefer a documented version identifier where available and record changes. Historical model names below belong to synthetic example profiles, not a current availability list.
 - **Rate Limit Throttling (RPM & TPM)**: Cloud providers enforce hard quotas on Requests Per Minute (RPM) and Tokens Per Minute (TPM). Multi-agent architectures with parallel tool workers can easily saturate TPM limits, triggering HTTP 429 errors.
-- **Deterministic Sampling Controls**: Setting `temperature = 0.0` or fixing a `seed` parameter reduces output variance. However, true bitwise determinism is rarely guaranteed across distributed cloud clusters due to non-associative floating-point addition in dynamic batching kernels.
+- **Sampling configuration:** Some models expose controls that can reduce variation; supported parameters differ. Do not assume temperature or seed controls are available or sufficient for exact repeatability.
 
 ## Main variants
 
-1. **Serverless Multi-Tenant Cloud APIs**: Pay-per-token model with zero infrastructure management. Subject to multi-tenant noisy-neighbor latency jitter and global rate limits.
-2. **Provisioned Throughput Units (PTUs)**: Reserved GPU capacity providing guaranteed TTFT/TPOT SLAs, zero HTTP 429 rate limits, and predictable monthly billing for high-volume enterprise agents.
-3. **Self-Hosted Open Weights (vLLM / SGLang)**: Deploying open models (e.g., Llama 3, Qwen 2.5) on private GPU clusters. Eliminates third-party data sharing and rate limits while requiring dedicated infrastructure management and KV cache memory tuning (PagedAttention).
+1. **Shared hosted inference:** The provider manages inference infrastructure. The application still handles request budgets, configuration, failures and product operations.
+2. **Reserved inference capacity:** Capacity and service commitments are provider-specific. Check throttling, latency and billing terms rather than assuming zero rate-limit errors.
+3. **Self-Hosted Open Weights (vLLM / SGLang)**: Deploying open models (e.g., Llama 3, Qwen 2.5) on private GPU clusters. Moves inference operation to your infrastructure. Capacity limits, telemetry destinations and data-sharing choices still require explicit configuration.
 
 ## Minimal implementation
 
@@ -213,16 +213,22 @@ We examine denial-of-wallet defenses, model abuse controls, and side-channel ris
 
 ## Key takeaways
 
-- **Inference latency** consists of prefill (TTFT, parallel prompt processing) and decode (TPOT, auto-regressive sequential generation).
-- **Prompt caching** provides up to 90% cost savings and 80% TTFT reduction by keeping static prompt prefixes warm in GPU memory.
-- **Model version pinning** using exact snapshot identifiers prevents silent model drift and breaking changes in production tool schemas.
+- Measure client time to first token and subsequent token intervals with consistent timing boundaries.
+- Prompt caching can save eligible input work; price, retention and realized savings depend on the provider contract and hit rate.
+- Version tracking helps identify changes but does not freeze every runtime condition or guarantee repeatability.
 - Effective agent architectures balance capability, cost, latency, and reliability by matching specific subtasks to optimal model tiers on the Pareto frontier.
+
+<details><summary>Check your understanding</summary>
+
+Does pinning a model version guarantee identical outputs? No. It reduces one source of change while other runtime and sampling conditions remain.
+
+</details>
 
 ## References
 
 - Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Yu, C. H., Gonzalez, J. E., Zhang, H., & Stoica, I. *Efficient Memory Management for Large Language Model Serving with PagedAttention*. Proceedings of the 29th ACM Symposium on Operating Systems Principles (SOSP), 2023. [DOI: 10.1145/3600006.3613165](https://doi.org/10.1145/3600006.3613165).
 - OpenAI. *Latency Optimization, Prompt Caching, and Model Version Pinning Guide*. OpenAI Platform Documentation, 2024. [OpenAI Platform](https://platform.openai.com/docs/guides/latency-optimization).
-- Anthropic. *Prompt Caching and Operational Resilience in Claude API*. Anthropic Claude Documentation, 2024. [Anthropic Docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching).
+- Anthropic. [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). Living documentation, verified October 10, 2026.
 
 ---
 
