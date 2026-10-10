@@ -28,7 +28,7 @@ example_paths: []
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-08-17'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,9 +36,9 @@ last_reviewed: '2026-08-17'
 
 ## Why this matters
 
-When an autonomous agent tackles a multi-step objective, relying solely on a single-step reactive loop often leads to failure. A pure reactive agent decides only its very next action based on immediate context. On tasks requiring five or more interdependent steps, this greedy decision-making causes the agent to wander off-track, repeat dead-end tool calls, and deplete its token budget before completing the goal.
+Lee asks for a product comparison, a stock check and a reservation. Writing down those steps can help retain the overall goal while the assistant handles individual results.
 
-The **plan-and-execute pattern** solves this limitation by decoupling strategic planning from tactical tool execution. A specialized planner model first constructs an explicit global roadmap of sub-tasks. Dedicated executor nodes then carry out the individual steps, while a replanner monitors execution progress and updates the plan dynamically upon encountering obstacles. This separation provides superior reliability and transparency on long-horizon tasks before composing advanced [Building blocks](../03-building-blocks/chapter-plan.md).
+**Plan and execute** separates proposing a sequence from carrying out its steps. Plans may need revision when observations change. This optional pattern adds structure, but its usefulness must be tested against a simpler loop.
 
 ## Simple mental model
 
@@ -207,6 +207,12 @@ The primary vulnerability unique to plan-and-execute architectures is **plan man
 - The **planner** generates a structured roadmap; the **executor** runs scoped sub-tasks; the **replanner** dynamically adjusts remaining steps upon encountering obstacles.
 - Plan-and-execute reduces context bloat by scoping executor prompt contexts to single active steps.
 - Runtimes must sanitize step observations to prevent adversarial prompt injections from compromising master plan integrity.
+
+<details><summary>Check your understanding</summary>
+
+What changes when stock invalidates a planned reservation? The remaining plan needs revision; the initial plan is not evidence that its steps are still possible.
+
+</details>
 
 ## References
 
