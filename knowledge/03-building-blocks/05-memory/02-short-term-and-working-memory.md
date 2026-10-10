@@ -28,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-31'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -36,11 +36,9 @@ last_reviewed: '2026-08-31'
 
 ## Why this matters
 
-When an autonomous agent executes a multi-step workflow, such as debugging a test suite or conducting market research, it generates a stream of intermediate observations, user clarifications, and tool call results. If the agent dumps every raw message and tool payload into an unmanaged context window, two failure modes immediately emerge: rapid exhaustion of the model token budget and loss of reasoning focus due to context distraction.
+While answering Lee, the assistant receives product data, a delivery estimate and a correction to the quantity. It needs the relevant observations for its next decision without copying every raw payload.
 
-In human cognition, working memory acts as the mental workbench that holds and manipulates the limited pieces of information necessary for immediate reasoning. In agentic AI systems, **working memory** is the structured, run-scoped portion of the context window dedicated to holding active goals, subtask progress, and intermediate variables (Packer et al., 2023; LangChain, 2024).
-
-Without disciplined short-term and working memory management, an agent risks discarding critical user constraints when the conversation grows long, or hallucinating false assumptions when intermediate tool outputs overwhelm its attention. Mastering working memory design allows developers to build agents that maintain rock-solid task focus across dozens of execution steps while strictly bounding compute and token costs.
+**Working memory** holds information useful during the current task. Distinguish its stored records from the subset supplied to a model call, and decide what survives a pause or a restart.
 
 ## Simple mental model
 
@@ -229,6 +227,12 @@ In Pass 2, short-term and working memory architectures are analyzed under **Prom
 - Context window budgeting requires deterministic token boundaries across system rules, scratchpad state, tool buffers, and dialogue.
 - Compaction techniques include sliding windows, rolling summarization, and raw tool observation pruning.
 - Working memory operates on an inspect-execute-extract-prune lifecycle to prevent token exhaustion and reasoning distraction.
+
+<details><summary>Check your understanding</summary>
+
+Must all raw tool output remain in working context? No. Retain the observations and references needed for subsequent decisions within the budget.
+
+</details>
 
 ## References
 
