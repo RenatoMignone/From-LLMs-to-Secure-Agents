@@ -1,0 +1,23 @@
+id: p1-03-04-01-openai-managed-architecture-2026
+title: Agents API architecture
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/agents-api/architecture
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Agents API separates a provider-managed harness, optional execution environment
+  and application server handling product integration and function tools.
+limitations:
+- A managed harness is one deployment choice; it does not describe every SDK or runtime.
+related_topics: []
+unit_ids:
+- P1-03-04-01
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md
+local_copy: null
+sha256: null

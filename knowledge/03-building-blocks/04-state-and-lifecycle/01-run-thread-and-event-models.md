@@ -2,25 +2,20 @@
 ---
 title: Run, thread, and event models
 unit_id: P1-03-04-01
-summary: Explains the fundamental execution hierarchy of threads, runs, turns, and
-  event streams, contrasting snapshot state accumulation with event-sourced agent
-  architectures.
+summary: Separate continuing conversations, task attempts, events and state, with
+  explicit lifecycle conventions and runtime ownership.
 prerequisites:
 - Read [Planning and reasoning](../03-planning-and-reasoning/chapter-plan.md).
 learning_objectives:
-- Differentiate between long-lived conversational Threads, active execution Runs,
-  and granular conversational Turns.
-- Model agent execution as a stream of immutable, structured Events following event-sourcing
-  principles.
-- Implement a state reducer that projects discrete event streams into coherent working
-  state snapshots.
-- Track the lifecycle state transitions of an active Run across QUEUED, IN_PROGRESS,
-  REQUIRES_ACTION, and COMPLETED states.
+- Define thread, run, turn and event conventions.
+- Distinguish state snapshots and event history.
+- Interpret lifecycle endpoints without assuming task success.
+- Separate harness, execution environment and application ownership.
 source_records:
-- p1-03-04-01-openai-agents-sdk-runs-2024
-- p1-03-04-01-langgraph-server-threads-2024
-- p1-03-04-01-microsoft-autogen-state-2024
 - p1-03-04-01-cloudevents-specification-1-0
+- p1-03-04-01-langgraph-persistence-2026
+- p1-03-04-01-openai-managed-architecture-2026
+- p1-03-04-01-openai-deprecations-2026
 visual_assets:
 - assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png
 - assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png
@@ -30,7 +25,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-24'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -38,175 +33,117 @@ last_reviewed: '2026-08-24'
 
 ## Why this matters
 
-When an autonomous agent interacts with users, tools, and external services over hours or days, it needs a reliable way to organize its ongoing work. If a system models every interaction as an isolated, stateless function call, it cannot maintain context across successive user prompts, pause execution while waiting for human authorization, or recover gracefully from server crashes.
+Lee asks the shop assistant about an order, then returns later with a delivery question. The application needs to distinguish the continuing conversation from the work performed for each request. It also needs a record of whether a stock lookup finished or a run stopped while waiting.
 
-To build durable, auditable systems, modern agent architectures structure execution into distinct structural layers (OpenAI, 2024; LangChain, 2024; Microsoft, 2024; CNCF, 2024). **Run, thread, and event models** provide the foundational abstractions for managing state and lifecycle. By distinguishing between long-lived conversation containers (threads), active execution instances (runs), and atomic state mutations (events), developers can build agents that support multi-turn workflows, asynchronous tool execution, and comprehensive auditability.
+This chapter names those pieces and follows one small execution. The names are a framework-neutral teaching model; implementations can use different objects and state labels.
 
 ## Simple mental model
 
-Think of a patient receiving medical care at a hospital:
+A **thread** is a continuing record that groups related interactions. A **run** is one attempt to carry out a task. A **turn** is an interaction step; frameworks differ on whether they count user exchanges, model calls or another unit. Define the convention before comparing turn counts.
 
-1. **The medical chart (the thread):** a permanent folder containing the complete patient history, test results, and past doctor consultations across all visits.
-2. **The clinic appointment (the run):** a specific active session where a physician examines the patient, orders laboratory tests, and prescribes treatments.
-3. **The dialogue exchange (the turn):** the question asked by the patient and the direct answer provided by the doctor.
-4. **The timestamped log entry (the event):** discrete, immutable records added to the chart, such as "Vital signs recorded at 09:15", "Blood panel ordered at 09:20", and "Prescription issued at 09:30".
+For Lee, the order conversation is the thread. Answering the first lookup is one run; answering tomorrow's delivery question is another. A run may contain several model and tool steps.
 
-Separating the long-lived record (thread) from the active consultation (run) and atomic actions (events) ensures that multiple specialists can collaborate safely without losing past context.
+![A conversation folder groups runs, and each run contains smaller interaction steps.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png)
 
-## Position in the agent workflow
-
-The state and lifecycle subsystem sits directly beneath planning, reasoning, and tool execution. While the planner decides what tasks to perform, the state subsystem tracks where the agent is in its overall lifecycle, what variables have been produced, and which events have transpired.
-
-When an external request arrives, the runtime assigns it to a thread, instantiates a new run, and streams state transitions as structured events. This enables user interfaces to render real-time progress, supervisors to pause execution at authorization boundaries, and databases to store durable snapshots.
+*Figure 1. The hierarchy is this chapter's organizational model. A framework need not expose all three levels with these names.*
 
 ## How it works
 
-The execution hierarchy operates across four distinct structural levels:
+### Separate records from execution
 
-### 1. The execution hierarchy (Thread, Run, Turn, Event)
+**State** is the information the runtime uses to decide what to do next, such as a pending tool request or the latest stock count. An **event** records that something happened, such as a tool result arriving. An event may trigger a state change, but the event and the current state answer different questions.
 
-- **Thread:** The top-level persistent container identified by a unique `thread_id` (OpenAI, 2024; LangChain, 2024). A thread encapsulates the cumulative conversation history, working variables, and domain context for a long-lived user session or project.
-- **Run:** An active invocation of the agent within a thread, identified by a `run_id`. A run executes a specific objective, coordinating model calls and tool dispatches until a terminal state is reached.
-- **Turn:** A single request-response exchange within a run, typically initiated by a user message and concluded by an assistant answer.
-- **Event:** An atomic, immutable record of an occurrence within a run, such as `user.message`, `tool.call.requested`, `tool.result.received`, or `run.state.changed` (CNCF, 2024).
+A thread identifier groups records; it is not an access credential. A run identifier distinguishes attempts. Event identifiers help distinguish individual records, and sequence numbers can express order within the application's event stream.
 
-![A nested agent-execution hierarchy shows a thread containing a run, a turn, and its event stream.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/01-run-thread-turn-hierarchy.png)
+CloudEvents defines an event envelope with metadata such as an identifier, source and type. It does not define an agent's run states or require event sourcing. The example uses its own event objects, not a conforming CloudEvents serializer. [CloudEvents 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md).
 
-*Figure 1. Execution hierarchy. A persistent thread owns individual runs; each run contains turns and the atomic events emitted while it works.*
+### Choose how to remember progress
 
-### 2. Event sourcing versus snapshot state accumulation
+With **snapshot storage**, the application saves selected current state. With **event sourcing**, the persisted event history is the source from which state is reconstructed. A **reducer** applies an event to state. A reducer can also be useful in a system whose event log is only for diagnostics.
 
-Runtimes generally track state using one of two models:
+Rebuilding local state from recorded events does not repeat or undo a remote reservation. External outcomes need their own receipts and reconciliation. Replaying a record should not silently perform a fresh side effect.
 
-1. **State snapshot model:** The runtime stores the current state object (such as a dictionary of variables and a list of messages) and overwrites it after each step. While simple to implement, this approach loses the granular history of intermediate decisions.
-2. **Event sourcing model:** The runtime treats the append-only event stream as the single source of truth (CNCF, 2024). The current working state is computed dynamically by a **state reducer** function that folds successive events into an accumulated snapshot:
+![Event records pass through a reducer to update a state snapshot.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png)
 
-$$	ext{State}_{t} = 	ext{Reduce}(	ext{State}_{t-1}, 	ext{Event}_t)$$
+*Figure 2. Follow the records into the reducer. Durable reconstruction requires an actual persistence backend, retained events and compatible reducer code.*
 
-Event sourcing provides complete auditability, simplified time-travel debugging, and reproducible state reconstruction.
+LangGraph distinguishes checkpointers for thread-scoped graph state from stores for cross-thread application data. An in-memory implementation loses its contents when the process exits. [Persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
 
-![Event cards flow through a robot state reducer into a durable state snapshot.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/02-event-stream-and-state-accumulation.png)
+### Define a lifecycle that matches the application
 
-*Figure 2. Event accumulation. The reducer applies an ordered stream of events to form the current durable state snapshot.*
+The illustration and mock use these application-defined labels:
 
-### 3. The run lifecycle state machine
+| Label | Meaning in this example |
+| --- | --- |
+| QUEUED | A run is waiting to start |
+| IN_PROGRESS | The runtime is processing steps |
+| REQUIRES_ACTION | A named external result or decision is needed |
+| COMPLETED | The runtime reached its normal endpoint |
+| FAILED | Processing ended with an error |
 
-Every active run moves through a standardized lifecycle (OpenAI, 2024):
+The diagram also shows cancellation as a possible terminal outcome. The small script does not implement cancellation; the [termination chapter](04-termination-cancellation-and-cleanup.md) develops that contract. Define owners, deadlines and permitted transitions for every waiting state.
 
-- **`QUEUED`:** The run is created and waiting in the thread execution queue.
-- **`IN_PROGRESS`:** The model is actively inferring thoughts, generating text, or assembling tool arguments.
-- **`REQUIRES_ACTION`:** The run is paused awaiting an external event, such as a tool execution response from a sandbox or approval from a human supervisor.
-- **`COMPLETED`:** The run has successfully satisfied the user prompt and finalized all state changes.
-- **`FAILED / CANCELLED`:** The run terminated abnormally due to an unhandled exception, timeout, or explicit user cancellation.
+![An example run lifecycle includes queued, in progress, waiting for action, completed and abnormal terminal outcomes.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/03-run-lifecycle-state-machine.png)
 
-![An agent run moves through queued, in progress, requires action, completed, and failed or cancelled states.](../../../assets/images/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/03-run-lifecycle-state-machine.png)
+*Figure 3. These labels illustrate lifecycle design rather than a universal standard. COMPLETED records a runtime endpoint; separate evaluation establishes whether the user received a correct answer.*
 
-*Figure 3. Run lifecycle. A run can pause for an action or approval, but ends through a completed or failed terminal state.*
+### Name the owner of the runtime
 
-## Main variants
+An application can own its model-and-tool loop or call a provider-managed harness. A **harness** is the surrounding software that runs the loop and supplies its operating context. The execution environment, where commands and files are handled, can have a different owner from the harness.
 
-1. **Serverless Hosted Threads:** Managed platforms (such as the OpenAI Agents SDK and Assistants API) store thread messages and run status remotely, exposing polling or streaming endpoints (OpenAI, 2024).
-2. **Graph-Based Checkpointed State:** Frameworks like LangGraph represent state as typed schemas associated with `thread_id` keys, persisting state deltas to relational databases or Redis checkpointers after every node transition (LangChain, 2024).
-3. **Multi-Agent Message Buses:** Systems like AutoGen model conversation state as shared append-only message logs distributed among participating worker agents (Microsoft, 2024).
+The current OpenAI Agents API documents a provider-managed harness, optional environment and application server. The application still handles its function tools and product integration. This differs from treating every SDK run as a remotely stored hosted thread. [Agents API architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture).
+
+The former Assistants API is a historical example: its documented shutdown date was 2026-08-26. Its status vocabulary should not define all current runtime designs. [Deprecations](https://developers.openai.com/api/docs/deprecations).
+
+## Worked example
+
+The [offline runtime](../../../examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py) keeps a thread across two simulated requests. It emits events, records a mocked tool result and updates variables through a reducer. It demonstrates grouping and projection of events into state.
 
 ## Minimal implementation
 
-The following Python snippet demonstrates the core execution hierarchy, event emission, and state reducer logic. The [full runnable example](../../../examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py) demonstrates multi-turn event streaming, tool dispatch, and state reduction.
-
-<details>
-<summary>Expand minimal Python implementation</summary>
+<details><summary>Expand minimal Python implementation</summary>
 
 ```python
-from dataclasses import dataclass, field
-from enum import Enum, auto
-from typing import Any, Dict, List
-
-class EventType(Enum):
-    USER_MESSAGE = "user.message"
-    TOOL_COMPLETED = "tool.completed"
-    AGENT_MESSAGE = "agent.message"
-
-@dataclass
-class Event:
-    event_id: str
-    event_type: EventType
-    thread_id: str
-    run_id: str
-    payload: Dict[str, Any]
-
-@dataclass
-class ThreadState:
-    thread_id: str
-    variables: Dict[str, Any] = field(default_factory=dict)
-    messages: List[Dict[str, str]] = field(default_factory=list)
-    version: int = 0
-
-    def apply_event(self, event: Event) -> None:
-        self.version += 1
-        if event.event_type == EventType.USER_MESSAGE:
-            self.messages.append({"role": "user", "content": event.payload.get("content", "")})
-        elif event.event_type == EventType.AGENT_MESSAGE:
-            self.messages.append({"role": "assistant", "content": event.payload.get("content", "")})
-        elif event.event_type == EventType.TOOL_COMPLETED:
-            key = event.payload.get("store_as")
-            if key:
-                self.variables[key] = event.payload.get("result")
+if event.event_type == EventType.TOOL_EXECUTION_COMPLETED:
+    name = event.payload.get("store_as")
+    if name:
+        self.variables[name] = event.payload.get("result")
 ```
 
 </details>
 
-Run [thread_run_event_runtime.py](../../../examples/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models/thread_run_event_runtime.py) to inspect the complete runtime trace, event log emission, and state reduction.
-
-## Data flow and state changes
-
-1. **Thread initialization:** The client establishes or retrieves a `thread_id`.
-2. **Run dispatch:** A user prompt triggers a new `Run` assigned to the thread.
-3. **Event emission:** The runtime emits `user.message` and sets run status to `IN_PROGRESS`.
-4. **Action suspension:** If a tool is required, the run emits `tool.call.requested` and transitions to `REQUIRES_ACTION`.
-5. **Observation injection:** The tool result is emitted as `tool.execution.completed`, updating thread working variables via the state reducer.
-6. **Finalization:** The model emits `agent.message`, and the run transitions to `COMPLETED`.
-
-## Trust boundaries
-
-- **Client to thread boundary:** Thread IDs must be authenticated and authorized. An unauthenticated client must not be allowed to inspect or inject messages into another tenant thread.
-- **Run parameter injection:** Parameters passed during run creation (such as temperature, model overrides, or tool permissions) must be validated against system security policies before execution begins.
-- **Event stream integrity:** Event logs must be append-only and cryptographically auditable to prevent tampering with historical execution traces.
-
-## Reliability failures
-
-- **Thread context bloat:** Unbounded accumulation of turns within a thread exhausts token limits, requiring proactive summarization or context truncation.
-- **Dangling runs:** A run paused in `REQUIRES_ACTION` can remain stuck indefinitely if an external webhook or human approver never responds, necessitating automated timeouts.
-- **State desynchronization:** In distributed deployments, concurrent runs modifying the same thread without optimistic concurrency controls can overwrite each other state variables.
+The script uses process-local dictionaries and a mocked model. It does not persist across crashes, verify task quality or implement distributed concurrency. Its recorded plan text is a mock runtime event, not access to a model's hidden reasoning.
 
 ## Limitations and trade-offs
 
-- **Storage overhead:** Storing full event logs for millions of long-lived threads requires scalable event storage infrastructure.
-- **Reducer latency:** Replaying lengthy event histories to reconstruct state snapshots can introduce cold-start latency unless intermediate checkpoints are cached.
-- **Schema evolution:** As agent code evolves, past event schemas must remain backward-compatible with newer state reducer versions.
+Retained histories can grow beyond a model request's context budget. A durable store and a context-selection policy solve different problems. Concurrent writers also need an explicit ordering or conflict policy. These responsibilities continue in [checkpoints and resumption](02-checkpoints-interrupts-and-resumption.md) and the optional concurrency chapter.
+
+Run state tracks execution progress. Reusable [memory](../05-memory/chapter-plan.md) helps future decisions, while [planning](../03-planning-and-reasoning/chapter-plan.md) chooses the work to attempt.
 
 ## Security preview
 
-In Pass 2, thread and event architectures are evaluated against **Thread Hijacking, State Variable Tampering, and Cross-Tenant State Leakage**. Attackers attempt to forge thread identifiers, inject malicious state deltas, or exploit unauthenticated event streams to gain unauthorized access. We analyze cryptographically signed state tokens, tenant-isolated checkpointers, and invariant assertion gates in [Instructions, context, and model security](../../07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
-
-## Open research questions
-
-- How can distributed agent runtimes achieve exactly-once event processing guarantees across unreliable network partitions without blocking real-time user streaming?
-- What standardized event schemas can enable seamless thread interoperability across heterogeneous frameworks (such as LangGraph, AutoGen, and the OpenAI Agents SDK)?
+State identifiers, stored content and event delivery introduce boundaries studied in [instructions, context and model security](../../07-security-by-component-and-workflow-stage/01-instructions-context-and-models/chapter-plan.md).
 
 ## Key takeaways
 
-- Agent execution is structured hierarchically across persistent Threads, active Runs, conversational Turns, and atomic Events.
-- Event sourcing provides complete auditability and replayability by treating the append-only event log as the source of truth.
-- Run state machines explicitly track execution across `QUEUED`, `IN_PROGRESS`, `REQUIRES_ACTION`, and `COMPLETED` phases.
-- Robust state management requires authenticated thread boundaries, timeout guards on suspended runs, and optimistic concurrency controls.
+- Define thread, run and turn conventions for the chosen runtime.
+- Events describe occurrences; state supports the next decision.
+- Durable storage and event replay do not guarantee correct task outcomes.
+- Name who owns the harness, tool handlers and execution environment.
+
+<details><summary>Check your understanding</summary>
+
+Does a COMPLETED run prove Lee's answer was correct? No. It reports an execution endpoint. Task evaluation needs its own evidence.
+
+</details>
 
 ## References
 
-- OpenAI. *Running Agents: Threads, Runs, and Turn Lifecycle*. OpenAI Agents SDK Documentation, 2024. [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/running_agents/).
-- LangChain Community. *LangGraph Server: Threads, Runs, and Event Streaming*. LangGraph Documentation, 2024. [LangGraph Server](https://langchain-ai.github.io/langgraph/concepts/langgraph_server/).
-- Microsoft Research. *AutoGen: Managing Conversation State and Event Streams*. AutoGen Documentation, 2024. [AutoGen State](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/index.html).
-- CNCF Serverless Working Group. *CloudEvents Specification 1.0.2*. Cloud Native Computing Foundation, 2024. [CloudEvents Spec](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md).
+- CNCF. [CloudEvents 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md).
+- LangChain. [LangGraph persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
+- OpenAI. [Agents API architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture) and [deprecations](https://developers.openai.com/api/docs/deprecations).
+- Living documentation checked 2026-10-10.
 
 ---
 
-[Next Unit: Checkpoints, interrupts, and resumption →](chapter-plan.md)
+[Next unit: Checkpoints, interrupts, and resumption →](02-checkpoints-interrupts-and-resumption.md)

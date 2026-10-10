@@ -1,0 +1,23 @@
+id: p1-03-04-01-langgraph-persistence-2026
+title: Persistence
+authors_or_organization: LangChain
+date: null
+source_type: official-documentation
+canonical_url: https://docs.langchain.com/oss/python/langgraph/persistence
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Checkpointers persist thread-scoped graph state; stores hold data across threads.
+limitations:
+- Checkpoint state and telemetry have different purposes; an in-memory backend does
+  not survive process exit.
+related_topics: []
+unit_ids:
+- P1-03-04-01
+used_in:
+- knowledge/03-building-blocks/04-state-and-lifecycle/01-run-thread-and-event-models.md
+local_copy: null
+sha256: null
