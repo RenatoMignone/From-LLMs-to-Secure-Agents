@@ -13,10 +13,12 @@ learning_objectives:
 source_records:
 - p1-03-07-01-function-calling
 - p1-03-07-01-sdk-tools
+- p1-03-07-01-programmatic-tools-2026
 visual_assets:
 - assets/images/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/01-concept.webp
 example_paths:
 - examples/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/main.py
+- examples/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/programmatic_tools.py
 pass: architecture
 learning_path: main
 status: complete
@@ -68,6 +70,16 @@ A **dispatcher** is application code that maps a requested name to its handler, 
 **Selection** chooses which available capability to request now. **Capability discovery** finds descriptions that were not already loaded. A large menu consumes context and can contain overlapping descriptions. Our shop could first expose catalog and delivery groups, then load delivery details only when the user asks about shipping. Discovery still needs a way to say that no matching capability exists.
 
 The Agents SDK derives function-tool schemas from Python signatures and descriptions from docstrings. Its tool namespace and deferred-loading facilities can organize larger menus. These are SDK features, not a requirement that every agent discover tools dynamically. [SDK tools](https://openai.github.io/openai-agents-python/tools/).
+
+### Coordinate tools through code
+
+**Programmatic tool calling** lets a model propose code that coordinates several tools. The code can loop over products, call existing handlers and return a small summary. In a direct tool loop, the model sees each result and chooses the next request; in a programmatic loop, code can make some of those decisions. The dispatcher still checks each underlying call.
+
+For Lee's shop, code can read stock and calculate a quote, then return whether the requested quantity was available at lookup time. It must preserve failures and units instead of silently dropping unsuccessful calls. Filtering results can reduce what enters model context, but later questions may need fields that were omitted. Compare task success, latency and total cost with the direct baseline before choosing this design.
+
+OpenAI's implementation uses a JavaScript orchestration tool; underlying functions and MCP tools keep their execution locations. Code orchestration does not grant new permissions or turn a quote into an order. [Programmatic tool calling](https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling).
+
+The [offline Python comparison](../../../examples/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch/programmatic_tools.py) uses the same dispatcher as the direct example. It demonstrates aggregation and failure preservation, without implementing the provider API or measuring performance.
 
 ## Worked example
 
@@ -132,10 +144,18 @@ Capability availability and a valid schema do not establish authority to act. [I
 - Validate the request before dispatch and correlate the result with its call ID.
 - Discovery loads capability descriptions; selection chooses an available capability.
 
+<details><summary>Check your understanding</summary>
+
+Does a valid tool schema prove the requested operation is useful? No. Schema conformance checks structure; task relevance and authority need separate decisions.
+
+</details>
+
 ## References
 
 - OpenAI. [Function calling](https://developers.openai.com/api/docs/guides/function-calling). Living API documentation, verified for this run.
 - OpenAI. [Agents SDK tools](https://openai.github.io/openai-agents-python/tools/). Living Python SDK documentation, verified for this run.
+
+- OpenAI. [Programmatic tool calling](https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling). Living documentation, verified October 10, 2026.
 
 ---
 

@@ -1,0 +1,24 @@
+id: p1-03-07-01-programmatic-tools-2026
+title: Programmatic tool calling
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- JavaScript orchestration coordinates tools and can aggregate outputs before returning
+  to model context.
+limitations:
+- Underlying tool execution locations and permissions still apply; performance benefits
+  are workload dependent.
+related_topics: []
+unit_ids:
+- P1-03-07-01
+used_in:
+- knowledge/03-building-blocks/07-tools-and-function-calling/01-tool-capabilities-schemas-selection-and-dispatch.md
+local_copy: null
+sha256: null
