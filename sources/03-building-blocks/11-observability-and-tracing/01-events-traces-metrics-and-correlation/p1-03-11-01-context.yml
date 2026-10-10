@@ -1,0 +1,23 @@
+id: p1-03-11-01-context
+title: Context propagation
+authors_or_organization: OpenTelemetry
+date: null
+source_type: official-documentation
+canonical_url: https://opentelemetry.io/docs/concepts/context-propagation/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Context propagation transports trace context across service boundaries so operations
+  can be correlated.
+limitations:
+- Trace context is not authorization and requires instrumentation at each boundary.
+related_topics: []
+unit_ids:
+- P1-03-11-01
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation.md
+local_copy: null
+sha256: null

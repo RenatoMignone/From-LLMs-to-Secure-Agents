@@ -1,0 +1,24 @@
+id: p1-03-11-01-metrics
+title: Metrics
+authors_or_organization: OpenTelemetry
+date: null
+source_type: official-documentation
+canonical_url: https://opentelemetry.io/docs/concepts/signals/metrics/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Metric instruments include counters, gauges and histograms; aggregation summarizes
+  measurements and attribute cardinality affects streams.
+limitations:
+- Aggregates do not reconstruct individual runs; instrument and exporter semantics
+  must be configured.
+related_topics: []
+unit_ids:
+- P1-03-11-01
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation.md
+local_copy: null
+sha256: null

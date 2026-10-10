@@ -1,0 +1,23 @@
+id: p1-03-11-01-sdk-tracing
+title: Tracing
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://openai.github.io/openai-agents-python/tracing/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Agents SDK tracing records model generations, tool calls and handoffs and can be
+  configured or extended with processors.
+limitations:
+- SDK IDs and span schema differ from OpenTelemetry; this mock is not an OTLP exporter.
+related_topics: []
+unit_ids:
+- P1-03-11-01
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation.md
+local_copy: null
+sha256: null

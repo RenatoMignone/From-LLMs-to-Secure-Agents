@@ -1,0 +1,23 @@
+id: p1-03-11-01-genai
+title: GenAI agent and framework spans
+authors_or_organization: OpenTelemetry
+date: null
+source_type: official-documentation
+canonical_url: https://raw.githubusercontent.com/open-telemetry/semantic-conventions-genai/main/docs/gen-ai/gen-ai-agent-spans.md
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Development-stage conventions describe agent, workflow and execute-tool spans and
+  associated operation attributes.
+limitations:
+- Conventions are in development; pin a version and preserve a stable project schema.
+related_topics: []
+unit_ids:
+- P1-03-11-01
+used_in:
+- knowledge/03-building-blocks/11-observability-and-tracing/01-events-traces-metrics-and-correlation.md
+local_copy: null
+sha256: null
