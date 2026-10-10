@@ -1,0 +1,24 @@
+id: p1-03-07-02-errors
+title: 'Tools: timeouts and errors'
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://openai.github.io/openai-agents-python/tools/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Async function tools support timeout configuration and errors can be returned to
+  the model or raised to the runtime.
+limitations:
+- Handler timeout support and provider behavior vary; cancellation does not establish
+  external outcome.
+related_topics: []
+unit_ids:
+- P1-03-07-02
+used_in:
+- knowledge/03-building-blocks/07-tools-and-function-calling/02-results-failures-side-effects-and-confirmation.md
+local_copy: null
+sha256: null

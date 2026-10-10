@@ -1,0 +1,24 @@
+id: p1-03-07-02-idempotency
+title: Idempotent requests
+authors_or_organization: Stripe
+date: null
+source_type: official-documentation
+canonical_url: https://docs.stripe.com/api/idempotent_requests
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Stripe API v1 records the first executed response for an idempotency key and compares
+  parameters on reuse; retention limits apply.
+limitations:
+- These are Stripe semantics, not a universal exactly-once guarantee; mock reservation
+  storage is in-memory.
+related_topics: []
+unit_ids:
+- P1-03-07-02
+used_in:
+- knowledge/03-building-blocks/07-tools-and-function-calling/02-results-failures-side-effects-and-confirmation.md
+local_copy: null
+sha256: null
