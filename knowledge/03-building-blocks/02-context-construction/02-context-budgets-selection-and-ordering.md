@@ -13,7 +13,7 @@ learning_objectives:
   packing.
 - Structure context ordering using primacy and recency anchors to counteract Lost
   in the Middle attention degradation.
-- Formulate deterministic eviction and truncation policies that prevent silent degradation
+- Explain eviction and truncation policies and measure the information they discard
   of safety invariants.
 source_records:
 - p1-03-02-02-anthropic-context-budget-2024
@@ -27,7 +27,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -35,16 +35,16 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-Although modern large language models advertise context windows of 128k, 1M, or even 2M tokens, filling a context window to its theoretical ceiling causes severe operational penalties. Large prompts multiply Time to First Token (TTFT), inflate per-turn inference costs, and introduce subtle cognitive degradation where the model fails to follow intricate tool formatting instructions.
+The shop's policy handbook and conversation history cannot both be copied into every model request without limit. The application needs room for the requested answer and for possible tool-call output.
 
-Production agent engineering requires rigorous **context budgeting, selection, and positional ordering** (Anthropic, 2024; Google, 2024; Liu et al., 2023). By establishing quantitative token allocations across system rules, knowledge retrieval, and execution traces, runtimes prevent unexpected context exhaustion while packing the highest-relevance information into optimal attention zones.
+A **context budget** allocates the available space among input sources and output. Select evidence for the task and measure what gets lost. Model-specific limits and token counting matter more than a fixed universal allocation.
 
 ## Simple mental model
 
 Think of packing a lightweight expedition backpack with a strict 20 kg weight limit:
 
 1. **Survival Gear (System Reserve - Fixed Weight)**: First-aid kit, water purification tablets, and emergency beacon (5 kg). You never remove these items regardless of trail conditions.
-2. **Trail Rations (Completion Headroom - Guaranteed Reserve)**: Food rations reserved for the upcoming hike (4 kg). If you fill the bag completely with rocks, you will starve on the return trip.
+2. **Trail rations (output allocation):** Reserve space for the intended output. This allocation does not establish that every possible response will fit.
 3. **Regional Maps & Field Guides (RAG Evidence - Dynamic Budget)**: Topographic maps for the specific valley you are traversing (7 kg). If you have ten guidebooks, you pack only the two with the highest trail detail and leave the rest at camp.
 4. **Trail Journal (Dialogue History - Sliding Window)**: Daily log entries (3 kg). As the journal fills up, older entries are summarized or archived to make room for today's field notes.
 5. **Top Pocket Access (Recency Anchor)**: Compass and immediate trail fork directions placed at the very top flap for instant, unobstructed retrieval.
@@ -57,7 +57,7 @@ The figures below illustrate token budget partitioning across five functional co
 
 ![Figure 1: Token Budget Partitioning in an LLM Context Window](../../../assets/images/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering/01-context-budget-partitioning.png)
 
-*Figure 1. Token Budget Partitioning in an LLM Context Window. The runtime partitions the maximum context window into reserved fixed allocations and dynamic budgets, guaranteeing completion headroom.*
+*Figure 1. The example partitions input and output budgets. Check actual model accounting and output limits; reserved headroom is a planning allowance, not a completion guarantee.*
 
 ![Figure 2: Context Ordering and Attention Dynamics](../../../assets/images/03-building-blocks/02-context-construction/02-context-budgets-selection-and-ordering/02-context-ordering-and-attention-anchors.png)
 
@@ -91,9 +91,9 @@ When retrieved documents or conversation histories exceed their assigned budgets
 
 ### 3. Positional ordering and attention anchors
 
-To overcome the U-shaped attention dip ("Lost in the Middle") identified by Liu et al. (2023), prompts must be sequenced intentionally:
+Liu et al. (2023) observed position effects in the models and tasks they tested. Use that result to motivate ordering experiments, rather than assuming one arrangement fixes every model:
 
-1. **Primacy Anchor (Index 0)**: System role, core constraints, and platform security policies. High initial attention weights ensure these rules are permanently established.
+1. **Instruction placement:** Keep application instructions clearly identified using the model interface. Position can influence behavior but does not enforce authorization or guarantee instruction compliance.
 2. **Middle Body Zone**: Retrieved RAG documents, historical tool execution logs, and background conversation turns. Structured XML delimiters (`<doc id='...'>`, `<tool_trace>`) are injected around each item to maintain clear structural separation during middle-zone attention decay.
 3. **Recency Anchor (Tail)**: The active user query, current step execution plan, and a concise reminder of the required JSON output schema. Placing formatting reminders at the tail leverages the recency attention spike, drastically reducing JSON syntax errors.
 
@@ -165,7 +165,7 @@ The complete runnable implementation is available in [budget_packager.py](../../
 ## Trust boundaries
 
 - **Budget Starvation Boundary**: Malicious or oversized third-party tool outputs must not be permitted to consume the entire dynamic budget and starve critical system instructions.
-- **Evidence Containment**: All chunks packed into the middle body must retain strict XML wrapper boundaries to prevent prompt injection payloads from escaping into surrounding prompt text.
+- **Evidence boundary:** Label retrieved material separately from application instructions. XML delimiters are formatting aids; they do not enforce authority or guarantee resistance to injected instructions.
 - **Schema Anchor Integrity**: The tail formatting reminder must be injected directly by the runtime control plane and cannot be modified by user or tool content.
 
 ## Reliability failures
@@ -191,14 +191,20 @@ In Pass 2, context budgeting is evaluated against **Context Flooding and Denial-
 
 ## Key takeaways
 
-- Total context capacity must be proactively partitioned into System Reserve, Completion Headroom, Dynamic Evidence, and History Budgets.
-- Completion headroom must always be guaranteed to prevent catastrophic mid-generation truncation.
+- The example divides capacity among instructions, evidence, history and output headroom; other budget policies can fit different tasks.
+- Reserve and check output space using the model-specific request contract; budget exhaustion still needs a named outcome.
 - Knowledge selection uses greedy knapsack ranking by relevance to maximize information density under token budgets.
 - Context ordering follows a U-shaped attention profile: place core policies at the primacy anchor (index 0) and immediate instructions at the recency anchor (tail).
 
+<details><summary>Check your understanding</summary>
+
+What must be counted besides retrieved document tokens? Instructions, messages, tool definitions and other model-specific input, plus the permitted output allocation.
+
+</details>
+
 ## References
 
-- Anthropic. *Managing Context Budgets and Information Architecture in Long-Running Agents*. Anthropic Engineering Insights, 2024. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+- Anthropic. *Effective context engineering for AI agents*. September 29, 2025. [Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 - Google. *Session State, Context Windows, and Memory Budgeting in Agent Frameworks*. Google Agent Development Kit Documentation, 2024. [Google ADK](https://adk.dev/agents/).
 - Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. *Positional Sensitivity and Context Ordering in Language Model Inference*. Transactions of the Association for Computational Linguistics (TACL), 2023. [arXiv:2307.03172](https://arxiv.org/abs/2307.03172).
 
