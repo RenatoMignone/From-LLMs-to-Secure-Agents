@@ -112,6 +112,12 @@ The identities used by [execution environments](../09-execution-environments/cha
 - Preserve delegation relationships and record the policy decision.
 - Tool availability, login and access authority answer different questions.
 
+<details><summary>Check your understanding</summary>
+
+Does a successful login grant access to every order? No. The resource service must evaluate the subject, actor, action and resource.
+
+</details>
+
 ## References
 
 - IETF. [RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749.html), 2012. Foundational roles and concepts; later updates apply to deployment guidance.
