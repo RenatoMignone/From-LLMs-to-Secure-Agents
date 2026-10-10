@@ -111,6 +111,12 @@ Confirmation, duplicate handling and authority are separate parts of the system.
 - Preserve the same operation key across retries with unchanged arguments.
 - Confirmation decides whether to proceed; execution produces the receipt.
 
+<details><summary>Check your understanding</summary>
+
+Does a timeout prove that a reservation failed? No. The operation may have committed before its response was lost.
+
+</details>
+
 ## References
 
 - Stripe. [Idempotent requests](https://docs.stripe.com/api/idempotent_requests). API v1 semantics, verified for this run.
