@@ -26,7 +26,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-21'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -208,6 +208,12 @@ In Pass 2, plan-and-execute architectures are evaluated against **Plan Injection
 - Subtasks transition through structured states (`PENDING`, `IN_PROGRESS`, `COMPLETED`, `FAILED`), making agent workflows transparent and auditable.
 - Executors run with minimal context per step, reducing token overhead and preventing reasoning drift.
 - Replanning protocols allow agents to adapt dynamically to intermediate tool failures without losing global objective alignment.
+
+<details><summary>Check your understanding</summary>
+
+Should execution continue with a step invalidated by new evidence? No. Record the new observation and revise the remaining plan before treating that step as applicable.
+
+</details>
 
 ## References
 
