@@ -2,14 +2,19 @@
 ---
 title: RAG system and ingestion
 unit_id: P1-03-06-01
-summary: Explores the foundational architecture of Retrieval-Augmented Generation (RAG) systems, comparing offline document ingestion pipelines with online query and grounded generation flows.
+summary: Explores the foundational architecture of Retrieval-Augmented Generation
+  (RAG) systems, comparing offline document ingestion pipelines with online query
+  and grounded generation flows.
 prerequisites:
 - Read [Memory versus context and state](../05-memory/01-memory-versus-context-and-state.md).
 learning_objectives:
-- Explain the dual-pipeline architecture separating offline document ingestion from online retrieval and generation.
-- Implement text extraction, semantic chunking strategies, and metadata enrichment for document corpora.
+- Explain the dual-pipeline architecture separating offline document ingestion from
+  online retrieval and generation.
+- Implement text extraction, semantic chunking strategies, and metadata enrichment
+  for document corpora.
 - Build dense vector embedding indices with approximate nearest neighbor retrieval.
-- Assemble grounded context prompts that enforce verifiable inline citations and eliminate parametric hallucinations.
+- Assemble grounded context prompts that enforce verifiable inline citations and eliminate
+  parametric hallucinations.
 source_records:
 - p1-03-06-01-lewis-rag-2020
 - p1-03-06-01-karpukhin-dpr-2020
@@ -23,7 +28,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-09-04'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -31,11 +36,9 @@ last_reviewed: '2026-09-04'
 
 ## Why this matters
 
-Pre-trained foundation models possess vast general knowledge encoded in their parametric weights. However, this parametric memory suffers from three fundamental constraints in real-world software engineering and enterprise applications: knowledge staleness (inability to reflect events after training cutoff), absence of private domain data (internal engineering wikis, private code repositories, or customer databases), and hallucination (confidently asserting plausible but fictitious facts).
+Lee asks about the shop's current return policy. The model may not know that private document or its latest revision. The application can retrieve passages and provide them with the request.
 
-To overcome these constraints, modern AI architectures employ **Retrieval-Augmented Generation (RAG)** (Lewis et al., 2020). Rather than relying entirely on internal model weights, a RAG system dynamically retrieves relevant external document passages and injects them into the model prompt context before generating a response.
-
-Connecting external document knowledge to agent reasoning bridges the gap between static model weights and dynamic enterprise reality. While [Memory](../05-memory/chapter-plan.md) tracks user interactions across sessions and [Tools](../07-tools-and-function-calling/chapter-plan.md) execute actions in external environments, RAG provides the foundational knowledge grounding layer that ensures agent responses are accurate, current, and verifiably attributed to source documents.
+**Retrieval-Augmented Generation (RAG)** combines search with generation. This chapter follows documents into an index and relevant passages into context. Correct retrieval helps an answer but does not prove it correct. Connect these records to [memory](../05-memory/chapter-plan.md) and distinguish reading evidence from acting through [tools](../07-tools-and-function-calling/chapter-plan.md).
 
 ## Simple mental model
 
@@ -46,7 +49,7 @@ Think of an open-book final examination taken by a university student:
 3. **The research index (the ingestion pipeline):** Before the exam begins, a librarian indexes every book by topic, chapter, and keyword, creating a detailed catalog.
 4. **The retrieval and citation answer (the online RAG flow):** When asked a specific policy question, the student checks the catalog, pulls the exact two relevant pages from the shelf, places them on the desk, and writes an answer citing the exact paragraph numbers.
 
-By consulting the library index and citing specific passages, the student guarantees 100% factual accuracy without memorizing every word in the building.
+Consulting the index supplies relevant passages and inspectable references. The sources, retrieval and interpretation can still be wrong.
 
 ## Position in the agent workflow
 
@@ -64,7 +67,7 @@ A production RAG system is built upon four architectural pillars: the ingestion 
 
 ### 1. The offline ingestion lifecycle
 
-The offline ingestion pipeline prepares raw unstructured documents for sub-second retrieval through five sequential stages (Karpukhin et al., 2020; LangChain, 2024):
+The following example ingestion pipeline prepares documents for indexed retrieval. Its stages and measured latency depend on document types, index design and deployment.
 
 1. **Document extraction:** Ingests raw data formats (PDFs, Markdown, HTML, API schemas, and source code files) and extracts clean plain text.
 2. **Text normalization:** Strips boilerplate, converts non-standard encodings, and normalizes whitespace while preserving logical layout.
@@ -199,6 +202,12 @@ In Pass 2, RAG systems are evaluated against **Corpus Poisoning, Access-Filter B
 - The RAG system operates via two decoupled pipelines: offline document ingestion and online query retrieval/generation.
 - Ingestion involves text extraction, semantic chunking, metadata enrichment, and dense vector embedding.
 - Grounded prompt assembly injects numbered document evidence and requires verified inline citations.
+
+<details><summary>Check your understanding</summary>
+
+Does citing a retrieved policy prove the answer correct? No. Check source version, relevance, claim support and the actual task outcome.
+
+</details>
 
 ## References
 
