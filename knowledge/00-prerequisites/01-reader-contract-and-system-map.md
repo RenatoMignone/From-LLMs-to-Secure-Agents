@@ -24,7 +24,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-06'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -192,6 +192,12 @@ When later chapters introduce distributed retries, should their delivery guarant
 - Follow a system by asking: who sent information, which running program handled it, what was remembered, and what was asked to happen next?
 - Data is the information being discussed. Control is the requested next action. A request is not automatically permission.
 - State, events, and side effects are different results. Keep them separate when reading later diagrams.
+
+<details><summary>Check your understanding</summary>
+
+Which component knows whether a reminder was delivered? The notification service observes delivery; saving the task does not establish that outcome.
+
+</details>
 
 ## References
 
