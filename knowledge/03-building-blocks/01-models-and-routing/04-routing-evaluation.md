@@ -29,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-18'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,9 +37,9 @@ last_reviewed: '2026-08-18'
 
 ## Why this matters
 
-Deploying a model router without rigorous evaluation creates hidden risks in production agent architectures. A router that aggressively routes traffic to small models can degrade task success rates and cause downstream tool failures. Conversely, an overly conservative router routes simple queries to expensive frontier models, inflating operational costs and wasting GPU capacity.
+A router sends routine shop questions to a cheaper model. The average bill falls, but some delivery answers become wrong. Cost alone cannot establish that the change helped.
 
-Systematic routing evaluation quantifies the exact trade-off between inference expenditure and agent performance (Ong et al., 2024; Chen et al., 2023). By establishing empirical benchmarks across quality recovery, invocation distributions, and latency profiles, engineering teams can continuously validate routing decisions, detect capability regressions, and tune classification thresholds against concrete Service Level Agreements (SLAs).
+**Routing evaluation** compares complete outcomes against fixed-model baselines on representative requests. Report quality, latency and cost together, including retries and fallback paths.
 
 ## Simple mental model
 
@@ -202,6 +202,12 @@ In Pass 2, model routing security expands into adversarial threat modeling. Atta
 - Key metrics include Call-Through Rate to strong models, Quality Recovery percentage, and Cost Savings relative to static frontier baselines.
 - LLM-as-a-judge evaluation requires explicit controls for position bias, verbosity bias, and self-enhancement bias.
 - Offline benchmarks must be complemented by online shadow routing to detect domain distribution shifts in production.
+
+<details><summary>Check your understanding</summary>
+
+Is a cheaper router successful if some task outcomes worsen? That depends on declared acceptance criteria. Report quality alongside complete-path cost.
+
+</details>
 
 ## References
 
