@@ -1,0 +1,24 @@
+id: p1-03-10-01-sdk-approval
+title: Human-in-the-loop
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://openai.github.io/openai-agents-python/human_in_the_loop/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Tools can declare approval requirements; interruptions identify pending calls and
+  RunState allows approval, rejection, serialization and resumption.
+limitations:
+- Framework pause/resume does not define reviewer authority, business freshness or
+  external execution correctness.
+related_topics: []
+unit_ids:
+- P1-03-10-01
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/01-human-control-approval-and-escalation.md
+local_copy: null
+sha256: null

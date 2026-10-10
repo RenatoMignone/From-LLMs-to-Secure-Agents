@@ -1,0 +1,24 @@
+id: p1-03-10-01-autogen
+title: Human-in-the-Loop
+authors_or_organization: Microsoft AutoGen
+date: null
+source_type: official-documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/human-in-the-loop.html
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- AutoGen supports immediate feedback through UserProxyAgent and feedback between
+  stopped runs with state persistence; HandoffTermination can transfer control.
+limitations:
+- An in-run UserProxyAgent blocks the team and is intended for short interactions,
+  unlike a durable external approval queue.
+related_topics: []
+unit_ids:
+- P1-03-10-01
+used_in:
+- knowledge/03-building-blocks/10-human-in-the-loop/01-human-control-approval-and-escalation.md
+local_copy: null
+sha256: null
