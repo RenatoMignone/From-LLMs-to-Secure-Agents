@@ -1,0 +1,22 @@
+id: p1-03-09-02-network
+title: None network driver
+authors_or_organization: Docker
+date: null
+source_type: official-documentation
+canonical_url: https://docs.docker.com/engine/network/drivers/none/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- The none network driver gives a container only loopback networking.
+limitations:
+- One implementation option, not a universal property of containers or browser contexts.
+related_topics: []
+unit_ids:
+- P1-03-09-02
+used_in:
+- knowledge/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup.md
+local_copy: null
+sha256: null

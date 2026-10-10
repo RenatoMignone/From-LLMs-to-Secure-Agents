@@ -1,0 +1,24 @@
+id: p1-03-09-02-resources
+title: Resource constraints
+authors_or_organization: Docker
+date: null
+source_type: official-documentation
+canonical_url: https://docs.docker.com/engine/containers/resource_constraints/
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Containers have no resource constraints by default; CPU and memory limits can be
+  configured at runtime.
+limitations:
+- Specific runtime limits do not cover all application budgets, deadlines or remote
+  charges.
+related_topics: []
+unit_ids:
+- P1-03-09-02
+used_in:
+- knowledge/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup.md
+local_copy: null
+sha256: null

@@ -1,0 +1,24 @@
+id: p1-03-09-02-browser-contexts
+title: 'Isolation: browser contexts'
+authors_or_organization: Microsoft Playwright
+date: null
+source_type: official-documentation
+canonical_url: https://playwright.dev/python/docs/browser-contexts
+doi: null
+version: null
+accessed: '2026-10-10'
+last_verified: '2026-10-10'
+status: checked
+claims_supported:
+- Browser contexts separate cookies and browser storage and can represent multiple
+  users in one browser.
+limitations:
+- Browser state isolation is not a VM boundary and does not undo actions at remote
+  websites.
+related_topics: []
+unit_ids:
+- P1-03-09-02
+used_in:
+- knowledge/03-building-blocks/09-execution-environments/02-browsers-files-networks-resources-and-cleanup.md
+local_copy: null
+sha256: null
