@@ -25,7 +25,7 @@ example_paths: []
 pass: architecture
 learning_path: main
 status: complete
-last_reviewed: '2026-08-15'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -33,9 +33,9 @@ last_reviewed: '2026-08-15'
 
 ## Why this matters
 
-An agent that cannot reliably stop is a severe operational hazard. Left without strict termination criteria, autonomous loops can burn through thousands of dollars in API credits, hammer third-party servers with duplicate requests, or corrupt data by thrashing repeatedly across failing steps.
+A stock service keeps failing. The assistant needs to stop trying, report what remains unknown and release its temporary resources. It also needs to stop when Lee cancels the request.
 
-Conversely, an agent that terminates too aggressively will abandon complex multi-step tasks at the first sign of friction. Managing the complete lifecycle of an agent run, from context initialization and active turns to pause states, timeout handling, and graceful termination, is a foundational requirement for production reliability, cost containment, and system safety.
+A run therefore needs named outcomes, deadlines and resource budgets. Stopping the local loop and stopping a remote operation are separate responsibilities.
 
 ## Simple mental model
 
@@ -191,7 +191,7 @@ class ManagedAgentRuntime:
 
 - **OpenAI Agents SDK**: Implements `Runner.run()` and `RunContext` primitives that govern message loops, track token usage, handle handoffs, and manage graceful run termination.
 - **LangGraph Checkpointers**: Saves execution state graphs to PostgreSQL or SQLite after each node. Graph execution can be paused for days waiting for external events and resumed with full state fidelity.
-- **Temporal & Inngest**: Used by enterprise agent systems to provide durable workflow execution, automatic retries, exponential backoffs, and guaranteed run cleanup across distributed clusters.
+- **Durable workflow runtimes** can persist progress and schedule retries. Their cancellation and cleanup contracts must be checked separately; durable execution does not guarantee every external effect completes.
 
 ## Data flow and state changes
 
@@ -207,7 +207,7 @@ Trace the state changes during an aborted agent run due to turn exhaustion:
 ## Trust boundaries
 
 1. **Lifecycle Control Boundary**: Termination checks must be enforced strictly in the host runtime, never by trusting the model to count its own steps or token usage.
-2. **Resource Cleanup Boundary**: When a run terminates (especially upon failure or abort), the host must guarantee that temporary sandboxes, database transactions, and open sockets are torn down immediately to prevent resource exhaustion.
+2. **Resource cleanup ownership:** Name the component responsible for releasing each resource. Local finalizers can fail or be skipped after process termination; remote resources need lifecycle reconciliation.
 3. **Audit Log Immutability**: The final state, token metrics, and termination reasons must be written to tamper-evident telemetry storage for security post-mortems.
 
 ## Reliability failures
@@ -246,6 +246,12 @@ Uncontrolled lifecycles are a primary target for resource-exhaustion denial of s
 - An agent run moves through explicit states: `CREATED`, `RUNNING`, `PAUSED`, `SUCCEEDED`, `ABORTED`, and `FAILED`.
 - Multi-layered termination conditions (model signal, turn budget, token budget, wall-clock timeout, policy invariants) are mandatory to prevent runaway systems.
 - Robust runtimes serialize state at checkpoints and enforce deterministic cleanup of environment resources upon termination.
+
+<details><summary>Check your understanding</summary>
+
+Does stopping the loop stop a remote operation already accepted? Not necessarily. The remote service owns that operation and its cancellation contract.
+
+</details>
 
 ## References
 
