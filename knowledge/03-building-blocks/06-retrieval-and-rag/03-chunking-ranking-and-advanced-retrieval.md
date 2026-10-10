@@ -29,7 +29,7 @@ example_paths:
 pass: architecture
 learning_path: deep-dive
 status: complete
-last_reviewed: '2026-09-13'
+last_reviewed: '2026-10-10'
 ---
 -->
 
@@ -37,11 +37,9 @@ last_reviewed: '2026-09-13'
 
 ## Why this matters
 
-Basic Retrieval-Augmented Generation (RAG) pipelines break documents into arbitrary text chunks and index them using approximate nearest neighbor vector similarity. While this flat approach works for simple factual lookups, production systems quickly run into fundamental structural barriers: context destruction, semantic distractor ranking, and the inability to answer global synthesis questions.
+Search finds a shop policy paragraph but drops the exception in the next section. Another query needs an overview across many documents. A single chunk size or ranking stage may not suit both.
 
-When documents are chopped into short passages, critical context vanishes. A chunk stating "the service revenue grew by 14%" becomes uninterpretable if the document title, fiscal quarter, and company name were located on a preceding page (Anthropic, 2024). Furthermore, vector similarity models frequently assign high scores to irrelevant passages that share superficial vocabulary while ranking genuinely authoritative paragraphs further down the list.
-
-Answering complex questions requires architectures beyond flat passage matching. Advanced retrieval introduces contextual chunking to preserve background, two-stage pipelines with cross-encoder neural rerankers to eliminate distractors (Nogueira & Cho, 2019), recursive tree structures like RAPTOR to navigate different levels of abstraction (Sarthi et al., 2024), and entity-relationship knowledge graphs like GraphRAG to synthesize global corpus themes (Edge et al., 2024). Alongside [Memory](../05-memory/chapter-plan.md) and [Tools](../07-tools-and-function-calling/chapter-plan.md), these advanced retrieval structures allow agents to reason across thousands of interrelated documents without losing either granular precision or global perspective.
+This optional deep dive compares contextual chunks, reranking, larger parent passages, summary trees and graph-based retrieval. These are alternative mechanisms to test, not mandatory stages in every RAG system.
 
 ## Simple mental model
 
@@ -52,13 +50,13 @@ Think of a researcher investigating a complex corporate fraud case across twenty
 3. **Two-stage reranking (the intern and the senior partner):** An intern quickly scans the entire library and pulls the top 100 candidate folders (fast first-stage retrieval). Then, the senior partner carefully reads each of the 100 folders side by side with the specific legal brief, scoring each folder for actual evidentiary weight (thorough cross-encoder reranking).
 4. **Hierarchical summaries (the executive briefing tree):** The archive organizes files into a pyramid. Individual transaction slips sit at the bottom, chapter summaries form the middle tier, and overarching annual executive briefs sit at the top. The researcher can zoom in for transaction receipts or zoom out for high-level corporate structure.
 
-By stamping context on chunks, applying two-stage reranking, and building hierarchical trees, researchers navigate vast libraries without missing critical details or losing the overarching narrative.
+Added context, reranking and larger retrieval units offer different ways to recover useful evidence. Each needs evaluation for missing details and incorrect source interpretation.
 
 ## Position in the agent workflow
 
 Advanced retrieval operates as the intelligence layer inside the RAG retrieval subsystem. Instead of executing a single vector search that feeds directly into the generator, the agent engine uses a multi-phase extraction and filtering pipeline.
 
-When an agent query arrives, the system queries structured indexes (vector stores, hierarchical summary trees, or knowledge graphs). The resulting candidates are funneled through a high-precision cross-encoder reranker, ensuring that only the most contextually relevant, verified passages enter the agent context window.
+When a query arrives, the system searches indexes and ranks candidate passages. A cross-encoder can score each query and passage together. Better ranking does not verify the truth of a passage or recover evidence absent from the candidate pool.
 
 ![A two-stage retrieval architecture diagram traces a user query through Stage 1 bi-encoder vector prefetch yielding 100 candidates, followed by Stage 2 cross-encoder neural reranking using full joint cross-attention to output 5 refined passages to the agent context window.](../../../assets/images/03-building-blocks/06-retrieval-and-rag/03-chunking-ranking-and-advanced-retrieval/01-two-stage-retrieval-and-reranking-pipeline.png)
 
@@ -66,7 +64,7 @@ When an agent query arrives, the system queries structured indexes (vector store
 
 ## How it works
 
-Modern advanced retrieval pipelines combine four structural innovations: contextual chunking, cross-encoder reranking, recursive tree indexing, and graph-based community summarization.
+The next sections describe four possible mechanisms. A deployment may use only some of them, depending on its queries and source structure.
 
 ### 1. Contextual chunking and parent-child relationships
 
@@ -76,7 +74,7 @@ In traditional naive chunking, documents are partitioned purely by token counts.
 
 $$\text{Chunk}_{\text{contextual}} = [\text{Contextual Description}] \mathbin{\Vert} \text{Chunk}_{\text{raw}}$$
 
-For example, a raw chunk reading *"Operating margins fell 3% due to higher server amortization"* is prepended with: *"[Source: Acme Corp Q3 2024 Form 10-Q > Segment Performance > Cloud Infrastructure]"*. This ensures that both dense embeddings and sparse BM25 tokens reflect the true origin and scope of the chunk, cutting retrieval failure rates by nearly half (Anthropic, 2024).
+For example, a financial-report passage can retain its document title and section alongside a generated description. Generated descriptions need checking; the improvements reported by Anthropic apply to its tested configuration, not every index.
 
 In **parent-child chunking**, documents are indexed at two granularities simultaneously: small child chunks (e.g., 200 tokens) are embedded for precise vector matching, but when a child chunk matches a query, the system retrieves its encompassing parent passage (e.g., 1000 tokens) or complete section for the agent prompt. This provides the generator with complete narrative coherence while preserving high retrieval sensitivity.
 
@@ -86,8 +84,8 @@ Vector databases use **bi-encoder** models where queries and documents are embed
 
 To resolve this without sacrificing speed, production architectures deploy a **two-stage retrieval pipeline**:
 
-- **Stage 1 (Fast prefetch):** A bi-encoder or hybrid retriever scans millions of passages in milliseconds, returning a candidate pool (typically top-50 to top-100).
-- **Stage 2 (Cross-encoder reranking):** A cross-encoder model evaluates the query and each candidate passage jointly. Both strings are concatenated and passed through transformer self-attention layers:
+- **Stage 1 (Candidate retrieval):** A bi-encoder or hybrid retriever returns a candidate pool. Pool size and latency depend on the index, filters and deployment; measure them on representative queries.
+- **Stage 2 (Cross-encoder reranking):** A model scores the query and each candidate together. Many cross-encoders use concatenated inputs and transformer attention; the exact architecture and score interpretation depend on the chosen model.
 
 $$\text{Input} = \text{[CLS]} \circ q \circ \text{[SEP]} \circ d \circ \text{[SEP]}$$
 
@@ -204,7 +202,7 @@ Run [advanced_retrieval_runtime.py](../../../examples/03-building-blocks/06-retr
 ## Limitations and trade-offs
 
 - **Indexing cost and compute:** Building RAPTOR trees or GraphRAG entity graphs requires hundreds or thousands of LLM inference calls during ingestion, significantly increasing offline pipeline cost compared to simple vector embedding.
-- **Query latency overhead:** Adding a cross-encoder reranking step adds 50 to 200 milliseconds of inference latency per query compared to direct vector lookups.
+- **Query latency overhead:** Reranking adds computation. Measure its latency with the selected model, hardware, batch size and candidate count instead of assuming a fixed millisecond range.
 - **Index update complexity:** In flat vector databases, adding or deleting a document requires updating only that document vectors. In hierarchical trees and knowledge graphs, updating a document requires re-clustering, re-summarizing parent nodes, and updating graph edges.
 
 ## Security preview
@@ -223,6 +221,12 @@ In Pass 2, advanced retrieval systems are evaluated against **Graph Extraction P
 - RAPTOR builds recursive summary trees through semantic clustering, enabling agents to query both granular leaf details and high-level corpus themes.
 - GraphRAG extracts entities, relationships, and community summaries, supporting global sensemaking across entire document collections.
 - Hierarchical and graph indices increase offline ingestion cost and complexity, requiring strict access-control propagation across summary nodes.
+
+<details><summary>Check your understanding</summary>
+
+Can reranking recover a document absent from its candidate set? No. Candidate retrieval limits what the reranker can consider.
+
+</details>
 
 ## References
 
