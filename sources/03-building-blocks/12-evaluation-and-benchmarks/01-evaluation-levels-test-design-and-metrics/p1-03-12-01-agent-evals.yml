@@ -1,0 +1,24 @@
+id: p1-03-12-01-agent-evals
+title: Demystifying evals for AI agents
+authors_or_organization: Anthropic
+date: '2026-01-09'
+source_type: engineering-report
+canonical_url: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Distinguishes trials, graders, traces, outcomes and harnesses; advises isolated
+  environments and calibrated graders.
+limitations:
+- First-party engineering guidance, not a universal standard or proof that automated
+  evaluations predict deployment quality.
+related_topics: []
+unit_ids:
+- P1-03-12-01
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/01-evaluation-levels-test-design-and-metrics.md
+local_copy: null
+sha256: null

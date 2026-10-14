@@ -427,3 +427,11 @@
 - Files or sections: `knowledge/03-building-blocks/11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Lineage, replay, redaction, retention, and integrations.
 - Validation: Passed repository validation and the unit review checklist.
+
+## 2026-10-14
+
+### P1-03-12-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/12-evaluation-and-benchmarks/01-evaluation-levels-test-design-and-metrics.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Evaluation levels, test design, and metrics.
+- Validation: Passed repository validation and the unit review checklist.

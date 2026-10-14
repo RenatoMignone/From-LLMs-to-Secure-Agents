@@ -1,0 +1,24 @@
+id: p1-03-12-01-adk-evaluation
+title: Why evaluate agents
+authors_or_organization: Google
+date: null
+source_type: official-documentation
+canonical_url: https://adk.dev/evaluate/
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- ADK separates tool-use trajectory and final-response evaluation and uses datasets
+  with defined criteria.
+limitations:
+- Framework-specific options; matching one expected trajectory can reject other valid
+  solutions.
+related_topics: []
+unit_ids:
+- P1-03-12-01
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/01-evaluation-levels-test-design-and-metrics.md
+local_copy: null
+sha256: null

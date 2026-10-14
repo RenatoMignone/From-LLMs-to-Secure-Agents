@@ -1,0 +1,24 @@
+id: p1-03-12-01-tau-bench
+title: 'τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains'
+authors_or_organization: τ-bench authors
+date: '2024-06-17'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2406.12045
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Evaluates final database state in simulated tool-user interactions and defines pass^k
+  for repeated-trial consistency.
+limitations:
+- Research benchmark with simulated users and domain-specific tasks; reported historical
+  scores do not predict present deployment performance.
+related_topics: []
+unit_ids:
+- P1-03-12-01
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/01-evaluation-levels-test-design-and-metrics.md
+local_copy: null
+sha256: null
