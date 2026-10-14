@@ -134,4 +134,4 @@ Functional regression suites do not replace [security testing and assurance](../
 - [Harness-Bench](https://arxiv.org/abs/2605.27922), May 2026 preprint.
 - [Rethinking Benchmark and Contamination with Rephrased Samples](https://arxiv.org/abs/2311.04850).
 
-[Next unit: Multi-agent roles, delegation, and coordination →](../13-multi-agent-systems/chapter-plan.md)
+[Next unit: Multi-agent roles, delegation, and coordination →](../13-multi-agent-systems/01-multi-agent-roles-delegation-and-coordination.md)

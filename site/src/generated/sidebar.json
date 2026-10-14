@@ -324,6 +324,16 @@
             "link": "/building-blocks/02-benchmarks-regression-and-release-evaluation/"
           }
         ]
+      },
+      {
+        "label": "Multi agent systems",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "37 Multi-agent roles, delegation, and coordination",
+            "link": "/building-blocks/01-multi-agent-roles-delegation-and-coordination/"
+          }
+        ]
       }
     ]
   }

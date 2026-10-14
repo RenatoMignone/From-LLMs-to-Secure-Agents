@@ -1,0 +1,24 @@
+id: p1-03-13-01-openai-orchestration
+title: Orchestration and handoffs
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/agents/orchestration
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Contrasts manager-owned replies using agents as tools with handoffs transferring
+  conversation control to a specialist.
+limitations:
+- Agents SDK implementation contract, not a protocol for remote identity or an authorization
+  grant.
+related_topics: []
+unit_ids:
+- P1-03-13-01
+used_in:
+- knowledge/03-building-blocks/13-multi-agent-systems/01-multi-agent-roles-delegation-and-coordination.md
+local_copy: null
+sha256: null

@@ -100,7 +100,7 @@ The runnable example also checks remaining stock. Its required lookup is a state
 
 ## Limitations and trade-offs
 
-Mocks make failures repeatable but may omit real tool behavior, user ambiguity or changing data. A large score on a narrow test set is evidence about that set. Review failures by category, compare representative tasks and include interrupted work with recovery. Detailed benchmark and release practice follows in the [deep dive](02-benchmarks-regression-and-release-evaluation.md).
+Mocks make failures repeatable but may omit real tool behavior, user ambiguity or changing data. A large score on a narrow test set is evidence about that set. Review failures by category, compare representative tasks and include interrupted work with recovery. Detailed benchmark and release practice follows in the optional [deep dive](02-benchmarks-regression-and-release-evaluation.md). To stay on the main path, continue to [multi-agent systems](../13-multi-agent-systems/01-multi-agent-roles-delegation-and-coordination.md).
 
 <details><summary>Check your understanding</summary>
 
