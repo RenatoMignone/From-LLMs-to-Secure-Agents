@@ -332,6 +332,10 @@
           {
             "label": "37 Multi-agent roles, delegation, and coordination",
             "link": "/building-blocks/01-multi-agent-roles-delegation-and-coordination/"
+          },
+          {
+            "label": "38 Shared state, failures, termination, and evaluation",
+            "link": "/building-blocks/02-shared-state-failures-termination-and-evaluation/"
           }
         ]
       }

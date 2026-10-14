@@ -86,7 +86,7 @@ A worker may delegate a smaller subtask, creating a parent-child chain. Give tha
 
 *Figure 2. Task envelopes move outward; evidence returns to the caller. The shared budget spans every participant. A new helper does not reset that budget, and the depth limit stops another level of delegation.*
 
-Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The next [coordination deep dive](chapter-plan.md) examines these cases.
+Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The next [coordination deep dive](02-shared-state-failures-termination-and-evaluation.md) examines these cases.
 
 ## Worked example
 
@@ -149,4 +149,4 @@ Each transfer introduces another component that receives information and may req
 - [AutoGen: Teams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html).
 - [Semantic Kernel: Agent Orchestration](https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-orchestration/).
 
-[Next unit: Shared state, failures, termination, and evaluation →](chapter-plan.md)
+[Next unit: Shared state, failures, termination, and evaluation →](02-shared-state-failures-termination-and-evaluation.md)

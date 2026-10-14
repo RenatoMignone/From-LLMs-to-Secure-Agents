@@ -1,0 +1,24 @@
+id: p1-03-13-02-mast
+title: Why Do Multi-Agent LLM Systems Fail?
+authors_or_organization: MAST authors
+date: '2025-03-17'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2503.13657
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Analyzes multi-agent traces with failure categories for system design, inter-agent
+  misalignment and task verification.
+limitations:
+- Research taxonomy derived from sampled frameworks and tasks; not an exhaustive standard
+  or current ranking.
+related_topics: []
+unit_ids:
+- P1-03-13-02
+used_in:
+- knowledge/03-building-blocks/13-multi-agent-systems/02-shared-state-failures-termination-and-evaluation.md
+local_copy: null
+sha256: null

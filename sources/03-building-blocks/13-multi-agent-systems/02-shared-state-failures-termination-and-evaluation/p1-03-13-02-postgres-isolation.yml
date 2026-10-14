@@ -1,0 +1,24 @@
+id: p1-03-13-02-postgres-isolation
+title: Transaction Isolation
+authors_or_organization: PostgreSQL Global Development Group
+date: null
+source_type: official-documentation
+canonical_url: https://www.postgresql.org/docs/18/transaction-iso.html
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- PostgreSQL documents concurrent-update anomalies, transaction isolation and retry
+  requirements for serialization failures.
+limitations:
+- Database guarantees apply within their transaction boundary, not across arbitrary
+  remote tools or agent contexts.
+related_topics: []
+unit_ids:
+- P1-03-13-02
+used_in:
+- knowledge/03-building-blocks/13-multi-agent-systems/02-shared-state-failures-termination-and-evaluation.md
+local_copy: null
+sha256: null

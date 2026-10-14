@@ -1,0 +1,23 @@
+id: p1-03-13-02-autogen-state
+title: Managing State
+authors_or_organization: Microsoft
+date: null
+source_type: official-documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/state.html
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- AgentChat provides save_state and load_state for agent and team state.
+limitations:
+- Framework state persistence is not a distributed transaction over independent external
+  services.
+related_topics: []
+unit_ids:
+- P1-03-13-02
+used_in:
+- knowledge/03-building-blocks/13-multi-agent-systems/02-shared-state-failures-termination-and-evaluation.md
+local_copy: null
+sha256: null

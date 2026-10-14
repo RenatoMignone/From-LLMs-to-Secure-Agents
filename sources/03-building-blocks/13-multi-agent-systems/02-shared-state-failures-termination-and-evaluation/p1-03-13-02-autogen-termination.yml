@@ -1,0 +1,24 @@
+id: p1-03-13-02-autogen-termination
+title: Termination
+authors_or_organization: Microsoft
+date: null
+source_type: official-documentation
+canonical_url: https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- AgentChat has message, timeout, token, text, handoff and external termination conditions;
+  stopping a conversation has a reason.
+limitations:
+- Conditions stop a run according to runtime behavior and do not verify external task
+  success or roll back actions.
+related_topics: []
+unit_ids:
+- P1-03-13-02
+used_in:
+- knowledge/03-building-blocks/13-multi-agent-systems/02-shared-state-failures-termination-and-evaluation.md
+local_copy: null
+sha256: null
