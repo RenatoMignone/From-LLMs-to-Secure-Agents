@@ -453,3 +453,9 @@
 - Files or sections: `knowledge/03-building-blocks/13-multi-agent-systems/02-shared-state-failures-termination-and-evaluation.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Shared state, failures, termination, and evaluation.
 - Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-14-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Adaptation, reflection, feedback, and skills.
+- Validation: Passed repository validation and the unit review checklist.

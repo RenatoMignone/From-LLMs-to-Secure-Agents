@@ -1,0 +1,24 @@
+id: p1-03-14-01-agent-skills
+title: Agent Skills specification
+authors_or_organization: Agent Skills maintainers
+date: null
+source_type: official-specification
+canonical_url: https://agentskills.io/specification
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Defines SKILL.md metadata and instructions, optional scripts/references/assets and
+  progressive disclosure.
+limitations:
+- Instruction package format; client support and permission enforcement vary, and
+  loading text does not train model weights.
+related_topics: []
+unit_ids:
+- P1-03-14-01
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md
+local_copy: null
+sha256: null

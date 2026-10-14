@@ -5,7 +5,7 @@ unit_id: P1-03-12-01
 summary: Measure components, observed steps, actual outcomes and repeated-run reliability
   using explicit acceptance rules.
 prerequisites:
-- Read [Lineage, replay, redaction, retention, and integrations](../11-observability-and-tracing/02-lineage-replay-redaction-retention-and-integrations.md).
+- Read [Events, traces, metrics, and correlation](../11-observability-and-tracing/01-events-traces-metrics-and-correlation.md).
 learning_objectives:
 - Define cases, environments, oracles, evaluators and metrics.
 - Separate trajectory quality from task outcomes.
@@ -80,7 +80,7 @@ For an illustrative p = 0.8 and k = 3, at least one success is 99.2%, while all 
 
 Record the model version, agent harness, tool schemas, instructions or skill versions, environment snapshot, memory policy, budgets and grader version. The **agent harness** is the code that runs the model and tools. The **evaluation harness** runs the tests and grading. Changes to either can change a result.
 
-Measure end-to-end elapsed time, including waits, and state whether human waiting is included. Report median and a tail percentile, such as the 95th percentile, with enough observations to interpret it. Count model and tool costs for failed trials too. Cost per verified success is total trial cost divided by verified successes; with none, report that it is undefined. Compare direct tool loops and code orchestration on the same cases and budgets. These are our reporting conventions, not provider guarantees.
+Measure end-to-end elapsed time, including waits, and state whether human waiting is included. Report the median, the middle value of ordered measurements, and a tail percentile, such as the 95th percentile, a value at or below which roughly 95% of observations fall. Include enough observations to interpret these measurements. Count model and tool costs for failed trials too. Cost per verified success is total trial cost divided by verified successes; with none, report that it is undefined. Compare direct tool loops and code orchestration on the same cases and budgets. These are our reporting conventions, not provider guarantees.
 
 ## Worked example
 

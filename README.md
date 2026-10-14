@@ -30,7 +30,7 @@ The presentation combines **precise technical writing** with clear diagrams, rep
 
 The project is in **early alpha**. The first, architecture-focused learning pass is in progress. The detailed threat modeling and security chapters are planned but are not yet presented as complete production guidance.
 
-Published chapters, examples, and the website are usable now, but their depth and editorial maturity vary. The [October 10, 2026 editorial review](docs/editorial-review-2026-10-10.md) records readability fixes, checked architecture updates and validation scope. Check [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the machine-maintained checkpoint and [`ROADMAP.md`](ROADMAP.md) for planned scope. See [`docs/ai-assistance.md`](docs/ai-assistance.md) for how AI-assisted work is reviewed and where its limits remain.
+Published chapters, examples, and the website are usable now, but their depth and editorial maturity vary. The [October 10, 2026 editorial review](docs/editorial-review-2026-10-10.md) records readability fixes, checked architecture updates and validation scope. The [October 14 continuation](docs/continuation-2026-10-14.md) records the new evaluation, multi-agent coordination and adaptation chapters, their generated illustrations and executable examples. Check [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the machine-maintained checkpoint and [`ROADMAP.md`](ROADMAP.md) for planned scope. See [`docs/ai-assistance.md`](docs/ai-assistance.md) for how AI-assisted work is reviewed and where its limits remain.
 
 ## Two learning passes
 

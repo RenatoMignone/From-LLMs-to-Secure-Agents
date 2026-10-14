@@ -338,6 +338,16 @@
             "link": "/building-blocks/02-shared-state-failures-termination-and-evaluation/"
           }
         ]
+      },
+      {
+        "label": "Learning and self improvement",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "39 Adaptation, reflection, feedback, and skills",
+            "link": "/building-blocks/01-adaptation-reflection-feedback-and-skills/"
+          }
+        ]
       }
     ]
   }

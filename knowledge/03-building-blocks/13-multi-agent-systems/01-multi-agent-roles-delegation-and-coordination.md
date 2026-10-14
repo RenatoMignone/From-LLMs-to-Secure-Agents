@@ -5,7 +5,7 @@ unit_id: P1-03-13-01
 summary: Decide who owns the reply, what specialists receive and return, and how team
   work stops before adding agents.
 prerequisites:
-- Read [Benchmarks, regression, and release evaluation](../12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md).
+- Read [Evaluation levels, test design, and metrics](../12-evaluation-and-benchmarks/01-evaluation-levels-test-design-and-metrics.md).
 learning_objectives:
 - Distinguish agent-as-tool delegation from handoff.
 - Compare manager, router, shared-board and peer coordination.
@@ -34,7 +34,7 @@ Lee wants a report on which products need restocking and whether suppliers can d
 
 A **multi-agent system** contains multiple agent instances that coordinate work. A **role** describes an instance's job; a **specialist** has a narrower job, context or tool set. Different roles can use the same model. Naming two prompts "agents" does not by itself create useful cooperation.
 
-Start with a single-agent baseline. Add a specialist for a concrete reason, such as a separate tool contract or an independent research subtask, then measure the result. AutoGen also recommends trying an adequately equipped single agent before adopting a team. [AutoGen teams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html).
+Start with a single-agent **baseline**, a reference configuration for comparison. Add a specialist for a concrete reason, such as a separate tool contract or an independent research subtask, then measure the result. AutoGen also recommends trying an adequately equipped single agent before adopting a team. [AutoGen teams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html).
 
 ## How it works
 
@@ -86,7 +86,7 @@ A worker may delegate a smaller subtask, creating a parent-child chain. Give tha
 
 *Figure 2. Task envelopes move outward; evidence returns to the caller. The shared budget spans every participant. A new helper does not reset that budget, and the depth limit stops another level of delegation.*
 
-Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The next [coordination deep dive](02-shared-state-failures-termination-and-evaluation.md) examines these cases.
+Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The optional [coordination deep dive](02-shared-state-failures-termination-and-evaluation.md) examines these cases.
 
 ## Worked example
 
@@ -122,7 +122,7 @@ More agents add calls, message volume and coordination work. Parallelism helps o
 
 Evaluate against the single-agent baseline using [the same cases and budgets](../12-evaluation-and-benchmarks/chapter-plan.md). Track final outcomes, missing handoffs, duplicate work, total calls and combined cost. Improvements in local worker answers do not guarantee a better combined report.
 
-The later [learning section](../14-learning-and-self-improvement/chapter-plan.md) separates changes to team instructions or skills from model training.
+To stay on the main path, continue to the [learning section](../14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md), which separates changes to team instructions or skills from model training.
 
 <details><summary>Check your understanding</summary>
 

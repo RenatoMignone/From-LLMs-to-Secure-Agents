@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Publication status:** Updated incrementally as chapters complete review.
-- **Current publication:** 55 chapters across 4 sections. The latest chapter is [Shared state, failures, termination, and evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-shared-state-failures-termination-and-evaluation/).
+- **Current publication:** 56 chapters across 4 sections. The latest chapter is [Adaptation, reflection, feedback, and skills](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -617,6 +617,16 @@
   * Distinguish task acceptance, cancellation and budget termination.
   * Evaluate coordination failures against a single-agent baseline.
 - **Verified Primary Sources:** [Termination](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html), [Managing State](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/state.html), [Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html), [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657)
+
+### [Adaptation, reflection, feedback, and skills](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/)
+- **Summary:** Separate revising a run, retaining experience, authoring reusable skill packages and training model parameters; require evidence for improvement.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-adaptation-reflection-feedback-and-skills.md
+- **Learning Objectives:**
+  * Locate what changes during adaptation and how long it persists.
+  * Distinguish research skill acquisition from authored instruction packages.
+  * Design a bounded feedback loop with held-out, retention and rollback checks.
+- **Verified Primary Sources:** [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651), [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366), [Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291), [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798), [Agent Skills specification](https://agentskills.io/specification)
 
 
 
@@ -10107,7 +10117,7 @@ For an illustrative p = 0.8 and k = 3, at least one success is 99.2%, while all 
 
 Record the model version, agent harness, tool schemas, instructions or skill versions, environment snapshot, memory policy, budgets and grader version. The **agent harness** is the code that runs the model and tools. The **evaluation harness** runs the tests and grading. Changes to either can change a result.
 
-Measure end-to-end elapsed time, including waits, and state whether human waiting is included. Report median and a tail percentile, such as the 95th percentile, with enough observations to interpret it. Count model and tool costs for failed trials too. Cost per verified success is total trial cost divided by verified successes; with none, report that it is undefined. Compare direct tool loops and code orchestration on the same cases and budgets. These are our reporting conventions, not provider guarantees.
+Measure end-to-end elapsed time, including waits, and state whether human waiting is included. Report the median, the middle value of ordered measurements, and a tail percentile, such as the 95th percentile, a value at or below which roughly 95% of observations fall. Include enough observations to interpret these measurements. Count model and tool costs for failed trials too. Cost per verified success is total trial cost divided by verified successes; with none, report that it is undefined. Compare direct tool loops and code orchestration on the same cases and budgets. These are our reporting conventions, not provider guarantees.
 
 ## Worked example
 
@@ -10286,7 +10296,7 @@ Lee wants a report on which products need restocking and whether suppliers can d
 
 A **multi-agent system** contains multiple agent instances that coordinate work. A **role** describes an instance's job; a **specialist** has a narrower job, context or tool set. Different roles can use the same model. Naming two prompts "agents" does not by itself create useful cooperation.
 
-Start with a single-agent baseline. Add a specialist for a concrete reason, such as a separate tool contract or an independent research subtask, then measure the result. AutoGen also recommends trying an adequately equipped single agent before adopting a team. [AutoGen teams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html).
+Start with a single-agent **baseline**, a reference configuration for comparison. Add a specialist for a concrete reason, such as a separate tool contract or an independent research subtask, then measure the result. AutoGen also recommends trying an adequately equipped single agent before adopting a team. [AutoGen teams](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html).
 
 ## How it works
 
@@ -10338,7 +10348,7 @@ A worker may delegate a smaller subtask, creating a parent-child chain. Give tha
 
 *Figure 2. Task envelopes move outward; evidence returns to the caller. The shared budget spans every participant. A new helper does not reset that budget, and the depth limit stops another level of delegation.*
 
-Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The next [coordination deep dive](/From-LLMs-to-Secure-Agents/building-blocks/02-shared-state-failures-termination-and-evaluation/) examines these cases.
+Define **termination**, the condition that stops work. A manager may stop after required evidence is accepted, after a deadline, or when Lee cancels. Record the reason. A timeout ends computation under the runtime's cancellation behavior; it does not prove that already-issued external actions were undone. The optional [coordination deep dive](/From-LLMs-to-Secure-Agents/building-blocks/02-shared-state-failures-termination-and-evaluation/) examines these cases.
 
 ## Worked example
 
@@ -10374,7 +10384,7 @@ More agents add calls, message volume and coordination work. Parallelism helps o
 
 Evaluate against the single-agent baseline using [the same cases and budgets](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md). Track final outcomes, missing handoffs, duplicate work, total calls and combined cost. Improvements in local worker answers do not guarantee a better combined report.
 
-The later [learning section](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md) separates changes to team instructions or skills from model training.
+To stay on the main path, continue to the [learning section](/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/), which separates changes to team instructions or skills from model training.
 
 <details><summary>Check your understanding</summary>
 
@@ -10488,7 +10498,9 @@ In the runnable example the check and write happen in one sequential function ca
 
 </details>
 
-## Evaluate the coordination, then the outcome
+## Reliability failures
+
+### Evaluate the coordination, then the outcome
 
 Use the [evaluation levels](/From-LLMs-to-Secure-Agents/building-blocks/01-evaluation-levels-test-design-and-metrics/) for the whole team. The following shop cases exercise distinct failures:
 
@@ -10535,4 +10547,147 @@ This chapter handles ordinary coordination failures. Pass 2 examines deliberatel
 - [PostgreSQL 18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html).
 - [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657).
 
-[Next unit: Adaptation, reflection, feedback, and skills →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md)
+[Next unit: Adaptation, reflection, feedback, and skills →](/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/)
+
+
+================================================================================
+CHAPTER: Adaptation, reflection, feedback, and skills
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/
+SUMMARY: Separate revising a run, retaining experience, authoring reusable skill packages and training model parameters; require evidence for improvement.
+================================================================================
+
+# Adaptation, reflection, feedback, and skills
+
+## Why this matters
+
+Lee's assistant reports that a product is available without checking the stock record. A reviewer points out the missing evidence. The assistant revises the report, and the revised answer is correct. Has the model learned a new permanent behavior?
+
+Several different mechanisms could produce that change. The current conversation may contain a correction; a memory record may be saved for future runs; an instruction package may be revised; or a training process may change model parameters. Saying "the agent improved" without naming the mechanism hides what actually happened.
+
+## How it works
+
+### Locate the change
+
+**Adaptation** means adjusting behavior to a task, environment or feedback. **Inference time** is when an existing model produces outputs. **Training** changes learned model parameters, also called **weights**. The following is a teaching taxonomy, not a formal standard:
+
+| Mechanism | What changes | Persistence and limit |
+| --- | --- | --- |
+| In-context adaptation | Current messages, retrieved evidence or instructions shown to the model | Lasts while that information remains in usable context |
+| Refinement | The current draft or proposed action | A better artifact does not imply a better next run |
+| Memory update | Stored observations, feedback or summaries | Can influence later runs if retrieved; may be wrong or stale |
+| Prompt optimization | A selected version of reusable instructions | Persists in application configuration; can overfit the cases used to select it |
+| Skill acquisition or package revision | Reusable procedures, code or instruction files | Persists in a library; retrieval, compatibility and testing still matter |
+| Weight update | Model parameters through a training method | Changes the trained model; needs a separate training and evaluation process |
+
+A **policy** is a rule or strategy for choosing actions. In application discussions, a policy update may mean changing rules or a prompt. In machine-learning research, it may mean training the action-producing model. Ask which object changed before interpreting the term.
+
+![Three cartoon workspaces show current context and draft changes, durable memory and skill files, and a separate training process that changes model weights.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills/01-adaptation-mechanisms.webp)
+
+*Figure 1. Find the changed object. Editing the current notebook or the reusable library can alter behavior without changing the model's weights. The separate training workspace represents a different mechanism.*
+
+### Use feedback to revise a bounded attempt
+
+**Feedback** supplies information about an output or action. It may come from a user, a reviewer, a tool result, an executable test or the model itself. Its usefulness depends on whether it contains correct, relevant evidence.
+
+**Reflection** is an assessment of a previous attempt, often expressed in language. **Refinement** changes the attempt in response. Self-Refine generates a draft, obtains self-feedback and revises it using the same model without further training. That describes the method evaluated in the paper, not a guarantee for every task. [Self-Refine](https://arxiv.org/abs/2303.17651).
+
+For the shop, the strongest feedback says: "Your report lacks a stock source. Snapshot S17 shows one blue mug, but the request asks for two." That is more useful than "think harder". The revised report should state the shortage, rather than only become more confident.
+
+A bounded loop drafts, checks, revises and checks again. Stop on an accepted result, a revision budget, unavailable evidence or a need for clarification. Retain the earlier draft so you can detect a revision that makes it worse. A correct final answer is not evidence that every intermediate revision helped.
+
+Model-generated feedback can repeat the generator's mistake. A study of intrinsic self-correction found unreliable correction on its evaluated reasoning tasks without external feedback. Treat it as counterevidence to universal self-improvement claims, with its historical scope visible. [Self-correction study](https://arxiv.org/abs/2310.01798).
+
+### Decide what deserves to survive the run
+
+An **experience** is a recorded attempt and its feedback, evidence and outcome. A durable memory can preserve a useful lesson, but storing a reflection does not make that reflection true. Follow [persistent memory lifecycle rules](/From-LLMs-to-Secure-Agents/building-blocks/03-persistent-memory-types-and-lifecycle/): record origin, scope, review status, expiry and invalidation conditions.
+
+Reflexion stores textual reflections in an episodic memory buffer to guide later trials, without updating weights. Its title uses "verbal reinforcement learning" for this feedback mechanism. It should not be read as saying that the underlying model receives a parameter update after each conversation. [Reflexion](https://arxiv.org/abs/2303.11366).
+
+In our shop design, a failed case can suggest the candidate rule "attach the stock snapshot ID to availability reports". Keep the original incident separately from the general rule. A human or stated review process decides whether it is broadly useful, whether it conflicts with older requirements and when it should expire. Do not copy one customer's stock count into a permanent universal fact.
+
+### Distinguish two meanings of skill
+
+A **skill** is a reusable capability or procedure. In research, skill acquisition can mean deriving and storing behavior from experience. Voyager builds a library of executable code skills in Minecraft, with a curriculum and environment feedback, without parameter fine-tuning. A **curriculum** selects which tasks or challenges the agent tries next. Minecraft results do not establish that the same process works for shop operations. [Voyager](https://arxiv.org/abs/2305.16291).
+
+An **authored skill package** is prepared instruction material that an agent loads. The Agent Skills specification uses a `SKILL.md` file with required `name` and `description` metadata, followed by instructions. Optional `scripts`, `references` and `assets` hold code, detail and resources. **Progressive disclosure** means loading descriptions first, then the chosen instructions and resources when needed. [Agent Skills specification](https://agentskills.io/specification).
+
+The package may be written by a person or generated and reviewed through a workflow. Reading it changes available context; it does not train weights. Package discovery also differs from action permission: the runtime still controls tools and credentials. The specification's optional `allowed-tools` field is experimental and client-dependent; it is not a universal external authorization mechanism.
+
+Version packages and record why a change was made. In the example, `metadata.version` is our chosen version field within the specification's arbitrary metadata map, not a mandatory versioning standard. Keep the previous package and evaluation record so you can restore it.
+
+![A reviewed feedback path moves from a failed shop report through a candidate reusable rule, fresh and retained tests, then a versioned skill library; rejected candidates retain the previous version.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills/02-feedback-to-reviewed-skill.webp)
+
+*Figure 2. A single failure proposes a change; it does not promote the change automatically. Test the candidate on new cases and previously supported behavior before updating the reusable library. Preserve the previous version on rejection. Book version labels in the illustration are examples; the runnable candidate below uses version 1.1.*
+
+## Worked example
+
+The [offline refinement example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills/README.md) starts with a report that guesses availability. A deterministic checker identifies a missing source and a quantity mismatch. A mocked refiner reads the snapshot and produces a corrected report within a bounded loop.
+
+A separate candidate package describes a stock-report procedure. Its [versioned record](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills/skill-record.json) names the incident, intended scope, baseline, transfer and retention cases, and previous version. The example demonstrates these records; it does not autonomously rewrite its own code or invoke training.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+for _ in range(max_revisions):
+    feedback = check_report(draft, snapshot)
+    if not feedback:
+        break
+    draft = mock_refine(draft, feedback, snapshot)
+```
+
+The full script performs a final acceptance check, including when the revision budget is zero. The checker compares evidence fields with the supplied snapshot. Real evaluations would also check whether that snapshot is an appropriate, fresh source.
+
+</details>
+
+## Limitations and trade-offs
+
+### What evidence would establish improvement?
+
+A **baseline** is the earlier configuration used for comparison. **Transfer** asks whether a change helps tasks beyond the incident that suggested it. **Retention** asks whether earlier capabilities still work. Learning-system discussions use **plasticity** for ability to adapt and **catastrophic forgetting** for a substantial loss of earlier learned performance after new learning. Application prompt or package revisions can cause regressions without any weight update.
+
+For this chapter's candidate skill, record all five elements:
+
+| Element | Shop example |
+| --- | --- |
+| Mechanism | Revised stock-report instructions; weights unchanged |
+| Baseline | Earlier rule that guessed availability without a source |
+| Transfer test | Unseen product and changed requested quantity |
+| Retention test | Out-of-stock case still reports a shortage; missing data remains unknown |
+| Rollback | Restore the previous package version and invalidate the candidate selection |
+
+Use [evaluation methods](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md) with separate development and held-out cases, repeated trials for actual models, and cost accounting for feedback calls. Compare against both the original one-shot system and a baseline given the same extra call budget. Otherwise an apparent gain may reflect extra attempts rather than the proposed learning mechanism.
+
+The example's fixed refiner improves its supplied fixtures by construction. Those assertions check the teaching behavior; they do not measure real model improvement. Detailed optimization, continual learning and forgetting belong in the [next deep dive](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md). Operational deployment and recovery follow in [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md).
+
+### Costs and failure modes
+
+Extra feedback calls add latency and cost. Durable experiences can become stale, while large libraries can make the relevant skill harder to select. A narrow instruction can fix one example and break another. Evaluate changes to the generator, checker and selected package separately, and label unverified feedback as such.
+
+<details><summary>Check your understanding</summary>
+
+An assistant reads an updated `SKILL.md` and handles a new stock task better. No training job ran. Were its model weights updated?
+
+No. The package supplied new instructions at inference time. The application's reusable procedure changed, and its benefit still needs held-out and retention evidence. A weight update requires a separate training mechanism.
+
+</details>
+
+## Security preview
+
+Feedback and reusable experiences become inputs to later decisions. Pass 2 examines misleading feedback and unsafe optimization through [retrieval, memory and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md) and [end-to-end attack paths](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/07-end-to-end-attack-paths/chapter-plan.md).
+
+## Key takeaways
+
+- Name the changed object: current context, artifact, memory, instructions, skills or weights.
+- Reflection generates a possible explanation; evidence and acceptance checks decide whether a revision works.
+- Authored packages and experience-derived code skills are distinct forms of reuse.
+- Every claimed improvement needs a baseline, transfer and retention checks, and a rollback path.
+
+## References
+
+- [Self-Refine](https://arxiv.org/abs/2303.17651).
+- [Reflexion](https://arxiv.org/abs/2303.11366).
+- [Voyager](https://arxiv.org/abs/2305.16291).
+- [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798).
+- [Agent Skills specification](https://agentskills.io/specification).
+
+[Next unit: Optimization, continual learning, forgetting, and evaluation →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md)

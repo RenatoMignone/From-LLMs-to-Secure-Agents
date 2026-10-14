@@ -153,4 +153,4 @@ This chapter handles ordinary coordination failures. Pass 2 examines deliberatel
 - [PostgreSQL 18: Transaction Isolation](https://www.postgresql.org/docs/18/transaction-iso.html).
 - [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657).
 
-[Next unit: Adaptation, reflection, feedback, and skills →](../14-learning-and-self-improvement/chapter-plan.md)
+[Next unit: Adaptation, reflection, feedback, and skills →](../14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md)

@@ -1,0 +1,24 @@
+id: p1-03-14-01-self-correction
+title: Large Language Models Cannot Self-Correct Reasoning Yet
+authors_or_organization: Paper authors
+date: '2023-10-03'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2310.01798
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Finds intrinsic self-correction without external feedback unreliable for evaluated
+  reasoning tasks and models.
+limitations:
+- Historical study with a scoped task/model sample; does not prove all future systems
+  or feedback methods fail.
+related_topics: []
+unit_ids:
+- P1-03-14-01
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md
+local_copy: null
+sha256: null

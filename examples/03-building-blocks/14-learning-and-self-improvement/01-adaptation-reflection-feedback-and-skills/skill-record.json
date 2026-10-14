@@ -1,0 +1,15 @@
+{
+  "skill": "stock-report",
+  "candidate_version": "1.1",
+  "previous_version": "1.0",
+  "mechanism": "authored-package-revision",
+  "weight_update": false,
+  "status": "candidate-example-only",
+  "origin": "illustrative-incident-S17-missing-stock-evidence",
+  "scope": "read-only stock availability reports",
+  "baseline": "version 1.0 guessed availability without a source",
+  "transfer_cases": ["unseen-product", "changed-quantity"],
+  "retention_cases": ["out-of-stock", "missing-data"],
+  "rollback": "restore package 1.0 and invalidate candidate selection",
+  "limitations": "deterministic fixtures do not establish LLM improvement"
+}

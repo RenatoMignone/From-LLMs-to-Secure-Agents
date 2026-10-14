@@ -1,0 +1,24 @@
+id: p1-03-14-01-self-refine
+title: 'Self-Refine: Iterative Refinement with Self-Feedback'
+authors_or_organization: Self-Refine authors
+date: '2023-03-30'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2303.17651
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Uses a model to generate, critique and refine outputs at inference time without
+  extra training.
+limitations:
+- Results concern the paper tasks and models; refinement is not a universal guarantee
+  of improved correctness.
+related_topics: []
+unit_ids:
+- P1-03-14-01
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/01-adaptation-reflection-feedback-and-skills.md
+local_copy: null
+sha256: null
