@@ -100,7 +100,7 @@ The runnable example also checks remaining stock. Its required lookup is a state
 
 ## Limitations and trade-offs
 
-Mocks make failures repeatable but may omit real tool behavior, user ambiguity or changing data. A large score on a narrow test set is evidence about that set. Review failures by category, compare representative tasks and include interrupted work with recovery. Detailed benchmark and release practice follows in the [deep dive](chapter-plan.md).
+Mocks make failures repeatable but may omit real tool behavior, user ambiguity or changing data. A large score on a narrow test set is evidence about that set. Review failures by category, compare representative tasks and include interrupted work with recovery. Detailed benchmark and release practice follows in the [deep dive](02-benchmarks-regression-and-release-evaluation.md).
 
 <details><summary>Check your understanding</summary>
 
@@ -127,4 +127,4 @@ Functional evaluations show whether intended tasks work. They do not establish r
 - [ADK: Why evaluate agents](https://adk.dev/evaluate/).
 - [Anthropic: Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
 
-[Next unit: Benchmarks, regression, and release evaluation →](chapter-plan.md)
+[Next unit: Benchmarks, regression, and release evaluation →](02-benchmarks-regression-and-release-evaluation.md)

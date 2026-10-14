@@ -310,6 +310,20 @@
             "link": "/building-blocks/02-lineage-replay-redaction-retention-and-integrations/"
           }
         ]
+      },
+      {
+        "label": "Evaluation and benchmarks",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "35 Evaluation levels, test design, and metrics",
+            "link": "/building-blocks/01-evaluation-levels-test-design-and-metrics/"
+          },
+          {
+            "label": "36 Benchmarks, regression, and release evaluation",
+            "link": "/building-blocks/02-benchmarks-regression-and-release-evaluation/"
+          }
+        ]
       }
     ]
   }

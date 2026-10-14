@@ -1,0 +1,23 @@
+id: p1-03-12-02-agentbench
+title: 'AgentBench: Evaluating LLMs as Agents'
+authors_or_organization: AgentBench authors
+date: '2023-08-07'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2308.03688
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- AgentBench evaluates agents across eight interactive environments.
+limitations:
+- Different environments measure different capabilities; aggregate results are not
+  deployment predictions.
+related_topics: []
+unit_ids:
+- P1-03-12-02
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md
+local_copy: null
+sha256: null

@@ -1,0 +1,24 @@
+id: p1-03-12-02-swebench
+title: Evaluation Guide
+authors_or_organization: SWE-bench maintainers
+date: null
+source_type: official-documentation
+canonical_url: https://www.swebench.com/SWE-bench/guides/evaluation/
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Applies generated patches and runs repository tests in Docker; separates graded,
+  unresolved and infrastructure-related outcomes and documents result caching.
+limitations:
+- Framework behavior depends on installed version; passing tests establishes only
+  the tested properties.
+related_topics: []
+unit_ids:
+- P1-03-12-02
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md
+local_copy: null
+sha256: null

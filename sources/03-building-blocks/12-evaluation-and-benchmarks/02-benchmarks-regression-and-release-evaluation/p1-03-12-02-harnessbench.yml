@@ -1,0 +1,25 @@
+id: p1-03-12-02-harnessbench
+title: 'Harness-Bench: Measuring Harness Effects across Models in Realistic Agent
+  Workflows'
+authors_or_organization: Harness-Bench authors
+date: '2026-05-27'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2605.27922
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Diagnoses model-harness configuration effects with shared offline tasks, budgets,
+  artifacts and traces.
+limitations:
+- May 2026 preprint; limited configurations and task distribution do not imply universal
+  rankings.
+related_topics: []
+unit_ids:
+- P1-03-12-02
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md
+local_copy: null
+sha256: null

@@ -1,0 +1,24 @@
+id: p1-03-12-02-gaia
+title: 'GAIA: a benchmark for General AI Assistants'
+authors_or_organization: GAIA authors
+date: '2023-11-21'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2311.12983
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- GAIA proposes questions requiring reasoning, multimodal handling, browsing and tool
+  use.
+limitations:
+- Historical task suite; answer accuracy does not establish safe or reliable external
+  writes.
+related_topics: []
+unit_ids:
+- P1-03-12-02
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md
+local_copy: null
+sha256: null

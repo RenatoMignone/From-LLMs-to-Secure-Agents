@@ -1,0 +1,22 @@
+id: p1-03-12-02-tau-bench
+title: 'τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains'
+authors_or_organization: τ-bench authors
+date: '2024-06-17'
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/2406.12045
+doi: null
+version: null
+accessed: '2026-10-14'
+last_verified: '2026-10-14'
+status: checked
+claims_supported:
+- Simulated customer interactions with tools and final database-state grading.
+limitations:
+- Simulated customers and domain tasks do not establish validity in all deployments.
+related_topics: []
+unit_ids:
+- P1-03-12-02
+used_in:
+- knowledge/03-building-blocks/12-evaluation-and-benchmarks/02-benchmarks-regression-and-release-evaluation.md
+local_copy: null
+sha256: null
