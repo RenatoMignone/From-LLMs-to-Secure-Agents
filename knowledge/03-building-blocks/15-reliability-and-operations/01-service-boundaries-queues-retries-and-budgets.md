@@ -175,4 +175,4 @@ Unbounded execution and operational abuse affect these runtime components. Pass 
 - [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 - [Compensating Transaction pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction).
 
-[Next unit: Caching, deployment, service objectives, and capacity →](chapter-plan.md)
+[Next unit: Caching, deployment, service objectives, and capacity →](02-caching-deployment-service-objectives-and-capacity.md)

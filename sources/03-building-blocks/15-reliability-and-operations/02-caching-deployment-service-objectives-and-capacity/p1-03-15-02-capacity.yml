@@ -1,0 +1,24 @@
+id: p1-03-15-02-capacity
+title: Handling Overload
+authors_or_organization: Google SRE
+date: null
+source_type: first-party-engineering
+canonical_url: https://sre.google/sre-book/handling-overload/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Capacity should consider resource use and varying request cost; per-customer limits,
+  throttling and degraded responses help handle overload.
+limitations:
+- Simple worker throughput arithmetic excludes overhead, variation and dependency
+  constraints.
+related_topics: []
+unit_ids:
+- P1-03-15-02
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/02-caching-deployment-service-objectives-and-capacity.md
+local_copy: null
+sha256: null

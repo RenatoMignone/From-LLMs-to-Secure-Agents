@@ -1,0 +1,24 @@
+id: p1-03-15-02-slo
+title: Service Level Objectives
+authors_or_organization: Google SRE
+date: null
+source_type: first-party-engineering
+canonical_url: https://sre.google/sre-book/service-level-objectives/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- An SLI measures service behavior; an SLO targets an indicator; indicators should
+  reflect user experience, including correctness and latency.
+limitations:
+- The chapter objectives and counts are illustrative, not Google targets or recommendations
+  for every agent service.
+related_topics: []
+unit_ids:
+- P1-03-15-02
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/02-caching-deployment-service-objectives-and-capacity.md
+local_copy: null
+sha256: null
