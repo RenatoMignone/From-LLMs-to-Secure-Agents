@@ -133,7 +133,7 @@ For this chapter's candidate skill, record all five elements:
 
 Use [evaluation methods](../12-evaluation-and-benchmarks/chapter-plan.md) with separate development and held-out cases, repeated trials for actual models, and cost accounting for feedback calls. Compare against both the original one-shot system and a baseline given the same extra call budget. Otherwise an apparent gain may reflect extra attempts rather than the proposed learning mechanism.
 
-The example's fixed refiner improves its supplied fixtures by construction. Those assertions check the teaching behavior; they do not measure real model improvement. Detailed optimization, continual learning and forgetting belong in the [next deep dive](chapter-plan.md). Operational deployment and recovery follow in [reliability and operations](../15-reliability-and-operations/chapter-plan.md).
+The example's fixed refiner improves its supplied fixtures by construction. Those assertions check the teaching behavior; they do not measure real model improvement. Detailed optimization, continual learning and forgetting belong in the [next deep dive](02-optimization-continual-learning-forgetting-and-evaluation.md). Operational deployment and recovery follow in [reliability and operations](../15-reliability-and-operations/chapter-plan.md).
 
 ### Costs and failure modes
 
@@ -166,4 +166,4 @@ Feedback and reusable experiences become inputs to later decisions. Pass 2 exami
 - [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798).
 - [Agent Skills specification](https://agentskills.io/specification).
 
-[Next unit: Optimization, continual learning, forgetting, and evaluation →](chapter-plan.md)
+[Next unit: Optimization, continual learning, forgetting, and evaluation →](02-optimization-continual-learning-forgetting-and-evaluation.md)

@@ -1,0 +1,24 @@
+id: p1-03-14-02-opro
+title: Large Language Models as Optimizers
+authors_or_organization: Google DeepMind
+date: null
+source_type: research-paper
+canonical_url: https://arxiv.org/html/2309.03409v3
+doi: null
+version: arXiv v3, 2024-04-15
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- OPRO proposes candidate solutions using earlier solutions and scores; prompt optimization
+  selects instructions using training accuracy.
+limitations:
+- Historical experiments on selected models and reasoning tasks; no universal improvement
+  or weight training claim.
+related_topics: []
+unit_ids:
+- P1-03-14-02
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation.md
+local_copy: null
+sha256: null

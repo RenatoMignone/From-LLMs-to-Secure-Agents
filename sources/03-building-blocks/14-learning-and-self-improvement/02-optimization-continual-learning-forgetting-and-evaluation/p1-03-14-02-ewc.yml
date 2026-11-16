@@ -1,0 +1,24 @@
+id: p1-03-14-02-ewc
+title: Overcoming catastrophic forgetting in neural networks
+authors_or_organization: Kirkpatrick et al.
+date: null
+source_type: research-paper
+canonical_url: https://arxiv.org/abs/1612.00796
+doi: null
+version: arXiv v2, 2017-01-25
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Sequential parameter learning can forget earlier tasks; the method slows learning
+  on weights important for previous tasks.
+limitations:
+- Demonstrated on digit classification and Atari games; not evidence that a shop agent
+  or modern language model retains every capability.
+related_topics: []
+unit_ids:
+- P1-03-14-02
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation.md
+local_copy: null
+sha256: null

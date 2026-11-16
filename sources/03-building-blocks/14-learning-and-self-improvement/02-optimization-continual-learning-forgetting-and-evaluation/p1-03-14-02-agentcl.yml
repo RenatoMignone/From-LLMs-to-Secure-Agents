@@ -1,0 +1,24 @@
+id: p1-03-14-02-agentcl
+title: 'AgentCL: Toward Rigorous Evaluation of Continual Learning in Language Agents'
+authors_or_organization: Shu et al.
+date: null
+source_type: research-paper
+canonical_url: https://arxiv.org/html/2606.02461v3
+doi: null
+version: arXiv v3, 2026-09-26
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Distinguishes dependent and conventional task streams and independent held-out tasks;
+  evaluates non-parametric memory using plasticity, stability and generalization.
+limitations:
+- Preprint; experiments concern specific memory methods and domains, with no general
+  claim that memory improves all tasks.
+related_topics: []
+unit_ids:
+- P1-03-14-02
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation.md
+local_copy: null
+sha256: null

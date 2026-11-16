@@ -1,0 +1,24 @@
+id: p1-03-14-02-gem
+title: Gradient Episodic Memory for Continual Learning
+authors_or_organization: Lopez-Paz and Ranzato
+date: null
+source_type: research-paper
+canonical_url: https://arxiv.org/html/1706.08840v6
+doi: null
+version: arXiv v6, 2022-09-13
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Evaluation after successive tasks separates average performance, backward transfer
+  and forward transfer; GEM constrains updates using stored examples.
+limitations:
+- Task descriptors and image-classification experiments differ from language-agent
+  deployments; finite memories do not guarantee universal retention.
+related_topics: []
+unit_ids:
+- P1-03-14-02
+used_in:
+- knowledge/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation.md
+local_copy: null
+sha256: null
