@@ -1,0 +1,24 @@
+id: p1-03-16-01-prov
+title: PROV Overview
+authors_or_organization: W3C
+date: null
+source_type: standard
+canonical_url: https://www.w3.org/TR/prov-overview/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Provenance describes entities, activities and people involved in producing data
+  and supports assessments of quality and reliability.
+limitations:
+- The chapter manifest is a local teaching schema, not a PROV serialization or proof
+  of trusted origin.
+related_topics: []
+unit_ids:
+- P1-03-16-01
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md
+local_copy: null
+sha256: null

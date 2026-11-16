@@ -1,0 +1,24 @@
+id: p1-03-16-01-schema
+title: Creating your first schema
+authors_or_organization: JSON Schema
+date: null
+source_type: official-documentation
+canonical_url: https://json-schema.org/learn/getting-started-step-by-step
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- JSON Schema describes and validates JSON structure, types and constraints; annotations
+  such as title and description are not validation constraints.
+limitations:
+- Structural validation alone does not establish the truth of stock quantities or
+  satisfaction of a business task.
+related_topics: []
+unit_ids:
+- P1-03-16-01
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md
+local_copy: null
+sha256: null

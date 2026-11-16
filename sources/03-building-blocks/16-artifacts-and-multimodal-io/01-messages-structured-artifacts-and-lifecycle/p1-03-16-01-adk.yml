@@ -1,0 +1,24 @@
+id: p1-03-16-01-adk
+title: Artifacts
+authors_or_organization: Google Agent Development Kit
+date: null
+source_type: official-documentation
+canonical_url: https://adk.dev/artifacts/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- ADK represents named versioned binary artifacts through typed Parts and stores them
+  through an artifact service with session or user scope.
+limitations:
+- SDK details vary by language and storage implementation; in-memory storage is not
+  durable across process loss.
+related_topics: []
+unit_ids:
+- P1-03-16-01
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md
+local_copy: null
+sha256: null

@@ -1,0 +1,23 @@
+id: p1-03-16-01-media
+title: 'RFC 6838: Media Type Specifications and Registration Procedures'
+authors_or_organization: IETF
+date: null
+source_type: standard
+canonical_url: https://www.rfc-editor.org/rfc/rfc6838.html
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Media types identify content formats for MIME, HTTP and other Internet protocols
+  using registered type and subtype names.
+limitations:
+- A declared type does not prove the bytes conform or that a renderer supports them.
+related_topics: []
+unit_ids:
+- P1-03-16-01
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md
+local_copy: null
+sha256: null

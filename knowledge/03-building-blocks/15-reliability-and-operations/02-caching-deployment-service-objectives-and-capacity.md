@@ -138,4 +138,4 @@ Cache scope, resource consumption and release dependencies also create security 
 - [Canarying Releases](https://sre.google/workbook/canarying-releases/).
 - [Handling Overload](https://sre.google/sre-book/handling-overload/).
 
-[Next unit: Messages, structured artifacts, and lifecycle →](../16-artifacts-and-multimodal-io/chapter-plan.md)
+[Next unit: Messages, structured artifacts, and lifecycle →](../16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md)

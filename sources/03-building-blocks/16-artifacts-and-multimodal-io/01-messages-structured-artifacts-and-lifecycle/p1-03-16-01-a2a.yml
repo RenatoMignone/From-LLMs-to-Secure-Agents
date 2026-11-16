@@ -1,0 +1,24 @@
+id: p1-03-16-01-a2a
+title: Agent2Agent Protocol Specification 1.0.0
+authors_or_organization: A2A Project
+date: null
+source_type: standard
+canonical_url: https://a2a-protocol.org/v1.0.0/specification
+doi: null
+version: 1.0.0
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- A2A 1.0 defines Message and Artifact content as Parts; Part has exactly one of text,
+  raw, url or data, and Artifact has a task-local artifactId and nonempty parts.
+limitations:
+- Version-specific wire fields; exchange format does not itself establish file retention,
+  correctness or storage guarantees.
+related_topics: []
+unit_ids:
+- P1-03-16-01
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle.md
+local_copy: null
+sha256: null
