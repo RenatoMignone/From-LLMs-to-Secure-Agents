@@ -10,6 +10,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -126,17 +128,41 @@ class ValidatorTests(unittest.TestCase):
     def reset_to_idle(self) -> None:
         status_path = self.repo / "PROJECT_STATUS.md"
         status = status_path.read_text(encoding="utf-8")
-        status = re.sub(r"current_unit: .*", "current_unit: null", status)
-        status = re.sub(r"current_unit_path: .*", "current_unit_path: null", status)
-        status = re.sub(r"current_unit_state: .*", "current_unit_state: idle", status)
-        status = re.sub(r"blocked_from: .*", "blocked_from: null", status)
-        status = re.sub(r"completed_through: .*", "completed_through: P1-00-04", status)
-        status = re.sub(r"next_recommended_unit: .*", "next_recommended_unit: P1-01-01", status)
-        status = re.sub(r"units_in_review:.*", "units_in_review: []", status)
-        status_path.write_text(status, encoding="utf-8")
+        match = re.match(r"^(?:<!--\s*)?---\n(.*?)\n---\s*(?:-->)?\n?(.*)$", status, re.DOTALL)
+        self.assertIsNotNone(match)
+        data = yaml.safe_load(match.group(1))
+        data.update(
+            current_unit=None,
+            current_unit_path=None,
+            current_unit_state="idle",
+            blocked_from=None,
+            completed_through="P1-00-04",
+            next_recommended_unit="P1-01-01",
+            units_in_review=[],
+            blockers=[],
+        )
+        status_path.write_text(
+            "---\n" + yaml.safe_dump(data, sort_keys=False) + "---\n\n" + match.group(2).lstrip("\n"),
+            encoding="utf-8",
+        )
         target = self.repo / "knowledge/01-agent-foundations/01-what-is-an-agent.md"
         if target.is_file():
             target.unlink()
+
+    def test_reset_to_idle_clears_multiline_review_and_blockers(self) -> None:
+        status_path = self.repo / "PROJECT_STATUS.md"
+        status_path.write_text(
+            "---\nschema_version: 1\nunits_in_review:\n- P1-00-01\n- P1-00-02\n"
+            "blockers:\n- waiting\n---\n\nPreserved status body.\n",
+            encoding="utf-8",
+        )
+        self.reset_to_idle()
+        status = status_path.read_text(encoding="utf-8")
+        data = yaml.safe_load(status.split("---", 2)[1])
+        self.assertEqual(data["units_in_review"], [])
+        self.assertEqual(data["blockers"], [])
+        self.assertEqual(data["current_unit_state"], "idle")
+        self.assertTrue(status.endswith("Preserved status body.\n"))
 
     def test_state_start_resolves_and_scaffolds_next_unit(self) -> None:
         self.reset_to_idle()
