@@ -1,0 +1,24 @@
+id: p1-03-16-02-a2a
+title: Agent2Agent Protocol Specification 1.0.0
+authors_or_organization: A2A Project
+date: null
+source_type: standard
+canonical_url: https://a2a-protocol.org/v1.0.0/specification
+doi: null
+version: 1.0.0
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Task artifact updates can append content and indicate lastChunk; task status updates
+  carry task state separately, and task streams close on terminal task states.
+limitations:
+- Completing one artifact chunk sequence does not establish overall task success or
+  application-level correctness.
+related_topics: []
+unit_ids:
+- P1-03-16-02
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/02-multimodal-input-output-streaming-and-evaluation.md
+local_copy: null
+sha256: null

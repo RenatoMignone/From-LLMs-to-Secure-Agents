@@ -1,0 +1,24 @@
+id: p1-03-16-02-vision
+title: Images and vision
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/images-vision
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Visual inputs can be misinterpreted; small text, rotation, spatial localization
+  and counting have limitations, and images may be resized before analysis.
+limitations:
+- Provider-specific documented limitations; an image interpretation is not authoritative
+  evidence of current external state.
+related_topics: []
+unit_ids:
+- P1-03-16-02
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/02-multimodal-input-output-streaming-and-evaluation.md
+local_copy: null
+sha256: null

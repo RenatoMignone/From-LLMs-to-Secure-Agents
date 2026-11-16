@@ -1,0 +1,25 @@
+id: p1-03-16-02-computer
+title: Computer use
+authors_or_organization: OpenAI
+date: null
+source_type: official-documentation
+canonical_url: https://developers.openai.com/api/docs/guides/tools-computer-use
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Computer use connects model decisions to an application-owned browser or desktop
+  runtime, returning fresh screenshots after actions; API conversation and environment
+  state are distinct.
+limitations:
+- Integration details and available tools vary; seeing a rendered page does not independently
+  prove a backend business operation completed.
+related_topics: []
+unit_ids:
+- P1-03-16-02
+used_in:
+- knowledge/03-building-blocks/16-artifacts-and-multimodal-io/02-multimodal-input-output-streaming-and-evaluation.md
+local_copy: null
+sha256: null
