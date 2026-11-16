@@ -1,0 +1,23 @@
+id: p1-03-15-01-retries
+title: Timeouts, retries, and backoff with jitter
+authors_or_organization: Amazon Builders Library
+date: null
+source_type: first-party-engineering
+canonical_url: https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Timeouts bound waiting; failed calls may have side effects; backoff and jitter spread
+  retries, while retries can amplify overload.
+limitations:
+- Timeout selection and retry policy depend on the dependency and workload.
+related_topics: []
+unit_ids:
+- P1-03-15-01
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md
+local_copy: null
+sha256: null

@@ -149,4 +149,4 @@ Feedback, stored experience and optimization objectives can influence later acti
 - [Gradient Episodic Memory for Continual Learning, version 6](https://arxiv.org/html/1706.08840v6).
 - [AgentCL: Toward Rigorous Evaluation of Continual Learning in Language Agents, version 3](https://arxiv.org/html/2606.02461v3).
 
-[Next unit: Service boundaries, queues, retries, and budgets →](../15-reliability-and-operations/chapter-plan.md)
+[Next unit: Service boundaries, queues, retries, and budgets →](../15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md)

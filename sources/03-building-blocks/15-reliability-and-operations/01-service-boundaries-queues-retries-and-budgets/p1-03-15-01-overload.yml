@@ -1,0 +1,24 @@
+id: p1-03-15-01-overload
+title: Handling Overload
+authors_or_organization: Google SRE
+date: null
+source_type: first-party-engineering
+canonical_url: https://sre.google/sre-book/handling-overload/
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Resource-based capacity, per-customer limits and client throttling help handle overload;
+  request count alone can misrepresent cost.
+limitations:
+- Operational design guidance; numerical example budgets in this chapter are local
+  teaching choices.
+related_topics: []
+unit_ids:
+- P1-03-15-01
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md
+local_copy: null
+sha256: null

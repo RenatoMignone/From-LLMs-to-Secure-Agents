@@ -1,0 +1,24 @@
+id: p1-03-15-01-sessions
+title: Effective harnesses for long-running agents
+authors_or_organization: Anthropic
+date: null
+source_type: first-party-engineering
+canonical_url: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Long-running coding agents use progress artifacts, incremental work and verification
+  across context windows; compaction alone was insufficient in the reported setup.
+limitations:
+- A first-party coding-agent study, not evidence that a progress note is a durable
+  execution engine.
+related_topics: []
+unit_ids:
+- P1-03-15-01
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md
+local_copy: null
+sha256: null

@@ -1,0 +1,23 @@
+id: p1-03-15-01-compensation
+title: Compensating Transaction pattern
+authors_or_organization: Microsoft
+date: null
+source_type: official-documentation
+canonical_url: https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- Compensation is application-specific, can fail and needs recorded progress; it need
+  not return all data to its original state.
+limitations:
+- Not every action can be undone; manual recovery may be needed.
+related_topics: []
+unit_ids:
+- P1-03-15-01
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md
+local_copy: null
+sha256: null

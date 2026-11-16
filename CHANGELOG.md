@@ -467,3 +467,9 @@
 - Files or sections: `knowledge/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation.md` and its evidence, visuals, or examples
 - Summary: Completed and reviewed Optimization, continual learning, forgetting, and evaluation.
 - Validation: Passed repository validation and the unit review checklist.
+
+### P1-03-15-01 complete
+
+- Files or sections: `knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md` and its evidence, visuals, or examples
+- Summary: Completed and reviewed Service boundaries, queues, retries, and budgets.
+- Validation: Passed repository validation and the unit review checklist.

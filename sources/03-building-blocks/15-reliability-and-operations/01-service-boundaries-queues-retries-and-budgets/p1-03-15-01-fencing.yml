@@ -1,0 +1,24 @@
+id: p1-03-15-01-fencing
+title: 'FencedLock: Fencing Tokens'
+authors_or_organization: Hazelcast
+date: null
+source_type: official-documentation
+canonical_url: https://docs.hazelcast.com/hazelcast/5.7/data-structures/fencedlock
+doi: null
+version: null
+accessed: '2026-11-16'
+last_verified: '2026-11-16'
+status: checked
+claims_supported:
+- An expired lock holder may still execute; a monotonically increasing fencing token
+  allows an external resource to reject stale writers.
+limitations:
+- Requires the destination to enforce fencing; a lease alone does not stop a delayed
+  process.
+related_topics: []
+unit_ids:
+- P1-03-15-01
+used_in:
+- knowledge/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets.md
+local_copy: null
+sha256: null
