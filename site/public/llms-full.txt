@@ -8,7 +8,7 @@
 - **Full Text AI Dump:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/llms-full.txt
 - **Source Repository:** https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents
 - **Publication status:** Updated incrementally as chapters complete review.
-- **Current publication:** 56 chapters across 4 sections. The latest chapter is [Adaptation, reflection, feedback, and skills](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/).
+- **Current publication:** 61 chapters across 4 sections. The latest chapter is [Multimodal input, output, streaming, and evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-multimodal-input-output-streaming-and-evaluation/).
 
 ## Executive Summary & Core Definitions (AEO Grounding)
 
@@ -627,6 +627,56 @@
   * Distinguish research skill acquisition from authored instruction packages.
   * Design a bounded feedback loop with held-out, retention and rollback checks.
 - **Verified Primary Sources:** [Self-Refine: Iterative Refinement with Self-Feedback](https://arxiv.org/abs/2303.17651), [Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366), [Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291), [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798), [Agent Skills specification](https://agentskills.io/specification)
+
+### [Optimization, continual learning, forgetting, and evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/)
+- **Summary:** Evaluate prompt, memory and weight changes with separate transfer, retention and rollback evidence.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation.md
+- **Learning Objectives:**
+  * Distinguish prompt optimization from parameter learning.
+  * Evaluate transfer and retention across task streams.
+  * Reject an average gain that conceals a regression.
+- **Verified Primary Sources:** [Large Language Models as Optimizers](https://arxiv.org/html/2309.03409v3), [Overcoming catastrophic forgetting in neural networks](https://arxiv.org/abs/1612.00796), [Gradient Episodic Memory for Continual Learning](https://arxiv.org/html/1706.08840v6), [AgentCL: Toward Rigorous Evaluation of Continual Learning in Language Agents](https://arxiv.org/html/2606.02461v3)
+
+### [Service boundaries, queues, retries, and budgets](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-service-boundaries-queues-retries-and-budgets/)
+- **Summary:** Operate a bounded agent service and recover work without confusing a timeout with a failed external action.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-service-boundaries-queues-retries-and-budgets.md
+- **Learning Objectives:**
+  * Explain admission, queueing, leases and layered budgets.
+  * Distinguish retry, replay, resume, rollback and compensation.
+  * Recover an ambiguous external outcome across sessions.
+- **Verified Primary Sources:** [Queue-Based Load Leveling pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling), [Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/), [Handling Overload](https://sre.google/sre-book/handling-overload/), [FencedLock: Fencing Tokens](https://docs.hazelcast.com/hazelcast/5.7/data-structures/fencedlock), [Circuit Breaker pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker), [Workflow Execution](https://docs.temporal.io/workflow-execution), [Agents API architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture), [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), [Compensating Transaction pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction)
+
+### [Caching, deployment, service objectives, and capacity](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-caching-deployment-service-objectives-and-capacity/)
+- **Summary:** Relate cache freshness, versioned releases, service objectives and sustainable capacity to correct user outcomes.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-caching-deployment-service-objectives-and-capacity.md
+- **Learning Objectives:**
+  * Distinguish cache reuse from answer correctness.
+  * Evaluate a versioned release against explicit service objectives.
+  * Explain why capacity depends on workload and shared limits.
+- **Verified Primary Sources:** [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html), [Service Level Objectives](https://sre.google/sre-book/service-level-objectives/), [Canarying Releases](https://sre.google/workbook/canarying-releases/), [Handling Overload](https://sre.google/sre-book/handling-overload/)
+
+### [Messages, structured artifacts, and lifecycle](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-messages-structured-artifacts-and-lifecycle/)
+- **Summary:** Make saved outputs retrievable, versioned and interpretable while separating structure, content and rendering checks.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/01-messages-structured-artifacts-and-lifecycle.md
+- **Learning Objectives:**
+  * Distinguish messages, events, state and artifacts.
+  * Describe an artifact with type, provenance, storage and lifecycle metadata.
+  * Compare ADK artifact management with A2A content exchange.
+- **Verified Primary Sources:** [Artifacts](https://adk.dev/artifacts/), [Agent2Agent Protocol Specification 1.0.0](https://a2a-protocol.org/v1.0.0/specification), [RFC 6838: Media Type Specifications and Registration Procedures](https://www.rfc-editor.org/rfc/rfc6838.html), [Creating your first schema](https://json-schema.org/learn/getting-started-step-by-step), [PROV Overview](https://www.w3.org/TR/prov-overview/), [hashlib: Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html)
+
+### [Multimodal input, output, streaming, and evaluation](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-multimodal-input-output-streaming-and-evaluation/)
+- **Summary:** Preserve observation provenance and distinguish streamed content, interruption, verified effects and delivered acknowledgements.
+- **Section:** [Building blocks](https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/)
+- **Clean Markdown URL:** https://renatomignone.github.io/From-LLMs-to-Secure-Agents/markdown/building-blocks/02-multimodal-input-output-streaming-and-evaluation.md
+- **Learning Objectives:**
+  * Trace image, audio, video and interactive observations through an agent workflow.
+  * Separate content completion, playback, tool outcomes and task success.
+  * Evaluate interrupted workflows using the current intent and external state.
+- **Verified Primary Sources:** [Images and vision](https://developers.openai.com/api/docs/guides/images-vision), [Computer use](https://developers.openai.com/api/docs/guides/tools-computer-use), [Voice agents](https://developers.openai.com/api/docs/guides/voice-agents), [Agent2Agent Protocol Specification 1.0.0](https://a2a-protocol.org/v1.0.0/specification), [Benchmarking Multimodal Retrieval Augmented Generation with Dynamic VQA Dataset and Self-adaptive Planning Agent](https://arxiv.org/abs/2411.02937)
 
 
 
@@ -10657,7 +10707,7 @@ For this chapter's candidate skill, record all five elements:
 
 Use [evaluation methods](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/12-evaluation-and-benchmarks/chapter-plan.md) with separate development and held-out cases, repeated trials for actual models, and cost accounting for feedback calls. Compare against both the original one-shot system and a baseline given the same extra call budget. Otherwise an apparent gain may reflect extra attempts rather than the proposed learning mechanism.
 
-The example's fixed refiner improves its supplied fixtures by construction. Those assertions check the teaching behavior; they do not measure real model improvement. Detailed optimization, continual learning and forgetting belong in the [next deep dive](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md). Operational deployment and recovery follow in [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md).
+The example's fixed refiner improves its supplied fixtures by construction. Those assertions check the teaching behavior; they do not measure real model improvement. Detailed optimization, continual learning and forgetting belong in the [next deep dive](/From-LLMs-to-Secure-Agents/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/). Operational deployment and recovery follow in [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md).
 
 ### Costs and failure modes
 
@@ -10690,4 +10740,696 @@ Feedback and reusable experiences become inputs to later decisions. Pass 2 exami
 - [Large Language Models Cannot Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798).
 - [Agent Skills specification](https://agentskills.io/specification).
 
-[Next unit: Optimization, continual learning, forgetting, and evaluation →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md)
+[Next unit: Optimization, continual learning, forgetting, and evaluation →](/From-LLMs-to-Secure-Agents/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/)
+
+
+================================================================================
+CHAPTER: Optimization, continual learning, forgetting, and evaluation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/
+SUMMARY: Evaluate prompt, memory and weight changes with separate transfer, retention and rollback evidence.
+================================================================================
+
+# Optimization, continual learning, forgetting, and evaluation
+
+## Why this matters
+
+Lee adds a new supplier format to the shop assistant's instructions. The assistant now reads that supplier's stock file correctly. A week later, Lee notices that reports from the older supplier no longer distinguish an empty shelf from missing data. A successful update on one task has hidden a regression on another.
+
+This optional deep dive explains how to evaluate changes across tasks and time. Read [adaptation, reflection, feedback, and skills](/From-LLMs-to-Secure-Agents/building-blocks/01-adaptation-reflection-feedback-and-skills/) first. The main path continues with [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md). This chapter examines improvement mechanisms, rather than giving a model-training tutorial.
+
+## How it works
+
+### Name the object being optimized
+
+**Optimization** means searching for a better candidate according to a stated measure, called an **objective**. A candidate might be an instruction, a retrieved procedure, a tool-selection rule or a set of model weights. A higher objective score only means improvement according to that measure on the evaluated cases.
+
+For Lee, an objective could be the share of stock reports with a correct quantity and a valid source. The candidate is a version of the report instructions. The model weights stay fixed. Choosing the instruction with the best score is prompt optimization, even if a language model proposes the candidates.
+
+OPRO, a research method, gives an optimizer model previously proposed candidates and their scores, then evaluates new proposals. In its prompt-optimization experiments, the candidates are instructions and the objective is training-set accuracy. It does not imply that the model trains its own weights during that search. Results depend on the task, scoring model and optimization setup. [OPRO](https://arxiv.org/html/2309.03409v3).
+
+Changing a **policy**, a strategy for choosing actions, is similarly ambiguous. A developer might revise application rules, select a prompt or train an action-producing model. Record the exact changed object. A **weight update** changes learned model parameters through training; adding a memory record or reading a skill package supplies information at inference time instead.
+
+### Keep development separate from the final test
+
+A **development set** contains cases used to design or select candidates. A **held-out set** contains cases withheld from that process. **Overfitting** happens when a candidate fits development cases well but fails to generalize to other relevant cases. Repeatedly selecting against the same supposed final test turns it into development data.
+
+Our teaching workflow is to freeze the baseline, candidate, scoring rules and resource budgets before opening the final results. Keep the model version, available tools and relevant data snapshots comparable. Compare equal call budgets as well as the original system: otherwise extra attempts can explain a gain.
+
+![Cartoon robots separate candidate development from new-task and earlier-task checks, while keeping the baseline version available.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation/01-transfer-and-retention.webp)
+
+*Figure 1. The development loop proposes a candidate. Separate new-task and earlier-task checks provide transfer and retention evidence. Keeping the baseline makes rejection or rollback possible.*
+
+Read the middle stations as different questions, not three names for the same test. A report used to write the new instruction cannot also provide independent evidence that the instruction generalizes. The retained booklet at the right represents a recoverable configuration, not an automatic guarantee that restoring it will reverse external actions.
+
+### Follow a sequence of learning and evaluation
+
+**Continual learning** studies learning across a sequence of tasks or experiences while preserving useful prior capabilities. Say which mechanism persists across the sequence. A memory-based agent can accumulate experiences with fixed model weights; a training-based system changes parameters. Neither mechanism establishes improvement just by running for longer.
+
+**Plasticity** is the ability to adapt to new tasks. **Retention** is preservation of previously supported behavior. **Transfer** is an effect of earlier learning on another task. Forward transfer concerns later tasks; backward transfer concerns how new learning affects earlier tasks. These are distinct from a single final average. GEM formalizes metrics for accuracy and transfer over a sequence of tasks. [GEM evaluation framework](https://arxiv.org/html/1706.08840v6).
+
+For the shop, evaluate older stock reports before adding the new supplier, then evaluate both supplier families after the update. Continue evaluating older families after later changes. Keep each task family's score visible: many improved new tasks can hide a serious loss in a small older family.
+
+A **curriculum** chooses the tasks and order used for learning. Easy cases followed by harder related cases may encourage reuse, but order also affects what an agent has seen. Log task order and adaptation checkpoints. During an independent evaluation, freeze the memory or copy its starting snapshot for each comparison so one candidate does not receive extra experience.
+
+AgentCL is a 2026 research framework for memory-based language agents. It separates streams where earlier solutions can be reused, streams whose reuse relations are unknown, and independent held-out tasks with little expected reusable knowledge. This helps distinguish useful accumulation from interference caused by irrelevant memories. Its results concern the tested memory designs, not all learning agents. [AgentCL, version 3](https://arxiv.org/html/2606.02461v3).
+
+### Distinguish forgetting from other regressions
+
+**Catastrophic forgetting** is a substantial loss of earlier learned performance after new learning. In parameter learning, updates useful for the new task can interfere with parameters supporting older tasks. Elastic Weight Consolidation slows changes to weights judged important for earlier tasks. GEM uses stored examples to constrain updates. These research approaches address specific training settings; neither is a blanket retention guarantee. [Weight protection](https://arxiv.org/abs/1612.00796), [GEM mechanism](https://arxiv.org/html/1706.08840v6).
+
+A fixed-weight agent can also get worse: a new instruction can conflict with an old one, an irrelevant memory can crowd out useful evidence, or skill selection can choose the wrong package. Describe these as application regressions or memory interference unless there is evidence of a training-related forgetting mechanism. A changed supplier file or a broken retrieval service can also lower scores without any learning change.
+
+For each suspected regression, first locate what changed and preserve the failing trace. Compare with the earlier configuration on the same inputs. Then isolate prompt, memory, package, retrieval and weight changes where feasible. This makes the explanation testable instead of attributing every loss to forgetting.
+
+## Worked example
+
+### Reject an attractive average
+
+The following counts are illustrative teaching fixtures, not benchmark results. Each family has four fixed cases. The baseline and candidate differ only in mocked report rules.
+
+| Evaluation family | Baseline correct | Candidate correct | Interpretation |
+| --- | --- | --- | --- |
+| New supplier, held out | 1 of 4 | 4 of 4 | Candidate handles the new format |
+| Earlier stock behavior | 4 of 4 | 3 of 4 | Missing data is now mistaken for zero |
+| All eight cases | 5 of 8 | 7 of 8 | Better average hides the regression |
+
+Lee's stated acceptance rule requires improvement on the new family and no loss on the earlier family. The candidate fails that rule. Keep the baseline and revise the candidate using development cases; use a fresh held-out set for any later final selection.
+
+The [offline example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/14-learning-and-self-improvement/02-optimization-continual-learning-forgetting-and-evaluation/README.md) evaluates the rules and records the decision. It shows a regression check, not a learning algorithm or an experiment with a real model.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+transfer_gain = candidate_new - baseline_new
+retention_change = candidate_old - baseline_old
+promote = transfer_gain > 0 and retention_change >= 0
+selected = candidate_version if promote else baseline_version
+```
+
+This all-or-nothing rule is a teaching choice. Real acceptance thresholds should be set before evaluation and reflect sample size, task severity and uncertainty. Repeated model trials can produce different outcomes even when the route and prompt are fixed.
+
+</details>
+
+A reviewable improvement record for this example names all five elements:
+
+| Element | Recorded evidence |
+| --- | --- |
+| Mechanism | Report rule version 2; no weight update |
+| Baseline | Version 1 on the same frozen cases |
+| Transfer test | Four unseen new-supplier cases |
+| Retention test | Four earlier-behavior cases, including missing data |
+| Rollback path | Keep version 1 selected and retain version 2's failed result |
+
+## Limitations and trade-offs
+
+Four cases per family cannot establish a reliable real-world improvement rate. In a real evaluation, include varied requests, unavailable evidence, changed formats and irrelevant prior experiences. Report denominators, failures, uncertainty, model calls, latency and memory size. A large experience library may improve reuse while increasing retrieval cost or introducing interference.
+
+Restoring instructions or weights does not automatically restore an index, a memory store or an external system already modified by the candidate. Version dependent artifacts together and state what rollback actually restores. Operational recovery follows in [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md); coordination-dependent outcomes also require the checks from [multi-agent systems](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/13-multi-agent-systems/chapter-plan.md).
+
+<details><summary>Check your understanding</summary>
+
+A candidate improves the final average but loses the ability to report missing stock data as unknown. Its model weights were unchanged. Does the higher average prove continual improvement, and is the loss necessarily catastrophic forgetting?
+
+No. The average hides a task-specific regression and fails the stated retention rule. With fixed weights, investigate instruction conflicts, memory interference and other application changes before assigning a training-related forgetting explanation.
+
+</details>
+
+## Security preview
+
+Feedback, stored experience and optimization objectives can influence later actions. Pass 2 connects feedback poisoning and unsafe optimization to [retrieval, memory and data](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md) and [end-to-end attack paths](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/07-end-to-end-attack-paths/chapter-plan.md).
+
+## Key takeaways
+
+- Name the persistent change before calling it learning.
+- Separate candidate selection from held-out transfer and retention evidence.
+- Evaluate task families and successive checkpoints, not just a final average.
+- Preserve the earlier configuration and define the scope of rollback.
+
+## References
+
+- [Large Language Models as Optimizers, version 3](https://arxiv.org/html/2309.03409v3).
+- [Overcoming catastrophic forgetting in neural networks](https://arxiv.org/abs/1612.00796).
+- [Gradient Episodic Memory for Continual Learning, version 6](https://arxiv.org/html/1706.08840v6).
+- [AgentCL: Toward Rigorous Evaluation of Continual Learning in Language Agents, version 3](https://arxiv.org/html/2606.02461v3).
+
+[Next unit: Service boundaries, queues, retries, and budgets →](/From-LLMs-to-Secure-Agents/building-blocks/01-service-boundaries-queues-retries-and-budgets/)
+
+
+================================================================================
+CHAPTER: Service boundaries, queues, retries, and budgets
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-service-boundaries-queues-retries-and-budgets/
+SUMMARY: Operate a bounded agent service and recover work without confusing a timeout with a failed external action.
+================================================================================
+
+# Service boundaries, queues, retries, and budgets
+
+## Why this matters
+
+Lee's assistant reserves the last mug at a supplier. The supplier accepts the request, but the response disappears before the assistant records it. A replacement worker starts after the first worker crashes. Should it reserve again?
+
+The right answer depends on stored execution state and the supplier's operation record. More reasoning cannot recover a missing network response. This chapter connects the earlier [state and lifecycle](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/04-state-and-lifecycle/chapter-plan.md) mechanisms into an operating service. It follows [learning and self-improvement](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/14-learning-and-self-improvement/chapter-plan.md): even a better agent needs bounded execution and recoverable work.
+
+## How it works
+
+### Separate receiving work from doing work
+
+A **service boundary** separates components that communicate through requests or events and can fail independently. A **queue** stores work waiting to be processed. A **worker** takes a queued item and executes it. Lee's application accepts a request, records its ID and deadline, queues it, and later lets a worker run the agent and its tools.
+
+**Admission control** decides whether to accept new work. **Backpressure** tells an upstream producer to slow down when a downstream component cannot keep up. A bounded queue can absorb a short burst; it cannot create processing capacity. If arrivals keep exceeding completions, queue delay grows until work expires or capacity runs out. Keep worker concurrency within downstream limits. [Queue-based load leveling](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling).
+
+For Lee, an admission decision can return a job ID, a request to try later, or an explicit refusal because the task cannot meet its deadline. An accepted job needs a way to report later completion or failure. Acceptance is not completion.
+
+![Request cards pass admission into a bounded queue, a leased worker records a checkpoint, and a replacement worker reconciles an operation with the external service.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets/01-queue-and-recovery.webp)
+
+*Figure 1. Work survives separately from the worker. The recovery path consults the external operation record before deciding whether another action is needed.*
+
+Read the lower path as recovery, not a second reservation. The queue holds the request; the checkpoint holds execution progress; the supplier holds the actual reservation outcome. Those records answer different questions.
+
+### Give each worker temporary ownership
+
+A **lease** is a time-limited right to process work. The worker renews it while healthy. If renewal stops, another worker may take over. Queue delivery and lease expiry can produce duplicate execution, so temporary ownership alone cannot promise one external effect.
+
+A paused old worker may wake after its lease expires. **Fencing** prevents that stale worker from committing updates by attaching an increasing ownership token and making the destination reject older tokens. The destination must enforce the rule. A token in a log does not stop writes to a supplier that ignores it. [Fencing tokens](https://docs.hazelcast.com/hazelcast/5.7/data-structures/fencedlock).
+
+Use the [idempotency and concurrency mechanisms](/From-LLMs-to-Secure-Agents/building-blocks/03-retries-idempotency-and-concurrency/) introduced earlier. An **idempotent** operation can be repeated without adding another effect. A stable operation ID can support deduplication if the receiving service implements that contract. Worker lease tokens and business operation IDs have different purposes: the first rejects stale ownership; the second identifies the intended action across retries.
+
+### Bound every layer of execution
+
+A **timeout** limits how long a caller waits for an attempt. A **deadline** is the latest acceptable completion time for the whole task. A **budget** bounds a resource such as calls, tokens or cost. A **quota** limits an allocation, often per account or time period. A **rate limit** bounds activity over time; a **concurrency limit** bounds work happening at once.
+
+These limits belong outside the model loop, in the scheduler and tool clients. Queue wait, model calls, tool calls, retries and cleanup all consume the run's available time. A retry does not receive a fresh run budget. Reserve capacity before dispatch when parallel calls could otherwise overspend the same balance.
+
+![Nested service, run, and tool-attempt workspaces show service concurrency and rate limits around a shared run deadline and cost budget; retries spend from that same budget.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets/02-layered-budgets.webp)
+
+*Figure 2. Service limits constrain aggregate work, run limits constrain the task, and attempt limits constrain one call. Queue wait counts against the deadline, and retries spend from the same cost balance.*
+
+The layers are a teaching model, not a standard configuration format. For example, Lee might allow one worker, two waiting jobs, three tool attempts and three simulated cost units per run. These are example settings, not recommended production defaults. Count queue delay, attempts, resource use and rejected work separately. Google SRE's overload guidance explains why request counts alone can miss large differences in resource consumption. [Handling overload](https://sre.google/sre-book/handling-overload/).
+
+### Retry only when another attempt is useful and safe
+
+A **retry** makes another attempt at an operation. A **transient failure** is a temporary failure, such as a short connection outage. **Backoff** waits longer between retries, and **jitter** adds random variation so clients do not all retry together. Cap both attempts and waiting time, honor the remaining deadline, and define one owner for retries so nested layers do not multiply them. [Timeouts, retries, and jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/).
+
+A timeout ends waiting; it does not prove that the remote operation failed. After Lee's reservation times out, record the outcome as unknown. **Reconciliation** compares local intent with the external service's authoritative status. Query by the stable operation ID before deciding whether to retry. If the service cannot identify the outcome, retain the uncertainty and route it to a stated recovery process.
+
+A **circuit breaker** temporarily prevents calls to an unhealthy dependency. Closed allows calls; open rejects them; half-open allows limited recovery probes. A **fallback** uses an alternative behavior, such as producing a stock report without a reservation. Label its reduced result clearly. The breaker decides whether to call; the fallback decides what else to do. [Circuit breaker pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker).
+
+### Assign recovery to named owners
+
+A **harness** runs the model and tool loop. An **environment** supplies the process, files and compute where code runs. The application connects these pieces to product behavior. Ownership varies by runtime:
+
+| Responsibility | Self-hosted harness and environment | Managed harness |
+| --- | --- | --- |
+| Agent loop and execution state | Application team operates the harness and persistence | Provider operates the documented harness; application verifies its recovery contract |
+| Compute and workspace lifecycle | Application provisions, reconnects, preserves files and shuts down | Provider may manage compute; self-hosted environments remain application-owned |
+| Business operation semantics | Application and external services define IDs, status and compensation | Application and external services still define these semantics |
+| Admission, product budgets and results | Application defines acceptance and observes completion | Application still defines product acceptance and handles its integrations |
+
+OpenAI's managed architecture distinguishes harness, environment and application server. It leaves application function handling to application code and assigns self-hosted environment lifecycle to the application. This is one provider's contract, not a universal runtime guarantee. [Managed architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture).
+
+A **checkpoint** records resumable execution state. **Resume** continues interrupted work. **Replay** reconstructs execution from recorded history under a framework's rules. Temporal replays workflows against an event history and requires deterministic workflow behavior; it is more than reloading a conversation. Neither checkpointing nor replay makes arbitrary remote effects transactional. [Temporal workflow execution](https://docs.temporal.io/workflow-execution).
+
+For the reservation crash, the recovery owner loads the checkpoint, obtains current ownership, reconciles the outstanding operation ID, records the known result and releases local resources. If the supplier already reserved the mug, it does not reserve again. A local shutdown or cancellation may leave the remote operation running.
+
+**Rollback** restores a previous configuration or local state. **Compensation** performs a business action intended to offset an earlier effect, such as releasing a reservation. It can itself fail. If the release service is unavailable, record compensation as pending and make that unresolved state visible; do not report the reservation as undone. [Compensating transactions](https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction).
+
+## Worked example
+
+The [offline scheduler and recovery example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/15-reliability-and-operations/01-service-boundaries-queues-retries-and-budgets/README.md) compares a reservation in one session with the same reservation across two simulated sessions. Both use a local mocked supplier ledger. The interrupted run saves intent before dispatch, loses the response after the supplier commits, and reads the supplier ledger on recovery. It also demonstrates bounded admission, a retry budget, stale ownership rejection and failed compensation.
+
+A small progress artifact records completed work, unresolved questions, next steps and verification results. A new session reads it instead of guessing from chat history. Anthropic's long-running coding-agent report uses progress artifacts and verification across context windows; a larger context window or compaction alone does not establish continuity. That engineering pattern complements durable runtime state rather than replacing it. [Long-running harnesses](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+save_checkpoint(operation_id, status="pending")
+result = supplier.status(operation_id)
+if result is None:
+    result = supplier.reserve(operation_id)
+save_checkpoint(operation_id, status="complete", result=result)
+```
+
+This fragment assumes an authoritative status lookup and an idempotent reservation contract. The full example simulates a crash between the external commit and the local completion record. A real deployment also needs durable storage, atomic ownership checks, timeouts and dependency-specific reconciliation.
+
+</details>
+
+Use explicit acceptance criteria when interpreting its fixed trace:
+
+| Measure | Teaching criterion | Observed fixture |
+| --- | --- | --- |
+| Queue delay | At most 2 simulated ticks | 1 tick |
+| Completion | Both execution modes reach the same reservation | 2 of 2 scenarios complete |
+| Attempts and cost | At most 3 attempts and 3 cost units per retry scenario | 2 attempts, 2 units |
+| Recovery | No duplicate reservation after lost response | One external effect in each execution mode |
+| Cleanup | Local worker resource released | Released in both modes |
+| Unresolved compensation | Failed release remains visible | Reservation retained, compensation pending |
+
+These fixtures verify intended example behavior, not a measured service reliability rate. Real trials should include overload, expired deadlines, crash timing, failed status lookups and cleanup failures.
+
+## Limitations and trade-offs
+
+Queues trade immediate execution for delay. More workers can exhaust a dependency sooner. Retries spend capacity, fallbacks can reduce usefulness, and checkpoints add storage and compatibility obligations. When work reaches a terminal state, distinguish completed, failed, cancelled and unresolved external outcomes in the user-facing result.
+
+The example uses files and a simulated clock in one process. It cannot establish distributed atomicity, isolation, real cancellation delivery or provider availability. The next deep dive covers caching, deployment and capacity. Durable reports and progress files also need the lifecycle rules introduced in [artifacts and multimodal input/output](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/16-artifacts-and-multimodal-io/chapter-plan.md).
+
+<details><summary>Check your understanding</summary>
+
+A worker times out after sending a reservation and its lease expires. A replacement worker has a checkpoint but no result. Is it safe to issue a new reservation immediately?
+
+No. The supplier may already have committed the first action. Reconcile the stable operation ID and use the receiving service's idempotency contract. A new lease establishes current ownership, but does not reveal or reverse the earlier external outcome.
+
+</details>
+
+## Security preview
+
+Unbounded execution and operational abuse affect these runtime components. Pass 2 maps them to [execution and supply-chain security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md) and [end-to-end attack paths](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/07-end-to-end-attack-paths/chapter-plan.md).
+
+## Key takeaways
+
+- Accept work only when queue, time and downstream capacity permit it.
+- Give retries, tool calls and cleanup one bounded run budget.
+- A timeout or cancellation does not establish the remote outcome.
+- Recover ownership and reconcile effects before resuming work.
+- Progress artifacts preserve continuity; durable execution and external contracts preserve recoverability.
+
+## References
+
+- [Queue-Based Load Leveling pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling).
+- [Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/).
+- [Handling Overload](https://sre.google/sre-book/handling-overload/).
+- [FencedLock: Fencing Tokens](https://docs.hazelcast.com/hazelcast/5.7/data-structures/fencedlock).
+- [Circuit Breaker pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker).
+- [Workflow Execution](https://docs.temporal.io/workflow-execution).
+- [Agents API architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture).
+- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+- [Compensating Transaction pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction).
+
+[Next unit: Caching, deployment, service objectives, and capacity →](/From-LLMs-to-Secure-Agents/building-blocks/02-caching-deployment-service-objectives-and-capacity/)
+
+
+================================================================================
+CHAPTER: Caching, deployment, service objectives, and capacity
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-caching-deployment-service-objectives-and-capacity/
+SUMMARY: Relate cache freshness, versioned releases, service objectives and sustainable capacity to correct user outcomes.
+================================================================================
+
+# Caching, deployment, service objectives, and capacity
+
+## Why this matters
+
+Lee's assistant becomes faster after a release starts reusing stock reports. The service dashboard looks healthy, but one cached report still claims the last mug is available after it has been reserved. Faster responses have made the stale answer easier to obtain.
+
+This optional operations deep dive connects caching, release decisions and capacity to user outcomes. Read [service boundaries, queues, retries, and budgets](/From-LLMs-to-Secure-Agents/building-blocks/01-service-boundaries-queues-retries-and-budgets/) first. The main path continues with [artifacts and multimodal input/output](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/16-artifacts-and-multimodal-io/chapter-plan.md).
+
+## How it works
+
+### Reuse only an appropriate result
+
+A **cache** stores something computed or retrieved earlier so it can be reused. A **cache hit** finds a reusable entry; a **miss** requires new work. The **cache key** identifies the conditions under which an entry can be reused. A matching string alone is not enough if the answer also depends on a changed stock snapshot or a different instruction version.
+
+HTTP, the web request/response protocol, has standardized caching rules. RFC 9111 defines freshness, validation and request-variant matching. A **fresh** entry has not exceeded its allowed freshness lifetime; a **stale** entry has. **Validation** checks with the original service whether a stored response can still be used. These HTTP meanings should not be confused with proving that an agent's answer is correct. [HTTP caching](https://www.rfc-editor.org/rfc/rfc9111.html).
+
+For Lee's application, separate what is being reused:
+
+| Cached object | Reuse condition in our teaching design | Important limit |
+| --- | --- | --- |
+| Parsed supplier document | Same document content and parser version | A new file needs a new parse |
+| Retrieved stock snapshot | Same shop, product, snapshot and freshness policy | The underlying stock can change |
+| Generated report | Same relevant inputs, model, instructions, output schema and data version | Matching text requests do not establish matching context |
+| Repeated operation outcome | Same business operation ID under the receiving service's contract | This is deduplication of an action, not permission to perform another action |
+
+This table is an application design, not a universal cache-key specification. A **schema** defines the expected structure of data. Include a version when changing that structure changes interpretation. Do not reuse a report across different shop contexts merely because the question looks similar.
+
+**Time to live**, or **TTL**, is how long an entry may remain reusable under a policy. Expiry bounds age; it does not prove the supplier's stock stayed unchanged during that interval. **Invalidation** marks an entry unusable after a relevant change. In HTTP, successful state-changing requests trigger defined invalidation behavior. Application caches need their own dependency rules, because a reservation may affect several reports and indexes. [RFC 9111, invalidation](https://www.rfc-editor.org/rfc/rfc9111.html#section-4.4).
+
+After a reservation, Lee's design stops reusing reports based on the previous snapshot. If refreshing the source fails, the result should identify the old snapshot and its limits rather than silently describe it as current. An expired entry, an unavailable source and a confirmed zero stock count are three different states.
+
+### Release a known configuration
+
+A **deployment** makes a versioned configuration available to a running service. For an agent, record the relevant application code, instructions, tool definitions, model identifier, skill versions, retrieval configuration and output schema. A change in any one can change behavior. Version cache namespaces alongside those dependencies so a new parser does not read an incompatible old entry.
+
+A **canary release** exposes a limited portion of work to a candidate version for a limited time while a **control** continues using the earlier version. Compare outcomes before expanding the rollout. Google SRE describes this as a partial deployment plus evaluation, rather than simply putting a new version on one server. [Canarying releases](https://sre.google/workbook/canarying-releases/).
+
+![Cartoon shop workers compare a control release and a smaller canary release using completion, freshness, queue delay and shared capacity; the earlier version remains available for rollback.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/15-reliability-and-operations/02-caching-deployment-service-objectives-and-capacity/01-versioned-release.webp)
+
+*Figure 1. The candidate and control produce separate evidence for a release decision. A versioned cache helps preserve compatibility, but the reviewer still checks freshness and completion.*
+
+Read the two middle paths as comparable populations of work. Do not infer the traffic percentage from their drawing size. The shared meter reminds us that extra canary workers still draw on common model, tool and storage capacity.
+
+In Lee's design, pin each admitted run to its configuration version. During a change, **draining** means stopping new assignments to old workers while allowing existing work to finish or reach a documented checkpoint. Preserve compatible code for resuming old checkpoints. A model alias that changes remotely may still limit exact reproduction, even when application versions are recorded.
+
+**Rollback** selects an earlier working configuration. It does not undo a reservation, erase an emitted report or repair incompatible stored data. Before release, identify which persisted formats the old version can still read and what to do with candidate-created artifacts. A release that migrates data irreversibly may need a forward repair rather than a simple switch back. These are application recovery decisions, using the ownership rules from the previous chapter.
+
+### Measure what Lee experiences
+
+A **service-level indicator**, or **SLI**, is a defined measure of service behavior. A **service-level objective**, or **SLO**, sets its target over a stated window. An **error budget** is the allowed amount of failure under that target. These terms describe service engineering; they are separate from a per-run token or cost budget. [Service-level objectives](https://sre.google/sre-book/service-level-objectives/).
+
+Define eligible requests, the observation window and what counts as good before measuring. An agent endpoint returning a successful network response does not establish task success. For the shop, a good stock report might require a supported answer, a suitable source snapshot and delivery within 30 seconds including queue wait. The 30-second limit is a local example, not a general recommendation.
+
+Track availability, timeliness and correctness separately when they need different measurement methods. Correctness may require offline review or delayed verification; record that coverage and delay. Keep rejected admission requests visible as a separate measure so an accepted-job SLI cannot conceal that most users were turned away. Also record fallback use, unresolved external outcomes, queue age and resource use per completed task.
+
+### Plan for work rather than just request counts
+
+**Capacity** is the sustainable amount of work a service can handle within its objectives. **Throughput** is completed work per unit of time. Adding workers helps only until a shared limit, such as model requests, tool concurrency, memory or storage, becomes the bottleneck.
+
+As a simplified calculation, six workers each occupied for an average of ten seconds could finish about 36 jobs per minute if there were no overhead or downstream constraints. If arrivals are 40 jobs per minute, backlog grows even under that optimistic assumption. Variation, retries, slow tools and cleanup reduce usable capacity further. This arithmetic is a teaching bound, not a sizing result.
+
+Google SRE warns that requests can consume very different resources. For agents, distinguish short answers from long tool loops and multi-file tasks. Measure call counts, token usage, worker occupancy, memory, queue delay and dependency quotas with representative tasks. [Handling overload](https://sre.google/sre-book/handling-overload/).
+
+Test both a **warm cache**, containing reusable entries, and a **cold cache**, initially empty. A rollout or namespace change may temporarily increase expensive misses. Many simultaneous refreshes of the same expired entry can also amplify load. In our design, share in-flight refresh work where appropriate, cap refresh concurrency and continue enforcing admission limits. More cache misses should not silently remove the service's bounds.
+
+## Worked example
+
+Lee compares the two configurations on separate fixed sets of 100 comparable eligible requests. These are illustrative counts, not observed production measurements. The teaching target is at least 98 good reports out of every 100 eligible requests in a five-minute evaluation window. A good report must satisfy the correctness, freshness and deadline conditions together.
+
+| Measure | Control | Candidate |
+| --- | --- | --- |
+| Eligible requests | 100 | 100 |
+| Timely responses | 99 | 100 |
+| Reports satisfying all good-result conditions | 99 | 94 |
+| Cache hits | 20 | 80 |
+| Stale-snapshot failures | 0 | 6 |
+
+The candidate is faster and has more cache hits, but it misses the 98% objective. Its six bad outcomes exceed the two permitted by that teaching target. Keep the control selected, inspect invalidation and key dependencies, and evaluate a revised candidate using fresh evidence. A single small comparison still cannot establish a production reliability rate or isolate all causal factors.
+
+Record release ID, task population, cache state, resource usage, admission rejections and rollback result with the comparison. The [earlier optimization chapter](/From-LLMs-to-Secure-Agents/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/) explains why a selective improvement claim needs transfer and retention evidence. A service release adds operational outcomes to that evidence.
+
+## Limitations and trade-offs
+
+Caching reduces repeated work at the cost of freshness and invalidation complexity. A canary limits initial exposure but may miss rare tasks, long-running failures or effects that only emerge at full load. A low average latency can also hide slow requests; examine the distribution and the user-visible deadline rate.
+
+The worked comparison is a table because execution would only repeat arithmetic. It does not simulate distributed caches, real traffic assignment or deployment draining. Test actual runtime and storage contracts before applying the design. Persistent outputs have their own owners and lifecycle, covered next in [artifacts](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/16-artifacts-and-multimodal-io/chapter-plan.md).
+
+<details><summary>Check your understanding</summary>
+
+A new release has an 80% cache-hit rate and all requests return quickly, but six of 100 reports use superseded stock snapshots. Does it meet a 98% objective for timely, current and correct reports?
+
+No. Only 94 of 100 satisfy all required conditions. Cache efficiency and response speed do not compensate for stale results under that objective. Restoring the previous release also does not retract the six reports already delivered.
+
+</details>
+
+## Security preview
+
+Cache scope, resource consumption and release dependencies also create security boundaries. Pass 2 revisits them in [retrieval, memory and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md) and [execution and supply-chain security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md).
+
+## Key takeaways
+
+- A cache hit establishes reuse under a policy, not correctness or current truth.
+- Version the configuration and the stored formats needed to interpret its results.
+- Define good user outcomes, eligibility and measurement windows before setting targets.
+- Compare releases under realistic capacity, cache and dependency conditions.
+
+## References
+
+- [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html).
+- [Service Level Objectives](https://sre.google/sre-book/service-level-objectives/).
+- [Canarying Releases](https://sre.google/workbook/canarying-releases/).
+- [Handling Overload](https://sre.google/sre-book/handling-overload/).
+
+[Next unit: Messages, structured artifacts, and lifecycle →](/From-LLMs-to-Secure-Agents/building-blocks/01-messages-structured-artifacts-and-lifecycle/)
+
+
+================================================================================
+CHAPTER: Messages, structured artifacts, and lifecycle
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/01-messages-structured-artifacts-and-lifecycle/
+SUMMARY: Make saved outputs retrievable, versioned and interpretable while separating structure, content and rendering checks.
+================================================================================
+
+# Messages, structured artifacts, and lifecycle
+
+## Why this matters
+
+Lee asks for a stock report and receives the message "Done, the report is ready." The chat ends. The next morning, a colleague wants to open that exact report and compare it with yesterday's version. The message alone cannot supply the file, its source snapshot or the version that was checked.
+
+A useful agent produces more than conversational text. It also creates and manages persistent outputs. This chapter follows [reliability and operations](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/15-reliability-and-operations/chapter-plan.md), where checkpoints and progress files preserve work across interruptions.
+
+## How it works
+
+### Distinguish four objects
+
+In this guide, an **artifact** is a persistent output, such as a report, image, spreadsheet, generated code file or structured record. A **message** is a conversational communication. An **event** records a transition or occurrence during execution. **State** is the stored information used to continue or interpret a workflow. These are teaching distinctions; frameworks may use the terms with different scopes.
+
+| Object in Lee's workflow | What it answers |
+| --- | --- |
+| Message: "Your report is ready" | What did the assistant tell the user? |
+| Event: report version 2 was saved | What occurred, and when? |
+| State: report generation completed | Where does the run stand? |
+| Artifact: the versioned report and metadata | What can someone retrieve, inspect and reuse later? |
+
+A message can carry a file reference, and an event can announce an artifact update. Neither establishes that the referenced bytes will still exist tomorrow. A reference is a location or identifier used to retrieve content; its lifetime can differ from the content's lifetime.
+
+### Put structure around the saved output
+
+A **manifest** is a record describing one or more artifacts and how to find and interpret them. Our local manifest includes a stable artifact ID, owner, version, content type, size, checksum, source, producer, storage reference, lifecycle status and rendering choice. This is a teaching schema, not a required agent standard.
+
+A **media type**, often called a **MIME type**, identifies a format using a type and subtype, such as `application/json` or `image/webp`. MIME originally names Multipurpose Internet Mail Extensions; media types are also used by HTTP and other protocols. The filename extension is a hint, not a format check. [Media type specification](https://www.rfc-editor.org/rfc/rfc6838.html).
+
+A **schema** defines expected data structure and constraints. JSON is a text format for objects, arrays and simple values. JSON Schema can require a stock report to contain a product ID, a nonnegative integer quantity and a source snapshot ID. Passing those checks does not establish that the supplier actually has that quantity. Compare the values with suitable evidence as a separate evaluation. [JSON Schema tutorial](https://json-schema.org/learn/getting-started-step-by-step).
+
+**Provenance** records where something came from and how it was produced. For the report, record the input snapshot, producing tool or run, transformation version and relevant review result. W3C's PROV vocabulary distinguishes the data, activities and people involved; our compact manifest borrows the underlying question without implementing the full PROV model. [PROV overview](https://www.w3.org/TR/prov-overview/).
+
+A **checksum** is a value computed from content to help detect a change. The example uses a SHA-256 **digest**, a fixed-size fingerprint of the file bytes, calculated with Python's `hashlib`. Recomputing it after loading the file checks consistency with the recorded digest. A matching digest does not by itself prove who created the content or whether the quantity is true. [Python hashing documentation](https://docs.python.org/3/library/hashlib.html).
+
+### Give artifacts an explicit lifecycle
+
+Our report lifecycle creates candidate bytes, checks their structure and meaning, stores a version, makes that version available to an appropriate renderer, then retires it under a retention policy. **Retention** specifies how long content and associated records remain available. Expiry of a download reference is not necessarily deletion of the stored artifact.
+
+![A cartoon message points to a saved report while a separate lifecycle creates, checks, versions, renders and expires the artifact, with owner, source and checksum metadata.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle/01-artifact-lifecycle.webp)
+
+*Figure 1. Conversation and persistence have different roles. The check can return a candidate for revision, while the stored version supplies the exact bytes later selected for rendering.*
+
+Read the two folders as separate versions, not files to overwrite in place. The expiry station represents a lifecycle decision. It does not claim that one timer automatically removes every backup or downstream copy.
+
+An **owner** is the person or service responsible for an artifact's scope and lifecycle. **Storage** is the service or location holding its bytes. A **renderer** turns those bytes into something a user can see or hear. Rendering is a separate boundary because a format may be saved successfully yet fail to display, lose information in conversion or require a different application.
+
+For Lee's report, bind the displayed result to a specific version. If the application loads "latest" later, it may obtain version 3 rather than the version 2 the user reviewed. Store a new version for a revision and keep the relationship to the earlier one. Make expired, missing and superseded references distinguishable in the user interface.
+
+A useful lifecycle record answers all of these questions:
+
+| Artifact | Owner and provenance | Storage and lifecycle | Rendering and evaluation |
+| --- | --- | --- | --- |
+| Stock report, JSON | Lee's shop; mocked snapshot S17; report producer version 1 | Versioned local file in the example; retired when marked expired | Plain-text JSON view; check required fields and agreement with S17 |
+| Guide illustration, WebP | Guide maintainers; saved generation prompt and selected image | Repository image file; versioned with the guide | Image preview with alt text; inspect labels and meaning, then verify digest on retrieval |
+| Generated code file | Application owner; originating task and generator version | Versioned file; runtime retention policy | Source viewer first; execution is a separate workflow with its own outcome checks |
+
+The guide illustration is an explanatory image, not a photograph or proof of shop inventory. A source-code artifact can be inspected without running it. Likewise, saving a user-interface description does not mean its buttons have executed their actions.
+
+## Framework implementations
+
+Google's **Agent Development Kit**, or **ADK**, manages named, versioned binary artifacts in session or user scope through an artifact service. Its documentation separates artifact storage from session state and represents content through a typed `Part`. Re-saving the same artifact filename creates another version. An in-memory service helps testing but does not provide process-independent persistence. [ADK artifacts](https://adk.dev/artifacts/).
+
+**Agent2Agent**, or **A2A**, is a protocol for communication between agent systems. In version 1.0.0, both messages and artifacts contain `Part` objects. A part contains exactly one of `text`, `raw`, `url` or `data`; optional `mediaType` and `filename` describe the content. An artifact has an `artifactId` unique within its task and a nonempty list of parts. [A2A 1.0.0 specification](https://a2a-protocol.org/v1.0.0/specification).
+
+These are different contracts. ADK offers artifact management through a storage service. A2A defines task-output exchange; the receiving application still needs to decide where to store bytes, which version to retain and how to display them. A2A can call an output an artifact while it is still being streamed. Our guide's persistent-output convention does not mean the protocol guarantees durable storage.
+
+The example uses its own manifest fields, not ADK objects or A2A wire messages. Deeper protocol and framework comparisons belong in [frameworks and protocols](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/04-frameworks-and-protocols/chapter-plan.md). Check versions before copying field names from older examples.
+
+## Worked example
+
+The [typed manifest example](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/16-artifacts-and-multimodal-io/01-messages-structured-artifacts-and-lifecycle/README.md) creates a JSON report from a mocked stock snapshot and references this chapter's real local illustration. It calculates content digests and writes a manifest for both. It does not call a model, upload content or invoke a framework SDK.
+
+The report is first checked against a small explicit contract and the supplied snapshot. The file is then reloaded and verified against its recorded size and digest. The image uses a local file reference and a format-signature check; its visual meaning was reviewed when the illustration was authored. That signature check is not a complete image-decoding test.
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+payload = load_bytes(manifest.storage_ref)
+if sha256(payload).hexdigest() != manifest.sha256:
+    raise ValueError("Artifact bytes changed")
+report = json.loads(payload)
+check_report(report, snapshot)
+```
+
+The complete example also checks lifecycle status, size and the declared format before selecting a simple renderer. Python type annotations describe intended fields; explicit validation performs the checks. It is not a general JSON Schema engine.
+
+</details>
+
+If someone changes the quantity after the manifest was written, byte verification fails. If a new manifest is created for a wrong quantity, the bytes can match perfectly while the semantic check fails. If the artifact is marked expired, the example refuses to render it even though its file still exists. These are three different failure cases.
+
+## Limitations and trade-offs
+
+Manifests create metadata that must stay consistent with content. Large files usually belong in dedicated storage, with small references in messages or state. References can break, previews can differ from original files, and deleting one stored version may leave derived files elsewhere. State the storage and retention contract rather than assuming a filename is sufficient.
+
+The example uses temporary local storage and removes its temporary outputs on exit. Its fixture tests verify metadata and content checks, not a production retention service or end-user download flow. Different formats need different validators and renderers. Images, audio, video and interactive streams add observation and timing questions in the next deep dive.
+
+<details><summary>Check your understanding</summary>
+
+A stock report passes its JSON field checks and its checksum matches the manifest, but the quantity disagrees with snapshot S17. Can the application mark the report correct?
+
+No. The schema checks structure and the digest checks consistency with recorded bytes. Neither establishes agreement with the source. The report needs a separate semantic check, and a message saying it is ready does not replace that check.
+
+</details>
+
+## Security preview
+
+Untrusted files, active content and misleading provenance cross the storage and rendering boundaries introduced here. Pass 2 covers them in [retrieval, memory and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md) and [execution security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md).
+
+## Key takeaways
+
+- Keep conversational messages, execution events, resumable state and saved outputs distinct.
+- Record type, owner, provenance, version, storage, lifecycle and evaluation with each artifact.
+- Structure, byte consistency, semantic correctness and rendering need separate checks.
+- Framework storage and protocol exchange provide different guarantees.
+
+## References
+
+- [Artifacts](https://adk.dev/artifacts/).
+- [Agent2Agent Protocol Specification 1.0.0](https://a2a-protocol.org/v1.0.0/specification).
+- [RFC 6838: Media Type Specifications and Registration Procedures](https://www.rfc-editor.org/rfc/rfc6838.html).
+- [Creating your first schema](https://json-schema.org/learn/getting-started-step-by-step).
+- [PROV Overview](https://www.w3.org/TR/prov-overview/).
+- [hashlib: Secure hashes and message digests](https://docs.python.org/3/library/hashlib.html).
+
+[Next unit: Multimodal input, output, streaming, and evaluation →](/From-LLMs-to-Secure-Agents/building-blocks/02-multimodal-input-output-streaming-and-evaluation/)
+
+
+================================================================================
+CHAPTER: Multimodal input, output, streaming, and evaluation
+URL: https://renatomignone.github.io/From-LLMs-to-Secure-Agents/building-blocks/02-multimodal-input-output-streaming-and-evaluation/
+SUMMARY: Preserve observation provenance and distinguish streamed content, interruption, verified effects and delivered acknowledgements.
+================================================================================
+
+# Multimodal input, output, streaming, and evaluation
+
+## Why this matters
+
+Lee shows the assistant a shelf photo and says, "Reserve two blue mugs." While the assistant begins speaking, Lee interrupts: "Wait, do not reserve them." The screen still shows a loading spinner. Moments later, the supplier returns a reservation ID.
+
+The photo, spoken correction, screen and tool result describe different moments and different kinds of evidence. Treating them as one text answer hides what the agent observed and what actually happened. This optional deep dive follows [messages, structured artifacts, and lifecycle](/From-LLMs-to-Secure-Agents/building-blocks/01-messages-structured-artifacts-and-lifecycle/). The main path continues with [policy, guardrails, and validation](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/17-policy-guardrails-and-validation/chapter-plan.md).
+
+## How it works
+
+### Preserve modality, origin and time
+
+A **modality** is a form of information, such as text, an image, audio or video. A **multimodal** system handles more than one form. It may receive non-text input, produce non-text output, or combine several forms in one workflow. Supporting an image upload does not mean every model, tool and renderer supports that image format.
+
+Keep the original artifact reference and record any derived representation. **Optical character recognition**, or **OCR**, extracts text from an image. **Transcription** converts speech into text. A **frame** is one image in a video sequence. These transformations make information easier to use, but can omit visual layout, tone, timing or events between selected frames.
+
+| Observation | What the agent can inspect | Freshness and success check in Lee's workflow |
+| --- | --- | --- |
+| Shelf image | Visible products, labels and approximate arrangement | Record capture time and source; verify product and stock with suitable evidence |
+| Audio recording | Spoken words and available acoustic cues | Record turn and time range; check quantity and corrected intent |
+| Video | Supplied frames, timestamps and any supplied audio | Record sampling coverage; do not infer unseen intervals as observed |
+| Browser or desktop | Current screenshot and information exposed by the driver | Observe again after actions; verify the intended record was saved |
+| Live voice interaction | Incoming audio, turn events and delivered output | Track interruptions and tool outcomes separately; check final business state |
+
+These are application observation rules, not promises that a model sees every pixel or hears every detail. OpenAI's vision documentation lists limitations including small text, rotation, counting and precise spatial reasoning, and notes that images can be resized before analysis. A shelf photo should not silently become a precise, current stock database. [Vision limitations](https://developers.openai.com/api/docs/guides/images-vision).
+
+For each derived artifact, preserve its owner, source, storage reference, version, retention policy, renderer and evaluation method from the previous chapter. A transcript should point back to its audio segment; a video summary should identify the supplied frame times. An unavailable capture timestamp should remain unknown rather than be replaced with the upload time.
+
+### Separate observation from action and verification
+
+**Computer use** is an interactive loop in which an agent observes a user interface, chooses an action, lets a driver execute it, then checks a fresh observation. A **driver** is the software that operates the browser or desktop. It may expose screenshots, structured controls or other observations according to its contract.
+
+A screenshot showing a button is evidence of the visible interface at capture time. It does not show hidden database state or prove that a click committed an order. OpenAI's computer-use guide recommends fresh screenshots around short groups of actions and distinguishes the API conversation from the execution environment. Continuing the conversation does not restore a lost browser session. [Computer-use loop](https://developers.openai.com/api/docs/guides/tools-computer-use).
+
+![Images, audio and video feed a cartoon observe-act-verify loop; partial speech and user interruption remain separate from a tool outcome that must be verified before a report or spoken result.](/From-LLMs-to-Secure-Agents/assets/images/03-building-blocks/16-artifacts-and-multimodal-io/02-multimodal-input-output-streaming-and-evaluation/01-observe-act-verify.webp)
+
+*Figure 1. Input observations guide actions; new observations and operation records verify their effects. The interruption mark applies to partial output, while the external tool outcome remains a separate question.*
+
+Read the return arrow as a request for fresh evidence after an action. A screenshot, an audio acknowledgement and a tool ledger each reveal something different. The loop can stop with an unresolved outcome when none supplies enough evidence.
+
+**Voice interaction** also needs observation, action and verification, but its timing is continuous. In a **chained pipeline**, speech becomes text, the agent processes the text and tools, then text becomes speech. A **speech-to-speech** system handles audio within a model session. A separate conversation frontend can also continue speaking while a backend performs work. These are architectural options described in the current voice guide, rather than interchangeable implementations. [Voice architectures](https://developers.openai.com/api/docs/guides/voice-agents).
+
+### Track partial output and completion separately
+
+A **stream** delivers incremental pieces instead of waiting for one complete response. A **chunk** is one such piece. Early text or audio can make an interaction feel responsive, but a partial sentence or partial JSON document may not yet be a valid final artifact.
+
+Keep distinct records for content received, content assembled, content validated, content rendered or played, tool completion and task completion. **Playback** means the client has emitted audio to the user. Receiving audio bytes from a server is an earlier event. Even a fully played sentence can describe work that has not completed.
+
+A2A 1.0.0 makes a related distinction: an artifact update may append content and mark `lastChunk`, while task status is carried separately. A final chunk ends that artifact's chunk sequence; it is not a general declaration that the entire task succeeded. The application's acceptance checks still determine whether the result meets the request. [A2A streaming events](https://a2a-protocol.org/v1.0.0/specification).
+
+Correlate chunks and results with their turn, task, operation and artifact IDs. A **turn** is a conversational contribution or response cycle under the application's convention. If the connection drops mid-artifact, preserve an incomplete state and recover using the protocol's supported state retrieval or resumption behavior. Do not assume arbitrary chunk sequences can always be replayed or resumed.
+
+### Handle interruption without losing the external outcome
+
+A user interruption can change the intended task and stop obsolete speech. It does not itself establish whether a pending tool was cancelled. Use the [reliability and reconciliation rules](/From-LLMs-to-Secure-Agents/building-blocks/01-service-boundaries-queues-retries-and-budgets/) for operations already dispatched.
+
+In Lee's case, record the corrected intent, stop old playback and mark the outstanding reservation as unresolved until its outcome is known. A late result for the earlier turn still belongs to the business operation. Keep it, even if late speech from that turn is discarded. If the reservation committed before the correction, communicate that fact and the remaining recovery work rather than saying the cancellation succeeded.
+
+A **final acknowledgement** is the response delivered after the current outcome is checked. It may acknowledge success, failure or an unresolved issue. Delivery does not turn an unresolved task into a successful one. In our example, "The reservation was already saved; release is unconfirmed" is an accurate acknowledgement of a task that still needs resolution.
+
+## Worked example
+
+The [offline streaming reducer](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/examples/03-building-blocks/16-artifacts-and-multimodal-io/02-multimodal-input-output-streaming-and-evaluation/README.md) processes a fixed sequence of application events. A **reducer** computes the next state from the current state and one event. Its event names are teaching conventions, not OpenAI or A2A wire fields.
+
+It compares an uninterrupted reservation with an interrupted one. Both receive a completed tool result. In the interrupted trace, old-turn output is ignored, the reservation result is retained, a mocked ledger check confirms it, and a new acknowledgement explains that the changed goal remains unmet.
+
+| Milestone | What it establishes | What it leaves open |
+| --- | --- | --- |
+| Partial response | Some output is available | Whether the tool or task completed |
+| User interruption | Current intent changed; old speech should stop | Whether an external action already committed |
+| Tool result | The tracked operation reports an outcome | Whether that outcome satisfies the corrected intent |
+| Outcome verification | The mocked ledger agrees with the result | Whether the user has received the explanation |
+| Final acknowledgement playback | The current explanation was delivered in the simulation | Whether unresolved business work has been repaired |
+
+<details><summary>Expand minimal Python implementation</summary>
+
+```python
+if event.kind == "interruption":
+    state = replace(state, current_intent="cancel",
+                    partial_output="", needs_resolution=True)
+elif event.kind == "tool_result":
+    state = replace(state, tool_outcome=event.value,
+                    outcome_verified=False)
+```
+
+The full example uses immutable state updates, rejects event gaps and correlates the tool result with its operation ID. A later verification event and a current-turn playback event are required before the acknowledgement counts as delivered. No speech, browser action or real cancellation occurs.
+
+</details>
+
+## Limitations and trade-offs
+
+### Evaluate the channel and the task
+
+Measure **latency**, the time between a defined start and end event, with the boundaries stated. Time to first byte, first visible text, first audible output and verified task completion are different measures. An early "I am checking" should not count as the substantive answer.
+
+For the shop, hold the input artifacts, task, model configuration and tool behavior fixed when comparing changes. Repeat representative cases and record both successful task outcomes and channel failures. Useful checks include:
+
+| Layer | Example check |
+| --- | --- |
+| Perception | Read product labels and quantities correctly; distinguish uncertainty |
+| Temporal interpretation | Apply the latest correction and preserve frame or audio timing |
+| Tool behavior | Send the intended arguments and correlate late results |
+| Artifact quality | Validate the selected version and inspect its rendered output |
+| Conversation | Stop obsolete playback and deliver an accurate current acknowledgement |
+| Task outcome | Confirm the requested final state in the application or external record |
+| Service behavior | Measure queue delay, latency, cost and incomplete sessions |
+
+The current voice evaluation guide similarly separates timing, speech quality, tool outcomes and session reliability, and recommends checking the saved business state as well as listening to confirmation. Human listening remains useful for intelligibility and interaction timing. [Voice evaluation](https://developers.openai.com/api/docs/guides/voice-agents).
+
+Dyn-VQA is a research benchmark for multimodal retrieval and visual question answering, including changing answers, multimodal knowledge and multi-hop questions. It is useful evidence about those tasks, but it cannot establish browser workflow success or voice interruption handling. Choose evaluation tasks that match the actual workflow. [Dyn-VQA research](https://arxiv.org/abs/2411.02937).
+
+### State what the example cannot prove
+
+The reducer verifies bookkeeping on fixed events. Its playback and ledger checks are simulated. It does not measure recognition accuracy, audio buffering, driver reliability, video coverage or real network ordering. The ordered local event convention is narrower than arbitrary distributed delivery; a detected gap needs recovery rather than silent acceptance.
+
+Images can lack capture metadata, transcripts can lose corrections, selected frames can miss a decisive event, and rendered output can hide a malformed underlying file. Keep those limitations visible in the result. A polished screen or fluent voice should not substitute for evidence of completed work. Framework-specific transport details follow later in [frameworks and protocols](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/04-frameworks-and-protocols/chapter-plan.md).
+
+<details><summary>Check your understanding</summary>
+
+Lee interrupts a spoken reservation response. The application stops the audio, then receives a reservation ID for the previous turn. Should it discard that result because the speech was cancelled?
+
+No. The late result describes a tracked external operation and must be reconciled with the corrected intent. Discard obsolete speech, retain the operation outcome, and explain any unresolved release. A delivered explanation can be accurate while the changed task remains incomplete.
+
+</details>
+
+## Security preview
+
+Media, interface observations and generated outputs carry provenance and rendering risks. Pass 2 maps these inputs and outputs to [retrieval, memory and data security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/02-retrieval-memory-and-data/chapter-plan.md) and [execution security](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/07-security-by-component-and-workflow-stage/04-execution-and-supply-chain/chapter-plan.md).
+
+## Key takeaways
+
+- Preserve modality, source and time through transformations.
+- Observe again after actions and verify the actual business outcome.
+- Keep partial output, playback, interruption, tool results and task completion distinct.
+- Evaluate perception, interaction quality, artifact quality and task success separately.
+
+## References
+
+- [Images and vision](https://developers.openai.com/api/docs/guides/images-vision).
+- [Computer use](https://developers.openai.com/api/docs/guides/tools-computer-use).
+- [Voice agents](https://developers.openai.com/api/docs/guides/voice-agents).
+- [Agent2Agent Protocol Specification 1.0.0](https://a2a-protocol.org/v1.0.0/specification).
+- [Benchmarking Multimodal Retrieval Augmented Generation with Dynamic VQA Dataset and Self-adaptive Planning Agent](https://arxiv.org/abs/2411.02937).
+
+[Next unit: Policy control plane and input validation →](https://github.com/RenatoMignone/From-LLMs-to-Secure-Agents/blob/main/knowledge/03-building-blocks/17-policy-guardrails-and-validation/chapter-plan.md)

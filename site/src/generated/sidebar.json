@@ -346,6 +346,38 @@
           {
             "label": "39 Adaptation, reflection, feedback, and skills",
             "link": "/building-blocks/01-adaptation-reflection-feedback-and-skills/"
+          },
+          {
+            "label": "40 Optimization, continual learning, forgetting, and evaluation",
+            "link": "/building-blocks/02-optimization-continual-learning-forgetting-and-evaluation/"
+          }
+        ]
+      },
+      {
+        "label": "Reliability and operations",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "41 Service boundaries, queues, retries, and budgets",
+            "link": "/building-blocks/01-service-boundaries-queues-retries-and-budgets/"
+          },
+          {
+            "label": "42 Caching, deployment, service objectives, and capacity",
+            "link": "/building-blocks/02-caching-deployment-service-objectives-and-capacity/"
+          }
+        ]
+      },
+      {
+        "label": "Artifacts and multimodal io",
+        "collapsed": true,
+        "items": [
+          {
+            "label": "43 Messages, structured artifacts, and lifecycle",
+            "link": "/building-blocks/01-messages-structured-artifacts-and-lifecycle/"
+          },
+          {
+            "label": "44 Multimodal input, output, streaming, and evaluation",
+            "link": "/building-blocks/02-multimodal-input-output-streaming-and-evaluation/"
           }
         ]
       }
